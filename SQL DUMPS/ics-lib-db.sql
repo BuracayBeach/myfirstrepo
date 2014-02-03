@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 03, 2014 at 10:12 AM
--- Server version: 5.5.24-log
--- PHP Version: 5.4.3
+-- Generation Time: Feb 03, 2014 at 11:10 AM
+-- Server version: 5.6.12-log
+-- PHP Version: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 CREATE TABLE IF NOT EXISTS `author` (
   `book_no` varchar(12) NOT NULL,
   `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`book_no`),
+  PRIMARY KEY (`book_no`,`name`),
   KEY `book_no` (`book_no`),
   KEY `book_no_2` (`book_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -239,7 +239,7 @@ ALTER TABLE `account_history`
 -- Constraints for table `author`
 --
 ALTER TABLE `author`
-  ADD CONSTRAINT `author_book_no` FOREIGN KEY (`book_no`) REFERENCES `book` (`book_no`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `author_book_no` FOREIGN KEY (`book_no`) REFERENCES `book` (`book_no`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `favorites`
