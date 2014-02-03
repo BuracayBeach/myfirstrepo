@@ -30,6 +30,8 @@ class Book_model extends CI_Model {
                                                   ",'{$data['publisher']}'".
                                                   ",'{$data['date_published']}'".
                                                   ",'{$data['tags']}')");
+
+        $this->db->query("INSERT INTO author (book_no,name) VALUES ('{$data['book_no']}','{$data['author']}')");
     }
  
     function delBook($book_no){
