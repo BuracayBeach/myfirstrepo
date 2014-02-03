@@ -27,7 +27,6 @@
             <input type="submit" name="submit" id="del_submit">
         </form>
         <hr>
-        EDIT BOOK
         <!--form name="edit_book">
             <fieldset>
                 <legend>Personal Information</legend>
@@ -69,7 +68,7 @@
             <input type="submit"/>
 
         </form -->
-        <table id="sample_table" name="sample_table">
+        <!--table id="sample_table" name="sample_table">
             <tr>
                 <th>book_no</th>
                 <th>book_title</th>
@@ -117,4 +116,4 @@
                     <button class="edit">edit</button>
                 </td>
             </tr>
-        </table>
+        </table -->

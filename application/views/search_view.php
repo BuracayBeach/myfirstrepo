@@ -53,10 +53,9 @@
 								<th>Publish Date</th>
 								<th>Tags 		</th>
 								<th>Author 		</th>
-								<th>Reserve 	</th>
-								<th>Edit 		</th>
-								<th>Delete 		</th>
-								<th>Action 		</th>
+								<th colspan='3'>Book Action</th>
+								<th>Borrow Action 		</th>
+								<th></th>
 							</tr>";
 
                             foreach($table as $row):
@@ -75,7 +74,7 @@
                                 if ($row->status == "reserved") 	echo "<td><input type='button' bookno='{$row->book_no}' value='Lend'</td>";
                                 elseif ($row->status == "borrowed") echo "<td><input type='button' bookno='{$row->book_no}' value='Return'</td>";
                                 else echo "<td>(" . $row->status . ")</td>";
-
+                                echo "<td><input type='button' value='Add to Favorites'/></td>";
                                 echo "</tr>";
                             endforeach;
 						}
