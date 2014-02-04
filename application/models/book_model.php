@@ -23,13 +23,16 @@ class Book_model extends CI_Model {
     }
 
     function insertBook($data){
-        $this->db->query("INSERT INTO book (book_no,book_title,description,publisher,date_published,tags)".
-                                                  " VALUES ('{$data['book_no']}'".
-                                                  ",'{$data['book_title']}'".
-                                                  ",'{$data['description']}'".
-                                                  ",'{$data['publisher']}'".
-                                                  ",'{$data['date_published']}'".
-                                                  ",'{$data['tags']}')");
+        $date_pub = $data['date_published'];
+        $query = "INSERT INTO book (book_no,book_title,description,publisher,tags,date_published)".
+                " VALUES ('{$data['book_no']}'".
+                ",'{$data['book_title']}'".
+                ",'{$data['description']}'".
+                ",'{$data['publisher']}'".
+                ",'{$data['tags']}'".
+                ",".($date_pub==''?'null':("'".$date_pub."'")).")";
+
+        $this->db->query($query);
 
         $this->db->query("INSERT INTO author (book_no,name) VALUES ('{$data['book_no']}','{$data['author']}')");
     }
