@@ -11,11 +11,14 @@
 
             //delete button
             $('.delete_button').on('click',function(){
-                var bookNo = $(this).attr('bookno');
-                $(this).closest('tr').remove();
-                $.post('index.php/booker/delete',{book_no:bookNo},function(data){
-                    //callback function for delete
-                });
+                var result = confirm("Confirm deleting this book");
+                if (result==true) {
+                    var bookNo = $(this).attr('bookno');
+                    $(this).closest('tr').remove();
+                    $.post('index.php/booker/delete',{book_no:bookNo},function(data){
+                        //callback function for delete
+                    });
+                }
             });
 
             function addBook(event){
