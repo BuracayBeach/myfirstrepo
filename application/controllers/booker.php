@@ -26,6 +26,7 @@ class Booker extends CI_Controller {
         $data['book_no'] = $_POST['book_no'];
         $data['book_title'] = $_POST['book_title'];
         $data['description'] = $_POST['description'];
+        $data['author'] = $_POST['author'];
         $data['publisher'] = $_POST['publisher'];
         $data['date_published'] = $_POST['date_published'];
         $data['tags'] = $_POST['tags'];
@@ -39,7 +40,7 @@ class Booker extends CI_Controller {
 
         $this->book_model->insertBook($data);
 
-        $this->index();
+        echo json_encode($_POST);
         /* ???
         if ($this->form_validation->run()==FALSE){
 
@@ -50,12 +51,12 @@ class Booker extends CI_Controller {
             $this->load->view('views/index.html');
         }
         */
+
     }
 
     public function delete(){
         $book_no = $_POST['book_no'];
         $this->book_model->delBook($book_no);
-        $this->index();
     }
 
     public function edit(){
@@ -69,15 +70,31 @@ class Booker extends CI_Controller {
         $this->book_model->editBook($data);
     }
 
+    public function display_views($data){
+
+        $this->load->view('header',$data);
+        $this->load->view('search_view');
+        $this->load->view('table_view',$data);
+        $this->load->view('manage_view',$data);
+        $this->load->view('footer');
+    }
+
     public function index(){
         $data['title'] = "eICS Lib";
         $data['query'] = $this->db->get('book');
         $data['table'] = $this->search();
         $this->load->library('javascript');
-        $this->load->view('header',$data);
-        $this->load->view('search_view',$data);
-        $this->load->view('manage_view',$data);
-        $this->load->view('footer');
+
+        $this->display_views($data);
+
+
+        if(isset($_POST['submit_search']))
+        {
+            $this->search();
+        }
+        else if(isset($_POST['submit_del'])){
+            $this->delete();
+        }
     }
 
 
@@ -90,6 +107,7 @@ class Booker extends CI_Controller {
 
         if (isset($_POST["submit"])){
             //get user input
+
             $search_term = $_POST['search'];
             $search_by = $_POST['search_by'];
             $order_by = $_POST['order_by'];
@@ -109,12 +127,11 @@ class Booker extends CI_Controller {
 
         if($status_check!="") $status_check = "(" . $status_check . ") and";
 
-
         $details = array(
             'search_term' 	=> $search_term,
             'search_by' 	=> $search_by,
             'order_by' 		=> $order_by,
-            'status_check' 	=> $status_check
+            'status_check' 	=> $status_check,
         );
 
 

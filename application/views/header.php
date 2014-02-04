@@ -11,20 +11,18 @@
     <title><?php echo $title ?></title>
 
     <script src="http://localhost/ProjectYes/jquery-1.11.0.js"></script>
-    <script>
+    <script name="input_validation_add">
         var str, msg;
-        function main(){    //for validation
+        $(document).ready(function(){
 
-            $(document).ready(function(){
+            var columns = $('#table_add_book input');
+            columns.on('blur',checkAll);
 
-                var columns = $('#add_book_table input')
-                columns.on('blur',checkAll);
-            });
-
-        }
+            checkAll();
+        });
 
         function validateBookNo(){
-            str = add_book.book_no.value;
+            str = $('#add_book_no').val();
             msg = "";
             if(str == ""){
                 msg+="Book no is required.";
@@ -40,15 +38,15 @@
             if(msg == ""){
                 return true;
             }
-
+            return false;
         }
         function validateTitle(){
-            str = add_book.book_title.value;
+            str = $('#add_book_title').val();
             msg = "";
             if(str == ""){
                 msg+="Book title is required.";
             }
-            else if(!str.match(/^[a-zA-Z ]+$/)){
+            else if(!str.match(/^[a-zA-Z0-9 ]+$/)){
                 msg+="Wrong Input";
             }
             else if(msg == "Invalid input: "){
@@ -61,34 +59,9 @@
             }
             return false;
         }
-        function validateDescription(){
-            str = add_book.description.value;
-            msg = "";
-            if(str == ""){
-                msg+="Description is required.";
-            }
-            document.getElementsByName("description_msg")[0].innerHTML = msg;
 
-            if(msg == ""){
-                return true;
-            }
-            return false;
-        }
-        function validatePublisher(){
-            str = add_book.description.value;
-            msg = "";
-            if(str == ""){
-                msg+="Publisher name is required.";
-            }
-            document.getElementsByName("publisher_msg")[0].innerHTML = msg;
-
-            if(msg == ""){
-                return true;
-            }
-            return false;
-        }
         function validateDatePublished(){
-            var str = add_book.date_published.value.toString();
+            var str = $('#add_date_published').val().toString();
             var currentDate = str.split("-");
             str = new Date(currentDate[0],(currentDate[1] - 1), (currentDate[2]));
             var today = new Date();
@@ -97,10 +70,7 @@
             var year = today.getFullYear();
             msg = "";
 
-            if(str == "" || str == 'Invalid Date'){
-                msg+="Date is required.";
-            }
-            else if(str.getFullYear()>=year){
+            if(str.getFullYear()>=year){
                 if(str.getMonth()+1 >= mm){
                     if(str.getDate() > dd){
                         msg+="Wrong date.";
@@ -119,17 +89,37 @@
 
         }
 
-        function checkAll(){
-            var submitButton = $('#add_submit');
+        function validateName(name){
+            //regex for name
 
-            if(validateTitle() && validateBookNo() && validateDescription() && validatePublisher() && validateDatePublished() )
+            str = $('#add_'+name).val().toString();
+            msg = "";
+
+            //write regex here
+
+            if(msg == ""){
+                return true;
+            }
+            return false;
+        }
+
+        function validateTags(){
+            return true;
+        }
+
+        function checkAll(){
+            var addButton = $('#add_button');
+
+            if( validateBookNo() && validateTitle() && validateName('author')
+                && validateName('publisher')  && validateDatePublished()&& validateTags())
             {
-                submitButton.attr('disabled', false);
+                return true;
             }
             else{
-                submitButton.attr('disabled', true);
+                return false;
             }
         }
+
     </script>
 </head>
-<body onload = "main()">
+<body>
