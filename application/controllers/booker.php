@@ -80,23 +80,17 @@ class Booker extends CI_Controller {
     }
 
     public function index(){
+        $this->load->library('javascript');
         $data['title'] = "eICS Lib";
         $data['query'] = $this->db->get('book');
         $data['table'] = $this->search();
-        $this->load->library('javascript');
 
-        $this->display_views($data);
-
-
-        if(isset($_POST['submit_search']))
-        {
-            $this->search();
-        }
-        else if(isset($_POST['submit_del'])){
+        if(isset($_POST['submit_del'])){
             $this->delete();
         }
-    }
 
+        $this->display_views($data);
+    }
 
     public function search(){
         //set defaults
@@ -105,7 +99,7 @@ class Booker extends CI_Controller {
         $order_by = "a.book_no";
         $status_check = "status='available' or status='borrowed' or status='reserved'";
 
-        if (isset($_POST["submit"])){
+        if (isset($_POST["submit_search"])){
             //get user input
 
             $search_term = $_POST['search'];
@@ -133,7 +127,6 @@ class Booker extends CI_Controller {
             'order_by' 		=> $order_by,
             'status_check' 	=> $status_check,
         );
-
 
         return $this->book_model->query_result($details);
     }
