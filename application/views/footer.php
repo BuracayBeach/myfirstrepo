@@ -12,54 +12,33 @@
             //delete button
             $('.delete_button').on('click',function(){
                 var bookNo = $(this).attr('bookno');
-
-                $.ajax({
-                    type:'POST',
-                    url :'index.php/booker/delete',
-                    data : {book_no:bookNo},
-                    row : $(this).closest('tr')
-                }).done(function(){
-                        this.row.remove();
-                    });
+                $(this).closest('tr').remove();
+                $.post('index.php/booker/delete',{book_no:bookNo},function(data){
+                    //callback function for delete
+                });
             });
 
-            $('#add_button').on('click',function(){
-                var data = {
-                         book_no : $('#add_book_no').val(),
-                         book_title : $('#add_book_title').val(),
-                         description : $('#add_description').val(),
-                         publisher : $('#add_publisher').val(),
-                         date_published : $('#add_date_published').val(),
-                         tags : $('#add_tags').val(),
-                         author : $('#add_author').val()
+            function addBook(event){
+                event.preventDefault();  /* stop form from submitting normally */
+
+                if(checkAll()){
+                    var date = $('#add_date_published').val();
+                    var data = {
+                        book_no : $('#add_book_no').val(),
+                        book_title : $('#add_book_title').val(),
+                        description : $('#add_description').val(),
+                        publisher : $('#add_publisher').val(),
+                        date_published : date,
+                        tags : $('#add_tags').val(),
+                        author : $('#add_author').val()
                     };
 
-                $.ajax({
-                    type : "POST",
-                    url : "index.php/booker/add",
-                    data : data
-                }).done(function(data){
-                        var data = JSON.parse(data);
-                        //console.log(data);
-                        /*
-                        var tableHeader = $('#search_table').find('tr').first();
-                        var newBookHTML =
-                            "<tr>" +
-                                "<td>" + data.book_no + "</td>" +
-                                "<td>" + data.book_title + "</td>" +
-                                "<td>" + 'available' + "</td>" +
-                                "<td>" + data.description + "</td>" +
-                                "<td>" + data.publisher+ "</td>" +
-                                "<td>" + data.date_published+ "</td>" +
-                                "<td>" + data.tags+ "</td>" +
-                                "<td>" + data.author+ "</td>" +
-                            "</tr>";
-                        tableHeader.after(newBookHTML);
-                        */
-                    });
-            });
+                    $.post("index.php/booker/add",$('#add_book_form').serialize(),function(data){});
+                    $('#add_book_form')[0].reset();
+                }
+            }
 
-
+            $('#add_book_form').submit(addBook);
 
             $('.edit').on('click',function(event){
                 var row = $(this).closest('tr').children();

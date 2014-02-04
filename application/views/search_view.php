@@ -1,12 +1,11 @@
 			<div id="search"><br>
 
 				<form name="search_form" method="post">
-
 					<div id="status">
 						<input id = "available" type="checkbox" name = "available" checked>
-						<label for="available">Available</label><br/>
+						<label for="available">Available</label>
 						<input id = "reserved" type="checkbox" name = "reserved" checked>
-						<label for="reserved">Reserved</label><br/>
+						<label for="reserved">Reserved</label>
 						<input id = "borrowed" type="checkbox" name = "borrowed" checked>
 						<label for="borrowed">Borrowed</label><br/><br/>
 					</div>
@@ -24,7 +23,6 @@
 
 					<input type="text" name='search'/>
 					<input type="submit" name="submit_search" value="Search" /><br/>
-
 
 					<a>Order by:</a>
 					<select name="order_by">
