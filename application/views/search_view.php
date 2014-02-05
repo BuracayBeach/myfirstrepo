@@ -22,7 +22,7 @@
 					</select>
 
 					<input type="text" name='search'/>
-					<input type="submit" name="submit_search" value="Search" /><br/>
+					<input type="submit" name="submit_search" id="submit_search" value="Search" /><br/>
 
 					<a>Order by:</a>
 					<select name="order_by">

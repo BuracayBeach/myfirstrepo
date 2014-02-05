@@ -82,7 +82,7 @@ class Booker extends CI_Controller {
     public function index(){
         $this->load->library('javascript');
         $data['title'] = "eICS Lib";
-        $data['query'] = $this->db->get('book');
+
         $data['table'] = $this->search();
 
         if(isset($_POST['submit_del'])){
