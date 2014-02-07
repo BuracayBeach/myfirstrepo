@@ -10,7 +10,7 @@
 <head>
     <title><?php echo $title ?></title>
 
-    <script src="http://localhost/ProjectYes/jquery-1.11.0.js"></script>
+    <script src="http://localhost/myfirstrepo/jquery-1.11.0.js"></script>
     <script>
         var str, msg;
         function main(){    //for validation

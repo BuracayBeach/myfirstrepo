@@ -72,8 +72,8 @@
                                 echo "<td><input type='button' bookno='{$row->book_no}' value='Edit'</td>";
                                 echo "<td><input type='button' bookno='{$row->book_no}' value='Delete'</td>";
 
-                                if ($row->status == "reserved") 	echo "<td><input type='button' bookno='{$row->book_no}' value='Lend'</td>";
-                                elseif ($row->status == "borrowed") echo "<td><input type='button' bookno='{$row->book_no}' value='Return'</td>";
+                                if ($row->status == "reserved") 	echo "<td><input type='button' bookno='{$row->book_no}' onclick=\"window.location.href='http://localhost/myfirstrepo/index.php/update_book/lend/?id={$row->book_no}'\" value='Lend' </td>";
+                                elseif ($row->status == "borrowed") echo "<td><input type='button' bookno='{$row->book_no}' onclick=\"window.location.href='http://localhost/myfirstrepo/index.php/update_book/received/?id={$row->book_no}'\" value='Return'</td>";
                                 else echo "<td>(" . $row->status . ")</td>";
 
                                 echo "</tr>";
