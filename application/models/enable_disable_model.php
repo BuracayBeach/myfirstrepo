@@ -28,7 +28,7 @@ class Enable_disable_model extends CI_Model {
 			}
 		}		
 
-		If($field['status'] != "all")
+		if($field['status'] != "all")
 			$sql = $sql." AND status LIKE '".$field['status']."'";
 
 		$sql = $sql." GROUP BY usertype,sex";
@@ -51,7 +51,107 @@ class Enable_disable_model extends CI_Model {
 
 	public function activate($username, $student_no, $email)
 	{
+		/*
+			this function validates and activates accounts
+		*/
 
+		$sql = "SELECT * FROM our_data WHERE student_no LIKE '".$student_no."'";
+
+		$array = $this->db->query($sql);//checks the our_data for a student
+
+		if ($array->num_rows() > 0)//checks if search returned with any results
+		{
+			if ($array->num_rows() == 1)//checks if search returned with a valid result
+			{
+				$update = "UPDATE user SET('status' = enabled) WHERE username LIKE '".$username."' AND email LIKE '".$email."'";
+
+				if($this->db->simple_query($update))//checks if the update has been implemented
+				{
+					echo "<br />Update has been completed.<br />";
+				}
+				else
+				{
+					echo "<br />Update has encountered an error.<br />";
+				}
+			}
+			else
+			{
+				echo "<br />Search returned with multiple results. Please try again.<br />";
+			}
+		}
+		else
+		{
+			echo "<br />Search returned with zero results. Please try again.<br />";
+		}
+	}
+
+	public function enable($username, $email)
+	{
+		/*
+			this function validates and activates accounts
+		*/
+		$update = "UPDATE user SET('status' = enabled) WHERE username LIKE '".$username."' AND email LIKE '".$email."'";
+		
+		if($this->db->simple_query($update))//checks if the update has been implemented
+		{
+			echo "<br />Update has been completed.<br />";
+		}
+		else
+		{
+			echo "<br />Update has encountered an error.<br />";
+		}
+	}
+
+	public function disabled($username, $student_no, $email)
+	{
+		/*
+			this function validates and activates accounts
+		*/
+
+		$sql = "SELECT * FROM our_data WHERE student_no LIKE '".$student_no."'";
+
+		$array = $this->db->query($sql);//checks the our_data for a student
+
+		if ($array->num_rows() > 0)//checks if search returned with any result
+		{
+			if ($array->num_rows() == 1)//checks if search returned with a valid result
+			{
+				$update = "UPDATE user SET('status' = disabled) WHERE username LIKE '".$username."' AND email LIKE '".$email."'";
+
+				if($this->db->simple_query($update))//checks if the update has been implemented
+				{
+					echo "<br />Update has been completed.<br />";
+				}
+				else
+				{
+					echo "<br />Update has encountered an error.<br />";
+				}
+			}
+			else
+			{
+				echo "<br />Search returned with multiple results. Please try again.<br />";
+			}
+		}
+		else
+		{
+			echo "<br />Search returned with zero results. Please try again.<br />";
+		}
+	}
+
+	public function log($admin, $username, $email, $action)
+	{
+		$time = "M d, Y H:i:s";
+
+		$insert = "INSERT INTO account_history(username_user, username_admin, email, action) VALUES ('".$username."','".$admin."','".$email."','".$action."'";
+		
+		if($this->db->simple_query($insert))//checks if the update has been implemented
+		{
+			echo "<br />Insert has been completed.<br />";
+		}
+		else
+		{
+			echo "<br />Insert has encountered an error.<br />";
+		}
 	}
 }
 
