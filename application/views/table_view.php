@@ -1,8 +1,7 @@
 <div id="search_table_container">
                 <table id="search_table" border="1" width='60%'>
                     <?php
-                        $is_admin = isset($_SESSION['is_admin']);
-                        $is_admin = true; //temporary
+                        // $is_admin = true; //temporary
 
                         //new
                         if(isset($table)){
@@ -11,23 +10,24 @@
                                 <th width='40%'>Book        </th>
                                 <th width='15%'>Publishment </th>
                             ";
+                            if ($is_admin) echo "<th width='10%'>Tags</th>";
 
                      
                             echo "</tr>";
 
                             foreach($table as $row):
                                 echo "<tr>";                               
-                                echo "<td align='center'>" . $row->book_no . "</td>";
+                                echo "<td book_data='book_no' align='center'>" . $row->book_no . "</td>";
                                 echo "<td>" .
-                                        "<div style = 'font:20px Verdana'>" . 
+                                        "<div style = 'font:20px Verdana' book_data='book_title'>" . 
                                             $row->book_title . 
                                         "</div>" . 
                                         
-                                        "<div style = 'font-size:17px'>" . 
+                                        "<div style = 'font-size:17px' book_data='description'> " . 
                                             $row->description   . "<br>" .  
                                         "</div>" . 
 
-                                        "<div style = 'font-size:13px'><em>" . 
+                                        "<div style = 'font-size:13px' book_data='author'><em> " . 
                                             $row->name . "<br>" .
                                         "</em></div>";
 
@@ -71,9 +71,13 @@
 
                                     //other data
                                 echo "<td align='center'>" . 
-                                         $row->publisher . "<br>" .
-                                         $row->date_published . 
-                                     "</td>";                                    
+                                         "<div book_data='publisher'>" . $row->publisher . "</div>" .
+                                         "<div book_data='date_published'>" . $row->date_published . "</div>" .
+                                     "</td>";
+
+                                if ($is_admin) echo "<td book_data='Tags'>" . $row->Tags . "</td>";
+
+
                                
                                 echo "</tr>";
                             endforeach;
