@@ -23,7 +23,7 @@
 					</select>
 
 					<input type="text" name='search'/>
-					<input type="submit" name="submit" value="Search" /><br/>
+					<input type="submit" name="submit_search" value="Search" /><br/>
 
 
 					<a>Order by:</a>
@@ -38,48 +38,4 @@
 					</select><br/><br/>
 
 				</form>
-			</div>
-
-			<div id="table">
-				<table border=1>
-					<?php
-						if (isset($table)){
-							echo "<tr>
-								<th>Book No.	</th>
-								<th>Book Title 	</th>
-								<th>Status 		</th>
-								<th>Description </th>
-								<th>Publisher 	</th>
-								<th>Publish Date</th>
-								<th>Tags 		</th>
-								<th>Author 		</th>
-								<th>Reserve 	</th>
-								<th>Edit 		</th>
-								<th>Delete 		</th>
-								<th>Action 		</th>
-							</tr>";
-
-                            foreach($table as $row):
-                                echo "<tr>";
-
-                                foreach($row as $cell):
-                                    echo "<td>" . $cell	. "</td>";
-                                endforeach;
-
-                                if ($row->status == "available") echo "<td><input type='button' bookno='{$row->book_no}' value='Reserve'</td>";
-                                else echo "<td>(" . $row->status . ")</td>";
-
-                                echo "<td><input type='button' bookno='{$row->book_no}' value='Edit'</td>";
-                                echo "<td><input type='button' bookno='{$row->book_no}' value='Delete'</td>";
-
-                                if ($row->status == "reserved") 	echo "<td><input type='button' bookno='{$row->book_no}' onclick=\"window.location.href='http://localhost/myfirstrepo/index.php/update_book/lend/?id={$row->book_no}'\" value='Lend' </td>";
-                                elseif ($row->status == "borrowed") echo "<td><input type='button' bookno='{$row->book_no}' onclick=\"window.location.href='http://localhost/myfirstrepo/index.php/update_book/received/?id={$row->book_no}'\" value='Return'</td>";
-                                else echo "<td>(" . $row->status . ")</td>";
-
-                                echo "</tr>";
-                            endforeach;
-						}
-					?>
-
-				</table>	
 			</div>
