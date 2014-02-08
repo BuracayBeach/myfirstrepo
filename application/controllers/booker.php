@@ -99,6 +99,11 @@ class Booker extends CI_Controller {
         $order_by = "a.book_no";
         $status_check = "status='available' or status='borrowed' or status='reserved'";
 
+        $booktitle_points = 7;
+        $bookdesc_points = 3;
+        $booktags_points = 1;
+
+
         if (isset($_POST["submit_search"])){
             //get user input
 
@@ -114,7 +119,7 @@ class Booker extends CI_Controller {
                 $status_check = str_replace("status='reserved'","",$status_check);
             }
 
-            if($search_by == "book_no")	$search_by = "a.book_no";
+            if($search_by == "book_no") $search_by = "a.book_no";
             if($order_by == "book_no") $order_by = "a.book_no";
         }
 
@@ -122,13 +127,67 @@ class Booker extends CI_Controller {
         if($status_check!="") $status_check = "(" . $status_check . ") and";
 
         $details = array(
-            'search_term' 	=> $search_term,
-            'search_by' 	=> $search_by,
-            'order_by' 		=> $order_by,
-            'status_check' 	=> $status_check,
+            'search_term'   => $search_term,
+            'search_by'     => $search_by,
+            'order_by'      => $order_by,
+            'status_check'  => $status_check,
         );
 
-        return $this->book_model->query_result($details);
+        $table = $this->book_model->query_result($details);
+        
+        if ($table == null) return null;
+
+        foreach($table as $row):
+            $table_copy[$row->book_no] = $row;
+
+            //transfer contents of table to $sorted + structure of points
+            $arr        = explode(" ", $search_term);
+            $booktitle  = explode(" ", $row->book_title);
+            $descr      = explode(" ", $row->description);
+            $tg         = explode(",", $row->Tags);
+
+            $points[$row->book_no] = 0;
+
+            //compare each search term/word to each of the words in the book title, description, tags
+            foreach ($arr as $maila):
+                $maila = strtolower($maila);
+                foreach($booktitle as $ysa):
+                    $ysa = strtolower($ysa);
+                    if ($maila == "") continue;
+
+                    if(strcasecmp($maila, $ysa)==0){
+                        $points[$row->book_no] += $booktitle_points;                   
+                    } else if (strpos($ysa, $maila) !== false && strlen($maila) / strlen($ysa) > 0.70){
+                        $points[$row->book_no] += $booktitle_points * (strlen($maila) / strlen($ysa));
+                        echo strlen($maila) / strlen($ysa);
+                    }
+                endforeach;
+
+                foreach($descr as $ysa1):
+                    if(strcasecmp($maila, $ysa1)==0){
+                          $points[$row->book_no] +=  $bookdesc_points;
+                    }
+                endforeach;
+
+                foreach($tg as $ysa2):
+                    if(strcasecmp($maila, trim($ysa2))==0){
+                         $points[$row->book_no] +=  $booktags_points;
+                    }
+                endforeach;
+            endforeach;
+        endforeach;
+
+        arsort($points);
+
+        //copy the sorted table to $table
+        $counter = 0;
+        foreach ($points as $key => $value):
+                // echo $key . " " . $value . "<br>";
+                $table[$counter++] = $table_copy[$key];
+        endforeach;
+
+        return $table;
+
     }
 
 }
