@@ -53,23 +53,25 @@ class Book_model extends CI_Model {
         );
 
         $word_count = 0;
-       foreach ($tok as $search) {
-        // echo $search."<br>";
-        if($details['search_by']== 'book_title'){
-           $q['where'] .= "book_title like '%" . $search . "%' or description like '%" . $search . "%' or Tags like '%" . $search . "%' ";
+        foreach ($tok as $search) {
+            // echo $search."<br>";
+            if($details['search_by']== 'book_title'){
+               $q['where'] .= "book_title like '%" . $search . "%' or description like '%" . $search . "%' or Tags like '%" . $search . "%' ";
+            } else {
+                $q['where'] .= $details['search_by'] . " like '%".$search."%' ";
+            }
+           
+            if($word_count < count($tok) - 1) {
+                $q['where'] .= " or ";
+            }
 
-        } else {
-            $q['where'] .= $details['search_by'] . " like '%".$search."%' ";
-        }
-       
-        if($word_count < count($tok) - 1) {
-        $q['where'] .= " or ";
-        }
-       $word_count++;
+            $word_count++;
         }
 
         $query_string = $q['select'] . $q['where'] . ")";// . $q['orderby'];
 
+
+        // echo $query_string;
         return $this->db->query($query_string)->result();
     }
 }
