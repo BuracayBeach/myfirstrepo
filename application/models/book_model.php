@@ -36,6 +36,30 @@ class Book_model extends CI_Model {
 
         $this->db->query("INSERT INTO author (book_no,name) VALUES ('{$data['book_no']}','{$data['author']}')");
     }
+
+    function editBook($data){
+        /*
+         *
+         * SANITATION GOES HERE
+         *
+         */
+
+        $data['prev_book_no'] = $data['book_no'];//temporary
+        $date_pub = $data['date_published'];
+        $query = "UPDATE book SET book_no='".$data['book_no']."'".
+                                ",book_title='".$data['book_title']."'".
+                                ",status='".$data['status']."'".
+                                ",description='".$data['description']."'".
+                                " ,publisher='".$data['publisher']."'".
+                                ",tags='".$data['tags']."'".
+                                ",date_published=".($date_pub==''?'null':("'".$date_pub."'")).
+                                " WHERE book_no='".$data['prev_book_no']."'";
+
+        $this->db->query($query);
+        //update author;
+        $this->db->query("UPDATE author SET name='{$data['author']}' WHERE book_no='{$data['book_no']}'");
+    }
+
  
     function delBook($book_no){
         $this->db->query("DELETE FROM book WHERE book_no='{$book_no}'");
