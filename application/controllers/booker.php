@@ -82,8 +82,11 @@ class Booker extends CI_Controller {
     public function index(){
         $this->load->library('javascript');
         $data['title'] = "eICS Lib";
+        $data['is_admin'] = true;
 
-        $data['table'] = $this->search();
+        if (isset($_POST["submit_search"])){
+            $data['table'] = $this->search($this->get_search_input());
+        }
 
         if(isset($_POST['submit_del'])){
             $this->delete();
@@ -93,43 +96,119 @@ class Booker extends CI_Controller {
         $this->display_views($data);
     }
 
-    public function search(){
+
+
+    public function get_search_input(){
+        //parameters needed for the search function
+        if (isset($_POST['search'])) $input['search_term'] = $_POST['search'];
+        if (isset($_POST['search_by'])) $input['search_by'] = $_POST['search_by'];
+        if (isset($_POST['order_by'])) $input['order_by'] = $_POST['order_by'];
+
+        $input['available'] = isset($_POST["available"]);
+        $input['borrowed'] = isset($_POST["borrowed"]);
+        $input['reserved'] = isset($_POST["reserved"]);
+
+        return $input;
+    }
+
+
+    public function search($input){
         //set defaults
         $search_term = "";
         $search_by = "book_title";
         $order_by = "a.book_no";
         $status_check = "status='available' or status='borrowed' or status='reserved'";
 
-        if (isset($_POST["submit_search"])){
-            //get user input
+        $booktitle_points = 7;
+        $bookdesc_points = 3;
+        $booktags_points = 1;
 
-            $search_term = $_POST['search'];
-            $search_by = $_POST['search_by'];
-            $order_by = $_POST['order_by'];
 
+        if (isset($input['search_term']) && isset($input['search_by'])){
             //filter by book status
-            if (!isset($_POST["available"])) $status_check = str_replace("status='available' or ","",$status_check);
-            if (!isset($_POST["borrowed"])) $status_check = str_replace("status='borrowed' or ","",$status_check);
-            if (!isset($_POST["reserved"])){
+            if (!$input["available"]) $status_check = str_replace("status='available' or ","",$status_check);
+            if (!$input["borrowed"]) $status_check = str_replace("status='borrowed' or ","",$status_check);
+            if (!$input["reserved"]){
                 $status_check = str_replace(" or status='reserved'","",$status_check);
                 $status_check = str_replace("status='reserved'","",$status_check);
             }
 
-            if($search_by == "book_no")	$search_by = "a.book_no";
+            if($search_by == "book_no") $search_by = "a.book_no";
             if($order_by == "book_no") $order_by = "a.book_no";
         }
 
-
         if($status_check!="") $status_check = "(" . $status_check . ") and";
+        else $status_check = "(0=1) and";
 
         $details = array(
-            'search_term' 	=> $search_term,
-            'search_by' 	=> $search_by,
-            'order_by' 		=> $order_by,
-            'status_check' 	=> $status_check,
+            'search_term'   => $input['search_term'],
+            'search_by'     => $input['search_by'],
+            'order_by'      => $input['order_by'],
+            'status_check'  => $status_check
         );
 
-        return $this->book_model->query_result($details);
+        $table = $this->book_model->query_result($details);
+        
+        if ($table == null) return null;
+
+        foreach($table as $row):
+            //clone table
+            $table_copy[$row->book_no] = $row;
+
+            //transform input and words to search into arrays
+            $arr        = explode(" ", $input['search_term']);
+            $booktitle  = explode(" ", $row->book_title);
+            $descr      = explode(" ", $row->description);
+            $tg         = explode(",", $row->Tags);
+
+            //reset points for each row
+            $points[$row->book_no] = 0;
+
+            //compare each search term/word to each of the words in the book title, description, tags
+            foreach ($arr as $maila):
+                $maila = strtolower($maila);
+
+                //compare input to book title words, follow point system
+                foreach($booktitle as $ysa):
+                    $ysa = strtolower($ysa);
+                    if ($maila == "") continue;
+
+                    if(strcasecmp($maila, $ysa)==0){
+                        $points[$row->book_no] += $booktitle_points;                   
+                    } else if (strpos($ysa, $maila) !== false && strlen($maila) / strlen($ysa) > 0.70){
+                        $points[$row->book_no] += $booktitle_points * (strlen($maila) / strlen($ysa));
+                        // echo strlen($maila) / strlen($ysa);
+                    }
+                endforeach;
+
+                //compare input to description words
+                foreach($descr as $ysa1):
+                    if(strcasecmp($maila, $ysa1)==0){
+                          $points[$row->book_no] +=  $bookdesc_points;
+                    }
+                endforeach;
+
+                //compare input to tags
+                foreach($tg as $ysa2):
+                    if(strcasecmp($maila, trim($ysa2))==0){
+                         $points[$row->book_no] +=  $booktags_points;
+                    }
+                endforeach;
+            endforeach;
+        endforeach;
+
+        //reverse sort $points structure by value
+        arsort($points);
+
+        //copy the sorted table to $table
+        $counter = 0;
+        foreach ($points as $key => $value):
+                // echo $key . " " . $value . "<br>";
+                $table[$counter++] = $table_copy[$key];
+        endforeach;
+
+        return $table;
+
     }
 
 }
