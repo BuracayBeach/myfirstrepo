@@ -60,11 +60,14 @@ class Booker extends CI_Controller {
     }
 
     public function edit(){
-        $data['prev_book_no'] = $_POST['prev_book_no'];
+        //$data['prev_book_no'] = $_POST['prev_book_no']; //temporarily commented out
         $data['book_no'] = $_POST['book_no'];
         $data['book_title'] = $_POST['book_title'];
+        $data['author'] = $_POST['author'];
+        $data['status'] = $_POST['book_status'];
         $data['description'] = $_POST['description'];
         $data['publisher'] = $_POST['publisher'];
+        $data['tags'] = $_POST['tags'];
         $data['date_published'] = $_POST['date_published'];
 
         $this->book_model->editBook($data);
@@ -86,10 +89,8 @@ class Booker extends CI_Controller {
 
         if (isset($_POST["submit_search"])){
             $data['table'] = $this->search($this->get_search_input());
-        }
-
-        if(isset($_POST['submit_del'])){
-            $this->delete();
+        }else if(isset($_POST['submit_edit'])){
+            $this->edit();
         }
 
         $this->display_views($data);
