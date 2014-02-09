@@ -48,29 +48,47 @@ class Book_model extends CI_Model {
         
         $q = array(
                 'select' => "select * from book b, author a ",
-                'where' => "where " . $details['status_check'] . " b.book_no = a.book_no and (",
-                'orderby' => ") order by " . $details['order_by']
+                'where' => " where " . $details['status_check'] . " b.book_no = a.book_no ",
+                'orderby' => "order by " . $details['order_by']
         );
 
         $word_count = 0;
-        foreach ($tok as $search) {
-            // echo $search."<br>";
-            if($details['search_by']== 'book_title'){
-               $q['where'] .= "book_title like '%" . $search . "%' or description like '%" . $search . "%' or Tags like '%" . $search . "%' ";
-            } else {
-                $q['where'] .= $details['search_by'] . " like '%".$search."%' ";
-            }
-           
-            if($word_count < count($tok) - 1) {
-                $q['where'] .= " or ";
-            }
+        if (trim($details['search_term']) != ""){
+            $q['where'] .= " and (";
+            foreach ($tok as $search) {
+                // echo $search."<br>";
+                if (trim($search)=='') {
+                    $word_count++;
+                    continue;
+                }
+                if($details['search_by']== 'book_title'){
+                   $q['where'] .= "book_title like '%" . $search . "%' or description like '%" . $search . "%' or Tags like '%" . $search . "%' ";
+                } else {
+                    $q['where'] .= $details['search_by'] . " like '%".$search."%' ";
+                }
+               
+                if($word_count < count($tok) - 1) {
+                    $q['where'] .= " or ";
+                }
 
-            $word_count++;
+                $word_count++;
+            }
+            $q['where'] .= ") ";
+        }        
+
+
+        //if admin did not enter any search terms
+        if ($details['is_admin'] ){
+            if ($details['order_by'] == 'search_relevance'){
+                if (trim($details['search_term']) == ""){
+                    $q['orderby'] = ' order by a.book_no';
+                } else {
+                    $q['orderby'] = "";
+                }
+            }
         }
 
-        $query_string = $q['select'] . $q['where'] . ")";// . $q['orderby'];
-
-
+        $query_string = $q['select'] . $q['where'] .= $q['orderby'];
         // echo $query_string;
         return $this->db->query($query_string)->result();
     }

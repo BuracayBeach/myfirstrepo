@@ -81,7 +81,10 @@
                                
                                 echo "</tr>";
                             endforeach;
+                        } else  {
+                            if (isset($search_submitted)) echo "No results to display";
                         }
+
                     ?>
 
 </table>
