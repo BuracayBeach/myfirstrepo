@@ -20,6 +20,7 @@ class Booker extends CI_Controller {
     function __construct(){
         parent::__construct();
         $this->load->model('book_model');
+        $this->load->model('search_model');
     }
 
     public function add(){
@@ -166,7 +167,7 @@ class Booker extends CI_Controller {
         );
 
         //get the query string
-        $table = $this->book_model->query_result($details);
+        $table = $this->search_model->query_result($details);
 
         //if there are no search terms input
         // if ($input['is_admin']) {
