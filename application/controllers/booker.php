@@ -89,6 +89,7 @@ class Booker extends CI_Controller {
             $this->delete();
         }
 
+
         $this->display_views($data);
     }
 
