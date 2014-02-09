@@ -105,6 +105,7 @@ class Booker extends CI_Controller {
         }
 
         $this->display_views($data);
+        
     }
 
 
