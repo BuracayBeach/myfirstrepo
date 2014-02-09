@@ -14,7 +14,7 @@ class Reserve extends CI_Controller {
 
 	/*
 	*	Sample call of this function in AJAX.
-	*	`info` is a js var[] containing the data needed.
+	*	`info` is a js var[] containi	ng the data needed.
 	*
 	*	$.ajax({
 	*		url : "http://localhost/128_team2/reserve/remove/" + username + "/" + book_no + "/" + email,
@@ -55,9 +55,47 @@ class Reserve extends CI_Controller {
 		echo json_encode($q);
 	}
 
+	/*
+	*	Sample call of this function in AJAX.
+	*
+	*	$.ajax({
+	*		url : "http://localhost/128_team2/reserve/enqueue/" + username + "/" + book_no + "/" + email,
+	*		type : 'POST',
+	*		dataType : "html",
+	*		async : true,
+	*		success: function(data) {}
+	*	});
+	*/
+	public function enqueue($username, $book_no, $email) {
+		$data = array(
+				'username' => $username,
+				'book_no' => $book_no,
+				'email' => $email,
+				'date_reserved' => date('Y-m-d H:i:s')
+			);
 
-	public function enqueue($username, $book_no) {
-		;
+		$this->reserve_model->enqueue($data);
+	}
+
+	/*
+	*	Sample call of this function in AJAX.
+	*
+	*	$.ajax({
+	*		url : "http://localhost/128_team2/reserve/check/" + username + "/" + book_no,
+	*		type : 'POST',
+	*		dataType : "html",
+	*		async : true,
+	*		success: function(data) {}
+	*	});
+	*/
+	public function check($username, $book_no) {
+		$data = array(
+				'username' => $username,
+				'book_no' => $book_no
+			);
+
+		$result = $this->reserve_model->check($data);
+		echo json_encode($result);
 	}
 
 
