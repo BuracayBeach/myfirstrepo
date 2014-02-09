@@ -33,17 +33,17 @@
     </table>
 </form>
 <hr/>
-<!--form name="edit_book">
+<h4>EDIT BOOK</h4>
+<form name="edit_book" method="post">
     <fieldset>
         <legend>Personal Information</legend>
 
         <label for="book_no">Book No: </label>
-        <input type="text" name="book_no" id="book_no" /><br/><span name="help_book_no"> </span></br>
-        <br /><br />
-
+        <input type="text" name="book_no" id="book_no" /><span name="help_book_no"> </span>
+        </br>
         <label for="book_title">Book Title: </label>
-        <input type="text" name="book_title" id="book_title" /><br/><span name="help_book_title"> </span></br>
-        <br /><br />
+        <input type="text" name="book_title" id="book_title" /><span name="help_book_title"> </span>
+        </br>
 
         <label for="book_status">Book Status: </label>
         <select name="book_status" id="book_status">
@@ -52,25 +52,22 @@
             <option value = "borrowed"> Borrowed </option>
         </select>
         <span name="help_book_status"> </span>
-        <br /><br />
+        <br />
 
-        <label for="book_description">Book Description: </label></br>
-        <textarea name="book_desc" id="book_desc"size=50 maxlength=255></textarea><br/><span name="help_book_description"> </span></br>
-        <br /><br />
+        <label for="description">Book Description: </label></br>
+        <textarea name="description" id="edit_description"size=50 maxlength=255></textarea><span name="help_book_description"> </span><br />
 
-        <label for="book_publisher">Book Publisher: </label>
-        <input type="text" name="book_publisher" id="book_publisher" /><br/><span name="help_book_publisher"> </span></br>
-        <br /><br />
+        <label for="publisher">Book Publisher: </label>
+        <input type="text" name="publisher" id="edit_publisher" /><span name="help_book_publisher"> </span><br />
 
-        <label for="book_author">Book Author: </label>
-        <input type="text" name="book_author" id="book_author" /><br/><span name="help_book_author"> </span></br>
-        <br /><br />
-
+        <label for="author">Book Author: </label>
+        <input type="text" name="author" id="edit_author" /><span name="help_book_author"> </span>
+        </br>
+        Tags:
+        <input type="text" name="tags" /><span name="help_tags"></span><br/>
         Date Published:
-        <input type="date" name="date_published" /> <span name="help_date_published"> </span> </br>
-
+        <input type="date" name="date_published" /> <span name="help_date_published"> </span>
+        <br/>
+        <input type="submit" id="submit_edit" name="submit_edit"/>
     </fieldset>
-
-    <input type="submit"/>
-
-</form -->
+</form>
