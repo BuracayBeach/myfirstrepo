@@ -28,7 +28,7 @@
 						<option value="date_published"> Date Published</option>
 					</select>
 
-					<input type="text" name='search'/>
+					<input type="text" name='search' placeholder='Keywords...'/>
 					<input type="submit" name="submit_search" value="Search" /><br/>
 
 					<?php
@@ -36,8 +36,9 @@
 							echo '
 							<a>Order by:</a>
 							<select name="order_by">
-								<option value="book_title"> Book Title </option>
+								<option value="search_relevance"> Search Relevance </option>
 								<option value="book_no"> Book Number </option>
+								<option value="book_title"> Title </option>
 								<option value="status"> Status </option>
 								<option value="description"> Description </option>
 								<option value="publisher"> Publisher</option>
