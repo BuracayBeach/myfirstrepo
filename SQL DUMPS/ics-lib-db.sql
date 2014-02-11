@@ -8,7 +8,7 @@
 -- PHP Version: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+08:00";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -155,9 +155,11 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `username_admin` varchar(18) NOT NULL,
   `username_user` varchar(18) NOT NULL,
   `book_no` varchar(12) NOT NULL,
-  `message` varchar(755),
+  `message` varchar(755) NOT NULL,
   `date_sent` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `type` enum('overdue','claim','custom') NOT NULL,
+  `seen` tinyint(1) NOT NULL DEFAULT '0',
+  `hidden` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`,`username_admin`,`username_user`,`book_no`),
   KEY `notifications_username_user` (`username_admin`),
   KEY `notifications_username_admin` (`username_user`),
@@ -189,12 +191,10 @@ CREATE TABLE IF NOT EXISTS `reserves` (
   `username` varchar(18) NOT NULL,
   `email` varchar(24) NOT NULL,
   `date_reserved` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `rank` smallint(6) NOT NULL AUTO_INCREMENT,
-  `notified` smallint(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`book_no`,`username`,`email`,`rank`),
+  `rank` smallint(6) NOT NULL,
+  PRIMARY KEY (`book_no`,`username`,`email`),
   KEY `reserves_username` (`username`),
-  KEY `reserves_email` (`email`),
-  KEY `reserves_rank` (`rank`)
+  KEY `reserves_email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
