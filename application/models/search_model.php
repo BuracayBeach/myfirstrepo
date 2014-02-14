@@ -43,6 +43,8 @@ class Search_model extends CI_Model {
 
                 if($details['search_by']== 'book_title'){
                    $q['where'] .= "book_title like '%" . $search . "%' or description like '%" . $search . "%' or Tags like '%" . $search . "%' ";
+                } else if($details['search_by']== 'any'){
+                    $q['where'] .= "book_title like '%" . $search . "%' or b.book_no like '%" . $search . "%' or publisher like '%" . $search . "%' or description like '%" . $search . "%' or name like '%" . $search . "%' or date_published like '%" . $search . "%' or Tags like '%" . $search . "%' ";
                 } else {
                     $q['where'] .= $details['search_by'] . " like '%".$search."%' ";
                 }

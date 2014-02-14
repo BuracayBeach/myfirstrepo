@@ -23,9 +23,12 @@
 						<option value="book_title">Title / Description</option>
 						<option value="book_no"> Book Number </option>
 						<option value="status"> Status </option>
+						<option class="select-dash" disabled ="disabled">----------</option>
 						<option value="publisher"> Publisher</option>
 						<option value="name"> Author</option>
 						<option value="date_published"> Date Published</option>
+						<option class="select-dash" disabled ="disabled">----------</option>
+						<option value="any"> Any </option>
 					</select>
 
 					<input type="text" name='search' placeholder='Keywords...'/>

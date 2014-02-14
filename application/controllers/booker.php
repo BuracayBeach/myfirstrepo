@@ -180,6 +180,7 @@ class Booker extends CI_Controller {
             }
         // }
 
+        if ($details['search_by'] != 'book_title') return $table; //added 02-14-14 14.46
         if ($table == null) return null;
 
         //compute points for each row by accordance to the search terms (point system)
