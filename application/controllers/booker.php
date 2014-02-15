@@ -21,6 +21,22 @@ class Booker extends CI_Controller {
         parent::__construct();
         $this->load->model('book_model');
         $this->load->model('search_model');
+        $this->load->helper('url');
+    }
+
+    public function index(){
+        $this->load->library('javascript');
+        $data['title'] = "eICS Lib";
+        $data['is_admin'] = true;
+
+        if (isset($_POST["submit_search"])){
+
+            $input = $this->get_search_input($data['is_admin']);
+
+            $data['table'] = $this->search($input);
+            $data['search_submitted'] = true;
+        }
+        $this->display_views($data);
     }
 
     public function add(){
@@ -31,28 +47,10 @@ class Booker extends CI_Controller {
         $data['publisher'] = $_POST['publisher'];
         $data['date_published'] = $_POST['date_published'];
         $data['tags'] = $_POST['tags'];
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('book_no','BookNumber','required|is_unique[ics-lib-db.Book_no]|min_length[1]|alpha_numeric');
-        $this->form_validation->set_rules('book_title','BookTitle','required' );
-        $this->form_validation->set_rules('description','Description','required');
-        $this->form_validation->set_rules('publisher','Publisher','required');
-        $this->form_validation->set_rules('date_published','DatePublished','required');
-        $this->form_validation->set_rules('tags','Tags','callback_tags_check');
 
         $this->book_model->insertBook($data);
 
         echo json_encode($_POST);
-        /* ???
-        if ($this->form_validation->run()==FALSE){
-
-            $this->load->view('manage_view');
-
-        }
-        else{
-            $this->load->view('views/index.html');
-        }
-        */
-
     }
 
     public function delete(){
@@ -60,8 +58,14 @@ class Booker extends CI_Controller {
         $this->book_model->delBook($book_no);
     }
 
+    public function get_book(){
+        $book_no = $_POST['book_no'];
+
+        echo $this->book_model->get_book($book_no);
+    }
+
     public function edit(){
-        //$data['prev_book_no'] = $_POST['prev_book_no']; //temporarily commented out
+        $data['prev_book_no'] = $_POST['prev_book_no'];
         $data['book_no'] = $_POST['book_no'];
         $data['book_title'] = $_POST['book_title'];
         $data['author'] = $_POST['author'];
@@ -71,40 +75,16 @@ class Booker extends CI_Controller {
         $data['tags'] = $_POST['tags'];
         $data['date_published'] = $_POST['date_published'];
 
-        $this->book_model->editBook($data);
+        $this->book_model->edit_book($data);
+        echo json_encode($data);
     }
 
     public function display_views($data){
-
         $this->load->view('header',$data);
         $this->load->view('search_view');
         $this->load->view('table_view',$data);
         $this->load->view('manage_view',$data);
         $this->load->view('footer');
-    }
-
-    public function index(){
-        $this->load->library('javascript');
-        $data['title'] = "eICS Lib";
-        $data['is_admin'] = false;
-
-        if (isset($_POST["submit_search"])){
-
-            $input = $this->get_search_input($data['is_admin']);
-
-            $data['table'] = $this->search($input);
-            $data['search_submitted'] = true;
-        }
-
-        if(isset($_POST['submit_del'])){
-            $this->delete();
-
-            $data['table'] = $this->search($this->get_search_input());
-        }else if(isset($_POST['submit_edit'])){
-            $this->edit();
-
-        }
-        $this->display_views($data);
     }
 
     public function get_search_input($is_admin){
