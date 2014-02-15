@@ -59,45 +59,11 @@ class Book_model extends CI_Model {
         //update author;
         $this->db->query("UPDATE author SET name='{$data['author']}' WHERE book_no='{$data['book_no']}'");
     }
-
  
     function delBook($book_no){
         $this->db->query("DELETE FROM book WHERE book_no='{$book_no}'");
     }
 
-    function query_result($details){
-        $details['search_term'] = filter_var($details['search_term'], FILTER_SANITIZE_STRING);
-
-        $tok = explode(" ", $details['search_term']);
-        
-        $q = array(
-                'select' => "select * from book b, author a ",
-                'where' => "where " . $details['status_check'] . " b.book_no = a.book_no and (",
-                'orderby' => ") order by " . $details['order_by']
-        );
-
-        $word_count = 0;
-        foreach ($tok as $search) {
-            // echo $search."<br>";
-            if($details['search_by']== 'book_title'){
-               $q['where'] .= "book_title like '%" . $search . "%' or description like '%" . $search . "%' or Tags like '%" . $search . "%' ";
-            } else {
-                $q['where'] .= $details['search_by'] . " like '%".$search."%' ";
-            }
-           
-            if($word_count < count($tok) - 1) {
-                $q['where'] .= " or ";
-            }
-
-            $word_count++;
-        }
-
-        $query_string = $q['select'] . $q['where'] . ")";// . $q['orderby'];
-
-
-        // echo $query_string;
-        return $this->db->query($query_string)->result();
-    }
 }
 
 
