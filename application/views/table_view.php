@@ -35,8 +35,8 @@
                                         if ($is_admin){  //--------------- ADMIN ACTIONS ----------------\\
                                             
                                             // Edit , Delete Button
-                                            echo "<span><a href='#' bookno='{$row->book_no}' class='edit_button'>Edit</a></span>&nbsp&nbsp&nbsp";
-                                            echo "<span><a href='#' bookno='{$row->book_no}' class='delete_button'>Delete</a></span>&nbsp | &nbsp";
+                                            echo "<span><a href='javascript:void(0)' bookno='{$row->book_no}' class='edit_button'>Edit</a></span>&nbsp&nbsp&nbsp";
+                                            echo "<span><a href='javascript:void(0)' bookno='{$row->book_no}' class='delete_button'>Delete</a></span>&nbsp | &nbsp";
                                             echo "<span><a class='transaction_anchor' ";
 
                                             // Lend , Return Button
