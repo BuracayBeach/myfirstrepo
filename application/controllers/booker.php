@@ -27,7 +27,7 @@ class Booker extends CI_Controller {
     public function index(){
         $this->load->library('javascript');
         $data['title'] = "eICS Lib";
-        $data['is_admin'] = true;
+        $data['is_admin'] = false;
 
         if (isset($_POST["submit_search"])){
 
@@ -55,7 +55,7 @@ class Booker extends CI_Controller {
 
     public function delete(){
         $book_no = $_POST['book_no'];
-        $this->book_model->delBook($book_no);
+        $this->book_model->delete_book($book_no);
     }
 
     public function get_book(){
@@ -83,7 +83,8 @@ class Booker extends CI_Controller {
         $this->load->view('header',$data);
         $this->load->view('search_view');
         $this->load->view('table_view',$data);
-        $this->load->view('manage_view',$data);
+        if($data['is_admin'])
+            $this->load->view('manage_view',$data);
         $this->load->view('footer');
     }
 

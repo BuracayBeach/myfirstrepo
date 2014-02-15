@@ -68,7 +68,7 @@ class Book_model extends CI_Model {
     }
 
 
-    function delBook($book_no){
+    function delete_book($book_no){
         $this->db->query("DELETE FROM book WHERE book_no='{$book_no}'");
     }
 }
