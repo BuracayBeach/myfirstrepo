@@ -28,10 +28,45 @@ $(document).ready(function(){
         var editForm = $('#edit_book_form');
         var data = editForm.serialize();
         $.post("index.php/booker/edit",data,function(data){
-            var data = JSON.parse(data);
-            console.log(data);
+            data = JSON.parse(data);
+            var rowToUpdate = editedRow;
+            rowToUpdate.find("[book_data='book_no']").html(data.book_no);
+            rowToUpdate.find("[book_data='book_title']").html(data.book_title);
+            rowToUpdate.find("[book_data='author']").html(data.author);
+            rowToUpdate.find("[book_data='description']").html(data.description);
+            rowToUpdate.find("[book_data='publisher']").html(data.publisher);
+            rowToUpdate.find("[book_data='date_published']").html(data.date_published);
+            rowToUpdate.find("[book_data='tags']").html(data.tags);
+
+            //status update
+            var transactionAnchor =  rowToUpdate.find("span .transaction_anchor");
+
+            transactionAnchor.attr('bookno',data.book_no);
+
+            var href = "http://localhost/myfirstrepo/index.php/update_book/";
+            //href = "window.location.href='http://localhost/myfirstrepo/index.php/update_book/
+            //<lend/?id= | received/?id=>/<book_no>'"
+            var anchorText;
+            if(data.status == "reserved"){
+                anchorText = "Lend";
+                href += "lend/?id="+data.book_no+"'";
+            }
+            else if(data.status == "borrowed"){
+                anchorText = "Return";
+                href += "received/?id="+data.book_no+"'";
+            }
+            else{
+                anchorText = "(available)";
+                transactionAnchor.removeAttr('href');
+            }
+            if(transactionAnchor.attr('href') == undefined
+                && data.status != 'available'){
+                transactionAnchor.attr('href',href);
+            }
+            transactionAnchor.html(anchorText);
         });
         editForm.closest('div').hide();
+
     });
     $('#edit_cancel_button').on('click',function(event){
         event.preventDefault();
@@ -46,7 +81,7 @@ $(document).ready(function(){
         var book_no = td.text();
 
         $.post("index.php/booker/get_book",{'book_no':book_no},function(data){
-            var data=JSON.parse(data);
+            data = JSON.parse(data);
             data = data[0];
 
             var editForm = $("#edit_book_form");
@@ -61,6 +96,7 @@ $(document).ready(function(){
             editForm.find("#edit_tags").val(data.Tags);
         });
 
+        editedRow = td.closest('tr');
         $('#edit_container').show();
     });
 /***** END EDIT FUNCTIONS*****/
