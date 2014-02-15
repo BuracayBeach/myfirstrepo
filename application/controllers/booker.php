@@ -20,6 +20,7 @@ class Booker extends CI_Controller {
     function __construct(){
         parent::__construct();
         $this->load->model('book_model');
+        $this->load->model('search_model');
     }
 
     public function add(){
@@ -60,11 +61,14 @@ class Booker extends CI_Controller {
     }
 
     public function edit(){
-        $data['prev_book_no'] = $_POST['prev_book_no'];
+        //$data['prev_book_no'] = $_POST['prev_book_no']; //temporarily commented out
         $data['book_no'] = $_POST['book_no'];
         $data['book_title'] = $_POST['book_title'];
+        $data['author'] = $_POST['author'];
+        $data['status'] = $_POST['book_status'];
         $data['description'] = $_POST['description'];
         $data['publisher'] = $_POST['publisher'];
+        $data['tags'] = $_POST['tags'];
         $data['date_published'] = $_POST['date_published'];
 
         $this->book_model->editBook($data);
@@ -85,21 +89,35 @@ class Booker extends CI_Controller {
         $data['is_admin'] = true;
 
         if (isset($_POST["submit_search"])){
-            $data['table'] = $this->search($this->get_search_input());
+
+            $input = $this->get_search_input($data['is_admin']);
+
+            $data['table'] = $this->search($input);
+            $data['search_submitted'] = true;
         }
 
         if(isset($_POST['submit_del'])){
             $this->delete();
+
+            $data['table'] = $this->search($this->get_search_input());
+        }else if(isset($_POST['submit_edit'])){
+            $this->edit();
+
         }
 
 
         $this->display_views($data);
+        
     }
 
 
 
-    public function get_search_input(){
+    public function get_search_input($is_admin){
         //parameters needed for the search function
+         $input['search_term'] = "";
+         $input['search_by'] = "book_title";
+         $input['order_by'] = "a.book_no";
+
         if (isset($_POST['search'])) $input['search_term'] = $_POST['search'];
         if (isset($_POST['search_by'])) $input['search_by'] = $_POST['search_by'];
         if (isset($_POST['order_by'])) $input['order_by'] = $_POST['order_by'];
@@ -108,17 +126,17 @@ class Booker extends CI_Controller {
         $input['borrowed'] = isset($_POST["borrowed"]);
         $input['reserved'] = isset($_POST["reserved"]);
 
+        $input['is_admin'] = $is_admin;
+
         return $input;
     }
 
 
     public function search($input){
         //set defaults
-        $search_term = "";
-        $search_by = "book_title";
-        $order_by = "a.book_no";
         $status_check = "status='available' or status='borrowed' or status='reserved'";
 
+        //set criteria
         $booktitle_points = 7;
         $bookdesc_points = 3;
         $booktags_points = 1;
@@ -133,24 +151,40 @@ class Booker extends CI_Controller {
                 $status_check = str_replace("status='reserved'","",$status_check);
             }
 
-            if($search_by == "book_no") $search_by = "a.book_no";
-            if($order_by == "book_no") $order_by = "a.book_no";
+            if($input['search_by'] == "book_no") $input['search_by'] = "a.book_no";
+            if($input['order_by'] == "book_no") $input['order_by'] = "a.book_no";
         }
 
-        if($status_check!="") $status_check = "(" . $status_check . ") and";
-        else $status_check = "(0=1) and";
+        if($status_check!="") $status_check = "(" . $status_check . ") and ";
+        else if ($input['is_admin']) $status_check = "(status!='available' and status!='borrowed' and status!='reserved') and";
+        else $status_check = "";
 
         $details = array(
             'search_term'   => $input['search_term'],
             'search_by'     => $input['search_by'],
             'order_by'      => $input['order_by'],
-            'status_check'  => $status_check
+            'status_check'  => $status_check,
+            'is_admin'      => $input['is_admin']
         );
 
-        $table = $this->book_model->query_result($details);
-        
+        //get the query string
+        $table = $this->search_model->query_result($details);
+
+        //if there are no search terms input
+        // if ($input['is_admin']) {
+            if ($input['order_by'] == 'search_relevance') {
+                if (trim($input['search_term']) == "" ){
+                    return $table;
+                }
+            } else {
+                return $table;
+            }
+        // }
+
+        if ($details['search_by'] != 'book_title') return $table; //added 02-14-14 14.46
         if ($table == null) return null;
 
+        //compute points for each row by accordance to the search terms (point system)
         foreach($table as $row):
             //clone table
             $table_copy[$row->book_no] = $row;
@@ -173,9 +207,9 @@ class Booker extends CI_Controller {
                     $ysa = strtolower($ysa);
                     if ($maila == "") continue;
 
-                    if(strcasecmp($maila, $ysa)==0){
-                        $points[$row->book_no] += $booktitle_points;                   
-                    } else if (strpos($ysa, $maila) !== false && strlen($maila) / strlen($ysa) > 0.70){
+                    if($ysa != '' && strcasecmp($maila, $ysa)==0){
+                        $points[$row->book_no] += $booktitle_points;
+                    } else if (strpos($ysa, $maila) !== false && strlen($maila) >= 3){ //if search word is a substring of a book data
                         $points[$row->book_no] += $booktitle_points * (strlen($maila) / strlen($ysa));
                         // echo strlen($maila) / strlen($ysa);
                     }
@@ -183,14 +217,14 @@ class Booker extends CI_Controller {
 
                 //compare input to description words
                 foreach($descr as $ysa1):
-                    if(strcasecmp($maila, $ysa1)==0){
+                    if($ysa1 != '' && strcasecmp($maila, $ysa1)==0){
                           $points[$row->book_no] +=  $bookdesc_points;
                     }
                 endforeach;
 
                 //compare input to tags
                 foreach($tg as $ysa2):
-                    if(strcasecmp($maila, trim($ysa2))==0){
+                    if($ysa2 != '' && strcasecmp($maila, trim($ysa2))==0){
                          $points[$row->book_no] +=  $booktags_points;
                     }
                 endforeach;
@@ -201,13 +235,15 @@ class Booker extends CI_Controller {
         arsort($points);
 
         //copy the sorted table to $table
+        $sorted_table = null;
+
         $counter = 0;
         foreach ($points as $key => $value):
-                // echo $key . " " . $value . "<br>";
-                $table[$counter++] = $table_copy[$key];
+            // echo $key . " " . $value . "<br>";
+            if ($value > 0) $sorted_table[$counter++] = $table_copy[$key];            
         endforeach;
 
-        return $table;
+        return $sorted_table;
 
     }
 
