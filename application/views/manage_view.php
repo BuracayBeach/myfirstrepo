@@ -10,7 +10,7 @@
         <input type="text" name="book_title" id="add_book_title" placeholder="Book Title" required pattern="[-A-Za-z0-9 ]+"/>
         <br/>
         <label for="add_author">Book Author: </label>
-        <input type="text" name="author" id="add_author" placeholder="Author" pattern="[A-Za-z ]+[-]?[A-Za-z]+"/>
+        <input type="text" name="author" id="add_author" placeholder="Author" pattern="[A-Za-z ]+[-]?[A-Za-z]*"/>
         <br/>
         <label for="add_description">Book Description: </label> <br/>
         <textarea name="description" id="add_description" placeholder="Description"  ></textarea>

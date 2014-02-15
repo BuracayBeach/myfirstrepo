@@ -27,7 +27,7 @@ class Booker extends CI_Controller {
     public function index(){
         $this->load->library('javascript');
         $data['title'] = "eICS Lib";
-        $data['is_admin'] = false;
+        $data['is_admin'] = true;
 
         if (isset($_POST["submit_search"])){
 
