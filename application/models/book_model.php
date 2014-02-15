@@ -25,46 +25,52 @@ class Book_model extends CI_Model {
     function insertBook($data){
         $date_pub = $data['date_published'];
         $query = "INSERT INTO book (book_no,book_title,description,publisher,tags,date_published)".
-                " VALUES ('{$data['book_no']}'".
-                ",'{$data['book_title']}'".
-                ",'{$data['description']}'".
-                ",'{$data['publisher']}'".
-                ",'{$data['tags']}'".
-                ",".($date_pub==''?'null':("'".$date_pub."'")).")";
+            " VALUES ('{$data['book_no']}'".
+            ",'{$data['book_title']}'".
+            ",'{$data['description']}'".
+            ",'{$data['publisher']}'".
+            ",'{$data['tags']}'".
+            ",".($date_pub==''?'null':("'".$date_pub."'")).")";
 
         $this->db->query($query);
 
         $this->db->query("INSERT INTO author (book_no,name) VALUES ('{$data['book_no']}','{$data['author']}')");
     }
 
-    function editBook($data){
+    function get_book($book_no){
+        $query = "SELECT * FROM book b, author a WHERE b.book_no='".$book_no."'";
+        $query2 = "AND a.book_no='".$book_no."'";
+        //$var = $this->db->query($query)->result()
+        //var_dump($var);
+        echo json_encode($this->db->query($query.$query2)->result());
+    }
+
+    function edit_book($data){
         /*
          *
          * SANITATION GOES HERE
          *
          */
 
-        $data['prev_book_no'] = $data['book_no'];//temporary
         $date_pub = $data['date_published'];
         $query = "UPDATE book SET book_no='".$data['book_no']."'".
-                                ",book_title='".$data['book_title']."'".
-                                ",status='".$data['status']."'".
-                                ",description='".$data['description']."'".
-                                " ,publisher='".$data['publisher']."'".
-                                ",tags='".$data['tags']."'".
-                                ",date_published=".($date_pub==''?'null':("'".$date_pub."'")).
-                                " WHERE book_no='".$data['prev_book_no']."'";
+            ",book_title='".$data['book_title']."'".
+            ",status='".$data['status']."'".
+            ",description='".$data['description']."'".
+            " ,publisher='".$data['publisher']."'".
+            ",tags='".$data['tags']."'".
+            ",date_published=".($date_pub==''?'null':("'".$date_pub."'")).
+            " WHERE book_no='".$data['prev_book_no']."'";
+        $query_author="UPDATE author SET name='{$data['author']}' WHERE book_no='{$data['book_no']}'";
 
         $this->db->query($query);
-        //update author;
-        $this->db->query("UPDATE author SET name='{$data['author']}' WHERE book_no='{$data['book_no']}'");
+        $this->db->query($query_author);
     }
 
- 
-    function delBook($book_no){
+
+    function delete_book($book_no){
         $this->db->query("DELETE FROM book WHERE book_no='{$book_no}'");
     }
-
 }
 
 
