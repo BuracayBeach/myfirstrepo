@@ -84,7 +84,6 @@
 						url: "http://localhost/myfirstrepo/index.php/booker/search",
 						success: function(data, jqxhr, status){
 							$("#result_container").html(data);
-							// console.log(data);
 						}
 		 			});
 

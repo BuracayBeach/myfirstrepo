@@ -5,15 +5,12 @@ $(document).ready(function(){
     $('#add_cancel_button').on('click',cancelAdd);
     $('#add_book_form').submit(addBook);
 
-    $('.edit_button').on('click',fillEditForm);
+    var contentContainer = $('#content_container');
+    contentContainer.on('click','.edit_button',fillEditForm);
     $('#edit_cancel_button').on('click',cancelEdit);
     $('#edit_book_form').submit(editBook);
 
-    var recentlyAddedBooksTable = $('#recently_added_books_table');
-    recentlyAddedBooksTable.on('click','.edit_button',fillEditForm);
-    recentlyAddedBooksTable.on('click','.delete_button',deleteBook);
-
-    $('#search_table').on('click','.delete_button',deleteBook);
+    contentContainer.on('click','.delete_button',deleteBook);
     /***** END EVENT ATTACHMENTS *****/
 
     /* Hide Forms Initially */
@@ -23,11 +20,15 @@ $(document).ready(function(){
 });
 /***** ADD FUNCTIONS *****/
 function showAddForm(){
-    $('#add_container').show();
+    var addContainer = $('#add_container');
+    addContainer.show();
+    $(addContainer).find('#add_book_no').focus();
 }
 function cancelAdd(event){
     event.preventDefault();
-    $('#add_container').hide();
+    var addContainer = $('#add_container');
+    addContainer.hide();
+    addContainer.find('form')[0].reset();
 }
 function addBook(event){
     event.preventDefault();  /* stop form from submitting normally */

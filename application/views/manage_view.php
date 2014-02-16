@@ -17,7 +17,7 @@
     <form autocomplete="on" id="add_book_form">
         <h4>ADD BOOK</h4>
         <label for="add_book_no">Book No: </label>
-        <input type="text" name="book_no" id="add_book_no" autofocus placeholder="Book Number" required pattern="[A-Za-z0-9 ]+">
+        <input type="text" name="book_no" id="add_book_no" placeholder="Book Number" required pattern="[A-Za-z0-9 ]+">
         <br/>
         <label for="add_book_title">Book Title: </label>
         <input type="text" name="book_title" id="add_book_title" placeholder="Book Title" required pattern="[-A-Za-z0-9 ]+"/>
