@@ -123,7 +123,9 @@ class Booker extends CI_Controller {
         $details['table'] = $sorted_table;
         $this->load->view('table_view', $details);
 
-        echo "<span>You might want to search for: <a href='javascript:research;'>" . $search_suggestion . "</a></span><br/><br/>";
+        if (trim($search_suggestion)!=''){
+            echo "<span>You might want to search for: <a id='suggestion_text' href='javascript:research();'>" . trim($search_suggestion) . "</a></span><br/><br/>";
+        }
         // json_encode($search_suggestion);
     }
 
