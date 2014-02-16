@@ -58,15 +58,15 @@ class Booker extends CI_Controller {
     }
 
     public function edit(){
-        $data['prev_book_no'] = $_POST['prev_book_no'];
-        $data['book_no'] = $_POST['book_no'];
-        $data['book_title'] = $_POST['book_title'];
-        $data['author'] = $_POST['author'];
-        $data['status'] = $_POST['book_status'];
-        $data['description'] = $_POST['description'];
-        $data['publisher'] = $_POST['publisher'];
-        $data['tags'] = $_POST['tags'];
-        $data['date_published'] = $_POST['date_published'];
+        $data['prev_book_no'] = filter_var($_POST['prev_book_no'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['book_no'] =  filter_var($_POST['book_no'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['book_title'] = filter_var($_POST['book_title'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['author'] = filter_var($_POST['author'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['description'] = filter_var($_POST['description'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['status'] = filter_var($_POST['book_status'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['publisher'] = filter_var($_POST['publisher'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['tags'] = filter_var($_POST['tags'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['date_published'] = filter_var($_POST['date_published'], FILTER_SANITIZE_MAGIC_QUOTES);
 
         $this->book_model->edit_book($data);
         echo json_encode($data);

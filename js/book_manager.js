@@ -5,15 +5,12 @@ $(document).ready(function(){
     $('#add_cancel_button').on('click',cancelAdd);
     $('#add_book_form').submit(addBook);
 
-    $('.edit_button').on('click',fillEditForm);
+    var contentContainer = $('#content_container');
+    contentContainer.on('click','.edit_button',fillEditForm);
     $('#edit_cancel_button').on('click',cancelEdit);
     $('#edit_book_form').submit(editBook);
 
-    var recentlyAddedBooksTable = $('#recently_added_books_table');
-    recentlyAddedBooksTable.on('click','.edit_button',fillEditForm);
-    recentlyAddedBooksTable.on('click','.delete_button',deleteBook);
-
-    $('#search_table').on('click','.delete_button',deleteBook);
+    contentContainer.on('click','.delete_button',deleteBook);
     /***** END EVENT ATTACHMENTS *****/
 
     /* Hide Forms Initially */
@@ -23,11 +20,15 @@ $(document).ready(function(){
 });
 /***** ADD FUNCTIONS *****/
 function showAddForm(){
-    $('#add_container').show();
+    var addContainer = $('#add_container');
+    addContainer.show();
+    $(addContainer).find('#add_book_no').focus();
 }
 function cancelAdd(event){
     event.preventDefault();
-    $('#add_container').hide();
+    var addContainer = $('#add_container');
+    addContainer.hide();
+    addContainer.find('form')[0].reset();
 }
 function addBook(event){
     event.preventDefault();  /* stop form from submitting normally */
@@ -40,8 +41,8 @@ function addBook(event){
                 '<td book_data="book_no" align="center">'+data.book_no+'</td>'
                     +'<td>' +
                     '<div style="font:20px Verdana" book_data="book_title">'+data.book_title+'</div>' +
-                    '<div style="font-size:17px" book_data="description">'+data.description+'</div>' +
-                    '<div style="font-size:13px" book_data="author"><em>'+data.author+'</em></div>' +
+                    '<div style="font-size:17px" book_data="description">'+data.description+'<br/></div>' +
+                    '<div style="font-size:13px" book_data="author"><em>'+data.author+'</em><br/></div>' +
                     '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="edit_button" >Edit</a></span>&nbsp;&nbsp;&nbsp;' +
                     '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="delete_button" >Delete</a></span>&nbsp; | &nbsp;' +
                     '<span>' +
@@ -87,8 +88,11 @@ function fillEditForm(event){
     });
 
     editedRow = td.closest('tr');
-    $('#edit_container').show();
+    var editContainer = $('#edit_container')
+    editContainer.show();
+    $(editContainer).find('#edit_book_no').focus();
 }
+
 function editBook(event){
     event.preventDefault();
 
@@ -99,8 +103,8 @@ function editBook(event){
         var rowToUpdate = editedRow;
         rowToUpdate.find("[book_data='book_no']").html(data.book_no);
         rowToUpdate.find("[book_data='book_title']").html(data.book_title);
-        rowToUpdate.find("[book_data='author']").html(data.author);
-        rowToUpdate.find("[book_data='description']").html(data.description);
+        rowToUpdate.find("[book_data='author'] em").html(data.author+"<br/>");
+        rowToUpdate.find("[book_data='description']").html(data.description+"<br/>");
         rowToUpdate.find("[book_data='publisher']").html(data.publisher);
         rowToUpdate.find("[book_data='date_published']").html(data.date_published);
         rowToUpdate.find("[book_data='tags']").html(data.tags);
@@ -112,7 +116,6 @@ function editBook(event){
         transactionSpan.html(anchorHTML);
     });
     editForm.closest('div').hide();
-
 }
 
 function cancelEdit(event){

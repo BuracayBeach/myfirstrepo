@@ -46,12 +46,6 @@ class Book_model extends CI_Model {
     }
 
     function edit_book($data){
-        /*
-         *
-         * SANITATION GOES HERE
-         *
-         */
-
         $date_pub = $data['date_published'];
         $query = "UPDATE book SET book_no='".$data['book_no']."'".
             ",book_title='".$data['book_title']."'".
