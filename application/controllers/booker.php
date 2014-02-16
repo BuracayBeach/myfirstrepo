@@ -29,14 +29,6 @@ class Booker extends CI_Controller {
         $data['title'] = "eICS Lib";
         $data['is_admin'] = true;
 
-        if (isset($_POST["submit_search"])){
-
-            $input = $this->get_search_input($data['is_admin']);
-            $search_suggestion = '';
-            $data['table'] = $this->search($input, $search_suggestion);
-            $data['search_suggestion'] = $search_suggestion;
-            $data['search_submitted'] = true;
-        }
         $this->display_views($data);
     }
 
@@ -83,17 +75,21 @@ class Booker extends CI_Controller {
     public function display_views($data){
         $this->load->view('header',$data);
         $this->load->view('search_view', $data);
-        $this->load->view('table_view',$data);
+        // $this->load->view('table_view',$data);
         if($data['is_admin'])
             $this->load->view('manage_view',$data);
         $this->load->view('footer');
     }
 
-    public function get_search_input($is_admin){
-        //parameters needed for the search function
-         $input['search_term'] = "";
-         $input['search_by'] = "book_title";
-         $input['order_by'] = "a.book_no";
+
+
+
+    public function search(){
+        $data['is_admin'] = true;
+
+        $input['search_term'] = "";
+        $input['search_by'] = "book_title";
+        $input['order_by'] = "a.book_no";
 
         if (isset($_POST['search'])) $input['search_term'] = $_POST['search'];
         if (isset($_POST['search_by'])) $input['search_by'] = $_POST['search_by'];
@@ -103,13 +99,10 @@ class Booker extends CI_Controller {
         $input['borrowed'] = isset($_POST["borrowed"]);
         $input['reserved'] = isset($_POST["reserved"]);
 
-        $input['is_admin'] = $is_admin;
-
-        return $input;
-    }
+        $input['is_admin'] = $data['is_admin'];
 
 
-    public function search($input, &$search_suggestion){
+
         //pack data
         $details = array(
             'status_check'  => $this->search_model->get_status_check($input),
@@ -126,7 +119,12 @@ class Booker extends CI_Controller {
         //sort results by relevance to the search terms
         $sorted_table = $this->search_model->get_sorted_table($table, $input, $details['spell_check'], $search_suggestion); 
 
-        return $sorted_table;
+        $details['search_suggestion'] = $search_suggestion;
+        $details['table'] = $sorted_table;
+        $this->load->view('table_view', $details);
+
+        echo "<span>You might want to search for: <a href='javascript:research;'>" . $search_suggestion . "</a></span><br/><br/>";
+        // json_encode($search_suggestion);
     }
 
 }

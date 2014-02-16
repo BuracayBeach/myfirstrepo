@@ -1,10 +1,20 @@
 <div id="search_table_container">
                 <table id="search_table" border="1" width='60%'>
                     <?php
-                        // $is_admin = true; //temporary
+                        //  if (isset($search_suggestion) && trim($search_suggestion) != ''){
+                        //     echo "<span>You might want to search for: <a href='javascript:research;'>" . $search_suggestion . "</a></span><br/><br/>";
+                        // }
 
-                        //new
                         if(isset($table)){
+                            if (trim($search_term)==''){
+                                echo "<span>View all Books</span>";
+                            } else {
+                                echo "<span>Search Results for '" . $search_term . "'</span>";
+                            }
+
+
+
+                            echo '<br/><br/>';
                             echo "<tr >
                                 <th width='10%'>Book No.    </th>
                                 <th width='40%'>Book        </th>
@@ -82,10 +92,11 @@
                                 echo "</tr>";
                             endforeach;
                         } else  {
-                            if (isset($search_submitted)) echo "No results to display";
+                            echo "<span>No results to display</span>";
                         }
 
                     ?>
 
 </table>
 </div>
+
