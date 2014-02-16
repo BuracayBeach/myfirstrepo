@@ -47,8 +47,12 @@
 								<option value="publisher"> Publisher</option>
 								<option value="name"> Author</option>
 								<option value="date_published"> Date Published</option>
-							</select><br/><br/>
+							</select><br/>
 							';
+						}
+
+						if (isset($search_suggestion) && $search_suggestion!=''){
+							echo "<br/><span>You might want to search for: <a href='#' id='search_suggestion'>" . $search_suggestion . "</a></span>";
 						}
 					?>
 				</form>
