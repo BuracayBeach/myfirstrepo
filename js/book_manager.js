@@ -40,8 +40,8 @@ function addBook(event){
                 '<td book_data="book_no" align="center">'+data.book_no+'</td>'
                     +'<td>' +
                     '<div style="font:20px Verdana" book_data="book_title">'+data.book_title+'</div>' +
-                    '<div style="font-size:17px" book_data="description">'+data.description+'</div>' +
-                    '<div style="font-size:13px" book_data="author"><em>'+data.author+'</em></div>' +
+                    '<div style="font-size:17px" book_data="description">'+data.description+'<br/></div>' +
+                    '<div style="font-size:13px" book_data="author"><em>'+data.author+'</em><br/></div>' +
                     '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="edit_button" >Edit</a></span>&nbsp;&nbsp;&nbsp;' +
                     '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="delete_button" >Delete</a></span>&nbsp; | &nbsp;' +
                     '<span>' +
@@ -87,8 +87,11 @@ function fillEditForm(event){
     });
 
     editedRow = td.closest('tr');
-    $('#edit_container').show();
+    var editContainer = $('#edit_container')
+    editContainer.show();
+    $(editContainer).find('#edit_book_no').focus();
 }
+
 function editBook(event){
     event.preventDefault();
 
@@ -99,8 +102,8 @@ function editBook(event){
         var rowToUpdate = editedRow;
         rowToUpdate.find("[book_data='book_no']").html(data.book_no);
         rowToUpdate.find("[book_data='book_title']").html(data.book_title);
-        rowToUpdate.find("[book_data='author']").html(data.author);
-        rowToUpdate.find("[book_data='description']").html(data.description);
+        rowToUpdate.find("[book_data='author'] em").html(data.author+"<br/>");
+        rowToUpdate.find("[book_data='description']").html(data.description+"<br/>");
         rowToUpdate.find("[book_data='publisher']").html(data.publisher);
         rowToUpdate.find("[book_data='date_published']").html(data.date_published);
         rowToUpdate.find("[book_data='tags']").html(data.tags);
@@ -112,7 +115,6 @@ function editBook(event){
         transactionSpan.html(anchorHTML);
     });
     editForm.closest('div').hide();
-
 }
 
 function cancelEdit(event){

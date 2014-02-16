@@ -22,9 +22,6 @@ class Search_model extends CI_Model {
         $this->load->database();
     }
 
-
-
-
     function get_status_check($input){
         //set defaults
         $status_check = "status='available' or status='borrowed' or status='reserved'";
@@ -46,10 +43,6 @@ class Search_model extends CI_Model {
 
         return $status_check;
     }
-
-
-
-
 
     function query_result($details){
         $details['search_term'] = filter_var($details['search_term'], FILTER_SANITIZE_STRING);
@@ -116,9 +109,6 @@ class Search_model extends CI_Model {
         // echo $query_string;
         return $this->db->query($query_string)->result();
     }
-
-
-
 
     // len_s and len_t are the number of characters in string s and t respectively
     function LevenshteinDistance($s, $len_s, $t, $len_t)

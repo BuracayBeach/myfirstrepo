@@ -1,8 +1,6 @@
 			<div id="search"><br>
 
 				<form id="search_form" name="search_form" method="post">
-
-
 					<?php
 						if ($is_admin){
 							echo '
@@ -31,8 +29,8 @@
 						<option value="any"> Any </option>
 					</select>
 
-					<input id="search" type="text" name='search' placeholder='Keywords...'/>
-					<input type="submit" name="submit_search" value="Search" /><br/>
+					<input type="text" name='search' placeholder='Keywords...'/>
+					<input type="submit" id="submit_search" name="submit_search" value="Search" /><br/>
 
 					<?php
 						if ($is_admin){

@@ -49,7 +49,7 @@
         <label for="edit_prev_book_no" hidden>Previous Book No:</label>
         <input type="text" name="prev_book_no" id="edit_prev_book_no" hidden/>
         <label for="edit_book_no">Book No: </label>
-        <input type="text" name="book_no" id="edit_book_no" autofocus required pattern="[A-Za-z0-9 ]+" />
+        <input type="text" name="book_no" id="edit_book_no" required pattern="[A-Za-z0-9 ]+" />
         <br/>
         <label for="edit_book_title">Book Title: </label>
         <input type="text" name="book_title" id="edit_book_title" required pattern="[-A-Za-z0-9 ]+" />
