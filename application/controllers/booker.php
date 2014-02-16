@@ -32,8 +32,9 @@ class Booker extends CI_Controller {
         if (isset($_POST["submit_search"])){
 
             $input = $this->get_search_input($data['is_admin']);
-
-            $data['table'] = $this->search($input);
+            $search_suggestion = '';
+            $data['table'] = $this->search($input, $search_suggestion);
+            $data['search_suggestion'] = $search_suggestion;
             $data['search_submitted'] = true;
         }
         $this->display_views($data);
@@ -81,7 +82,7 @@ class Booker extends CI_Controller {
 
     public function display_views($data){
         $this->load->view('header',$data);
-        $this->load->view('search_view');
+        $this->load->view('search_view', $data);
         $this->load->view('table_view',$data);
         if($data['is_admin'])
             $this->load->view('manage_view',$data);
@@ -108,118 +109,24 @@ class Booker extends CI_Controller {
     }
 
 
-    public function search($input){
-        //set defaults
-        $status_check = "status='available' or status='borrowed' or status='reserved'";
-
-        //set criteria
-        $booktitle_points = 7;
-        $bookdesc_points = 3;
-        $booktags_points = 1;
-
-
-        if (isset($input['search_term']) && isset($input['search_by'])){
-            //filter by book status
-            if (!$input["available"]) $status_check = str_replace("status='available' or ","",$status_check);
-            if (!$input["borrowed"]) $status_check = str_replace("status='borrowed' or ","",$status_check);
-            if (!$input["reserved"]){
-                $status_check = str_replace(" or status='reserved'","",$status_check);
-                $status_check = str_replace("status='reserved'","",$status_check);
-            }
-
-            if($input['search_by'] == "book_no") $input['search_by'] = "a.book_no";
-            if($input['order_by'] == "book_no") $input['order_by'] = "a.book_no";
-        }
-
-        if($status_check!="") $status_check = "(" . $status_check . ") and ";
-        else if ($input['is_admin']) $status_check = "(status!='available' and status!='borrowed' and status!='reserved') and";
-        else $status_check = "";
-
+    public function search($input, &$search_suggestion){
+        //pack data
         $details = array(
+            'status_check'  => $this->search_model->get_status_check($input),
             'search_term'   => $input['search_term'],
             'search_by'     => $input['search_by'],
             'order_by'      => $input['order_by'],
-            'status_check'  => $status_check,
-            'is_admin'      => $input['is_admin']
+            'is_admin'      => $input['is_admin'],
+            'spell_check'   => true
         );
 
-        //get the query string
+        //construct query and get the array of rows from database
         $table = $this->search_model->query_result($details);
 
-        //if there are no search terms input
-        // if ($input['is_admin']) {
-            if ($input['order_by'] == 'search_relevance') {
-                if (trim($input['search_term']) == "" ){
-                    return $table;
-                }
-            } else {
-                return $table;
-            }
-        // }
-
-        if ($table == null) return null;
-
-        //compute points for each row by accordance to the search terms (point system)
-        foreach($table as $row):
-            //clone table
-            $table_copy[$row->book_no] = $row;
-
-            //transform input and words to search into arrays
-            $arr        = explode(" ", $input['search_term']);
-            $booktitle  = explode(" ", $row->book_title);
-            $descr      = explode(" ", $row->description);
-            $tg         = explode(",", $row->Tags);
-
-            //reset points for each row
-            $points[$row->book_no] = 0;
-
-            //compare each search term/word to each of the words in the book title, description, tags
-            foreach ($arr as $maila):
-                $maila = strtolower($maila);
-
-                //compare input to book title words, follow point system
-                foreach($booktitle as $ysa):
-                    $ysa = strtolower($ysa);
-                    if ($maila == "") continue;
-
-                    if($ysa != '' && strcasecmp($maila, $ysa)==0){
-                        $points[$row->book_no] += $booktitle_points;
-                    } else if (strpos($ysa, $maila) !== false && strlen($maila) >= 3){ //if search word is a substring of a book data
-                        $points[$row->book_no] += $booktitle_points * (strlen($maila) / strlen($ysa));
-                        // echo strlen($maila) / strlen($ysa);
-                    }
-                endforeach;
-
-                //compare input to description words
-                foreach($descr as $ysa1):
-                    if($ysa1 != '' && strcasecmp($maila, $ysa1)==0){
-                          $points[$row->book_no] +=  $bookdesc_points;
-                    }
-                endforeach;
-
-                //compare input to tags
-                foreach($tg as $ysa2):
-                    if($ysa2 != '' && strcasecmp($maila, trim($ysa2))==0){
-                         $points[$row->book_no] +=  $booktags_points;
-                    }
-                endforeach;
-            endforeach;
-        endforeach;
-
-        //reverse sort $points structure by value
-        arsort($points);
-
-        //copy the sorted table to $table
-        $sorted_table = null;
-
-        $counter = 0;
-        foreach ($points as $key => $value):
-            // echo $key . " " . $value . "<br>";
-            if ($value > 0) $sorted_table[$counter++] = $table_copy[$key];
-        endforeach;
+        //sort results by relevance to the search terms
+        $sorted_table = $this->search_model->get_sorted_table($table, $input, $details['spell_check'], $search_suggestion); 
 
         return $sorted_table;
-
     }
 
 }

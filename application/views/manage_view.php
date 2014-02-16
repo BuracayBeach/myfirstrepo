@@ -1,10 +1,23 @@
-<hr/>
+
+<div id="recently_added_books_container">
+    <hr/>
+    <h4>RECENTLY ADDED BOOKS</h4>
+    <table id="recently_added_books_table" border="1" width='60%'>
+        <tr>
+            <th>Book No.</th>
+            <th>Book</th>
+            <th>Publishment</th>
+            <th>Tags</th>
+        </tr>
+    </table>
+    <hr/>
+</div>
 <button id="show_add_form_button" name="show_add_form_button" >Add New Book</button>
-<div id="add_container" hidden>
+<div id="add_container">
     <form autocomplete="on" id="add_book_form">
         <h4>ADD BOOK</h4>
         <label for="add_book_no">Book No: </label>
-        <input type="text" name="book_no" id="add_book_no" placeholder="Book Number" required pattern="[A-Za-z0-9 ]+">
+        <input type="text" name="book_no" id="add_book_no" autofocus placeholder="Book Number" required pattern="[A-Za-z0-9 ]+">
         <br/>
         <label for="add_book_title">Book Title: </label>
         <input type="text" name="book_title" id="add_book_title" placeholder="Book Title" required pattern="[-A-Za-z0-9 ]+"/>
@@ -28,13 +41,15 @@
         <button id="add_cancel_button" name="add_cancel_button" >Cancel</button>
     </form>
 </div>
-<hr/>
-<div id="edit_container" hidden>
+<div id="edit_container">
+
+    <hr/>
     <form name="edit_book" id="edit_book_form" method="post">
+        <h4>EDIT BOOK</h4>
         <label for="edit_prev_book_no" hidden>Previous Book No:</label>
         <input type="text" name="prev_book_no" id="edit_prev_book_no" hidden/>
         <label for="edit_book_no">Book No: </label>
-        <input type="text" name="book_no" id="edit_book_no" required pattern="[A-Za-z0-9 ]+" />
+        <input type="text" name="book_no" id="edit_book_no" autofocus required pattern="[A-Za-z0-9 ]+" />
         <br/>
         <label for="edit_book_title">Book Title: </label>
         <input type="text" name="book_title" id="edit_book_title" required pattern="[-A-Za-z0-9 ]+" />
