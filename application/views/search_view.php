@@ -31,8 +31,8 @@
 						<option value="any"> Any </option>
 					</select>
 
-					<input id="search" type="text" name='search' placeholder='Keywords...'/>
-					<input type="submit" name="submit_search" value="Search" /><br/>
+					<input id="search_text" type="text" name='search' placeholder='Keywords...'/>
+					<input id='submit_search' type="submit" name="submit_search" value="Search" /><br/>
 
 					<?php
 						if ($is_admin){
@@ -69,7 +69,13 @@
 
 
 			<script>
-				$('#search_form').submit(function(){ //prevent form from submitting/refreshing
+
+				function research(){
+					$('#search_text').val($('#suggestion_text').html());
+					$('#submit_search').click();
+				}
+
+				function ajax_results(){
 					event.preventDefault();
 	
 					my_input = $('#search_form').serialize();
@@ -85,5 +91,10 @@
 		 			});
 
 					return false;
-				});
+				}
+
+
+				$('#search_form').submit(ajax_results); //prevent form from submitting/refreshing
+				
+
 			</script>
