@@ -1,8 +1,6 @@
 			<div id="search"><br>
 
 				<form id="search_form" name="search_form" method="post">
-
-
 					<?php
 						if ($is_admin){
 							echo '
