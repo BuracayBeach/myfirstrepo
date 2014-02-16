@@ -1,6 +1,6 @@
 			<div id="search"><br>
 
-				<form name="search_form" method="post">
+				<form id="search_form" name="search_form" method="post">
 
 
 					<?php
@@ -32,7 +32,7 @@
 					</select>
 
 					<input type="text" name='search' placeholder='Keywords...'/>
-					<input type="submit" name="submit_search" value="Search" /><br/>
+					<input type="submit" id="submit_search" name="submit_search" value="Search" /><br/>
 
 					<?php
 						if ($is_admin){
@@ -52,7 +52,14 @@
 						}
 
 						if (isset($search_suggestion) && $search_suggestion!=''){
-							echo "<br/><span>You might want to search for: <a href='#' id='search_suggestion'>" . $search_suggestion . "</a></span>";
+							echo "<br/> " .
+                                    "<span>You might want to search for:" .
+                                    "<a href=" .
+                                         "\"javascript:document.getElementsByName('search')[0].value = '".$search_suggestion."';" .
+                                                     "document.getElementById('submit_search').click();\" id='search_suggestion'>"
+                                        . $search_suggestion .
+                                    "</a></span>";
+
 						}
 					?>
 				</form>

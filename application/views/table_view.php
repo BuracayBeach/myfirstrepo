@@ -31,7 +31,6 @@
                                             $row->name . "<br>" .
                                         "</em></div>";
 
-
                                         if ($is_admin){  //--------------- ADMIN ACTIONS ----------------\\
                                             
                                             // Edit , Delete Button
