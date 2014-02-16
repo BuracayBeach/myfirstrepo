@@ -1,6 +1,6 @@
 			<div id="search"><br>
 
-				<form name="search_form" method="post">
+				<form id="search_form" name="search_form" method="post">
 
 
 					<?php
@@ -31,7 +31,7 @@
 						<option value="any"> Any </option>
 					</select>
 
-					<input type="text" name='search' placeholder='Keywords...'/>
+					<input id="search" type="text" name='search' placeholder='Keywords...'/>
 					<input type="submit" name="submit_search" value="Search" /><br/>
 
 					<?php
@@ -51,9 +51,39 @@
 							';
 						}
 
-						if (isset($search_suggestion) && $search_suggestion!=''){
-							echo "<br/><span>You might want to search for: <a href='#' id='search_suggestion'>" . $search_suggestion . "</a></span>";
-						}
 					?>
+
+					<div id='suggestion'>
+						<!-- search suggestion go here -->
+					</div>
 				</form>
 			</div>
+
+			<div id='result_container'>
+
+			</div>
+
+
+			<script src="<?=base_url('js/jquery-1.11.0.js')?>"></script>
+
+
+
+			<script>
+				$('#search_form').submit(function(){ //prevent form from submitting/refreshing
+					event.preventDefault();
+	
+					my_input = $('#search_form').serialize();
+
+					$.ajax({
+						type: "post",
+						data: my_input,
+						url: "http://localhost/myfirstrepo/index.php/booker/search",
+						success: function(data, jqxhr, status){
+							$("#result_container").html(data);
+							// console.log(data);
+						}
+		 			});
+
+					return false;
+				});
+			</script>
