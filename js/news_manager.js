@@ -15,7 +15,6 @@ $('#news_container').ready(function(){
     /*** INITIALLY HIDE FORMS ***/
     $('#add_news_container').hide();
     $('#edit_news_container').hide();
-
     /** GENERATE NEWS TABLE **/
     generateNewsTable();
 });
@@ -49,6 +48,9 @@ function generateNewsTable(){
     $.post("index.php/news/get_all_news",function(data){
         data = JSON.parse(data);
         console.log(data);
+        data.forEach(function(entry){
+            generateNewsRow(entry);
+        });
     });
 }
 
@@ -58,7 +60,39 @@ function editNews(event){
     $.post("index.php/news/edit",$(this).serialize(),function(data){
         data = JSON.parse(data);
         console.log(data);
+        var td = $('#news_table').find('tr > td[news_id="'+data.news_id+'"]')
+
+        console.log( td.find('.news_title'))
+        td.find('.news_title').text(data.news_title);
+        td.find('.news_content').text(data.news_content);
     });
+
+    $(this).closest('div').hide();
+    this.reset();
+}
+
+function generateNewsRow(data){
+    var rowHTML = "";
+
+    var fd = new Date(data.date_posted);
+
+    rowHTML += '<tr class="news_table_row">'+
+        '<td news_id="'+data.news_id+'" class="news_table_data">'+
+        '<h4 class="news_title">'+data.news_title+
+        '<button class="edit_news_button">Edit</button>'+
+        '<button class="delete_news_button">Delete</button>'+
+        '</h4>'+
+        'posted on <span class="date_posted">'+fd.toDateString() +'</span> by '+
+        '<span class="news_author">'+data.news_author+'</span>'+
+        '    <hr/>'+
+        '<span class="news_content">'+data.news_content+'</span>'+
+        '</td>'+
+        '</tr>';
+
+    var newsTable = $('#news_table');
+    if(newsTable.find('tbody').length == 0)
+        newsTable.append($('<tbody>'));
+    newsTable.find('tbody:last').append(rowHTML);
 }
 
 function addNews(event){
@@ -67,24 +101,7 @@ function addNews(event){
     $.post("index.php/news/add",$(this).serialize(),function(data){
         data = JSON.parse(data);
         console.log(data);
-        var rowHTML = "";
-
-        var fd = new Date(data.date_posted);
-
-        rowHTML += '<tr class="news_table_row">'+
-            '<td news_id="'+data.news_id+'" class="news_table_data">'+
-            '<h4 class="news_title">'+data.news_title+
-            '<button class="edit_news_button">Edit</button>'+
-            '<button class="delete_news_button">Delete</button>'+
-            '</h4>'+
-            'posted on <span class="date_posted">'+fd.toDateString() +'</span> by '+
-            '<span class="news_author">'+data.news_author+'</span>'+
-            '    <hr/>'+
-            '<span class="news_content">'+data.news_content+'</span>'+
-            '</td>'+
-            '</tr>';
-
-        $('#news_table').find('tbody:last').append(rowHTML);
+        generateNewsRow(data);
     });
 
     $(this).closest('div').hide();
