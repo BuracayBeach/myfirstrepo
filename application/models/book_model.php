@@ -72,5 +72,5 @@ class Book_model extends CI_Model {
 
 
 
-/* End of file booker.php */
-/* Location: ./application/controllers/booker.php */
+/* End of file book.php */
+/* Location: ./application/controllers/book.php */
