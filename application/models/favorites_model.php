@@ -23,6 +23,16 @@ class Favorites_Model extends CI_Model {
 		return;
 	}
 
+	function check($data) {
+
+		$this->db->where($data);
+		$q = $this->db->get('favorites');
+
+		if ($q->num_rows() == 0)
+			return false;
+		else
+			return true;
+	}
 }
 
 ?>
