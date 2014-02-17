@@ -133,14 +133,12 @@ CREATE TABLE IF NOT EXISTS `lend` (
   `transaction_no` int(8) NOT NULL AUTO_INCREMENT,
   `book_no` varchar(12) NOT NULL,
   `username_user` varchar(18) NOT NULL,
-  `email` varchar(55) NOT NULL,
   `date_borrowed` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_returned` timestamp NULL DEFAULT NULL,
   `username_admin` varchar(18) NOT NULL,
-  PRIMARY KEY (`transaction_no`,`book_no`,`username_user`,`email`,`username_admin`),
+  PRIMARY KEY (`transaction_no`,`book_no`,`username_user`,`username_admin`),
   KEY `lend_book_no` (`book_no`),
   KEY `lend_username_user` (`username_user`),
-  KEY `lend_email` (`email`),
   KEY `lend_username_admin` (`username_admin`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -258,7 +256,6 @@ ALTER TABLE `favorites`
 --
 ALTER TABLE `lend`
   ADD CONSTRAINT `lend_book_no` FOREIGN KEY (`book_no`) REFERENCES `book` (`book_no`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `lend_email` FOREIGN KEY (`email`) REFERENCES `user` (`email`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `lend_username_admin` FOREIGN KEY (`username_admin`) REFERENCES `admin` (`username`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `lend_username_user` FOREIGN KEY (`username_user`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE NO ACTION;
 

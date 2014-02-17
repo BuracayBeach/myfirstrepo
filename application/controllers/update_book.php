@@ -16,6 +16,15 @@ class Update_book extends CI_Controller {
         });      
 	*/
 
+	public function __construct()
+	{
+		parent :: __construct();
+		$this->load->library('firephp');
+
+		if(!isset($_SESSION))
+			session_start();
+	}
+
 
 	public function lend(){
 		$data['book_no'] = $_GET['id']; 
@@ -24,8 +33,7 @@ class Update_book extends CI_Controller {
 		$row = $q->row();
 		$data['book_no'] = $row->book_no;
 		$data['username_user'] =  $row->username;
-		$data['email'] =  $row->email;
-		$data['username_admin'] = "admin"; // get from session
+		$data['username_admin'] = $_SESSION['username']; // get from session
 
 		$this->load->model('update_book_model');		//loading of the updateBook_model
 		$this->update_book_model->lend($data);              //we call the lend function which updates the status of the book from reserved to borrowed

@@ -27,7 +27,6 @@ Class Update_book_model extends CI_Model{
 	$parameter = array(                                 // these are the data we would like to insert into our log- lend
                'book_no' => "{$data['book_no']}",
                'username_user' => "{$data['username_user']}",
-               'email' => "{$data['email']}",
                'username_admin' => "{$data['username_admin']}"
             );
 	$this->db->insert('lend', $parameter);   // insert query accepts 2 parameters. the table name and the parameters or values to be inserted
