@@ -9,7 +9,9 @@ class Reserve extends CI_Controller {
 	public function __construct() {
 		parent:: __construct();
 		$this->load->model('reserve_model');
-		$this->load->library('firephp');
+
+		if (!isset($_SESSION))
+			session_start();
 	}
 
 	function remove() {
