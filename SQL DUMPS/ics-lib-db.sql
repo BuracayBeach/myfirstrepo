@@ -31,10 +31,10 @@ USE `ics-lib-db`;
 CREATE TABLE IF NOT EXISTS `account_history` (
   `username_user` varchar(18) NOT NULL,
   `username_admin` varchar(18) NOT NULL,
-  `email` varchar(24) NOT NULL,
+  `email` varchar(55) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `action` enum('enable','disable','activate') NOT NULL,
-  PRIMARY KEY (`username_user`,`username_admin`,`email`),
+  PRIMARY KEY (`username_user`,`username_admin`,`email`,`date`),
   KEY `account_history_username_admin` (`username_admin`),
   KEY `account_history_email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `lend` (
   `transaction_no` int(8) NOT NULL AUTO_INCREMENT,
   `book_no` varchar(12) NOT NULL,
   `username_user` varchar(18) NOT NULL,
-  `email` varchar(18) NOT NULL,
+  `email` varchar(55) NOT NULL,
   `date_borrowed` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_returned` timestamp NULL DEFAULT NULL,
   `username_admin` varchar(18) NOT NULL,
@@ -187,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `our` (
 CREATE TABLE IF NOT EXISTS `reserves` (
   `book_no` varchar(12) NOT NULL,
   `username` varchar(18) NOT NULL,
-  `email` varchar(24) NOT NULL,
+  `email` varchar(55) NOT NULL,
   `date_reserved` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `rank` smallint(6) NOT NULL AUTO_INCREMENT,
   `notified` smallint(1) NOT NULL DEFAULT 0,
