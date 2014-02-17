@@ -1,37 +1,65 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
-	Class for queries and database management
+	Author: Billy Joel Arlo T. Zarate
+	File Description : A model used to handle database transactions for activating,enabling and disabling users
 */
 class Enable_disable_model extends CI_Model {
 
 	public function generateQuery($field)
 	{
-		$sql = "SELECT * FROM user" ; //string for query
+		/*
+			creates query according to the search parameters submitted by the user
+		*/
+		$sql = "SELECT * FROM user"; //string for query
 
 		Switch($field['field'])
 		{
 			Case "name" : {
-				$sql = $sql." WHERE name_first LIKE '".$field['fname']."' OR name_middle LIKE '".$field['mname']."' OR name_last LIKE '".$field['lname']."'";
+				if($field['fname'] != '' || $field['mname'] != '' || $field['lname'] != '')
+					$sql = $sql." WHERE ";
+				
+				if($field['fname'] != '')
+					$sql = $sql."name_first LIKE '".$field['fname']."'";
+
+				if($field['fname'] != '' && $field['mname'] != '')
+					$sql = $sql." OR ";
+				
+				if($field['mname'] != '')
+					$sql = $sql."name_middle LIKE '".$field['mname']."'";
+				
+				if(($field['mname'] != '' && $field['lname'] != '') || ($field['fname'] != '' && $field['lname'] != ''))
+					$sql = $sql." OR ";
+				
+				if($field['lname'] != '')
+					$sql = $sql."name_last LIKE '".$field['lname']."'";
 				break;
 			}
 			Case "stdno" : {
-				$sql = $sql." WHERE student_no LIKE '".$field['student_no']."'";
+				if($field['student_no'] != '')
+					$sql = $sql." WHERE student_no LIKE '".$field['student_no']."'";
 				break;
 			}
 			Case "uname" : {
-				$sql = $sql." WHERE username LIKE '".$field['username']."'";
+				if($field['username'] != '')
+					$sql = $sql." WHERE username LIKE '".$field['username']."'";
 				break;
 			}
 			Case "email" : {
-				$sql = $sql." WHERE email LIKE '".$field['email']."'";
+				if($field['email'] != '')
+					$sql = $sql." WHERE email LIKE '".$field['email']."'";
 				break;
 			}
 		}		
 
 		if($field['status'] != "all")
-			$sql = $sql." AND status LIKE '".$field['status']."'";
+		{
+			if($sql != "SELECT * FROM user")
+				$sql = $sql." AND status LIKE '".$field['status']."'";
+			else
+				$sql = $sql." WHERE status LIKE '".$field['status']."'";
+		}
 
-		$sql = $sql." GROUP BY usertype,sex";
+		$sql = $sql." ORDER BY usertype,sex";
 
 		return $sql;
 	}
@@ -45,7 +73,12 @@ class Enable_disable_model extends CI_Model {
 
 		if ($array->num_rows() > 0)
 		{
-			return $array;
+			foreach($array->result() as $row)
+			{
+				$data[] = $row;//for integrating with ajax code
+			}
+
+			return $data;
 		}
 	}
 
@@ -55,7 +88,7 @@ class Enable_disable_model extends CI_Model {
 			this function validates and activates accounts
 		*/
 
-		$sql = "SELECT * FROM our_data WHERE student_no LIKE '".$student_no."'";
+		$sql = "SELECT * FROM our WHERE student_no LIKE '".$student_no."'";
 
 		$array = $this->db->query($sql);//checks the our_data for a student
 
@@ -63,95 +96,57 @@ class Enable_disable_model extends CI_Model {
 		{
 			if ($array->num_rows() == 1)//checks if search returned with a valid result
 			{
-				$update = "UPDATE user SET('status' = enabled) WHERE username LIKE '".$username."' AND email LIKE '".$email."'";
+				$update = "UPDATE user SET status = 'enabled' WHERE username LIKE '".$username."' AND email LIKE '".$email."'";
 
-				if($this->db->simple_query($update))//checks if the update has been implemented
-				{
-					echo "<br />Update has been completed.<br />";
-				}
-				else
-				{
-					echo "<br />Update has encountered an error.<br />";
-				}
+				$success = $this->db->query($update);//checks if the update has been implemented
 			}
 			else
 			{
-				echo "<br />Search returned with multiple results. Please try again.<br />";
+				$success =  false;
 			}
 		}
 		else
 		{
-			echo "<br />Search returned with zero results. Please try again.<br />";
+			$success =  false;
 		}
+
+		return $success;
 	}
 
 	public function enable($username, $email)
 	{
 		/*
-			this function validates and activates accounts
+			this function enables accounts
 		*/
-		$update = "UPDATE user SET('status' = enabled) WHERE username LIKE '".$username."' AND email LIKE '".$email."'";
+		$update = "UPDATE user SET status = 'enabled' WHERE username LIKE '".$username."' AND email LIKE '".$email."'";
 		
-		if($this->db->simple_query($update))//checks if the update has been implemented
-		{
-			echo "<br />Update has been completed.<br />";
-		}
-		else
-		{
-			echo "<br />Update has encountered an error.<br />";
-		}
+		$success = $this->db->query($update);//checks if the update has been implemented
+
+		return $success;
 	}
 
-	public function disabled($username, $student_no, $email)
+	public function disable($username, $student_no, $email)
 	{
 		/*
-			this function validates and activates accounts
+			this function disables accounts
 		*/
+		$update = "UPDATE user SET status = 'disabled' WHERE username LIKE '".$username."' AND email LIKE '".$email."'";
+		
+		$success = $this->db->query($update);//checks if the update has been implemented
 
-		$sql = "SELECT * FROM our_data WHERE student_no LIKE '".$student_no."'";
-
-		$array = $this->db->query($sql);//checks the our_data for a student
-
-		if ($array->num_rows() > 0)//checks if search returned with any result
-		{
-			if ($array->num_rows() == 1)//checks if search returned with a valid result
-			{
-				$update = "UPDATE user SET('status' = disabled) WHERE username LIKE '".$username."' AND email LIKE '".$email."'";
-
-				if($this->db->simple_query($update))//checks if the update has been implemented
-				{
-					echo "<br />Update has been completed.<br />";
-				}
-				else
-				{
-					echo "<br />Update has encountered an error.<br />";
-				}
-			}
-			else
-			{
-				echo "<br />Search returned with multiple results. Please try again.<br />";
-			}
-		}
-		else
-		{
-			echo "<br />Search returned with zero results. Please try again.<br />";
-		}
+		return $success;
 	}
 
 	public function log($admin, $username, $email, $action)
 	{
-		$time = "M d, Y H:i:s";
-
-		$insert = "INSERT INTO account_history(username_user, username_admin, email, action) VALUES ('".$username."','".$admin."','".$email."','".$action."'";
+		/*
+			logs the changes made into the database
+		*/
+		$insert = "INSERT INTO account_history(username_user, username_admin, email, action) VALUES ('".$username."','".$admin."','".$email."','".$action."')";
 		
-		if($this->db->simple_query($insert))//checks if the update has been implemented
-		{
-			echo "<br />Insert has been completed.<br />";
-		}
-		else
-		{
-			echo "<br />Insert has encountered an error.<br />";
-		}
+		$success = $this->db->query($insert);//checks if the insert has been implemented
+
+		return $success;
 	}
 }
 

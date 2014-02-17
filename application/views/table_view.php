@@ -46,13 +46,15 @@
                                             // Edit , Delete Button
                                             echo "<span><a href='javascript:void(0)' bookno='{$row->book_no}' class='edit_button'>Edit</a></span>&nbsp&nbsp&nbsp";
                                             echo "<span><a href='javascript:void(0)' bookno='{$row->book_no}' class='delete_button'>Delete</a></span>&nbsp | &nbsp";
-                                            echo "<span><a class='transaction_anchor' ";
+                                            echo "<span><a ";
 
                                             // Lend , Return Button
-                                            if ($row->status == "reserved")  echo "href='http://localhost/myfirstrepo/index.php/update_book/lend/?id={$row->book_no}' bookno='{$row->book_no}'>Lend</a>";
-                                            elseif ($row->status == "borrowed") echo "href='http://localhost/myfirstrepo/index.php/update_book/received/?id={$row->book_no}' bookno='{$row->book_no}'>Return</a>";
-                                            else echo ">(" . $row->status . ")</a>";
 
+                                            /* edit by Edzer Padilla start */
+                                            if ($row->status == "reserved")  echo "bookno='{$row->book_no}' class='transaction_anchor lendButton' >Lend</a>";
+                                            elseif ($row->status == "borrowed") echo "bookno='{$row->book_no}' class = 'transaction_anchor receivedButton'>Return</a>";
+                                            else echo "'>(" . $row->status . ")";
+                                            /* edit end */
                                             echo "</span>";
 
                                             
@@ -98,4 +100,51 @@
 
 </table>
 </div>
+<script> 
+
+     //Script author : Edzer Josh V. Padilla
+     //Description : AJAX used to call the lend and receieve modules and update the buttons of the page dynamically
+     $('.lendButton').on('click', lendClick);
+     $('.receivedButton').on('click', receivedClick);
+
+    function lendClick(){
+        $this = $(this);
+        $bookno = $this.attr('bookno');
+        $bookauthor = $this.closest('td').find('[book_data = author]').text()
+        $booktitle = $this.closest('td').find('[book_data = book_title]').text()
+        if (confirm('Are you sure you want to lend: \n'+$booktitle+'\n'+$bookno+'\n'+$bookauthor+"?")) {    
+             $.ajax({
+                url: 'index.php/update_book/lend/',
+                data: {id:$bookno},
+                success: function(data) { 
+                    $this.text('Return');
+                    $this.off('click').on('click', receivedClick);            }
+            });      
+
+        } else {
+        // Do nothing!
+        }
+
+    }
+
+     function receivedClick(){
+        $this = $(this);
+        $bookno = $this.attr('bookno');
+        $bookauthor = $this.closest('td').find('[book_data = author]').text()
+        $booktitle = $this.closest('td').find('[book_data = book_title]').text()
+         if (confirm('Are you sure you want to return: \n'+$booktitle+'\n'+$bookno+'\n'+$bookauthor+"?")) {
+             $.ajax({
+                url: 'index.php/update_book/received/',
+                data: {id:$bookno},
+                success: function(data) { 
+                    $this.text('(available)');
+                    $this.off('click');
+               // $this.addClass('lendButton'); 
+                }
+            });        
+        } else {
+        // Do nothing!
+        }
+     } 
+</script>
 
