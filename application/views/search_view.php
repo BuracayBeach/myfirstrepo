@@ -1,8 +1,8 @@
-			<div id="search"><br>
+			<div id="search" <?php if(isset($home)) echo "class = 'home'";?> ><br>
 
 				<form id="search_form" name="search_form" method="post">
 					<?php
-						if ($is_admin){
+						if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
 							echo '
 							<div id="status">
 								<input id = "available" type="checkbox" name = "available" checked>
@@ -33,7 +33,7 @@
 					<input id='submit_search' type="submit" name="submit_search" value="Search" /><br/>
 
 					<?php
-						if ($is_admin){
+						if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
 							echo '
 							<a>Order by:</a>
 							<select name="order_by">
