@@ -94,7 +94,8 @@ class User_account extends CI_Controller {
 		
 		if($this->user_account_model->insertData($data)){
 			echo "Account created succesfully";
-			$this->load->view('login_view');
+			// $this->load->view('login_view');
+			redirect(base_url());
 		}
 	}
 
