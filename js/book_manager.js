@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$('#content_container').ready(function(){
     /***** EVENT ATTACHMENTS *****/
     $('#show_add_form_button').on('click',showAddForm);
     $('#add_cancel_button').on('click',cancelAdd);
@@ -27,6 +27,7 @@ function showAddForm(){
     var addContainer = $('#add_container');
     addContainer.show();
     $(addContainer).find('#add_book_no').focus();
+    console.log('hello');
 }
 function cancelAdd(event){
     event.preventDefault();
@@ -63,8 +64,8 @@ function addBook(event){
             $('#recently_added_books_table').find('tbody:last').append(rowHTML);
             toggleRecentlyAddedTable();
         });
-        this.reset();
         $(this).closest('div').hide();
+        this.reset();
     }
 }
 /***** END ADD FUNCTIONS *****/
