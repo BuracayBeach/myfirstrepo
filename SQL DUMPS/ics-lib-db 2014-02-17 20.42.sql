@@ -3,12 +3,12 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 03, 2014 at 11:10 AM
--- Server version: 5.6.12-log
--- PHP Version: 5.4.12
+-- Generation Time: Feb 17, 2014 at 12:41 PM
+-- Server version: 5.5.24-log
+-- PHP Version: 5.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+08:00";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `username_admin` varchar(18) NOT NULL,
   `username_user` varchar(18) NOT NULL,
   `book_no` varchar(12) NOT NULL,
-  `message` varchar(755),
+  `message` varchar(755) DEFAULT NULL,
   `date_sent` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `type` enum('overdue','claim','custom') NOT NULL,
   PRIMARY KEY (`id`,`username_admin`,`username_user`,`book_no`),
@@ -189,11 +189,11 @@ CREATE TABLE IF NOT EXISTS `reserves` (
   `username` varchar(18) NOT NULL,
   `date_reserved` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `rank` smallint(6) NOT NULL AUTO_INCREMENT,
-  `notified` smallint(1) NOT NULL DEFAULT 0,
+  `notified` smallint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`book_no`,`username`,`rank`),
   KEY `reserves_username` (`username`),
   KEY `reserves_rank` (`rank`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -203,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `reserves` (
 
 CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(18) NOT NULL,
-  `password` varchar(18) NOT NULL,
+  `password` varchar(50) NOT NULL,
   `sex` enum('male','female') NOT NULL,
   `status` enum('enabled','disabled','pending') NOT NULL DEFAULT 'pending',
   `email` varchar(55) NOT NULL,
@@ -213,13 +213,20 @@ CREATE TABLE IF NOT EXISTS `user` (
   `name_first` varchar(24) NOT NULL,
   `name_middle` varchar(24) NOT NULL,
   `name_last` varchar(24) NOT NULL,
-  `mobile_no` int(12) DEFAULT NULL,
+  `mobile_no` varchar(12) DEFAULT NULL,
   `course` varchar(8) DEFAULT NULL,
   `college` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`username`,`email`),
   UNIQUE KEY `emp_no` (`emp_no`,`student_no`),
   KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`username`, `password`, `sex`, `status`, `email`, `usertype`, `emp_no`, `student_no`, `name_first`, `name_middle`, `name_last`, `mobile_no`, `course`, `college`) VALUES
+('username', '5f4dcc3b5aa765d61d', 'male', 'pending', 'user@password.com', 'student', '', '1234-12345', 'user', 'name', 'password', '2147483647', 'BSABT', 'CA');
 
 --
 -- Constraints for dumped tables
@@ -268,7 +275,6 @@ ALTER TABLE `notifications`
 --
 ALTER TABLE `reserves`
   ADD CONSTRAINT `reserves_book_no` FOREIGN KEY (`book_no`) REFERENCES `book` (`book_no`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `reserves_email` FOREIGN KEY (`email`) REFERENCES `user` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `reserves_username` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

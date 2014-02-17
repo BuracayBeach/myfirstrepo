@@ -1,14 +1,17 @@
 $('#content_container').ready(function(){
     /***** EVENT ATTACHMENTS *****/
-
     $('#show_add_form_button').on('click',showAddForm);
     $('#add_cancel_button').on('click',cancelAdd);
     $('#add_book_form').submit(addBook);
 
-    var contentContainer = $('#content_container');
+    var contentContainer = $('#result_container');
     contentContainer.on('click','.edit_button',fillEditForm);
     $('#edit_cancel_button').on('click',cancelEdit);
     $('#edit_book_form').submit(editBook);
+
+    var recentlyAddedBooksContainer =  $('#recently_added_books_container');
+    recentlyAddedBooksContainer.on('click','.edit_button',fillEditForm);
+    recentlyAddedBooksContainer.on('click','.delete_button',deleteBook);
 
     contentContainer.on('click','.delete_button',deleteBook);
     /***** END EVENT ATTACHMENTS *****/
@@ -18,6 +21,7 @@ $('#content_container').ready(function(){
     $('#add_container').hide();
     $('#edit_container').hide();
 });
+
 /***** ADD FUNCTIONS *****/
 function showAddForm(){
     var addContainer = $('#add_container');
@@ -55,6 +59,7 @@ function addBook(event){
                 '</td>' +
                 '<td book_data="Tags">'+data.tags+'</td>'
             );
+            console.log('hello')
             $('#recently_added_books_table').find('tbody:last').append(rowHTML);
             toggleRecentlyAddedTable();
         });
@@ -67,7 +72,6 @@ function addBook(event){
 /***** EDIT FUNCTIONS *****/
 function fillEditForm(event){
     event.preventDefault();
-
     var td = $(this).closest('tr').find('td[book_data=book_no]');
     var book_no = td.text();
 

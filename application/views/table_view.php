@@ -20,7 +20,7 @@
                                 <th width='40%'>Book        </th>
                                 <th width='15%'>Publishment </th>
                             ";
-                            if ($is_admin) echo "<th width='10%'>Tags</th>";
+                            if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") echo "<th width='10%'>Tags</th>";
 
                      
                             echo "</tr>";
@@ -41,7 +41,7 @@
                                             $row->name . "<br>" .
                                         "</em></div>";
 
-                                        if ($is_admin){  //--------------- ADMIN ACTIONS ----------------\\
+                                        if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){  //--------------- ADMIN ACTIONS ----------------\\
                                             
                                             // Edit , Delete Button
                                             echo "<span><a href='javascript:void(0)' bookno='{$row->book_no}' class='edit_button'>Edit</a></span>&nbsp&nbsp&nbsp";
@@ -60,20 +60,19 @@
                                             
                                         } else { //--------------- USER ACTIONS ----------------\\
                                             
-                                            //like button
-                                            echo
-                                            "<span>" .
-                                                "<a href='#' book_no='" . $row->book_no . "'>Favorite</a>&nbsp;&nbsp;" . //condition is to be added here
+                                            //favorite button
+                                            echo "<span>" .
+                                                "<button class='book_action' book_no='" . $row->book_no . "'>favorites</button>&nbsp;&nbsp;" . 
                                             "</span>" .
 
                                             //reserve button
                                             "<span>" .
-                                                "<a ";
+                                                "<button action_type='reserve' ";
 
-                                                if ($row->status == "available") echo "href='#' bookno='{$row->book_no}'>Reserve";
+                                                if ($row->status == "available") echo "class='book_action' book_no='{$row->book_no}'>reserve";
                                                 else echo ">(" . $row->status . ")";
 
-                                                echo "</a>" .
+                                                echo "</button>" .
                                             "</span>";
                                         }
 
@@ -86,7 +85,7 @@
                                          "<div book_data='date_published'>" . $row->date_published . "</div>" .
                                      "</td>";
 
-                                if ($is_admin) echo "<td book_data='Tags'>" . $row->Tags . "</td>";
+                                if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") echo "<td book_data='Tags'>" . $row->Tags . "</td>";
 
 
                                

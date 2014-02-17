@@ -20,6 +20,9 @@ class Search_model extends CI_Model {
     function __construct(){
         parent::__construct();
         $this->load->database();
+        if(!isset($_SESSION))
+            session_start();
+        
     }
 
     function get_status_check($input){
@@ -38,7 +41,7 @@ class Search_model extends CI_Model {
         }
 
         if($status_check!="") $status_check = "(" . $status_check . ") and ";
-        else if ($input['is_admin']) $status_check = "(status!='available' and status!='borrowed' and status!='reserved') and";
+        else if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") $status_check = "(status!='available' and status!='borrowed' and status!='reserved') and";
         else $status_check = "";
 
         return $status_check;
@@ -85,7 +88,7 @@ class Search_model extends CI_Model {
 
 
         if (trim($details['search_term']) == ""){
-            if ($details['is_admin']){
+            if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
                 $q['order_by'] = $details['order_by'];
             } else {
                 if ($details['search_by'] == 'any'){
@@ -95,7 +98,7 @@ class Search_model extends CI_Model {
                 }
             }
         } else {
-            if ($details['is_admin']){
+            if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
                 $q['order_by'] = $details['order_by'];
             } else {
                 $q['order_by'] = "";

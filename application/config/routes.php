@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "book"; // change this
+$route['default_controller'] = "home"; // change this
 $route['404_override'] = '';
 
 
