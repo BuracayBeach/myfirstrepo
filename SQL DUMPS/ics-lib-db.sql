@@ -187,13 +187,11 @@ CREATE TABLE IF NOT EXISTS `our` (
 CREATE TABLE IF NOT EXISTS `reserves` (
   `book_no` varchar(12) NOT NULL,
   `username` varchar(18) NOT NULL,
-  `email` varchar(55) NOT NULL,
   `date_reserved` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `rank` smallint(6) NOT NULL AUTO_INCREMENT,
   `notified` smallint(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`book_no`,`username`,`email`,`rank`),
+  PRIMARY KEY (`book_no`,`username`,`rank`),
   KEY `reserves_username` (`username`),
-  KEY `reserves_email` (`email`),
   KEY `reserves_rank` (`rank`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

@@ -1,9 +1,3 @@
-<?php
-    $table = $_SESSION['table'];
-
-    unset($_SESSION['table']);
-?>
-
 <div id="search_table_container">
                 <table id="search_table" border="1" width='60%'>
                     <?php
