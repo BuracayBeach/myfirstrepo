@@ -28,7 +28,7 @@
 				else
 					include 'admin_user_view.php';
 			}else{
-				//include 'login_view.php';;
+				include 'login_view.php';;
 			}
 		?>
 	</div>

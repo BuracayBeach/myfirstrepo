@@ -56,8 +56,10 @@
 					</div>
 				</form>
 			</div>
-
-			<div id='result_container'>
+			<div id="tables_container">
+				<div id='result_container'>
+				
+			</div>
 
 			</div>
 

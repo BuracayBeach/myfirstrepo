@@ -71,21 +71,19 @@ class book extends CI_Controller {
         echo json_encode($data);
     }
 
-    public function display_views($data){
-        $this->load->view('header',$data);
-        $this->load->view('search_view', $data);
-        // $this->load->view('table_view',$data);
-        if($data['is_admin'])
-            $this->load->view('manage_view',$data);
-        $this->load->view('footer');
-    }
+    // public function display_views($data){
+    //     $this->load->view('header',$data);
+    //     $this->load->view('search_view', $data);
+    //     // $this->load->view('table_view',$data);
+    //     if($data['is_admin'])
+    //         $this->load->view('manage_view',$data);
+    //     $this->load->view('footer');
+    // }
 
 
 
 
     public function search(){
-        $data['is_admin'] = true;
-
         $input['search_term'] = "";
         $input['search_by'] = "book_title";
         $input['order_by'] = "a.book_no";
@@ -98,7 +96,6 @@ class book extends CI_Controller {
         $input['borrowed'] = isset($_POST["borrowed"]);
         $input['reserved'] = isset($_POST["reserved"]);
 
-        $input['is_admin'] = $data['is_admin'];
 
 
 
@@ -108,7 +105,6 @@ class book extends CI_Controller {
             'search_term'   => $input['search_term'],
             'search_by'     => $input['search_by'],
             'order_by'      => $input['order_by'],
-            'is_admin'      => $input['is_admin'],
             'spell_check'   => true
         );
 

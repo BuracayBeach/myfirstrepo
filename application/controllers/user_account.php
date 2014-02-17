@@ -17,7 +17,7 @@ class User_account extends CI_Controller {
 	}
 
 	public function usernav() {
-		$this->load->view('user_logged_in_view');
+		$this->load->view('logged_user_view');
 	}
 
 	public function backtologin() {
@@ -25,17 +25,21 @@ class User_account extends CI_Controller {
 	}
 
 	public function login(){
+		if (isset($_SESSION['logged_in'])){
+			redirect(base_url());
+		}
 		if($this->checkUserValidity()){	
 			$_SESSION['username'] = $_POST['username'];
 			$_SESSION['logged_in'] = true;
-			$_SESSION['type'] = "regular";
-			$this->load->view('user_logged_in_view');
+			$_SESSION['type'] = "admin";
+			redirect(base_url());
 		}
 	}
 
 	public function logout(){
 		unset($_SESSION['username']);
 		unset($_SESSION['type']);
+		unset($_SESSION['logged_in']);
 
 		redirect(base_url());
 	}

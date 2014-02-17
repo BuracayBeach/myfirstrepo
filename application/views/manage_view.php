@@ -1,4 +1,3 @@
-
 <div id="recently_added_books_container">
     <hr/>
     <h4>RECENTLY ADDED BOOKS</h4>
@@ -79,3 +78,6 @@
         <button id="edit_cancel_button" name="edit_cancel_button">Cancel</button>
     </form>
 </div>
+
+<script src="<?php echo base_url();?>js/manage_validation.js" ></script>
+<script src="<?php echo base_url();?>js/book_manager.js" ></script>
