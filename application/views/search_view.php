@@ -64,6 +64,8 @@
 
 			<script src="<?=base_url('js/jquery-1.11.0.js')?>"></script>
 
+
+
 			<script type="text/javascript">
 
 				function research(){
@@ -134,4 +136,6 @@
 						
 					});
 				});
+
+
 			</script>
