@@ -96,11 +96,12 @@ class Favorites extends CI_Controller {
 				);	
 		*/
 
-		
+		date_default_timezone_set("Asia/Manila");
+
 		$data = array (
 					'username' => $info[0],
 					'book_no' => $info[1],
-					'date_added' => 'NOW()'
+					'date_added' => date('Y-m-d H:i:s')
 				);	
 		
 		$this->favorites_model->add($data);
@@ -140,6 +141,27 @@ class Favorites extends CI_Controller {
 
 		$this->favorites_model->remove($data);
 	}
+
+	/*
+	*	Sample call of this function in AJAX.
+	*
+	*	$.ajax({
+	*		url : "http://localhost/128_team2/favorites/check/" + username + "/" + book_no,
+	*		type : 'POST',
+	*		dataType : "html",
+	*		async : true,
+	*		success: function(data) {}
+	*	});
+	*/
+	public function check($username, $book_no) {
+		$data = array(
+				'username' => $username,
+				'book_no' => $book_no
+			);
+
+		$result = $this->favorites_model->check($data);
+		echo json_encode($result);
+	}	
 }
 
 ?>
