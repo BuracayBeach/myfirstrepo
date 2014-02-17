@@ -34,7 +34,7 @@ function addBook(event){
     event.preventDefault();  /* stop form from submitting normally */
 
     if(checkAll()){
-        $.post("index.php/booker/add",$(this).serialize(),function(data){
+        $.post("index.php/book/add",$(this).serialize(),function(data){
             data = JSON.parse(data);
             var rowHTML = $('<tr>');
             rowHTML.append(
@@ -71,7 +71,7 @@ function fillEditForm(event){
     var td = $(this).closest('tr').find('td[book_data=book_no]');
     var book_no = td.text();
 
-    $.post("index.php/booker/get_book",{'book_no':book_no},function(data){
+    $.post("index.php/book/get_book",{'book_no':book_no},function(data){
         data = JSON.parse(data);
         data = data[0];
 
@@ -98,7 +98,7 @@ function editBook(event){
 
     var editForm = $('#edit_book_form');
     var data = editForm.serialize();
-    $.post("index.php/booker/edit",data,function(data){
+    $.post("index.php/book/edit",data,function(data){
         data = JSON.parse(data);
         var rowToUpdate = editedRow;
         rowToUpdate.find("[book_data='book_no']").html(data.book_no);
@@ -132,7 +132,7 @@ function deleteBook(){
     if (result==true) {
         var bookNo = $(this).attr('bookno');
         var element = this;
-        $.post('index.php/booker/delete',{book_no:bookNo},function(){updateView(element)});
+        $.post('index.php/book/delete',{book_no:bookNo},function(){updateView(element)});
         function updateView(element){
             var table = $(element).closest('table');
             $(element).closest('tr').remove();
