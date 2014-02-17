@@ -36,10 +36,13 @@ class News extends CI_Controller {
     public function add(){
         $data['news_title'] = filter_var($_POST['news_title'], FILTER_SANITIZE_MAGIC_QUOTES);
         $data['news_content'] = filter_var($_POST['news_content'], FILTER_SANITIZE_MAGIC_QUOTES);
-        $_SESSION['username'] = 'Bulalo';
+        session_start();
         $data['news_author'] = filter_var($_SESSION['username'], FILTER_SANITIZE_MAGIC_QUOTES);
 
-        echo $this->news_model->insert_news($data);
+        $this->news_model->insert_news($data);
+
+        $data = array_replace($data,$_POST);
+        echo json_encode($data);
     }
 
 
@@ -51,6 +54,8 @@ class News extends CI_Controller {
         $data['date_edited'] = Date("Y-m-d");
 
         $this->news_model->edit_news($data);
+
+        $data = array_replace($data,$_POST);
         echo json_encode($data);
     }
 

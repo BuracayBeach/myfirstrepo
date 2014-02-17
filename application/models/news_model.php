@@ -22,7 +22,7 @@ class News_model extends CI_Model {
         $this->load->database();
     }
 
-    function insert_news($data){
+    function insert_news(&$data){
         $data['date_posted'] = Date("Y-m-d");
         $query = "INSERT INTO news (news_title,news_content,news_author,date_posted)".
             " VALUES ('{$data['news_title']}'".
@@ -33,15 +33,12 @@ class News_model extends CI_Model {
         $this->db->query($query);
 
         $data['news_id'] = $this->db->query("SELECT LAST_INSERT_ID() news_id")->result()[0]->news_id;
-
-        echo json_encode($data);
     }
 
     function get_book($book_no){
         $query = "SELECT * FROM book b, author a WHERE b.book_no='".$book_no."'";
         $query2 = "AND a.book_no='".$book_no."'";
-        //$var = $this->db->query($query)->result()
-        //var_dump($var);
+
         echo json_encode($this->db->query($query.$query2)->result());
     }
 
