@@ -66,20 +66,19 @@
                                             
                                         } else { //--------------- USER ACTIONS ----------------\\
                                             
-                                            //like button
-                                            echo
-                                            "<span>" .
-                                                "<a href='#' book_no='" . $row->book_no . "'>Favorite</a>&nbsp;&nbsp;" . //condition is to be added here
+                                            //favorite button
+                                            echo "<span>" .
+                                                "<button class='book_action' book_no='" . $row->book_no . "'>favorites</button>&nbsp;&nbsp;" . 
                                             "</span>" .
 
                                             //reserve button
                                             "<span>" .
-                                                "<a ";
+                                                "<button action_type='reserve' ";
 
-                                                if ($row->status == "available") echo "href='#' bookno='{$row->book_no}'>Reserve";
+                                                if ($row->status == "available") echo "class='book_action' bookno='{$row->book_no}'>reserve";
                                                 else echo ">(" . $row->status . ")";
 
-                                                echo "</a>" .
+                                                echo "</button>" .
                                             "</span>";
                                         }
 

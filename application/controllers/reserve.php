@@ -24,12 +24,11 @@ class Reserve extends CI_Controller {
 	*		success: function(data) {}
 	*	});
 	*/
-	function remove($username, $book_no, $email) {
+	function remove($username, $book_no) {
 	
 		$data = array (
 			'username' => $username,
-			'book_no' => $book_no,
-			'email' => $email
+			'book_no' => $book_no
 		);
 		
 		$this->Reserve_Model->remove($data);
@@ -66,12 +65,12 @@ class Reserve extends CI_Controller {
 	*		success: function(data) {}
 	*	});
 	*/
-	public function enqueue($username, $book_no, $email) {
+	public function add($username, $book_no) {
 		$data = array(
 				'username' => $username,
 				'book_no' => $book_no,
-				'email' => $email,
-				'date_reserved' => date('Y-m-d H:i:s')
+				'date_reserved' => date('Y-m-d H:i:s'),
+				'notified' => 0
 			);
 
 		$this->reserve_model->enqueue($data);
@@ -96,7 +95,7 @@ class Reserve extends CI_Controller {
 
 		$result = $this->reserve_model->check($data);
 		echo json_encode($result);
-	}
+	}	
 
 
 	/*

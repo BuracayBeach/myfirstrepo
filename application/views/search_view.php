@@ -66,32 +66,74 @@
 
 
 
-			<script>
+			<script type="text/javascript">
 
-				function research(){
-					$('#search_text').val($('#suggestion_text').html());
-					$('#submit_search').click();
-				}
+				$(document).ready(function() {
 
-				function ajax_results(){
-					event.preventDefault();
-	
-					my_input = $('#search_form').serialize();
+					function research(){
+						$('#search_text').val($('#suggestion_text').html());
+						$('#submit_search').click();
+					}
 
-					$.ajax({
-						type: "post",
-						data: my_input,
-						url: "http://localhost/myfirstrepo/index.php/book/search",
-						success: function(data, jqxhr, status){
-							$("#result_container").html(data);
-						}
-		 			});
+					function ajax_results(){
+						event.preventDefault();
+		
+						my_input = $('#search_form').serialize();
 
-					return false;
-				}
+						$.ajax({
+							type: "post",
+							data: my_input,
+							url: "http://localhost/myfirstrepo/index.php/book/search",
+							success: function(data, jqxhr, status){
+								$("#result_container").html(data);
+							}
+			 			});
 
+						return false;
+					}
 
-				$('#search_form').submit(ajax_results); //prevent form from submitting/refreshing
+					$('#search_form').submit(ajax_results); //prevent form from submitting/refreshing
 				
+					// when favorites/unfavorites/reserve/unreserve button is clicked on each row
+					$("#result_container").on("click", ".book_action", function() {
+
+						var info = new Array();
+						info[0] = "dude1234"; // BOTTLE NECK;
+						info[1] = $(this).attr('book_no');
+
+						var action_type = $(this).text();
+						var controller = action_type;
+
+						if (action_type == "favorites" || action_type == "reserve")
+							var method = "add"; 
+						else if (action_type == "unfavorites" || action_type == "unreserve")
+							var method = "remove";
+
+						if (action_type == "unfavorites")
+							controller = "favorites";
+						else if (action_type == "unreserve")
+							controller = "reserve";
+
+						$.ajax({
+							url : "http://localhost/myfirstrepo/index.php/" + controller + "/" + method,
+							data : { arr : info },
+							type : 'POST',
+							dataType : "html",
+							async : true,
+							success: function(data) {}
+						});
+
+						if (action_type == "favorites") 
+							$(this).text("unfavorites");
+						else if (action_type == "unfavorites") 	
+							$(this).text("favorites");
+						else if (action_type == "reserve") 
+							$(this).text("unreserve");
+						else if (action_type == "unreserve") 
+							$(this).text("reserve");
+						
+					});
+				});
+
 
 			</script>
