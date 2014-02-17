@@ -10,6 +10,8 @@ class Enable_disable extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('form');//loads the form helper
 		$this->load->library('session');//loads the session library
+		if(!isset($_SESSION))
+			session_start();
 	}
 
 	public function index()
@@ -70,7 +72,7 @@ class Enable_disable extends CI_Controller {
 			activates a user account
 		*/
 
-		$admin = "team3";//hardcoded
+		$admin = $_SESSION['username'];//hardcoded
 		$action = "activate";//hardcoded
 
 		$this->load->model('enable_disable_model');//loads model
@@ -103,7 +105,7 @@ class Enable_disable extends CI_Controller {
 		/*
 			enables a user account
 		*/
-		$admin = "team3";//hardcoded
+		$admin = $_SESSION['username'];//hardcoded
 		$action = "enable";//hardcoded
 
 		$this->load->model('enable_disable_model');//loads model
@@ -136,7 +138,7 @@ class Enable_disable extends CI_Controller {
 		/*
 			disables a user account
 		*/
-		$admin = "team3";//hardcoded
+		$admin = $_SESSION['username'];//hardcoded
 		$action = "disable";//hardcoded
 
 		$this->load->model('enable_disable_model');//loads model
