@@ -68,14 +68,14 @@
 
 			<script type="text/javascript">
 
+				function research(){
+					$('#search_text').val($('#suggestion_text').html());
+					$('#submit_search').click();
+				}
+
 				$(document).ready(function() {
-
-					function research(){
-						$('#search_text').val($('#suggestion_text').html());
-						$('#submit_search').click();
-					}
-
-					function ajax_results(){
+					
+					function ajax_results(event){
 						event.preventDefault();
 		
 						my_input = $('#search_form').serialize();
@@ -93,12 +93,13 @@
 					}
 
 					$('#search_form').submit(ajax_results); //prevent form from submitting/refreshing
+
 				
 					// when favorites/unfavorites/reserve/unreserve button is clicked on each row
 					$("#result_container").on("click", ".book_action", function() {
 
 						var info = new Array();
-						info[0] = "dude1234"; // BOTTLE NECK;
+						info[0] = "username"; // BOTTLE NECK;
 						info[1] = $(this).attr('book_no');
 
 						var action_type = $(this).text();
@@ -120,7 +121,8 @@
 							type : 'POST',
 							dataType : "html",
 							async : true,
-							success: function(data) {}
+							success: function(data) {
+							}
 						});
 
 						if (action_type == "favorites") 
