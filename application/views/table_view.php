@@ -69,7 +69,7 @@
                                             "<span>" .
                                                 "<button action_type='reserve' ";
 
-                                                if ($row->status == "available") echo "class='book_action' bookno='{$row->book_no}'>reserve";
+                                                if ($row->status == "available") echo "class='book_action' book_no='{$row->book_no}'>reserve";
                                                 else echo ">(" . $row->status . ")";
 
                                                 echo "</button>" .

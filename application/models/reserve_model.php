@@ -21,9 +21,7 @@ class Reserve_Model extends CI_Model {
 	}
 
 	function enqueue($data) {
-
-		$this->db->where($data);
-		$this->db->insert('reserves');
+		$this->db->insert('reserves', $data);
 	}
 
 	function get($username) {
