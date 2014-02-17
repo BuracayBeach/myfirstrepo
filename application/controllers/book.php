@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Booker extends CI_Controller {
+class book extends CI_Controller {
 
     /**
      * Index Page for this controller.
@@ -131,5 +131,5 @@ class Booker extends CI_Controller {
 
 }
 
-/* End of file booker.php */
-/* Location: ./application/controllers/booker.php */
+/* End of file book.php */
+/* Location: ./application/controllers/book.php */
