@@ -27,7 +27,6 @@ function showAddForm(){
     var addContainer = $('#add_container');
     addContainer.show();
     $(addContainer).find('#add_book_no').focus();
-    console.log('hello');
 }
 function cancelAdd(event){
     event.preventDefault();
@@ -60,7 +59,6 @@ function addBook(event){
                 '</td>' +
                 '<td book_data="Tags">'+data.tags+'</td>'
             );
-            console.log('hello')
             $('#recently_added_books_table').find('tbody:last').append(rowHTML);
             toggleRecentlyAddedTable();
         });
