@@ -27,9 +27,8 @@ class Booker extends CI_Controller {
     public function index(){
         $this->load->library('javascript');
         $data['title'] = "eICS Lib";
-        $data['is_admin'] = true;
 
-        $this->display_views($data);
+        // $this->display_views($data);
     }
 
     public function add(){
@@ -120,8 +119,9 @@ class Booker extends CI_Controller {
         $sorted_table = $this->search_model->get_sorted_table($table, $input, $details['spell_check'], $search_suggestion); 
 
         $details['search_suggestion'] = $search_suggestion;
-        $details['table'] = $sorted_table;
-        $this->load->view('table_view', $details);
+        $_SESSION['table'] = $sorted_table;
+
+        // $this->load->view('table_view', $details);
 
         if (trim($search_suggestion)!=''){
             echo "<span>You might want to search for: <a id='suggestion_text' href='javascript:research();'>" . trim($search_suggestion) . "</a></span><br/><br/>";
