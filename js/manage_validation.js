@@ -1,3 +1,4 @@
+/*
 var str, msg;
 $(document).ready(function(){
 
@@ -102,3 +103,4 @@ function checkAll(){
         return false;
     }
 }
+*/

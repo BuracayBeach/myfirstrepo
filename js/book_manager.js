@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$('#content_container').ready(function(){
     /***** EVENT ATTACHMENTS *****/
 
     $('#show_add_form_button').on('click',showAddForm);
@@ -58,8 +58,8 @@ function addBook(event){
             $('#recently_added_books_table').find('tbody:last').append(rowHTML);
             toggleRecentlyAddedTable();
         });
-        this.reset();
         $(this).closest('div').hide();
+        this.reset();
     }
 }
 /***** END ADD FUNCTIONS *****/

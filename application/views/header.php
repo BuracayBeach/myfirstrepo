@@ -14,4 +14,3 @@
     <script src="<?php echo base_url();?>js/manage_validation.js"></script>
 </head>
 <body>
-    <div id="content_container">

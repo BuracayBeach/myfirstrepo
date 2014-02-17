@@ -1,3 +1,4 @@
+<div id="content_container">
 			<div id="search"><br>
 
 				<form id="search_form" name="search_form" method="post">

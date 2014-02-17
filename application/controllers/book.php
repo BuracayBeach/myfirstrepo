@@ -33,13 +33,13 @@ class book extends CI_Controller {
     }
 
     public function add(){
-        $data['book_no'] = $_POST['book_no'];
-        $data['book_title'] = $_POST['book_title'];
-        $data['description'] = $_POST['description'];
-        $data['author'] = $_POST['author'];
-        $data['publisher'] = $_POST['publisher'];
-        $data['date_published'] = $_POST['date_published'];
-        $data['tags'] = $_POST['tags'];
+        $data['book_no'] = filter_var($_POST['book_no'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['book_title'] = filter_var($_POST['book_title'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['description'] = filter_var($_POST['description'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['author'] = filter_var($_POST['author'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['publisher'] = filter_var($_POST['publisher'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['date_published'] = filter_var($_POST['date_published'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['tags'] = filter_var($_POST['tags'], FILTER_SANITIZE_MAGIC_QUOTES);
 
         $this->book_model->insertBook($data);
 
@@ -74,15 +74,13 @@ class book extends CI_Controller {
 
     public function display_views($data){
         $this->load->view('header',$data);
-        $this->load->view('search_view', $data);
+        $this->load->view('news_view');
+        //$this->load->view('search_view', $data);
         // $this->load->view('table_view',$data);
-        if($data['is_admin'])
-            $this->load->view('manage_view',$data);
+        //if($data['is_admin'])
+        //    $this->load->view('manage_view',$data);
         $this->load->view('footer');
     }
-
-
-
 
     public function search(){
         $data['is_admin'] = true;
@@ -126,7 +124,7 @@ class book extends CI_Controller {
         if (trim($search_suggestion)!=''){
             echo "<span>You might want to search for: <a id='suggestion_text' href='javascript:research();'>" . trim($search_suggestion) . "</a></span><br/><br/>";
         }
-        // json_encode($search_suggestion);
+        json_encode($search_suggestion);
     }
 
 }
