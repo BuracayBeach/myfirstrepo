@@ -73,7 +73,7 @@ function fillEditForm(event){
     event.preventDefault();
     var td = $(this).closest('tr').find('td[book_data=book_no]');
     var book_no = td.text();
-
+    console.log('');
     $.post("index.php/book/get_book",{'book_no':book_no},function(data){
         data = JSON.parse(data);
         data = data[0];
