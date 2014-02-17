@@ -27,6 +27,7 @@ function showAddForm(){
     var addContainer = $('#add_container');
     addContainer.show();
     $(addContainer).find('#add_book_no').focus();
+    console.log('hello');
 }
 function cancelAdd(event){
     event.preventDefault();
