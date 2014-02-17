@@ -90,8 +90,10 @@
 					return false;
 				}
 
-
-				$('#search_form').submit(ajax_results); //prevent form from submitting/refreshing
+				$('#search_form').submit(function(){
+					ajax_results();
+					$("#search").attr('class', '');
+				}); //prevent form from submitting/refreshing
 				
 
 			</script>

@@ -1,7 +1,9 @@
 <?php
-    $table = $_SESSION['table'];
+    // $table = $_SESSION['table'];
 
-    unset($_SESSION['table']);
+    // unset($_SESSION['table']);
+
+    
 ?>
 
 <div id="search_table_container">
