@@ -22,7 +22,7 @@ class Book_model extends CI_Model {
         $this->load->database();
     }
 
-    function insertBook($data){
+    function insert_book($data){
         $date_pub = $data['date_published'];
         $query = "INSERT INTO book (book_no,book_title,description,publisher,tags,date_published)".
             " VALUES ('{$data['book_no']}'".

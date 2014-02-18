@@ -31,7 +31,7 @@ function validateTitle(){
     if(str == ""){
         msg+="Book title is required.";
     }
-    else if(!str.match(/^[a-zA-Z0-9 ]+$/)){
+    else if(!str.match(/^\w+$/)){
         msg+="Wrong Input";
     }
     else if(msg == "Invalid input: "){
