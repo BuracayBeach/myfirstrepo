@@ -15,10 +15,10 @@
 <body>
 
 <div id="navbar">
-	<a href="<?php echo base_url();?>index.php/home/">LOGOIMAGETHISYIH</a>
-	<a href="<?php echo base_url();?>index.php/home/homie">HOME</a>
-	<a href="<?php echo base_url();?>index.php/home/about_us">ABOUT US</a>
-	<a href="<?php echo base_url();?>index.php/home/help">HELP</a>
+	<a href="<?php echo base_url();?>">LOGOIMAGETHISYIH</a>
+	<a href="homie">Home</a>
+	<a href="about_us">About Us</a>
+	<a href="help">Help</a>
 
 	<div id="acc_manager">
 		<?php

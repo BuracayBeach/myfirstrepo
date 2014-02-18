@@ -40,6 +40,10 @@
 
 $route['default_controller'] = "home"; // change this
 $route['404_override'] = '';
+/* append this if a function accepts parameters from URI: (/(:any)*)*
+    ie. ( homie|about_us|(foo(/(:any)*)*) )
+*/
+$route['(homie|about_us)'] = "home/$0";
 
 
 /* End of file routes.php */
