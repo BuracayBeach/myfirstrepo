@@ -11,7 +11,10 @@
     <title><?php echo $title ?></title>
 
     <script src="<?php echo base_url();?>js/jquery-1.11.0.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url();?>css/reset.css"/>
+    <link rel="stylesheet" href="<?php echo base_url();?>css/bootstrap.min.css"/>
     <link rel="stylesheet" href="<?php echo base_url();?>css/style.css"/>
+
 </head>
 <body>
 
