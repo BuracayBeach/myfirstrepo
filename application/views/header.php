@@ -19,6 +19,7 @@
 	<a href="<?php echo base_url();?>index.php/home/homie">HOME</a>
 	<a href="<?php echo base_url();?>index.php/home/about_us">ABOUT US</a>
 	<a href="<?php echo base_url();?>index.php/home/help">HELP</a>
+    <a href="<?php echo base_url();?>index.php/faq">FAQ</a>
 
 	<div id="acc_manager">
 		<?php
