@@ -73,9 +73,9 @@ class Search_model extends CI_Model {
                     if($word_count > 0) $q['where'] .= " or ";
 
                     if($details['search_by']== 'book_title'){
-                       $q['where'] .= "book_title like '%" . $search . "%' or description like '%" . $search . "%' or Tags like '%" . $search . "%' ";
+                       $q['where'] .= "book_title like '%" . $search . "%' or description like '%" . $search . "%' or tags like '%" . $search . "%' ";
                     } else if($details['search_by']== 'any'){
-                        $q['where'] .= "book_title like '%" . $search . "%' or b.book_no like '%" . $search . "%' or publisher like '%" . $search . "%' or description like '%" . $search . "%' or name like '%" . $search . "%' or date_published like '%" . $search . "%' or Tags like '%" . $search . "%' ";
+                        $q['where'] .= "book_title like '%" . $search . "%' or b.book_no like '%" . $search . "%' or publisher like '%" . $search . "%' or description like '%" . $search . "%' or name like '%" . $search . "%' or date_published like '%" . $search . "%' or tags like '%" . $search . "%' ";
                     } else {
                         $q['where'] .= $details['search_by'] . " like '%".$search."%' ";
                     }
@@ -199,7 +199,7 @@ class Search_model extends CI_Model {
         if ($search_by == 'book_title' || $search_by == 'any'){
             array_push($cols_to_search, $row->book_title);
             array_push($cols_to_search, $row->description);
-            array_push($cols_to_search, $row->Tags);
+            array_push($cols_to_search, $row->tags);
         }
         if ($search_by == 'name' || $search_by == 'any'){
             array_push($cols_to_search, $row->name);
@@ -220,7 +220,7 @@ class Search_model extends CI_Model {
             foreach($row as $col){
                 if (!in_array($col, $cols_to_search)) continue;
 
-                if ($col == $row->Tags) $col_words = explode(" ", str_replace(',', ' ', $col));
+                if ($col == $row->tags) $col_words = explode(" ", str_replace(',', ' ', $col));
                 else $col_words = explode(" ", $col);
 
                 foreach($col_words as $item){
@@ -241,7 +241,7 @@ class Search_model extends CI_Model {
                     if($search_term==$item){
                         switch($col){
                             case $row->description: $pts+=$book_desc_points; break;
-                            case $row->Tags:        $pts+=$book_tags_points; break;
+                            case $row->tags:        $pts+=$book_tags_points; break;
                             case $row->book_title:  $pts+=$book_title_points; break;
                             case $row->name:        $pts+=$book_author_points; break;
                             case $row->publisher:  $pts+=$book_publisher_points; break;

@@ -85,7 +85,7 @@
                                          "<div book_data='date_published'>" . $row->date_published . "</div>" .
                                      "</td>";
 
-                                if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") echo "<td book_data='Tags'>" . $row->Tags . "</td>";
+                                if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") echo "<td book_data='tags'>" . $row->tags . "</td>";
 
 
                                

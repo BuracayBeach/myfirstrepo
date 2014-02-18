@@ -57,7 +57,7 @@ function addBook(event){
                     '<div book_data="publisher">'+data.publisher+'</div>' +
                     '<div book_data="date_published">'+data.date_published+'</div>' +
                 '</td>' +
-                '<td book_data="Tags">'+data.tags+'</td>'
+                '<td book_data="tags">'+data.tags+'</td>'
             );
             $('#recently_added_books_table').find('tbody:last').append(rowHTML);
             toggleRecentlyAddedTable();
@@ -76,7 +76,7 @@ function fillEditForm(event){
     $.post("index.php/book/get_book",{'book_no':book_no},function(data){
         data = JSON.parse(data);
         data = data[0];
-
+        console.log(data);
         var editForm = $("#edit_book_form");
         editForm.find("#edit_prev_book_no").val(data.book_no);
         editForm.find("#edit_book_no").val(data.book_no);
@@ -86,7 +86,7 @@ function fillEditForm(event){
         editForm.find("#edit_publisher").val(data.publisher);
         editForm.find("#edit_author").val(data.name);
         editForm.find("#edit_date_published")[0].value=data.date_published;
-        editForm.find("#edit_tags").val(data.Tags);
+        editForm.find("#edit_tags").val(data.tags);
     });
 
     editedRow = td.closest('tr');

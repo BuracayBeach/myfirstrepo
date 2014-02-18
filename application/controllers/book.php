@@ -40,7 +40,7 @@ class book extends CI_Controller {
         $data['date_published'] = filter_var($_POST['date_published'], FILTER_SANITIZE_MAGIC_QUOTES);
         $data['tags'] = filter_var($_POST['tags'], FILTER_SANITIZE_MAGIC_QUOTES);
 
-        $this->book_model->insertBook($data);
+        $this->book_model->insert_book($data);
 
         echo json_encode($_POST);
     }
