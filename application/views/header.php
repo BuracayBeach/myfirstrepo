@@ -19,6 +19,7 @@
 	<a href="homie">Home</a>
 	<a href="about_us">About Us</a>
 	<a href="help">Help</a>
+    <a href="faq">FAQ</a>
 
 	<div id="acc_manager">
 		<?php
