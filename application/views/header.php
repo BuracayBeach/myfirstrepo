@@ -11,12 +11,13 @@
     <title><?php echo $title ?></title>
 
     <script src="<?php echo base_url();?>js/jquery-1.11.0.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url();?>css/style.css"/>
 </head>
 <body>
 
 <div id="navbar">
 	<a href="<?php echo base_url();?>">LOGOIMAGETHISYIH</a>
-	<a href="homie">Home</a>
+	<a href="home">Home</a>
 	<a href="about_us">About Us</a>
 	<a href="help">Help</a>
     <a href="faq">FAQ</a>

@@ -37,7 +37,7 @@ class Home extends CI_Controller {
         $this->load->view("footer");
     }
 
-    public function homie(){
+    public function home(){
         $data['title'] = "eICS Lib Home";
         $this->load->view("header", $data);
         $this->load->view("search_view");
@@ -56,7 +56,7 @@ class Home extends CI_Controller {
     }
 
     public function about_us(){
-        $data['title'] = "eICS Lib Home";
+        $data['title'] = "eICS Lib About Us";
         $this->load->view("header", $data);
         $this->load->view("search_view");
         $this->load->view("about_us_view");
@@ -69,9 +69,12 @@ class Home extends CI_Controller {
     }
 
     public function faq(){
-        $data['title'] = "eICS Lib Home";
+        $data['title'] = "eICS Lib FAQ";
         $this->load->view("header", $data);
-        $this->load->view("faq");
+        $this->load->view("faq_view");
+        //$is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
+        //if ($is_admin) $this->load->view('manage_view');
+
         $this->load->view("footer");
     }
 
