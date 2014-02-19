@@ -7,58 +7,85 @@ class User_account_model extends CI_Model {
 	}
 
 	//Insert data into database.
-	public function insertData($data){
-		$this->db->query("INSERT INTO user VALUES (
-			'{$data['username']}',
-			'{$data['password']}',
-			'{$data['sex']}',
-			'{$data['status']}',
-			'{$data['email']}',
-			'{$data['usertype']}',
-			'{$data['emp_no']}',
-			'{$data['student_no']}',
-			'{$data['name_first']}',
-			'{$data['name_middle']}',
-			'{$data['name_last']}',
-			{$data['mobile_no']},
-			'{$data['course']}',
-			'{$data['college']}')");
-		return true;
+	public function insert_data($data){
+		$query = $this->db->query("SELECT * FROM user WHERE ( username='{$data['username']}' OR email='{$data['email']}' OR ( student_no='{$data['student_no']}' AND emp_no='{$data['emp_no']}' ) ) ");
+
+		if($query->num_rows() == 0){
+			$this->db->query("INSERT INTO user VALUES (
+				'{$data['username']}',
+				'{$data['password']}',
+				'{$data['sex']}',
+				'{$data['status']}',
+				'{$data['email']}',
+				'{$data['usertype']}',
+				'{$data['emp_no']}',
+				'{$data['student_no']}',
+				'{$data['name_first']}',
+				'{$data['name_middle']}',
+				'{$data['name_last']}',
+				{$data['mobile_no']},
+				'{$data['course']}',
+				'{$data['college']}')");
+			return true;
+		} 
+
+		else {
+			$query_rows = $query->result();
+			$data_exists_notif = 'The following inputs already exist: ';
+			
+			foreach($query_rows as $row){
+				if ($data['username'] == $row->username) $data_exists_notif .=  ' username';
+				if ($data['email'] == $row->email) $data_exists_notif .= ' email';
+				if ($data['student_no'] == $row->student_no) $data_exists_notif .= ' student no.';
+				if ($data['emp_no'] == $row->emp_no) $data_exists_notif .= ' employee no.';
+			}
+			
+			if (isset($_SESSION['notif_create_account'])) $_SESSION['notif_create_account'] = $data_exists_notif;
+			return false;
+		}
 	}
 
 	//Update info in the database.
-	public function updateData($data, $uname){
-		$this->db->query("UPDATE user SET 
-			sex='{$data['sex']}',
-			email='{$data['email']}',
-			name_first='{$data['name_first']}',
-			name_middle='{$data['name_middle']}',
-			name_last='{$data['name_last']}',
-			mobile_no={$data['mobile_no']},
-			course='{$data['course']}',
-			college='{$data['college']}' WHERE username='{$uname}'");
+	public function update_data($data, $uname){
+		$query = $this->db->query("SELECT * FROM user WHERE email='{$data['email']}' ");
+
+		if($query->num_rows() == 0){
+			$this->db->query("UPDATE user SET 
+				sex='{$data['sex']}',
+				email='{$data['email']}',
+				name_first='{$data['name_first']}',
+				name_middle='{$data['name_middle']}',
+				name_last='{$data['name_last']}',
+				mobile_no={$data['mobile_no']},
+				course='{$data['course']}',
+				college='{$data['college']}' WHERE username='{$uname}'");
+			return true;
+		}
+
+		else
+			return false;
 	}
 	
 	//Update the password
-	public function updatePassword($new_password, $uname){
+	public function update_password($new_password, $uname){
 		$this->db->query("UPDATE user SET password='{$new_password}' where username='{$uname}'");
 	}
 
 	//Get the password of the user.
-	public function getPassword($uname) {
+	public function get_password($uname) {
 		$query=$this->db->query("SELECT password FROM user WHERE username='{$uname}'");
-		foreach ($query->result_array() as $result) {}
-		return $result['password'];
+		$result = $query->result_array();
+		return $result[0]['password'];
 	}
 
 	//Get data from the user
-	public function getData($uname) {
+	public function get_data($uname) {
 		$query=$this->db->query("SELECT * FROM user WHERE username='{$uname}'");
-		foreach ($query->result_array() as $result) {}
-		return $result;
+		$result = $query->result_array();
+		return $result[0];
 	}
 
-	public function getUser($username){
+	public function get_user($username){
 		$query = $this->db->query("SELECT * FROM user WHERE username='{$username}'");
 			
 		if($query->num_rows() == 1){
