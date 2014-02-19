@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class User_account extends CI_Controller {
+	
 	function __construct(){
 		parent::__construct();
 		$this->load->model('user_account_model');
@@ -16,47 +17,39 @@ class User_account extends CI_Controller {
 		$this->load->view('login_view');
 	}
 
-	public function usernav() {
-		$this->load->view('logged_user_view');
+	public function backtohome() {
+		redirect(base_url());
 	}
 
-	public function backtologin() {
-		redirect(base_url());
+	public function create_account(){
+		$this->load->view('create_account_view');
+	}
+
+	public function update_account(){
+		$this->get_data();
 	}
 
 	public function login(){
 		if (isset($_SESSION['logged_in'])){
 			redirect(base_url());
 		}
-		if($this->checkUserValidity()){	
-			$_SESSION['username'] = $_POST['username'];
+		
+		if($this->check_user_validity()){	
+			$_SESSION['username'] = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
 			$_SESSION['logged_in'] = true;
 			$_SESSION['type'] = "regular";
 			redirect(base_url());
 		}
 	}
 
-	public function logout(){
-		unset($_SESSION['username']);
-		unset($_SESSION['type']);
-		unset($_SESSION['logged_in']);
+	private function check_user_validity(){
+		$username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
+		$password = md5(filter_var($_POST['password'], FILTER_SANITIZE_STRING));
 
-		redirect(base_url());
-	}
-
-	private function checkUserValidity(){
-
-		//check if username and password is correct. Return true or false
-		//data needed are in the $_POST['username'] and $_POST['password']
-		
-		$username = $_POST['username'];
-		$password = md5($_POST['password']);
-
-		$data = $this->user_account_model->getUser($username);
+		$data = $this->user_account_model->get_user($username);
 
 		if(!$data){
-			echo "Error: username: $username does not exists";
-			$this->load->view('login_view');	
+			$_SESSION['notif_login'] = "Username does not exist!";
 		}
 		
 		else{
@@ -64,80 +57,93 @@ class User_account extends CI_Controller {
 				return true;
 			}
 			else{
-				echo "Wrong password!";
-				$this->load->view('login_view');
+				$_SESSION['notif_login'] = "Incorrect password!";
 			}
 		}
 	}
 
-	public function create(){
-		$this->load->view('create_account_view');
+	public function logout(){
+		unset($_SESSION['username']);
+		unset($_SESSION['type']);
+		unset($_SESSION['logged_in']);
+		unset($_SESSION['notifs']);
+
+		redirect(base_url());
 	}
 
-	//Get the info from the create account form.
-	//Display in the user info on View_Data.
-	public function getUserInfo(){
-		$data['username']= $_POST['username'];
-		$data['password']= md5($_POST['password']);
-		$data['sex']= $_POST['sex'];
+	public function createaccount(){
+		$data['username']= filter_var($_POST['username'], FILTER_SANITIZE_STRING);
+		$data['password']= md5(filter_var($_POST['password'], FILTER_SANITIZE_STRING));
+		$data['sex']= filter_var($_POST['sex'], FILTER_SANITIZE_STRING);
 		$data['status']= "pending";
-		$data['email']= $_POST['email'];
-		$data['usertype']= $_POST['usertype'];
-		$data['emp_no']= $_POST['emp_no'];
-		$data['student_no']= $_POST['student_no'];
-		$data['name_first']= $_POST['name_first'];
-		$data['name_middle']= $_POST['name_middle'];
-		$data['name_last']= $_POST['name_last'];
-		$data['mobile_no']= $_POST['mobile_no'];
-		$data['course']= $_POST['course'];
-		$data['college']= $_POST['college'];
-		
-		if($this->user_account_model->insertData($data)){
-			echo "Account created succesfully";
-			// $this->load->view('login_view');
-			redirect(base_url());
+		$data['email']= filter_var($_POST['email'], FILTER_SANITIZE_STRING);
+		$data['usertype']= filter_var($_POST['usertype'], FILTER_SANITIZE_STRING);
+		$data['emp_no']= filter_var($_POST['emp_no'], FILTER_SANITIZE_STRING);
+		$data['student_no']= filter_var($_POST['student_no'], FILTER_SANITIZE_STRING);
+		$data['name_first']= filter_var($_POST['name_first'], FILTER_SANITIZE_STRING);
+		$data['name_middle']= filter_var($_POST['name_middle'], FILTER_SANITIZE_STRING);
+		$data['name_last']= filter_var($_POST['name_last'], FILTER_SANITIZE_STRING);
+		$data['mobile_no']= filter_var($_POST['mobile_no'], FILTER_SANITIZE_STRING);
+		$data['course']= filter_var($_POST['course'], FILTER_SANITIZE_STRING);
+		$data['college']= filter_var($_POST['college'], FILTER_SANITIZE_STRING);
+
+		$result = $this->user_account_model->insert_data($data);
+
+		if($result){
+			$_SESSION['notif_create_account'] = "Succesfully created account!";
+			$this->backtohome();
 		}
+
+		else
+			$this->backtohome();	
 	}
 
 	//Update the value of the user info.
 	public function update(){
-		$data['sex']= $_POST['sex'];
-		$data['email']= $_POST['email'];
-		$data['name_first']= $_POST['name_first'];
-		$data['name_middle']= $_POST['name_middle'];
-		$data['name_last']= $_POST['name_last'];
-		$data['mobile_no']= $_POST['mobile_no'];
-		$data['course']= $_POST['course'];
-		$data['college']= $_POST['college'];
+		$data['sex']= filter_var($_POST['sex'], FILTER_SANITIZE_STRING);
+		$data['email']= filter_var($_POST['email'], FILTER_SANITIZE_STRING);
+		$data['name_first']= filter_var($_POST['name_first'], FILTER_SANITIZE_STRING);
+		$data['name_middle']= filter_var($_POST['name_middle'], FILTER_SANITIZE_STRING);
+		$data['name_last']= filter_var($_POST['name_last'], FILTER_SANITIZE_STRING);
+		$data['mobile_no']= filter_var($_POST['mobile_no'], FILTER_SANITIZE_STRING);
+		$data['course']= filter_var($_POST['course'], FILTER_SANITIZE_STRING);
+		$data['college']= filter_var($_POST['college'], FILTER_SANITIZE_STRING);
 
 		$uname = $_SESSION['username'];
-		$this->user_account_model->updateData($data, $uname);
-		$data=$this->user_account_model->getData($uname);
-		$this->load->view('view_data', $data);
+		$result = $this->user_account_model->update_data($data, $uname);
+		
+		if($result){
+			$_SESSION['notif_update_account'] = "Succesfully updated account";
+			$this->get_data();
+		}
+
+		else{
+			$_SESSION['notif_update_account'] = "Email exists";
+			$this->get_data();
+		}
 	}
 
 	//Check if the current password entered is the same as that of the password in the database.
-	public function changePassword(){
+	public function change_password(){
 		$uname = $_SESSION['username'];
-		$new_password= md5($_POST['newPassword']);
-		$current_password= md5($_POST['currentPassword']);
-		$database_password= $this->user_account_model->getPassword($uname);
+		$new_password= md5(filter_var($_POST['newPassword'], FILTER_SANITIZE_STRING));
+		$current_password= md5(filter_var($_POST['currentPassword'], FILTER_SANITIZE_STRING));
+		$database_password = $this->user_account_model->get_password($uname);
 
 		if($database_password==$current_password) {
-			$this->user_account_model->updatePassword($new_password, $uname);
-			echo "Succesfully changed password";
+			$_SESSION['notif_change_password'] = "Succesfully changed password!";
+			$this->user_account_model->update_password($new_password, $uname);
+			$this->get_data();
 		} else {
-			echo "Current password entered and password in database do not match.";
+			$_SESSION['notif_change_password'] = "Password does not match";
+			$this->get_data();
 		}
-
-		$result=$this->user_account_model->getData($uname);
-		$this->load->view('view_data', $result);
 	}
 
 	//Get the username of the current user
-	public function getData() {
+	public function get_data() {
 		$username = $_SESSION['username'];
-		$result=$this->user_account_model->getData($username);
+		$result=$this->user_account_model->get_data($username);
 		$this->load->view('update_account_view', $result);
 	}
 }
