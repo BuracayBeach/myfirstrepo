@@ -3,4 +3,4 @@
 	<input type = "password" name="password" placeholder="password"/>
 	<input type = "submit" name="submit"/>
 </form>
-<a href="<?php echo base_url();?>index.php/user_account/create" >Create Account</a>
+<a href="<?php echo base_url();?>index.php/user_account/create_account" >Create Account</a>
