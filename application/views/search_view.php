@@ -99,8 +99,7 @@
 					$("#result_container").on("click", ".book_action", function() {
 
 						var info = new Array();
-						info[0] = "username"; // BOTTLE NECK;
-						info[1] = $(this).attr('book_no');
+						info[0] = $(this).attr('book_no');
 
 						var action_type = $(this).text();
 						var controller = action_type;
