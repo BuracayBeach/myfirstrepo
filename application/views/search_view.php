@@ -1,4 +1,10 @@
-			<div id="search" <?php if(isset($home)) echo "class = 'home'";?> ><br>
+			<div id="search" <?php if(isset($home)) echo "class = 'home'";?> >
+
+				<?php
+					if(isset($home))
+						echo "<img class='logo_main' src='" . base_url() . "images/logo4.png'";
+				?>
+				<br>
 
 				<form id="search_form" name="search_form" method="post">
 					<?php
@@ -6,17 +12,16 @@
 							echo '
 							<div id="status">
 								<input id = "available" type="checkbox" name = "available" checked>
-								<label for="available">Available</label><br/>
+								<div class= "statuslabel" ><label for="available">Available</label></div>
 								<input id = "reserved" type="checkbox" name = "reserved" checked>
-								<label for="reserved">Reserved</label><br/>
-								<input id = "borrowed" type="checkbox" name = "borrowed" checked>
-								<label for="borrowed">Borrowed</label><br/><br/>
+								<div class= "statuslabel" ><label for="reserved">Reserved</label></div>
+								<input id = "borrowed" type="checkbox" name = "borrowed" checked >
+								<div class= "statuslabel" ><label for="borrowed" style="clear:right;">Borrowed</label></div>
 							</div>
 							';
 						}
 					?>
 
-					<a>Search by:</a>
 					<select name="search_by">
 						<option value="book_title">Title / Description</option>
 						<option value="book_no"> Book Number </option>
@@ -29,13 +34,12 @@
 						<option value="any"> Any </option>
 					</select>
 
-					<input id="search_text" type="text" name='search' placeholder='Keywords...'/>
+					<input id="search_text" type="text" name='search' autofocus='true' placeholder='Keywords...'/>
 					<input id='submit_search' type="submit" name="submit_search" value="Search" /><br/>
 
 					<?php
 						if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
 							echo '
-							<a>Order by:</a>
 							<select name="order_by">
 								<option value="search_relevance"> Search Relevance </option>
 								<option value="book_no"> Book Number </option>
@@ -61,11 +65,6 @@
 
 			</div>
 
-
-			<script src="<?=base_url('js/jquery-1.11.0.js')?>"></script>
-
-
-
 			<script type="text/javascript">
 
 				function research(){
@@ -89,6 +88,8 @@
 							}
 			 			});
 
+						$('#search').removeClass('home');
+						$('.logo_main').hide();
 						return false;
 					}
 

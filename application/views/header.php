@@ -19,11 +19,13 @@
 <body>
 
 <div id="navbar">
-	<a href="<?php echo base_url();?>">LOGOIMAGETHISYIH</a>
-	<a href="home">Home</a>
-	<a href="about_us">About Us</a>
-	<a href="help">Help</a>
-    <a href="faq">FAQ</a>
+	<div id="menulinks">
+		<a href="<?php echo base_url();?>" class="logo"> <img src="<?php echo base_url();?>images/logo4.png"/> </a>
+		<a href="ihome">HOME</a>
+		<a href="about_us">ABOUT US</a>
+		<a href="help">HELP</a>
+	    <a href="faq">FAQ</a>
+	</div>
 
 	<div id="acc_manager">
 		<?php
@@ -38,3 +40,5 @@
 		?>
 	</div>
 </div>
+
+<div id="pagebody">

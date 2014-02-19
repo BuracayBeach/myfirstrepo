@@ -31,7 +31,7 @@ class User_account extends CI_Controller {
 		if($this->checkUserValidity()){	
 			$_SESSION['username'] = $_POST['username'];
 			$_SESSION['logged_in'] = true;
-			$_SESSION['type'] = "admin";
+			$_SESSION['type'] = "regular";
 			redirect(base_url());
 		}
 	}
