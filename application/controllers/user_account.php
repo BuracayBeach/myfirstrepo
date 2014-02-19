@@ -40,6 +40,9 @@ class User_account extends CI_Controller {
 			$_SESSION['type'] = "regular";
 			redirect(base_url());
 		}
+
+		else
+			redirect(base_url());	
 	}
 
 	private function check_user_validity(){
@@ -58,6 +61,7 @@ class User_account extends CI_Controller {
 			}
 			else{
 				$_SESSION['notif_login'] = "Incorrect password!";
+				return false;
 			}
 		}
 	}
