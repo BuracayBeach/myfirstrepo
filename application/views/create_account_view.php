@@ -111,13 +111,16 @@
 			function validateAll(){
 				if( validateUsername()&&
 					validatePassword()&&validateRepassword&&validateEmail()&&
-					(validateEmployeeNumber()||validateStudentNumber())&&
 					validateFirstName()&&validateMiddleName()&&
 					validateLastName()&&validateMobileNumber()){
-					return true;
+					if(document.getElementById('student').checked == true && validateStudentNumber())
+						return true;
+					else if(document.getElementById('employee').checked == true && validateEmployeeNumber())
+						return true;
+					else
+						return false;
 				}
 				else return false;
-				<?php echo "error" ?>
 			}
 			
 			//Validate the username field.
@@ -374,7 +377,7 @@
 	</head>
 	
 	<body>
-		<form name="userForm" action="<?php echo base_url();?>index.php/user_account/getUserInfo" method="post" >
+		<form name="userForm" action="<?php echo base_url();?>index.php/user_account/createaccount" method="post" >
 			
 			<div id="container">
 				<h1>Input Forms</h1>
@@ -447,6 +450,6 @@
 				<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
 			</div>
 		</form>
-		<a href="<?php echo base_url();?>index.php/user_account/backtologin">Back</a>
+		<a href="<?php echo base_url();?>index.php/user_account/backtohome">Back</a>
 	</body>
 </html>
