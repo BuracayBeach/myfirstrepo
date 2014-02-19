@@ -273,6 +273,7 @@ class Search_model extends CI_Model {
 
 
         $points = null;
+        $input['search_term'] = strtolower($input['search_term']);
         $search_terms = explode(" ", trim($input['search_term']));
 
         if ($spell_check){
