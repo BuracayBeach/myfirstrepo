@@ -2,13 +2,13 @@
 
 class Reserve_Model extends CI_Model {
 
-	function remove($data) {
+	public function remove($data) {
 	
 		$this->db->where($data);
 		$this->db->delete('reserves');
 	}
 
-	function dequeue($book_no) {
+	public function dequeue($book_no) {
 
 		$q = $this->db->query("SELECT * FROM reserves WHERE
 				rank = (SELECT min(rank) FROM reserves) AND 
@@ -26,11 +26,11 @@ class Reserve_Model extends CI_Model {
 		}
 	}
 
-	function enqueue($data) {
+	public function enqueue($data) {
 		$this->db->insert('reserves', $data);
 	}
 
-	function get($username) {
+	public function get($username) {
 
 		$this->db->where('username', $username);
 		$q = $this->db->get('reserves');
@@ -41,7 +41,7 @@ class Reserve_Model extends CI_Model {
 			return false;
 	}
 
-	function check($data) {
+	public function check($data) {
 
 		$this->db->where($data);
 		$q = $this->db->get('reserves');
