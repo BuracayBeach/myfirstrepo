@@ -593,7 +593,7 @@
 			</div>
 		</form>
 
-		<form name="changePasswordForm" action="<?php echo base_url();?>index.php/user_account/changePassword" method="post" >	
+		<form name="changePasswordForm" action="<?php echo base_url();?>index.php/user_account/change_password" method="post" >	
 			<div id="container">
 				<h1>Change Password</h1>
 
@@ -605,6 +605,6 @@
 				</div>
 			</div>
 		</form>
-		<a href="<?php echo base_url();?>index.php/user_account/usernav">Back</a>
+		<a href="<?php echo base_url();?>index.php/user_account/backtohome">Back</a>
 	</body>
 </html>
