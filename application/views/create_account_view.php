@@ -74,6 +74,7 @@
 
 				userForm.username.onblur=validateUsername;
 				userForm.password.onblur=validatePassword;
+				userForm.password.onkeyup=validateRepassword;
 				userForm.repassword.onblur=validateRepassword;
 				userForm.email.onblur=validateEmail;
 				userForm.emp_no.onblur=validateEmployeeNumber;
@@ -167,6 +168,12 @@
 				else if(str!=str2)msg="Your passwords do not match.";
 				document.getElementsByName("spanRepassword")[0].innerHTML=msg;
 				if(msg=="Valid")return true;
+			}
+
+			// Empty the re-password form when password form changes
+			function emptifypassword(){
+				userForm.repassword.value="";
+				document.getElementsByName("spanRepassword")[0].innerHTML="";				
 			}
 
 			//Validate the email field.
