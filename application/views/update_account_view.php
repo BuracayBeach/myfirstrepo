@@ -333,7 +333,6 @@
 					return true;
 				}
 				else return false;
-				<?php echo "error" ?>
 			}
 		</script>
 	</head>
