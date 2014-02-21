@@ -22,6 +22,7 @@ class Reserve extends CI_Controller {
 		);
 		
 		$this->reserve_model->remove($data);
+		$this->reserve_model->status_update($info[0]);
 	}
 
 	public function dequeue($book_no) {
@@ -42,6 +43,8 @@ class Reserve extends CI_Controller {
 			);
 
 		$this->reserve_model->enqueue($data);
+		$this->reserve_model->status_reserved($info[0]);
+		
 	}
 	
 	public function check($username, $book_no) {
