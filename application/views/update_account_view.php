@@ -81,6 +81,7 @@
 
 				changePasswordForm.currentPassword.onblur=validateCurrentPassword;
 				changePasswordForm.newPassword.onblur=validateNewPassword;
+				changePasswordForm.newPassword.onkeyup=validateReNewPassword;
 				changePasswordForm.reNewPassword.onblur=validateReNewPassword;
 				changePasswordForm.onsubmit=validateAllPassword;
 			}
@@ -333,7 +334,6 @@
 					return true;
 				}
 				else return false;
-				<?php echo "error" ?>
 			}
 		</script>
 	</head>
