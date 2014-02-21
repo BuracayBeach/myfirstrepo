@@ -20,7 +20,7 @@
 		if(confirm(constr))
 		{
 			$.ajax({
-				url : "http://localhost/mysecondrepoV2/index.php/enable_disable/activate/"+ username +"/"+ usertype +"/"+ number + "/" + email,
+				url : "http://localhost/myfirstrepo/index.php/enable_disable/activate/"+ username +"/"+ usertype +"/"+ number + "/" + email,
 				type : 'POST',
 				dataType : "html",
 				async : true,
@@ -63,7 +63,7 @@
 		if(confirm(constr))
 		{
 			$.ajax({
-				url : "http://localhost/mysecondrepoV2/index.php/enable_disable/disable/"+ username + "/" + email,
+				url : "http://localhost/myfirstrepo/index.php/enable_disable/disable/"+ username + "/" + email,
 				type : 'POST',
 				dataType : "html",
 				async : true,
@@ -101,7 +101,7 @@
 		if(confirm(constr))
 		{
 			$.ajax({
-				url : "http://localhost/mysecondrepoV2/index.php/enable_disable/enable/"+ username + "/" + email,
+				url : "http://localhost/myfirstrepo/index.php/enable_disable/enable/"+ username + "/" + email,
 				type : 'POST',
 				dataType : "html",
 				async : true,

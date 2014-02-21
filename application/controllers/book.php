@@ -21,8 +21,16 @@ class book extends CI_Controller {
         parent::__construct();
         $this->load->model('book_model');
         $this->load->model('search_model');
+        $this->load->model('favorite_model');
+        $this->load->model('reserve_model');
         $this->load->helper('url');
+<<<<<<< HEAD
+
+        if (!isset($_SESSION))
+            session_start();
+=======
         $this->load->library('firephp');
+>>>>>>> 68fbf4f49f1d9d85624a22199a5abbe0d0f47e36
     }
 
     public function index(){
@@ -97,6 +105,7 @@ class book extends CI_Controller {
         $input['borrowed'] = isset($_POST["borrowed"]);
         $input['reserved'] = isset($_POST["reserved"]);
 
+
         //pack data
         $details = array(
             'status_check'  => $this->search_model->get_status_check($input),
@@ -118,11 +127,17 @@ class book extends CI_Controller {
         $details['search_suggestion'] = $search_suggestion;
         $details['table'] = $sorted_table;
 
+<<<<<<< HEAD
+        // para lang sa pag check ng user favorites at reserves
+        $details['favorite_user'] = $this->favorite_model->get_all($_SESSION['username']);
+        $details['reserve_user'] = $this->reserve_model->get($_SESSION['username']);
+=======
         if (isset($details['rows_per_page'])) {
             $max_page = count($details['table']) / $details['rows_per_page'];
             if (count($details['table']) % $details['rows_per_page'] > 0) $max_page++;
             $details['maxpage'] = $max_page;
         }
+>>>>>>> 68fbf4f49f1d9d85624a22199a5abbe0d0f47e36
 
         $this->load->view('table_view', $details);
 
@@ -131,6 +146,58 @@ class book extends CI_Controller {
         }
         // json_encode($search_suggestion);
     }
+
+     /*
+        Section Author : Edzer Josh V. Padilla
+        Description : functions used to handle lending and returning of books
+    */
+
+    /* start section */
+
+    /*
+        sample ajax call
+        $.ajax({
+            url: 'index.php/update_book/lend/',
+            data: {id:$bookno},
+            success: function(data) {}
+        });      
+    */
+
+    public function lend(){
+        $data['book_no'] = $_GET['id']; 
+        $this->load->model('reserve_model');
+        $q = $this->reserve_model->dequeue($data['book_no']);
+        $row = $q->row();
+        $data['book_no'] = $row->book_no;
+        $data['username_user'] =  $row->username;
+        $data['username_admin'] = $_SESSION['admin_username']; // get from session
+
+        $this->load->model('update_book_model');        //loading of the updateBook_model
+        $this->update_book_model->lend($data);              //we call the lend function which updates the status of the book from reserved to borrowed
+        $this->update_book_model->insertLend($data);            //we call this function to insert into the log the whole transaction
+    }
+
+    /*
+        sample ajax call
+        $.ajax({
+            url: 'index.php/update_book/received/',
+            data: {id:$bookno},
+            success: function(data) {}
+            }); 
+    */
+
+    public function received(){
+    
+        $data['book_no'] = $_GET['id'];   // actual data must be pass via onClick in the actual implementation
+        $data['status'] = "borrowed";
+
+        $this->load->model('update_book_model');        // loads the updateBook_model
+        $data['transaction_no'] = $this->update_book_model->getTransactionno($data['book_no']);
+        $this->update_book_model->received($data);  // updates the status of the book from borrowed to available
+        $this->update_book_model->updateLend($data);    // writes the whole transaction into log
+    }
+
+    /* end section */
 
 }
 
