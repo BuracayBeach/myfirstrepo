@@ -21,7 +21,7 @@ class Reserve_Model extends CI_Model {
 
 			$rank = $this->db->query("SELECT min(rank) AS rank FROM reserves WHERE book_no LIKE '{$book_no}'");
 			$this->db->query("DELETE FROM reserves WHERE
-				rank = {$rank->result()->rank} AND book_no LIKE '{$book_no}'");
+				rank = {$rank->row()->rank} AND book_no LIKE '{$book_no}'");
 
 			return $q;
 		}
