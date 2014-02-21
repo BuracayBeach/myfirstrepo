@@ -96,9 +96,6 @@ class book extends CI_Controller {
         $input['borrowed'] = isset($_POST["borrowed"]);
         $input['reserved'] = isset($_POST["reserved"]);
 
-
-
-
         //pack data
         $details = array(
             'status_check'  => $this->search_model->get_status_check($input),
@@ -107,6 +104,7 @@ class book extends CI_Controller {
             'order_by'      => $input['order_by'],
             'spell_check'   => true
         );
+        if (isset($_POST['page'])) $details['page'] = $_POST['page'];
 
         //construct query and get the array of rows from database
         $table = $this->search_model->query_result($details);

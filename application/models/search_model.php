@@ -49,11 +49,11 @@ class Search_model extends CI_Model {
 
     function query_result($details){
         $details['search_term'] = filter_var($details['search_term'], FILTER_SANITIZE_STRING);
+        if (strlen($details['search_term']) > 99) $details['search_term'] = substr($details['search_term'], 0,99);
 
-        
         $q = array(
                 'select' => "select * from book b, author a ",
-                'where' => " where " . $details['status_check'] . " b.book_no = a.book_no ",
+                'where' => " where " . $details['status_check'] . " (b.book_no = a.book_no) ",
                 'order_by' => "order by " . $details['order_by']
         );
 
@@ -113,27 +113,6 @@ class Search_model extends CI_Model {
         return $this->db->query($query_string)->result();
     }
 
-    // len_s and len_t are the number of characters in string s and t respectively
-    function LevenshteinDistance($s, $len_s, $t, $len_t)
-    {
-      /* base case: empty strings */
-        if ($len_s == 0) return $len_t;
-        if ($len_t == 0) return $len_s;
-         
-          /* test if last characters of the strings match */
-        if ($s[$len_s-1] == $t[$len_t-1]) $cost = 0;
-        else                          $cost = 1;
-     
-      /* return minimum of delete char from s, delete char from t, and delete char from both */
-        $min = $this->LevenshteinDistance($s, $len_s - 1, $t, $len_t    ) + 1;
-        $n2 = $this->LevenshteinDistance($s, $len_s    , $t, $len_t - 1) + 1;
-        $n3 = $this->LevenshteinDistance($s, $len_s - 1, $t, $len_t - 1) + $cost;
-
-        if ($min > $n2) $min = $n2;
-        if ($min > $n3) $min = $n3;
-
-        return $min;
-    }
 
 
     function min($n1 , $n2){
@@ -223,8 +202,8 @@ class Search_model extends CI_Model {
                 if ($col == $row->tags) $col_words = explode(" ", str_replace(',', ' ', $col));
                 else $col_words = explode(" ", $col);
 
-                foreach($col_words as $item){
-                    $item = strtolower(trim($item));
+                foreach($col_words as $item_orig){
+                    $item = strtolower(trim($item_orig));
                     if ($item=='') continue;
                     // echo "<br>" . $search_term . " == " . $item;
 
@@ -232,7 +211,7 @@ class Search_model extends CI_Model {
                         //get the word with minimum distance, for suggestion
                         $terms_distance = $this->get_rey_string_distance($search_term, $item);
                         if ($terms_distance < $term_sugg_dist[$search_term]){
-                            $term_sugg[$search_term] = $item;
+                            $term_sugg[$search_term] = $item_orig;
                             $term_sugg_dist[$search_term] = $terms_distance;
                         }
                     }

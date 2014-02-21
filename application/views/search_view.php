@@ -25,16 +25,14 @@
 					<select name="search_by">
 						<option value="book_title">Title / Description</option>
 						<option value="book_no"> Book Number </option>
-						<option value="status"> Status </option>
 						<option class="select-dash" disabled ="disabled">----------</option>
-						<option value="publisher"> Publisher</option>
 						<option value="name"> Author</option>
 						<option value="date_published"> Date Published</option>
 						<option class="select-dash" disabled ="disabled">----------</option>
 						<option value="any"> Any </option>
 					</select>
 
-					<input id="search_text" type="text" name='search' autofocus='true' placeholder='Keywords...'/>
+					<input id="search_text" type="text" name='search' autofocus='true' placeholder='Keywords...' maxlength='99'/>
 					<input id='submit_search' type="submit" name="submit_search" value="Search" /><br/>
 
 					<?php
@@ -44,7 +42,6 @@
 								<option value="search_relevance"> Search Relevance </option>
 								<option value="book_no"> Book Number </option>
 								<option value="book_title"> Title </option>
-								<option value="status"> Status </option>
 								<option value="description"> Description </option>
 								<option value="publisher"> Publisher</option>
 								<option value="name"> Author</option>
@@ -78,10 +75,11 @@
 						event.preventDefault();
 		
 						my_input = $('#search_form').serialize();
+						my_input += "&page=1";
 
 						$.ajax({
 							type: "post",
-							data: my_input,
+							data: my_input, 
 							url: "http://localhost/myfirstrepo/index.php/book/search",
 							success: function(data, jqxhr, status){
 								$("#result_container").html(data);
