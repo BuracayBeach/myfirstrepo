@@ -114,18 +114,19 @@
 
                 <?php //pagination
 
-                echo "<div id='pagination' page='{$page}' maxpage='{$maxpage}' searchterm=" . "'" . $search_term . "'" . ">";
+                echo "<div id='pagination' page='{$page}' maxpage='{$maxpage}' rowsperpage='{$rows_per_page}' searchterm=" . "'" . $search_term . "'" . ">";
                     if(isset($table) &&  count($table) > $rows_per_page){
-                        $rows_per_page = 5;
                         $max_page = count($table) / $rows_per_page;
                         if (count($table) % $rows_per_page > 0) $max_page++;
-                        echo "<br><a class='prev_nav' href='javascript: void(0)'>< Prev&nbsp&nbsp;</a>"; 
+
+                        echo "<a class='prev_nav' href='javascript: void(0)'>< Prev&nbsp&nbsp;</a>"; 
                         for ($a=1 ; $a<=$max_page ; $a++){
                             if ($a == $page) echo '<strong>';
                             echo "<a class='page_nav' href='javascript: void(0)' pageno={$a}>&nbsp;{$a}&nbsp;</a>"; 
                             if ($a == $page) echo '</strong>';
                         }
                         echo "<a class='next_nav' href='javascript: void(0)'>&nbsp;&nbsp;Next >&nbsp;</a>"; 
+                    
                     }
                 echo '</div>';
                 ?>
@@ -133,40 +134,42 @@
 
 <script>
     $('#pagination').on('click', '.page_nav', go_to_page);
-    // $('#pagination').on('click', '.next_nav', next_page);
-    // $('#pagination').on('click', '.prev_nav', prev_page);
+    $('.prev_nav').on('click', prev_page);
+    $('.next_nav').on('click', next_page);
 
 
     function go_to_page(){
         page = $(this).attr('pageno');
-        to_search = $('#pagination').attr('searchterm');
-        $('#search_text').val(to_search);
-        ajax_results(page);
+        to_ajax(page);
     }
 
    function next_page(){
-        page = $(this).attr('pageno');
-        alert(page);
-        to_search = $('#pagination').attr('searchterm');
-        $('#search_text').val(to_search);
-        ajax_results(page+1);
+        page = parseInt($('#pagination').attr('page'));
+        maxpage = parseInt($('#pagination').attr('maxpage'));
+        if (page >= maxpage) return;
+        to_ajax(page+1);
     }
 
    function prev_page(){
-        page = $(this).attr('pageno');
+        page = parseInt($('#pagination').attr('page'));
+        if (page == 1) return;
+        to_ajax(page-1);
+    }
+
+    function to_ajax(numPage){
         to_search = $('#pagination').attr('searchterm');
         $('#search_text').val(to_search);
-        ajax_results(page-1);
+        results_per_page = $('#pagination').attr('rowsperpage');
+        ajax_results(numPage, results_per_page);
     }
 
 
 
 
-
-    function ajax_results(page){
+    function ajax_results(page, results_per_page){
         my_input = $('#search_form').serialize();
         my_input += "&page=" + page;
-        my_input += "&rows_per_page=5";
+        my_input += "&rows_per_page=" + results_per_page;
         console.log(my_input);
 
         $.ajax({
