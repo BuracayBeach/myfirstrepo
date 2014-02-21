@@ -2,21 +2,6 @@
 
 class Announcement extends CI_Controller {
 
-    /**
-     * Index Page for this controller.
-     *
-     * Maps to the following URL
-     * 		http://example.com/index.php/welcome
-     *	- or -
-     * 		http://example.com/index.php/welcome/index
-     *	- or -
-     * Since this controller is set as the default controller in
-     * config/routes.php, it's displayed at http://example.com/
-     *
-     * So any other public methods not prefixed with an underscore will
-     * map to /index.php/welcome/<method_name>
-     * @see http://codeigniter.com/user_guide/general/urls.html
-     */
     function __construct(){
         parent::__construct();
         $this->load->model('announcement_model');
@@ -29,8 +14,8 @@ class Announcement extends CI_Controller {
         echo $this->announcement_model->get_announcement($announcement_id);
     }
 
-    public function get_all_announcement(){
-        echo $this->announcement_model->get_all_announcement();
+    public function get_all_announcements(){
+        echo $this->announcement_model->get_all_announcements();
     }
 
     public function add(){

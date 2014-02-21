@@ -1,20 +1,24 @@
 var tableHTML = '<table id="announcements_table" border=1 style="width:60%"></table>';
 
 function generateAnnouncementsTable(){
-    $.post("index.php/announcement/get_all_announcement",function(data){
-        data = JSON.parse(data);
-        console.log(data);
-        data.forEach(function(entry){
-            generateAnnouncementRow(entry);
-        });
+    $.post("index.php/announcement/get_all_announcements",function(data){
+        try{
+            data = JSON.parse(data);
 
+            data.forEach(function(entry){
+                generateAnnouncementRow(entry);
+            });
+        }catch(e){
+            console.log("cannot parse data: ");
+            console.log(data);
+        }
     });
 }
 
 function generateAnnouncementRow(data){
     var fd = new Date(data.date_posted);
 
-    rowHTML = '<tr class="announcement_table_row">'+
+    var rowHTML = '<tr class="announcement_table_row">'+
         '<td announcement_id="'+data.announcement_id+'" class="announcement_table_data">'+
         '<h4 class="announcement_title">'+data.announcement_title+
         '</h4>'+
@@ -27,7 +31,7 @@ function generateAnnouncementRow(data){
         '</td>'+
         '</tr>';
 
-    var tableContainer = $('#announcement_table_container');
+    var tableContainer = $('#announcements_table_container');
     if(tableContainer.find('table').length == 0){
         tableContainer.append(tableHTML);
         tableContainer.find('table').append($('<tbody>'));

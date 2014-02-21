@@ -43,12 +43,16 @@ class Home extends CI_Controller {
         $this->load->view("header", $data);
         $this->load->view("search_view");
 
-        $this->load->view('announcement_view');
+        $this->load->view("footer");
+    }
 
-        if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
-            $this->load->view('manage_view');
-        $this->load->view('announcement_manage_view');
-        }
+    public function announcements(){
+        $data['title'] = "eICS Lib Announcements";
+        $this->load->view("header", $data);
+
+        $this->load->view('announcements_view');
+        if (isset($_SESSION['type']) && $_SESSION['type'] == "admin")
+            $this->load->view('announcements_manage_view');
 
         $this->load->view("footer");
     }

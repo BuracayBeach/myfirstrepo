@@ -5,7 +5,7 @@ $('#announcement_container').ready(function(){
     $('#edit_announcement_cancel_button').on('click',cancelForm);
     $('#add_announcement_form').submit(addAnnouncement);
 
-    var announcementContainer =  $('#announcement_container');
+    var announcementContainer =  $('#announcements_container');
     announcementContainer.on('click','.edit_announcement_button',fillEditAnnouncementForm);
     announcementContainer.on('click','.delete_announcement_button',deleteAnnouncement);
 
@@ -19,25 +19,30 @@ $('#announcement_container').ready(function(){
 
 function showAddAnnouncementForm(event){
     event.preventDefault();
+    $('#edit_announcement_container').hide();
     $('#add_announcement_container').show();
     $('#add_announcement_title').focus();
 }
 
 function fillEditAnnouncementForm(event){
     event.preventDefault();
-
+    $('#add_announcement_container').hide();
     var announcement_id = $(this).closest('td').attr('announcement_id');
 
     $.post("index.php/announcement/get_announcement",{"announcement_id":announcement_id},function(data){
-        var data = JSON.parse(data)[0];
+        try{
+            var data = JSON.parse(data)[0];
 
-        var editForm = $('#edit_announcement_form');
+            var editForm = $('#edit_announcement_form');
 
-        editForm.find('#edit_announcement_id').val(announcement_id);
-        editForm.find('#edit_announcement_author').val(data.announcement_author);
-        editForm.find('#edit_announcement_title').val(data.announcement_title);
-        editForm.find('#edit_announcement_content').val(data.announcement_content);
-
+            editForm.find('#edit_announcement_id').val(announcement_id);
+            editForm.find('#edit_announcement_author').val(data.announcement_author);
+            editForm.find('#edit_announcement_title').val(data.announcement_title);
+            editForm.find('#edit_announcement_content').val(data.announcement_content);
+        }catch(e){
+            console.log(e);
+            console.log(data);
+        }
     });
 
     $('#edit_announcement_container').show();
@@ -48,9 +53,13 @@ function addAnnouncement(event){
     event.preventDefault();
 
     $.post("index.php/announcement/add",$(this).serialize(),function(data){
-        data = JSON.parse(data);
-        console.log(data);
-        generateAnnouncementRow(data);
+        try{
+            data = JSON.parse(data);
+            generateAnnouncementRow(data);
+        }catch(e){
+            console.log(e);
+            console.log(data);
+        }
     });
 
     $(this).closest('div').hide();
@@ -62,12 +71,17 @@ function editAnnouncement(event){
     event.preventDefault();
 
     $.post("index.php/announcement/edit",$(this).serialize(),function(data){
-        data = JSON.parse(data);
-        console.log(data);
-        var td = $('#announcement_table').find('tr > td[announcement_id="'+data.announcement_id+'"]')
+        try{
+            data = JSON.parse(data);
 
-        td.find('.announcement_title').text(data.announcement_title);
-        td.find('.announcement_content').text(data.announcement_content);
+            var td = $('#announcements_table').find('tr > td[announcement_id="'+data.announcement_id+'"]')
+
+            td.find('.announcement_title').text(data.announcement_title);
+            td.find('.announcement_content').text(data.announcement_content);
+        }catch(e){
+            console.log(e);
+            console.log(data);
+        }
     });
 
     $(this).closest('div').hide();
@@ -81,9 +95,15 @@ function deleteAnnouncement(event){
         var announcement_id = $(this).closest('td').attr('announcement_id');
         var tr = $(this).closest('tr');
         $.post("index.php/announcement/delete",{"announcement_id":announcement_id},function(data){
-            if(tr.closest('table').find('tbody tr').length - 1 == 0)
-                tr.closest('table').remove();
-            else tr.remove();
+            try{
+                if(tr.closest('table').find('tbody tr').length - 1 == 0)
+                    tr.closest('table').remove();
+                else tr.remove();
+            }
+            catch(e){
+                console.log(e);
+                console.log(data);
+            }
         });
     }
 }
