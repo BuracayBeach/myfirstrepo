@@ -1,0 +1,72 @@
+body{
+	background: rgb(240,240,240);
+	color: black;
+}
+
+#navbar{
+	width: 100%;
+	height: 100px;
+	position: fixed;
+
+
+}
+
+#logo_container{
+	position: relative;
+	width: 20%;
+	height: 100%;
+	float: left;
+}
+
+#logo_container img{
+	margin-left: 5%;
+	margin-top: 3%;
+	max-height: 80%;
+}
+
+
+#menulinks{
+	position: relative;
+	height: 100%;
+	width: 40%;
+	float: left;
+	border-bottom: 2px solid blue;
+}
+
+#menulinks a{
+	margin-top: 47px;
+	margin-left: 2px;
+	font-size: 20px;
+	color: black;
+	font-family: "Simplified Arabic";
+	width: 20%;
+	float: left;
+	text-align: center;
+}
+
+
+#acc_manager{
+	width: 39%;
+	height: 100%;
+	float: left;
+	border-bottom: 2px solid blue;
+}
+
+#login input[type="text"], #login input[type="password"] {
+	width: 90%;
+	height: 50%;
+	background: #fafafa;
+}
+
+#login input[type="submit"]{
+	width: 40%;
+	height: 50%;
+}
+
+#login > div{
+	margin-top: 5px;
+	width:33%;
+	padding-top: 20px;
+	height:70%;
+	float: left;
+}
