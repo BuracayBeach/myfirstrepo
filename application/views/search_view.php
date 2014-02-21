@@ -2,7 +2,7 @@
 
 				<?php
 					if(isset($home))
-						echo "<img class='logo_main' src='" . base_url() . "images/logo4.png'";
+						echo "<img class='logo_main' src='" . base_url() . "images/logo5.png'";
 				?>
 				<br>
 

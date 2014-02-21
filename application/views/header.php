@@ -13,17 +13,17 @@
     <script src="<?php echo base_url();?>js/jquery-1.11.0.js"></script>
     <link rel="stylesheet" href="<?php echo base_url();?>css/reset.css"/>
     <link rel="stylesheet" href="<?php echo base_url();?>css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="<?php echo base_url();?>css/style.css"/>
+    <link rel="stylesheet" href="<?php echo base_url();?>css/style2.css"/>
 
 </head>
 <body>
 
 <div id="navbar">
+	<div id="logo_container"> <a href="<?php echo base_url();?>" class="logo"> <img src="<?php echo base_url();?>images/logo5.png"/> </a></div>
+
 	<div id="menulinks">
-		<a href="<?php echo base_url();?>" class="logo"> <img src="<?php echo base_url();?>images/logo4.png"/> </a>
 		<a href="ihome">Home</a>
 		<a href="about_us">About Us</a>
-        <a href="announcements">Announcements</a>
 		<a href="help">Help</a>
         <a href="faq">FAQ</a>
 	</div>
