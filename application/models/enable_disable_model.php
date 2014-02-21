@@ -177,6 +177,25 @@ class Enable_disable_model extends CI_Model {
 
 		return $success;
 	}
+
+	/* start edit by Carl Adrian P. Castueras */
+
+	public function get_log()
+	{
+		$logs = $this->db->query("SELECT * FROM account_history");
+
+		if($logs->num_rows() > 0)
+		{
+			foreach($logs->result() as $log)
+			{
+				$data[] = $log;
+			}
+
+			return $data;
+		}
+	}
+
+	/* end edit */
 }
 
 

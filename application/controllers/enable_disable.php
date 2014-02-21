@@ -9,6 +9,7 @@ class Enable_disable extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper('form');//loads the form helper
+		$this->load->library('firephp');
 		if(!isset($_SESSION))
 			session_start();
 
@@ -161,6 +162,14 @@ class Enable_disable extends CI_Controller {
 		//return value for AJAX implementation
 		$json = array('success' => $success);
 		echo json_encode($json);
+	}
+
+	public function get_log()
+	{
+		$this->load->model('enable_disable_model');
+		$log_result = $this->enable_disable_model->get_log();
+
+		echo json_encode($log_result);
 	}
 }
 
