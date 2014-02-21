@@ -172,6 +172,20 @@ CREATE TABLE IF NOT EXISTS `faq` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `news`
+--
+
+CREATE TABLE IF NOT EXISTS `news` (
+  `news_id` int(11) NOT NULL AUTO_INCREMENT,
+  `news_title` varchar(255) NOT NULL,
+  `news_content` varchar(1024) NOT NULL,
+  `news_author` varchar(255) NOT NULL,
+  `date_posted` date NOT NULL,
+  PRIMARY KEY (`news_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
+
+
+--
 -- Table structure for table `favorites`
 --
 
