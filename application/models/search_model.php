@@ -40,7 +40,7 @@ class Search_model extends CI_Model {
 
         }
 
-        if($status_check!="") $status_check = "(" . $status_check . ") and ";
+        if($status_check!="") $status_check = "(" . $status_check . ") ";
         else if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") $status_check = "(status!='available' and status!='borrowed' and status!='reserved') and";
         else $status_check = "";
 
@@ -58,15 +58,11 @@ class Search_model extends CI_Model {
         );
 
 
-        //solve ambiguity of book_no
-        if($details['search_by'] == "book_no") $details['search_by'] = 'b.' . $details['search_by'];
-        if($details['order_by'] == "book_no") $details['order_by'] =  'b.' . $details['order_by'];
-
         if (!$details['spell_check']){
             $word_count = 0;
             if (trim($details['search_term']) != ""){
-                $q['where'] .= " and (";
                 $tok = explode(" ", $details['search_term']);
+                if ($details['search_by']== 'book_no')  $q['where'] .= " and ";
 
                 foreach ($tok as $search) {
                     // echo $search."<br>";
@@ -76,14 +72,14 @@ class Search_model extends CI_Model {
                     if($details['search_by']== 'book_title'){
                        $q['where'] .= "book_title like '%" . $search . "%' or description like '%" . $search . "%' or tags like '%" . $search . "%' ";
                     } else if($details['search_by']== 'any'){
-                        $q['where'] .= "book_title like '%" . $search . "%' or b.book_no like '%" . $search . "%' or publisher like '%" . $search . "%' or description like '%" . $search . "%' or author like '%" . $search . "%' or date_published like '%" . $search . "%' or tags like '%" . $search . "%' ";
+                        $q['where'] .= "book_title like '%" . $search . "%' or book_no like '%" . $search . "%' or publisher like '%" . $search . "%' or description like '%" . $search . "%' or author like '%" . $search . "%' or date_published like '%" . $search . "%' or tags like '%" . $search . "%' ";
                     } else {
                         $q['where'] .= $details['search_by'] . " like '%".$search."%' ";
                     }
 
                     $word_count++;
                 }
-                $q['where'] .= ") ";
+                if ($details['search_by']!= 'book_no') $q['where'] .= ") ";
             }
         }
 
@@ -109,7 +105,7 @@ class Search_model extends CI_Model {
         if ($q['order_by']=='search_relevance') $q['order_by'] = '';
         else if ($q['order_by'] != '') $q['order_by'] = ' order by ' . $q['order_by'];
         
-        if ($q['where'] == ' where ') $q['where'] = '';
+        if (trim($q['where']) == 'where') $q['where'] = '';
         
         $query_string = $q['select'] . $q['where'] . $q['order_by'];
         // echo $query_string;
@@ -184,7 +180,7 @@ class Search_model extends CI_Model {
             array_push($cols_to_search, $row->tags);
         }
         if ($search_by == 'author' || $search_by == 'any'){
-            array_push($cols_to_search, $row->name);
+            array_push($cols_to_search, $row->author);
         }
         if ($search_by == 'publisher' || $search_by == 'any'){
             array_push($cols_to_search, $row->publisher);
@@ -225,7 +221,7 @@ class Search_model extends CI_Model {
                             case $row->description: $pts+=$book_desc_points; break;
                             case $row->tags:        $pts+=$book_tags_points; break;
                             case $row->book_title:  $pts+=$book_title_points; break;
-                            case $row->name:        $pts+=$book_author_points; break;
+                            case $row->author:        $pts+=$book_author_points; break;
                             case $row->publisher:  $pts+=$book_publisher_points; break;
                             default: $pts+=1;
                         }

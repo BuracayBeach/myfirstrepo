@@ -1,4 +1,8 @@
-Hi <?php echo $_SESSION['admin_username']; ?> </br>
+Hi <?php
+if (isset($_SESSION['admin_username']))
+	 echo $_SESSION['admin_username']; 
+	
+?> </br>
 
 <ul>
 	<li>
