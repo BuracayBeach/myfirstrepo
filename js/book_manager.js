@@ -17,7 +17,7 @@ $('#content_container').ready(function(){
     /***** END EVENT ATTACHMENTS *****/
 
     /* Hide Forms Initially */
-    $('#recently_added_books_container').hide();
+    recentlyAddedBooksContainer.hide();
     $('#add_container').hide();
     $('#edit_container').hide();
 });

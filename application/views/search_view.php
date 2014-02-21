@@ -2,7 +2,7 @@
 
 				<?php
 					if(isset($home))
-						echo "<img class='logo_main' src='" . base_url() . "images/logo4.png'";
+						echo "<img class='logo_main' src='" . base_url() . "images/logo5.png'";
 				?>
 				<br>
 
@@ -26,7 +26,7 @@
 						<option value="book_title">Title / Description</option>
 						<option value="book_no"> Book Number </option>
 						<option class="select-dash" disabled ="disabled">----------</option>
-						<option value="name"> Author</option>
+						<option value="author"> Author</option>
 						<option value="date_published"> Date Published</option>
 						<option class="select-dash" disabled ="disabled">----------</option>
 						<option value="any"> Any </option>
@@ -76,6 +76,7 @@
 		
 						my_input = $('#search_form').serialize();
 						my_input += "&page=1";
+						my_input += "&rows_per_page=10";
 
 						$.ajax({
 							type: "post",

@@ -39,6 +39,11 @@ class Enable_disable_model extends CI_Model {
 					$sql = $sql." WHERE student_no LIKE '".$field['student_no']."'";
 				break;
 			}
+			Case "empno" : {
+				if($field['employee_no'] != '')
+					$sql = $sql." WHERE emp_no LIKE '".$field['employee_no']."'";
+				break;
+			}
 			Case "uname" : {
 				if($field['username'] != '')
 					$sql = $sql." WHERE username LIKE '".$field['username']."'";
@@ -82,34 +87,46 @@ class Enable_disable_model extends CI_Model {
 		}
 	}
 
-	public function activate($username, $student_no, $email)
+	public function activate($username, $usertype, $number, $email)
 	{
 		/*
 			this function validates and activates accounts
 		*/
 
-		$sql = "SELECT * FROM our WHERE student_no LIKE '".$student_no."'";
-
-		$array = $this->db->query($sql);//checks the our_data for a student
-
-		if ($array->num_rows() > 0)//checks if search returned with any results
+		if($usertype == "student")
 		{
-			if ($array->num_rows() == 1)//checks if search returned with a valid result
+			$sql = "SELECT * FROM our WHERE student_no LIKE '".$number."'";
+
+			$array = $this->db->query($sql);//checks the our data for a student
+
+			if ($array->num_rows() > 0)//checks if search returned with any results
 			{
 				$update = "UPDATE user SET status = 'enabled' WHERE username LIKE '".$username."' AND email LIKE '".$email."'";
-
 				$success = $this->db->query($update);//checks if the update has been implemented
 			}
-			else
+			else//if no student has been found, delete
 			{
-				$success =  false;
+				$this->delete($username, $email);
+				$success = false;
 			}
 		}
 		else
 		{
-			$success =  false;
-		}
+			$sql = "SELECT * FROM employee WHERE employee_no LIKE '".$number."'";
 
+			$array = $this->db->query($sql);//checks the employee for a match
+
+			if ($array->num_rows() > 0)//checks if search returned with any results
+			{
+				$update = "UPDATE user SET status = 'enabled' WHERE username LIKE '".$username."' AND email LIKE '".$email."'";
+				$success = $this->db->query($update);//checks if the update has been implemented
+			}
+			else//if no employee has been found, delete
+			{
+				$this->delete($username, $email);
+				$success = false;
+			}
+		}
 		return $success;
 	}
 
@@ -125,7 +142,7 @@ class Enable_disable_model extends CI_Model {
 		return $success;
 	}
 
-	public function disable($username, $student_no, $email)
+	public function disable($username, $email)
 	{
 		/*
 			this function disables accounts
@@ -133,6 +150,18 @@ class Enable_disable_model extends CI_Model {
 		$update = "UPDATE user SET status = 'disabled' WHERE username LIKE '".$username."' AND email LIKE '".$email."'";
 		
 		$success = $this->db->query($update);//checks if the update has been implemented
+
+		return $success;
+	}
+
+	public function delete($username, $email)
+	{
+		/*
+			this function deletes accounts
+		*/
+		$delete = "DELETE FROM user WHERE username LIKE '".$username."' AND email LIKE '".$email."'";
+		
+		$success = $this->db->query($delete);//checks if the update has been implemented
 
 		return $success;
 	}
@@ -148,6 +177,25 @@ class Enable_disable_model extends CI_Model {
 
 		return $success;
 	}
+
+	/* start edit by Carl Adrian P. Castueras */
+
+	public function get_log()
+	{
+		$logs = $this->db->query("SELECT * FROM account_history");
+
+		if($logs->num_rows() > 0)
+		{
+			foreach($logs->result() as $log)
+			{
+				$data[] = $log;
+			}
+
+			return $data;
+		}
+	}
+
+	/* end edit */
 }
 
 

@@ -5,7 +5,7 @@
                         //     echo "<span>You might want to search for: <a href='javascript:research;'>" . $search_suggestion . "</a></span><br/><br/>";
                         // }
 
-                        if(isset($table)){
+                        if(isset($table) && isset($page)){
                             echo "<span id='search_results_label'>";
                             if (trim($search_term)=='') echo "View all Books";
                             else  echo "Search Results for  '" . $search_term . "'";
@@ -20,19 +20,21 @@
                             echo "<th>Tags</th>";
                             echo "</tr>";
 
-                            $rows_per_page = 5;
-                           
 
-                            $row_counter = 0;
+
+                            $total_count = count($table);
+
                             $row_min = ($page-1) * $rows_per_page;
                             $row_max = ($page)*$rows_per_page - 1;
+                            if ($row_max > $total_count - 1) $row_max = $total_count - 1;
 
+                            echo $row_min+1 . "-";
+                            echo $row_max+1 . " of $total_count<br>";
                     
-                            foreach($table as $row):
-                                if ($row_counter < $row_min) continue;
-                                if ($row_counter > $row_max) break;
-                                $row_counter++;
-
+                            for($a=$row_min ; $a<=$row_max ; $a++){
+                                if (!isset($table[$a])) break;
+                                $row = $table[$a];
+                            
                                 echo "<tr>";                               
                                 echo "<td book_data='book_no' align='center'>" . $row->book_no . "</td>";
                                 echo "<td>" .
@@ -45,7 +47,7 @@
                                         "</div>" . 
 
                                         "<div style = 'font-size:13px' book_data='author'><em> " . 
-                                            $row->name . "<br>" .
+                                            $row->author . "<br>" .
                                         "</em></div>";
 
                                         if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){  //--------------- ADMIN ACTIONS ----------------\\
@@ -123,110 +125,89 @@
 
                                
                                 echo "</tr>";
-                            endforeach;
+                            }
                         } else  {
                             echo "<span>No results for '<strong>" . trim($search_term) . "</strong>'</span>";
                         }
 
-
-
                     ?>
-
                 </table>
 
-                <?php 
-                echo "<div id='pagination' page='{$page}' searchterm=" . $search_term . ">";
-                        if(isset($table) &&  count($table) > $rows_per_page){
-                            $rows_per_page = 5;
-                            $max_page = count($table) / $rows_per_page;
-                            echo "<br><a href='javascript: void(0)'>< Prev&nbsp&nbsp;</a>"; 
-                            for ($a=1 ; $a<=$max_page ; $a++){
-                                if ($a == $page) echo '<strong>';
-                                echo "<a class='page_nav' href='javascript: void(0)' pageno={$a}>&nbsp;{$a}&nbsp;</a>"; 
-                                if ($a == $page) echo '</strong>';
-                            }
-                            echo "<a href='javascript: void(0)'>&nbsp;&nbsp;Next >&nbsp;</a>"; 
+
+                <?php //pagination
+                if (isset($page)){
+                   echo "<div id='pagination' page='{$page}' maxpage='{$maxpage}' rowsperpage='{$rows_per_page}' searchterm=" . "'" . $search_term . "'" . ">";
+                    if(isset($table) &&  count($table) > $rows_per_page){
+                        $max_page = count($table) / $rows_per_page;
+                        if (count($table) % $rows_per_page > 0) $max_page++;
+
+                        echo "<a class='prev_nav' href='javascript: void(0)'>< Prev&nbsp&nbsp;</a>"; 
+                        for ($a=1 ; $a<=$max_page ; $a++){
+                            if ($a == $page) echo '<strong>';
+                            echo "<a class='page_nav' href='javascript: void(0)' pageno={$a}>&nbsp;{$a}&nbsp;</a>"; 
+                            if ($a == $page) echo '</strong>';
                         }
-                echo '</div>';
+                        echo "<a class='next_nav' href='javascript: void(0)'>&nbsp;&nbsp;Next >&nbsp;</a>"; 
+                    
+                    }
+                echo '</div>'; 
+                }
+                
                 ?>
 </div>
 
-
 <script>
-    $(document).ready(function() {
-        $('#pagination').on('click', '.page_nav' , page_num_clicked);
-
-        function page_num_clicked(){
-            //$('#submit_search').click();
-            ajax_results($(this).attr('pageno'));
-        }
-
-        function ajax_results(page){
-            my_input = $('#search_form').serialize();
-            my_input += "&page=" + page;
-            // alert($('#pagination').attr('page'));
-            // alert(page);
-
-            $.ajax({
-                type: "post",
-                data: my_input, 
-                url: "http://localhost/myfirstrepo/index.php/book/search",
-                success: function(data, jqxhr, status){
-                    $("#result_container").html(data);
-                }
-            });
-        }
-
-    });
-    
-</script>
+    $('#pagination').on('click', '.page_nav', go_to_page);
+    $('.prev_nav').on('click', prev_page);
+    $('.next_nav').on('click', next_page);
 
 
-<script> 
-
-     //Script author : Edzer Josh V. Padilla
-     //Description : AJAX used to call the lend and receieve modules and update the buttons of the page dynamically
-     $('.lendButton').on('click', lendClick);
-     $('.receivedButton').on('click', receivedClick);
-
-    function lendClick(){
-        $this = $(this);
-        $bookno = $this.attr('bookno');
-        $bookauthor = $this.closest('td').find('[book_data = author]').text()
-        $booktitle = $this.closest('td').find('[book_data = book_title]').text()
-        if (confirm('Are you sure you want to lend: \n'+$booktitle+'\n'+$bookno+'\n'+$bookauthor+"?")) {    
-             $.ajax({
-                url: 'index.php/update_book/lend/',
-                data: {id:$bookno},
-                success: function(data) { 
-                    $this.text('Return');
-                    $this.off('click').on('click', receivedClick);            }
-            });      
-
-        } else {
-        // Do nothing!
-        }
-
+    function go_to_page(){
+        page = $(this).attr('pageno');
+        to_ajax(page);
     }
 
-     function receivedClick(){
-        $this = $(this);
-        $bookno = $this.attr('bookno');
-        $bookauthor = $this.closest('td').find('[book_data = author]').text()
-        $booktitle = $this.closest('td').find('[book_data = book_title]').text()
-         if (confirm('Are you sure you want to return: \n'+$booktitle+'\n'+$bookno+'\n'+$bookauthor+"?")) {
-             $.ajax({
-                url: 'index.php/update_book/received/',
-                data: {id:$bookno},
-                success: function(data) { 
-                    $this.text('(available)');
-                    $this.off('click');
-               // $this.addClass('lendButton'); 
-                }
-            });        
-        } else {
-        // Do nothing!
-        }
-     } 
+   function next_page(){
+        page = parseInt($('#pagination').attr('page'));
+        maxpage = parseInt($('#pagination').attr('maxpage'));
+        if (page >= maxpage) return;
+        to_ajax(page+1);
+    }
+
+   function prev_page(){
+        page = parseInt($('#pagination').attr('page'));
+        if (page == 1) return;
+        to_ajax(page-1);
+    }
+
+    function to_ajax(numPage){
+        to_search = $('#pagination').attr('searchterm');
+        $('#search_text').val(to_search);
+        results_per_page = $('#pagination').attr('rowsperpage');
+        ajax_results(numPage, results_per_page);
+    }
+
+
+
+
+    function ajax_results(page, results_per_page){
+        my_input = $('#search_form').serialize();
+        my_input += "&page=" + page;
+        my_input += "&rows_per_page=" + results_per_page;
+        console.log(my_input);
+
+        $.ajax({
+            type: "post",
+            data: my_input, 
+            url: "http://localhost/myfirstrepo/index.php/book/search",
+            success: function(data, jqxhr, status){
+                $("#result_container").html(data);
+            }
+
+        });
+
+    }
 </script>
+
+<script type="text/javascript" src= "<?php echo base_url()?>/js/lend_receive_manager.js"></script>
 

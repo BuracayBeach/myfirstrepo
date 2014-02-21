@@ -37,7 +37,7 @@ class User_account extends CI_Controller {
 		if($this->check_user_validity()){	
 			$_SESSION['username'] = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
 			$_SESSION['logged_in'] = true;
-			$_SESSION['type'] = "regular";
+			$_SESSION['type'] = "admin";
 			redirect(base_url());
 		}
 
@@ -70,7 +70,7 @@ class User_account extends CI_Controller {
 		unset($_SESSION['username']);
 		unset($_SESSION['type']);
 		unset($_SESSION['logged_in']);
-		unset($_SESSION['notifs']);
+		session_destroy();
 
 		redirect(base_url());
 	}
