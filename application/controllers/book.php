@@ -128,7 +128,7 @@ class book extends CI_Controller {
         $details['table'] = $sorted_table;
 
         // para lang sa pag check ng user favorites at reserves
-        if (isset($_SESSION)) {
+        if (isset($_SESSION['username'])) {
             $details['favorite_user'] = $this->favorite_model->get_all($_SESSION['username']);
             $details['reserve_user'] = $this->reserve_model->get($_SESSION['username']);
         }
