@@ -47,7 +47,7 @@
                                         "</div>" . 
 
                                         "<div style = 'font-size:13px' book_data='author'><em> " . 
-                                            $row->name . "<br>" .
+                                            $row->author . "<br>" .
                                         "</em></div>";
 
                                         if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){  //--------------- ADMIN ACTIONS ----------------\\

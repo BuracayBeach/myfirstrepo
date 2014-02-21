@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 21, 2014 at 01:29 PM
+-- Generation Time: Feb 21, 2014 at 02:15 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `name_middle` varchar(24) NOT NULL,
   `name_last` varchar(24) NOT NULL,
   `username` varchar(18) NOT NULL,
-  `password` varchar(18) NOT NULL,
+  `password` varchar(50) NOT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT INTO `admin` (`name_first`, `name_middle`, `name_last`, `username`, `password`) VALUES
-('First', 'Middle', 'Last', 'admin', 'admin');
+('First', 'Middle', 'Last', 'admin', '21232f297a57a5a743894a0e4a801fc3');
 
 -- --------------------------------------------------------
 
@@ -74,7 +74,14 @@ CREATE TABLE IF NOT EXISTS `announcement` (
   `announcement_author` varchar(255) NOT NULL,
   `date_posted` date NOT NULL,
   PRIMARY KEY (`announcement_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `announcement`
+--
+
+INSERT INTO `announcement` (`announcement_id`, `announcement_title`, `announcement_content`, `announcement_author`, `date_posted`) VALUES
+(1, 'My Announcement', 'Here is the announcement\r\n', 'reybenedicto06', '2014-02-21');
 
 -- --------------------------------------------------------
 
@@ -301,6 +308,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `sex`, `status`, `email`, `usertype`, `emp_no`, `student_no`, `name_first`, `name_middle`, `name_last`, `mobile_no`, `course`, `college`) VALUES
+('reybenedicto06', '55d067d76dd2dca9547172eb6661b55f', 'male', 'pending', 'reybenedicto06@gmail.com', 'student', '', '2011-31260', 'Rey', 'Yude', 'Benedicto', '639232143048', 'BSABT', 'CA'),
 ('theuser', '34819d7beeabb9260a5c854bc85b3e44', 'male', 'pending', 'username@email.com', 'student', '', '1908-00001', 'The', 'Oldest', 'Student Ever', '639351624693', 'BSA', 'CA');
 
 --
