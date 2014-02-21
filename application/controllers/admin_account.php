@@ -4,31 +4,39 @@ class Admin_account extends CI_Controller {
 	
 	function __construct(){
 		parent::__construct();
-		$this->load->model('admin_account_model');
+		$this->load->model('admin_account_model');	
+		
 		if(!isset($_SESSION))
 			session_start();
 	}
 
 	public function index(){
-		if(!isset($_SESSION))
-			session_start();
-		
-		$this->load->view('admin_login_view');
+		$this->backtohome();
 	}
 
 	public function backtohome() {
 		redirect(base_url());
 	}
 
+	public function adminlogin(){
+		if(count($_SESSION) == 0)
+			$this->load->view('admin_login_view');
+		else
+			$this->backtohome();
+	}
+
 	public function create_admin(){
 		$this->load->view('create_admin_view');
 	}
 
-	public function admin_login(){
-		if (isset($_SESSION['admin_logged_in'])){
-			redirect(base_url());
-		}
+	public function update_admin(){
 		
+	}
+
+	public function admin_login(){
+		if (isset($_SESSION['admin_logged_in']))
+			redirect(base_url());
+
 		if($this->check_admin_validity()){	
 			$_SESSION['admin_username'] = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
 			$_SESSION['admin_logged_in'] = true;
@@ -37,7 +45,7 @@ class Admin_account extends CI_Controller {
 		}
 
 		else
-			redirect(base_url());	
+			redirect(base_url());
 	}
 
 	public function logout(){
@@ -68,6 +76,10 @@ class Admin_account extends CI_Controller {
 				return false;
 			}
 		}
+	}
+
+	public function create_admin_account(){
+
 	}
 }
 ?>
