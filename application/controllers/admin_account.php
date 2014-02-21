@@ -29,15 +29,44 @@ class Admin_account extends CI_Controller {
 			redirect(base_url());
 		}
 		
-		if($this->check_user_validity()){	
-			$_SESSION['username'] = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
-			$_SESSION['logged_in'] = true;
+		if($this->check_admin_validity()){	
+			$_SESSION['admin_username'] = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
+			$_SESSION['admin_logged_in'] = true;
 			$_SESSION['type'] = "admin";
 			redirect(base_url());
 		}
 
 		else
 			redirect(base_url());	
+	}
+
+	public function logout(){
+		unset($_SESSION['admin_username']);
+		unset($_SESSION['type']);
+		unset($_SESSION['admin_logged_in']);
+
+		redirect(base_url());
+	}
+
+	private function check_admin_validity(){
+		$username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
+		$password = md5(filter_var($_POST['password'], FILTER_SANITIZE_STRING));
+
+		$data = $this->admin_account_model->get_admin($username);
+
+		if(!$data){
+			$_SESSION['notif_admin_login'] = "Username does not exist!";
+		}
+		
+		else{
+			if($password == $data['password']){
+				return true;
+			}
+			else{
+				$_SESSION['notif_admin_login'] = "Incorrect password!";
+				return false;
+			}
+		}
 	}
 }
 ?>
