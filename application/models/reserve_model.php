@@ -18,16 +18,11 @@ class Reserve_Model extends CI_Model {
 			return false;
 		
 		else {
-<<<<<<< HEAD
+
 			$rank = $this->db->query("SELECT min(rank) FROM reserves WHERE book_no LIKE '{$book_no}'");
 			$this->db->query("DELETE FROM reserves WHERE
-				rank = {$rank->result()} AND 
-=======
-			/*$this->db->query("DELETE FROM reserves WHERE
-				rank = (SELECT min(rank) FROM reserves) AND 
->>>>>>> 68fbf4f49f1d9d85624a22199a5abbe0d0f47e36
-				book_no LIKE '{$book_no}'");
-			*/
+				rank = {$rank->result()} AND book_no LIKE '{$book_no}'");
+
 			return $q;
 		}
 	}
