@@ -1,56 +1,56 @@
-$('#news_container').ready(function(){
+$('#announcement_container').ready(function(){
     /*** ATTACH EVENT LISTENERS ***/
-    $('#add_news_button').on('click',showAddNewsForm);
-    $('#add_news_cancel_button').on('click',cancelForm);
-    $('#edit_news_cancel_button').on('click',cancelForm);
-    $('#add_news_form').submit(addNews);
+    $('#add_announcement_button').on('click',showAddAnnouncementForm);
+    $('#add_announcement_cancel_button').on('click',cancelForm);
+    $('#edit_announcement_cancel_button').on('click',cancelForm);
+    $('#add_announcement_form').submit(addAnnouncement);
 
-    var newsContainer =  $('#news_container');
-    newsContainer.on('click','.edit_news_button',fillEditNewsForm);
-    newsContainer.on('click','.delete_news_button',deleteNews);
+    var announcementContainer =  $('#announcement_container');
+    announcementContainer.on('click','.edit_announcement_button',fillEditAnnouncementForm);
+    announcementContainer.on('click','.delete_announcement_button',deleteAnnouncement);
 
-    $('#edit_news_form').submit(editNews);
+    $('#edit_announcement_form').submit(editAnnouncement);
     /*** END ATTACH EVENT LISTENERS ***/
 
     /*** INITIALLY HIDE FORMS ***/
-    $('#add_news_container').hide();
-    $('#edit_news_container').hide();
+    $('#add_announcement_container').hide();
+    $('#edit_announcement_container').hide();
 });
 
-function showAddNewsForm(event){
+function showAddAnnouncementForm(event){
     event.preventDefault();
-    $('#add_news_container').show();
-    $('#add_news_title').focus();
+    $('#add_announcement_container').show();
+    $('#add_announcement_title').focus();
 }
 
-function fillEditNewsForm(event){
+function fillEditAnnouncementForm(event){
     event.preventDefault();
 
-    var news_id = $(this).closest('td').attr('news_id');
+    var announcement_id = $(this).closest('td').attr('announcement_id');
 
-    $.post("index.php/news/get_news",{"news_id":news_id},function(data){
+    $.post("index.php/announcement/get_announcement",{"announcement_id":announcement_id},function(data){
         var data = JSON.parse(data)[0];
 
-        var editForm = $('#edit_news_form');
+        var editForm = $('#edit_announcement_form');
 
-        editForm.find('#edit_news_id').val(news_id);
-        editForm.find('#edit_news_author').val(data.news_author);
-        editForm.find('#edit_news_title').val(data.news_title);
-        editForm.find('#edit_news_content').val(data.news_content);
+        editForm.find('#edit_announcement_id').val(announcement_id);
+        editForm.find('#edit_announcement_author').val(data.announcement_author);
+        editForm.find('#edit_announcement_title').val(data.announcement_title);
+        editForm.find('#edit_announcement_content').val(data.announcement_content);
 
     });
 
-    $('#edit_news_container').show();
-    $('#edit_news_content').focus();
+    $('#edit_announcement_container').show();
+    $('#edit_announcement_content').focus();
 }
 
-function addNews(event){
+function addAnnouncement(event){
     event.preventDefault();
 
-    $.post("index.php/news/add",$(this).serialize(),function(data){
+    $.post("index.php/announcement/add",$(this).serialize(),function(data){
         data = JSON.parse(data);
         console.log(data);
-        generateNewsRow(data);
+        generateAnnouncementRow(data);
     });
 
     $(this).closest('div').hide();
@@ -58,29 +58,29 @@ function addNews(event){
 
 }
 
-function editNews(event){
+function editAnnouncement(event){
     event.preventDefault();
 
-    $.post("index.php/news/edit",$(this).serialize(),function(data){
+    $.post("index.php/announcement/edit",$(this).serialize(),function(data){
         data = JSON.parse(data);
         console.log(data);
-        var td = $('#news_table').find('tr > td[news_id="'+data.news_id+'"]')
+        var td = $('#announcement_table').find('tr > td[announcement_id="'+data.announcement_id+'"]')
 
-        td.find('.news_title').text(data.news_title);
-        td.find('.news_content').text(data.news_content);
+        td.find('.announcement_title').text(data.announcement_title);
+        td.find('.announcement_content').text(data.announcement_content);
     });
 
     $(this).closest('div').hide();
     this.reset();
 }
 
-function deleteNews(event){
+function deleteAnnouncement(event){
     event.preventDefault();
-    var result = confirm("Confirm deleting this news");
+    var result = confirm("Confirm deleting this announcement");
     if (result==true) {
-        var news_id = $(this).closest('td').attr('news_id');
+        var announcement_id = $(this).closest('td').attr('announcement_id');
         var tr = $(this).closest('tr');
-        $.post("index.php/news/delete",{"news_id":news_id},function(data){
+        $.post("index.php/announcement/delete",{"announcement_id":announcement_id},function(data){
             if(tr.closest('table').find('tbody tr').length - 1 == 0)
                 tr.closest('table').remove();
             else tr.remove();

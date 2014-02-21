@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class News extends CI_Controller {
+class Announcement extends CI_Controller {
 
     /**
      * Index Page for this controller.
@@ -19,27 +19,27 @@ class News extends CI_Controller {
      */
     function __construct(){
         parent::__construct();
-        $this->load->model('news_model');
+        $this->load->model('announcement_model');
         $this->load->helper('url');
     }
 
-    public function get_news(){
-        $news_id = $_POST['news_id'];
+    public function get_announcement(){
+        $announcement_id = $_POST['announcement_id'];
 
-        echo $this->news_model->get_news($news_id);
+        echo $this->announcement_model->get_announcement($announcement_id);
     }
 
-    public function get_all_news(){
-        echo $this->news_model->get_all_news();
+    public function get_all_announcement(){
+        echo $this->announcement_model->get_all_announcement();
     }
 
     public function add(){
-        $data['news_title'] = filter_var($_POST['news_title'], FILTER_SANITIZE_MAGIC_QUOTES);
-        $data['news_content'] = filter_var($_POST['news_content'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['announcement_title'] = filter_var($_POST['announcement_title'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['announcement_content'] = filter_var($_POST['announcement_content'], FILTER_SANITIZE_MAGIC_QUOTES);
         session_start();
-        $data['news_author'] = filter_var($_SESSION['username'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['announcement_author'] = filter_var($_SESSION['username'], FILTER_SANITIZE_MAGIC_QUOTES);
 
-        $this->news_model->insert_news($data);
+        $this->announcement_model->insert_announcement($data);
 
         $data = array_replace($data,$_POST);
         echo json_encode($data);
@@ -47,26 +47,26 @@ class News extends CI_Controller {
 
 
     public function edit(){
-        $data['news_id'] = filter_var($_POST['news_id'], FILTER_SANITIZE_MAGIC_QUOTES);
-        $data['news_title'] = filter_var($_POST['news_title'], FILTER_SANITIZE_MAGIC_QUOTES);
-        $data['news_content'] = filter_var($_POST['news_content'], FILTER_SANITIZE_MAGIC_QUOTES);
-        $data['news_author'] = filter_var($_POST['news_author'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['announcement_id'] = filter_var($_POST['announcement_id'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['announcement_title'] = filter_var($_POST['announcement_title'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['announcement_content'] = filter_var($_POST['announcement_content'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['announcement_author'] = filter_var($_POST['announcement_author'], FILTER_SANITIZE_MAGIC_QUOTES);
         $data['date_edited'] = Date("Y-m-d");
 
-        $this->news_model->edit_news($data);
+        $this->announcement_model->edit_announcement($data);
 
         $data = array_replace($data,$_POST);
         echo json_encode($data);
     }
 
     public function delete(){
-        $news_id = $_POST['news_id'];
-        $this->news_model->delete_news($news_id);
+        $announcement_id = $_POST['announcement_id'];
+        $this->announcement_model->delete_announcement($announcement_id);
     }
 
 
 
 }
 
-/* End of file news.php */
-/* Location: ./application/controllers/news.php */
+/* End of file announcement.php */
+/* Location: ./application/controllers/announcement.php */

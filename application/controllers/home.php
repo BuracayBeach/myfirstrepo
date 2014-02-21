@@ -31,8 +31,8 @@ class Home extends CI_Controller {
 //        if ($is_admin) $this->load->view('manage_view');
 
 /*        if ($is_admin){ 
-            $this->load->view('news_manage_view');
-            $this->load->view("news_view");
+            $this->load->view('announcement_manage_view');
+            $this->load->view("announcement_view");
         }
 
 */        $this->load->view("footer");
@@ -43,11 +43,11 @@ class Home extends CI_Controller {
         $this->load->view("header", $data);
         $this->load->view("search_view");
 
-        $this->load->view('news_view');
+        $this->load->view('announcement_view');
 
         if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
             $this->load->view('manage_view');
-        $this->load->view('news_manage_view');
+        $this->load->view('announcement_manage_view');
         }
 
         $this->load->view("footer");

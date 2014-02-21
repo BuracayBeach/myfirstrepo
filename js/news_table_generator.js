@@ -1,33 +1,33 @@
-var tableHTML = '<table id="news_table" border=1 style="width:60%"></table>';
+var tableHTML = '<table id="announcements_table" border=1 style="width:60%"></table>';
 
-function generateNewsTable(){
-    $.post("index.php/news/get_all_news",function(data){
+function generateAnnouncementsTable(){
+    $.post("index.php/announcement/get_all_announcement",function(data){
         data = JSON.parse(data);
         console.log(data);
         data.forEach(function(entry){
-            generateNewsRow(entry);
+            generateAnnouncementRow(entry);
         });
 
     });
 }
 
-function generateNewsRow(data){
+function generateAnnouncementRow(data){
     var fd = new Date(data.date_posted);
 
-    rowHTML = '<tr class="news_table_row">'+
-        '<td news_id="'+data.news_id+'" class="news_table_data">'+
-        '<h4 class="news_title">'+data.news_title+
+    rowHTML = '<tr class="announcement_table_row">'+
+        '<td announcement_id="'+data.announcement_id+'" class="announcement_table_data">'+
+        '<h4 class="announcement_title">'+data.announcement_title+
         '</h4>'+
         'posted on <span class="date_posted">'+fd.toDateString() +'</span> by '+
-        '<span class="news_author">'+data.news_author+'</span>'+
-        '<button class="edit_news_button">Edit</button>'+
-        '<button class="delete_news_button">Delete</button>'+
+        '<span class="announcement_author">'+data.announcement_author+'</span>'+
+        '<button class="edit_announcement_button">Edit</button>'+
+        '<button class="delete_announcement_button">Delete</button>'+
         '<hr/>'+
-        '<span class="news_content">'+data.news_content+'</span>'+
+        '<span class="announcement_content">'+data.announcement_content+'</span>'+
         '</td>'+
         '</tr>';
 
-    var tableContainer = $('#news_table_container');
+    var tableContainer = $('#announcement_table_container');
     if(tableContainer.find('table').length == 0){
         tableContainer.append(tableHTML);
         tableContainer.find('table').append($('<tbody>'));
@@ -35,4 +35,4 @@ function generateNewsRow(data){
     tableContainer.find('table').find('tbody:last').append(rowHTML);
 }
 
-generateNewsTable();
+generateAnnouncementsTable();

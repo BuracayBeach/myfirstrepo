@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class News_model extends CI_Model {
+class Announcement_model extends CI_Model {
 
     /**
      * Index Page for this controller.
@@ -22,17 +22,17 @@ class News_model extends CI_Model {
         $this->load->database();
     }
 
-    function insert_news(&$data){
+    function insert_announcement(&$data){
         $data['date_posted'] = Date("Y-m-d");
-        $query = "INSERT INTO news (news_title,news_content,news_author,date_posted)".
-            " VALUES ('{$data['news_title']}'".
-            ",'{$data['news_content']}'".
-            ",'{$data['news_author']}'".
+        $query = "INSERT INTO announcement (announcement_title,announcement_content,announcement_author,date_posted)".
+            " VALUES ('{$data['announcement_title']}'".
+            ",'{$data['announcement_content']}'".
+            ",'{$data['announcement_author']}'".
             ",".($data['date_posted']==''?'null':("'".$data['date_posted']."'")).")";
 
         $this->db->query($query);
 
-        $data['news_id'] = $this->db->query("SELECT LAST_INSERT_ID() news_id")->result()[0]->news_id;
+        $data['announcement_id'] = $this->db->query("SELECT LAST_INSERT_ID() announcement_id")->result()[0]->announcement_id;
     }
 
     function get_book($book_no){
@@ -42,29 +42,29 @@ class News_model extends CI_Model {
         echo json_encode($this->db->query($query.$query2)->result());
     }
 
-    function get_news($news_id){
-        $query = "SELECT news_title,news_content,news_author FROM news WHERE news_id='{$news_id}'";
+    function get_announcement($announcement_id){
+        $query = "SELECT announcement_title,announcement_content,announcement_author FROM announcement WHERE announcement_id='{$announcement_id}'";
 
         echo json_encode($this->db->query($query)->result());
     }
 
-    function get_all_news(){
-        $query = "SELECT * from news";
+    function get_all_announcement(){
+        $query = "SELECT * from announcement";
 
         echo json_encode($this->db->query($query)->result());
     }
 
-    function edit_news($data){
-        $query = "UPDATE news SET ".
-            "news_title='".$data['news_title']."'".
-            ",news_content='".$data['news_content']."'".
-            " WHERE news_id='".$data['news_id']."'";
+    function edit_announcement($data){
+        $query = "UPDATE announcement SET ".
+            "announcement_title='".$data['announcement_title']."'".
+            ",announcement_content='".$data['announcement_content']."'".
+            " WHERE announcement_id='".$data['announcement_id']."'";
 
         $this->db->query($query);
     }
 
-    function delete_news($news_id){
-        $this->db->query("DELETE FROM news WHERE news_id='{$news_id}'");
+    function delete_announcement($announcement_id){
+        $this->db->query("DELETE FROM announcement WHERE announcement_id='{$announcement_id}'");
     }
 }
 
