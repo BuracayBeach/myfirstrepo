@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 21, 2014 at 10:05 AM
--- Server version: 5.6.12-log
--- PHP Version: 5.4.12
+-- Generation Time: Feb 21, 2014 at 01:29 PM
+-- Server version: 5.5.24-log
+-- PHP Version: 5.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -64,28 +64,17 @@ INSERT INTO `admin` (`name_first`, `name_middle`, `name_last`, `username`, `pass
 -- --------------------------------------------------------
 
 --
--- Table structure for table `author`
+-- Table structure for table `announcement`
 --
 
-CREATE TABLE IF NOT EXISTS `author` (
-  `book_no` varchar(12) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`book_no`,`name`),
-  KEY `book_no` (`book_no`),
-  KEY `book_no_2` (`book_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `author`
---
-
-INSERT INTO `author` (`book_no`, `name`) VALUES
-('AB 1234', 'Maila Medina'),
-('CD 4321', 'Ysa Angeles'),
-('EF 5678', 'Rey Benedicto'),
-('GH 8765', 'Yay Sabado'),
-('IJ 1357', 'Paulo Cuenca'),
-('KL 2468', 'Kim Samaniego');
+CREATE TABLE IF NOT EXISTS `announcement` (
+  `announcement_id` int(11) NOT NULL AUTO_INCREMENT,
+  `announcement_title` varchar(255) NOT NULL,
+  `announcement_content` varchar(1024) NOT NULL,
+  `announcement_author` varchar(255) NOT NULL,
+  `date_posted` date NOT NULL,
+  PRIMARY KEY (`announcement_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
 
 -- --------------------------------------------------------
 
@@ -96,6 +85,9 @@ INSERT INTO `author` (`book_no`, `name`) VALUES
 CREATE TABLE IF NOT EXISTS `book` (
   `book_no` varchar(12) NOT NULL,
   `book_title` varchar(255) NOT NULL,
+  `book_type` enum('Book','Journal','SP','Thesis') NOT NULL DEFAULT 'Book',
+  `abstract` varchar(1024) DEFAULT NULL,
+  `author` varchar(255) DEFAULT NULL,
   `status` enum('available','borrowed','reserved') NOT NULL DEFAULT 'available',
   `description` varchar(255) DEFAULT NULL,
   `publisher` varchar(255) DEFAULT NULL,
@@ -108,13 +100,13 @@ CREATE TABLE IF NOT EXISTS `book` (
 -- Dumping data for table `book`
 --
 
-INSERT INTO `book` (`book_no`, `book_title`, `status`, `description`, `publisher`, `date_published`, `tags`) VALUES
-('AB 1234', 'Merry Christmas', 'available', 'Happy New Yeare', 'Santa Claus', '2014-01-18', NULL),
-('CD 4321', 'How To Program in Java', 'reserved', 'Search Google Chrome', 'Not A Programmer', '2014-01-01', NULL),
-('EF 5678', 'How To Kill Spiders', 'borrowed', 'Shoe', 'Microsoft', '2013-08-06', NULL),
-('GH 8765', 'Sleeping in Class Tips', 'available', 'Sleep peacefully while in Class', 'Rey Benedicto', '2014-04-18', NULL),
-('IJ 1357', 'French Fries from Potatoes', 'reserved', 'Learn how to eat potatoes', 'McDo', '2013-09-17', NULL),
-('KL 2468', 'Cram Efficiently', 'available', 'Learn how to waste time then cram', 'Rey Benedicto', '2012-11-06', NULL);
+INSERT INTO `book` (`book_no`, `book_title`, `book_type`, `abstract`, `author`, `status`, `description`, `publisher`, `date_published`, `tags`) VALUES
+('AB 1234', 'Merry Christmas', 'Book', NULL, NULL, 'available', 'Happy New Yeare', 'Santa Claus', '2014-01-18', NULL),
+('CD 4321', 'How To Program in Java', 'Book', NULL, NULL, 'reserved', 'Search Google Chrome', 'Not A Programmer', '2014-01-01', NULL),
+('EF 5678', 'How To Kill Spiders', 'Book', NULL, NULL, 'borrowed', 'Shoe', 'Microsoft', '2013-08-06', NULL),
+('GH 8765', 'Sleeping in Class Tips', 'Book', NULL, NULL, 'available', 'Sleep peacefully while in Class', 'Rey Benedicto', '2014-04-18', NULL),
+('IJ 1357', 'French Fries from Potatoes', 'Book', NULL, NULL, 'reserved', 'Learn how to eat potatoes', 'McDo', '2013-09-17', NULL),
+('KL 2468', 'Cram Efficiently', 'Book', NULL, NULL, 'available', 'Learn how to waste time then cram', 'Rey Benedicto', '2012-11-06', NULL);
 
 -- --------------------------------------------------------
 
@@ -170,20 +162,6 @@ CREATE TABLE IF NOT EXISTS `faq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `announcement`
---
-
-CREATE TABLE IF NOT EXISTS `announcement` (
-  `announcement_id` int(11) NOT NULL AUTO_INCREMENT,
-  `announcement_title` varchar(255) NOT NULL,
-  `announcement_content` varchar(1024) NOT NULL,
-  `announcement_author` varchar(255) NOT NULL,
-  `date_posted` date NOT NULL,
-  PRIMARY KEY (`announcement_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
-
 
 --
 -- Table structure for table `favorites`
@@ -336,12 +314,6 @@ ALTER TABLE `account_history`
   ADD CONSTRAINT `account_history_email` FOREIGN KEY (`email`) REFERENCES `user` (`email`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `account_history_username_admin` FOREIGN KEY (`username_admin`) REFERENCES `admin` (`username`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `account_history_username_user` FOREIGN KEY (`username_user`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE NO ACTION;
-
---
--- Constraints for table `author`
---
-ALTER TABLE `author`
-  ADD CONSTRAINT `author_book_no` FOREIGN KEY (`book_no`) REFERENCES `book` (`book_no`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `favorites`
