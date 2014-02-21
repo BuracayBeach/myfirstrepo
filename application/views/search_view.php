@@ -103,13 +103,13 @@
 						var action_type = $(this).text();
 						var controller = action_type;
 
-						if (action_type == "favorites" || action_type == "reserve")
+						if (action_type == "favorite" || action_type == "reserve")
 							var method = "add"; 
-						else if (action_type == "unfavorites" || action_type == "unreserve")
+						else if (action_type == "unfavorite" || action_type == "unreserve")
 							var method = "remove";
 
-						if (action_type == "unfavorites")
-							controller = "favorites";
+						if (action_type == "unfavorite")
+							controller = "favorite";
 						else if (action_type == "unreserve")
 							controller = "reserve";
 
@@ -123,10 +123,10 @@
 							}
 						});
 
-						if (action_type == "favorites") 
-							$(this).text("unfavorites");
-						else if (action_type == "unfavorites") 	
-							$(this).text("favorites");
+						if (action_type == "favorite") 
+							$(this).text("unfavorite");
+						else if (action_type == "unfavorite") 	
+							$(this).text("favorite");
 						else if (action_type == "reserve") 
 							$(this).text("unreserve");
 						else if (action_type == "unreserve") 

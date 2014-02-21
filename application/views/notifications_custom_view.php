@@ -1,5 +1,5 @@
-<div>
-	<?php echo form_fieldset('Send Custom Message'); ?>
+<div id="notifs_send_custom">
+	<?php echo form_open('/index.php/notifs/send_custom_notif'); ?>
 		
 		<?php
 			$username = array (
@@ -19,5 +19,5 @@
 		Message: <br/> <?php echo form_textArea($message); ?> <br/>
 		<?php echo form_submit('send', 'Send'); ?>
 
-	<?php echo form_fieldset_close(); ?>
+	<?php echo form_close(); ?>
 </div>
