@@ -127,17 +127,18 @@ class book extends CI_Controller {
         $details['search_suggestion'] = $search_suggestion;
         $details['table'] = $sorted_table;
 
-
         // para lang sa pag check ng user favorites at reserves
-        $details['favorite_user'] = $this->favorite_model->get_all($_SESSION['username']);
-        $details['reserve_user'] = $this->reserve_model->get($_SESSION['username']);
+        if (isset($_SESSION)) {
+            $details['favorite_user'] = $this->favorite_model->get_all($_SESSION['username']);
+            $details['reserve_user'] = $this->reserve_model->get($_SESSION['username']);
+        }
 
         if (isset($details['rows_per_page'])) {
             $max_page = count($details['table']) / $details['rows_per_page'];
             if (count($details['table']) % $details['rows_per_page'] > 0) $max_page++;
             $details['maxpage'] = $max_page;
         }
-        
+
 
         $this->load->view('table_view', $details);
 
