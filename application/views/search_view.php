@@ -76,6 +76,7 @@
 		
 						my_input = $('#search_form').serialize();
 						my_input += "&page=1";
+						my_input += "&rows_per_page=5";
 
 						$.ajax({
 							type: "post",

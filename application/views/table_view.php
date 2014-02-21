@@ -20,19 +20,21 @@
                             echo "<th>Tags</th>";
                             echo "</tr>";
 
-                            $rows_per_page = 5;
-                           
 
-                            $row_counter = 0;
+
+                            $total_count = count($table);
+
                             $row_min = ($page-1) * $rows_per_page;
                             $row_max = ($page)*$rows_per_page - 1;
+                            if ($row_max > $total_count - 1) $row_max = $total_count - 1;
 
+                            echo $row_min+1 . "-";
+                            echo $row_max+1 . " of $total_count<br>";
                     
-                            foreach($table as $row):
-                                if ($row_counter < $row_min) continue;
-                                if ($row_counter > $row_max) break;
-                                $row_counter++;
-
+                            for($a=$row_min ; $a<=$row_max ; $a++){
+                                if (!isset($table[$a])) break;
+                                $row = $table[$a];
+                            
                                 echo "<tr>";                               
                                 echo "<td book_data='book_no' align='center'>" . $row->book_no . "</td>";
                                 echo "<td>" .
@@ -101,63 +103,85 @@
 
                                
                                 echo "</tr>";
-                            endforeach;
+                            }
                         } else  {
                             echo "<span>No results for '<strong>" . trim($search_term) . "</strong>'</span>";
                         }
 
-
-
                     ?>
-
                 </table>
 
-                <?php 
-                echo "<div id='pagination' page='{$page}' searchterm=" . $search_term . ">";
-                        if(isset($table) &&  count($table) > $rows_per_page){
-                            $rows_per_page = 5;
-                            $max_page = count($table) / $rows_per_page;
-                            echo "<br><a href='javascript: void(0)'>< Prev&nbsp&nbsp;</a>"; 
-                            for ($a=1 ; $a<=$max_page ; $a++){
-                                if ($a == $page) echo '<strong>';
-                                echo "<a class='page_nav' href='javascript: void(0)' pageno={$a}>&nbsp;{$a}&nbsp;</a>"; 
-                                if ($a == $page) echo '</strong>';
-                            }
-                            echo "<a href='javascript: void(0)'>&nbsp;&nbsp;Next >&nbsp;</a>"; 
+
+                <?php //pagination
+
+                echo "<div id='pagination' page='{$page}' maxpage='{$maxpage}' searchterm=" . "'" . $search_term . "'" . ">";
+                    if(isset($table) &&  count($table) > $rows_per_page){
+                        $rows_per_page = 5;
+                        $max_page = count($table) / $rows_per_page;
+                        if (count($table) % $rows_per_page > 0) $max_page++;
+                        echo "<br><a class='prev_nav' href='javascript: void(0)'>< Prev&nbsp&nbsp;</a>"; 
+                        for ($a=1 ; $a<=$max_page ; $a++){
+                            if ($a == $page) echo '<strong>';
+                            echo "<a class='page_nav' href='javascript: void(0)' pageno={$a}>&nbsp;{$a}&nbsp;</a>"; 
+                            if ($a == $page) echo '</strong>';
                         }
+                        echo "<a class='next_nav' href='javascript: void(0)'>&nbsp;&nbsp;Next >&nbsp;</a>"; 
+                    }
                 echo '</div>';
                 ?>
 </div>
 
-
 <script>
-    $(document).ready(function() {
-        $('#pagination').on('click', '.page_nav' , page_num_clicked);
+    $('#pagination').on('click', '.page_nav', go_to_page);
+    // $('#pagination').on('click', '.next_nav', next_page);
+    // $('#pagination').on('click', '.prev_nav', prev_page);
 
-        function page_num_clicked(){
-            //$('#submit_search').click();
-            ajax_results($(this).attr('pageno'));
-        }
 
-        function ajax_results(page){
-            my_input = $('#search_form').serialize();
-            my_input += "&page=" + page;
-            // alert($('#pagination').attr('page'));
-            // alert(page);
+    function go_to_page(){
+        page = $(this).attr('pageno');
+        to_search = $('#pagination').attr('searchterm');
+        $('#search_text').val(to_search);
+        ajax_results(page);
+    }
 
-            $.ajax({
-                type: "post",
-                data: my_input, 
-                url: "http://localhost/myfirstrepo/index.php/book/search",
-                success: function(data, jqxhr, status){
-                    $("#result_container").html(data);
-                }
-            });
-        }
+   function next_page(){
+        page = $(this).attr('pageno');
+        alert(page);
+        to_search = $('#pagination').attr('searchterm');
+        $('#search_text').val(to_search);
+        ajax_results(page+1);
+    }
 
-    });
-    
+   function prev_page(){
+        page = $(this).attr('pageno');
+        to_search = $('#pagination').attr('searchterm');
+        $('#search_text').val(to_search);
+        ajax_results(page-1);
+    }
+
+
+
+
+
+    function ajax_results(page){
+        my_input = $('#search_form').serialize();
+        my_input += "&page=" + page;
+        my_input += "&rows_per_page=5";
+        console.log(my_input);
+
+        $.ajax({
+            type: "post",
+            data: my_input, 
+            url: "http://localhost/myfirstrepo/index.php/book/search",
+            success: function(data, jqxhr, status){
+                $("#result_container").html(data);
+            }
+
+        });
+
+    }
 </script>
+
 
 
 <script> 
