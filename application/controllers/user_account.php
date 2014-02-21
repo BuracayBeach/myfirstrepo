@@ -70,6 +70,7 @@ class User_account extends CI_Controller {
 		unset($_SESSION['username']);
 		unset($_SESSION['type']);
 		unset($_SESSION['logged_in']);
+		session_destroy();
 
 		redirect(base_url());
 	}

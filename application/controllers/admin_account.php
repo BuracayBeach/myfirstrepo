@@ -44,6 +44,7 @@ class Admin_account extends CI_Controller {
 		unset($_SESSION['admin_username']);
 		unset($_SESSION['type']);
 		unset($_SESSION['admin_logged_in']);
+		session_destroy();
 
 		redirect(base_url());
 	}
