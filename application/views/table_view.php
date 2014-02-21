@@ -6,26 +6,33 @@
                         // }
 
                         if(isset($table)){
-                            if (trim($search_term)==''){
-                                echo "<span>View all Books</span>";
-                            } else {
-                                echo "<span>Search Results for '" . $search_term . "'</span>";
-                            }
+                            echo "<span id='search_results_label'>";
+                            if (trim($search_term)=='') echo "View all Books";
+                            else  echo "Search Results for  '" . $search_term . "'";
+                            echo "</span><br/><br/>";
 
-
-
-                            echo '<br/><br/>';
                             echo "<tr >
-                                <th width='10%'>Book No.    </th>
-                                <th width='40%'>Book        </th>
-                                <th width='15%'>Publishment </th>
+                                <th width='15%'>Book No.    </th>
+                                <th>Book        </th>
+                                <th>Publishment </th>
                             ";
-                            if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") echo "<th width='10%'>Tags</th>";
-
-                     
+                            // if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") 
+                            echo "<th>Tags</th>";
                             echo "</tr>";
 
+                            $rows_per_page = 5;
+                           
+
+                            $row_counter = 0;
+                            $row_min = ($page-1) * $rows_per_page;
+                            $row_max = ($page)*$rows_per_page - 1;
+
+                    
                             foreach($table as $row):
+                                if ($row_counter < $row_min) continue;
+                                if ($row_counter > $row_max) break;
+                                $row_counter++;
+
                                 echo "<tr>";                               
                                 echo "<td book_data='book_no' align='center'>" . $row->book_no . "</td>";
                                 echo "<td>" .
@@ -60,20 +67,23 @@
                                             
                                         } else { //--------------- USER ACTIONS ----------------\\
                                             
-                                            //favorite button
-                                            echo "<span>" .
-                                                "<button class='book_action' book_no='" . $row->book_no . "'>favorites</button>&nbsp;&nbsp;" . 
-                                            "</span>" .
+                                            if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){ 
 
-                                            //reserve button
-                                            "<span>" .
-                                                "<button action_type='reserve' ";
+                                                //favorite button
+                                                echo "<span>" .
+                                                    "<button class='book_action' book_no='" . $row->book_no . "'>favorites</button>&nbsp;&nbsp;" . 
+                                                "</span>" .
 
-                                                if ($row->status == "available") echo "class='book_action' book_no='{$row->book_no}'>reserve";
-                                                else echo ">(" . $row->status . ")";
+                                                //reserve button
+                                                "<span>" .
+                                                    "<button action_type='reserve' ";
 
-                                                echo "</button>" .
-                                            "</span>";
+                                                    if ($row->status == "available") echo "class='book_action' book_no='{$row->book_no}'>reserve";
+                                                    else echo ">(" . $row->status . ")";
+
+                                                    echo "</button>" .
+                                                "</span>";
+                                            }
                                         }
 
 
@@ -85,20 +95,71 @@
                                          "<div book_data='date_published'>" . $row->date_published . "</div>" .
                                      "</td>";
 
-                                if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") echo "<td book_data='tags'>" . $row->tags . "</td>";
+                                // if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") 
+                                echo "<td book_data='tags'>" . $row->tags . "</td>";
 
 
                                
                                 echo "</tr>";
                             endforeach;
                         } else  {
-                            echo "<span>No results to display</span>";
+                            echo "<span>No results for '<strong>" . trim($search_term) . "</strong>'</span>";
                         }
+
+
 
                     ?>
 
-</table>
+                </table>
+
+                <?php 
+                echo "<div id='pagination' page='{$page}' searchterm=" . $search_term . ">";
+                        if(isset($table) &&  count($table) > $rows_per_page){
+                            $rows_per_page = 5;
+                            $max_page = count($table) / $rows_per_page;
+                            echo "<br><a href='javascript: void(0)'>< Prev&nbsp&nbsp;</a>"; 
+                            for ($a=1 ; $a<=$max_page ; $a++){
+                                if ($a == $page) echo '<strong>';
+                                echo "<a class='page_nav' href='javascript: void(0)' pageno={$a}>&nbsp;{$a}&nbsp;</a>"; 
+                                if ($a == $page) echo '</strong>';
+                            }
+                            echo "<a href='javascript: void(0)'>&nbsp;&nbsp;Next >&nbsp;</a>"; 
+                        }
+                echo '</div>';
+                ?>
 </div>
+
+
+<script>
+    $(document).ready(function() {
+        $('#pagination').on('click', '.page_nav' , page_num_clicked);
+
+        function page_num_clicked(){
+            //$('#submit_search').click();
+            ajax_results($(this).attr('pageno'));
+        }
+
+        function ajax_results(page){
+            my_input = $('#search_form').serialize();
+            my_input += "&page=" + page;
+            // alert($('#pagination').attr('page'));
+            // alert(page);
+
+            $.ajax({
+                type: "post",
+                data: my_input, 
+                url: "http://localhost/myfirstrepo/index.php/book/search",
+                success: function(data, jqxhr, status){
+                    $("#result_container").html(data);
+                }
+            });
+        }
+
+    });
+    
+</script>
+
+
 <script> 
 
      //Script author : Edzer Josh V. Padilla
