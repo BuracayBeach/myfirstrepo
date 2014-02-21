@@ -71,20 +71,42 @@
                                             
                                             if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){ 
 
+                                                /* checking of favorite */
+                                                $favorite = 'favorite';
+                                                $size = count($favorite_user);
+                                                for ($i=0; $i<$size; $i++) {
+                                                    if ($favorite_user[$i]->book_no == $row->book_no) {
+                                                        $favorite = 'unfavorite';
+                                                        break;
+                                                    }
+                                                }
+
+                                                /* checking of favorite */
+                                                $reserve = 'reserve';
+                                                $size = count($reserve_user);
+                                                for ($i=0; $i<$size; $i++) {
+                                                    if ($reserve_user[$i]->book_no == $row->book_no) {
+                                                        $reserve = 'unreserve';
+                                                        break;
+                                                    }
+                                                }
+
                                                 //favorite button
                                                 echo "<span>" .
-                                                    "<button class='book_action' book_no='" . $row->book_no . "'>favorites</button>&nbsp;&nbsp;" . 
+                                                    "<button class='book_action' book_no='" . $row->book_no . "'>" .
+                                                        $favorite
+                                                    . "</button>&nbsp;&nbsp;" . 
                                                 "</span>" .
 
                                                 //reserve button
                                                 "<span>" .
-                                                    "<button action_type='reserve' ";
-
-                                                    if ($row->status == "available") echo "class='book_action' book_no='{$row->book_no}'>reserve";
-                                                    else echo ">(" . $row->status . ")";
-
-                                                    echo "</button>" .
-                                                "</span>";
+                                                    "<button action_type='reserve' class='book_action' book_no='{$row->book_no}'>";
+                                                        if ($row->status == 'available')
+                                                            echo "reserve";
+                                                        else {
+                                                            echo $reserve;
+                                                        }
+                                                echo "</button></span>";
                                             }
                                         }
 

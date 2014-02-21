@@ -1,11 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Favorites_Model extends CI_Model {
+class Favorite_Model extends CI_Model {
 
 	public function get_all($username) {
 
-		$this->db->where('username', $username);
-		$q = $this->db->get('favorites');
+		$q = $this->db->query("SELECT book_no FROM favorites WHERE username LIKE '{$username}'");
 		return $q->result();
 	}
 	

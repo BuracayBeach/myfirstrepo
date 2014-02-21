@@ -21,8 +21,16 @@ class book extends CI_Controller {
         parent::__construct();
         $this->load->model('book_model');
         $this->load->model('search_model');
+        $this->load->model('favorite_model');
+        $this->load->model('reserve_model');
         $this->load->helper('url');
+<<<<<<< HEAD
+
+        if (!isset($_SESSION))
+            session_start();
+=======
         $this->load->library('firephp');
+>>>>>>> 68fbf4f49f1d9d85624a22199a5abbe0d0f47e36
     }
 
     public function index(){
@@ -97,6 +105,7 @@ class book extends CI_Controller {
         $input['borrowed'] = isset($_POST["borrowed"]);
         $input['reserved'] = isset($_POST["reserved"]);
 
+
         //pack data
         $details = array(
             'status_check'  => $this->search_model->get_status_check($input),
@@ -118,11 +127,17 @@ class book extends CI_Controller {
         $details['search_suggestion'] = $search_suggestion;
         $details['table'] = $sorted_table;
 
+<<<<<<< HEAD
+        // para lang sa pag check ng user favorites at reserves
+        $details['favorite_user'] = $this->favorite_model->get_all($_SESSION['username']);
+        $details['reserve_user'] = $this->reserve_model->get($_SESSION['username']);
+=======
         if (isset($details['rows_per_page'])) {
             $max_page = count($details['table']) / $details['rows_per_page'];
             if (count($details['table']) % $details['rows_per_page'] > 0) $max_page++;
             $details['maxpage'] = $max_page;
         }
+>>>>>>> 68fbf4f49f1d9d85624a22199a5abbe0d0f47e36
 
         $this->load->view('table_view', $details);
 
