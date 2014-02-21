@@ -5,7 +5,7 @@
                         //     echo "<span>You might want to search for: <a href='javascript:research;'>" . $search_suggestion . "</a></span><br/><br/>";
                         // }
 
-                        if(isset($table)){
+                        if(isset($table) && isset($page)){
                             echo "<span id='search_results_label'>";
                             if (trim($search_term)=='') echo "View all Books";
                             else  echo "Search Results for  '" . $search_term . "'";
@@ -113,8 +113,8 @@
 
 
                 <?php //pagination
-
-                echo "<div id='pagination' page='{$page}' maxpage='{$maxpage}' rowsperpage='{$rows_per_page}' searchterm=" . "'" . $search_term . "'" . ">";
+                if (isset($page)){
+                   echo "<div id='pagination' page='{$page}' maxpage='{$maxpage}' rowsperpage='{$rows_per_page}' searchterm=" . "'" . $search_term . "'" . ">";
                     if(isset($table) &&  count($table) > $rows_per_page){
                         $max_page = count($table) / $rows_per_page;
                         if (count($table) % $rows_per_page > 0) $max_page++;
@@ -128,7 +128,9 @@
                         echo "<a class='next_nav' href='javascript: void(0)'>&nbsp;&nbsp;Next >&nbsp;</a>"; 
                     
                     }
-                echo '</div>';
+                echo '</div>'; 
+                }
+                
                 ?>
 </div>
 
