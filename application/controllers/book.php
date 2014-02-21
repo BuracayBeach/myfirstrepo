@@ -22,6 +22,7 @@ class book extends CI_Controller {
         $this->load->model('book_model');
         $this->load->model('search_model');
         $this->load->helper('url');
+        $this->load->library('firephp');
     }
 
     public function index(){
