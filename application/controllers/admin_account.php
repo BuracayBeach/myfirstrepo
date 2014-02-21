@@ -21,23 +21,29 @@ class Admin_account extends CI_Controller {
 	}
 
 	public function create_admin(){
-		$this->load->view('create_admin_view');
+
+	}
+
+	public function update_admin(){
+		
 	}
 
 	public function admin_login(){
 		if (isset($_SESSION['admin_logged_in'])){
 			redirect(base_url());
 		}
-		
-		if($this->check_admin_validity()){	
-			$_SESSION['admin_username'] = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
-			$_SESSION['admin_logged_in'] = true;
-			$_SESSION['type'] = "admin";
-			redirect(base_url());
-		}
 
-		else
-			redirect(base_url());	
+		else{
+			if($this->check_admin_validity()){	
+				$_SESSION['admin_username'] = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
+				$_SESSION['admin_logged_in'] = true;
+				$_SESSION['type'] = "admin";
+				redirect(base_url());
+			}
+
+			else
+				redirect(base_url());
+		}
 	}
 
 	public function logout(){
