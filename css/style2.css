@@ -1,5 +1,5 @@
 body{
-	background: rgb(240,240,240);
+	background: rgb(245,245,245);
 	color: black;
 }
 
@@ -70,3 +70,22 @@ body{
 	height:70%;
 	float: left;
 }
+
+
+/*--------------------------------------
+
+PAGE BODY (Lower Part of System)
+
+--------------------------------------*/
+
+
+#pagebody{
+	height: 500px;
+	background: red;
+	position: fixed;
+	margin-top: 100px;
+}
+
+
+
+
