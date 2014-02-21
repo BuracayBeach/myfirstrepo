@@ -1,6 +1,7 @@
-<?php
+    <div id="announcements_container">
+        <div id="announcements_table_container">
 
-	foreach ($announcements as $key => $value) {
-		echo $key . ":<br/>" . $value . "<br/>";
-	}
-?>
+        </div>
+
+    </div>
+    <script src="<?php echo base_url() ?>js/announcements_table_generator.js"></script>

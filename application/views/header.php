@@ -21,10 +21,11 @@
 <div id="navbar">
 	<div id="menulinks">
 		<a href="<?php echo base_url();?>" class="logo"> <img src="<?php echo base_url();?>images/logo4.png"/> </a>
-		<a href="ihome">HOME</a>
-		<a href="about_us">ABOUT US</a>
-		<a href="help">HELP</a>
-	    <a href="faq">FAQ</a>
+		<a href="ihome">Home</a>
+		<a href="about_us">About Us</a>
+        <a href="announcements">Announcements</a>
+		<a href="help">Help</a>
+        <a href="faq">FAQ</a>
 	</div>
 
 	<div id="acc_manager">

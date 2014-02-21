@@ -52,10 +52,11 @@ class Search_model extends CI_Model {
         if (strlen($details['search_term']) > 99) $details['search_term'] = substr($details['search_term'], 0,99);
 
         $q = array(
-                'select' => "select * from book b, author a ",
-                'where' => " where " . $details['status_check'] . " (b.book_no = a.book_no) ",
+                'select' => "select * from book b",
+                'where' => " where " . $details['status_check'],
                 'order_by' => "order by " . $details['order_by']
         );
+
 
         //solve ambiguity of book_no
         if($details['search_by'] == "book_no") $details['search_by'] = 'b.' . $details['search_by'];
@@ -75,7 +76,7 @@ class Search_model extends CI_Model {
                     if($details['search_by']== 'book_title'){
                        $q['where'] .= "book_title like '%" . $search . "%' or description like '%" . $search . "%' or tags like '%" . $search . "%' ";
                     } else if($details['search_by']== 'any'){
-                        $q['where'] .= "book_title like '%" . $search . "%' or b.book_no like '%" . $search . "%' or publisher like '%" . $search . "%' or description like '%" . $search . "%' or name like '%" . $search . "%' or date_published like '%" . $search . "%' or tags like '%" . $search . "%' ";
+                        $q['where'] .= "book_title like '%" . $search . "%' or b.book_no like '%" . $search . "%' or publisher like '%" . $search . "%' or description like '%" . $search . "%' or author like '%" . $search . "%' or date_published like '%" . $search . "%' or tags like '%" . $search . "%' ";
                     } else {
                         $q['where'] .= $details['search_by'] . " like '%".$search."%' ";
                     }
@@ -107,6 +108,8 @@ class Search_model extends CI_Model {
 
         if ($q['order_by']=='search_relevance') $q['order_by'] = '';
         else if ($q['order_by'] != '') $q['order_by'] = ' order by ' . $q['order_by'];
+        
+        if ($q['where'] == ' where ') $q['where'] = '';
         
         $query_string = $q['select'] . $q['where'] . $q['order_by'];
         // echo $query_string;
@@ -180,7 +183,7 @@ class Search_model extends CI_Model {
             array_push($cols_to_search, $row->description);
             array_push($cols_to_search, $row->tags);
         }
-        if ($search_by == 'name' || $search_by == 'any'){
+        if ($search_by == 'author' || $search_by == 'any'){
             array_push($cols_to_search, $row->name);
         }
         if ($search_by == 'publisher' || $search_by == 'any'){
@@ -250,7 +253,6 @@ class Search_model extends CI_Model {
         if ($table == null) return null;
         if (trim($input['search_term'])=='' || $input['search_by'] == 'book_no' || $input['search_by'] == 'date_published') return $table;
 
-
         $points = null;
         $input['search_term'] = strtolower($input['search_term']);
         $search_terms = explode(" ", trim($input['search_term']));
@@ -260,7 +262,8 @@ class Search_model extends CI_Model {
                 $term_sugg[$search_term] = '';
                 $term_sugg_dist[$search_term] = strlen($search_term);
             }
-        }       
+        }
+
 
         foreach($table as $row){
             $table_copy[$row->book_no] = $row; //clone table

@@ -22,6 +22,7 @@ class book extends CI_Controller {
         $this->load->model('book_model');
         $this->load->model('search_model');
         $this->load->helper('url');
+        $this->load->library('firephp');
     }
 
     public function index(){
@@ -104,10 +105,9 @@ class book extends CI_Controller {
             'order_by'      => $input['order_by'],
             'spell_check'   => true
         );
-        if (isset($_POST['page'])) {
-            $details['page'] = $_POST['page'];
-        }
+        if (isset($_POST['page'])) $details['page'] = $_POST['page'];
         if (isset($_POST['rows_per_page'])) $details['rows_per_page'] = $_POST['rows_per_page'];
+        if ($details['search_by'] == 'book_no') $details['spell_check'] = false;
 
         //construct query and get the array of rows from database
         $table = $this->search_model->query_result($details);
@@ -118,9 +118,11 @@ class book extends CI_Controller {
         $details['search_suggestion'] = $search_suggestion;
         $details['table'] = $sorted_table;
 
-        $max_page = count($details['table']) / $details['rows_per_page'];
-        if (count($details['table']) % $details['rows_per_page'] > 0) $max_page++;
-        $details['maxpage'] = $max_page;
+        if (isset($details['rows_per_page'])) {
+            $max_page = count($details['table']) / $details['rows_per_page'];
+            if (count($details['table']) % $details['rows_per_page'] > 0) $max_page++;
+            $details['maxpage'] = $max_page;
+        }
 
         $this->load->view('table_view', $details);
 
