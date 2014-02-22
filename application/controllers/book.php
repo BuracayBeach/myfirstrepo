@@ -53,13 +53,13 @@ class book extends CI_Controller {
         $data['date_published'] = filter_var($_POST['date_published'], FILTER_SANITIZE_MAGIC_QUOTES);
         $data['tags'] = filter_var($_POST['tags'], FILTER_SANITIZE_MAGIC_QUOTES);
 
-        ob_start();
-       $errnos = $this->book_model->insert_book($data);
-       if(count($errnos) == 0 ){
-           ob_end_flush();
-           echo json_encode($_POST);
-       }
-       else echo json_encode($errnos);
+
+        $error = $this->book_model->insert_book($data);
+        if(count($error) > 0){
+            echo json_encode($error);
+        }else{
+            echo json_encode($_POST);
+        }
     }
 
     public function delete(){
@@ -68,7 +68,7 @@ class book extends CI_Controller {
     }
 
     public function get_book(){
-        $book_no = $_POST['book_no'];
+        $book_no = $_GET['book_no'];
 
         echo $this->book_model->get_book($book_no);
     }
