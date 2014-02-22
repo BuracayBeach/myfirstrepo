@@ -18,5 +18,21 @@ class Admin_account_model extends CI_Model {
 
 		else return false;
 	}
+
+	public function insert_admin($data){
+		$query = $this->db->query("SELECT * FROM admin WHERE username='{$username}'");
+		
+		if($query->num_rows() == 0){
+			$this->db->query("INSERT INTO admin VALUES (
+				'{$data['name_first']}',
+				'{$data['name_middle']}',
+				'{$data['name_last']}',
+				'{$data['username']}',
+				'{$data['password']}')");
+			return true;
+		}
+
+		return false;
+	}
 }
 ?>

@@ -47,7 +47,7 @@ class User_account extends CI_Controller {
 
 	private function check_user_validity(){
 		$username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
-		$password = md5(filter_var($_POST['password'], FILTER_SANITIZE_STRING));
+		$password = hash('sha256', filter_var($_POST['password'], FILTER_SANITIZE_STRING));
 
 		$data = $this->user_account_model->get_user($username);
 
@@ -78,7 +78,7 @@ class User_account extends CI_Controller {
 
 	public function createaccount(){
 		$data['username']= filter_var($_POST['username'], FILTER_SANITIZE_STRING);
-		$data['password']= md5(filter_var($_POST['password'], FILTER_SANITIZE_STRING));
+		$data['password']= hash('sha256', filter_var($_POST['password'], FILTER_SANITIZE_STRING));
 		$data['sex']= filter_var($_POST['sex'], FILTER_SANITIZE_STRING);
 		$data['status']= "pending";
 		$data['email']= filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
@@ -120,29 +120,29 @@ class User_account extends CI_Controller {
 		
 		if($result){
 			$user_notif['update_account_notif'] = "Succesfully updated account!";
-			$this->get_data();
+			redirect(site_url("user_account/update_account"));
 		}
 
 		else{
 			$user_notif['update_account_notif'] = "Email already exist!";
-			$this->get_data();
+			redirect(site_url("user_account/update_account"));
 		}
 	}
 
 	//Check if the current password entered is the same as that of the password in the database.
 	public function change_password(){
 		$uname = $_SESSION['username'];
-		$new_password= md5(filter_var($_POST['newPassword'], FILTER_SANITIZE_STRING));
-		$current_password= md5(filter_var($_POST['currentPassword'], FILTER_SANITIZE_STRING));
+		$new_password= hash('sha256', filter_var($_POST['newPassword'], FILTER_SANITIZE_STRING));
+		$current_password= hash('sha256', filter_var($_POST['currentPassword'], FILTER_SANITIZE_STRING));
 		$database_password = $this->user_account_model->get_password($uname);
 
 		if($database_password==$current_password) {
 			$user_notif['change_password_notif'] = "Succesfully changed password!";
 			$this->user_account_model->update_password($new_password, $uname);
-			$this->get_data();
+			redirect(site_url("user_account/update_account"));	
 		} else {
 			$user_notif['change_password_notif'] = "Password does not match";
-			$this->get_data();
+			redirect(site_url("user_account/update_account"));	
 		}
 	}
 

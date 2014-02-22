@@ -69,27 +69,15 @@
           	</div>
 		</div>
 
+		<!-- start edit by Carl Adrian P. Castueras -->
 		<div id="account_log">
-
+			<h4>Account Log</h4>
+			<table id="log_table">
+			</table>
 		</div>
+		<!-- end edit -->
 
 		<script type = "text/javascript" src = "<?php echo base_url() ?>js/search_user_manager.js"></script>
 		<script type = "text/javascript" src = "<?php echo base_url() ?>js/account_status_manager.js"></script>
 
-		<script>
-			$(document).load(function(){
-				$.ajax({
-					url : "http://localhost/myfirstrepo/index.php/enable_disable/get_logs/",
-					type : 'POST',
-					dataType : "html",
-					async : true,
-					success: function(data) {
-
-						alert('ajax success');
-					}
-				});
-			});
-
-			
-		</script>
 <?php //end of file enable_disable_view ?>

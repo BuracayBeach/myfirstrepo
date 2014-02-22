@@ -42,8 +42,13 @@ class Home extends CI_Controller {
         $data['title'] = "eICS Lib Home";
         $this->load->view("header", $data);
         $this->load->view("search_view");
-
+        if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
+            $data['notifs'] = $this->notifs_model->get_all('username');
+            $this->load->view('notifications_view', $data);
+        }
         $this->load->view("footer");
+
+
     }
 
     public function announcements(){

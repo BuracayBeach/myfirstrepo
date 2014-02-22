@@ -4,7 +4,6 @@ class Notifs_Model extends CI_Model {
 
 	public function get_all($username) {
 
-
 		$q = $this->db->query("SELECT n.type, n.date_sent, n.message,
 									  n.username_admin, b.book_title
 							FROM book b, notifications n WHERE 
