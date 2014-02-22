@@ -2,7 +2,7 @@
 
 /* call this view via:
 
-$data['notifs'] = $this->notifs_model->get_all('username');
+$data['notifs'] = $this->notifs_model->get_all($_SESSION['username']);
 $this->load->view('notifications_view', $data);
 
 */
