@@ -82,7 +82,6 @@ function addBook(event){
 
         })
             .fail(function(data){   //if adding failed
-                console.log(data.getRe);
 
          });
         $(this).closest('div').hide();
