@@ -37,7 +37,7 @@ class User_account extends CI_Controller {
 		if($this->check_user_validity()){	
 			$_SESSION['username'] = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
 			$_SESSION['logged_in'] = true;
-			$_SESSION['type'] = "admin";
+			$_SESSION['type'] = "regular";
 			redirect(base_url());
 		}
 
@@ -52,7 +52,8 @@ class User_account extends CI_Controller {
 		$data = $this->user_account_model->get_user($username);
 
 		if(!$data){
-			$_SESSION['notif_login'] = "Username does not exist!";
+			$user_notif['login_notif'] = "Username does not exist!";
+			return false;
 		}
 		
 		else{
@@ -60,7 +61,7 @@ class User_account extends CI_Controller {
 				return true;
 			}
 			else{
-				$_SESSION['notif_login'] = "Incorrect password!";
+				$user_notif['login_notif'] = "Password does not match!";		
 				return false;
 			}
 		}
@@ -80,7 +81,7 @@ class User_account extends CI_Controller {
 		$data['password']= md5(filter_var($_POST['password'], FILTER_SANITIZE_STRING));
 		$data['sex']= filter_var($_POST['sex'], FILTER_SANITIZE_STRING);
 		$data['status']= "pending";
-		$data['email']= filter_var($_POST['email'], FILTER_SANITIZE_STRING);
+		$data['email']= filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 		$data['usertype']= filter_var($_POST['usertype'], FILTER_SANITIZE_STRING);
 		$data['emp_no']= filter_var($_POST['emp_no'], FILTER_SANITIZE_STRING);
 		$data['student_no']= filter_var($_POST['student_no'], FILTER_SANITIZE_STRING);
@@ -94,18 +95,19 @@ class User_account extends CI_Controller {
 		$result = $this->user_account_model->insert_data($data);
 
 		if($result){
-			$_SESSION['notif_create_account'] = "Succesfully created account!";
+			$user_notif['create_account_notif'] = "Succesfully created account!";
 			$this->backtohome();
 		}
 
 		else
-			$this->backtohome();	
+			$user_notif['create_account_notif'] = "Failed in creating account!";
+			redirect(site_url("user_account/create_account"));
 	}
 
 	//Update the value of the user info.
 	public function update(){
 		$data['sex']= filter_var($_POST['sex'], FILTER_SANITIZE_STRING);
-		$data['email']= filter_var($_POST['email'], FILTER_SANITIZE_STRING);
+		$data['email']= filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 		$data['name_first']= filter_var($_POST['name_first'], FILTER_SANITIZE_STRING);
 		$data['name_middle']= filter_var($_POST['name_middle'], FILTER_SANITIZE_STRING);
 		$data['name_last']= filter_var($_POST['name_last'], FILTER_SANITIZE_STRING);
@@ -117,12 +119,12 @@ class User_account extends CI_Controller {
 		$result = $this->user_account_model->update_data($data, $uname);
 		
 		if($result){
-			$_SESSION['notif_update_account'] = "Succesfully updated account";
+			$user_notif['update_account_notif'] = "Succesfully updated account!";
 			$this->get_data();
 		}
 
 		else{
-			$_SESSION['notif_update_account'] = "Email exists";
+			$user_notif['update_account_notif'] = "Email already exist!";
 			$this->get_data();
 		}
 	}
@@ -135,11 +137,11 @@ class User_account extends CI_Controller {
 		$database_password = $this->user_account_model->get_password($uname);
 
 		if($database_password==$current_password) {
-			$_SESSION['notif_change_password'] = "Succesfully changed password!";
+			$user_notif['change_password_notif'] = "Succesfully changed password!";
 			$this->user_account_model->update_password($new_password, $uname);
 			$this->get_data();
 		} else {
-			$_SESSION['notif_change_password'] = "Password does not match";
+			$user_notif['change_password_notif'] = "Password does not match";
 			$this->get_data();
 		}
 	}

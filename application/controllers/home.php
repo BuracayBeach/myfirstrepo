@@ -34,6 +34,7 @@ class Home extends CI_Controller {
             $this->load->view('announcement_manage_view');
             $this->load->view("announcement_view");
         }
+        
 
 */        $this->load->view("footer");
     }

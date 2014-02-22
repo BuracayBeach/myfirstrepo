@@ -1,3 +1,14 @@
+<?php
+
+/* call this view via:
+
+$data['notifs'] = $this->notifs_model->get_all($_SESSION['username']);
+$this->load->view('notifications_view', $data);
+
+*/
+
+?>
+
 <div id="notifs_container">
 
 	<?php if(isset($notifs)) : foreach ($notifs as $row) : ?>
@@ -29,7 +40,7 @@
 	<?php endforeach; ?>
 
 	<?php else : ?>
-		<span> No notifications </span>
+		<span> No notifications. </span>
 	<?php endif; ?>
 
 </div>
