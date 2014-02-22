@@ -27,7 +27,10 @@
 
 					<input searchby="book_title" id="search_text" type="text" name='search' autofocus='true' placeholder='Keywords...' maxlength='99'/>
 					<input id='submit_search' type="submit" name="submit_search" value="Search" /><br/>
-					
+					<div id="results_per_page_div" hidden>
+						<input id='results_per_page' style="width:45px" type="number" min='1' max='500' value='10'/>
+						<span>Results per page</span>
+					</div>
 					<?php
 						if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
 							echo '
@@ -71,7 +74,11 @@
 			<script type="text/javascript">
 
 				function research(){
-					$('#search_text').val($('#suggestion_text').html());
+					newSearch = $('#suggestion_text').html();
+					newSearch = newSearch.replace("<strong>","");
+					newSearch = newSearch.replace("</strong>","");
+					$('#search_text').val(newSearch);
+
 					$('#submit_search').click();
 				}
 
@@ -91,8 +98,9 @@
 							my_input += "&search_by=" + search_by;
 							$('#search_text').attr('searchby', search_by);
 						}
+
 						my_input += "&page=1";
-						my_input += "&rows_per_page=10";
+						my_input += "&rows_per_page=" + $('#results_per_page').val();
 
 						console.log(my_input);
 						$.ajax({
@@ -106,6 +114,7 @@
 
 						$('#search').removeClass('home');
 						$('.logo_main').hide();
+						$('#results_per_page_div').show();
 						return false;
 					}
 
