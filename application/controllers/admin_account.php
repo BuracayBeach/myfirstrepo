@@ -62,7 +62,7 @@ class Admin_account extends CI_Controller {
 
 	private function check_admin_validity(){
 		$username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
-		$password = md5(filter_var($_POST['password'], FILTER_SANITIZE_STRING));
+		$password = hash('sha256', filter_var($_POST['password'], FILTER_SANITIZE_STRING));
 
 		$data = $this->admin_account_model->get_admin($username);
 
@@ -83,7 +83,7 @@ class Admin_account extends CI_Controller {
 
 	public function create_admin_account(){
 		$data['username'] = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
-		$data['password'] = md5(filter_var($_POST['password'], FILTER_SANITIZE_STRING));
+		$data['password'] = hash('sha256', filter_var($_POST['password'], FILTER_SANITIZE_STRING));
 		$data['name_first'] = filter_var($_POST['name_first'], FILTER_SANITIZE_STRING);
 		$data['name_middle'] = filter_var($_POST['name_middle'], FILTER_SANITIZE_STRING);
 		$data['name_last'] = filter_var($_POST['name_last'], FILTER_SANITIZE_STRING);
