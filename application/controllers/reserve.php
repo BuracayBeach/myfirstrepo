@@ -44,7 +44,6 @@ class Reserve extends CI_Controller {
 
 		$this->reserve_model->enqueue($data);
 		$this->reserve_model->status_reserved($info[0]);
-		
 	}
 	
 	public function check($username, $book_no) {
@@ -61,7 +60,6 @@ class Reserve extends CI_Controller {
 		$q = $this->reserve_model->get($username);
 		echo json_encode($q);
 	}
-
 }
 
 ?>
