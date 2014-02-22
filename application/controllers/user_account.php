@@ -120,12 +120,12 @@ class User_account extends CI_Controller {
 		
 		if($result){
 			$user_notif['update_account_notif'] = "Succesfully updated account!";
-			$this->get_data();
+			redirect(site_url("user_account/update_account"));
 		}
 
 		else{
 			$user_notif['update_account_notif'] = "Email already exist!";
-			$this->get_data();
+			redirect(site_url("user_account/update_account"));
 		}
 	}
 
@@ -139,10 +139,10 @@ class User_account extends CI_Controller {
 		if($database_password==$current_password) {
 			$user_notif['change_password_notif'] = "Succesfully changed password!";
 			$this->user_account_model->update_password($new_password, $uname);
-			$this->get_data();
+			redirect(site_url("user_account/update_account"));	
 		} else {
 			$user_notif['change_password_notif'] = "Password does not match";
-			$this->get_data();
+			redirect(site_url("user_account/update_account"));	
 		}
 	}
 

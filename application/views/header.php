@@ -30,14 +30,14 @@
 
 	<div id="acc_manager">
 		<?php
-			var_dump($_SESSION);
+			//var_dump($_SESSION);
 			if(isset($_SESSION['type'])){
 				if($_SESSION['type'] == "regular")
 					include 'logged_user_view.php';
 				else if($_SESSION['type'] == "admin")
 					include 'logged_admin_view.php';
 			}else{
-				include 'login_view.php';;
+				include 'login_view.php';
 			}
 		?>
 	</div>

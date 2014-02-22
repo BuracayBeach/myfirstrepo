@@ -73,20 +73,17 @@ class Search_model extends CI_Model {
         //set defaults
         $type_check = "book_type='Book' or book_type='Journal' or book_type='SP' or book_type='Thesis'";
 
-        if (isset($input['search_term']) && isset($input['search_by'])){
-            //filter by book status
-            if (!$input["type_book"]) $type_check = str_replace("book_type='Book' or ","",$type_check);
-            if (!$input["type_journal"]) $type_check = str_replace("book_type='Journal' or ","",$type_check);
-            if (!$input["type_sp"]) $type_check = str_replace("book_type='SP' or ","",$type_check);
-            if (!$input["type_thesis"]){
-                $type_check = str_replace(" or book_type='Thesis'","",$type_check);
-                $type_check = str_replace("book_type='Thesis'","",$type_check);
-            }
+        //filter by type
+        if (!$input["type_book"]) $type_check = str_replace("book_type='Book' or ","",$type_check);
+        if (!$input["type_journal"]) $type_check = str_replace("book_type='Journal' or ","",$type_check);
+        if (!$input["type_sp"]) $type_check = str_replace("book_type='SP' or ","",$type_check);
+        if (!$input["type_thesis"]){
+            $type_check = str_replace(" or book_type='Thesis'","",$type_check);
+            $type_check = str_replace("book_type='Thesis'","",$type_check);
         }
 
         if($type_check!="") $type_check = "(" . $type_check . ") ";
-        else if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") $type_check = "(book_type!='Book' and book_type!='Journal' and book_type!='SP' and book_type!='Thesis') ";
-        else $type_check = "";
+        else $type_check = "(book_type!='Book' and book_type!='Journal' and book_type!='SP' and book_type!='Thesis') ";
 
         return $type_check;
     }

@@ -49,13 +49,13 @@ class Notifs extends CI_Controller {
 		header('location:' . base_url());
 	}
 
-	public function send_claim_notif($book_no, $username, $admin) {
+	public function send_claim_notif($book_no, $username) {
 
 		$data = array (
-				'username_admin' => $admin,
+				'username_admin' => $_SESSION['admin_username'],
 				'username_user' => $username,
 				'book_no' => $book_no,
-				'message' => "You may now claim your book ASAP",
+				'message' => "You may now claim your book at the library ASAP",
 				'date_sent' => date('Y-m-d H:i:s'),
 				'type' => 'claim'
 			);

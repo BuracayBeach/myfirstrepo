@@ -7,7 +7,6 @@
 				<br>
 
 				<form id="search_form" name="search_form" method="post">
-					<br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 					<?php
@@ -36,6 +35,7 @@
 						<input id = "type_thesis" type="checkbox" name = "type_thesis" checked>
 							<label for="type_thesis">Thesis</label>
 					</div>
+
 
 
 					<input searchby="book_title" id="search_text" type="text" name='search' autofocus='true' placeholder='Keywords...' maxlength='99'/>

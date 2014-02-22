@@ -26,7 +26,10 @@ class Admin_account extends CI_Controller {
 	}
 
 	public function create_admin(){
-		$this->load->view('create_admin_view');
+		if($_SESSION['admin_logged_in'])
+			$this->load->view('create_admin_view');
+		else
+			$this->backtohome();
 	}
 
 	public function update_admin(){
@@ -79,7 +82,23 @@ class Admin_account extends CI_Controller {
 	}
 
 	public function create_admin_account(){
+		$data['username'] = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
+		$data['password'] = md5(filter_var($_POST['password'], FILTER_SANITIZE_STRING));
+		$data['name_first'] = filter_var($_POST['name_first'], FILTER_SANITIZE_STRING);
+		$data['name_middle'] = filter_var($_POST['name_middle'], FILTER_SANITIZE_STRING);
+		$data['name_last'] = filter_var($_POST['name_last'], FILTER_SANITIZE_STRING);
 
+		$result = $this->admin_account_model->insert_admin($data);
+
+		if($result){
+			$admin_notif['create_admin_notif'] = "Succesfully created admin!";
+			$this->backtohome();
+		}
+
+		else{
+			$admin_notif['create_admin_notif'] = "Username exists!";
+			redirect(site_url("admin_account/create_admin"));
+		}
 	}
 }
 ?>
