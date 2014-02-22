@@ -14,6 +14,9 @@ $('#content_container').ready(function(){
     recentlyAddedBooksContainer.on('click','.delete_button',deleteBook);
 
     contentContainer.on('click','.delete_button',deleteBook);
+
+    $('#add_book_type').change(checkBookType);
+    $('#edit_book_type').change(checkBookType);
     /***** END EVENT ATTACHMENTS *****/
 
     /* Hide Forms Initially */
@@ -22,9 +25,18 @@ $('#content_container').ready(function(){
     $('#edit_container').hide();
 });
 
+function checkBookType(){
+    var type = $(this).val();
+
+    if(type != "Book" && type != "Journal")
+        $('.abstract_container').show();
+    else $('.abstract_container').hide();
+}
 /***** ADD FUNCTIONS *****/
 function showAddForm(){
     var addContainer = $('#add_container');
+    $('#edit_container').hide();
+    $('.abstract_container').hide();
     addContainer.show();
     $(addContainer).find('#add_book_no').focus();
 }
@@ -36,32 +48,42 @@ function cancelAdd(event){
 }
 function addBook(event){
     event.preventDefault();  /* stop form from submitting normally */
-
     if(checkAll()){
         $.post("index.php/book/add",$(this).serialize(),function(data){
-            data = JSON.parse(data);
-            var rowHTML = $('<tr>');
-            rowHTML.append(
-                '<td book_data="book_no" align="center">'+data.book_no+'</td>'
-                    +'<td>' +
-                    '<div style="font:20px Verdana" book_data="book_title">'+data.book_title+'</div>' +
-                    '<div style="font-size:17px" book_data="description">'+data.description+'<br/></div>' +
-                    '<div style="font-size:13px" book_data="author"><em>'+data.author+'</em><br/></div>' +
-                    '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="edit_button" >Edit</a></span>&nbsp;&nbsp;&nbsp;' +
-                    '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="delete_button" >Delete</a></span>&nbsp; | &nbsp;' +
-                    '<span>' +
-                    generateTransactionAnchorHTML(data.status,data.book_no) +
-                    '</span>'+
-                '</td>' +
-                '<td align="center">' +
-                    '<div book_data="publisher">'+data.publisher+'</div>' +
-                    '<div book_data="date_published">'+data.date_published+'</div>' +
-                '</td>' +
-                '<td book_data="tags">'+data.tags+'</td>'
-            );
-            $('#recently_added_books_table').find('tbody:last').append(rowHTML);
-            toggleRecentlyAddedTable();
-        });
+            try{
+                data = JSON.parse(data);
+                console.log("no error");
+                console.log(data);
+                var rowHTML = $('<tr>');
+                rowHTML.append(
+                    '<td book_data="book_no" align="center">'+data.book_no+'</td>'
+                        +'<td>' +
+                        '<div style="font:20px Verdana" book_data="book_title">'+data.book_title+'</div>' +
+                        '<div style="font-size:17px" book_data="description">'+data.description+'<br/></div>' +
+                        '<div style="font-size:13px" book_data="author"><em>'+data.author+'</em><br/></div>' +
+                        '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="edit_button" >Edit</a></span>&nbsp;&nbsp;&nbsp;' +
+                        '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="delete_button" >Delete</a></span>&nbsp; | &nbsp;' +
+                        '<span>' +
+                        generateTransactionAnchorHTML(data.status,data.book_no) +
+                        '</span>'+
+                        '</td>' +
+                        '<td align="center">' +
+                        '<div book_data="publisher">'+data.publisher+'</div>' +
+                        '<div book_data="date_published">'+data.date_published+'</div>' +
+                        '</td>' +
+                        '<td book_data="tags">'+data.tags+'</td>'
+                );
+                $('#recently_added_books_table').find('tbody:last').append(rowHTML);
+                toggleRecentlyAddedTable();
+            }catch(exception){
+                console.log(exception);
+                console.log(data);
+            }
+
+        })
+            .fail(function(data){   //if adding failed
+
+         });
         $(this).closest('div').hide();
         this.reset();
     }
@@ -71,8 +93,11 @@ function addBook(event){
 /***** EDIT FUNCTIONS *****/
 function fillEditForm(event){
     event.preventDefault();
-    var td = $(this).closest('tr').find('td[book_data=book_no]');
+    $('.abstract_container').hide();
+    $('#add_container').hide();
+    var td = $(this).closest('tr').find('[book_data=book_no]');
     var book_no = td.text();
+    console.log(book_no);
     $.post("index.php/book/get_book",{'book_no':book_no},function(data){
         data = JSON.parse(data);
         data = data[0];
@@ -82,15 +107,18 @@ function fillEditForm(event){
         editForm.find("#edit_book_no").val(data.book_no);
         editForm.find("#edit_book_title").val(data.book_title);
         editForm.find("#edit_book_status").val(data.status);
+        editForm.find("#edit_book_type").val(data.book_type);
+        checkBookType.call( $('#edit_book_type')[0] );
+        editForm.find("#edit_author").val(data.author);
+        editForm.find("#edit_abstract").val(data.abstract);
         editForm.find("#edit_description").val(data.description);
         editForm.find("#edit_publisher").val(data.publisher);
-        editForm.find("#edit_author").val(data.name);
         editForm.find("#edit_date_published")[0].value=data.date_published;
         editForm.find("#edit_tags").val(data.tags);
     });
 
     editedRow = td.closest('tr');
-    var editContainer = $('#edit_container')
+    var editContainer = $('#edit_container');
     editContainer.show();
     $(editContainer).find('#edit_book_no').focus();
 }
@@ -142,6 +170,7 @@ function deleteBook(){
                 toggleRecentlyAddedTable();
         }
     }
+    $('#edit_container').hide();
 }
 /***** END DELETE FUNCTIONS *****/
 

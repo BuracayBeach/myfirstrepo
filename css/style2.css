@@ -1,6 +1,8 @@
 body{
 	background: rgb(245,245,245);
 	color: black;
+
+	font-family:"Segoe UI Light";
 }
 
 #navbar{
@@ -79,7 +81,6 @@ PAGE BODY (Lower Part of System)
 
 #pagebody{
 	height: 500px;
-	background: red;
 	position: fixed;
 	margin-top: 100px;
 	width: 100%;
@@ -92,14 +93,113 @@ SEARCH FORM
 
 --------------------------------------*/
 
-#side-wrapper{
-	width: 100%;
-	border-top: 2px solid blue;
-} 
-
-#search_form{
-	width: 20%;
+#search{
+	width: 17%;
 	background: yellow;
+	float: left;
+}
+
+
+#sidebar-wrapper {
+  margin-left: -250px;
+  left: 250px;
+  width: 250px;
+  margin-top:-20px;
+  background: #ffffff;
+  position: fixed;
+  height: 150%;
+  overflow-y: auto;
+  z-index: 1000;
+  transition: all 0.4s ease 0s;
+}
+
+#search #search_text {
+    height: 25px;
+    outline: 0;
+    background: transparent;
+    border: 3px solid #2B65EC;
+    width: 170px;
+    font-family:"Segoe UI Light";
+    text-indent: 5px;
+    font-size:17px;
+}
+
+#page-content-wrapper {
+  width: 100%;
+
+}
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-nav li {
+  line-height: 40px;
+  text-indent: 20px;
+}
+
+.sidebar-nav li  {
+  color: #2B65EC;
+  display: block;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.sidebar-nav li:hover {
+  color: #fff;
+  background: #2B65EC;
+  text-decoration: none;
+  font-size: 25px;
+}
+
+.sidebar-nav li.active {
+  background-color: #FF9966;
+  color:#fff;
+  font-size: 25px;
+}
+
+#search img{
+	max-height: 16px;
+}
+a:hover	{
+	text-decoration: none;
+}
+
+/*---------------------------------------
+
+TABLE RESULTS
+
+---------------------------------------*/
+
+#search_table_container{
+	width: 83%;
+	height: 500px;
+	background: blue;
 
 }
 
+/*---------------------------------------
+
+MANAGE
+
+---------------------------------------*/
+
+
+#recently_added_books_container, #add_container, #edit_container{
+	min-height: 50px;
+	width: 40%;
+	background: pink;
+
+	position: fixed;
+	right: 0;
+	top:100px;
+
+}
+
+ #edit_container{
+ 	top:160px;
+ }

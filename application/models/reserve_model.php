@@ -34,7 +34,7 @@ class Reserve_Model extends CI_Model {
 	public function status_reserved($book_no) {
 		$lend = $this->db->query("SELECT COUNT(*) FROM lend WHERE book_no LIKE '{$book_no}'");
 
-		if ($lend->result() == 0)
+		if ($lend->result() != 1)
 			$this->db->query("UPDATE book SET status = 'reserved' WHERE book_no LIKE '{$book_no}'");
 	}
 
@@ -52,12 +52,18 @@ class Reserve_Model extends CI_Model {
 
 	public function get($username) {
 
-		$q = $this->db->query("SELECT r.date_reserved, b.book_title, b.book_no
+		$q = $this->db->query("SELECT r.date_reserved, b.book_title, b.book_no, r.rank
 						FROM reserves r, book b
 						WHERE r.username = '{$username}' AND
 						r.book_no = b.book_no
-						GROUP BY b.book_no;");
+						GROUP BY b.book_no");
 
+		return $q->result();
+	}
+
+	public function check_book_ranks($username) {
+
+		$q = $this->db->query("SELECT rank, book_no FROM reserves ORDER BY book_no, rank");
 		return $q->result();
 	}
 

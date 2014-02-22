@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 21, 2014 at 02:15 PM
--- Server version: 5.5.24-log
--- PHP Version: 5.4.3
+-- Generation Time: Feb 22, 2014 at 03:35 PM
+-- Server version: 5.6.12-log
+-- PHP Version: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `name_middle` varchar(24) NOT NULL,
   `name_last` varchar(24) NOT NULL,
   `username` varchar(18) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(65) NOT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT INTO `admin` (`name_first`, `name_middle`, `name_last`, `username`, `password`) VALUES
-('First', 'Middle', 'Last', 'admin', '21232f297a57a5a743894a0e4a801fc3');
+('admin', 'mino', 'bulalo', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');
 
 -- --------------------------------------------------------
 
@@ -74,14 +74,15 @@ CREATE TABLE IF NOT EXISTS `announcement` (
   `announcement_author` varchar(255) NOT NULL,
   `date_posted` date NOT NULL,
   PRIMARY KEY (`announcement_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
 
 --
 -- Dumping data for table `announcement`
 --
 
 INSERT INTO `announcement` (`announcement_id`, `announcement_title`, `announcement_content`, `announcement_author`, `date_posted`) VALUES
-(1, 'My Announcement', 'Here is the announcement\r\n', 'reybenedicto06', '2014-02-21');
+(52, 'lkjasd', 'hehe', 'allanconda', '2014-02-21'),
+(53, 'announcement1', 'hahah', '', '2014-02-22');
 
 -- --------------------------------------------------------
 
@@ -108,12 +109,14 @@ CREATE TABLE IF NOT EXISTS `book` (
 --
 
 INSERT INTO `book` (`book_no`, `book_title`, `book_type`, `abstract`, `author`, `status`, `description`, `publisher`, `date_published`, `tags`) VALUES
-('AB 1234', 'Merry Christmas', 'Book', NULL, NULL, 'available', 'Happy New Yeare', 'Santa Claus', '2014-01-18', NULL),
-('CD 4321', 'How To Program in Java', 'Book', NULL, NULL, 'reserved', 'Search Google Chrome', 'Not A Programmer', '2014-01-01', NULL),
+('AB 1234', 'Merry Ann Title', 'Book', NULL, NULL, 'available', 'Happy New Yeare', 'Santa Claus', '2014-01-18', 'sad'),
+('asdasd', 'jh', 'Journal', NULL, 'jkh', 'available', 'jkh', 'jkhjkh', '2012-11-06', 'jljkljj'),
+('CD 4321', 'How To Program in Java', '', 'abstractttt', NULL, 'reserved', 'Search Google Chrome', 'Not A Programmer', '2014-01-01', ''),
 ('EF 5678', 'How To Kill Spiders', 'Book', NULL, NULL, 'borrowed', 'Shoe', 'Microsoft', '2013-08-06', NULL),
 ('GH 8765', 'Sleeping in Class Tips', 'Book', NULL, NULL, 'available', 'Sleep peacefully while in Class', 'Rey Benedicto', '2014-04-18', NULL),
 ('IJ 1357', 'French Fries from Potatoes', 'Book', NULL, NULL, 'reserved', 'Learn how to eat potatoes', 'McDo', '2013-09-17', NULL),
-('KL 2468', 'Cram Efficiently', 'Book', NULL, NULL, 'available', 'Learn how to waste time then cram', 'Rey Benedicto', '2012-11-06', NULL);
+('jh', 'jk', 'Book', NULL, 'hkj', 'available', 'hjkh', 'jkh', '2012-11-06', 'kj'),
+('KL 1111', 'Cram Effficiently', 'Thesis', 'dsadsa', 'Boy bulalo', 'borrowed', 'Learn how to waste time then cram', 'Rey Benedicto', '2012-11-06', 'asdsa');
 
 -- --------------------------------------------------------
 
@@ -199,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `lend` (
   KEY `lend_book_no` (`book_no`),
   KEY `lend_username_user` (`username_user`),
   KEY `lend_username_admin` (`username_admin`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -275,7 +278,7 @@ CREATE TABLE IF NOT EXISTS `reserves` (
   PRIMARY KEY (`book_no`,`username`,`rank`),
   KEY `reserves_username` (`username`),
   KEY `reserves_rank` (`rank`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -285,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `reserves` (
 
 CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(18) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(65) NOT NULL,
   `sex` enum('male','female') NOT NULL,
   `status` enum('enabled','disabled','pending') NOT NULL DEFAULT 'pending',
   `email` varchar(55) NOT NULL,
@@ -308,8 +311,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `sex`, `status`, `email`, `usertype`, `emp_no`, `student_no`, `name_first`, `name_middle`, `name_last`, `mobile_no`, `course`, `college`) VALUES
-('reybenedicto06', '55d067d76dd2dca9547172eb6661b55f', 'male', 'pending', 'reybenedicto06@gmail.com', 'student', '', '2011-31260', 'Rey', 'Yude', 'Benedicto', '639232143048', 'BSABT', 'CA'),
-('theuser', '34819d7beeabb9260a5c854bc85b3e44', 'male', 'pending', 'username@email.com', 'student', '', '1908-00001', 'The', 'Oldest', 'Student Ever', '639351624693', 'BSA', 'CA');
+('useruser', 'e172c5654dbc12d78ce1850a4f7956ba6e5a3d2ac40f0925fc6d691ebb54f6bf', 'male', 'pending', 'user@user.com', 'student', '', '2011-16328', 'user', 'user', 'bulalo', '639273874811', 'BSAM', 'CAS');
 
 --
 -- Constraints for dumped tables
@@ -319,38 +321,38 @@ INSERT INTO `user` (`username`, `password`, `sex`, `status`, `email`, `usertype`
 -- Constraints for table `account_history`
 --
 ALTER TABLE `account_history`
-  ADD CONSTRAINT `account_history_email` FOREIGN KEY (`email`) REFERENCES `user` (`email`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `account_history_username_admin` FOREIGN KEY (`username_admin`) REFERENCES `admin` (`username`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `account_history_username_user` FOREIGN KEY (`username_user`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `account_history_email` FOREIGN KEY (`email`) REFERENCES `user` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `account_history_username_admin` FOREIGN KEY (`username_admin`) REFERENCES `admin` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `account_history_username_user` FOREIGN KEY (`username_user`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `favorites`
 --
 ALTER TABLE `favorites`
-  ADD CONSTRAINT `favorites_book_no` FOREIGN KEY (`book_no`) REFERENCES `book` (`book_no`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `favorites_username` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `favorites_book_no` FOREIGN KEY (`book_no`) REFERENCES `book` (`book_no`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `favorites_username` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `lend`
 --
 ALTER TABLE `lend`
-  ADD CONSTRAINT `lend_book_no` FOREIGN KEY (`book_no`) REFERENCES `book` (`book_no`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `lend_username_admin` FOREIGN KEY (`username_admin`) REFERENCES `admin` (`username`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `lend_username_user` FOREIGN KEY (`username_user`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `lend_username_admin` FOREIGN KEY (`username_admin`) REFERENCES `admin` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lend_book_no` FOREIGN KEY (`book_no`) REFERENCES `book` (`book_no`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lend_username_user` FOREIGN KEY (`username_user`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `notifications`
 --
 ALTER TABLE `notifications`
-  ADD CONSTRAINT `notifications_username_admin` FOREIGN KEY (`username_user`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `notifications_username_user` FOREIGN KEY (`username_admin`) REFERENCES `admin` (`username`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `notifications_username_admin` FOREIGN KEY (`username_user`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `notifications_username_user` FOREIGN KEY (`username_admin`) REFERENCES `admin` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `reserves`
 --
 ALTER TABLE `reserves`
-  ADD CONSTRAINT `reserves_book_no` FOREIGN KEY (`book_no`) REFERENCES `book` (`book_no`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `reserves_username` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `reserves_username` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `reserves_book_no` FOREIGN KEY (`book_no`) REFERENCES `book` (`book_no`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
