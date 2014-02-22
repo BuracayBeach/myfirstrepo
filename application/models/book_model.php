@@ -24,19 +24,19 @@ class Book_model extends CI_Model {
 
     function insert_book($data){
         $date_pub = $data['date_published'];
-        $has_abstract = $data['abstract'] != null;
         $query = "INSERT INTO book (book_no,book_title,book_type,abstract,author,description,publisher,tags,date_published)".
             " VALUES ('{$data['book_no']}'".
             ",'{$data['book_title']}'".
             ",'{$data['type']}'".
-            ",".($has_abstract?("'".$data['abstract']."'"):'null').
+            ",".(($data['abstract'] != null)?("'".$data['abstract']."'"):'null').
             ",'{$data['author']}'".
             ",'{$data['description']}'".
             ",'{$data['publisher']}'".
             ",'{$data['tags']}'".
             ",".($date_pub==''?'null':("'".$date_pub."'")).")";
 
-        echo $this->db->query($query);
+        $this->db->query($query);
+        echo json_encode($this->db->_error_number());
     }
 
     function get_book($book_no){

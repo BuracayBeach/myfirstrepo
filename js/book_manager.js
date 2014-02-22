@@ -52,6 +52,8 @@ function addBook(event){
         $.post("index.php/book/add",$(this).serialize(),function(data){
             try{
                 data = JSON.parse(data);
+                console.log("no error");
+                console.log(data);
                 var rowHTML = $('<tr>');
                 rowHTML.append(
                     '<td book_data="book_no" align="center">'+data.book_no+'</td>'
@@ -78,7 +80,11 @@ function addBook(event){
                 console.log(data);
             }
 
-        });
+        })
+            .fail(function(data){
+                console.log(data);
+
+         });
         $(this).closest('div').hide();
         this.reset();
     }
