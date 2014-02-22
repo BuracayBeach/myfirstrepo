@@ -193,7 +193,6 @@ function validateLastName(){
 	document.getElementsByName("spanName_last")[0].innerHTML=msg;
 
 	if(msg=="") return true;
-     document.getElementById('BSVM').disabled = false;
 }
 
 //Validate the mobile number field.

@@ -11,10 +11,14 @@ window.onload=function(){
 	userForm.onsubmit=validateAll;
 
 	changePasswordForm.currentPassword.onblur=validateCurrentPassword;
-	changePasswordForm.newPassword.onblur=validateNewPassword;
-	changePasswordForm.newPassword.onkeyup=validateReNewPassword;
-	changePasswordForm.reNewPassword.onblur=validateReNewPassword;
+	changePasswordForm.newPassword.onkeyup=validateNewPasswords;
+	changePasswordForm.reNewPassword.onkeyup=validateNewPasswords;
 	changePasswordForm.onsubmit=validateAllPassword;
+}
+
+function validateNewPasswords(){
+	validateNewPassword();
+	validateReNewPassword();
 }
 
 //Validate all fields on submition of form.
