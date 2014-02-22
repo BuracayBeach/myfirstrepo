@@ -12,7 +12,7 @@ class User_account extends CI_Controller {
 	//Index page
 	public function index() {
 		if(!isset($_SESSION))
-			session_start();		
+			session_start();
 
 		$this->load->view('login_view');
 	}
@@ -53,6 +53,7 @@ class User_account extends CI_Controller {
 
 		if(!$data){
 			$user_notif['login_notif'] = "Username does not exist!";
+			return false;
 		}
 		
 		else{
@@ -80,7 +81,7 @@ class User_account extends CI_Controller {
 		$data['password']= md5(filter_var($_POST['password'], FILTER_SANITIZE_STRING));
 		$data['sex']= filter_var($_POST['sex'], FILTER_SANITIZE_STRING);
 		$data['status']= "pending";
-		$data['email']= filter_var($_POST['email'], FILTER_SANITIZE_STRING);
+		$data['email']= filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 		$data['usertype']= filter_var($_POST['usertype'], FILTER_SANITIZE_STRING);
 		$data['emp_no']= filter_var($_POST['emp_no'], FILTER_SANITIZE_STRING);
 		$data['student_no']= filter_var($_POST['student_no'], FILTER_SANITIZE_STRING);
@@ -100,13 +101,13 @@ class User_account extends CI_Controller {
 
 		else
 			$user_notif['create_account_notif'] = "Failed in creating account!";
-			$this->backtohome();	
+			redirect(site_url("user_account/create_account"));		
 	}
 
 	//Update the value of the user info.
 	public function update(){
 		$data['sex']= filter_var($_POST['sex'], FILTER_SANITIZE_STRING);
-		$data['email']= filter_var($_POST['email'], FILTER_SANITIZE_STRING);
+		$data['email']= filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 		$data['name_first']= filter_var($_POST['name_first'], FILTER_SANITIZE_STRING);
 		$data['name_middle']= filter_var($_POST['name_middle'], FILTER_SANITIZE_STRING);
 		$data['name_last']= filter_var($_POST['name_last'], FILTER_SANITIZE_STRING);
