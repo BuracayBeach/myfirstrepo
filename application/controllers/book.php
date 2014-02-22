@@ -105,22 +105,12 @@ class book extends CI_Controller {
 
 
     public function search(){
-        $input['search_term'] = "";
-        $input['search_by'] = "book_title";
-        $input['order_by'] = "a.book_no";
-
-        if (isset($_POST['search'])) $input['search_term'] = $_POST['search'];
-        if (isset($_POST['search_by'])) $input['search_by'] = $_POST['search_by'];
-        if (isset($_POST['order_by'])) $input['order_by'] = $_POST['order_by'];
-
-        $input['available'] = isset($_POST["available"]);
-        $input['borrowed'] = isset($_POST["borrowed"]);
-        $input['reserved'] = isset($_POST["reserved"]);
-
+        $this->search_model->get_inputs($input);
 
         //pack data
         $details = array(
             'status_check'  => $this->search_model->get_status_check($input),
+            'type_check'  => $this->search_model->get_type_check($input),
             'search_term'   => $input['search_term'],
             'search_by'     => $input['search_by'],
             'order_by'      => $input['order_by'],
