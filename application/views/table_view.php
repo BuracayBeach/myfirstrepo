@@ -224,5 +224,5 @@
     }
 </script>
 
-<script type="text/javascript" src= "<?php echo base_url()?>/js/lend_receive_manager.js"></script>
+<script type="text/javascript" src= "<?php echo base_url()?>js/lend_receive_manager.js"></script>
 

@@ -1,5 +1,5 @@
 body{
-	background: rgb(240,240,240);
+	background: rgb(245,245,245);
 	color: black;
 }
 
@@ -7,8 +7,6 @@ body{
 	width: 100%;
 	height: 100px;
 	position: fixed;
-
-
 }
 
 #logo_container{
@@ -70,3 +68,38 @@ body{
 	height:70%;
 	float: left;
 }
+
+
+/*--------------------------------------
+
+PAGE BODY (Lower Part of System)
+
+--------------------------------------*/
+
+
+#pagebody{
+	height: 500px;
+	background: red;
+	position: fixed;
+	margin-top: 100px;
+	width: 100%;
+}
+
+
+/*--------------------------------------
+
+SEARCH FORM 
+
+--------------------------------------*/
+
+#side-wrapper{
+	width: 100%;
+	border-top: 2px solid blue;
+} 
+
+#search_form{
+	width: 20%;
+	background: yellow;
+
+}
+

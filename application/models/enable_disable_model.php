@@ -182,10 +182,12 @@ class Enable_disable_model extends CI_Model {
 
 	public function get_log()
 	{
-		$logs = $this->db->query("SELECT * FROM account_history");
+		//fetch the account history where the latest updates appear first
+		$logs = $this->db->query("SELECT * FROM account_history ORDER BY date DESC");
 
 		if($logs->num_rows() > 0)
 		{
+			//get each result as an object
 			foreach($logs->result() as $log)
 			{
 				$data[] = $log;
