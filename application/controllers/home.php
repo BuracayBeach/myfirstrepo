@@ -21,6 +21,7 @@ class Home extends CI_Controller {
         parent::__construct();
         $this->load->model('book_model');
         $this->load->model('search_model');
+        $this->load->model('notifs_model');
     }
 
     public function index(){
@@ -44,6 +45,11 @@ class Home extends CI_Controller {
         $this->load->view("search_view");
 
         $this->load->view("footer");
+
+        if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
+            $data['notifs'] = $this->notifs_model->get_all('username');
+            $this->load->view('notifications_view', $data);
+        }
     }
 
     public function announcements(){

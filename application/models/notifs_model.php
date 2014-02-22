@@ -4,10 +4,10 @@ class Notifs_Model extends CI_Model {
 
 	public function get_all($username) {
 
-		$this->db->where('username', $username);
-		$q = $this->db->get('notificationss');
+		$this->db->where(['username_user'=> $username]);
+		$q = $this->db->get('notifications');
 
-		if (q->num_rows() > 0)
+		if ($q->num_rows() > 0)
 			return $q->result();
 		else return null;
 	}

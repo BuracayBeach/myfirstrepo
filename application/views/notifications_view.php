@@ -32,4 +32,4 @@
 		<span> No notifications </span>
 	<?php endif; ?>
 
-</div>
+</div> 
