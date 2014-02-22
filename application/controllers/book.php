@@ -43,6 +43,10 @@ class book extends CI_Controller {
     public function add(){
         $data['book_no'] = filter_var($_POST['book_no'], FILTER_SANITIZE_MAGIC_QUOTES);
         $data['book_title'] = filter_var($_POST['book_title'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['type'] = filter_var($_POST['type'], FILTER_SANITIZE_MAGIC_QUOTES);
+        if($data['type'] != 'Book' && $data['type'] != 'Journal')
+            $data['abstract'] = filter_var($_POST['abstract'], FILTER_SANITIZE_MAGIC_QUOTES);
+        else $data['abstract'] = null;
         $data['description'] = filter_var($_POST['description'], FILTER_SANITIZE_MAGIC_QUOTES);
         $data['author'] = filter_var($_POST['author'], FILTER_SANITIZE_MAGIC_QUOTES);
         $data['publisher'] = filter_var($_POST['publisher'], FILTER_SANITIZE_MAGIC_QUOTES);
@@ -69,6 +73,10 @@ class book extends CI_Controller {
         $data['prev_book_no'] = filter_var($_POST['prev_book_no'], FILTER_SANITIZE_MAGIC_QUOTES);
         $data['book_no'] =  filter_var($_POST['book_no'], FILTER_SANITIZE_MAGIC_QUOTES);
         $data['book_title'] = filter_var($_POST['book_title'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['type'] = filter_var($_POST['type'], FILTER_SANITIZE_MAGIC_QUOTES);
+        if($data['type'] != 'Book' && $data['type'] != 'Journal')
+            $data['abstract'] = filter_var($_POST['abstract'], FILTER_SANITIZE_MAGIC_QUOTES);
+        else $data['abstract'] = null;
         $data['author'] = filter_var($_POST['author'], FILTER_SANITIZE_MAGIC_QUOTES);
         $data['description'] = filter_var($_POST['description'], FILTER_SANITIZE_MAGIC_QUOTES);
         $data['status'] = filter_var($_POST['book_status'], FILTER_SANITIZE_MAGIC_QUOTES);

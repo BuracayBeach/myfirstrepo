@@ -24,8 +24,9 @@
 	<div id="menulinks">
 		<a href="ihome">Home</a>
 		<a href="about_us">About Us</a>
-		<a href="help">Help</a>
+        <a href="announcements">Announcements</a>
         <a href="faq">FAQ</a>
+		<a href="help">Help</a>
 	</div>
 
 	<div id="acc_manager">

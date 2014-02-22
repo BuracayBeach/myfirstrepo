@@ -11,27 +11,39 @@
     </table>
     <hr/>
 </div>
-<button id="show_add_form_button" name="show_add_form_button" >Add New Book</button>
+<button id="show_add_form_button" name="show_add_form_button" >Add Material</button>
 <div id="add_container">
     <form autocomplete="on" id="add_book_form">
-        <h4>ADD BOOK</h4>
+        <h4>Add Material</h4>
         <label for="add_book_no">Book No: </label>
         <input type="text" name="book_no" id="add_book_no" placeholder="Book Number" required pattern="[A-Za-z0-9 ]+">
         <br/>
-        <label for="add_book_title">Book Title: </label>
-        <input type="text" name="book_title" id="add_book_title" placeholder="Book Title" required pattern="[-A-Za-z0-9 ]+"/>
+        <label for="add_book_title">Title: </label>
+        <input type="text" name="book_title" id="add_book_title" placeholder="Title" required pattern="[-A-Za-z0-9 ]+"/>
         <br/>
-        <label for="add_author">Book Author: </label>
+        <label for="add_book_type">Type: </label>
+        <select name="type" id="add_book_type">
+            <option selected="true">Book</option>
+            <option>Journal</option>
+            <option>SP</option>
+            <option>Thesis</option>
+        </select>
+        <br/>
+        <div class="abstract_container">
+            <label for="add_abstract" >Abstract</label>
+            <input type="text" name="abstract" id="add_abstract" placeholder="Abstract"/>
+        </div>
+        <label for="add_author">Author: </label>
         <input type="text" name="author" id="add_author" placeholder="Author" pattern="[A-Za-z ]+[-]?[A-Za-z]*"/>
         <br/>
-        <label for="add_description">Book Description: </label> <br/>
+        <label for="add_description">Description: </label> <br/>
         <textarea name="description" id="add_description" placeholder="Description"  ></textarea>
         <br/>
-        <label for="add_publisher">Book Publisher: </label>
+        <label for="add_publisher">Publisher: </label>
         <input type="text" name="publisher" id="add_publisher" placeholder="Publisher"  />
         <br/>
         <label for="add_date_published">Date Published: </label>
-        <input type="date" name="date_published" id="add_date_published" placeholder="Date Published" />
+        <input type="date" name="date_published" id="add_date_published"  pattern="\d{4}-\d\d-\d\d" placeholder="Date Published" />
         <br/>
         <label for="add_tags">Tags: </label>
         <input type="text" name="tags" id="add_tags" placeholder="Tags" pattern="^[a-zA-Z0-9 ]+(,[a-zA-Z0-9 ]+)*$"/>
@@ -41,18 +53,29 @@
     </form>
 </div>
 <div id="edit_container">
-
     <hr/>
     <form name="edit_book" id="edit_book_form" method="post">
-        <h4>EDIT BOOK</h4>
+        <h4>Edit Material</h4>
         <label for="edit_prev_book_no" hidden>Previous Book No:</label>
         <input type="text" name="prev_book_no" id="edit_prev_book_no" hidden/>
         <label for="edit_book_no">Book No: </label>
-        <input type="text" name="book_no" id="edit_book_no" required pattern="[A-Za-z0-9 ]+" />
+        <input type="text" name="book_no" id="edit_book_no" placeholder="Book Number" required pattern="[A-Za-z0-9 ]+" />
         <br/>
         <label for="edit_book_title">Book Title: </label>
-        <input type="text" name="book_title" id="edit_book_title" required pattern="[-A-Za-z0-9 ]+" />
+        <input type="text" name="book_title" id="edit_book_title" placeholder="Title" required pattern="[-A-Za-z0-9 ]+" />
         <br/>
+        <label for="edit_book_type">Type: </label>
+        <select name="type" id="edit_book_type">
+            <option selected="true">Book</option>
+            <option>Journal</option>
+            <option>SP</option>
+            <option>Thesis</option>
+        </select>
+        <br/>
+        <div class="abstract_container">
+            <label for="edit_abstract" >Abstract</label>
+            <input type="text" name="abstract" id="edit_abstract" placeholder="Abstract"/>
+        </div>
         <label for="edit_author">Book Author: </label>
         <input type="text" name="author" id="edit_author"  pattern="[A-Za-z ]+[-]?[A-Za-z]+" />
         <br/>

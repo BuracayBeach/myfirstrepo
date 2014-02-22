@@ -14,6 +14,9 @@ $('#content_container').ready(function(){
     recentlyAddedBooksContainer.on('click','.delete_button',deleteBook);
 
     contentContainer.on('click','.delete_button',deleteBook);
+
+    $('#add_book_type').change(checkBookType);
+    $('#edit_book_type').change(checkBookType);
     /***** END EVENT ATTACHMENTS *****/
 
     /* Hide Forms Initially */
@@ -22,9 +25,18 @@ $('#content_container').ready(function(){
     $('#edit_container').hide();
 });
 
+function checkBookType(){
+    var type = $(this).val();
+
+    if(type != "Book" && type != "Journal")
+        $('.abstract_container').show();
+    else $('.abstract_container').hide();
+}
 /***** ADD FUNCTIONS *****/
 function showAddForm(){
     var addContainer = $('#add_container');
+    $('#edit_container').hide();
+    $('.abstract_container').hide();
     addContainer.show();
     $(addContainer).find('#add_book_no').focus();
 }
@@ -36,7 +48,6 @@ function cancelAdd(event){
 }
 function addBook(event){
     event.preventDefault();  /* stop form from submitting normally */
-
     if(checkAll()){
         $.post("index.php/book/add",$(this).serialize(),function(data){
             data = JSON.parse(data);
@@ -71,8 +82,11 @@ function addBook(event){
 /***** EDIT FUNCTIONS *****/
 function fillEditForm(event){
     event.preventDefault();
-    var td = $(this).closest('tr').find('td[book_data=book_no]');
+    $('.abstract_container').hide();
+    $('#add_container').hide();
+    var td = $(this).closest('tr').find('[book_data=book_no]');
     var book_no = td.text();
+    console.log(book_no);
     $.post("index.php/book/get_book",{'book_no':book_no},function(data){
         data = JSON.parse(data);
         data = data[0];
@@ -82,15 +96,18 @@ function fillEditForm(event){
         editForm.find("#edit_book_no").val(data.book_no);
         editForm.find("#edit_book_title").val(data.book_title);
         editForm.find("#edit_book_status").val(data.status);
+        editForm.find("#edit_book_type").val(data.book_type);
+        checkBookType.call( $('#edit_book_type')[0] );
+        editForm.find("#edit_author").val(data.author);
+        editForm.find("#edit_abstract").val(data.abstract);
         editForm.find("#edit_description").val(data.description);
         editForm.find("#edit_publisher").val(data.publisher);
-        editForm.find("#edit_author").val(data.name);
         editForm.find("#edit_date_published")[0].value=data.date_published;
         editForm.find("#edit_tags").val(data.tags);
     });
 
     editedRow = td.closest('tr');
-    var editContainer = $('#edit_container')
+    var editContainer = $('#edit_container');
     editContainer.show();
     $(editContainer).find('#edit_book_no').focus();
 }
@@ -142,6 +159,7 @@ function deleteBook(){
                 toggleRecentlyAddedTable();
         }
     }
+    $('#edit_container').hide();
 }
 /***** END DELETE FUNCTIONS *****/
 

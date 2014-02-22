@@ -24,41 +24,42 @@ class Book_model extends CI_Model {
 
     function insert_book($data){
         $date_pub = $data['date_published'];
-        $query = "INSERT INTO book (book_no,book_title,description,publisher,tags,date_published)".
+        $has_abstract = $data['abstract'] != null;
+        $query = "INSERT INTO book (book_no,book_title,book_type,abstract,author,description,publisher,tags,date_published)".
             " VALUES ('{$data['book_no']}'".
             ",'{$data['book_title']}'".
+            ",'{$data['type']}'".
+            ",".($has_abstract?("'".$data['abstract']."'"):'null').
+            ",'{$data['author']}'".
             ",'{$data['description']}'".
             ",'{$data['publisher']}'".
             ",'{$data['tags']}'".
             ",".($date_pub==''?'null':("'".$date_pub."'")).")";
 
-        $this->db->query($query);
-
-        $this->db->query("INSERT INTO author (book_no,name) VALUES ('{$data['book_no']}','{$data['author']}')");
+        echo $this->db->query_($query);
     }
 
     function get_book($book_no){
-        $query = "SELECT * FROM book b, author a WHERE b.book_no='".$book_no."'";
-        $query2 = "AND a.book_no='".$book_no."'";
-        //$var = $this->db->query($query)->result()
-        //var_dump($var);
-        echo json_encode($this->db->query($query.$query2)->result());
+        $query = "SELECT * FROM book WHERE book_no='".$book_no."'";
+
+        echo json_encode($this->db->query($query)->result());
     }
 
     function edit_book($data){
         $date_pub = $data['date_published'];
         $query = "UPDATE book SET book_no='".$data['book_no']."'".
             ",book_title='".$data['book_title']."'".
+            ",book_type='".$data['type']."'".
+            ",abstract=".($data['abstract']==null?'null':("'".$data['abstract']."'")).
             ",status='".$data['status']."'".
+            ",author='".$data['author']."'".
             ",description='".$data['description']."'".
             " ,publisher='".$data['publisher']."'".
             ",tags='".$data['tags']."'".
             ",date_published=".($date_pub==''?'null':("'".$date_pub."'")).
             " WHERE book_no='".$data['prev_book_no']."'";
-        $query_author="UPDATE author SET name='{$data['author']}' WHERE book_no='{$data['book_no']}'";
 
         $this->db->query($query);
-        $this->db->query($query_author);
     }
 
 
