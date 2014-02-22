@@ -23,6 +23,7 @@ class Book_model extends CI_Model {
     }
 
     function insert_book($data){
+
         $date_pub = $data['date_published'];
         $query = "INSERT INTO book (book_no,book_title,book_type,abstract,author,description,publisher,tags,date_published)".
             " VALUES ('{$data['book_no']}'".
@@ -36,7 +37,6 @@ class Book_model extends CI_Model {
             ",".($date_pub==''?'null':("'".$date_pub."'")).")";
 
         $this->db->query($query);
-        echo json_encode($this->db->_error_number());
     }
 
     function get_book($book_no){

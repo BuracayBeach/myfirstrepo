@@ -49,41 +49,25 @@ function cancelAdd(event){
 function addBook(event){
     event.preventDefault();  /* stop form from submitting normally */
     if(checkAll()){
-        $.post("index.php/book/add",$(this).serialize(),function(data){
-            try{
-                data = JSON.parse(data);
-                console.log("no error");
-                console.log(data);
-                var rowHTML = $('<tr>');
-                rowHTML.append(
-                    '<td book_data="book_no" align="center">'+data.book_no+'</td>'
-                        +'<td>' +
-                        '<div style="font:20px Verdana" book_data="book_title">'+data.book_title+'</div>' +
-                        '<div style="font-size:17px" book_data="description">'+data.description+'<br/></div>' +
-                        '<div style="font-size:13px" book_data="author"><em>'+data.author+'</em><br/></div>' +
-                        '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="edit_button" >Edit</a></span>&nbsp;&nbsp;&nbsp;' +
-                        '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="delete_button" >Delete</a></span>&nbsp; | &nbsp;' +
-                        '<span>' +
-                        generateTransactionAnchorHTML(data.status,data.book_no) +
-                        '</span>'+
-                        '</td>' +
-                        '<td align="center">' +
-                        '<div book_data="publisher">'+data.publisher+'</div>' +
-                        '<div book_data="date_published">'+data.date_published+'</div>' +
-                        '</td>' +
-                        '<td book_data="tags">'+data.tags+'</td>'
-                );
-                $('#recently_added_books_table').find('tbody:last').append(rowHTML);
-                toggleRecentlyAddedTable();
-            }catch(exception){
-                console.log(exception);
-                console.log(data);
+        var book_no = $(this).find('#add_book_no').val();
+        var formInputs = $(this).serialize();
+        $.get("index.php/book/get_book",{"book_no":book_no},function(data){
+            var isUnique = JSON.parse(data).length == 0;
+            if(isUnique){
+                $.post("index.php/book/add",formInputs,function(data){
+                    data = JSON.parse(data);
+                    var rowHTML = generateTableRowHTML(data);
+                    $('#recently_added_books_table').find('tbody:last').append(rowHTML);
+                    toggleRecentlyAddedTable();
+                })
+                    .fail(function(jqXHR, textStatus, errorThrown,data){
+                        alert("Sorry! There was a problem processing your action.");
+                    });
+            }else{
+               alert('Cannot add duplicate material.')
             }
+        });
 
-        })
-            .fail(function(data){   //if adding failed
-
-         });
         $(this).closest('div').hide();
         this.reset();
     }
@@ -98,7 +82,7 @@ function fillEditForm(event){
     var td = $(this).closest('tr').find('[book_data=book_no]');
     var book_no = td.text();
     console.log(book_no);
-    $.post("index.php/book/get_book",{'book_no':book_no},function(data){
+    $.get("index.php/book/get_book",{'book_no':book_no},function(data){
         data = JSON.parse(data);
         data = data[0];
         console.log(data);
@@ -131,13 +115,15 @@ function editBook(event){
     $.post("index.php/book/edit",data,function(data){
         data = JSON.parse(data);
         var rowToUpdate = editedRow;
-        rowToUpdate.find("[book_data='book_no']").html(data.book_no);
-        rowToUpdate.find("[book_data='book_title']").html(data.book_title);
-        rowToUpdate.find("[book_data='author'] em").html(data.author+"<br/>");
-        rowToUpdate.find("[book_data='description']").html(data.description+"<br/>");
-        rowToUpdate.find("[book_data='publisher']").html(data.publisher);
-        rowToUpdate.find("[book_data='date_published']").html(data.date_published);
-        rowToUpdate.find("[book_data='tags']").html(data.tags);
+        rowToUpdate.find("[book_data='book_no']").text(data.book_no);
+        rowToUpdate.find("[book_data='book_type']").text(data.type);
+        rowToUpdate.find("[book_data='book_title']").text(data.book_title);
+        rowToUpdate.find("[book_data='author'] em").text(data.author);
+        rowToUpdate.find("[book_data='description']").text(data.description);
+        rowToUpdate.find("[book_data='publisher']").text(data.publisher);
+        rowToUpdate.find("[book_data='date_published']").text(data.date_published);
+        rowToUpdate.find("[book_data='tags']").text(data.tags);
+        rowToUpdate.find("[book_data='abstract']").text(data.abstract);
 
         //status update
         var transactionSpan =  rowToUpdate.find("span:has(.transaction_anchor)");
@@ -174,6 +160,30 @@ function deleteBook(){
 }
 /***** END DELETE FUNCTIONS *****/
 
+/*** STRING HTML GENERATION FUNCTIONS ***/
+function generateTableRowHTML(data){
+    var rowHTML = $('<tr>');
+    rowHTML.append(
+        '<td book_data="book_no" align="center">'+data.book_no+'</td>'
+            +'<td>' +
+            '<div style="font:20px Verdana" book_data="book_title">'+data.book_title+'</div>' +
+            '<div style="font-size:17px" book_data="description">'+data.description+'<br/></div>' +
+            '<div style="font-size:13px" book_data="author"><em>'+data.author+'</em><br/></div>' +
+            '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="edit_button" >Edit</a></span>&nbsp;&nbsp;&nbsp;' +
+            '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="delete_button" >Delete</a></span>&nbsp; | &nbsp;' +
+            '<span>' +
+            generateTransactionAnchorHTML(data.status,data.book_no) +
+            '</span>'+
+            '</td>' +
+            '<td align="center">' +
+            '<div book_data="publisher">'+data.publisher+'</div>' +
+            '<div book_data="date_published">'+data.date_published+'</div>' +
+            '</td>' +
+            '<td book_data="tags">'+data.tags+'</td>'
+    );
+    return rowHTML;
+}
+
 function generateTransactionAnchorHTML(status,book_no){
     var anchorText = "";
     var href = "href='http://localhost/myfirstrepo/index.php/update_book/";
@@ -192,6 +202,7 @@ function generateTransactionAnchorHTML(status,book_no){
 
     return "<a class='transaction_anchor' "+href+" bookno='"+book_no+"'>"+anchorText+"</a>";
 }
+/*** END STRING HTML GENERATION FUNCTIONS ***/
 
 function toggleRecentlyAddedTable(){
     var recentlyAddedTableRows = $('#recently_added_books_table').find('tr');
