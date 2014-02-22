@@ -37,11 +37,11 @@
                                 $row = $table[$a];
                             
                                 echo "<tr active='false'>";                               
-                                echo "<td book_data='book_no' align='center'>" . 
-                                        "<div style = 'font:15px Verdana' book_data='book_title'>" . 
+                                echo "<td align='center'>" . 
+                                        "<div style = 'font:15px Verdana' book_data='book_no'>" . 
                                             $row->book_no . 
                                         "</div>" . 
-                                        "<div style = 'font:12px Verdana' book_data='book_title'><em>" . 
+                                        "<div style = 'font:12px Verdana' book_data='book_type'><em>" . 
                                             $row->book_type . 
                                         "</em></div>" . 
                                     "</td>";
@@ -52,12 +52,12 @@
                                         "</div>" . 
 
                                         
-                                        "<div style = 'font-size:17px' book_data='description'> " . 
-                                            $row->description   . "<br>" .  
+                                        "<div style = 'font-size:17px' book_data='description'>" . 
+                                            $row->description . 
                                         "</div>" . 
 
                                         "<div style = 'font-size:13px' book_data='author'><em> " . 
-                                            $row->author . "<br>" .
+                                            $row->author .
                                         "</em></div>";
 
                                         if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){  //--------------- ADMIN ACTIONS ----------------\\

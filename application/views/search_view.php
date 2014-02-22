@@ -7,30 +7,44 @@
 				<br>
 
 				<form id="search_form" name="search_form" method="post">
+					<br><br><br><br><br><br><br><br><br><br><br><br>
+
+
 					<?php
 						if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
-							echo '
-							<div id="status">
+							echo '						
+							<div id="status_div">
+								<h4>Status</h4>
 								<input id = "available" type="checkbox" name = "available" checked>
-								<div class= "statuslabel" ><label for="available">Available</label></div>
+									<label for="available">Available</label>
 								<input id = "reserved" type="checkbox" name = "reserved" checked>
-								<div class= "statuslabel" ><label for="reserved">Reserved</label></div>
-								<input id = "borrowed" type="checkbox" name = "borrowed" checked >
-								<div class= "statuslabel" ><label for="borrowed" style="clear:right;">Borrowed</label></div>
-							</div>
-							';
+									<label for="reserved">Reserved</label>
+								<input id = "borrowed" type="checkbox" name = "borrowed" checked>
+									<label for="borrowed">Borrowed</label>
+							</div>';
 						}
 					?>
 
+					<div id="book_type_div">
+						<h4>Type</h4>
+						<input id = "type_book" type="checkbox" name = "type_book" checked>
+							<label for="type_book">Book</label>
+						<input id = "type_journal" type="checkbox" name = "type_journal" checked>
+							<label for="type_journal">Journal</label>
+						<input id = "type_sp" type="checkbox" name = "type_sp" checked>
+							<label for="type_sp">Special Problem</label>
+						<input id = "type_thesis" type="checkbox" name = "type_thesis" checked>
+							<label for="type_thesis">Thesis</label>
+					</div>
 
-					<br><br><br><br><br><br><br><br><br><br><br><br>
 
 					<input searchby="book_title" id="search_text" type="text" name='search' autofocus='true' placeholder='Keywords...' maxlength='99'/>
 					<input id='submit_search' type="submit" name="submit_search" value="Search" /><br/>
-					<div id="results_per_page_div" hidden>
+					<div id="results_per_page_div">
 						<input id='results_per_page' style="width:45px" type="number" min='1' max='500' value='10'/>
 						<span>Results per page</span>
 					</div>
+
 					<?php
 						if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
 							echo '
@@ -103,6 +117,7 @@
 						my_input += "&rows_per_page=" + $('#results_per_page').val();
 
 						console.log(my_input);
+
 						$.ajax({
 							type: "post",
 							data: my_input, 
@@ -114,7 +129,6 @@
 
 						$('#search').removeClass('home');
 						$('.logo_main').hide();
-						$('#results_per_page_div').show();
 						return false;
 					}
 

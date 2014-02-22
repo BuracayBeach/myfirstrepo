@@ -25,6 +25,28 @@ class Search_model extends CI_Model {
         
     }
 
+    function get_inputs(&$input){
+        $input['search_term'] = "";
+        $input['search_by'] = "book_title";
+        $input['order_by'] = "book_no";
+
+        $input['book_type'] = "Book";
+
+        if (isset($_POST['search'])) $input['search_term'] = $_POST['search'];
+        if (isset($_POST['search_by'])) $input['search_by'] = $_POST['search_by'];
+        if (isset($_POST['order_by'])) $input['order_by'] = $_POST['order_by'];
+        if (isset($_POST['book_type'])) $input['book_type'] = $_POST['book_type'];
+
+        $input['available'] = isset($_POST["available"]);
+        $input['borrowed'] = isset($_POST["borrowed"]);
+        $input['reserved'] = isset($_POST["reserved"]);
+
+        $input['type_book'] = isset($_POST["type_book"]);
+        $input['type_journal'] = isset($_POST["type_journal"]);
+        $input['type_sp'] = isset($_POST["type_sp"]);
+        $input['type_thesis'] = isset($_POST["type_thesis"]);
+    }
+
     function get_status_check($input){
         //set defaults
         $status_check = "status='available' or status='borrowed' or status='reserved'";
@@ -37,14 +59,36 @@ class Search_model extends CI_Model {
                 $status_check = str_replace(" or status='reserved'","",$status_check);
                 $status_check = str_replace("status='reserved'","",$status_check);
             }
-
         }
 
         if($status_check!="") $status_check = "(" . $status_check . ") ";
-        else if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") $status_check = "(status!='available' and status!='borrowed' and status!='reserved') and";
+        else if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") $status_check = "(status!='available' and status!='borrowed' and status!='reserved') ";
         else $status_check = "";
 
         return $status_check;
+    }
+
+
+    function get_type_check($input){
+        //set defaults
+        $type_check = "book_type='Book' or book_type='Journal' or book_type='SP' or book_type='Thesis'";
+
+        if (isset($input['search_term']) && isset($input['search_by'])){
+            //filter by book status
+            if (!$input["type_book"]) $type_check = str_replace("book_type='Book' or ","",$type_check);
+            if (!$input["type_journal"]) $type_check = str_replace("book_type='Journal' or ","",$type_check);
+            if (!$input["type_sp"]) $type_check = str_replace("book_type='SP' or ","",$type_check);
+            if (!$input["type_thesis"]){
+                $type_check = str_replace(" or book_type='Thesis'","",$type_check);
+                $type_check = str_replace("book_type='Thesis'","",$type_check);
+            }
+        }
+
+        if($type_check!="") $type_check = "(" . $type_check . ") ";
+        else if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") $type_check = "(book_type!='Book' and book_type!='Journal' and book_type!='SP' and book_type!='Thesis') ";
+        else $type_check = "";
+
+        return $type_check;
     }
 
     function query_result($details){
@@ -57,7 +101,10 @@ class Search_model extends CI_Model {
                 'order_by' => "order by " . $details['order_by']
         );
 
-        if ($details['search_by']== 'book_no' && $details['status_check'] != '')  $q['where'] .= " and ";
+        if ($details['status_check'] != '') $q['where'] .= ' and ';
+        $q['where'] .= $details['type_check'];
+
+        if ($details['search_by']== 'book_no' && trim($details['search_term']) != '')  $q['where'] .= " and ";
 
 
         if (!$details['spell_check']){
@@ -109,7 +156,7 @@ class Search_model extends CI_Model {
         if (trim($q['where']) == 'where') $q['where'] = '';
         
         $query_string = $q['select'] . $q['where'] . $q['order_by'];
-        // echo $query_string;
+        // var_dump ($query_string);
         return $this->db->query($query_string)->result();
     }
 
