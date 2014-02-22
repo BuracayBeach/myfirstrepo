@@ -11,19 +11,30 @@
 					<?php
 						if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
 							echo '
+							<h4>Status</h4>
 							<div id="status">
 								<input id = "available" type="checkbox" name = "available" checked>
-								<div class= "statuslabel" ><label for="available">Available</label></div>
+									<label for="available">Available</label>
 								<input id = "reserved" type="checkbox" name = "reserved" checked>
-								<div class= "statuslabel" ><label for="reserved">Reserved</label></div>
+									<label for="reserved">Reserved</label>
 								<input id = "borrowed" type="checkbox" name = "borrowed" checked >
-								<div class= "statuslabel" ><label for="borrowed" style="clear:right;">Borrowed</label></div>
+									<label for="borrowed" style="clear:right;">Borrowed</label>
 							</div>
 							';
 						}
 					?>
 
-
+					<div id="book_type_div">
+						<h4>Type</h4>
+						<input id = "type_book" type="checkbox" name = "type_book" checked>
+							<label for="type_book">Book</label>
+						<input id = "type_journal" type="checkbox" name = "type_journal" checked>
+							<label for="type_journal">Journal</label>
+						<input id = "type_sp" type="checkbox" name = "type_sp" checked>
+							<label for="type_sp">SP</label>
+						<input id = "type_thesis" type="checkbox" name = "type_thesis" checked>
+							<label for="type_thesis">Thesis</label>
+					</div>
 				
 
 					&nbsp;SEARCH<input searchby="book_title" id="search_text" type="text" name='search' autofocus='true' placeholder='Keywords...' maxlength='99'/>
