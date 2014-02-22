@@ -57,12 +57,13 @@ class Search_model extends CI_Model {
                 'order_by' => "order by " . $details['order_by']
         );
 
+        if ($details['search_by']== 'book_no' && $details['status_check'] != '')  $q['where'] .= " and ";
+
 
         if (!$details['spell_check']){
             $word_count = 0;
             if (trim($details['search_term']) != ""){
                 $tok = explode(" ", $details['search_term']);
-                if ($details['search_by']== 'book_no')  $q['where'] .= " and ";
 
                 foreach ($tok as $search) {
                     // echo $search."<br>";
@@ -185,6 +186,9 @@ class Search_model extends CI_Model {
         if ($search_by == 'publisher' || $search_by == 'any'){
             array_push($cols_to_search, $row->publisher);
         }
+        if ($search_by == 'abstract' || $search_by == 'any'){
+            array_push($cols_to_search, $row->abstract);
+        }
         if ($search_by == 'any'){
             array_push($cols_to_search, $row->book_no);
         }
@@ -274,13 +278,16 @@ class Search_model extends CI_Model {
             $to_suggest = false;
             $terms_to_suggest = '';
             foreach($search_terms as $search_term){
+
                 if (trim($search_term) == '') continue;
                 //compute correctibility of the search term
                 $percent_error = $term_sugg_dist[$search_term] / $this->max(strlen($term_sugg[$search_term]), strlen($search_term));
+
                 //if 25% is correctible for words with > 3 letters. For 3-letter words, one letter mistake can be corrected
                 if ($term_sugg_dist[$search_term] > 0 && ($percent_error <= 0.25 || strlen($search_term)==3 && $percent_error <= 0.34)) {
-                    $terms_to_suggest .= ' ' . $term_sugg[$search_term];
+                    $terms_to_suggest .= ' <strong>' . $term_sugg[$search_term] . '</strong>';
                     $to_suggest = true;
+
                 } else if ($term_sugg_dist[$search_term] == 0)  {
                     $terms_to_suggest .= ' ' . $search_term; //search term is ok, no corrections
                 }
