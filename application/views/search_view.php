@@ -1,4 +1,5 @@
-			<div id="search" <?php if(isset($home)) echo "class = 'home'";?> >
+
+			<div id="search">
 
 				<?php
 					if(isset($home))
@@ -25,8 +26,9 @@
 
 				
 
-					<input searchby="book_title" id="search_text" type="text" name='search' autofocus='true' placeholder='Keywords...' maxlength='99'/>
+					&nbsp;SEARCH<input searchby="book_title" id="search_text" type="text" name='search' autofocus='true' placeholder='Keywords...' maxlength='99'/>
 					<input id='submit_search' type="submit" name="submit_search" value="Search" /><br/>
+		            <hr>
 					<div id="results_per_page_div" hidden>
 						<input id='results_per_page' style="width:45px" type="number" min='1' max='500' value='10'/>
 						<span>Results per page</span>
@@ -49,17 +51,18 @@
 
 					<div id="sidebar-wrapper">
 				        <ul class="sidebar-nav">
-				            <li searchby="book_title">Title / Description</li>
-				            <li searchby="book_no">Book Number</li>
-				            <li searchby="author">Author</li>
-				            <li searchby="publisher">Publisher</li>
-				            <li searchby="date_published">Date Published</li>
-				            <li searchby="abstract">Abstract</li>
-				            <li searchby="any">Any</li>
+				            <a href=""><li class="menu-toggle" searchby="book_title"><img src="<?php echo base_url();?>images/icon/title1.png" alt="">&nbsp; Title</li></a>
+				            <a href=""><li class="menu-toggle" searchby="book_no"><img src="<?php echo base_url();?>images/icon/number.png" alt="">&nbsp; Book Number</li></a>
+				            <a href=""><li class="menu-toggle" searchby="author"><img src="<?php echo base_url();?>images/icon/user32.png" alt="">&nbsp; Author</li></a>
+				            <a href=""><li class="menu-toggle" searchby="publisher"><img src="<?php echo base_url();?>images/icon/printer32.png" alt="">&nbsp; Publisher</li></a>
+				            <a href=""><li class="menu-toggle" searchby="date_published"><img src="<?php echo base_url();?>images/icon/calendar.png" alt="">&nbsp; Date Published</li></a>
+				            <a href=""><li class="menu-toggle" searchby="abstract"><img src="<?php echo base_url();?>images/icon/star32.png" alt="">&nbsp; Abstract</li></a>
+				            <a href=""><li class="menu-toggle" searchby="any"><img src="<?php echo base_url();?>images/icon/wand32.png" alt="">&nbsp; Any</li></a>
+				           
+				            <hr>
 				        </ul>
-				    </div>
-
-					
+					</div>
+	
 
 					<div id='suggestion'>
 						<!-- search suggestion go here -->
@@ -70,6 +73,8 @@
 			<div id='result_container'>
 
 			</div>
+
+
 
 			<script type="text/javascript">
 
@@ -164,3 +169,13 @@
 
 
 			</script>
+
+
+    <script>
+	    $(".menu-toggle").click(function(e) {
+	        e.preventDefault();
+	        $("li.active").toggleClass("active")
+	        $(this).toggleClass("active");
+	      
+	    });
+    </script>
