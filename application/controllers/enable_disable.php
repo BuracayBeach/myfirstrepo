@@ -10,6 +10,9 @@ class Enable_disable extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('form');//loads the form helper
 		$this->load->library('firephp');
+		$this->load->library('pagination');
+		
+
 		if(!isset($_SESSION))
 			session_start();
 
@@ -35,6 +38,11 @@ class Enable_disable extends CI_Controller {
 	{
 		// Sanitation Author: Cyril Justine D. Bravo
 		// Description: Sanitizes queries in the user search
+		if(count($_POST) == 0)
+		{
+			$_POST = $_SESSION['post_temp'];
+		}
+
 		$data['field'] = filter_var($_POST["field"],FILTER_SANITIZE_STRING);
 		switch($_POST["field"]){
 			case "name": {
@@ -68,8 +76,22 @@ class Enable_disable extends CI_Controller {
 		$this->load->model('enable_disable_model');
 		$query = $this->enable_disable_model->generateQuery($data);//dynamically generates an sql query based on search option
 		$result = $this->enable_disable_model->runQuery($query);//gets the result from the query
-		$array['result'] = $result;	
-		$this->load->view('header');						//passes the result to the view 
+
+		$page = $this->uri->segment(3);
+
+		$page_size = 10;
+
+		$config['base_url'] = base_url()."enable_disable/search/";
+		$config['total_rows'] = count($result);
+		$config['per_page'] = $page_size;
+
+		$this->pagination->initialize($config);
+
+		$array['result'] = $this->filter_results($result,$page,$page+$page_size);
+		$array['links'] = $this->pagination->create_links();
+		//var_dump($array);
+		$_SESSION['post_temp'] = $_POST;
+ 		$this->load->view('header');						//passes the result to the view 
 		$this->load->view('enable_disable_view', $array);	//loads the view with the results
 		$this->load->view('footer');
 	}
@@ -182,6 +204,17 @@ class Enable_disable extends CI_Controller {
 		$log_result = $this->enable_disable_model->get_log();
 
 		echo json_encode($log_result);
+	}
+
+	private function filter_results($array,$lower_bound,$upper_bound)
+	{
+		$filtered_array = array();
+		for($i=$lower_bound;$i<$upper_bound;$i+=1)
+		{
+			$filtered_array[$i] = $array[$i];
+		}
+
+		return $filtered_array;
 	}
 
 	/* end edit */

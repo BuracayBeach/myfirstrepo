@@ -25,8 +25,9 @@
 
 	            	</br><button type="submit" id="submitButton"> Search </button>
           	</div>
-          	<div id="result">
+          	<div id="result">	
           		<?php
+          			//var_dump($result);
           			if(isset($result))//checks if $result not null
           			{
 	          			echo "<table border='1'><tr><th>Username</th><th>Email</th><th>User Type</th><th>First name</th><th>Middle name</th><th>Last name</th><th>Course</th><th>College</th><th>action</th></tr>";
@@ -64,6 +65,9 @@
 							echo "</tr>";
 						}
 						echo "</table>";
+
+
+						echo "<div id='links_container'>".$links."</div>";
 					}
 				?>
           	</div>
