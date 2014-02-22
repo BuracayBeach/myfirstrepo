@@ -34,7 +34,7 @@ class Reserve_Model extends CI_Model {
 	public function status_reserved($book_no) {
 		$lend = $this->db->query("SELECT COUNT(*) FROM lend WHERE book_no LIKE '{$book_no}'");
 
-		if ($lend->result() == 0)
+		if ($lend->result() != 1)
 			$this->db->query("UPDATE book SET status = 'reserved' WHERE book_no LIKE '{$book_no}'");
 	}
 
