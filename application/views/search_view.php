@@ -22,18 +22,8 @@
 						}
 					?>
 
-				<!-- 	<select name="search_by">
-						<option value="book_title">Title / Description</option>
-						<option value="book_no"> Book Number </option>
-						<option class="select-dash" disabled ="disabled">----------</option>
-						<option value="author"> Author</option>
-						<option value="date_published"> Date Published</option>
-						<option class="select-dash" disabled ="disabled">----------</option>
-						<option value="any"> Any </option>
-					</select> -->
 
-			      
-
+					<br><br><br><br><br><br><br><br><br><br><br><br>
 
 					<input searchby="book_title" id="search_text" type="text" name='search' autofocus='true' placeholder='Keywords...' maxlength='99'/>
 					<input id='submit_search' type="submit" name="submit_search" value="Search" /><br/>

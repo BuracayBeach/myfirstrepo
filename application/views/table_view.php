@@ -12,12 +12,13 @@
                             echo "</span><br/><br/>";
 
                             echo "<tr >
-                                <th width='15%'>Book No.    </th>
-                                <th>Book        </th>
-                                <th>Publishment </th>
+                                <th width='15%'>Identification</th>
+                                <th width='30%'>Material</th>
+                                <th width='15%'>Publishment </th>
                             ";
-                            // if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") 
-                            echo "<th>Tags</th>";
+
+                            echo "<th>Tags</th>"; //hide later
+                            echo "<th>Abstract</th>"; //hide later
                             echo "</tr>";
 
 
@@ -35,12 +36,21 @@
                                 if (!isset($table[$a])) break;
                                 $row = $table[$a];
                             
-                                echo "<tr>";                               
-                                echo "<td book_data='book_no' align='center'>" . $row->book_no . "</td>";
+                                echo "<tr active='false'>";                               
+                                echo "<td book_data='book_no' align='center'>" . 
+                                        "<div style = 'font:15px Verdana' book_data='book_title'>" . 
+                                            $row->book_no . 
+                                        "</div>" . 
+                                        "<div style = 'font:12px Verdana' book_data='book_title'><em>" . 
+                                            $row->book_type . 
+                                        "</em></div>" . 
+                                    "</td>";
+
                                 echo "<td>" .
                                         "<div style = 'font:20px Verdana' book_data='book_title'>" . 
                                             $row->book_title . 
                                         "</div>" . 
+
                                         
                                         "<div style = 'font-size:17px' book_data='description'> " . 
                                             $row->description   . "<br>" .  
@@ -121,9 +131,8 @@
 
                                 // if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") 
                                 echo "<td book_data='tags'>" . $row->tags . "</td>";
+                                echo "<td book_data='abstract'>" . $row->abstract . "</td>";
 
-
-                               
                                 echo "</tr>";
                             }
                         } else  {
@@ -157,10 +166,16 @@
 </div>
 
 <script>
+    $('#search_table').on('click', 'tr', activate_row);
+
     $('#pagination').on('click', '.page_nav', go_to_page);
     $('.prev_nav').on('click', prev_page);
     $('.next_nav').on('click', next_page);
 
+    function activate_row(){
+        $("#search_table").find("tr").attr("active", "false");
+        $(this).attr('active', true);
+    }
 
     function go_to_page(){
         page = $(this).attr('pageno');

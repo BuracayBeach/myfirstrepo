@@ -109,7 +109,7 @@ class Search_model extends CI_Model {
         if (trim($q['where']) == 'where') $q['where'] = '';
         
         $query_string = $q['select'] . $q['where'] . $q['order_by'];
-        // echo $query_string;
+        echo $query_string;
         return $this->db->query($query_string)->result();
     }
 
@@ -185,6 +185,9 @@ class Search_model extends CI_Model {
         }
         if ($search_by == 'publisher' || $search_by == 'any'){
             array_push($cols_to_search, $row->publisher);
+        }
+        if ($search_by == 'abstract' || $search_by == 'any'){
+            array_push($cols_to_search, $row->abstract);
         }
         if ($search_by == 'any'){
             array_push($cols_to_search, $row->book_no);
