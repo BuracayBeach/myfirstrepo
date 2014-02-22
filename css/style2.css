@@ -182,3 +182,24 @@ TABLE RESULTS
 
 }
 
+/*---------------------------------------
+
+MANAGE
+
+---------------------------------------*/
+
+
+#recently_added_books_container, #add_container, #edit_container{
+	min-height: 50px;
+	width: 40%;
+	background: pink;
+
+	position: fixed;
+	right: 0;
+	top:100px;
+
+}
+
+ #edit_container{
+ 	top:160px;
+ }
