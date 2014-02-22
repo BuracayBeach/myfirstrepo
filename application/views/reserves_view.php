@@ -58,7 +58,7 @@ $this->load->view('reserves_view', $data);
 			<?php echo "<button class='.reserve_button' book_no='" . $row->book_no . "'>unreserve</button>" ?>
 
 			<br/>
-
+			
 		</div>
 
 	<?php endforeach; ?>
