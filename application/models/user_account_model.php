@@ -23,7 +23,7 @@ class User_account_model extends CI_Model {
 				'{$data['name_first']}',
 				'{$data['name_middle']}',
 				'{$data['name_last']}',
-				{$data['mobile_no']},
+				'{$data['mobile_no']}',
 				'{$data['course']}',
 				'{$data['college']}')");
 			return true;
@@ -56,7 +56,7 @@ class User_account_model extends CI_Model {
 				name_first='{$data['name_first']}',
 				name_middle='{$data['name_middle']}',
 				name_last='{$data['name_last']}',
-				mobile_no={$data['mobile_no']},
+				mobile_no='{$data['mobile_no']}',
 				course='{$data['course']}',
 				college='{$data['college']}' WHERE username='{$uname}'");
 			return true;
