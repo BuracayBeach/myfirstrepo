@@ -101,7 +101,7 @@ class User_account extends CI_Controller {
 
 		else
 			$user_notif['create_account_notif'] = "Failed in creating account!";
-			redirect(site_url("user_account/create_account"));		
+			redirect(site_url("user_account/create_account"));
 	}
 
 	//Update the value of the user info.
