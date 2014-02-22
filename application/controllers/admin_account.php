@@ -45,7 +45,7 @@ class Admin_account extends CI_Controller {
 		}
 
 		else
-			redirect(base_url());
+			redirect(site_url("admin_account/adminlogin"));
 	}
 
 	public function logout(){
@@ -64,7 +64,7 @@ class Admin_account extends CI_Controller {
 		$data = $this->admin_account_model->get_admin($username);
 
 		if(!$data){
-			$_SESSION['notif_admin_login'] = "Username does not exist!";
+			$admin_notif['login_notif'] = "Adminintrator username does not exist!";
 		}
 		
 		else{
@@ -72,7 +72,7 @@ class Admin_account extends CI_Controller {
 				return true;
 			}
 			else{
-				$_SESSION['notif_admin_login'] = "Incorrect password!";
+				$admin_notif['login_notif'] = "Incorrect password!";
 				return false;
 			}
 		}
