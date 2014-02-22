@@ -164,6 +164,18 @@ class Enable_disable extends CI_Controller {
 		echo json_encode($json);
 	}
 
+	/* start edit by Carl Adrian P. Castueras */
+
+	/* 
+		sample AJAX Call
+		$.ajax({
+			url : "get_log/",
+			type : 'POST',
+			dataType : "html",
+			async : true,
+			success: function(data) {}
+	*/
+
 	public function get_log()
 	{
 		$this->load->model('enable_disable_model');
@@ -171,6 +183,8 @@ class Enable_disable extends CI_Controller {
 
 		echo json_encode($log_result);
 	}
+
+	/* end edit */
 }
 
 /* End of file enable_disable.php */
