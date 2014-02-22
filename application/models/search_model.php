@@ -57,12 +57,13 @@ class Search_model extends CI_Model {
                 'order_by' => "order by " . $details['order_by']
         );
 
+        if ($details['search_by']== 'book_no' && $details['status_check'] != '')  $q['where'] .= " and ";
+
 
         if (!$details['spell_check']){
             $word_count = 0;
             if (trim($details['search_term']) != ""){
                 $tok = explode(" ", $details['search_term']);
-                if ($details['search_by']== 'book_no')  $q['where'] .= " and ";
 
                 foreach ($tok as $search) {
                     // echo $search."<br>";

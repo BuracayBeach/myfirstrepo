@@ -22,7 +22,7 @@
 						}
 					?>
 
-					<select name="search_by">
+				<!-- 	<select name="search_by">
 						<option value="book_title">Title / Description</option>
 						<option value="book_no"> Book Number </option>
 						<option class="select-dash" disabled ="disabled">----------</option>
@@ -30,11 +30,14 @@
 						<option value="date_published"> Date Published</option>
 						<option class="select-dash" disabled ="disabled">----------</option>
 						<option value="any"> Any </option>
-					</select>
+					</select> -->
 
-					<input id="search_text" type="text" name='search' autofocus='true' placeholder='Keywords...' maxlength='99'/>
+			      
+
+
+					<input searchby="book_title" id="search_text" type="text" name='search' autofocus='true' placeholder='Keywords...' maxlength='99'/>
 					<input id='submit_search' type="submit" name="submit_search" value="Search" /><br/>
-
+					
 					<?php
 						if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
 							echo '
@@ -49,8 +52,21 @@
 							</select><br/>
 							';
 						}
-
 					?>
+
+					<div id="sidebar-wrapper">
+				        <ul class="sidebar-nav">
+				            <li searchby="book_title">Title / Description</li>
+				            <li searchby="book_no">Book Number</li>
+				            <li searchby="author">Author</li>
+				            <li searchby="publisher">Publisher</li>
+				            <li searchby="date_published">Date Published</li>
+				            <li searchby="abstract">Abstract</li>
+				            <li searchby="any">Any</li>
+				        </ul>
+				    </div>
+
+					
 
 					<div id='suggestion'>
 						<!-- search suggestion go here -->
@@ -70,14 +86,25 @@
 				}
 
 				$(document).ready(function() {
-					
+				    $('#sidebar-wrapper').on('click', 'li', ajax_results);
+
+
 					function ajax_results(event){
 						event.preventDefault();
-		
+
 						my_input = $('#search_form').serialize();
+
+						if ($(this).attr('searchby') == null) {
+							my_input += "&search_by=" + $('#search_text').attr('searchby');
+						}else {
+							search_by = $(this).attr('searchby');
+							my_input += "&search_by=" + search_by;
+							$('#search_text').attr('searchby', search_by);
+						}
 						my_input += "&page=1";
 						my_input += "&rows_per_page=10";
 
+						console.log(my_input);
 						$.ajax({
 							type: "post",
 							data: my_input, 
