@@ -43,4 +43,4 @@ $this->load->view('notifications_view', $data);
 		<span> No notifications. </span>
 	<?php endif; ?>
 
-</div>
+</div> 
