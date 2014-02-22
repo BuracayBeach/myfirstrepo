@@ -49,7 +49,12 @@ class Reserve_Model extends CI_Model {
 
 	public function get($username) {
 
-		$q = $this->db->query("SELECT book_no FROM reserves WHERE username LIKE '{$username}'");
+		$q = $this->db->query("SELECT r.date_reserved, b.book_title, b.book_no
+						FROM reserves r, book b
+						WHERE r.username = '{$username}' AND
+						r.book_no = b.book_no
+						GROUP BY b.book_no;");
+
 		return $q->result();
 	}
 
