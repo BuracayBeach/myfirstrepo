@@ -12,7 +12,7 @@ class User_account extends CI_Controller {
 	//Index page
 	public function index() {
 		if(!isset($_SESSION))
-			session_start();
+			session_start();		
 
 		$this->load->view('login_view');
 	}
@@ -37,7 +37,7 @@ class User_account extends CI_Controller {
 		if($this->check_user_validity()){	
 			$_SESSION['username'] = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
 			$_SESSION['logged_in'] = true;
-			$_SESSION['type'] = "admin";
+			$_SESSION['type'] = "regular";
 			redirect(base_url());
 		}
 
@@ -52,7 +52,7 @@ class User_account extends CI_Controller {
 		$data = $this->user_account_model->get_user($username);
 
 		if(!$data){
-			$_SESSION['notif_login'] = "Username does not exist!";
+			$user_notif['login_notif'] = "Username does not exist!";
 		}
 		
 		else{
@@ -60,7 +60,7 @@ class User_account extends CI_Controller {
 				return true;
 			}
 			else{
-				$_SESSION['notif_login'] = "Incorrect password!";
+				$user_notif['login_notif'] = "Password does not match!";		
 				return false;
 			}
 		}
@@ -94,11 +94,12 @@ class User_account extends CI_Controller {
 		$result = $this->user_account_model->insert_data($data);
 
 		if($result){
-			$_SESSION['notif_create_account'] = "Succesfully created account!";
+			$user_notif['create_account_notif'] = "Succesfully created account!";
 			$this->backtohome();
 		}
 
 		else
+			$user_notif['create_account_notif'] = "Failed in creating account!";
 			$this->backtohome();	
 	}
 
@@ -117,12 +118,12 @@ class User_account extends CI_Controller {
 		$result = $this->user_account_model->update_data($data, $uname);
 		
 		if($result){
-			$_SESSION['notif_update_account'] = "Succesfully updated account";
+			$user_notif['update_account_notif'] = "Succesfully updated account!";
 			$this->get_data();
 		}
 
 		else{
-			$_SESSION['notif_update_account'] = "Email exists";
+			$user_notif['update_account_notif'] = "Email already exist!";
 			$this->get_data();
 		}
 	}
@@ -135,11 +136,11 @@ class User_account extends CI_Controller {
 		$database_password = $this->user_account_model->get_password($uname);
 
 		if($database_password==$current_password) {
-			$_SESSION['notif_change_password'] = "Succesfully changed password!";
+			$user_notif['change_password_notif'] = "Succesfully changed password!";
 			$this->user_account_model->update_password($new_password, $uname);
 			$this->get_data();
 		} else {
-			$_SESSION['notif_change_password'] = "Password does not match";
+			$user_notif['change_password_notif'] = "Password does not match";
 			$this->get_data();
 		}
 	}
