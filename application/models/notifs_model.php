@@ -17,6 +17,10 @@ class Notifs_Model extends CI_Model {
 		else return null;
 	}
 
+	public function add_notif($data) {
+		$this->db->insert('notifications', $data);
+	}
+
 }
 
 ?>
