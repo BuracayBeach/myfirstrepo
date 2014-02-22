@@ -30,6 +30,7 @@
 
 	<div id="acc_manager">
 		<?php
+			var_dump($_SESSION);
 			if(isset($_SESSION['type'])){
 				if($_SESSION['type'] == "regular")
 					include 'logged_user_view.php';
