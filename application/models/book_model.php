@@ -36,7 +36,7 @@ class Book_model extends CI_Model {
             ",'{$data['tags']}'".
             ",".($date_pub==''?'null':("'".$date_pub."'")).")";
 
-        echo $this->db->query_($query);
+        echo $this->db->query($query);
     }
 
     function get_book($book_no){

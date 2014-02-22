@@ -50,28 +50,34 @@ function addBook(event){
     event.preventDefault();  /* stop form from submitting normally */
     if(checkAll()){
         $.post("index.php/book/add",$(this).serialize(),function(data){
-            data = JSON.parse(data);
-            var rowHTML = $('<tr>');
-            rowHTML.append(
-                '<td book_data="book_no" align="center">'+data.book_no+'</td>'
-                    +'<td>' +
-                    '<div style="font:20px Verdana" book_data="book_title">'+data.book_title+'</div>' +
-                    '<div style="font-size:17px" book_data="description">'+data.description+'<br/></div>' +
-                    '<div style="font-size:13px" book_data="author"><em>'+data.author+'</em><br/></div>' +
-                    '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="edit_button" >Edit</a></span>&nbsp;&nbsp;&nbsp;' +
-                    '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="delete_button" >Delete</a></span>&nbsp; | &nbsp;' +
-                    '<span>' +
-                    generateTransactionAnchorHTML(data.status,data.book_no) +
-                    '</span>'+
-                '</td>' +
-                '<td align="center">' +
-                    '<div book_data="publisher">'+data.publisher+'</div>' +
-                    '<div book_data="date_published">'+data.date_published+'</div>' +
-                '</td>' +
-                '<td book_data="tags">'+data.tags+'</td>'
-            );
-            $('#recently_added_books_table').find('tbody:last').append(rowHTML);
-            toggleRecentlyAddedTable();
+            try{
+                data = JSON.parse(data);
+                var rowHTML = $('<tr>');
+                rowHTML.append(
+                    '<td book_data="book_no" align="center">'+data.book_no+'</td>'
+                        +'<td>' +
+                        '<div style="font:20px Verdana" book_data="book_title">'+data.book_title+'</div>' +
+                        '<div style="font-size:17px" book_data="description">'+data.description+'<br/></div>' +
+                        '<div style="font-size:13px" book_data="author"><em>'+data.author+'</em><br/></div>' +
+                        '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="edit_button" >Edit</a></span>&nbsp;&nbsp;&nbsp;' +
+                        '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="delete_button" >Delete</a></span>&nbsp; | &nbsp;' +
+                        '<span>' +
+                        generateTransactionAnchorHTML(data.status,data.book_no) +
+                        '</span>'+
+                        '</td>' +
+                        '<td align="center">' +
+                        '<div book_data="publisher">'+data.publisher+'</div>' +
+                        '<div book_data="date_published">'+data.date_published+'</div>' +
+                        '</td>' +
+                        '<td book_data="tags">'+data.tags+'</td>'
+                );
+                $('#recently_added_books_table').find('tbody:last').append(rowHTML);
+                toggleRecentlyAddedTable();
+            }catch(exception){
+                console.log(exception);
+                console.log(data);
+            }
+
         });
         $(this).closest('div').hide();
         this.reset();

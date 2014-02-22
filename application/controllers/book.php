@@ -151,7 +151,7 @@ class book extends CI_Controller {
         $this->load->view('table_view', $details);
 
         if (trim($search_suggestion)!=''){
-            echo "<span>You might want to search for: <a id='suggestion_text' search_by={$_POST["search_by"]} href='javascript:research();'>" . trim($search_suggestion) . "</a></span><br/><br/>";
+            echo "<span>You might want to search for: <a id='suggestion_text' search_by='{$_POST["search_by"]}' href='javascript:research();'>" . trim($search_suggestion) . "</a></span><br/><br/>";
         }
         // json_encode($search_suggestion);
     }
