@@ -8,3 +8,4 @@
 	<input type="Submit" value="Submit"/>
 </form>
 <a href="<?php echo base_url();?>index.php/admin_account/adminlogin">Back</a>
+<script src="<?php echo base_url(); ?>js/create_admin.js"></script>

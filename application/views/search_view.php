@@ -23,7 +23,7 @@
 					?>
 
 
-					<br><br><br><br><br><br><br><br><br><br><br><br>
+				
 
 					<input searchby="book_title" id="search_text" type="text" name='search' autofocus='true' placeholder='Keywords...' maxlength='99'/>
 					<input id='submit_search' type="submit" name="submit_search" value="Search" /><br/>
