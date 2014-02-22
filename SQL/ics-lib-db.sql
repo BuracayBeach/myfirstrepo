@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 22, 2014 at 02:05 PM
+-- Generation Time: Feb 22, 2014 at 03:35 PM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT INTO `admin` (`name_first`, `name_middle`, `name_last`, `username`, `password`) VALUES
-('First', 'Middle', 'Last', 'admin', '21232f297a57a5a743894a0e4a801fc3');
+('admin', 'mino', 'bulalo', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');
 
 -- --------------------------------------------------------
 
@@ -110,11 +110,13 @@ CREATE TABLE IF NOT EXISTS `book` (
 
 INSERT INTO `book` (`book_no`, `book_title`, `book_type`, `abstract`, `author`, `status`, `description`, `publisher`, `date_published`, `tags`) VALUES
 ('AB 1234', 'Merry Ann Title', 'Book', NULL, NULL, 'available', 'Happy New Yeare', 'Santa Claus', '2014-01-18', 'sad'),
+('asdasd', 'jh', 'Journal', NULL, 'jkh', 'available', 'jkh', 'jkhjkh', '2012-11-06', 'jljkljj'),
 ('CD 4321', 'How To Program in Java', '', 'abstractttt', NULL, 'reserved', 'Search Google Chrome', 'Not A Programmer', '2014-01-01', ''),
 ('EF 5678', 'How To Kill Spiders', 'Book', NULL, NULL, 'borrowed', 'Shoe', 'Microsoft', '2013-08-06', NULL),
 ('GH 8765', 'Sleeping in Class Tips', 'Book', NULL, NULL, 'available', 'Sleep peacefully while in Class', 'Rey Benedicto', '2014-04-18', NULL),
 ('IJ 1357', 'French Fries from Potatoes', 'Book', NULL, NULL, 'reserved', 'Learn how to eat potatoes', 'McDo', '2013-09-17', NULL),
-('KL 1111', 'Cram Effficiently', 'Book', NULL, 'Boy bulalo', 'borrowed', 'Learn how to waste time then cram', 'Rey Benedicto', '2012-11-06', '');
+('jh', 'jk', 'Book', NULL, 'hkj', 'available', 'hjkh', 'jkh', '2012-11-06', 'kj'),
+('KL 1111', 'Cram Effficiently', 'Thesis', 'dsadsa', 'Boy bulalo', 'borrowed', 'Learn how to waste time then cram', 'Rey Benedicto', '2012-11-06', 'asdsa');
 
 -- --------------------------------------------------------
 
@@ -201,13 +203,6 @@ CREATE TABLE IF NOT EXISTS `lend` (
   KEY `lend_username_user` (`username_user`),
   KEY `lend_username_admin` (`username_admin`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `lend`
---
-
-INSERT INTO `lend` (`transaction_no`, `book_no`, `username_user`, `date_borrowed`, `date_returned`, `username_admin`) VALUES
-(1, 'KL 1111', 'theuser', '2014-02-22 13:50:16', NULL, 'admin');
 
 -- --------------------------------------------------------
 
@@ -316,8 +311,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `sex`, `status`, `email`, `usertype`, `emp_no`, `student_no`, `name_first`, `name_middle`, `name_last`, `mobile_no`, `course`, `college`) VALUES
-('allanconda', '06e5297b5cce95239a553bdaf4636da3', 'male', 'pending', 'allan.conda@gmail.com', 'student', '', '2011-16328', 'anthony', 'hofilena', 'conda', '639273874811', 'BSCS', 'CAS'),
-('theuser', '34819d7beeabb9260a5c854bc85b3e44', 'male', 'pending', 'username@email.com', 'student', '', '1908-00001', 'The', 'Oldest', 'Student Ever', '639351624693', 'BSA', 'CA');
+('useruser', 'e172c5654dbc12d78ce1850a4f7956ba6e5a3d2ac40f0925fc6d691ebb54f6bf', 'male', 'pending', 'user@user.com', 'student', '', '2011-16328', 'user', 'user', 'bulalo', '639273874811', 'BSAM', 'CAS');
 
 --
 -- Constraints for dumped tables
