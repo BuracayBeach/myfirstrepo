@@ -21,7 +21,6 @@ class Home extends CI_Controller {
         parent::__construct();
         $this->load->model('book_model');
         $this->load->model('search_model');
-        $this->load->model('notifs_model');
     }
 
     public function index(){
