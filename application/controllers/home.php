@@ -31,12 +31,12 @@ class Home extends CI_Controller {
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin) $this->load->view('manage_view');
 
-/*        if ($is_admin){ 
+/*        if ($is_admin){
             $this->load->view('announcement_manage_view');
             $this->load->view("announcement_view");
         }
-
-*/        $this->load->view("footer");
+*/
+        $this->load->view("footer");
     }
 
     public function ihome(){
@@ -51,8 +51,6 @@ class Home extends CI_Controller {
             $this->load->view('notifications_view', $data);
         }
         $this->load->view("footer");
-
-
     }
 
     public function announcements(){
@@ -69,8 +67,9 @@ class Home extends CI_Controller {
     public function about_us(){
         $data['title'] = "eICS Lib About Us";
         $this->load->view("header", $data);
-        $this->load->view("search_view");
+
         $this->load->view("about_us_view");
+        $this->load->view("search_view");
 
         if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
             $this->load->view('manage_view');
@@ -84,8 +83,8 @@ class Home extends CI_Controller {
         $this->load->view("header", $data);
         $this->load->view("search_view");
         $this->load->view("faq_view");
-        //$is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
-        //if ($is_admin) $this->load->view('manage_view');
+        $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
+        if ($is_admin) $this->load->view('faq_manage_view');
 
         $this->load->view("footer");
     }

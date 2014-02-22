@@ -212,14 +212,13 @@ CREATE TABLE IF NOT EXISTS `lend` (
 
 CREATE TABLE IF NOT EXISTS `notifications` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
-  `username_admin` varchar(18) NOT NULL,
+  `username_admin` varchar(18),
   `username_user` varchar(18) NOT NULL,
   `book_no` varchar(12) DEFAULT NULL,
   `message` varchar(755) DEFAULT NULL,
   `date_sent` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `type` enum('overdue','claim','custom') NOT NULL,
-  PRIMARY KEY (`id`,`username_admin`,`username_user`),
-  KEY `notifications_username_user` (`username_admin`),
+  PRIMARY KEY (`id`,`username_user`),
   KEY `notifications_username_admin` (`username_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -344,8 +343,7 @@ ALTER TABLE `lend`
 -- Constraints for table `notifications`
 --
 ALTER TABLE `notifications`
-  ADD CONSTRAINT `notifications_username_admin` FOREIGN KEY (`username_user`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `notifications_username_user` FOREIGN KEY (`username_admin`) REFERENCES `admin` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `notifications_username_admin` FOREIGN KEY (`username_user`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `reserves`

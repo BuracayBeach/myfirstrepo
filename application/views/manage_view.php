@@ -63,7 +63,7 @@
         <br/>
         <label for="edit_book_title">Book Title: </label>
         <input type="text" name="book_title" id="edit_book_title" placeholder="Title" required pattern="[-A-Za-z0-9 ]+" />
-        <br/>
+          <br/>
         <label for="edit_book_type">Type: </label>
         <select name="type" id="edit_book_type">
             <option selected="true">Book</option>

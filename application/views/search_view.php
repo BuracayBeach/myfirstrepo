@@ -174,7 +174,19 @@
 							$(this).text("unreserve");
 						else if (action_type == "unreserve") 
 							$(this).text("reserve");
-						
+
+						if (action_type == "reserve") {
+
+							$.ajax({
+								url : "http://localhost/myfirstrepo/index.php/" + "notifs" + "/" + "check_if_rank_first",
+								data : { arr : info },
+								type : 'POST',
+								dataType : "html",
+								async : true,
+								success: function(data) {
+								}
+							});
+						}
 					});
 				});
 

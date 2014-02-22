@@ -33,6 +33,7 @@ class Reserve extends CI_Controller {
 	
 	public function add() {
 
+		/* $info[0] is the book_no */
 		$info = $this->input->post('arr');
 
 		$data = array(
