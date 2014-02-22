@@ -32,9 +32,6 @@ class Notifs extends CI_Controller {
 		echo json_encode($q);
 	}
 
-
-
-
 	public function check_overdue() {
 		$q = $this->notifs_model->check_unreturned();
 	}
