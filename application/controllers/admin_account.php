@@ -128,5 +128,22 @@ class Admin_account extends CI_Controller {
 		$data = $this->admin_account_model->get_admin_data($admin_username);
 		$this->load->view('update_admin_view', $data);
 	}
+
+	public function admin_change_password(){
+		$admin_username = $_SESSION['admin_username'];
+		$current_password = hash('sha256', filter_var($_POST['currentPassword'], FILTER_SANITIZE_STRING));
+		$new_password = hash('sha256', filter_var($_POST['newPassword'], FILTER_SANITIZE_STRING));
+		$correct_password = $this->admin_account_model->get_admin_password($admin_username);
+
+		if($current_password == $correct_password){
+			$this->admin_account_model->change_admin_password($new_password, $admin_username);
+			$admin_notif['change_password_notif'] = "Succesfully changed password!";
+			redirect(site_url("admin_account/update_admin"));
+		}
+
+		else
+			$admin_notif['change_password_notif'] = "Password does not match!";
+			redirect(site_url("admin_account/update_admin"));
+	}
 }
 ?>
