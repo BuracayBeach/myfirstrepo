@@ -26,8 +26,8 @@ class Home extends CI_Controller {
 
     public function index(){
         $data['title'] = "eICS Lib";
-        $this->load->view("header", $data);
-        $this->load->view("search_view", ["home"=>true]);
+        $this->load->view("header", $data); 
+        $this->load->view("search_results_view");
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin) $this->load->view('manage_view');
 
@@ -42,7 +42,7 @@ class Home extends CI_Controller {
     public function ihome(){
         $data['title'] = "eICS Lib Home";
         $this->load->view("header", $data);
-        $this->load->view("search_view");
+        $this->load->view("search_results_view");
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin) $this->load->view('manage_view');
 
@@ -56,7 +56,7 @@ class Home extends CI_Controller {
     public function announcements(){
         $data['title'] = "eICS Lib Announcements";
         $this->load->view("header", $data);
-
+        $this->load->view("search_results_view");
         $this->load->view('announcements_view');
         if (isset($_SESSION['type']) && $_SESSION['type'] == "admin")
             $this->load->view('announcements_manage_view');
@@ -67,9 +67,8 @@ class Home extends CI_Controller {
     public function about_us(){
         $data['title'] = "eICS Lib About Us";
         $this->load->view("header", $data);
-
+        $this->load->view("search_results_view");
         $this->load->view("about_us_view");
-        $this->load->view("search_view");
 
         if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
             $this->load->view('manage_view');
@@ -81,7 +80,7 @@ class Home extends CI_Controller {
     public function faq(){
         $data['title'] = "eICS Lib FAQ";
         $this->load->view("header", $data);
-        $this->load->view("search_view");
+        $this->load->view("search_results_view");
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin){
             $this->load->view('faq_manage_view', $data);
