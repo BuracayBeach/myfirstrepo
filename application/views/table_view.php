@@ -160,7 +160,15 @@
                     
                     }
                 echo '</div>'; 
-                }
+
+                echo '
+                    <div id="results_per_page_div" hidden>
+                        <input id="results_per_page" style="width:45px" type="number" min="1" max="500" value="10"/>
+                        <span>Results per page</span>
+                    </div>
+                    ';
+
+                }   
                 
                 ?>
 </div>
