@@ -33,7 +33,10 @@ class Admin_account extends CI_Controller {
 	}
 
 	public function update_admin(){
-		
+		if($_SESSION['admin_logged_in'])
+			$this->get_admin_data();
+		else
+			$this->backtohome();
 	}
 
 	public function admin_login(){
@@ -99,6 +102,31 @@ class Admin_account extends CI_Controller {
 			$admin_notif['create_admin_notif'] = "Username exists!";
 			redirect(site_url("admin_account/create_admin"));
 		}
+	}
+
+	public function update_admin_account(){
+		$data['name_first'] = filter_var($_POST['name_first'], FILTER_SANITIZE_STRING);
+		$data['name_middle'] = filter_var($_POST['name_middle'], FILTER_SANITIZE_STRING);
+		$data['name_last'] = filter_var($_POST['name_last'], FILTER_SANITIZE_STRING);
+
+		$admin_username = $_SESSION['admin_username'];
+		$result = $this->admin_account_model->update_admin($data, $admin_username);
+
+		if($result){
+			$admin_notif['update_admin_notif'] = "Succesfully updated admin";
+			redirect(site_url("admin_account/update_admin"));
+		}
+
+		else{
+			$admin_notif['update_admin_notif'] = "Error in updating admin";
+			redirect(site_url("admin_account/update_admin"));
+		}
+	}
+
+	public function get_admin_data(){
+		$admin_username = $_SESSION['admin_username'];
+		$data = $this->admin_account_model->get_admin_data($admin_username);
+		$this->load->view('update_admin_view', $data);
 	}
 }
 ?>

@@ -32,7 +32,7 @@
 					Last Name: <input type="text" name="name_last" required/><span name="spanName_last"></span><br/>
 					Mobile Number: <input type="text" name="mobile_no" required /><span name="spanMobile_no"></span><br/>
 					College: 
-					<select name="college">						
+					<select name="college">
 						<option value="CA">CA (College of Agriculture)</option>
 						<option value="CAS">CAS (College of Arts and Sciences)</option> 
 						<option value="CDC">CDC (College of Development Communication)</option>
