@@ -1,12 +1,5 @@
 
 			<div id="search">
-
-				<?php
-					if(isset($home))
-						echo "<img class='logo_main' src='" . base_url() . "images/logo5.png'";
-				?>
-				<br>
-
 				<form id="search_form" name="search_form" method="post">
 					<?php
 						if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
@@ -37,13 +30,10 @@
 					</div>
 				
 
-					&nbsp;SEARCH<input searchby="book_title" id="search_text" type="text" name='search' autofocus='true' placeholder='Keywords...' maxlength='99'/>
+					<input searchby="book_title" id="search_text" type="text" name='search' autofocus='true' placeholder='Keywords...' maxlength='99'/>
 					<input id='submit_search' type="submit" name="submit_search" value="Search" /><br/>
 		            <hr>
-					<div id="results_per_page_div" hidden>
-						<input id='results_per_page' style="width:45px" type="number" min='1' max='500' value='10'/>
-						<span>Results per page</span>
-					</div>
+					
 					<?php
 						if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
 							echo '
@@ -62,7 +52,7 @@
 
 					<div id="sidebar-wrapper">
 				        <ul class="sidebar-nav">
-				            <a href=""><li class="menu-toggle" searchby="book_title"><img src="<?php echo base_url();?>images/icon/title1.png" alt="">&nbsp; Title</li></a>
+				            <a href=""><li class="menu-toggle active" searchby="book_title"><img src="<?php echo base_url();?>images/icon/title1.png" alt="">&nbsp; Title</li></a>
 				            <a href=""><li class="menu-toggle" searchby="book_no"><img src="<?php echo base_url();?>images/icon/number.png" alt="">&nbsp; Book Number</li></a>
 				            <a href=""><li class="menu-toggle" searchby="author"><img src="<?php echo base_url();?>images/icon/user32.png" alt="">&nbsp; Author</li></a>
 				            <a href=""><li class="menu-toggle" searchby="publisher"><img src="<?php echo base_url();?>images/icon/printer32.png" alt="">&nbsp; Publisher</li></a>
@@ -116,7 +106,7 @@
 						}
 
 						my_input += "&page=1";
-						my_input += "&rows_per_page=" + $('#results_per_page').val();
+						my_input += "&rows_per_page=" + ($('#results_per_page').val()==0?10:$('#results_per_page').val());
 
 						console.log(my_input);
 						$.ajax({

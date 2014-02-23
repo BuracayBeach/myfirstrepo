@@ -1,12 +1,19 @@
 	//Script Author : Carl Adrian P. Castueras
 	//Description : AJAX functions used for to call the activate,enable and disable controllers and then update the page dynamically
 
+	var filepath = "http://localhost/myfirstrepo/"
+
 	function log_users()
 	{
+		page = $('#logs_pagination').attr('page');
+		mydata = {'page':page};
+		// alert(page);
+
 		$.ajax({
-			url : "get_log/", //ASSUMPTION : the page is in the enable_disable controller
+			url : filepath+"enable_disable/get_log/", //ASSUMPTION : the page is in the enable_disable controller
 			type : 'POST',
 			dataType : "html",
+			data: mydata,
 			async : true,
 			success: function(data) {
 
@@ -31,6 +38,7 @@
 					headers+="</tr>";
 					result_array.push(headers);
 
+
 					//push each result as a row in a table
 					for(var i=0;i<num_results;i+=1)
 					{
@@ -44,10 +52,13 @@
 						result_array.push(row);
 					}
 
+
+
+
 					//replace the entire table with an updated table
-					$('#account_log #log_table').html(result_array);
+					$('#log_table').html(result_array);
 				} else {
-					$('#account_log #log_table').before('<p>No logs yet</p>');
+					$('#log_table').before('<p>No logs yet</p>');
 
 				}
 				
@@ -75,7 +86,7 @@
 		if(confirm(constr))
 		{
 			$.ajax({
-				url : "activate/"+ username +"/"+ usertype +"/"+ number + "/" + email, //ASSUMPTION : this function will only be called from the enable_disable controller
+				url : filepath+"enable_disable/activate/"+ username +"/"+ usertype +"/"+ number + "/" + email, //ASSUMPTION : this function will only be called from the enable_disable controller
 				type : 'POST',
 				dataType : "html",
 				async : true,
@@ -128,7 +139,7 @@
 		if(confirm(constr))
 		{
 			$.ajax({
-				url : "disable/"+ username + "/" + email,  //ASSUMPTION : this function is called from the enable_disable controller
+				url : filepath+"enable_disable/disable/"+ username + "/" + email,  //ASSUMPTION : this function is called from the enable_disable controller
 				type : 'POST',
 				dataType : "html",
 				async : true,
@@ -170,7 +181,7 @@
 		if(confirm(constr))
 		{
 			$.ajax({
-				url : "enable/"+ username + "/" + email,
+				url : filepath+"enable_disable/enable/"+ username + "/" + email,
 				type : 'POST',
 				dataType : "html",
 				async : true,

@@ -3,32 +3,11 @@
 	  //Description: This document is the actual view of enable/disable
 ?>
 		<div id="container">
-			<h1>ICS Library</h1>
-		  	<div id="body">
-		  		<?php echo form_open('enable_disable/search'); //creates a form?>
-			  		<select name="field" onchange='changeTextBox(value)'>
-						<option value="name">Name</option>
-						<option value="stdno">Student Number</option>
-						<option value="empno">Employee Number</option>
-						<option value="uname">Username</option>
-						<option value="email">Email Address</option>
-					</select>
-					<div id="divtext">
-	            		<input type="text" placeholder="Enter first name" name="firstname"/>
-	            		<input type="text" placeholder="Enter middle name" name="middlename"/>
-	            		<input type="text" placeholder="Enter last name" name="lastname"/>
-	            	</div>
-	            	</br><input type = "radio" name = "status" value = "all" checked = "true"/>All
-	            	<input type = "radio" name = "status" value = "pending"/>Pending
-	            	<input type = "radio" name = "status" value = "enabled"/>Enabled
-	            	<input type = "radio" name = "status" value = "disabled"/>Disabled
-
-	            	</br><button type="submit" id="submitButton"> Search </button>
-          	</div>
+			
           	<div id="result">	
           		<?php
           			//var_dump($result);
-          			if(isset($result))//checks if $result not null
+          			if(isset($result) && count($result) > 0)//checks if $result not null
           			{
 	          			echo "<table border='1'><tr><th>Username</th><th>Email</th><th>User Type</th><th>First name</th><th>Middle name</th><th>Last name</th><th>Course</th><th>College</th><th>action</th></tr>";
 						foreach ($result as $row)
@@ -69,6 +48,11 @@
 
 						echo "<div id='links_container'>".$links."</div>";
 					}
+
+					else
+					{
+						echo '<p>No results</p>';
+					}
 				?>
           	</div>
 		</div>
@@ -78,10 +62,12 @@
 			<h4>Account Log</h4>
 			<table id="log_table">
 			</table>
+			<div id="logs_pagination" page='2' pagecount='1'>
+			</div>
 		</div>
 		<!-- end edit -->
 
-		<script type = "text/javascript" src = "<?php echo base_url() ?>js/search_user_manager.js"></script>
+		
 		<script type = "text/javascript" src = "<?php echo base_url() ?>js/account_status_manager.js"></script>
 
 <?php //end of file enable_disable_view ?>
