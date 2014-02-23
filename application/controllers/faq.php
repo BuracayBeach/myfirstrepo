@@ -35,13 +35,7 @@ class Faq extends CI_Controller {
     }
     private function str_array_ready_for_display($data){
         foreach($data as &$row){
-            if(is_array($row)){
-                foreach($row as &$cell){
-                    $cell = htmlspecialchars(stripslashes($cell));
-                }
-            }else{
-                $row = htmlspecialchars(stripslashes($row));
-            }
+            $row = htmlspecialchars(stripslashes($row));
         }
         return $data;
     }
