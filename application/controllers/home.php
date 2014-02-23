@@ -45,7 +45,7 @@ class Home extends CI_Controller {
         $this->load->view("search_view");
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin) $this->load->view('manage_view');
-        
+
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
             $data['notifs'] = $this->notifs_model->get_all($_SESSION['username']);
             $this->load->view('notifications_view', $data);
@@ -82,9 +82,13 @@ class Home extends CI_Controller {
         $data['title'] = "eICS Lib FAQ";
         $this->load->view("header", $data);
         $this->load->view("search_view");
-        $this->load->view("faq_view");
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
-        if ($is_admin) $this->load->view('faq_manage_view');
+        if ($is_admin){
+            $this->load->view('faq_manage_view', $data);
+        }else{
+
+            $this->load->view('faq_view', $data);
+        }
 
         $this->load->view("footer");
     }
