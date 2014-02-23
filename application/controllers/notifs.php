@@ -7,8 +7,9 @@ class Notifs extends CI_Controller {
 		date_default_timezone_set("Asia/Manila");
 		$this->load->model('notifs_model');
 		$this->load->helper('form');
+		$this->load->library('firephp');
 
-		if (isset($_SESSION))
+		if (!isset($_SESSION))
 			session_start();
 	}
 
@@ -32,6 +33,18 @@ class Notifs extends CI_Controller {
 		echo json_encode($q);
 	}
 
+	public function check_if_rank_first() {
+
+		$username = $_SESSION['username'];
+
+		/* $info[0] is the book_no */
+		$info = $this->input->post('arr');
+		$result = $this->notifs_model->check_lend($username, $info[0]);
+
+		if ($result == 1)
+			$this->send_claim_notif($info[0], $username);
+	}
+
 	public function check_overdue() {
 		$q = $this->notifs_model->check_unreturned();
 	}
@@ -52,7 +65,7 @@ class Notifs extends CI_Controller {
 	public function send_claim_notif($book_no, $username) {
 
 		$data = array (
-				'username_admin' => $_SESSION['admin_username'],
+				'username_admin' => "",
 				'username_user' => $username,
 				'book_no' => $book_no,
 				'message' => "You may now claim your book at the library ASAP",
@@ -60,7 +73,7 @@ class Notifs extends CI_Controller {
 				'type' => 'claim'
 			);
 
-		$this->notif_model->add_notif($data);
+		$this->notifs_model->add_notif($data);
 	}
 }	
 

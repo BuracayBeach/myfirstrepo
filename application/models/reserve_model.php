@@ -32,21 +32,25 @@ class Reserve_Model extends CI_Model {
 	}
 
 	public function status_reserved($book_no) {
-		$lend = $this->db->query("SELECT COUNT(*) FROM lend WHERE book_no LIKE '{$book_no}'");
+		$lend = $this->db->query("SELECT COUNT(*) count FROM lend WHERE book_no LIKE '{$book_no}'");
+		$lend = $lend->row_array();
 
-		if ($lend->result() != 1)
+		if ($lend['count'] != 1)
 			$this->db->query("UPDATE book SET status = 'reserved' WHERE book_no LIKE '{$book_no}'");
 	}
 
 	public function status_update($book_no) {
-		$reserves = $this->db->query("SELECT COUNT(*) FROM reserves WHERE book_no LIKE '{$book_no}'");
-		$lend = $this->db->query("SELECT COUNT(*) FROM lend WHERE book_no LIKE '{$book_no}'");
+		$reserves = $this->db->query("SELECT COUNT(*) count FROM reserves WHERE book_no LIKE '{$book_no}'");
+		$lend = $this->db->query("SELECT COUNT(*) count FROM lend WHERE book_no LIKE '{$book_no}'");
 
-		if ($lend->result() == 1)
+		$reserves = $reserves->row_array();
+		$lend = $lend->row_array();
+
+		if ($lend['count'] == 1)
 			$this->db->query("UPDATE book SET status = 'borrowed' WHERE book_no LIKE '{$book_no}'");
-		else if ($reserves->result() == 0 && $lend->result() == 0)
+		else if ($reserves['count'] == 0 && $lend['count'] == 0)
 			$this->db->query("UPDATE book SET status = 'available' WHERE book_no LIKE '{$book_no}'");
-		else if ($reserves->result() > 0 && $lend->result() == 0)
+		else if ($reserves['count'] > 0 && $lend['count'] == 0)
 			$this->db->query("UPDATE book SET status = 'reserved' WHERE book_no LIKE '{$book_no}'");
 	}
 
