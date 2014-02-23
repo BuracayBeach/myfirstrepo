@@ -13,7 +13,7 @@
 					newSearch = newSearch.replace(/<\/strong>/g,"");
 					$('#search_text').val(newSearch.trim());
 
-					$('#submit_search').click();
+					$('#submit_search').submit();
 				}
 
 				$(document).ready(function() {
