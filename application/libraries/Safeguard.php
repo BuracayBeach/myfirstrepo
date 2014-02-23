@@ -10,7 +10,7 @@ class Safeguard {
     public function query_result_ready_for_display($data){
         foreach($data as &$row){
             foreach($row as &$cell){
-                $cell = htmlspecialchars(stripslashes($cell));
+                $cell = htmlspecialchars(stripslashes(trim($cell)));
             }
         }
         return $data;

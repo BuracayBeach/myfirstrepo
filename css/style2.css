@@ -237,6 +237,7 @@ NEW BAR LEFT = 0
  --------------------------------------*/
 
 #accordion{
+    display:none;
 	width: 17%;
 	position: fixed;
 	float: left;
