@@ -1,14 +1,11 @@
 <div id="search_table_container">
                 <table id="search_table" border="1" width='60%'>
                     <?php
-                        //  if (isset($search_suggestion) && trim($search_suggestion) != ''){
-                        //     echo "<span>You might want to search for: <a href='javascript:research;'>" . $search_suggestion . "</a></span><br/><br/>";
-                        // }
 
                         if(isset($table) && isset($page)){
                             echo "<span id='search_results_label'>";
                             if (trim($search_term)=='') echo "View all Books";
-                            else  echo "Search Results for  '" . $search_term . "'";
+                            else  echo "Search Results for  '" . htmlspecialchars(stripslashes(trim($search_term))) . "'";
                             echo "</span><br/><br/>";
 
                             echo "<tr >
@@ -136,7 +133,7 @@
                                 echo "</tr>";
                             }
                         } else  {
-                            echo "<span>No results for '<strong>" . trim($search_term) . "</strong>'</span>";
+                            echo "<span>No results for '<strong>" . htmlspecialchars(stripslashes(trim($search_term))) . "</strong>'</span>";
                         }
 
                     ?>
