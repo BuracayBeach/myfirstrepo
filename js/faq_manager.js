@@ -6,7 +6,7 @@ $('#faq_table_container').ready(function(){
     /***** EVENT ATTACHMENTS *****/
     $('#add_faq_container').closest("tr").hide();
     $('#edit_faq_container').closest("tr").hide();
-    $('#add_faq_button').on("click",showME);
+    $('#add_faq_button').on("click",showAddForm);
     $('#add_faq_form').submit(addFAQ);
 
     var faqTableContainer = $('#faq_table_container');
@@ -20,7 +20,7 @@ $('#faq_table_container').ready(function(){
 
 function deleteFaq(event){
     event.preventDefault();
-    var confirmed = confirm('Confirm deleting this Faq');
+    var confirmed = confirm('Confirm deleting this FAQ');
     if(confirmed){
         var faq_id = $(this).closest("tr").attr('faq_id');
         console.log(faq_id);
@@ -30,19 +30,26 @@ function deleteFaq(event){
     }
 }
 
-function showME(event){
+var rowBeingEdited;
+function showAddForm(event){
     event.preventDefault();
 
+    $('#edit_faq_container').closest('tr').hide();
+    if(rowBeingEdited != undefined || rowBeingEdited.length != 0)
+        rowBeingEdited.show();
     var addFaqContainer =
         $('#add_faq_container');
     addFaqContainer.closest("tr").show();
     addFaqContainer.show();
+    addFaqContainer.find('#add_question').focus();
 }
 function addFAQ(event){
     event.preventDefault();
+
+    var addFaqForm = this;
     $.post("index.php/faq/add",$(this).serialize(),function(data){
         data = JSON.parse(data);
-
+        console.log(data);
         var rowHTML =
             '<tr faq_id="'+data.id+'" class="faq_table_row">'+
                 '<td faq_id="'+data.id+'" class="faq_table_data">'+
@@ -56,48 +63,55 @@ function addFAQ(event){
             '</tr>';
 
 
-        $('#faq_table').find('tbody:last').append(rowHTML);
+        $('#faq_table').find('tbody tr:nth-child(2)').after(rowHTML);
         //toggleRecentlyAddedTable();
-    });
-    $(this).closest('div').hide();
-    this.reset();
+
+        $(addFaqForm).closest('div').hide();
+        addFaqForm.reset();
+    }).fail(function(){
+            alert('There was a problem adding the material.');
+        })
 }
 
 function fillEditFaqForm(event){
     event.preventDefault();
 
+    $('#add_faq_container').closest('tr').hide();
     var id = $(this).closest("tr").attr('faq_id');
     $.post("index.php/faq/get_faq",{"id":id},function(data){
         var data = JSON.parse(data)[0];
         console.log(data);
         var editForm = $('#edit_faq_form');
 
-        editForm.find('#edit_id').val(id);
+        editForm.find('#edit_faq_id').val(id);
         editForm.find('#edit_question').val(data.question);
         editForm.find('#edit_answer').val(data.answer);
 
     });
 
-    $(this).closest("tr").hide();
+    rowBeingEdited = $(this).closest("tr");
+    rowBeingEdited.hide();
     $('#edit_faq_container').closest('tr').show();
     $('#edit_answer').focus();
 }
 
 function editFAQ(event){
     event.preventDefault();
-
-    var tr = null;
-    $.post("index.php/faq/edit",$(this).serialize(),function(data){ //navigate to the controller with the address:index.php/faq/edit
+    var editFaqForm = $(this);
+    $.post("index.php/faq/edit",$(this).serialize(),tr = function(data){ //navigate to the controller with the address:index.php/faq/edit
         data = JSON.parse(data);
         console.log(data);
-        tr = $('#faq_table').find('tr[id="'+data.id+'"]');
+        tr = $('#faq_table').find('tr[faq_id="'+data.id+'"]');
         tr.find('.question').text(data.question);
-        tr.find('.answer').val(data.answer);
-    });
+        tr.find('.answer').text(data.answer);
 
-    $(this).closest('div').hide();
-    this.reset();
-    if(tr != null) tr.show();
+        editFaqForm.closest('tr').hide();
+        editFaqForm[0].reset();
+        tr.show();
+    }).fail(function(){
+            alert('There was a problem editing the material.')
+        });
+
 }
 
 function cancelForm(event){

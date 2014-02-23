@@ -46,7 +46,7 @@ function generateFaqRow(data,isAdmin){
         tableContainer.find('table').append($('<tbody>'));
     }
 
-    tableContainer.find('table').find('tbody:last').append(rowHTML);
+    tableContainer.find('table').find('tbody tr:nth-child(2)').after(rowHTML);
 
 }
 

@@ -29,7 +29,8 @@ class Faq extends CI_Controller {
         $data['answer'] = filter_var($_POST['answer'], FILTER_SANITIZE_MAGIC_QUOTES);
         $this->faq_model->add_faq($data);
 
-        echo json_encode($_POST);
+        $data = array_replace($data,$_POST);
+        echo json_encode($data);
     }
 
     public function get_faq(){

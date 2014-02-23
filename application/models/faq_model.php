@@ -7,12 +7,15 @@ class Faq_model extends CI_Model {
         $this->load->database();
     }
 
-    function add_faq($data){
+    function add_faq(&$data){
         $query = "INSERT INTO faq (question,answer)".
             " VALUES ('{$data['question']}'".
             ",'{$data['answer']}'".")";
 
         $this->db->query($query);
+
+        $data['id'] = $this->db->query("SELECT LAST_INSERT_ID() id")->result()[0]->id;
+
     }
 
     function get_faq($id){
