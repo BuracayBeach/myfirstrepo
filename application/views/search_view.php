@@ -1,12 +1,5 @@
 
 			<div id="search">
-
-				<?php
-					if(isset($home))
-						echo "<img class='logo_main' src='" . base_url() . "images/logo5.png'";
-				?>
-				<br>
-
 				<form id="search_form" name="search_form" method="post">
 					<?php
 						if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
@@ -37,7 +30,7 @@
 					</div>
 				
 
-					&nbsp;SEARCH<input searchby="book_title" id="search_text" type="text" name='search' autofocus='true' placeholder='Keywords...' maxlength='99'/>
+					<input searchby="book_title" id="search_text" type="text" name='search' autofocus='true' placeholder='Keywords...' maxlength='99'/>
 					<input id='submit_search' type="submit" name="submit_search" value="Search" /><br/>
 		            <hr>
 					<div id="results_per_page_div" hidden>
