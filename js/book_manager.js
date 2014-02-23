@@ -63,12 +63,13 @@ function addBook(event){
                     .fail(function(jqXHR, textStatus, errorThrown,data){
                         alert("Sorry! There was a problem processing your action.");
                     });
+
+                $(this).closest('div').hide();
             }else{
                alert('Cannot add duplicate material.')
             }
         });
 
-        $(this).closest('div').hide();
         this.reset();
     }
 }
@@ -110,28 +111,35 @@ function fillEditForm(event){
 function editBook(event){
     event.preventDefault();
 
-    var editForm = $('#edit_book_form');
-    var data = editForm.serialize();
-    $.post("index.php/book/edit",data,function(data){
-        data = JSON.parse(data);
-        var rowToUpdate = editedRow;
-        rowToUpdate.find("[book_data='book_no']").text(data.book_no);
-        rowToUpdate.find("[book_data='book_type']").text(data.type);
-        rowToUpdate.find("[book_data='book_title']").text(data.book_title);
-        rowToUpdate.find("[book_data='author'] em").text(data.author);
-        rowToUpdate.find("[book_data='description']").text(data.description);
-        rowToUpdate.find("[book_data='publisher']").text(data.publisher);
-        rowToUpdate.find("[book_data='date_published']").text(data.date_published);
-        rowToUpdate.find("[book_data='tags']").text(data.tags);
-        rowToUpdate.find("[book_data='abstract']").text(data.abstract);
+    var book_no = $(this).find('#add_book_no').val();
+    var formInputs = $(this).serialize();
+    $.get("index.php/book/get_book",{"book_no":book_no},function(data){
+        var isUnique = JSON.parse(data).length == 0;
+        if(isUnique){
+            $.post("index.php/book/edit",formInputs,function(data){
+                data = JSON.parse(data);
+                var rowToUpdate = editedRow;
+                rowToUpdate.find("[book_data='book_no']").text(data.book_no);
+                rowToUpdate.find("[book_data='book_type']").text(data.type);
+                rowToUpdate.find("[book_data='book_title']").text(data.book_title);
+                rowToUpdate.find("[book_data='author'] em").text(data.author);
+                rowToUpdate.find("[book_data='description']").text(data.description);
+                rowToUpdate.find("[book_data='publisher']").text(data.publisher);
+                rowToUpdate.find("[book_data='date_published']").text(data.date_published);
+                rowToUpdate.find("[book_data='tags']").text(data.tags);
+                rowToUpdate.find("[book_data='abstract']").text(data.abstract);
 
-        //status update
-        var transactionSpan =  rowToUpdate.find("span:has(.transaction_anchor)");
+                //status update
+                var transactionSpan =  rowToUpdate.find("span:has(.transaction_anchor)");
 
-        var anchorHTML = generateTransactionAnchorHTML(data.status,data.book_no);
-        transactionSpan.html(anchorHTML);
+                var anchorHTML = generateTransactionAnchorHTML(data.status,data.book_no);
+                transactionSpan.html(anchorHTML);
+            });
+            editForm.closest('div').hide();
+        }else{
+            alert('Edit failed: Book number duplicate.');
+        }
     });
-    editForm.closest('div').hide();
 }
 
 function cancelEdit(event){
