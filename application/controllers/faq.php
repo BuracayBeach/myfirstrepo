@@ -5,6 +5,7 @@ class Faq extends CI_Controller {
     function __construct(){
         parent::__construct();
         $this->load->model('faq_model');
+        $this->load->library('safeguard');
     }
 
     public function index(){
@@ -19,44 +20,17 @@ class Faq extends CI_Controller {
         $this->load->view("footer");
     }
 
-    private function array_ready_for_query($data){
-        foreach($data as &$e){
-            $e = mysql_real_escape_string($e);
-        }
-        return $data;
-    }
-    private function query_result_ready_for_display($data){
-        foreach($data as &$row){
-            foreach($row as &$cell){
-                $cell = htmlspecialchars(stripslashes($cell));
-            }
-        }
-        return $data;
-    }
-    private function str_array_ready_for_display($data){
-        foreach($data as &$row){
-            if(is_array($row)){
-                foreach($row as &$cell){
-                    $cell = htmlspecialchars(stripslashes($cell));
-                }
-            }else{
-                $row = htmlspecialchars(stripslashes($row));
-            }
-        }
-        return $data;
-    }
-
     public function delete(){
         $id = mysql_real_escape_string($_POST['id']);
         $this->faq_model->delete_faq($id);
     }
 
     public function add(){
-        $_POST = $this->array_ready_for_query($_POST);
+        $_POST = $this->safeguard->array_ready_for_query($_POST);
         $this->faq_model->add_faq($_POST);
 
 
-        $_POST = $this->str_array_ready_for_display($_POST);
+        $_POST = $this->safeguard->str_array_ready_for_display($_POST);
         echo json_encode($_POST);
     }
 
@@ -71,12 +45,12 @@ class Faq extends CI_Controller {
 
     public function get_all_faq(){
         $faqs = $this->faq_model->get_all_faq();
-        $faqs = $this->query_result_ready_for_display($faqs);
+        $faqs = $this->safeguard->query_result_ready_for_display($faqs);
         echo json_encode($faqs);
     }
 
     public function edit(){
-        $data = $this->array_ready_for_query($_POST);
+        $data = $this->safeguard->array_ready_for_query($_POST);
         $this->faq_model->edit_faq($data);
 
         echo json_encode($data);
