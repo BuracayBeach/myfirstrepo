@@ -19,7 +19,7 @@
         <input type="text" name="book_no" id="add_book_no" placeholder="Book Number" required pattern="[A-Za-z0-9 ]+">
         <br/>
         <label for="add_book_title">Title: </label>
-        <input type="text" name="book_title" id="add_book_title" placeholder="Title" required pattern="[-A-Za-z0-9 ]+"/>
+        <input type="text" name="book_title" id="add_book_title" placeholder="Title" required/>
         <br/>
         <label for="add_book_type">Type: </label>
         <select name="type" id="add_book_type">
