@@ -73,23 +73,29 @@ class Enable_disable extends CI_Controller {
 			}
 		}
 		$data['status'] = filter_var($_POST["status"],FILTER_SANITIZE_STRING);
+		//End Sanitation Section
+
 		$this->load->model('enable_disable_model');
 		$query = $this->enable_disable_model->generateQuery($data);//dynamically generates an sql query based on search option
 		$result = $this->enable_disable_model->runQuery($query);//gets the result from the query
 
-		$page = $this->uri->segment(3);
+		//the number that appears after the enable_disable/search (e.g enable_disable/search/20) in the uri
+		$lower_bound = $this->uri->segment(3);
 
+		//maximum number of results per page
 		$page_size = 10;
 
+		//declare the necessary configuration for pagination 
 		$config['base_url'] = base_url()."enable_disable/search/";
 		$config['total_rows'] = count($result);
 		$config['per_page'] = $page_size;
-
+		//set-up pagination using the given configuration
 		$this->pagination->initialize($config);
 
-		$array['result'] = $this->filter_results($result,$page,$page+$page_size);
+		//filter results based on specified page
+		$array['result'] = $this->filter_results($result,$lower_bound,$page_size);
 		$array['links'] = $this->pagination->create_links();
-		//var_dump($array);
+		//temporarily save the $_POST array to session to paginate without losing the search results
 		$_SESSION['post_temp'] = $_POST;
  		$this->load->view('header');						//passes the result to the view 
 		$this->load->view('enable_disable_view', $array);	//loads the view with the results
@@ -206,9 +212,25 @@ class Enable_disable extends CI_Controller {
 		echo json_encode($log_result);
 	}
 
-	private function filter_results($array,$lower_bound,$upper_bound)
+	/*
+		parameters :
+		$array -> the array to filter
+		$lower_bound -> the minimum index to include in the filtered array
+		$size -> the maximum number of results to include in the filtered array
+	*/
+	private function filter_results($array,$lower_bound,$size)
 	{
 		$filtered_array = array();
+
+		//get the maximum index in the array of results
+		$max_index = count($array);
+		//calculate the upper bound by adding the page size to the lower bound
+		$upper_bound = $lower_bound + $size;
+
+		//if the page has less results than the declared page size, limit the upper bound to the max index
+		if ($upper_bound >  $max_index)	$upper_bound = $max_index;
+
+		//filter the array based on the constraints
 		for($i=$lower_bound;$i<$upper_bound;$i+=1)
 		{
 			$filtered_array[$i] = $array[$i];
