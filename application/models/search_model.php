@@ -333,7 +333,7 @@ class Search_model extends CI_Model {
 
                 //if 25% is correctible for words with > 3 letters. For 3-letter words, one letter mistake can be corrected
                 if ($term_sugg_dist[$search_term] > 0 && ($percent_error <= 0.25 || strlen($search_term)==3 && $percent_error <= 0.34)) {
-                    $terms_to_suggest .= ' <strong>' . $term_sugg[$search_term] . '</strong>';
+                    $terms_to_suggest .= ' <strong>' . htmlspecialchars(stripslashes($term_sugg[$search_term])) . '</strong>';
                     $to_suggest = true;
 
                 } else if ($term_sugg_dist[$search_term] == 0)  {
@@ -356,8 +356,6 @@ class Search_model extends CI_Model {
 
         return $sorted_table;
     }
-
-
 }
 
 

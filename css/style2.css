@@ -252,7 +252,7 @@ RESULTS
 
 #result_container{
 	width:70%;
-	background: rgba(192, 200,255,0.5);
+	background: rgba(200, 200,100,0.5);
 	position: fixed;
 	float: left;
 	z-index: 1;

@@ -124,9 +124,10 @@ class book extends CI_Controller {
         $table = $this->search_model->query_result($details);
 
         //sort results by relevance to the search terms
+        $search_suggestion = '';
         $sorted_table = $this->search_model->get_sorted_table($table, $input, $details['spell_check'], $search_suggestion); 
 
-        $details['search_suggestion'] = $search_suggestion;
+        $details['search_suggestion'] = trim($search_suggestion);
         $details['table'] = $sorted_table;
 
         // para lang sa pag check ng user favorites at reserves
@@ -144,12 +145,12 @@ class book extends CI_Controller {
 
         $this->load->view('table_view', $details);
 
-        if (trim($search_suggestion)!=''){
-            $p_search_suggestion = str_replace("<strong>", "", trim($search_suggestion));
-            $p_search_suggestion = str_replace("</strong>", "", $p_search_suggestion);
-            $p_search_suggestion = htmlspecialchars(stripslashes($p_search_suggestion));
+        if ($search_suggestion !=''){
+            // $p_search_suggestion = str_replace("<strong>", "", trim($search_suggestion));
+            // $p_search_suggestion = str_replace("</strong>", "", $p_search_suggestion);
+            // $p_search_suggestion = htmlspecialchars(stripslashes($p_search_suggestion));
             $p_search_by = filter_var($_POST["search_by"], FILTER_SANITIZE_STRING);
-            echo "<span>You might want to search for: <a id='suggestion_text' search_by='{$p_search_by}' href='javascript:research();'>" . $p_search_suggestion . "</a></span><br/><br/>";
+            echo "<span>You might want to search for: <a id='suggestion_text' search_by='{$p_search_by}' href='javascript:research();'>" . $search_suggestion . "</a></span><br/><br/>";
         }
         // json_encode($search_suggestion);
     }

@@ -99,6 +99,6 @@
 </div>
 
     <div style="margin-left: 500px" id="results_per_page_div">
-        <input id="results_per_page" style="width:45px" type="number" min="1" max="500" value="1"/>
+        <input id="results_per_page" style="width:45px" type="number" min="1" max="500" value="10"/>
         <span>Results per page&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
     </div>
