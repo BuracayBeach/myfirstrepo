@@ -65,7 +65,7 @@ class Faq extends CI_Controller {
         $id = mysql_real_escape_string($_POST['id']);
 
         $faq = $this->faq_model->get_faq($id);
-        $faq = $this->query_result_ready_for_display($faq);
+
         echo json_encode($faq);
     }
 
@@ -75,11 +75,10 @@ class Faq extends CI_Controller {
         echo json_encode($faqs);
     }
 
-    public function edit($data){
-        $data = $this->array_ready_for_query($data);
+    public function edit(){
+        $data = $this->array_ready_for_query($_POST);
         $this->faq_model->edit_faq($data);
 
-        $data = $this->str_array_ready_for_display($data);
         echo json_encode($data);
     }
 
