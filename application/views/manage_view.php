@@ -15,13 +15,11 @@
 <div id="add_container">
     <form autocomplete="on" id="add_book_form">
         <h4>Add Material</h4>
-        <label for="add_book_no">Book No: </label>
-        <input type="text" name="book_no" id="add_book_no" placeholder="Book Number" required pattern="[A-Za-z0-9 ]+">
+        <span>Need help? </span><br/>
+        <input type="text" title="ISBN (ex. 1234567890)" name="book_no" maxlength="10" id="add_book_no" placeholder="Book No" required pattern="[A-Za-z0-9 ]+">
         <br/>
-        <label for="add_book_title">Title: </label>
-        <input type="text" name="book_title" id="add_book_title" placeholder="Title" required/>
+        <input type="text" maxlength="255" spellcheck="true" name="book_title" id="add_book_title" placeholder="Title" required/>
         <br/>
-        <label for="add_book_type">Type: </label>
         <select name="type" id="add_book_type">
             <option selected="true">Book</option>
             <option>Journal</option>
@@ -31,22 +29,18 @@
         <br/>
         <div class="abstract_container">
             <label for="add_abstract" >Abstract</label>
-            <input type="text" name="abstract" id="add_abstract" placeholder="Abstract"/>
+            <input type="text" spellcheck="true" maxlength="1024" name="abstract" id="add_abstract" placeholder="Abstract"/>
         </div>
-        <label for="add_author">Author: </label>
-        <input type="text" name="author" id="add_author" placeholder="Author" pattern="[A-Za-z ]+[-]?[A-Za-z]*"/>
+        <input type="text" name="author" maxlength="255" id="add_author" placeholder="Author" pattern="[a-zA-z0-9,_' ]+"/>
         <br/>
-        <label for="add_description">Description: </label> <br/>
-        <textarea name="description" id="add_description" placeholder="Description"  ></textarea>
+        <textarea name="description" spellcheck="true" maxlength="255" id="add_description" placeholder="Description"  ></textarea>
         <br/>
-        <label for="add_publisher">Publisher: </label>
-        <input type="text" name="publisher" id="add_publisher" placeholder="Publisher"  />
+        <input type="text" maxlength="255" name="publisher" id="add_publisher" placeholder="Publisher"  />
         <br/>
-        <label for="add_date_published">Date Published: </label>
-        <input type="date" name="date_published" id="add_date_published"  pattern="\d{4}-\d\d-\d\d" placeholder="Date Published" />
+        <input type="number" min="0" name="date_published" id="add_date_published"  pattern="\d{4}-\d\d-\d\d" placeholder="Date Published" />
         <br/>
-        <label for="add_tags">Tags: </label>
-        <input type="text" name="tags" id="add_tags" placeholder="Tags" pattern="^[a-zA-Z0-9 ]+(,[a-zA-Z0-9 ]+)*$"/>
+        <input type="text" name="tags" spellcheck="true" id="add_tags" title="Subject, Category, etc...; &#10;separated by comma (ex. 'math, computer science') " placeholder="Tags" pattern="^[a-zA-Z0-9 ]+(,[a-zA-Z0-9 ]+)*$"/>
+        <br/>
         <br/>
         <button type="submit" name="add_button" id="add_button">Add Book</button>
         <button id="add_cancel_button" name="add_cancel_button" >Cancel</button>
@@ -57,9 +51,9 @@
     <form name="edit_book" id="edit_book_form" method="post">
         <h4>Edit Material</h4>
         <label for="edit_prev_book_no" hidden>Previous Book No:</label>
-        <input type="text" name="prev_book_no" id="edit_prev_book_no" hidden/>
+        <input type="text" maxlength="10"  name="prev_book_no" id="edit_prev_book_no" hidden/>
         <label for="edit_book_no">Book No: </label>
-        <input type="text" name="book_no" id="edit_book_no" placeholder="Book Number" required pattern="[A-Za-z0-9 ]+" />
+        <input type="text" title="ISBN (ex. 1234567890)" maxlength="10" name="book_no" id="edit_book_no" placeholder="Book Number" required pattern="[A-Za-z0-9 ]+" />
         <br/>
         <label for="edit_book_title">Book Title: </label>
         <input type="text" name="book_title" id="edit_book_title" placeholder="Title" required pattern="[-A-Za-z0-9 ]+" />
