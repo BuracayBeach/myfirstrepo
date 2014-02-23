@@ -34,5 +34,20 @@ class Admin_account_model extends CI_Model {
 
 		return false;
 	}
+
+	public function update_admin($data, $username){
+		$this->db->query("UPDATE admin SET 
+				name_first='{$data['name_first']}',
+				name_middle='{$data['name_middle']}',
+				name_last='{$data['name_last']}'
+				WHERE username='{$username}'");
+		return true;
+	}
+
+	public function get_admin_data($username){
+		$query=$this->db->query("SELECT * FROM admin WHERE username='{$username}'");
+		$result = $query->result_array();
+		return $result[0];
+	}
 }
 ?>
