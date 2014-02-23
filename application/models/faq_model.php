@@ -7,25 +7,28 @@ class Faq_model extends CI_Model {
         $this->load->database();
     }
 
-    function add_faq($data){
+    function add_faq(&$data){
         $query = "INSERT INTO faq (question,answer)".
             " VALUES ('{$data['question']}'".
             ",'{$data['answer']}'".")";
 
         $this->db->query($query);
+
+        $data['id'] = $this->db->query("SELECT LAST_INSERT_ID() id")->result()[0]->id;
+
     }
 
     function get_faq($id){
         $query = "SELECT * FROM faq WHERE id='{$id}'";
 
-        echo json_encode($this->db->query($query)->result());
+        return $this->db->query($query)->result();
 
     }
 
     function get_all_faq(){
         $query = "SELECT * FROM faq";
 
-        echo json_encode($this->db->query($query)->result());
+        return $this->db->query($query)->result();
     }
 
     function edit_faq($data){

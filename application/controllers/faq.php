@@ -5,6 +5,7 @@ class Faq extends CI_Controller {
     function __construct(){
         parent::__construct();
         $this->load->model('faq_model');
+        $this->load->library('safeguard');
     }
 
     public function index(){
@@ -20,35 +21,38 @@ class Faq extends CI_Controller {
     }
 
     public function delete(){
-        $id = $_POST['id'];
+        $id = mysql_real_escape_string($_POST['id']);
         $this->faq_model->delete_faq($id);
     }
 
     public function add(){
-        $data['question'] = filter_var($_POST['question'], FILTER_SANITIZE_MAGIC_QUOTES);
-        $data['answer'] = filter_var($_POST['answer'], FILTER_SANITIZE_MAGIC_QUOTES);
-        $this->faq_model->add_faq($data);
+        $_POST = $this->safeguard->array_ready_for_query($_POST);
+        $this->faq_model->add_faq($_POST);
 
+
+        $_POST = $this->safeguard->str_array_ready_for_display($_POST);
         echo json_encode($_POST);
     }
 
-    public function get_faq(){
-        $id = filter_var($_POST['id'],FILTER_SANITIZE_MAGIC_QUOTES);
 
-        echo $this->faq_model->get_faq($id);
+    public function get_faq(){
+        $id = mysql_real_escape_string($_POST['id']);
+
+        $faq = $this->faq_model->get_faq($id);
+
+        echo json_encode($faq);
     }
 
     public function get_all_faq(){
-        echo $this->faq_model->get_all_faq();
+        $faqs = $this->faq_model->get_all_faq();
+        $faqs = $this->safeguard->query_result_ready_for_display($faqs);
+        echo json_encode($faqs);
     }
 
     public function edit(){
-        $data['id'] = filter_var($_POST['id'], FILTER_SANITIZE_MAGIC_QUOTES);
-        $data['question'] = filter_var($_POST['question'], FILTER_SANITIZE_MAGIC_QUOTES);
-        $data['answer'] = filter_var($_POST['answer'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data = $this->safeguard->array_ready_for_query($_POST);
         $this->faq_model->edit_faq($data);
 
-        $data = array_replace($data,$_POST);
         echo json_encode($data);
     }
 
