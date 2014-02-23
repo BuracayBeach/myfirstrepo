@@ -5,10 +5,15 @@
 
 	function log_users()
 	{
+		page = $('#logs_pagination').attr('page');
+		mydata = {'page':page};
+		// alert(page);
+
 		$.ajax({
 			url : filepath+"enable_disable/get_log/", //ASSUMPTION : the page is in the enable_disable controller
 			type : 'POST',
 			dataType : "html",
+			data: mydata,
 			async : true,
 			success: function(data) {
 
@@ -33,6 +38,7 @@
 					headers+="</tr>";
 					result_array.push(headers);
 
+
 					//push each result as a row in a table
 					for(var i=0;i<num_results;i+=1)
 					{
@@ -46,10 +52,13 @@
 						result_array.push(row);
 					}
 
+
+
+
 					//replace the entire table with an updated table
-					$('#account_log #log_table').html(result_array);
+					$('#log_table').html(result_array);
 				} else {
-					$('#account_log #log_table').before('<p>No logs yet</p>');
+					$('#log_table').before('<p>No logs yet</p>');
 
 				}
 				
@@ -202,9 +211,6 @@
 		$('.Enable_button').on("click",enable_handler);
 		$('.Disable_button').on("click",disable_handler);
 		log_users();
-		$('#links_container').on("click",function(){
-			
-		})
 	}	
 
 	$(document).ready(main);

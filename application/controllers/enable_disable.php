@@ -30,6 +30,7 @@ class Enable_disable extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('header');
+		$this->load->view('search_user_view');
 		$this->load->view('enable_disable_view');//loads the view
 		$this->load->view('footer');
 	}
@@ -42,6 +43,8 @@ class Enable_disable extends CI_Controller {
 		{
 			$_POST = $_SESSION['post_temp'];
 		}
+
+		var_dump($_POST);
 
 		$data['field'] = filter_var($_POST["field"],FILTER_SANITIZE_STRING);
 		switch($_POST["field"]){
@@ -98,6 +101,7 @@ class Enable_disable extends CI_Controller {
 		//temporarily save the $_POST array to session to paginate without losing the search results
 		$_SESSION['post_temp'] = $_POST;
  		$this->load->view('header');						//passes the result to the view 
+ 		$this->load->view('search_user_view');
 		$this->load->view('enable_disable_view', $array);	//loads the view with the results
 		$this->load->view('footer');
 	}
@@ -207,9 +211,14 @@ class Enable_disable extends CI_Controller {
 	public function get_log()
 	{
 		$this->load->model('enable_disable_model');
-		$log_result = $this->enable_disable_model->get_log();
+		$page_count = 1;
+		$log_result = $this->enable_disable_model->get_log($_POST['page'], $page_count);
 
 		echo json_encode($log_result);
+	}
+
+	public function init_pagination(){
+		
 	}
 
 	/*
