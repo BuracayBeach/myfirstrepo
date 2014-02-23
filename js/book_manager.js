@@ -50,21 +50,22 @@ function addBook(event){
     event.preventDefault();  /* stop form from submitting normally */
     if(checkAll()){
         var book_no = $(this).find('#add_book_no').val();
-        var formInputs = $(this).serialize();
+        var addForm = $(this);
+        var formInputs = addForm.serialize();
         $.get("index.php/book/get_book",{"book_no":book_no},function(data){
             var isUnique = JSON.parse(data).length == 0;
             if(isUnique){
                 $.post("index.php/book/add",formInputs,function(data){
                     data = JSON.parse(data);
                     var rowHTML = generateTableRowHTML(data);
-                    $('#recently_added_books_table').find('tbody:last').append(rowHTML);
+                    $('#recently_added_books_table').find('tbody').prepend(rowHTML);
                     toggleRecentlyAddedTable();
                 })
                     .fail(function(jqXHR, textStatus, errorThrown,data){
                         alert("Sorry! There was a problem processing your action.");
                     });
 
-                $(this).closest('div').hide();
+                addForm.closest('div').hide();
             }else{
                alert('Cannot add duplicate material.')
             }

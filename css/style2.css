@@ -100,9 +100,10 @@ SEARCH FORM
 --------------------------------------*/
 
 #search{
-	width: 100%;
+	width: 17%;
+	position: fixed;
 	float: left;
-
+	overflow: auto;
 }
 
 
@@ -116,8 +117,7 @@ SEARCH FORM
     outline: 0;
     background: transparent;
     border: 3px solid #2B65EC;
-    background: red;
-    width: 100%;
+    width: 70%;
     font-family:"Segoe UI Light";
     text-indent: 5px;
     font-size:17px;
@@ -182,7 +182,7 @@ a:hover	{
 TABLE RESULTS
 
 ---------------------------------------*/
-/*
+
 #search_table_container{
 	margin-left: 17%;
 	width: 83%;
@@ -199,7 +199,7 @@ MANAGE
 
 ---------------------------------------*/
 
-/*
+
 #recently_added_books_container, #add_container, #edit_container{
 	min-height: 50px;
 	width: 40%;
@@ -208,6 +208,7 @@ MANAGE
 	position: fixed;
 	right: 0;
 	top:100px;
+
 }
 
  #edit_container{
@@ -222,41 +223,10 @@ FAQS = 0
 
  --------------------------------------*/
 
-/*
+
 #add_faq_button, #faq_manage_container{
 	float: right;
 	width: 20%;
 	height: 25px;
 }
 
-
- /*--------------------------------------
-
-NEW BAR LEFT = 0
-
- --------------------------------------*/
-
-#accordion{
-	width: 17%;
-	position: fixed;
-	float: left;
-	z-index: 1;
-}
-
-
-/*---------------------------------------
-
-RESULTS
-
----------------------------------------*/
-
-#result_container{
-	width:70%;
-	background: rgba(192, 200,255,0.5);
-	position: fixed;
-	float: left;
-	z-index: 1;
-	margin-left: 17%;
-	max-height: 500px;
-	overflow: hidden;
-}

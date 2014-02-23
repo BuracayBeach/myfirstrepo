@@ -29,7 +29,7 @@
                 <td>
                     <div id="edit_faq_container">
                         <form autocomplete="on" id="edit_faq_form">
-                            <input type="hidden" name="id" id="edit_id" />
+                            <input type="hidden" name="id" id="edit_faq_id" />
                             <input type="text" name="question" id="edit_question" placeholder="Question" required/>
                             <br/>
                             <textarea name="answer" id="edit_answer" placeholder="Answer..."  required></textarea>
@@ -39,12 +39,6 @@
                         </form>
                     </div>
                 <td/>
-            </tr>
-            <tr id="">
-                <td class="">
-                        <span class="question">
-                        <span class="answer">
-                </td>
             </tr>
             </tbody>
         </table>

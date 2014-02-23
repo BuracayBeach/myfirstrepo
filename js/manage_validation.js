@@ -1,3 +1,4 @@
+
 var str, msg;
 $(document).ready(function(){
 
@@ -25,6 +26,7 @@ function validateBookNo(){
     }
     return false;
 }
+
 function validateTitle(){
     str = $('#add_book_title').val();
     msg = "";
@@ -93,12 +95,5 @@ function validateTags(){
 function checkAll(){
     var addButton = $('#add_button');
 
-    if( validateBookNo() && validateTitle() && validateName('author')
-        && validateName('publisher')  && validateDatePublished()&& validateTags())
-    {
-        return true;
-    }
-    else{
-        return false;
-    }
+    return true;
 }
