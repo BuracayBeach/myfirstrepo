@@ -1,4 +1,4 @@
-$('#content_container').ready(function(){
+$('#result_container,#faq_container').ready(function(){
     /***** EVENT ATTACHMENTS *****/
     $('#show_add_form_button').on('click',showAddForm);
     $('#add_cancel_button').on('click',cancelAdd);
