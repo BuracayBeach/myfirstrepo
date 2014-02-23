@@ -214,3 +214,19 @@ MANAGE
  #edit_container{
  	top:160px;
  }
+
+
+
+ /*--------------------------------------
+
+FAQS = 0
+
+ --------------------------------------*/
+
+
+#add_faq_button, #faq_manage_container{
+	float: right;
+	width: 20%;
+	height: 25px;
+}
+
