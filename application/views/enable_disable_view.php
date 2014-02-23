@@ -28,7 +28,7 @@
           	<div id="result">	
           		<?php
           			//var_dump($result);
-          			if(isset($result))//checks if $result not null
+          			if(count($result) > 0)//checks if $result not null
           			{
 	          			echo "<table border='1'><tr><th>Username</th><th>Email</th><th>User Type</th><th>First name</th><th>Middle name</th><th>Last name</th><th>Course</th><th>College</th><th>action</th></tr>";
 						foreach ($result as $row)
@@ -68,6 +68,11 @@
 
 
 						echo "<div id='links_container'>".$links."</div>";
+					}
+
+					else
+					{
+						echo '<p>No results</p>';
 					}
 				?>
           	</div>

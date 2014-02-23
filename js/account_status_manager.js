@@ -1,10 +1,12 @@
 	//Script Author : Carl Adrian P. Castueras
 	//Description : AJAX functions used for to call the activate,enable and disable controllers and then update the page dynamically
 
+	var filepath = "http://localhost/myfirstrepo/"
+
 	function log_users()
 	{
 		$.ajax({
-			url : "get_log/", //ASSUMPTION : the page is in the enable_disable controller
+			url : filepath+"enable_disable/get_log/", //ASSUMPTION : the page is in the enable_disable controller
 			type : 'POST',
 			dataType : "html",
 			async : true,
@@ -75,7 +77,7 @@
 		if(confirm(constr))
 		{
 			$.ajax({
-				url : "activate/"+ username +"/"+ usertype +"/"+ number + "/" + email, //ASSUMPTION : this function will only be called from the enable_disable controller
+				url : filepath+"enable_disable/activate/"+ username +"/"+ usertype +"/"+ number + "/" + email, //ASSUMPTION : this function will only be called from the enable_disable controller
 				type : 'POST',
 				dataType : "html",
 				async : true,
@@ -128,7 +130,7 @@
 		if(confirm(constr))
 		{
 			$.ajax({
-				url : "disable/"+ username + "/" + email,  //ASSUMPTION : this function is called from the enable_disable controller
+				url : filepath+"enable_disable/disable/"+ username + "/" + email,  //ASSUMPTION : this function is called from the enable_disable controller
 				type : 'POST',
 				dataType : "html",
 				async : true,
@@ -170,7 +172,7 @@
 		if(confirm(constr))
 		{
 			$.ajax({
-				url : "enable/"+ username + "/" + email,
+				url : filepath+"enable_disable/enable/"+ username + "/" + email,
 				type : 'POST',
 				dataType : "html",
 				async : true,
@@ -200,6 +202,9 @@
 		$('.Enable_button').on("click",enable_handler);
 		$('.Disable_button').on("click",disable_handler);
 		log_users();
+		$('#links_container').on("click",function(){
+			
+		})
 	}	
 
 	$(document).ready(main);
