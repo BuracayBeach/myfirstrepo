@@ -116,7 +116,7 @@ SEARCH FORM
     outline: 0;
     background: transparent;
     border: 3px solid #2B65EC;
-    background: red;
+    background: white;
     width: 100%;
     font-family:"Segoe UI Light";
     text-indent: 5px;
@@ -237,7 +237,6 @@ NEW BAR LEFT = 0
  --------------------------------------*/
 
 #accordion{
-    display:none;
 	width: 17%;
 	position: fixed;
 	float: left;
