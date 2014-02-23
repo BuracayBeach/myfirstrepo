@@ -98,7 +98,24 @@
   </div>
 </div>
 
+  
     <div style="margin-left: 500px" id="results_per_page_div">
-        <input id="results_per_page" style="width:45px" type="number" min="1" max="500" value="1"/>
+      <form id="results_per_page_form">
+        <input id="results_per_page" style="width:45px" type="number" min="1" max="500" value="10" pattern="^[0-9]+$"/>
         <span>Results per page&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      </form>
     </div>
+
+    <script>
+      $(document).ready(function (){
+        $("#results_per_page").on('keypress', function(event){
+          if (event.which == 13){
+            $('#submit_search').submit();
+          }
+        });
+
+        $('#results_per_page_form').submit(function(event){
+          event.preventDefault();
+        });
+      });
+    </script>

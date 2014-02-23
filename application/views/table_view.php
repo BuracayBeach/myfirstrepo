@@ -32,6 +32,11 @@
                             for($a=$row_min ; $a<=$row_max ; $a++){
                                 if (!isset($table[$a])) break;
                                 $row = $table[$a];
+
+                                //prevent html generation for tags and scripts
+                                foreach($row as &$r){
+                                    $r = htmlspecialchars(stripslashes($r));
+                                }
                             
                                 echo "<tr active='false'>";                               
                                 echo "<td align='center'>" .
@@ -148,13 +153,18 @@
 <div id='pagination_controls_div'>
     <?php //pagination
         if (isset($page)){
-           echo "<span id='pagination' page='{$page}' maxpage='{$maxpage}' rowsperpage='{$rows_per_page}' searchterm=" . "'" . $search_term . "'" . ">";
+            $page_scale = 9;
+            $p_search_term = stripslashes($search_term);
+           echo "<span id='pagination' page='{$page}' maxpage='{$maxpage}' rowsperpage='{$rows_per_page}' searchterm= '{$p_search_term}' searchby='{$search_by}'>";
             if(isset($table) &&  count($table) > $rows_per_page){
                 $max_page = count($table) / $rows_per_page;
                 if (count($table) % $rows_per_page > 0) $max_page++;
 
                 echo "<a class='prev_nav' href='javascript: void(0)'>< Prev&nbsp&nbsp;</a>"; 
                 for ($a=1 ; $a<=$max_page ; $a++){
+                    if ($page > $page_scale/2 && $page - $page_scale/2 > $a) continue;
+                    if ($a > $page + $page_scale/2 && $a > $page_scale) continue;
+
                     if ($a == $page) echo '<strong>';
                     echo "<a class='page_nav' href='javascript: void(0)' pageno={$a}>&nbsp;{$a}&nbsp;</a>"; 
                     if ($a == $page) echo '</strong>';
@@ -163,6 +173,7 @@
             
             }
             echo '</span>'; 
+
         }   
     ?>
 </div>
@@ -199,18 +210,21 @@
 
     function to_ajax(numPage){
         to_search = $('#pagination').attr('searchterm');
+        search_by = $('#pagination').attr('searchby');
         $('#search_text').val(to_search);
         results_per_page = $('#pagination').attr('rowsperpage');
-        ajax_results(numPage, results_per_page);
+        ajax_results(search_by, numPage, results_per_page);
     }
 
 
 
 
-    function ajax_results(page, results_per_page){
+    function ajax_results(search_by, page, results_per_page){
         my_input = $('#search_form').serialize();
         my_input += "&page=" + page;
         my_input += "&rows_per_page=" + results_per_page;
+        my_input += "&search_by=" + search_by;
+        // alert(my_input);
         console.log(my_input);
 
         $.ajax({

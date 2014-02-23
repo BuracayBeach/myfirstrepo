@@ -1,5 +1,5 @@
 <h1>ICS Library</h1>
-  	<div id="body">
+  	<div id="body" style="margin-left: 250px;">
   		<?php echo form_open('enable_disable/search'); //creates a form?>
 
 				<input type="radio" name="field" value="name" onclick='changeTextBox(value)' checked="true"/>

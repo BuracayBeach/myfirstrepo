@@ -9,11 +9,11 @@
 
 				function research(){
 					newSearch = $('#suggestion_text').html();
-					newSearch = newSearch.replace("<strong>","");
-					newSearch = newSearch.replace("</strong>","");
-					$('#search_text').val(newSearch);
+					newSearch = newSearch.replace(/<strong>/g,"");
+					newSearch = newSearch.replace(/<\/strong>/g,"");
+					$('#search_text').val(newSearch.trim());
 
-					$('#submit_search').click();
+					$('#submit_search').submit();
 				}
 
 				$(document).ready(function() {

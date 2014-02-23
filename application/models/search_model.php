@@ -105,7 +105,7 @@ class Search_model extends CI_Model {
         if ($details['status_check'] != '') $q['where'] .= ' and ';
         $q['where'] .= $details['type_check'];
 
-        if ($details['search_by']== 'book_no' && trim($details['search_term']) != '')  $q['where'] .= " and ";
+        if (($details['search_by']== 'book_no' || $details['search_by']== 'date_published') && trim($details['search_term']) != '')  $q['where'] .= " and ";
 
 
         if (!$details['spell_check']){
@@ -128,7 +128,7 @@ class Search_model extends CI_Model {
 
                     $word_count++;
                 }
-                if ($details['search_by']!= 'book_no') $q['where'] .= ") ";
+                if ($details['search_by']!= 'book_no' && $details['search_by']!= 'date_published' ) $q['where'] .= ") ";
             }
         }
 
@@ -333,7 +333,7 @@ class Search_model extends CI_Model {
 
                 //if 25% is correctible for words with > 3 letters. For 3-letter words, one letter mistake can be corrected
                 if ($term_sugg_dist[$search_term] > 0 && ($percent_error <= 0.25 || strlen($search_term)==3 && $percent_error <= 0.34)) {
-                    $terms_to_suggest .= ' <strong>' . $term_sugg[$search_term] . '</strong>';
+                    $terms_to_suggest .= ' <strong>' . htmlspecialchars(stripslashes($term_sugg[$search_term])) . '</strong>';
                     $to_suggest = true;
 
                 } else if ($term_sugg_dist[$search_term] == 0)  {
@@ -356,8 +356,6 @@ class Search_model extends CI_Model {
 
         return $sorted_table;
     }
-
-
 }
 
 
