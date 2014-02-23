@@ -2,19 +2,27 @@
  * Created by isnalla on 2/18/14.
  */
 
+var rowBeingEdited;
+var editFormHTML = '<div id="edit_faq_container">' +
+                        '<form autocomplete="on" id="edit_faq_form">' +
+                            '<input type="hidden" name="id" id="edit_faq_id" />' +
+                            '<input type="text" name="question" id="edit_question" placeholder="Question" required/><br/>' +
+                            '<textarea name="answer" id="edit_answer" placeholder="Answer..."  required></textarea><br/>' +
+                            '<button type="submit" name="edit_faq_button" id="edit_faq_button">Edit</button>' +
+                            '<button type="button" id="edit_faq_cancel_button" name="edit_faq_cancel_button" >Cancel</button>' +
+                        '</form>' +
+                    '</div>';
+
 $('#faq_table_container').ready(function(){
     /***** EVENT ATTACHMENTS *****/
     $('#add_faq_container').closest("tr").hide();
-    $('#edit_faq_container').closest("tr").hide();
     $('#add_faq_button').on("click",showAddForm);
     $('#add_faq_form').submit(addFAQ);
 
     var faqTableContainer = $('#faq_table_container');
     faqTableContainer.on('click','.edit_faq_button',fillEditFaqForm);
     faqTableContainer.on('click','.delete_faq_button',deleteFaq);
-    $('#edit_faq_cancel_button').on('click',cancelForm);
-    $('#add_faq_cancel_button').on('click',cancelForm);
-    $('#edit_faq_form').submit(editFAQ);
+    $('#add_faq_cancel_button').on('click',cancelAddForm);
 
 });
 
@@ -23,20 +31,18 @@ function deleteFaq(event){
     var confirmed = confirm('Confirm deleting this FAQ');
     if(confirmed){
         var faq_id = $(this).closest("tr").attr('faq_id');
-        console.log(faq_id);
         $.post("index.php/faq/delete",{'id':faq_id},function(){
             $("tr[faq_id='"+faq_id+"']").remove();
         })
     }
 }
 
-var rowBeingEdited;
 function showAddForm(event){
     event.preventDefault();
 
     $('#edit_faq_container').closest('tr').hide();
-    if(rowBeingEdited != undefined && rowBeingEdited.length > 0)
-        rowBeingEdited.show();
+//    if(rowBeingEdited != undefined && rowBeingEdited.length > 0)
+//        rowBeingEdited.show();
     var addFaqContainer =
         $('#add_faq_container');
     addFaqContainer.closest("tr").show();
@@ -77,11 +83,17 @@ function fillEditFaqForm(event){
     event.preventDefault();
 
     $('#add_faq_container').closest('tr').hide();
-    var id = $(this).closest("tr").attr('faq_id');
+
+    var tr = $(this).closest("tr")[0];
+    var td = tr.find('td')[0];
+    var id = tr.attr('faq_id');
     $.post("index.php/faq/get_faq",{"id":id},function(data){
         var data = JSON.parse(data)[0];
         console.log(data);
-        var editForm = $('#edit_faq_form');
+        tr.append(editFormHTML);
+        var editForm = tr.find('form');
+        editForm.submit(editFAQ);
+        editForm.find('#edit_faq_cancel_button').on('click',cancelEditForm);
 
         editForm.find('#edit_faq_id').val(id);
         editForm.find('#edit_question').val(data.question);
@@ -89,8 +101,7 @@ function fillEditFaqForm(event){
 
     });
 
-    rowBeingEdited = $(this).closest("tr");
-    rowBeingEdited.hide();
+    tr.hide();
     $('#edit_faq_container').closest('tr').show();
     $('#edit_answer').focus();
 }
@@ -114,8 +125,8 @@ function editFAQ(event){
 
 }
 
-function cancelForm(event){
+function cancelAddForm(event){
     event.preventDefault();
-    $(this).closest('div').hide();
+    $(this).closest('tr').hide();
     $(this).closest('form')[0].reset();
 }
