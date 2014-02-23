@@ -9,7 +9,9 @@ window.onload=function(){
 }
 
 function validateAll(){
-
+	if(validateUsername && validatepasswords && validateFirstName && validateMiddleName && validateLastName)
+		return true;
+	else return false;
 }
 
 function validateUsername(){
@@ -34,7 +36,7 @@ function validatePassword(){
 	msg="";
 
 	if(str=="")msg+="Required";
-	else if (!str.match(/^[0-9a-zA-Z]{6,18}$/))  msg+="Must be 6-18 characters long.";
+	else if (!str.match(/^[0-9a-zA-Z]{5,18}$/))  msg+="Must be 5-18 characters long.";
 	else{
 		if(str.match(/^(([a-z]+)|(\d+))$/)) msg+="Weak";
 		else if(str.match(/^[a-z0-9]+$/)) msg+="Fair";
@@ -43,7 +45,7 @@ function validatePassword(){
 	}
 	document.getElementsByName("spanPassword")[0].innerHTML=msg;
 
-	if(msg!="Required"&&msg!="Must be 6-18 characters long.") return true;
+	if(msg!="Required"&&msg!="Must be 5-18 characters long.") return true;
 }
 
 //Validate the re-entered password if it matches the previous password entered.
