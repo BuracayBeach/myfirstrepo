@@ -21,14 +21,14 @@ class Faq_model extends CI_Model {
     function get_faq($id){
         $query = "SELECT * FROM faq WHERE id='{$id}'";
 
-        echo json_encode($this->db->query($query)->result());
+        echo $this->db->query($query)->result();
 
     }
 
     function get_all_faq(){
         $query = "SELECT * FROM faq";
 
-        echo json_encode($this->db->query($query)->result());
+        echo $this->db->query($query)->result();
     }
 
     function edit_faq($data){
