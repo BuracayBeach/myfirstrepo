@@ -45,6 +45,10 @@ class Search_model extends CI_Model {
         $input['type_journal'] = isset($_POST["type_journal"]);
         $input['type_sp'] = isset($_POST["type_sp"]);
         $input['type_thesis'] = isset($_POST["type_thesis"]);
+
+         foreach ($input as &$inp){
+            $inp = mysql_real_escape_string($inp);
+        }
     }
 
     function get_status_check($input){
@@ -90,7 +94,6 @@ class Search_model extends CI_Model {
 
 
     function query_result($details){
-        $details['search_term'] = filter_var($details['search_term'], FILTER_SANITIZE_STRING);
         if (strlen($details['search_term']) > 99) $details['search_term'] = substr($details['search_term'], 0,99);
 
         $q = array(
