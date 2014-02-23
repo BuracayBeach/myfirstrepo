@@ -30,7 +30,7 @@
 					</div>
 				
 
-					<input searchby="book_title" id="search_text" type="text" name='search' autofocus='true' placeholder='Keywords...' maxlength='99'/>
+					<input searchby="book_title" id="search_text" type="search" name='search' autofocus='true' placeholder='Keywords...' maxlength='99' spellcheck='true'/>
 					<input id='submit_search' type="submit" name="submit_search" value="Search" /><br/>
 		            <hr>
 					
