@@ -154,8 +154,8 @@
     <?php //pagination
         if (isset($page)){
             $page_scale = 9;
-
-           echo "<span id='pagination' page='{$page}' maxpage='{$maxpage}' rowsperpage='{$rows_per_page}' searchterm=" . "'" . $search_term . "'" . ">";
+            $p_search_term = stripslashes($search_term);
+           echo "<span id='pagination' page='{$page}' maxpage='{$maxpage}' rowsperpage='{$rows_per_page}' searchterm= '{$p_search_term}' searchby='{$search_by}'>";
             if(isset($table) &&  count($table) > $rows_per_page){
                 $max_page = count($table) / $rows_per_page;
                 if (count($table) % $rows_per_page > 0) $max_page++;
@@ -210,18 +210,21 @@
 
     function to_ajax(numPage){
         to_search = $('#pagination').attr('searchterm');
+        search_by = $('#pagination').attr('searchby');
         $('#search_text').val(to_search);
         results_per_page = $('#pagination').attr('rowsperpage');
-        ajax_results(numPage, results_per_page);
+        ajax_results(search_by, numPage, results_per_page);
     }
 
 
 
 
-    function ajax_results(page, results_per_page){
+    function ajax_results(search_by, page, results_per_page){
         my_input = $('#search_form').serialize();
         my_input += "&page=" + page;
         my_input += "&rows_per_page=" + results_per_page;
+        my_input += "&search_by=" + search_by;
+        // alert(my_input);
         console.log(my_input);
 
         $.ajax({

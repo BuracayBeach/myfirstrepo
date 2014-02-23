@@ -105,7 +105,7 @@ class Search_model extends CI_Model {
         if ($details['status_check'] != '') $q['where'] .= ' and ';
         $q['where'] .= $details['type_check'];
 
-        if ($details['search_by']== 'book_no' && trim($details['search_term']) != '')  $q['where'] .= " and ";
+        if (($details['search_by']== 'book_no' || $details['search_by']== 'date_published') && trim($details['search_term']) != '')  $q['where'] .= " and ";
 
 
         if (!$details['spell_check']){
@@ -128,7 +128,7 @@ class Search_model extends CI_Model {
 
                     $word_count++;
                 }
-                if ($details['search_by']!= 'book_no') $q['where'] .= ") ";
+                if ($details['search_by']!= 'book_no' && $details['search_by']!= 'date_published' ) $q['where'] .= ") ";
             }
         }
 

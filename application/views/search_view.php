@@ -56,7 +56,7 @@
 				            <a href=""><li class="menu-toggle" searchby="book_no"><img src="<?php echo base_url();?>images/icon/number.png" alt="">&nbsp; Book Number</li></a>
 				            <a href=""><li class="menu-toggle" searchby="author"><img src="<?php echo base_url();?>images/icon/user32.png" alt="">&nbsp; Author</li></a>
 				            <a href=""><li class="menu-toggle" searchby="publisher"><img src="<?php echo base_url();?>images/icon/printer32.png" alt="">&nbsp; Publisher</li></a>
-				            <a href=""><li class="menu-toggle" searchby="date_published"><img src="<?php echo base_url();?>images/icon/calendar.png" alt="">&nbsp; Date Published</li></a>
+				            <a href=""><li class="menu-toggle" searchby="date_published"><img src="<?php echo base_url();?>images/icon/calendar.png" alt="">&nbsp; Year Published</li></a>
 				            <a href=""><li class="menu-toggle" searchby="abstract"><img src="<?php echo base_url();?>images/icon/star32.png" alt="">&nbsp; Abstract</li></a>
 				            <a href=""><li class="menu-toggle" searchby="any"><img src="<?php echo base_url();?>images/icon/wand32.png" alt="">&nbsp; Any</li></a>
 				           

@@ -118,7 +118,7 @@ class book extends CI_Controller {
         );
         if (isset($_POST['page'])) $details['page'] = $_POST['page'];
         if (isset($_POST['rows_per_page'])) $details['rows_per_page'] = $_POST['rows_per_page'];
-        if ($details['search_by'] == 'book_no') $details['spell_check'] = false;
+        if ($details['search_by'] == 'book_no' || $details['search_by'] == 'date_published') $details['spell_check'] = false;
 
         //construct query and get the array of rows from database
         $table = $this->search_model->query_result($details);
