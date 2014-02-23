@@ -10,13 +10,14 @@ window.onload=function(){
 	userForm.college.onchange=filterCourses2;
 	userForm.onsubmit=validateAll;
 
-	changePasswordForm.currentPassword.onblur=validateCurrentPassword;
+	changePasswordForm.currentPassword.onkeyup=validateCurrentPassword;
 	changePasswordForm.newPassword.onkeyup=validateNewPasswords;
 	changePasswordForm.reNewPassword.onkeyup=validateNewPasswords;
 	changePasswordForm.onsubmit=validateAllPassword;
 }
 
 function validateNewPasswords(){
+	validateCurrentPassword();
 	validateNewPassword();
 	validateReNewPassword();
 }

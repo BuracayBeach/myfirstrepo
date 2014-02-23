@@ -49,5 +49,15 @@ class Admin_account_model extends CI_Model {
 		$result = $query->result_array();
 		return $result[0];
 	}
+
+	public function get_admin_password($username){
+		$query=$this->db->query("SELECT * FROM admin WHERE username='{$username}'");
+		$result = $query->result_array()[0]['password'];
+		return $result;
+	}
+
+	public function change_admin_password($new_password, $username){
+		$this->db->query("UPDATE admin SET password='{$new_password}' where username='{$username}'");
+	}
 }
 ?>
