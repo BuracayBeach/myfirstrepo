@@ -20,23 +20,28 @@ class Faq extends CI_Controller {
     }
 
     public function delete(){
-        $id = $_POST['id'];
+        $id = mysql_real_escape_string($_POST['id']);
         $this->faq_model->delete_faq($id);
     }
 
     public function add(){
-        $data['question'] = filter_var($_POST['question'], FILTER_SANITIZE_MAGIC_QUOTES);
-        $data['answer'] = filter_var($_POST['answer'], FILTER_SANITIZE_MAGIC_QUOTES);
+        $data['question'] =  mysql_real_escape_string($_POST['question']);
+        $data['answer'] = mysql_real_escape_string($_POST['answer']);
         $this->faq_model->add_faq($data);
 
-        $data = array_replace($data,$_POST);
+        $data['question'] =  htmlspecialchars( stripslashes($data['question']) );
+        $data['answer'] = htmlspecialchars( stripslashes($data['answer']) );
         echo json_encode($data);
     }
 
     public function get_faq(){
-        $id = filter_var($_POST['id'],FILTER_SANITIZE_MAGIC_QUOTES);
+        $id = mysql_real_escape_string($_POST['id']);
 
-        echo $this->faq_model->get_faq($id);
+        $data = $this->faq_model->get_faq($id);
+        foreach($data as &$e){
+            $e = htmlspecialchars(strip_slashes($e));
+        }
+        echo $data;
     }
 
     public function get_all_faq(){

@@ -31,11 +31,12 @@ function deleteFaq(event){
 }
 
 var rowBeingEdited;
+
 function showAddForm(event){
     event.preventDefault();
 
     $('#edit_faq_container').closest('tr').hide();
-    if(rowBeingEdited != undefined || rowBeingEdited.length != 0)
+    if(rowBeingEdited != undefined && rowBeingEdited.length > 0)
         rowBeingEdited.show();
     var addFaqContainer =
         $('#add_faq_container');
