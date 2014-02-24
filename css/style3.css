@@ -1,19 +1,103 @@
 #navbar, .top-bar{
-	background: #2222EC;
+  background: #2222EC;
 }
 
 .top-bar-section li a {
-	background: #2222EC !important;
+  background: #2222EC !important;
 }
 
 .top-bar-section li a:not(.button):hover {
-	background: #2BAAEC !important;
+  background: #2BAAEC !important;
 }
 
 #login input{
-	max-height:29px !important;
+  max-height:29px !important;
 }
 
 #loginform, #loginform form{
-	background: #2222EC !important;
+  background: #2222EC !important;
+}
+
+.sidebar-nav a{
+  text-align:right !important;
+  margin-right: 20% !important;
+  margin-left: 0% !important;
+}
+
+#search_text{
+  height: 5% !important;
+    outline: 0;
+    margin-left:13% !important;
+    margin-right:10% !important;
+    background: transparent !important;
+    border: 3px solid #2B65EC !important;
+    width: 70% !important;
+    font-family:"Segoe UI Light" !important;
+    font-size:100% !important;
+}
+
+.order_by{
+  height: 7% !important;
+    outline: 0;
+    margin-left:6% !important;
+    margin-right:10% !important;
+    background: transparent !important;
+    border: 2px solid #2B65EC !important;
+    width: 80% !important;
+    font-family:"Segoe UI Light" !important;
+    font-size:90% !important;
+    text-indent: 0%;
+}
+
+ul{
+list-style-type: none !important;
+}
+
+#searchbar{
+  width: 13% !important;
+}
+
+#submit_search{
+  margin-left: 25% !important;
+  background-color:#2B65EC !important;
+  font-family:"Segoe UI Light" !important;
+    font-size:100% !important;
+    width:40% !important;
+    color: white;
+}
+
+#book_type_div{
+  margin-left: 2.4% !important;
+  font-size: 1% !important;
+}
+
+#status{
+  margin-left: 5% !important;
+  font-size: 1% !important;
+}
+
+body{
+ font-family:"Segoe UI Light" !important;
+}
+
+
+.sidebar-nav li:hover {
+  color: #fff !important;
+  background: #2B65EC !important;
+  text-decoration: none !important;
+  font-size: 105% !important;
+}
+
+.sidebar-nav li.active {
+  background-color: #FF6600 !important;
+  color:#fff !important;
+  font-size: 100% !important;
+}
+
+.sidebar-nav {
+  margin-left: 0%;
+}
+
+#search{
+    border-right: 2px solid #2B65EC !important;
 }
