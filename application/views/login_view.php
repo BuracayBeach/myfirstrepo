@@ -6,4 +6,4 @@
 </form>
 </li>
 
-<li class="right"><a href="<?php echo base_url();?>index.php/user_account/create_account" >Create Account</a></li>
+<li class="right"><a href="<?php echo base_url();?>create_account" >Create Account</a></li>

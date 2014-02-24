@@ -147,6 +147,26 @@ class Home extends CI_Controller {
         $this->load->view("footer");
     }
 
+    public function create_account(){
+        $data['title'] = "eICS Lib Sign Up";
+        $this->load->view("header", $data);
+        $this->load->view("create_account_view", $data);
+
+    }
+
+    public function update_account(){
+        $data['title'] = "eICS Lib Sign Up";
+        $this->load->view("header", $data);
+        $this->load->view("create_account_view", $data);
+
+    }
+
+    public function update_admin(){
+        $data['title'] = "eICS Lib Sign Up";
+        $this->load->view("header", $data);
+        $this->load->view("create_account_view", $data);
+    }
+
 }
 
 /* End of file booker.php */

@@ -101,3 +101,27 @@ body{
 #search{
     border-right: 2px solid #2B65EC !important;
 }
+
+
+
+
+/*---------------------------------
+
+Sign Up
+
+---------------------------------*/
+
+.signup span{
+  width: 30%;
+  color: white;
+  background: red;
+}
+
+
+.signup span.tama{
+  width: 30%;
+  color: white;
+  background: green;
+}
+
+
