@@ -1,0 +1,19 @@
+#navbar, .top-bar{
+	background: #2222EC;
+}
+
+.top-bar-section li a {
+	background: #2222EC !important;
+}
+
+.top-bar-section li a:not(.button):hover {
+	background: #2BAAEC !important;
+}
+
+#login input{
+	max-height:29px !important;
+}
+
+#loginform, #loginform form{
+	background: #2222EC !important;
+}
