@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Input Forms</title>
-	</head>
-	
-	<body>
 		<form name="userForm" action="<?php echo base_url();?>index.php/user_account/update" method="post" >
 			
 			<div id="container">
@@ -273,5 +264,3 @@
 		</form>
 		<a href="<?php echo base_url();?>index.php/user_account/backtohome">Back</a>
 		<script src="<?php echo base_url(); ?>js/update_account.js"></script>
-	</body>
-</html>

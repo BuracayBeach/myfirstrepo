@@ -42,7 +42,7 @@ class Book_model extends CI_Model {
     function get_book($book_no){
         $query = "SELECT * FROM book WHERE book_no='".$book_no."'";
 
-        echo json_encode($this->db->query($query)->result());
+        return $this->db->query($query)->result();
     }
 
     function edit_book($data){

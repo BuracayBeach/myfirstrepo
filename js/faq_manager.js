@@ -76,6 +76,8 @@ var rowBeingEdited;
 function fillEditFaqForm(event){
     event.preventDefault();
 
+    if(rowBeingEdited != undefined)
+        rowBeingEdited.show();
     $('#add_faq_container').closest('tr').hide();
     var id = $(this).closest("tr").attr('faq_id');
     $.post("index.php/faq/get_faq",{"id":id},function(data){
