@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 22, 2014 at 03:35 PM
+-- Generation Time: Feb 24, 2014 at 04:37 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -212,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `lend` (
 
 CREATE TABLE IF NOT EXISTS `notifications` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
-  `username_admin` varchar(18),
+  `username_admin` varchar(18) DEFAULT NULL,
   `username_user` varchar(18) NOT NULL,
   `book_no` varchar(12) DEFAULT NULL,
   `message` varchar(755) DEFAULT NULL,
@@ -220,7 +220,14 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `type` enum('overdue','claim','custom') NOT NULL,
   PRIMARY KEY (`id`,`username_user`),
   KEY `notifications_username_admin` (`username_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `username_admin`, `username_user`, `book_no`, `message`, `date_sent`, `type`) VALUES
+(1, NULL, 'useruser', NULL, 'Testing lang sa custom notif message kasi hindi nakikita. HINDI ako makita! HINDI ako makita! HINDI ako makita! HINDI ako makita!', '2014-02-24 04:36:00', 'custom');
 
 -- --------------------------------------------------------
 
@@ -310,6 +317,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `sex`, `status`, `email`, `usertype`, `emp_no`, `student_no`, `name_first`, `name_middle`, `name_last`, `mobile_no`, `course`, `college`) VALUES
+('user222', '0c7489c79a5ab44c3f569653b23a0a4a5c73d805ea5ab1e2db410417560add81', 'male', 'pending', 'asdsa@asd.com', 'student', '', '2011-45678', 'qwe', 'asd', 'zxc', '639063761234', 'BSABT', 'CA'),
 ('useruser', 'e172c5654dbc12d78ce1850a4f7956ba6e5a3d2ac40f0925fc6d691ebb54f6bf', 'male', 'pending', 'user@user.com', 'student', '', '2011-16328', 'user', 'user', 'bulalo', '639273874811', 'BSAM', 'CAS');
 
 --
