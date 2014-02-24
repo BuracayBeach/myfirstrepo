@@ -7,17 +7,20 @@ $this->load->view('favorites_view', $data);
 
 */
 
+var_dump($favorites);
+include 'my_lib_navigation_view.php';
 ?>
 
-<div id="favorites_container">
+<h1> FAVORITES </h1>
 
+<div id="favorites_container" class="small-3">
 	<?php if(isset($favorites)) : foreach ($favorites as $row) : ?>
 			
 		<div class="favorites" style="margin: 20px 0;">
 
 			<span class="book"> <?php echo $row->book_title; ?> </span> &nbsp;
 			| Date Added: <?php echo $row->date_added; ?> &nbsp; |
-			<?php "<button class='.favorite_button' book_no='" . $row->book_no ?. "'>remove</button>" ?>
+			<?php "<button class='favorite_button' book_no='" . $row->book_no . "'>remove</button>" ?>
 
 			<br/>
 
