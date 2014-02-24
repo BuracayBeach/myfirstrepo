@@ -1,3 +1,5 @@
+<div class="small-7 column">
+
 <form name="userForm" action="<?php echo base_url();?>index.php/user_account/update" method="post" >
 	<div id="container">
 		<h1>Update Form</h1>
@@ -86,6 +88,8 @@
 		</div>
 	</div>
 </form>
-<a href="<?php echo base_url();?>index.php/user_account/backtohome">Back</a>
+
+</div>
+
 <script src="<?php echo base_url(); ?>js/update_account.js"></script>
 <script src="<?php echo base_url();?>js/vendor/jquery.js"></script>

@@ -25,6 +25,9 @@ class Home extends CI_Controller {
         $this->load->model('favorite_model');
         $this->load->model('lend_model');
         $this->load->model('reserve_model');
+        $this->load->model('user_account_model');
+
+        $this->load->library('safeguard');
     }
 
     public function index(){
@@ -157,15 +160,16 @@ class Home extends CI_Controller {
     public function update_account(){
         $data['title'] = "eICS Lib Sign Up";
         $this->load->view("header", $data);
-        $this->load->view("create_account_view", $data);
-
+        $username = $_SESSION['username'];
+        $result=$this->user_account_model->get_data($username);
+        $new_result = $this->safeguard->str_array_ready_for_display($result);
+        $this->load->view('update_account_view', $new_result);
     }
 
     public function update_admin(){
         $data['title'] = "eICS Lib Sign Up";
         $this->load->view("header", $data);
-        $this->load->view("create_account_view", $data);
-    }
+   }
 
 }
 
