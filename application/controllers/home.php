@@ -130,6 +130,18 @@ class Home extends CI_Controller {
         $this->load->view("footer");
     }
 
+
+    public function help(){
+        $data['title'] = "eICS Lib Help";
+        $data['page'] = 'help';
+        $this->load->view("header", $data);
+
+        $this->load->view("help_view",$data);
+        $this->load->view("search_results_view",$data);
+
+        $this->load->view("footer",$data);
+    }
+
 }
 
 /* End of file booker.php */
