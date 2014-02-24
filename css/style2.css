@@ -260,3 +260,7 @@ RESULTS
 	max-height: 500px;
 	overflow: hidden;
 }
+
+#show_add_form_button,#add_container, #edit_container{
+    float: right;
+}

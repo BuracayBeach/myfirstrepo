@@ -1,6 +1,21 @@
 
 			<div id='result_container'>
-
+                <?php
+                    if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in']){
+                        echo '<div id="recently_added_books_container">'.
+                            '<hr/>'.
+                            '<h4>RECENTLY ADDED BOOKS</h4>'.
+                            '<table id="recently_added_books_table" border="1" width="60%">'.
+                                '<tr>'.
+                                    '<th>Book No.</th>'.
+                                    '<th>Book</th>'.
+                                    '<th>Publishment</th>'.
+                                    '<th>Tags</th>'.
+                                '</tr>'.
+                            '</table>'.
+                            '<hr/></div>';
+                    }
+                ?>
 			</div>
 
 
@@ -42,7 +57,10 @@
 							data: my_input, 
 							url: "http://localhost/myfirstrepo/index.php/book/search",
 							success: function(data, jqxhr, status){
-								$("#result_container").html(data);
+                                var resultContainer = $("#result_container");
+                                var recentlyAddedBooksContainer = resultContainer.find("#recently_added_books_container");
+                                recentlyAddedBooksContainer.nextAll().remove();
+                                resultContainer.append(data);
 							}
 			 			});
 
