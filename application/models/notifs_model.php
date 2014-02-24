@@ -19,33 +19,6 @@ class Notifs_Model extends CI_Model {
 		$this->db->insert('notifications', $data);
 	}
 
-	public function check_lend($username, $book_no) {
-
-		$reserves = $this->db->query("SELECT notified FROM reserves WHERE
-							book_no LIKE '{$book_no}' AND
-							username LIKE '{$username}' AND
-							rank LIKE (SELECT min(rank) FROM reserves WHERE
-										book_no LIKE '{$book_no}')
-							");
-		if ($reserves->num_rows() == 0)
-			return 0;
-		else $reserves = $reserves->result();
-
-		$lend = $this->db->query("SELECT COUNT(*) count FROM lend WHERE
-							book_no LIKE '{$book_no}'");
-		$lend = $lend->row_array();
-
-		if ($lend['count'] == 0 && $reserves[0]->notified == 0) {
-
-			$this->db->query("UPDATE reserves 
-							SET notified = 1 WHERE
-							book_no LIKE '{$book_no}' AND
-							username LIKE '{$username}'");
-			return 1;
-		}		
-		else return 0;
-	}
-
 	public function check_for_first($book_no) {
 
 		$reserves = $this->db->query("SELECT username, notified FROM reserves WHERE 
@@ -58,7 +31,8 @@ class Notifs_Model extends CI_Model {
 		else $reserves = $reserves->result();
 
 		$lend = $this->db->query("SELECT COUNT(*) count FROM lend WHERE
-							book_no LIKE '{$book_no}'");
+							book_no LIKE '{$book_no}' AND
+							date_returned IS NULL");
 		$lend = $lend->row_array();
 
 		if ($lend['count'] == 0 && $reserves[0]->notified == 0) {
