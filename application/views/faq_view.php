@@ -6,6 +6,7 @@
  * Time: 1:01 PM
  */
 ?>
+<h3>Frequently Asked Questions</h3>
 <div id="faq_container">
     <div id="faq_table_container">
     </div>

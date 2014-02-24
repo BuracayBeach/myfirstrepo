@@ -5,7 +5,6 @@ class Admin_account extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('admin_account_model');	
-		
 		if(!isset($_SESSION))
 			session_start();
 	}

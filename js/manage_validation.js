@@ -99,6 +99,13 @@ function validateAbstract(abstract){
     }else return '';
 }
 
+function validateOther(other){
+    other = other.trim();
+    if(other.length > 20){
+        return "-Type too long: limit it to 20 characters";
+    }else return '';
+}
+
 function checkAll(){
     var form = $(this);
     var bookNo = form.find('[name="'+'book_no'+'"]').val();
@@ -118,6 +125,7 @@ function checkAll(){
     msgs += validateType(type=='Other'?other:type);
     msgs += validateAbstract(abstract);
     msgs += validateAuthor(author);
+    msgs += validateOther(author);
     msgs += validateDescription(description);
     msgs += validatePublisher(publisher);
     msgs += validateDatePublished(year);
