@@ -18,13 +18,6 @@ class Notifs extends CI_Controller {
 		$this->load->view('notifications_view', $data);
 
 		$this->load->view('notifications_custom_view');
-
-		////////////////////////
-//		while(true){
-//		    $this->send_custom_notif();
-//		    sleep( 5 );
-//		}
-		
 	}
 
 	public function view_by_username($username) {
@@ -41,10 +34,6 @@ class Notifs extends CI_Controller {
 
 		if ($username != "")
 			$this->send_claim_notif($info[0], $username);
-	}
-
-	public function check_overdue() {
-		$q = $this->notifs_model->check_unreturned();
 	}
 
 	public function send_custom_notif() {
