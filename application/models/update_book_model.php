@@ -16,10 +16,24 @@ Class Update_book_model extends CI_Model{
 	}
 
 	function received($data){
-	
-		$parameter = array('status' => 'available'); // value to be updated; status to available
+		
+		/* start edit by Carl Adrian P. Castueras */
+		if($this->checkNextReserve($data['book_no']) > 0)
+		{
+			$parameter = array('status' => 'reserved');
+			$status_checker = 'reserved';
+		}	
+
+		else
+		{
+			$parameter = array('status' => 'available'); // value to be updated; status to available
+			$status_checker = 'available';
+		}		
+
+		/* end edit */
 		$where = "book_no = '{$data['book_no']}'";	 // where clause
 		$this->db->update('book', $parameter, $where); // 1st parameter : table name, 2nd : values to change, 3d where clause
+		return $status_checker; //added by Carl Adrian P. Castueras
 	}
 
 	
@@ -38,7 +52,7 @@ Class Update_book_model extends CI_Model{
 		$parameter = array('date_returned' => date('Y-m-d H:i:s'));// in update lend, we only need to insert the returned date, hence the use of now()	
 		$where = "transaction_no = {$data['transaction_no']}"; // where clause
 		$this->db->update('lend', $parameter, $where); // the update query accepts 3 parameters, the table name, values to be updated and the where clause
-		echo $this->db->update_string('lend', $parameter, $where);
+		//echo $this->db->update_string('lend', $parameter, $where);
 
 	}
 	function getTransactionno($data){
@@ -47,5 +61,15 @@ Class Update_book_model extends CI_Model{
 		$row = $q->row();
 	return $row->transaction_no;
 	}
+
+	/*start edit by Carl Adrian P. Castueras */
+	//checks the reserves table if other user/s are next in line for the returned book
+	function checkNextReserve($book_no)
+	{
+		$q = $this->db->query("SELECT book_no FROM reserves WHERE book_no LIKE '{$book_no}'");
+		return $q->num_rows();
+	}
+
+	/* end edit */
 
 }

@@ -32,10 +32,26 @@
              $.ajax({
                 url: 'book/received/',
                 data: {id:$bookno},
-                success: function(data) { 
-                    $this.text('(available)');
-                    $this.off('click');
-               // $this.addClass('lendButton'); 
+                success: function(data) {
+
+                    /* start edit by Carl Adrian P. Castueras */ 
+                    var json_data = JSON.parse(data);
+                    
+                    //if there is no person next in line for the book. change the link into a linkless tag
+                    if(json_data.status === 'available')
+                    {    
+                        $this.text('(available)');
+                        $this.off('click');
+                    }
+
+                    //if there is a person next in line for the book, change the link into a lend link
+                    else if(json_data.status === 'reserved')
+                    {
+                        $this.text('Lend');
+                        $this.off('click').on('click',lendClick);
+                    }
+
+                    /* end edit */
 
                     var info = new Array();
                     info[0] = $bookno;

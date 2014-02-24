@@ -182,9 +182,12 @@ class book extends CI_Controller {
 
         $this->load->model('update_book_model');        // loads the updateBook_model
         $data['transaction_no'] = $this->update_book_model->getTransactionno($data['book_no']);
-        $this->update_book_model->received($data);  // updates the status of the book from borrowed to available
+        $status_checker = $this->update_book_model->received($data);  // updates the status of the book from borrowed to available
         $this->update_book_model->updateLend($data);    // writes the whole transaction into log
     
+        $data = array('status' => $status_checker);
+
+        echo json_encode($data);
 }
     /* end section */
 
