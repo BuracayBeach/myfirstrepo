@@ -3,16 +3,16 @@ window.onload=function(){
 	document.getElementById('student').onchange = disablefield;
 	document.getElementById('employee').onchange = disablefield;
 
-	userForm.username.onblur=validateUsername;
+	userForm.username.onkeyup=validateUsername;
 	userForm.password.onkeyup=validatepasswords;
 	userForm.repassword.onkeyup=validatepasswords;
-	userForm.email.onblur=validateEmail;
-	userForm.emp_no.onblur=validateEmployeeNumber;
-	userForm.student_no.onblur=validateStudentNumber;
-	userForm.name_first.onblur=validateFirstName;
-	userForm.name_middle.onblur=validateMiddleName;
-	userForm.name_last.onblur=validateLastName;
-	userForm.mobile_no.onblur=validateMobileNumber;
+	userForm.email.onkeyup=validateEmail;
+	userForm.emp_no.onkeyup=validateEmployeeNumber;
+	userForm.student_no.onkeyup=validateStudentNumber;
+	userForm.name_first.onkeyup=validateFirstName;
+	userForm.name_middle.onkeyup=validateMiddleName;
+	userForm.name_last.onkeyup=validateLastName;
+	userForm.mobile_no.onkeyup=validateMobileNumber;
 	userForm.course.onfocus=filterCourses;
 	userForm.college.onblur=filterCourses;
 	userForm.college.onchange=filterCourses;
@@ -71,7 +71,6 @@ function validateUsername(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[0-9a-zA-Z]{6,18}$/))  msg+="Must be 6-18 characters long";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanUsername")[0].innerHTML=msg;
 
 	if(msg=="") return true;
@@ -109,12 +108,6 @@ function validateRepassword(){
 	if(msg=="Valid")return true;
 }
 
-// Empty the re-password form when password form changes
-function emptifypassword(){
-	userForm.repassword.value="";
-	document.getElementsByName("spanRepassword")[0].innerHTML="";				
-}
-
 //Validate the email field.
 //The email field is required and must be of valid format.
 function validateEmail(){
@@ -123,7 +116,6 @@ function validateEmail(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanEmail")[0].innerHTML=msg;
 
 	if(msg=="") return true;
@@ -137,7 +129,6 @@ function validateEmployeeNumber(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[0-9]{12}$/))  msg+="Input must be 12-digit combination";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanEmp_no")[0].innerHTML=msg;
 
 	if(msg=="") return true;
@@ -151,7 +142,6 @@ function validateStudentNumber(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[0-9]{4}-[0-9]{5}$/))  msg+="Input format is XXXX-XXXXX";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanStudent_no")[0].innerHTML=msg;
 
 	if(msg=="") return true;
@@ -165,7 +155,6 @@ function validateFirstName(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanName_first")[0].innerHTML=msg;
 
 	if(msg=="") return true;
@@ -179,7 +168,6 @@ function validateMiddleName(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanName_middle")[0].innerHTML=msg;
 
 	if(msg=="") return true;
@@ -193,7 +181,6 @@ function validateLastName(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanName_last")[0].innerHTML=msg;
 
 	if(msg=="") return true;
@@ -207,7 +194,6 @@ function validateMobileNumber(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[0-9]{12}$/))  msg+="The format must be 639XXXXXXXXX";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanMobile_no")[0].innerHTML=msg;
 
 	if(msg=="") return true;

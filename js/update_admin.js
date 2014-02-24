@@ -1,7 +1,7 @@
 window.onload=function(){
-	adminForm.name_first.onblur=validateFirstName;
-	adminForm.name_middle.onblur=validateMiddleName;
-	adminForm.name_last.onblur=validateLastName;
+	adminForm.name_first.onkeyup=validateFirstName;
+	adminForm.name_middle.onkeyup=validateMiddleName;
+	adminForm.name_last.onkeyup=validateLastName;
 	adminForm.onsubmit=validateAll;
 
 	adminPasswordForm.currentPassword.onkeyup=validateCurrentPassword;
@@ -22,9 +22,8 @@ function validateAll(){
 }
 
 function validateAllPasswords(){
-	if(validateCurrentPassword() && validateNewPassword() && validateReNewPassword()){
+	if(validateCurrentPassword() && validateNewPassword() && validateReNewPassword())
 		return true;
-	}
 	else return false;
 }
 
@@ -36,7 +35,6 @@ function validateFirstName(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanName_first")[0].innerHTML=msg;
 
 	if(msg=="") return true;
@@ -50,7 +48,6 @@ function validateMiddleName(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanName_middle")[0].innerHTML=msg;
 
 	if(msg=="") return true;
@@ -64,7 +61,6 @@ function validateLastName(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanName_last")[0].innerHTML=msg;
 
 	if(msg=="") return true;

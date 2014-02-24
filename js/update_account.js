@@ -1,9 +1,9 @@
 window.onload=function(){
-	userForm.email.onblur=validateEmail;
-	userForm.name_first.onblur=validateFirstName;
-	userForm.name_middle.onblur=validateMiddleName;
-	userForm.name_last.onblur=validateLastName;
-	userForm.mobile_no.onblur=validateMobileNumber;
+	userForm.email.onkeyup=validateEmail;
+	userForm.name_first.onkeyup=validateFirstName;
+	userForm.name_middle.onkeyup=validateMiddleName;
+	userForm.name_last.onkeyup=validateLastName;
+	userForm.mobile_no.onkeyup=validateMobileNumber;
 	userForm.course.onfocus=filterCourses;
 	userForm.college.onblur=filterCourses;
 	userForm.college.onchange=filterCourses;
@@ -44,7 +44,6 @@ function validateEmail(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanEmail")[0].innerHTML=msg;
 
 	if(msg=="") return true;
@@ -58,7 +57,6 @@ function validateFirstName(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanName_first")[0].innerHTML=msg;
 
 	if(msg=="") return true;
@@ -72,7 +70,6 @@ function validateMiddleName(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanName_middle")[0].innerHTML=msg;
 
 	if(msg=="") return true;
@@ -86,7 +83,6 @@ function validateLastName(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanName_last")[0].innerHTML=msg;
 
 	if(msg=="") return true;
@@ -100,7 +96,6 @@ function validateMobileNumber(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[0-9]{12}$/))  msg+="The format must be 639XXXXXXXXX";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanMobile_no")[0].innerHTML=msg;
 
 	if(msg=="") return true;
