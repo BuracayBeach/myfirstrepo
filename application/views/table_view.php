@@ -19,6 +19,8 @@
                             echo "</tr>";
 
 
+                            if ($page > 100) $page = 100;
+
 
                             $total_count = count($table);
 
@@ -138,9 +140,9 @@
 
                                     //other data
                                 echo "<td align='center'>" . 
-                                         "<div book_data='publisher'>" . $row->publisher . "</div>" .
-                                         "<div book_data='date_published'>" . $row->date_published . "</div>" .
-                                     "</td>";
+                                         "<div book_data='publisher'>" . $row->publisher . "</div>";
+                                        if ($row->date_published != 0) echo "<div book_data='date_published'>" . $row->date_published . "</div>";
+                                     echo "</td>";
 
                                 // if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") 
                                 echo "<td book_data='tags'>" . $row->tags . "</td>";
