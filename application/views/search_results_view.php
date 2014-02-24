@@ -51,7 +51,7 @@
 						my_input += "&page=1";
 						my_input += "&rows_per_page=" + ($('#results_per_page').val()==0?10:$('#results_per_page').val());
 
-						console.log(my_input);
+						// console.log(my_input);
 						$.ajax({
 							type: "post",
 							data: my_input, 

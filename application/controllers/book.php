@@ -23,6 +23,7 @@ class book extends CI_Controller {
         $this->load->model('search_model');
         $this->load->model('favorite_model');
         $this->load->model('reserve_model');
+        $this->load->model('lend_model');
         $this->load->helper('url');
         $this->load->library('safeguard');
 
@@ -109,10 +110,11 @@ class book extends CI_Controller {
         $details['search_suggestion'] = trim($search_suggestion);
         $details['table'] = $sorted_table;
 
-        // para lang sa pag check ng user favorites at reserves
+        // para lang sa pag check ng user favorites at reserves (w/ lend crosschecking) 
         if (isset($_SESSION['username'])) {
             $details['favorite_user'] = $this->favorite_model->get_all($_SESSION['username']);
             $details['reserve_user'] = $this->reserve_model->get($_SESSION['username']);
+            $details['lend_user'] = $this->lend_model->get($_SESSION['username']);
         }
 
         if (isset($details['rows_per_page'])) {
@@ -182,8 +184,8 @@ class book extends CI_Controller {
         $data['transaction_no'] = $this->update_book_model->getTransactionno($data['book_no']);
         $this->update_book_model->received($data);  // updates the status of the book from borrowed to available
         $this->update_book_model->updateLend($data);    // writes the whole transaction into log
-    }
-
+    
+}
     /* end section */
 
 }
