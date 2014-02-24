@@ -36,6 +36,18 @@
                     $this.text('(available)');
                     $this.off('click');
                // $this.addClass('lendButton'); 
+
+                    var info = new Array();
+                    info[0] = $bookno;
+
+                    $.ajax({
+                        url : "http://localhost/myfirstrepo/index.php/" + "notifs" + "/" + "check_if_rank_first",
+                        data : {arr : info},
+                        type : 'POST',
+                        dataType : "html",
+                        async : true,
+                        success : function(data) {}
+                    });
                 }
             });        
         } else {

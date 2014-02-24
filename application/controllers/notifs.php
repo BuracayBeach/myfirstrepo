@@ -45,6 +45,16 @@ class Notifs extends CI_Controller {
 			$this->send_claim_notif($info[0], $username);
 	}
 
+	public function check_reserve_for_first() {
+
+		/* $info[0] is the book_no */
+		$info = $this->input->post('arr');
+		$username = $this->notifs_model->check_for_first($info[0]);
+
+		if ($username != "")
+			$this->send_claim_notif($info[0], $username);
+	}
+
 	public function check_overdue() {
 		$q = $this->notifs_model->check_unreturned();
 	}

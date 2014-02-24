@@ -46,6 +46,34 @@ class Notifs_Model extends CI_Model {
 		else return 0;
 	}
 
+	public function check_for_first($book_no) {
+
+		$reserves = $this->db->query("SELECT username, notified FROM reserves WHERE 
+								book_no LIKE '{$book_no}' AND
+								rank LIKE (SELECT min(rank) FROM reserves WHERE 
+											book_no LIKE '{$book_no}')");
+
+		if ($reserves->num_rows() == 0)
+			return "";
+		else $reserves = $reserves->result();
+
+		$lend = $this->db->query("SELECT COUNT(*) count FROM lend WHERE
+							book_no LIKE '{$book_no}'");
+		$lend = $lend->row_array();
+
+		if ($lend['count'] == 0 && $reserves[0]->notified == 0) {
+
+			$rank = $this->db->query("SELECT min(rank) AS rank FROM reserves WHERE 
+											book_no LIKE '{$book_no}'");
+			$this->db->query("UPDATE reserves 
+							SET notified = 1 WHERE
+							book_no LIKE '{$book_no}' AND
+							rank = {$rank->row()->rank}");
+			return $reserves[0]->username;
+		}		
+		else return "";
+	}
+
 }
 
 ?>
