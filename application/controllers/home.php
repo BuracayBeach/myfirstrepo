@@ -22,6 +22,9 @@ class Home extends CI_Controller {
         $this->load->model('book_model');
         $this->load->model('search_model');
         $this->load->model('notifs_model');
+        $this->load->model('favorite_model');
+        $this->load->model('lend_model');
+        $this->load->model('reserve_model');
     }
 
     public function index(){
@@ -88,6 +91,46 @@ class Home extends CI_Controller {
 
             $this->load->view('faq_view', $data);
         }
+
+        $this->load->view("footer");
+    }
+
+
+    public function borrowed(){
+        $data['title'] = "eICS Lib My Lib";
+        $this->load->view("header", $data);
+
+        $data['borrowed'] = $this->lend_model->get($_SESSION['username']);
+        $this->load->view('borrowed_view', $data);
+
+        $this->load->view("search_results_view");
+
+        $this->load->view("footer");
+    }
+
+    public function favorites(){
+        $data['title'] = "eICS Lib My Lib";
+        $this->load->view("header", $data);
+
+        $data['favorites'] = $this->favorite_model->get_all($_SESSION['username']);
+        $this->load->view('favorites_view', $data);
+        $this->load->view("search_results_view");
+
+        $this->load->view("footer");
+    }
+
+    public function reserved(){
+        $data['title'] = "eICS Lib My Lib";
+        $this->load->view("header", $data);
+
+        $rank = $this->reserve_model->check_book_ranks($_SESSION['username']);
+
+        $data['book'] = $rank['book'];
+        $data['reserves'] = $this->reserve_model->get($_SESSION['username']);
+
+        $this->load->view('reserves_view', $data);
+
+        $this->load->view("search_results_view");
 
         $this->load->view("footer");
     }
