@@ -42,16 +42,20 @@ class book extends CI_Controller {
 
     public function add(){
         $data = $this->safeguard->array_ready_for_query($_POST);
+
         if($data['type'] == 'Book' || $data['type'] == 'Journal')
             $data['abstract'] = null;
+        if($data['type'] == 'Other')
+            $data['type'] = $data['other'];
 
         $this->book_model->insert_book($data);
+
         $data = $this->safeguard->str_array_ready_for_display($data);
         echo json_encode($data);
     }
 
     public function delete(){
-        $book_no = mysql_real_escape_string($_POST['book_no']);
+        $book_no = mysql_real_escape_string(trim($_POST['book_no']));
         $this->book_model->delete_book($book_no);
     }
 
@@ -66,6 +70,8 @@ class book extends CI_Controller {
         $data = $this->safeguard->array_ready_for_query($_POST);
         if($data['type'] == 'Book' || $data['type'] == 'Journal')
             $data['abstract'] = null;
+        if($data['type'] == 'Other')
+            $data['type'] = $data['other'];
         $this->book_model->edit_book($data);
         $data = $this->safeguard->str_array_ready_for_query($data);
         echo json_encode($data);
