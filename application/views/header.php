@@ -41,14 +41,14 @@
       <ul class="right">
 
         <?php
-          if(isset($_SESSION) && isset($_SESSION['type'])){
+            if(isset($_SESSION) && isset($_SESSION['type'])){
             if($_SESSION['type'] == 'regular')
-              include 'logged_user_view.php';
+                include 'logged_user_view.php';
             else
-              include 'logged_admin_view.php';
-          }else{
+                include 'logged_admin_view.php';
+            }else{
             include 'login_view.php';
-          }
+}
 
         ?>
       </ul>
@@ -62,7 +62,7 @@
 
       <?php
 
-        if(isset($_SESSION) && $_SESSION['type'] = "regular"){
+        if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
             echo "<ul class='left'>";
             echo "<li class='has-dropdown'>";
             echo "<a href='#'>My Library</a>";
