@@ -2,24 +2,24 @@
 	<form  name="userForm" action="<?php echo base_url();?>index.php/user_account/createaccount" method="post" >
 		<h1>Sign Up</h1>
 		<div id="body">
-			Username: <input type="text" name="username" required/><span name="spanUsername"></span><br/>
-			Password: <input type="password" name="password" required/><span name="spanPassword"></span><br/>
-			Retype Password: <input type="password" name="repassword" required/><span name="spanRepassword"></span><br/>
+			Username: <input type="text" name="username" required/><span name="span username"></span><br/>
+			Password: <input type="password" name="password" required/><span name="span password"></span><br/>
+			Retype Password: <input type="password" name="repassword" required/><span name="span repassword"></span><br/>
 			Sex: <input type="radio" name="sex" value="male" id="male" checked/>
 				 <label for="male">Male</label>
 				 <input type="radio" name="sex" value="female" id="female"/>
 				 <label for="female">Female</label><br/>
-			Email: <input type="text" name="email" required/><span name="spanEmail"></span><br/>
+			Email: <input type="text" name="email" required/><span name="span email"></span><br/>
 			User Type: <input type="radio" name="usertype" value="student" id="student" checked/>
 				 <label for="student">Student</label>
 				 <input type="radio" name="usertype" value="employee" id="employee" />
 				 <label for="employee">Employee</label><br/>
-			Employee Number:<input type="text" name="emp_no" id="emp_no" /><span name="spanEmp_no"></span><br/>
-			Student Number: <input type="text" name="student_no" id="student_no" /><span name="spanStudent_no"></span><br/>
-			First Name: <input type="text" name="name_first" required/><span name="spanName_first"></span><br/>
-			Middle Name: <input type="text" name="name_middle" required/><span name="spanName_middle"></span><br/>
-			Last Name: <input type="text" name="name_last" required/><span name="spanName_last"></span><br/>
-			Mobile Number: <input type="text" name="mobile_no" required /><span name="spanMobile_no"></span><br/>
+			Employee Number:<input type="text" name="emp_no" id="emp_no" /><span name="span emp_no"></span><br/>
+			Student Number: <input type="text" name="student_no" id="student_no" /><span name="span student_no"></span><br/>
+			First Name: <input type="text" name="name_first" required/><span name="span name_first"></span><br/>
+			Middle Name: <input type="text" name="name_middle" required/><span name="span name_middle"></span><br/>
+			Last Name: <input type="text" name="name_last" required/><span name="span name_last"></span><br/>
+			Mobile Number: <input type="text" name="mobile_no" required /><span name="span mobile_no"></span><br/>
 			College: 
 			<select name="college">
 				<option value="GS">GS (Graduate School)</option>
@@ -80,6 +80,9 @@
 			</select></br>
 			<input type="Submit" value="Submit" />
 		</div>
+
 	</form>
 </div>
+
 <script src="<?php echo base_url(); ?>js/create_account.js"></script>
+<script src="<?php echo base_url();?>js/vendor/jquery.js"></script>
