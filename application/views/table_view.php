@@ -1,5 +1,5 @@
-<div id="search_table_container">
-                <table id="search_table" border="1" width='60%'>
+<div id="search_table_container" class="small-7 column">
+                <table id="search_table" border="1">
                     <?php
 
                         if(isset($table) && isset($page)){
