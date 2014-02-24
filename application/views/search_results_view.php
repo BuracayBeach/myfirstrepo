@@ -1,20 +1,6 @@
 
 			<div id='result_container'>
-                <?php
-                    if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in']){
-                        echo '<div id="recently_added_books_container">'.
-                            '<h4>RECENTLY ADDED BOOKS</h4>'.
-                            '<table id="recently_added_books_table" border="1" width="60%">'.
-                                '<tr>'.
-                                    '<th>Book No.</th>'.
-                                    '<th>Book</th>'.
-                                    '<th>Publishment</th>'.
-                                    '<th>Tags</th>'.
-                                '</tr>'.
-                            '</table>'.
-                            '</div>';
-                    }
-                ?>
+
 			</div>
 
 
