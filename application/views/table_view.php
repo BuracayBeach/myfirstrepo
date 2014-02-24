@@ -94,7 +94,7 @@
                                                     }
                                                 }
 
-                                                /* checking of favorite */
+                                                /* checking of reserves */
                                                 $reserve = 'reserve';
                                                 $size = count($reserve_user);
                                                 for ($i=0; $i<$size; $i++) {
@@ -103,6 +103,16 @@
                                                         break;
                                                     }
                                                 }
+
+                                                /* counter-check reserves with lends */
+                                                $size = count($lend_user);
+                                                for ($i=0; $i<$size; $i++) {
+                                                    if ($lend_user[$i]->book_no == $row->book_no) {
+                                                        $reserve = 'you are borrowing this';
+                                                        break;
+                                                    }
+                                                }
+                                                
 
                                                 //favorite button
                                                 echo "<span>" .
