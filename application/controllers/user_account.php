@@ -5,6 +5,7 @@ class User_account extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('user_account_model');
+		$this->load->library('safeguard');
 		if(!isset($_SESSION))
 			session_start();
 	}
@@ -92,7 +93,8 @@ class User_account extends CI_Controller {
 		$data['course']= filter_var($_POST['course'], FILTER_SANITIZE_STRING);
 		$data['college']= filter_var($_POST['college'], FILTER_SANITIZE_STRING);
 
-		$result = $this->user_account_model->insert_data($data);
+		$new_data = $this->safeguard->array_ready_for_query($data);
+		$result = $this->user_account_model->insert_data($new_data);
 
 		if($result){
 			$user_notif['create_account_notif'] = "Succesfully created account!";
