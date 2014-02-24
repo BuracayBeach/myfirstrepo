@@ -59,6 +59,25 @@
       <ul class="left">
         <li><a href="<?php echo base_url();?>ihome">Home</a></li>
       </ul>
+
+      <?php
+
+        if(isset($_SESSION) && $_SESSION['type'] = "regular"){
+            echo "<ul class='left'>";
+            echo "<li class='has-dropdown'>";
+            echo "<a href='#'>My Library</a>";
+            echo    "<ul class='dropdown'>";
+            echo        "<li><a href='" . base_url() . "favorites'>Favorites</a></li>";
+            echo        "<li><a href='" . base_url() . "borrowed'>Borrowed</a></li>";
+            echo        "<li><a href='" . base_url() . "reserved'>Reserved</a></li>";
+            echo    "</ul>";
+            echo "</li>";
+
+            echo "</ul>";
+        }
+      ?>
+
+
       <ul class="left">
         <li><a href="<?php echo base_url();?>about_us">About Us</a></li>
       </ul>
@@ -68,45 +87,44 @@
       <ul class="left">
         <li><a href="<?php echo base_url();?>help">Help</a></li>
       </ul>
+
     </section>
   </nav>
 </div>
 
 
+<div class="small-2 side-nav columns">
+  <?php include 'search_view.php';?>
+</div>
+
+<div class="show-for-small-only"  id="results_per_page_div">
+  <form id="results_per_page_form">
+    <input id="results_per_page" style="width:45px" type="number" min="1" max="100" value="10" pattern="^[0-9]+$"/>
+    <span>Results per page&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  </form>
+</div>
 
 
+<script>
+    $("#results_per_page").on('keypress', function(event){
+      res_valid = num_valid($('#results_per_page'))
+      if (event.which == 13 && res_valid){
+        $('#submit_search').submit();
+      }
+    });
 
-    <div class="small-2 side-nav columns">
-      <?php include 'search_view.php';?>
-    </div>
+    function num_valid(object){
+      o_val = parseInt(object.val());
+      o_min = parseInt(object.attr('min'));
+      o_max = parseInt(object.attr('max'));
 
-    <div  id="results_per_page_div">
-      <form id="results_per_page_form">
-        <input id="results_per_page" style="width:45px" type="number" min="1" max="100" value="10" pattern="^[0-9]+$"/>
-        <span>Results per page&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-      </form>
-    </div>
-
-
-    <script>
-        $("#results_per_page").on('keypress', function(event){
-          res_valid = num_valid($('#results_per_page'))
-          if (event.which == 13 && res_valid){
-            $('#submit_search').submit();
-          }
-        });
-
-        function num_valid(object){
-          o_val = parseInt(object.val());
-          o_min = parseInt(object.attr('min'));
-          o_max = parseInt(object.attr('max'));
-
-          return $.isNumeric(o_val) && o_val >= o_min && o_val <= o_max;
-        }
+      return $.isNumeric(o_val) && o_val >= o_min && o_val <= o_max;
+    }
 
 
-        $('#results_per_page_form, #year_range_form').submit(function(event){
-          event.preventDefault();
-        });
+    $('#results_per_page_form, #year_range_form').submit(function(event){
+      event.preventDefault();
+    });
+</script>
 
-    </script>
+
