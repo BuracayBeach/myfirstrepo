@@ -111,12 +111,12 @@ CREATE TABLE IF NOT EXISTS `book` (
 INSERT INTO `book` (`book_no`, `book_title`, `book_type`, `abstract`, `author`, `status`, `description`, `publisher`, `date_published`, `tags`) VALUES
 ('AB 1234', 'Merry Ann Title', 'Book', NULL, NULL, 'available', 'Happy New Yeare', 'Santa Claus', 0000, 'sad'),
 ('asdasd', 'jh', 'Journal', NULL, 'jkh', 'available', 'jkh', 'jkhjkh', 0000, 'jljkljj'),
-('CD 4321', 'How To Program in Java', '', 'abstractttt', NULL, 'reserved', 'Search Google Chrome', 'Not A Programmer', 0000, ''),
-('EF 5678', 'How To Kill Spiders', 'Book', NULL, NULL, 'borrowed', 'Shoe', 'Microsoft', 0000, NULL),
+('CD 4321', 'How To Program in Java', '', 'abstractttt', NULL, 'available', 'Search Google Chrome', 'Not A Programmer', 0000, ''),
+('EF 5678', 'How To Kill Spiders', 'Book', NULL, NULL, 'available', 'Shoe', 'Microsoft', 0000, NULL),
 ('GH 8765', 'Sleeping in Class Tips', 'Book', NULL, NULL, 'available', 'Sleep peacefully while in Class', 'Rey Benedicto', 0000, NULL),
-('IJ 1357', 'French Fries from Potatoes', 'Book', NULL, NULL, 'reserved', 'Learn how to eat potatoes', 'McDo', 0000, NULL),
+('IJ 1357', 'French Fries from Potatoes', 'Book', NULL, NULL, 'available', 'Learn how to eat potatoes', 'McDo', 0000, NULL),
 ('jh', 'jk', 'Book', NULL, 'hkj', 'available', 'hjkh', 'jkh', 0000, 'kj'),
-('KL 1111', 'Cram Effficiently', 'Thesis', 'dsadsa', 'Boy bulalo', 'borrowed', 'Learn how to waste time then cram', 'Rey Benedicto', 0000, 'asdsa');
+('KL 1111', 'Cram Effficiently', 'Thesis', 'dsadsa', 'Boy bulalo', 'available', 'Learn how to waste time then cram', 'Rey Benedicto', 0000, 'asdsa');
 
 -- --------------------------------------------------------
 
