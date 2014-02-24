@@ -7,8 +7,6 @@ $this->load->view('favorites_view', $data);
 
 */
 
-var_dump($favorites);
-include 'my_lib_navigation_view.php';
 ?>
 
 <h1> FAVORITES </h1>
