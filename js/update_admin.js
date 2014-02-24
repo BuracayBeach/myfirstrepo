@@ -7,7 +7,7 @@ window.onload=function(){
 	adminPasswordForm.currentPassword.onkeyup=validateCurrentPassword;
 	adminPasswordForm.newPassword.onkeyup=validatePasswords;
 	adminPasswordForm.newRePassword.onkeyup=validatePasswords;
-	adminForm.onsubmit=validateAllPasswords;
+	adminPasswordForm.onsubmit=validateAllPasswords;
 }
 
 function validatePasswords(){
@@ -16,14 +16,15 @@ function validatePasswords(){
 }
 
 function validateAll(){
-	if(validateFirstName && validateMiddleName && validateLastName)
+	if(validateFirstName() && validateMiddleName() && validateLastName())
 		return true
 	else return false;
 }
 
 function validateAllPasswords(){
-	if(validateCurrentPassword && validateNewPassword && validateReNewPassword)
+	if(validateCurrentPassword() && validateNewPassword() && validateReNewPassword()){
 		return true;
+	}
 	else return false;
 }
 

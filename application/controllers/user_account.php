@@ -153,7 +153,8 @@ class User_account extends CI_Controller {
 	public function get_data() {
 		$username = $_SESSION['username'];
 		$result=$this->user_account_model->get_data($username);
-		$this->load->view('update_account_view', $result);
+		$new_result = $this->safeguard->str_array_ready_for_display($result);
+		$this->load->view('update_account_view', $new_result);
 	}
 }
 ?>
