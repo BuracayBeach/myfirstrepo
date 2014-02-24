@@ -1,6 +1,6 @@
-<form name="userForm" action="<?php echo base_url();?>index.php/user_account/createaccount" method="post" >
-	<div id="container">
-		<h1>Input Forms</h1>
+<div class="small-6 column signup" id="container"> 
+	<form  name="userForm" action="<?php echo base_url();?>index.php/user_account/createaccount" method="post" >
+		<h1>Sign Up</h1>
 		<div id="body">
 			Username: <input type="text" name="username" required/><span name="span username"></span><br/>
 			Password: <input type="password" name="password" required/><span name="span password"></span><br/>
@@ -80,8 +80,9 @@
 			</select></br>
 			<input type="Submit" value="Submit" />
 		</div>
-	</div>
-</form>
-<a href="<?php echo base_url();?>index.php/user_account/backtohome">Back</a>
+
+	</form>
+</div>
+
 <script src="<?php echo base_url(); ?>js/create_account.js"></script>
 <script src="<?php echo base_url();?>js/vendor/jquery.js"></script>

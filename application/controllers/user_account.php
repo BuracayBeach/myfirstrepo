@@ -123,12 +123,12 @@ class User_account extends CI_Controller {
 		
 		if($result){
 			$user_notif['update_account_notif'] = "Succesfully updated account!";
-			redirect(site_url("user_account/update_account"));
+			redirect(site_url("update_account"));
 		}
 
 		else{
 			$user_notif['update_account_notif'] = "Email already exist!";
-			redirect(site_url("user_account/update_account"));
+			redirect(site_url("update_account"));
 		}
 	}
 
