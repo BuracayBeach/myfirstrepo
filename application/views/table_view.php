@@ -66,7 +66,8 @@
                                             
                                             // Edit , Delete Button
                                             echo "<span><a href='javascript:void(0)' bookno='{$row->book_no}' class='edit_button'>Edit</a></span>&nbsp&nbsp&nbsp";
-                                            echo "<span><a href='javascript:void(0)' bookno='{$row->book_no}' class='delete_button'>Delete</a></span>&nbsp | &nbsp";
+                                            if ($row->status != 'borrowed') echo "<span><a href='javascript:void(0)' bookno='{$row->book_no}' class='delete_button'>Delete</a></span>&nbsp | &nbsp";
+                                            else echo "<span>({$row->status})&nbsp|&nbsp</span>";
                                             echo "<span><a ";
 
                                             // Lend , Return Button
@@ -153,7 +154,7 @@
 <div id='pagination_controls_div'>
     <?php //pagination
         if (isset($page)){
-            $page_scale = 9;
+            $page_scale = 20;
             $p_search_term = stripslashes($search_term);
            echo "<span id='pagination' page='{$page}' maxpage='{$maxpage}' rowsperpage='{$rows_per_page}' searchterm= '{$p_search_term}' searchby='{$search_by}'>";
             if(isset($table) &&  count($table) > $rows_per_page){
@@ -224,8 +225,7 @@
         my_input += "&page=" + page;
         my_input += "&rows_per_page=" + results_per_page;
         my_input += "&search_by=" + search_by;
-        // alert(my_input);
-        console.log(my_input);
+        // console.log(my_input);
 
         $.ajax({
             type: "post",

@@ -98,24 +98,62 @@
   </div>
 </div>
 
-  
-    <div style="margin-left: 500px" id="results_per_page_div">
-      <form id="results_per_page_form">
-        <input id="results_per_page" style="width:45px" type="number" min="1" max="500" value="10" pattern="^[0-9]+$"/>
-        <span>Results per page&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-      </form>
+    <div id="advanced_filter_div" style="margin-left: 500px">
+        <div  id="results_per_page_div">
+          <form id="results_per_page_form">
+            <input id="results_per_page" style="width:45px" type="number" min="1" max="100" value="10" pattern="^[0-9]+$"/>
+            <span>Results per page&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </form>
+        </div>
+
+
+<!--         <div id="year_filter">
+          <input id="check_year_range" type='checkbox'/>
+          <label for="check_year_range">Apply Year Published Filter</label>
+          <div id='advanced_filter_year'>
+            <form id="year_range_form">
+              <span> From </span>
+              <input id='yearfrom' type='number' style='width: 50px' min='1800' max="<?php echo date('Y')?>" placeholder="<?php echo date('Y');?>" value='1980' pattern='^[0-9]+$'/>
+              <span> To </span>
+              <input id='yearto' type='number' style='width: 50px' min='1800' max="<?php echo date('Y')?>" placeholder="<?php echo date('Y');?>" value="<?php echo date('Y');?>" pattern='^[0-9]+$'/>
+            </form>
+          </div>
+        </div> -->
+
     </div>
 
-    <script>
-      $(document).ready(function (){
+
+      <script>
+        // $('#check_year_range').on('click', function(){
+        //   cchecked = document.getElementById("check_year_range").checked;;
+        //   $('#yearfrom').attr('disabled', !cchecked)
+        //   $('#yearto').attr('disabled', !cchecked)
+        // })
+
+
+        // $("#results_per_page , #yearfrom, #yearto").on('keypress', function(event){
         $("#results_per_page").on('keypress', function(event){
-          if (event.which == 13){
+          res_valid = num_valid($('#results_per_page'))
+          // yfrom_valid = num_valid($('#results_per_page'))
+          // yto_valid = num_valid($('#yearto'))
+
+          // if (event.which == 13 && res_valid && yfrom_valid && yto_valid){
+          if (event.which == 13 && res_valid){
             $('#submit_search').submit();
           }
         });
 
-        $('#results_per_page_form').submit(function(event){
+        // function num_valid(object){
+        //   o_val = parseInt(object.val());
+        //   o_min = parseInt(object.attr('min'));
+        //   o_max = parseInt(object.attr('max'));
+
+        //   return $.isNumeric(o_val) && o_val >= o_min && o_val <= o_max;
+        // }
+
+
+        $('#results_per_page_form, #year_range_form').submit(function(event){
           event.preventDefault();
         });
-      });
+
     </script>

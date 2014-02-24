@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 24, 2014 at 04:37 AM
+-- Generation Time: Feb 24, 2014 at 05:45 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -93,13 +93,13 @@ INSERT INTO `announcement` (`announcement_id`, `announcement_title`, `announceme
 CREATE TABLE IF NOT EXISTS `book` (
   `book_no` varchar(12) NOT NULL,
   `book_title` varchar(255) NOT NULL,
-  `book_type` enum('Book','Journal','SP','Thesis') NOT NULL DEFAULT 'Book',
+  `book_type` varchar(20) NOT NULL DEFAULT 'Book',
   `abstract` varchar(1024) DEFAULT NULL,
   `author` varchar(255) DEFAULT NULL,
   `status` enum('available','borrowed','reserved') NOT NULL DEFAULT 'available',
   `description` varchar(255) DEFAULT NULL,
   `publisher` varchar(255) DEFAULT NULL,
-  `date_published` date DEFAULT NULL,
+  `date_published` year(4) DEFAULT NULL,
   `tags` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`book_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -109,14 +109,14 @@ CREATE TABLE IF NOT EXISTS `book` (
 --
 
 INSERT INTO `book` (`book_no`, `book_title`, `book_type`, `abstract`, `author`, `status`, `description`, `publisher`, `date_published`, `tags`) VALUES
-('AB 1234', 'Merry Ann Title', 'Book', NULL, NULL, 'available', 'Happy New Yeare', 'Santa Claus', '2014-01-18', 'sad'),
-('asdasd', 'jh', 'Journal', NULL, 'jkh', 'available', 'jkh', 'jkhjkh', '2012-11-06', 'jljkljj'),
-('CD 4321', 'How To Program in Java', '', 'abstractttt', NULL, 'reserved', 'Search Google Chrome', 'Not A Programmer', '2014-01-01', ''),
-('EF 5678', 'How To Kill Spiders', 'Book', NULL, NULL, 'borrowed', 'Shoe', 'Microsoft', '2013-08-06', NULL),
-('GH 8765', 'Sleeping in Class Tips', 'Book', NULL, NULL, 'available', 'Sleep peacefully while in Class', 'Rey Benedicto', '2014-04-18', NULL),
-('IJ 1357', 'French Fries from Potatoes', 'Book', NULL, NULL, 'reserved', 'Learn how to eat potatoes', 'McDo', '2013-09-17', NULL),
-('jh', 'jk', 'Book', NULL, 'hkj', 'available', 'hjkh', 'jkh', '2012-11-06', 'kj'),
-('KL 1111', 'Cram Effficiently', 'Thesis', 'dsadsa', 'Boy bulalo', 'borrowed', 'Learn how to waste time then cram', 'Rey Benedicto', '2012-11-06', 'asdsa');
+('AB 1234', 'Merry Ann Title', 'Book', NULL, NULL, 'available', 'Happy New Yeare', 'Santa Claus', 0000, 'sad'),
+('asdasd', 'jh', 'Journal', NULL, 'jkh', 'available', 'jkh', 'jkhjkh', 0000, 'jljkljj'),
+('CD 4321', 'How To Program in Java', '', 'abstractttt', NULL, 'reserved', 'Search Google Chrome', 'Not A Programmer', 0000, ''),
+('EF 5678', 'How To Kill Spiders', 'Book', NULL, NULL, 'borrowed', 'Shoe', 'Microsoft', 0000, NULL),
+('GH 8765', 'Sleeping in Class Tips', 'Book', NULL, NULL, 'available', 'Sleep peacefully while in Class', 'Rey Benedicto', 0000, NULL),
+('IJ 1357', 'French Fries from Potatoes', 'Book', NULL, NULL, 'reserved', 'Learn how to eat potatoes', 'McDo', 0000, NULL),
+('jh', 'jk', 'Book', NULL, 'hkj', 'available', 'hjkh', 'jkh', 0000, 'kj'),
+('KL 1111', 'Cram Effficiently', 'Thesis', 'dsadsa', 'Boy bulalo', 'borrowed', 'Learn how to waste time then cram', 'Rey Benedicto', 0000, 'asdsa');
 
 -- --------------------------------------------------------
 
