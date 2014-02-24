@@ -54,7 +54,7 @@
       </ul>
     </section>
 
-    <section class="top-bar-section ">
+    <section class="top-bar-section">
       <!-- Left Nav Section -->
       <ul class="left">
         <li><a href="<?php echo base_url();?>ihome">Home</a></li>
@@ -76,27 +76,16 @@
 
 
 
-<div id="pagebody">
     <div class="small-2 side-nav columns">
-    <?php include 'search_view.php';?>
-    <!--   <ul class="side-nav">
-        <li class="active"><a href="#">Link 1</a></li>
-        <li><a href="#">Link 2</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Link 3</a></li>
-        <li><a href="#">Link 4</a></li>
-      </ul>
-     -->
+      <?php include 'search_view.php';?>
     </div>
-</div>
 
-    <div id="advanced_filter_div" style="margin-left: 500px">
-        <div  id="results_per_page_div">
-          <form id="results_per_page_form">
-            <input id="results_per_page" style="width:45px" type="number" min="1" max="100" value="10" pattern="^[0-9]+$"/>
-            <span>Results per page&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          </form>
-        </div>
+    <div  id="results_per_page_div">
+      <form id="results_per_page_form">
+        <input id="results_per_page" style="width:45px" type="number" min="1" max="100" value="10" pattern="^[0-9]+$"/>
+        <span>Results per page&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      </form>
+    </div>
 
 
     <script>
