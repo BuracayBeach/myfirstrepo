@@ -58,12 +58,13 @@
 							success: function(data, jqxhr, status){
                                 var resultContainer = $("#result_container");
                                 var recentlyAddedBooksContainer = resultContainer.find("#recently_added_books_container");
-                                if(recentlyAddedBooksContainer.length != 0){
-                                    recentlyAddedBooksContainer.nextAll().remove();
-                                    resultContainer.append(data);
-                                }else{
-                                    resultContainer.html(data);
-                                }
+                                   
+                                if (recentlyAddedBooksContainer.length != 0){
+	                                recentlyAddedBooksContainer.nextAll().remove();
+	                                resultContainer.append(data);
+                                } else {
+	                                resultContainer.html(data);
+	                            }
 							}
 			 			});
 
