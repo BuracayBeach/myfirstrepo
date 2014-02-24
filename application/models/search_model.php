@@ -67,7 +67,7 @@ class Search_model extends CI_Model {
         }
 
         if($status_check!="") $status_check = "(" . $status_check . ") ";
-        else if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") $status_check = "(status!='available' and status!='borrowed' and status!='reserved') and";
+        else if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") $status_check = "(status!='available' and status!='borrowed' and status!='reserved') ";
         else $status_check = "";
 
         return $status_check;
@@ -92,72 +92,85 @@ class Search_model extends CI_Model {
         return $type_check;
     }
 
-
-    function query_result($details){
-        if (strlen($details['search_term']) > 99) $details['search_term'] = substr($details['search_term'], 0,99);
-
-        $q = array(
-                'select' => "select * from book b",
-                'where' => " where " . $details['status_check'],
-                'order_by' => "order by " . $details['order_by']
-        );
-
-        if ($details['status_check'] != '') $q['where'] .= ' and ';
-        $q['where'] .= $details['type_check'];
-
-        if (($details['search_by']== 'book_no' || $details['search_by']== 'date_published') && trim($details['search_term']) != '')  $q['where'] .= " and ";
-
-
+    function get_str_likes($details){
+        $likes = '';
         if (!$details['spell_check']){
             $word_count = 0;
             if (trim($details['search_term']) != ""){
                 $tok = explode(" ", $details['search_term']);
 
                 foreach ($tok as $search) {
-                    // echo $search."<br>";
                     if (trim($search)=='') continue;
-                    if($word_count > 0) $q['where'] .= " or ";
+                    if($word_count > 0) $likes .= " or ";
 
                     if($details['search_by']== 'book_title'){
-                       $q['where'] .= "book_title like '%" . $search . "%' or description like '%" . $search . "%' or tags like '%" . $search . "%' ";
+                        $likes .= "book_title like '%" . $search . "%' or description like '%" . $search . "%' or tags like '%" . $search . "%' ";
                     } else if($details['search_by']== 'any'){
-                        $q['where'] .= "book_title like '%" . $search . "%' or book_no like '%" . $search . "%' or publisher like '%" . $search . "%' or description like '%" . $search . "%' or author like '%" . $search . "%' or date_published like '%" . $search . "%' or tags like '%" . $search . "%' ";
+                        $likes .= "book_title like '%" . $search . "%' or book_no like '%" . $search . "%' or publisher like '%" . $search . "%' or description like '%" . $search . "%' or author like '%" . $search . "%' or date_published like '%" . $search . "%' or tags like '%" . $search . "%' ";
                     } else {
-                        $q['where'] .= $details['search_by'] . " like '%".$search."%' ";
+                        $likes .= $details['search_by'] . " like '%".$search."%' ";
                     }
 
                     $word_count++;
                 }
-                if ($details['search_by']!= 'book_no' && $details['search_by']!= 'date_published' ) $q['where'] .= ") ";
+
             }
         }
+        if (trim($likes) != '') $likes = '(' . $likes . ')';
+        return $likes;
+    }
 
-
+    function get_str_orderby($is_admin, $details){
+        $str_orderby = '';
         if (trim($details['search_term']) == ""){
-            if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
-                $q['order_by'] = $details['order_by'];
-            } else {
-                if ($details['search_by'] == 'any'){
-                    $q['order_by'] = '';
-                } else {
-                    $q['order_by'] = $details['search_by'];
-                }
-            }
+            if ($is_admin)  $str_orderby = $details['order_by'];
+            else  $str_orderby = $details['search_by'];
         } else {
-            if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
-                $q['order_by'] = $details['order_by'];
-            } else {
-                $q['order_by'] = "";
-            }
+            if ($is_admin) $str_orderby = $details['order_by'];
+            else $str_orderby = "";
         }
+        if ($str_orderby=='search_relevance' || $str_orderby=='any') $str_orderby = '';
 
-        if ($q['order_by']=='search_relevance') $q['order_by'] = '';
-        else if ($q['order_by'] != '') $q['order_by'] = ' order by ' . $q['order_by'];
-        
-        if (trim($q['where']) == 'where') $q['where'] = '';
-        
+        return $str_orderby;
+    }
+
+    function query_result($details){
+        //limit the length of the search term
+        if (strlen($details['search_term']) > 99) $details['search_term'] = substr($details['search_term'], 0,99);
+
+        $q = array(
+                'select' => "select * from book b",
+                'where' => "",
+                'order_by' => ""
+        );
+        //check if current user is an admin
+        $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
+
+
+        // add type and status check condition if any
+        if ($details['type_check'] != ''){
+            $q['where'] = ' where ' . $details['type_check'];
+            if ($details['status_check'] != '') $q['where'] .= ' and ';
+        }
+        $q['where'] .= $details['status_check'];
+
+
+
+        // for non spell checking, add the strings to be compared by like%% in sql
+        $likes = $this->get_str_likes($details);
+        if (trim($q['where']) != '' && trim($likes) != '') $q['where'] .= ' and ';
+        $q['where'] .= $likes;
+
+
+        //check ordering of results
+        $str_orderby = $this->get_str_orderby($is_admin, $details);
+        if ($str_orderby != '') $q['order_by'] = ' order by ' . $str_orderby;
+
+
+        //compile the query strings
         $query_string = $q['select'] . $q['where'] . $q['order_by'];
         // var_dump($query_string);
+
         return $this->db->query($query_string)->result();
     }
 
@@ -217,6 +230,7 @@ class Search_model extends CI_Model {
         $book_desc_points = 4;
         $book_tags_points = 3;
         $book_publisher_points = 2;
+        $year_published_points = 2;
         $other_points = 1; //book number, if search by 'any'
 
 
@@ -239,6 +253,7 @@ class Search_model extends CI_Model {
         }
         if ($search_by == 'any'){
             array_push($cols_to_search, $row->book_no);
+            array_push($cols_to_search, $row->date_published);
         }
 
         //compare each search term/word to each of the words in the book title, description, tags
@@ -251,6 +266,7 @@ class Search_model extends CI_Model {
                 if (!in_array($col, $cols_to_search)) continue;
 
                 if ($col == $row->tags) $col_words = explode(" ", str_replace(',', ' ', $col));
+                elseif ($col == $row->date_published) $col_words = explode(" ", str_replace('-', ' ', $col));
                 else $col_words = explode(" ", $col);
 
                 foreach($col_words as $item_orig){
@@ -275,6 +291,7 @@ class Search_model extends CI_Model {
                             case $row->book_title:  $pts+=$book_title_points; break;
                             case $row->author:        $pts+=$book_author_points; break;
                             case $row->publisher:  $pts+=$book_publisher_points; break;
+                            case $row->date_published:  $pts+=$year_published_points; break;
                             default: $pts+=1;
                         }
                     } else {
