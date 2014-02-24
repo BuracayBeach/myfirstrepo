@@ -1,13 +1,13 @@
 #navbar, .top-bar{
-  background: #2222EC;
+  background: #bbbbbb;
 }
 
 .top-bar-section li a {
-  background: #2222EC !important;
+  background: #bbbbbb  !important;
 }
 
 .top-bar-section li a:not(.button):hover {
-  background: #2BAAEC !important;
+  background: #5D55EC !important;
 }
 
 #login input{
