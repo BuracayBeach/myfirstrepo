@@ -118,7 +118,8 @@ class User_account extends CI_Controller {
 		$data['college']= filter_var($_POST['college'], FILTER_SANITIZE_STRING);
 
 		$uname = $_SESSION['username'];
-		$result = $this->user_account_model->update_data($data, $uname);
+		$new_data = $this->safeguard->array_ready_for_query($data);
+		$result = $this->user_account_model->update_data($new_data, $uname);
 		
 		if($result){
 			$user_notif['update_account_notif'] = "Succesfully updated account!";
