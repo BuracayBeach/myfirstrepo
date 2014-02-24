@@ -3,7 +3,7 @@
 class Safeguard {
     public function array_ready_for_query($data){
         foreach($data as &$e){
-            $e = mysql_real_escape_string($e);
+            $e = mysql_real_escape_string(trim($e));
         }
         return $data;
     }
@@ -17,7 +17,7 @@ class Safeguard {
     }
     public function str_array_ready_for_display($data){
         foreach($data as &$row){
-            $row = htmlspecialchars(stripslashes($row));
+            $row = htmlspecialchars(stripslashes(trim($row)));
         }
         return $data;
     }

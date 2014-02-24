@@ -20,22 +20,35 @@ $('#result_container,#faq_container').ready(function(){
     /***** END EVENT ATTACHMENTS *****/
 
     /* Hide Forms Initially */
+    $('#add_date_published,#edit_date_published').attr('max',new Date().getFullYear());
     recentlyAddedBooksContainer.hide();
     $('#add_container').hide();
     $('#edit_container').hide();
+
 });
 
 function checkBookType(){
     var type = $(this).val();
 
+    var form = $(this).closest('form');
+    if(type == 'Other'){
+        form.find('.other').show();
+    }else {
+        form.find('.other').hide();
+    }
+
     if(type != "Book" && type != "Journal")
-        $('.abstract_container').show();
-    else $('.abstract_container').hide();
+        form.find('.abstract_container').show();
+    else {
+        form.find('.abstract_container').hide();
+    }
 }
 /***** ADD FUNCTIONS *****/
 function showAddForm(){
     var addContainer = $('#add_container');
     $('#edit_container').hide();
+
+    $('#add_other').hide();
     $('.abstract_container').hide();
     addContainer.show();
     $(addContainer).find('#add_book_no').focus();
@@ -48,7 +61,8 @@ function cancelAdd(event){
 }
 function addBook(event){
     event.preventDefault();  /* stop form from submitting normally */
-    if(checkAll()){
+    var errors;
+    if((errors = checkAll.call(this)) == ''){
         var book_no = $(this).find('#add_book_no').val();
         var addForm = $(this);
         var formInputs = addForm.serialize();
@@ -72,6 +86,10 @@ function addBook(event){
         });
 
         this.reset();
+    }else{
+        errors = "Cannot continue action because of the following errors:<br/>" + errors;
+        $(this).closest('div').find('.errors').html(errors);
+        //prompt error;
     }
 }
 /***** END ADD FUNCTIONS *****/
@@ -112,35 +130,42 @@ function fillEditForm(event){
 function editBook(event){
     event.preventDefault();
 
-    var book_no = $(this).find('#add_book_no').val();
-    var formInputs = $(this).serialize();
-    $.get("index.php/book/get_book",{"book_no":book_no},function(data){
-        var isUnique = JSON.parse(data).length == 0;
-        if(isUnique){
-            $.post("index.php/book/edit",formInputs,function(data){
-                data = JSON.parse(data);
-                var rowToUpdate = editedRow;
-                rowToUpdate.find("[book_data='book_no']").text(data.book_no);
-                rowToUpdate.find("[book_data='book_type']").text(data.type);
-                rowToUpdate.find("[book_data='book_title']").text(data.book_title);
-                rowToUpdate.find("[book_data='author'] em").text(data.author);
-                rowToUpdate.find("[book_data='description']").text(data.description);
-                rowToUpdate.find("[book_data='publisher']").text(data.publisher);
-                rowToUpdate.find("[book_data='date_published']").text(data.date_published);
-                rowToUpdate.find("[book_data='tags']").text(data.tags);
-                rowToUpdate.find("[book_data='abstract']").text(data.abstract);
+    var errors;
+    if((errors = checkAll.call(this)) == ''){
+        var book_no = $(this).find('#edit_book_no').val();
+        var formInputs = $(this).serialize();
 
-                //status update
-                var transactionSpan =  rowToUpdate.find("span:has(.transaction_anchor)");
+        $.get("index.php/book/get_book",{"book_no":book_no},function(data){
+            var isUnique = JSON.parse(data).length == 0;
+            if(isUnique){
+                $.post("index.php/book/edit",formInputs,function(data){
+                    data = JSON.parse(data);
+                    var rowToUpdate = editedRow;
+                    rowToUpdate.find("[book_data='book_no']").text(data.book_no);
+                    rowToUpdate.find("[book_data='book_type']").text(data.type);
+                    rowToUpdate.find("[book_data='book_title']").text(data.book_title);
+                    rowToUpdate.find("[book_data='author'] em").text(data.author);
+                    rowToUpdate.find("[book_data='description']").text(data.description);
+                    rowToUpdate.find("[book_data='publisher']").text(data.publisher);
+                    rowToUpdate.find("[book_data='date_published']").text(data.date_published);
+                    rowToUpdate.find("[book_data='tags']").text(data.tags);
+                    rowToUpdate.find("[book_data='abstract']").text(data.abstract);
 
-                var anchorHTML = generateTransactionAnchorHTML(data.status,data.book_no);
-                transactionSpan.html(anchorHTML);
-            });
-            editForm.closest('div').hide();
-        }else{
-            alert('Edit failed: Book number duplicate.');
-        }
-    });
+                    //status update
+                    var transactionSpan =  rowToUpdate.find("span:has(.transaction_anchor)");
+
+                    var anchorHTML = generateTransactionAnchorHTML(data.status,data.book_no);
+                    transactionSpan.html(anchorHTML);
+                });
+                editForm.closest('div').hide();
+            }else{
+                alert('Edit failed: Book number duplicate.');
+            }
+        });
+    }else{
+        errors = "Cannot continue action because of the following errors:<br/>" + errors;
+        $(this).closest('div').find('.errors').html(errors);
+    }
 }
 
 function cancelEdit(event){
