@@ -153,7 +153,7 @@
 <div id='pagination_controls_div'>
     <?php //pagination
         if (isset($page)){
-            $page_scale = 9;
+            $page_scale = 20;
             $p_search_term = stripslashes($search_term);
            echo "<span id='pagination' page='{$page}' maxpage='{$maxpage}' rowsperpage='{$rows_per_page}' searchterm= '{$p_search_term}' searchby='{$search_by}'>";
             if(isset($table) &&  count($table) > $rows_per_page){
