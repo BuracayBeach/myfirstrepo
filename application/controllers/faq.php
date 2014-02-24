@@ -8,18 +8,6 @@ class Faq extends CI_Controller {
         $this->load->library('safeguard');
     }
 
-    public function index(){
-        $data['title'] = "eICS Lib FAQ";
-        $this->load->view("header", $data);
-
-        $this->load->view("faq_manage_view");
-        //$this->load->view("faq_view");
-        //$is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
-        //if ($is_admin) $this->load->view('manage_view');
-
-        $this->load->view("footer");
-    }
-
     public function delete(){
         $id = mysql_real_escape_string($_POST['id']);
         $this->faq_model->delete_faq($id);

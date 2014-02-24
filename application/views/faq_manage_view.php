@@ -9,7 +9,7 @@
 <button id="add_faq_button">Add a FAQ</button>
 <div id="faq_manage_container">
     <div id="faq_table_container">
-        <table id="faq_table" style="width:60%;border: 2px solid #000000">
+        <table id="faq_table">
             <tbody>
             <tr>
                 <td>

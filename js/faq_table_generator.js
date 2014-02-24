@@ -2,7 +2,7 @@
  * Created by isnalla on 2/23/14.
  */
 
-var tableHTML = '<table id="faq_table" border=1 style="width:60%"></table>';
+var tableHTML = '<table id="faq_table"></table>';
 
 function generateFaqTable(isAdmin){
     console.log('hello');
