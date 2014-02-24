@@ -49,17 +49,7 @@ class User_account_model extends CI_Model {
 	public function update_data($data, $uname){
 		$query = $this->db->query("SELECT * FROM user WHERE email='{$data['email']}' ");
 
-        /*
-         *
-         * allanconda@gmail.com - current
-         * change email -> boybulalo@ymail.com
-         *
-         */
-
-		if($query->num_rows() == 0 ||
-            ($query->num_rows() == 1
-                &&
-             $query->result_array()[0]['email'] == $data['email'])){
+		if($query->num_rows() == 0 || ($query->num_rows() == 1 && $query->result_array()[0]['username'] == $uname)) {
 			$this->db->query("UPDATE user SET 
 				sex='{$data['sex']}',
 				email='{$data['email']}',
