@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 22, 2014 at 03:35 PM
+-- Generation Time: Feb 24, 2014 at 05:45 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -93,13 +93,13 @@ INSERT INTO `announcement` (`announcement_id`, `announcement_title`, `announceme
 CREATE TABLE IF NOT EXISTS `book` (
   `book_no` varchar(12) NOT NULL,
   `book_title` varchar(255) NOT NULL,
-  `book_type` enum('Book','Journal','SP','Thesis') NOT NULL DEFAULT 'Book',
+  `book_type` varchar(20) NOT NULL DEFAULT 'Book',
   `abstract` varchar(1024) DEFAULT NULL,
   `author` varchar(255) DEFAULT NULL,
   `status` enum('available','borrowed','reserved') NOT NULL DEFAULT 'available',
   `description` varchar(255) DEFAULT NULL,
   `publisher` varchar(255) DEFAULT NULL,
-  `date_published` date DEFAULT NULL,
+  `date_published` year(4) DEFAULT NULL,
   `tags` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`book_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -109,14 +109,14 @@ CREATE TABLE IF NOT EXISTS `book` (
 --
 
 INSERT INTO `book` (`book_no`, `book_title`, `book_type`, `abstract`, `author`, `status`, `description`, `publisher`, `date_published`, `tags`) VALUES
-('AB 1234', 'Merry Ann Title', 'Book', NULL, NULL, 'available', 'Happy New Yeare', 'Santa Claus', '2014-01-18', 'sad'),
-('asdasd', 'jh', 'Journal', NULL, 'jkh', 'available', 'jkh', 'jkhjkh', '2012-11-06', 'jljkljj'),
-('CD 4321', 'How To Program in Java', '', 'abstractttt', NULL, 'reserved', 'Search Google Chrome', 'Not A Programmer', '2014-01-01', ''),
-('EF 5678', 'How To Kill Spiders', 'Book', NULL, NULL, 'borrowed', 'Shoe', 'Microsoft', '2013-08-06', NULL),
-('GH 8765', 'Sleeping in Class Tips', 'Book', NULL, NULL, 'available', 'Sleep peacefully while in Class', 'Rey Benedicto', '2014-04-18', NULL),
-('IJ 1357', 'French Fries from Potatoes', 'Book', NULL, NULL, 'reserved', 'Learn how to eat potatoes', 'McDo', '2013-09-17', NULL),
-('jh', 'jk', 'Book', NULL, 'hkj', 'available', 'hjkh', 'jkh', '2012-11-06', 'kj'),
-('KL 1111', 'Cram Effficiently', 'Thesis', 'dsadsa', 'Boy bulalo', 'borrowed', 'Learn how to waste time then cram', 'Rey Benedicto', '2012-11-06', 'asdsa');
+('AB 1234', 'Merry Ann Title', 'Book', NULL, NULL, 'available', 'Happy New Yeare', 'Santa Claus', 0000, 'sad'),
+('asdasd', 'jh', 'Journal', NULL, 'jkh', 'available', 'jkh', 'jkhjkh', 0000, 'jljkljj'),
+('CD 4321', 'How To Program in Java', '', 'abstractttt', NULL, 'reserved', 'Search Google Chrome', 'Not A Programmer', 0000, ''),
+('EF 5678', 'How To Kill Spiders', 'Book', NULL, NULL, 'borrowed', 'Shoe', 'Microsoft', 0000, NULL),
+('GH 8765', 'Sleeping in Class Tips', 'Book', NULL, NULL, 'available', 'Sleep peacefully while in Class', 'Rey Benedicto', 0000, NULL),
+('IJ 1357', 'French Fries from Potatoes', 'Book', NULL, NULL, 'reserved', 'Learn how to eat potatoes', 'McDo', 0000, NULL),
+('jh', 'jk', 'Book', NULL, 'hkj', 'available', 'hjkh', 'jkh', 0000, 'kj'),
+('KL 1111', 'Cram Effficiently', 'Thesis', 'dsadsa', 'Boy bulalo', 'borrowed', 'Learn how to waste time then cram', 'Rey Benedicto', 0000, 'asdsa');
 
 -- --------------------------------------------------------
 
@@ -212,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `lend` (
 
 CREATE TABLE IF NOT EXISTS `notifications` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
-  `username_admin` varchar(18),
+  `username_admin` varchar(18) DEFAULT NULL,
   `username_user` varchar(18) NOT NULL,
   `book_no` varchar(12) DEFAULT NULL,
   `message` varchar(755) DEFAULT NULL,
@@ -220,7 +220,14 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `type` enum('overdue','claim','custom') NOT NULL,
   PRIMARY KEY (`id`,`username_user`),
   KEY `notifications_username_admin` (`username_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `username_admin`, `username_user`, `book_no`, `message`, `date_sent`, `type`) VALUES
+(1, NULL, 'useruser', NULL, 'Testing lang sa custom notif message kasi hindi nakikita. HINDI ako makita! HINDI ako makita! HINDI ako makita! HINDI ako makita!', '2014-02-24 04:36:00', 'custom');
 
 -- --------------------------------------------------------
 
@@ -310,6 +317,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `sex`, `status`, `email`, `usertype`, `emp_no`, `student_no`, `name_first`, `name_middle`, `name_last`, `mobile_no`, `course`, `college`) VALUES
+('user222', '0c7489c79a5ab44c3f569653b23a0a4a5c73d805ea5ab1e2db410417560add81', 'male', 'pending', 'asdsa@asd.com', 'student', '', '2011-45678', 'qwe', 'asd', 'zxc', '639063761234', 'BSABT', 'CA'),
 ('useruser', 'e172c5654dbc12d78ce1850a4f7956ba6e5a3d2ac40f0925fc6d691ebb54f6bf', 'male', 'pending', 'user@user.com', 'student', '', '2011-16328', 'user', 'user', 'bulalo', '639273874811', 'BSAM', 'CAS');
 
 --

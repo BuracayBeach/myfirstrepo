@@ -92,7 +92,16 @@
 							$(this).text("unreserve");
 						else if (action_type == "unreserve") 
 							$(this).text("reserve");
-						
+
+
+						$.ajax({
+							url : "http://localhost/myfirstrepo/index.php/" + "notifs" + "/" + "check_reserve_for_first",
+							data : {arr : info},
+							type : 'POST',
+							dataType : "html",
+							async : true,
+							success : function(data) {}
+						});
 					});
 				});
 
