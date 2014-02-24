@@ -1,22 +1,10 @@
-<div id="recently_added_books_container">
-    <hr/>
-    <h4>RECENTLY ADDED BOOKS</h4>
-    <table id="recently_added_books_table" border="1" width='60%'>
-        <tr>
-            <th>Book No.</th>
-            <th>Book</th>
-            <th>Publishment</th>
-            <th>Tags</th>
-        </tr>
-    </table>
-    <hr/>
-</div>
+
 <button id="show_add_form_button" name="show_add_form_button" >Add Material</button>
 <div id="add_container">
     <form autocomplete="on" id="add_book_form">
         <h4>Add Material</h4>
-        <span>Need help? </span><br/>
-        <input type="text" title="ISBN (ex. 1234567890)" name="book_no" maxlength="10" id="add_book_no" placeholder="Book No" required pattern="[A-Za-z0-9 ]+">
+        <span class="errors"></span><br/>
+        <input type="text" title="ISBN (ex. 1234567890)" name="book_no" maxlength="10" id="add_book_no" placeholder="Book No" required />
         <br/>
         <input type="text" maxlength="255" spellcheck="true" name="book_title" id="add_book_title" placeholder="Title" required/>
         <br/>
@@ -25,11 +13,14 @@
             <option>Journal</option>
             <option>SP</option>
             <option>Thesis</option>
+            <option>Other</option>
         </select>
+        <input type="text" name="other" class="other" id="add_other" />
         <br/>
         <div class="abstract_container">
-            <label for="add_abstract" >Abstract</label>
-            <input type="text" spellcheck="true" maxlength="1024" name="abstract" id="add_abstract" placeholder="Abstract"/>
+            <label for="add_abstract" >Abstract</label><br/>
+            <textarea spellcheck="true" maxlength="1024" name="abstract" id="add_abstract" placeholder="Abstract">
+                </textarea>
         </div>
         <input type="text" name="author" maxlength="255" id="add_author" placeholder="Author" pattern="[a-zA-z0-9,_' ]+"/>
         <br/>
@@ -37,9 +28,14 @@
         <br/>
         <input type="text" maxlength="255" name="publisher" id="add_publisher" placeholder="Publisher"  />
         <br/>
-        <input type="number" min="0" name="date_published" id="add_date_published"  pattern="\d{4}-\d\d-\d\d" placeholder="Date Published" />
+        <input type="number" min="0" max="0" name="date_published" id="add_date_published"
+               pattern="^[0-9]{0,4}$"
+               placeholder="Year Published"
+               title="ex. 2014, 1995"/>
         <br/>
-        <input type="text" name="tags" spellcheck="true" id="add_tags" title="Subject, Category, etc...; &#10;separated by comma (ex. 'math, computer science') " placeholder="Tags" pattern="^[a-zA-Z0-9 ]+(,[a-zA-Z0-9 ]+)*$"/>
+        <input type="text" name="tags" spellcheck="true" id="add_tags"
+               title="Tags contain additional keywords, like, &#10;Subject, Category, etc...; &#10;separated by comma (ex. 'math, computer science') "
+               placeholder="Tags" pattern="^[a-zA-Z0-9 ]+(,[a-zA-Z0-9 ]+)*$"/>
         <br/>
         <br/>
         <button type="submit" name="add_button" id="add_button">Add Book</button>
@@ -50,13 +46,14 @@
     <hr/>
     <form name="edit_book" id="edit_book_form" method="post">
         <h4>Edit Material</h4>
+        <span class="errors"></span><br/>
         <label for="edit_prev_book_no" hidden>Previous Book No:</label>
         <input type="text" maxlength="10"  name="prev_book_no" id="edit_prev_book_no" hidden/>
         <label for="edit_book_no">Book No: </label>
-        <input type="text" title="ISBN (ex. 1234567890)" maxlength="10" name="book_no" id="edit_book_no" placeholder="Book Number" required pattern="[A-Za-z0-9 ]+" />
+        <input type="text" title="ISBN (ex. 1234567890)" maxlength="10" name="book_no" id="edit_book_no" placeholder="Book Number" required />
         <br/>
         <label for="edit_book_title">Book Title: </label>
-        <input type="text" name="book_title" id="edit_book_title" placeholder="Title" required pattern="[-A-Za-z0-9 ]+" />
+        <input type="text" name="book_title" id="edit_book_title" placeholder="Title" required />
           <br/>
         <label for="edit_book_type">Type: </label>
         <select name="type" id="edit_book_type">
@@ -64,14 +61,20 @@
             <option>Journal</option>
             <option>SP</option>
             <option>Thesis</option>
+            <option>Other</option>
         </select>
+        <input type="text" name="other" class=".other" id="edit_other"  />
         <br/>
         <div class="abstract_container">
-            <label for="edit_abstract" >Abstract</label>
-            <input type="text" name="abstract" id="edit_abstract" placeholder="Abstract"/>
+            <label for="edit_abstract" >Abstract</label><br/>
+            <textarea spellcheck="true" maxlength="1024" name="abstract" id="edit_abstract" placeholder="Abstract">
+            </textarea>
         </div>
         <label for="edit_author">Book Author: </label>
-        <input type="text" name="author" id="edit_author"  pattern="[A-Za-z ]+[-]?[A-Za-z]+" />
+        <input type="text" title="multiple authors are separated by semi-colon"
+               name="author"
+               id="edit_author"
+               pattern="([a-zA-Z,'0-9 ]+(;[a-zA-Z,'0-9 ]+)*)*" />
         <br/>
         <label for="edit_book_status">Book Status: </label>
         <select name="book_status" id="edit_book_status">
@@ -88,8 +91,12 @@
         <br />
         <label for="edit_tags">Tags:</label>
         <input type="text" name="tags" id= "edit_tags" placeholder="Tags" pattern="^[a-zA-Z0-9 ]+(,[a-zA-Z0-9 ]+)*$"/><br/>
-        <label for="edit_date_published">Date Published:</label>
-        <input type="date" name="date_published" id="edit_date_published" />
+        <label for="edit_date_published">Year Published:</label>
+        <input type="number" min="0" max="0" name="date_published"
+               pattern="^[0-9]{0,4}$"
+               placeholder="Year Published"
+               title="ex. 2014, 1995"
+               id="edit_date_published" />
         <br/>
         <button type="submit" id="submit_edit" name="submit_edit">Save</button>
         <button id="edit_cancel_button" name="edit_cancel_button">Cancel</button>
