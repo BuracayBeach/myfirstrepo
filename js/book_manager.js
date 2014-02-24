@@ -11,7 +11,6 @@ $('#result_container,#faq_container').ready(function(){
 
     var recentlyAddedBooksContainer =  $('#recently_added_books_container');
     recentlyAddedBooksContainer.on('click','.edit_button',fillEditForm);
-    recentlyAddedBooksContainer.on('click','.delete_button',deleteBook);
 
     contentContainer.on('click','.delete_button',deleteBook);
 
@@ -32,9 +31,9 @@ function checkBookType(){
 
     var form = $(this).closest('form');
     if(type == 'Other'){
-        form.find('.other').show();
+        form.find('.other').prop('required',true).show();
     }else {
-        form.find('.other').hide();
+        form.find('.other').prop('required',false).hide();
     }
 
     if(type != "Book" && type != "Journal")
@@ -178,6 +177,7 @@ function cancelEdit(event){
 
 /***** DELETE FUNCTIONS *****/
 function deleteBook(){
+
     var result = confirm("Confirm deleting this book");
     if (result==true) {
         var bookNo = $(this).attr('bookno');

@@ -88,8 +88,7 @@ class Home extends CI_Controller {
         if ($is_admin){
             $this->load->view('faq_manage_view', $data);
         }else{
-
-            $this->load->view('faq_view', $data);
+            $this->load->view('faq_view');
         }
 
         $this->load->view("footer");

@@ -42,16 +42,20 @@ class book extends CI_Controller {
 
     public function add(){
         $data = $this->safeguard->array_ready_for_query($_POST);
+
         if($data['type'] == 'Book' || $data['type'] == 'Journal')
             $data['abstract'] = null;
+        if($data['type'] == 'Other')
+            $data['type'] = $data['other'];
 
         $this->book_model->insert_book($data);
+
         $data = $this->safeguard->str_array_ready_for_display($data);
         echo json_encode($data);
     }
 
     public function delete(){
-        $book_no = mysql_real_escape_string($_POST['book_no']);
+        $book_no = mysql_real_escape_string(trim($_POST['book_no']));
         $this->book_model->delete_book($book_no);
     }
 
@@ -66,6 +70,8 @@ class book extends CI_Controller {
         $data = $this->safeguard->array_ready_for_query($_POST);
         if($data['type'] == 'Book' || $data['type'] == 'Journal')
             $data['abstract'] = null;
+        if($data['type'] == 'Other')
+            $data['type'] = $data['other'];
         $this->book_model->edit_book($data);
         $data = $this->safeguard->str_array_ready_for_query($data);
         echo json_encode($data);
@@ -182,9 +188,12 @@ class book extends CI_Controller {
 
         $this->load->model('update_book_model');        // loads the updateBook_model
         $data['transaction_no'] = $this->update_book_model->getTransactionno($data['book_no']);
-        $this->update_book_model->received($data);  // updates the status of the book from borrowed to available
+        $status_checker = $this->update_book_model->received($data);  // updates the status of the book from borrowed to available
         $this->update_book_model->updateLend($data);    // writes the whole transaction into log
     
+        $data = array('status' => $status_checker);
+
+        echo json_encode($data);
 }
     /* end section */
 
