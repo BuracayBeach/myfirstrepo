@@ -33,18 +33,6 @@ class Notifs extends CI_Controller {
 		echo json_encode($q);
 	}
 
-	public function check_if_rank_first() {
-
-		$username = $_SESSION['username'];
-
-		/* $info[0] is the book_no */
-		$info = $this->input->post('arr');
-		$result = $this->notifs_model->check_lend($username, $info[0]);
-
-		if ($result == 1)
-			$this->send_claim_notif($info[0], $username);
-	}
-
 	public function check_reserve_for_first() {
 
 		/* $info[0] is the book_no */
