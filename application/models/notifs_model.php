@@ -19,6 +19,15 @@ class Notifs_Model extends CI_Model {
 		$this->db->insert('notifications', $data);
 	}
 
+	public function get_unreturned() {
+		$q = $this->db->query("SELECT book_no, username_user, date_borrowed FROM lend WHERE
+						date_returned IS NULL");
+
+		if ($q->num_rows() == 0)
+			return "";
+		else return $q->result();
+	}
+
 	public function check_for_first($book_no) {
 
 		$reserves = $this->db->query("SELECT username, notified FROM reserves WHERE 
