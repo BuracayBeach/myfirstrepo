@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Input Forms</title>
-	</head>
-	
-	<body>
-		<form name="userForm" action="<?php echo base_url();?>index.php/user_account/createaccount" method="post" >
-			
-			<div id="container">
+<form name="userForm" action="<?php echo base_url();?>index.php/user_account/createaccount" method="post" >
+		
+		<div id="container">
 				<h1>Input Forms</h1>
 
 				<div id="body">
@@ -80,5 +72,3 @@
 		</form>
 		<a href="<?php echo base_url();?>index.php/user_account/backtohome">Back</a>
 		<script src="<?php echo base_url(); ?>js/create_account.js"></script>
-	</body>
-</html>
