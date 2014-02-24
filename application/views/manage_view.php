@@ -15,7 +15,7 @@
             <option>Thesis</option>
             <option>Other</option>
         </select>
-        <input type="text" name="other" class="other" id="add_other" />
+        <input type="text" title="ex. magazine, newspaper" pattern="^[a-zA-Z0-9 '_]{1,20}$" name="other" class="other" id="add_other" />
         <br/>
         <div class="abstract_container">
             <label for="add_abstract" >Abstract</label><br/>
@@ -43,12 +43,11 @@
     </form>
 </div>
 <div id="edit_container">
-    <hr/>
     <form name="edit_book" id="edit_book_form" method="post">
         <h4>Edit Material</h4>
         <span class="errors"></span><br/>
         <label for="edit_prev_book_no" hidden>Previous Book No:</label>
-        <input type="text" maxlength="10"  name="prev_book_no" id="edit_prev_book_no" hidden/>
+        <input type="hidden" maxlength="10"  name="prev_book_no" id="edit_prev_book_no"/>
         <label for="edit_book_no">Book No: </label>
         <input type="text" title="ISBN (ex. 1234567890)" maxlength="10" name="book_no" id="edit_book_no" placeholder="Book Number" required />
         <br/>
@@ -63,7 +62,7 @@
             <option>Thesis</option>
             <option>Other</option>
         </select>
-        <input type="text" name="other" class=".other" id="edit_other"  />
+        <input type="text" pattern="^[a-zA-Z0-9 '_]{1,20}$" title="magazine, newspaper" name="other" class=".other" id="edit_other"  />
         <br/>
         <div class="abstract_container">
             <label for="edit_abstract" >Abstract</label><br/>
@@ -89,8 +88,6 @@
         <label for="edit_publisher">Book Publisher: </label>
         <input type="text" name="publisher" id="edit_publisher" placeholder="Publisher" />
         <br />
-        <label for="edit_tags">Tags:</label>
-        <input type="text" name="tags" id= "edit_tags" placeholder="Tags" pattern="^[a-zA-Z0-9 ]+(,[a-zA-Z0-9 ]+)*$"/><br/>
         <label for="edit_date_published">Year Published:</label>
         <input type="number" min="0" max="0" name="date_published"
                pattern="^[0-9]{0,4}$"
@@ -98,6 +95,11 @@
                title="ex. 2014, 1995"
                id="edit_date_published" />
         <br/>
+        <label for="edit_tags">Tags:</label>
+        <input type="text" name="tags" id= "edit_tags"
+               title="Tags contain additional keywords, like, &#10;Subject, Category, etc...; &#10;separated by comma (ex. 'math, computer science') "
+               placeholder="Tags" pattern="^[a-zA-Z0-9 ]+(,[a-zA-Z0-9 ]+)*$"/><br/>
+
         <button type="submit" id="submit_edit" name="submit_edit">Save</button>
         <button id="edit_cancel_button" name="edit_cancel_button">Cancel</button>
     </form>

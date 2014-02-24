@@ -1,15 +1,22 @@
 window.onload=function(){
-	adminForm.username.onblur=validateUsername;
+	adminForm.username.onkeyup=validateUsername;
 	adminForm.password.onkeyup=validatepasswords;
 	adminForm.repassword.onkeyup=validatepasswords;
-	adminForm.name_first.onblur=validateFirstName;
-	adminForm.name_middle.onblur=validateMiddleName;
-	adminForm.name_last.onblur=validateLastName;
+	adminForm.name_first.onkeyup=validateFirstName;
+	adminForm.name_middle.onkeyup=validateMiddleName;
+	adminForm.name_last.onkeyup=validateLastName;
 	adminForm.onsubmit=validateAll;
 }
 
 function validateAll(){
-	if(validateUsername && validatepasswords && validateFirstName && validateMiddleName && validateLastName)
+	if(validateUsername() && validateallpasswords() && validateFirstName() && validateMiddleName() && validateLastName())
+		return true;
+	else
+		return false;
+}
+
+function validateallpasswords(){
+	if(validatePassword() && validateRepassword())
 		return true;
 	else return false;
 }
@@ -20,7 +27,6 @@ function validateUsername(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[0-9a-zA-Z]{6,18}$/))  msg+="Must be 6-18 characters long";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanUsername")[0].innerHTML=msg;
 
 	if(msg=="") return true;
@@ -68,7 +74,6 @@ function validateFirstName(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanName_first")[0].innerHTML=msg;
 
 	if(msg=="") return true;
@@ -82,7 +87,6 @@ function validateMiddleName(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanName_middle")[0].innerHTML=msg;
 
 	if(msg=="") return true;
@@ -96,7 +100,6 @@ function validateLastName(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
 	document.getElementsByName("spanName_last")[0].innerHTML=msg;
 
 	if(msg=="") return true;
