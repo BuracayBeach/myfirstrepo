@@ -141,6 +141,10 @@ function fillEditForm(event){
     var editContainer = $('#edit_container');
     editContainer.show();
     $(editContainer).find('#edit_book_no').focus();
+
+
+    $("#add_announcement_cancel_button").click();
+
 }
 
 function editBook(event){
@@ -189,6 +193,10 @@ function editBook(event){
         errors = "Cannot continue action because of the following errors:<br/>" + errors;
         $(this).closest('div').find('.errors').html(errors);
     }
+
+
+
+
 }
 
 function cancelEdit(event){
