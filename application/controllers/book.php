@@ -120,12 +120,14 @@ class book extends CI_Controller {
         $details['search_suggestion'] = trim($search_suggestion);
         $details['table'] = $sorted_table;
 
+
         // para lang sa pag check ng user favorites at reserves (w/ lend crosschecking) 
         if (isset($_SESSION['username'])) {
             $details['favorite_user'] = $this->favorite_model->get_all($_SESSION['username']);
             $details['reserve_user'] = $this->reserve_model->get($_SESSION['username']);
             $details['lend_user'] = $this->lend_model->get($_SESSION['username']);
         }
+
 
         if (isset($details['rows_per_page'])) {
             $max_page = count($details['table']) / $details['rows_per_page'];

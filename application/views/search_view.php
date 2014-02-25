@@ -146,7 +146,7 @@
 
 
 
-
+<!-- 
 
     <script type="text/javascript"> //ajax for other types of material
 
@@ -185,4 +185,6 @@
 				});
 
 
-			</script>
+			</script> -->
+
+

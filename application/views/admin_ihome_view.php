@@ -1,7 +1,7 @@
 <div id="tabnavihome"class="tabbable small-7 column"> <!-- Only required for left/right tabs -->
   <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab1" data-toggle="tab">Search Results</a></li>
-    <li><a href="#tab2" data-toggle="tab">Recently Added</a></li>
+    <li class="active"><a href="#tab1" data-toggle="tab">Books</a></li>
+    <li><a href="#tab2" data-toggle="tab">Recently Added Books</a></li>
     <li><a href="#tab3" data-toggle="tab">Announcements</a></li>
   </ul>
   <div class="tab-content">

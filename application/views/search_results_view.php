@@ -16,14 +16,60 @@
 					$('#submit_search').submit();
 				}
 
+				function summarize(searchText){
+                    var search_table = $("#search_table");
+                    var tr_array = search_table.find('tr:first').nextAll();
+
+                    tr_array.each(function(index, tr){
+                    	tr = $(tr)
+                    	var abstractTD = tr.find('td[book_data="abstract"]')
+                    	var abstract = abstractTD.find('textarea').text()
+
+                    	abstractTD.text(get_summarize(abstract, searchText))
+                    })
+				}
+
+				function wordMatch(word, searchArray){
+					var summary = ''
+					for (var b=0 ; b<searchArray.length ; b++){
+						var term = searchArray[b]
+						if (word.toLowerCase() == term.toLowerCase()) {
+							summary = word + ' ' 
+							break
+						}
+					}
+					return summary
+				}
+
+				function get_summarize(abstract, searchText){
+					var summary = ''
+
+					var abstract = abstract.split(' ')
+					var searchArray = searchText.split(' ')
+					var maxAbstract = 75
+
+					var prev_word = ''
+					var next_word = ''
+					
+					for (var a=0 ; a<abstract.length ; a++){
+						var word = abstract[a]
+						summary += wordMatch(word, searchArray);
+						if (summary.length >= maxAbstract) break
+					}
+
+					// console.log(summary.length + ' ' + summary)
+					return summary
+				}
+
 				$(document).ready(function() {
 				    $('#sidebar-wrapper').on('click', 'li', ajax_results);
 
 
 					function ajax_results(event){
 						event.preventDefault();
-
-						my_input = $('#search_form').serialize();
+						var searchForm = $('#search_form')
+						var my_input = searchForm.serialize();
+						var searchText = searchForm.find('#search_text').val()
 
 						if ($(this).attr('searchby') == null) {
 							my_input += "&search_by=" + $('#search_text').attr('searchby');
@@ -44,15 +90,26 @@
 							success: function(data, jqxhr, status){
                                 var resultContainer = $("#result_container");
                                 var recentlyAddedBooksContainer = resultContainer.find("#recently_added_books_container");
-                                   
+                                 
                                 if (recentlyAddedBooksContainer.length != 0){
 	                                recentlyAddedBooksContainer.nextAll().remove();
 	                                resultContainer.append(data);
                                 } else {
 	                                resultContainer.html(data);
 	                            }
+
+	                            var book_tab = $('[data-toggle="tab"]')
+	                            if (book_tab.length != 0) {
+	                            	book_tab[0].click();
+	                            } 
+	                            //assume rows are appended already
+	                            summarize(searchText);
+							},
+							fail: function(){
+								alert("Search Failed");
 							}
 			 			});
+
 
 						$('#search').removeClass('home');
 						$('.logo_main').hide();
