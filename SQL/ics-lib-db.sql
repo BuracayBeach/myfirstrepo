@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 25, 2014 at 05:09 AM
+-- Generation Time: Feb 25, 2014 at 06:52 AM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -50,7 +50,8 @@ INSERT INTO `account_history` (`username_user`, `username_admin`, `email`, `date
 ('Thoureprot94', 'admin', 'HardingPuddifoot@dayrep.com', '2014-02-25 05:09:17', 'disable'),
 ('Trater93', 'admin', 'RyanEPruitt@jourrapide.com', '2014-02-25 05:08:50', 'activate'),
 ('Trater93', 'admin', 'RyanEPruitt@jourrapide.com', '2014-02-25 05:08:56', 'disable'),
-('Trater93', 'admin', 'RyanEPruitt@jourrapide.com', '2014-02-25 05:09:14', 'enable');
+('Trater93', 'admin', 'RyanEPruitt@jourrapide.com', '2014-02-25 05:09:14', 'enable'),
+('useruser', 'admin', 'user@user.user', '2014-02-25 06:50:02', 'activate');
 
 -- --------------------------------------------------------
 
@@ -122,14 +123,14 @@ CREATE TABLE IF NOT EXISTS `book` (
 --
 
 INSERT INTO `book` (`book_no`, `book_title`, `book_type`, `abstract`, `author`, `status`, `description`, `publisher`, `date_published`, `tags`) VALUES
-('AB 1234', 'Merry Ann Title', 'Book', NULL, NULL, 'available', 'Happy New Yeare', 'Santa Claus', 0000, 'sad'),
+('AB 1234', 'Merry Ann Title', 'Book', NULL, NULL, 'reserved', 'Happy New Yeare', 'Santa Claus', 0000, 'sad'),
 ('asdasd', 'jh', 'Journal', NULL, 'jkh', 'available', 'jkh', 'jkhjkh', 0000, 'jljkljj'),
 ('CD 4321', 'How To Program in Java', '', 'abstractttt', NULL, 'available', 'Search Google Chrome', 'Not A Programmer', 0000, ''),
-('EF 5678', 'How To Kill Spiders', 'Book', NULL, NULL, 'available', 'Shoe', 'Microsoft', 0000, NULL),
-('GH 8765', 'Sleeping in Class Tips', 'Book', NULL, NULL, 'available', 'Sleep peacefully while in Class', 'Rey Benedicto', 0000, NULL),
-('IJ 1357', 'French Fries from Potatoes', 'Book', NULL, NULL, 'available', 'Learn how to eat potatoes', 'McDo', 0000, NULL),
+('EF 5678', 'How To Kill Spiders', 'Book', NULL, NULL, 'reserved', 'Shoe', 'Microsoft', 0000, NULL),
+('GH 8765', 'Sleeping in Class Tips', 'Book', NULL, NULL, 'reserved', 'Sleep peacefully while in Class', 'Rey Benedicto', 0000, NULL),
+('IJ 1357', 'French Fries from Potatoes', 'Book', NULL, NULL, 'reserved', 'Learn how to eat potatoes', 'McDo', 0000, NULL),
 ('jh', 'jk', 'Book', NULL, 'hkj', 'available', 'hjkh', 'jkh', 0000, 'kj'),
-('KL 1111', 'Cram Effficiently', 'Thesis', 'dsadsa', 'Boy bulalo', 'available', 'Learn how to waste time then cram', 'Rey Benedicto', 0000, 'asdsa');
+('KL 1111', 'Cram Effficiently', 'Thesis', 'dsadsa', 'Boy bulalo', 'reserved', 'Learn how to waste time then cram', 'Rey Benedicto', 0000, 'asdsa');
 
 -- --------------------------------------------------------
 
@@ -233,7 +234,18 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `type` enum('overdue','claim','custom') NOT NULL,
   PRIMARY KEY (`id`,`username_user`),
   KEY `notifications_username_admin` (`username_user`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `username_admin`, `username_user`, `book_no`, `message`, `date_sent`, `type`) VALUES
+(2, '', 'useruser', 'IJ 1357', 'You may now claim your book at the library ASAP', '2014-02-25 06:50:24', 'claim'),
+(3, '', 'useruser', 'EF 5678', 'You may now claim your book at the library ASAP', '2014-02-25 06:50:25', 'claim'),
+(4, '', 'useruser', 'asdasd', 'You may now claim your book at the library ASAP', '2014-02-25 06:50:26', 'claim'),
+(5, '', 'useruser', 'AB 1234', 'You may now claim your book at the library ASAP', '2014-02-25 06:50:27', 'claim'),
+(6, '', 'useruser', 'GH 8765', 'You may now claim your book at the library ASAP', '2014-02-25 06:50:28', 'claim');
 
 -- --------------------------------------------------------
 
@@ -290,7 +302,18 @@ CREATE TABLE IF NOT EXISTS `reserves` (
   PRIMARY KEY (`book_no`,`username`,`rank`),
   KEY `reserves_username` (`username`),
   KEY `reserves_rank` (`rank`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `reserves`
+--
+
+INSERT INTO `reserves` (`book_no`, `username`, `date_reserved`, `rank`, `notified`) VALUES
+('AB 1234', 'useruser', '2014-02-25 06:50:27', 6, 1),
+('EF 5678', 'useruser', '2014-02-25 06:50:25', 4, 1),
+('GH 8765', 'useruser', '2014-02-25 06:50:28', 7, 1),
+('IJ 1357', 'useruser', '2014-02-25 06:50:24', 3, 1),
+('KL 1111', 'useruser', '2014-02-25 06:50:23', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -341,6 +364,7 @@ INSERT INTO `user` (`username`, `password`, `sex`, `status`, `email`, `usertype`
 ('Thoureprot94', 'haingeiS1Io', 'male', 'disabled', 'HardingPuddifoot@dayrep.com', 'student', NULL, '2011-13575', 'Harding', 'Brandagamba', 'Puddifoot', '09176497221', 'BSCS', 'CAS'),
 ('Trater93', 'AgeFiezei2', 'male', 'enabled', 'RyanEPruitt@jourrapide.com', 'student', NULL, '2013-14344', 'Ryan', 'Emerson', 'Pruitt', '09180023476', 'BSCS', 'CAS'),
 ('Tury1993', 'Xa4IquieniVe', 'female', 'pending', 'SakikoKamuta@jourrapide.com', 'student', NULL, '2012-56916', 'Sakiko', 'Asada', 'Kamuta', '09227869432', 'BSCS', 'CAS'),
+('useruser', 'e172c5654dbc12d78ce1850a4f7956ba6e5a3d2ac40f0925fc6d691ebb54f6bf', 'male', 'enabled', 'user@user.user', 'student', '', '2004-33411', 'user', 'user', 'user', '639232143048', 'MVE', 'GS'),
 ('Waskeend96', 'Ooyiush1pau', 'female', 'pending', 'StephanieKuefer@teleworm.us', 'student', NULL, '2009-28943', 'Stephanie', 'Fisher', 'Kuefer', '09151784993', 'BSCS', 'CAS'),
 ('Whattis', 'aiquai5Oo', 'male', 'pending', 'JordanLMancini@teleworm.us', 'student', NULL, '2010-10290', 'Jordan', 'Lincoln', 'Mancini', '09154573211', 'BSCS', 'CAS');
 
