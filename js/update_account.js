@@ -1,18 +1,18 @@
 window.onload=function(){
-	userForm.email.onblur=validateEmail;
-	userForm.name_first.onblur=validateFirstName;
-	userForm.name_middle.onblur=validateMiddleName;
-	userForm.name_last.onblur=validateLastName;
-	userForm.mobile_no.onblur=validateMobileNumber;
+	userForm.email.onkeyup=validateEmail;
+	userForm.name_first.onkeyup=validateFirstName;
+	userForm.name_middle.onkeyup=validateMiddleName;
+	userForm.name_last.onkeyup=validateLastName;
+	userForm.mobile_no.onkeyup=validateMobileNumber;
 	userForm.course.onfocus=filterCourses;
 	userForm.college.onblur=filterCourses;
 	userForm.college.onchange=filterCourses;
 	userForm.college.onchange=filterCourses2;
 	userForm.onsubmit=validateAll;
 
-	changePasswordForm.currentPassword.onkeyup=validateCurrentPassword;
-	changePasswordForm.newPassword.onkeyup=validateNewPasswords;
-	changePasswordForm.reNewPassword.onkeyup=validateNewPasswords;
+	changePasswordForm.currentpassword.onkeyup=validateCurrentPassword;
+	changePasswordForm.newpassword.onkeyup=validateNewPasswords;
+	changePasswordForm.renewpassword.onkeyup=validateNewPasswords;
 	changePasswordForm.onsubmit=validateAllPassword;
 }
 
@@ -44,10 +44,18 @@ function validateEmail(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
-	document.getElementsByName("spanEmail")[0].innerHTML=msg;
+	document.getElementsByName("span email")[0].innerHTML=msg;
 
-	if(msg=="") return true;
+	if(msg==""){
+		$('input[name=email]').removeClass().addClass("valid");
+		$("span[name~='email']").removeClass().addClass("valid");
+		return true;
+	}
+
+	else{
+		$('input[name=email]').removeClass().addClass("invalid");
+		$("span[name~='email']").removeClass().addClass("invalid");
+	}
 }
 			
 //Validate the first name field.
@@ -58,10 +66,18 @@ function validateFirstName(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
-	document.getElementsByName("spanName_first")[0].innerHTML=msg;
+	document.getElementsByName("span name_first")[0].innerHTML=msg;
 
-	if(msg=="") return true;
+	if(msg==""){
+		$('input[name=name_first]').removeClass().addClass("valid");
+		$("span[name~='name_first']").removeClass().addClass("valid");
+		return true;
+	}
+
+	else{
+		$('input[name=name_first]').removeClass().addClass("invalid");
+		$("span[name~='name_first']").removeClass().addClass("invalid");
+	}
 }
 
 //Validate the middle name field.
@@ -72,10 +88,18 @@ function validateMiddleName(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
-	document.getElementsByName("spanName_middle")[0].innerHTML=msg;
+	document.getElementsByName("span name_middle")[0].innerHTML=msg;
 
-	if(msg=="") return true;
+	if(msg==""){ 
+		$('input[name=name_middle]').removeClass().addClass("valid");
+		$("span[name~='name_middle']").removeClass().addClass("valid");
+		return true;
+	}
+
+	else{
+		$('input[name=name_middle]').removeClass().addClass("invalid");
+		$("span[name~='name_middle']").removeClass().addClass("invalid");
+	}
 }
 
 //Validate the last name field.
@@ -86,10 +110,18 @@ function validateLastName(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
-	document.getElementsByName("spanName_last")[0].innerHTML=msg;
+	document.getElementsByName("span name_last")[0].innerHTML=msg;
 
-	if(msg=="") return true;
+	if(msg==""){
+		$('input[name=name_last]').removeClass().addClass("valid");
+		$("span[name~='name_last']").removeClass().addClass("valid");
+		return true;
+	}
+
+	else{
+		$('input[name=name_last]').removeClass().addClass("invalid");
+		$("span[name~='name_last']").removeClass().addClass("invalid");
+	}
 }
 
 //Validate the mobile number field.
@@ -100,10 +132,18 @@ function validateMobileNumber(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[0-9]{12}$/))  msg+="The format must be 639XXXXXXXXX";
-	else if(msg="Invalid input") msg="";
-	document.getElementsByName("spanMobile_no")[0].innerHTML=msg;
+	document.getElementsByName("span mobile_no")[0].innerHTML=msg;
 
-	if(msg=="") return true;
+	if(msg==""){
+		$('input[name=mobile_no]').removeClass().addClass("valid");
+		$("span[name~='mobile_no']").removeClass().addClass("valid");
+		return true;
+	}
+
+	else{
+		$('input[name=mobile_no]').removeClass().addClass("invalid");
+		$("span[name~='mobile_no']").removeClass().addClass("invalid");
+	}
 }
 
 //Validate the college and courses fields.
@@ -367,21 +407,30 @@ function filterCourses2(){
 //The current password's strength is categorized: weak, fair or strong.
 ////The current password field is required and must be 6-18 characters long.
 function validateCurrentPassword(){
-	str=changePasswordForm.currentPassword.value;
+	str=changePasswordForm.currentpassword.value;
 	msg="";
 
 	if(str=="")msg+="Required";
 	else if (!str.match(/^[0-9a-zA-Z]{6,18}$/))  msg+="Must be 6-18 characters long.";
 
-	document.getElementsByName("spanCurrentPassword")[0].innerHTML=msg;
-	if(msg!="Required"&&msg!="Must be 6-18 characters long.") return true;
+	document.getElementsByName("span currentpassword")[0].innerHTML=msg;
+	if(msg!="Required"&&msg!="Must be 6-18 characters long."){
+		$('input[name=currentpassword]').removeClass().addClass("valid");
+		$("span[name~='currentpassword']").removeClass().addClass("valid");
+		return true;
+	}
+
+	else{
+		$('input[name=currentpassword]').removeClass().addClass("invalid");
+		$("span[name~='currentpassword']").removeClass().addClass("invalid");
+	}
 }
 
 //Validate the new password field.
 //The new password's strength is categorized: weak, fair or strong.
 ////The new password field is required and must be 6-18 characters long.
 function validateNewPassword(){
-	str=changePasswordForm.newPassword.value;
+	str=changePasswordForm.newpassword.value;
 	msg="";
 
 	if(str=="")msg+="Required";
@@ -392,20 +441,38 @@ function validateNewPassword(){
 		else if(str.match(/^[a-zA-Z0-9]+$/)) msg+="Strong";
 	}
 	
-	document.getElementsByName("spanNewPassword")[0].innerHTML=msg;
-	if(msg!="Required"&&msg!="Must be 6-18 characters long.") return true;
+	document.getElementsByName("span newpassword")[0].innerHTML=msg;
+	if(msg!="Required"&&msg!="Must be 6-18 characters long."){
+		$('input[name=newpassword]').removeClass().addClass("valid");
+		$("span[name~='newpassword']").removeClass().addClass("valid");
+		return true;
+	}
+
+	else{
+		$('input[name=newpassword]').removeClass().addClass("invalid");
+		$("span[name~='nepassword']").removeClass().addClass("invalid");
+	}
 }
 
 //Validate the re-entered password if it matches the previous password entered.
 function validateReNewPassword(){
-	str=changePasswordForm.reNewPassword.value;
-	str2=changePasswordForm.newPassword.value;
+	str=changePasswordForm.renewpassword.value;
+	str2=changePasswordForm.newpassword.value;
 	msg="";
 	
 	if(str=="")msg+="Required";
 	else if(str==str2)msg+="Valid";
 	else if(str!=str2)msg="Your passwords do not match.";
 	
-	document.getElementsByName("spanReNewPassword")[0].innerHTML=msg;
-	if(msg=="Valid")return true;
+	document.getElementsByName("span renewpassword")[0].innerHTML=msg;
+	if(msg=="Valid"){
+		$('input[name=renewpassword]').removeClass().addClass("valid");
+		$("span[name~='renewpassword']").removeClass().addClass("valid");
+		return true;
+	}
+
+	else{
+		$('input[name=renewpassword]').removeClass().addClass("invalid");
+		$("span[name~='renewpassword']").removeClass().addClass("invalid");
+	}
 }

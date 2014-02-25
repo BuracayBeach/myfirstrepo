@@ -1,7 +1,7 @@
 window.onload=function(){
-	adminForm.name_first.onblur=validateFirstName;
-	adminForm.name_middle.onblur=validateMiddleName;
-	adminForm.name_last.onblur=validateLastName;
+	adminForm.name_first.onkeyup=validateFirstName;
+	adminForm.name_middle.onkeyup=validateMiddleName;
+	adminForm.name_last.onkeyup=validateLastName;
 	adminForm.onsubmit=validateAll;
 
 	adminPasswordForm.currentPassword.onkeyup=validateCurrentPassword;
@@ -22,9 +22,8 @@ function validateAll(){
 }
 
 function validateAllPasswords(){
-	if(validateCurrentPassword() && validateNewPassword() && validateReNewPassword()){
+	if(validateCurrentPassword() && validateNewPassword() && validateReNewPassword())
 		return true;
-	}
 	else return false;
 }
 
@@ -36,10 +35,19 @@ function validateFirstName(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
-	document.getElementsByName("spanName_first")[0].innerHTML=msg;
+	document.getElementsByName("span name_first")[0].innerHTML=msg;
 
-	if(msg=="") return true;
+	if(msg==""){
+		$('input[name=name_first]').removeClass().addClass("valid");
+		$("span[name~='name_first']").removeClass().addClass("valid");
+		return true;
+	}
+
+	else{
+		$('input[name=name_first]').removeClass().addClass("invalid");
+		$("span[name~='name_first']").removeClass().addClass("invalid");
+	}
+
 }
 
 //Validate the middle name field.
@@ -50,10 +58,18 @@ function validateMiddleName(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
-	document.getElementsByName("spanName_middle")[0].innerHTML=msg;
+	document.getElementsByName("span name_middle")[0].innerHTML=msg;
 
-	if(msg=="") return true;
+	if(msg==""){ 
+		$('input[name=name_middle]').removeClass().addClass("valid");
+		$("span[name~='name_middle']").removeClass().addClass("valid");
+		return true;
+	}
+
+	else{
+		$('input[name=name_middle]').removeClass().addClass("invalid");
+		$("span[name~='name_middle']").removeClass().addClass("invalid");
+	}
 }
 
 //Validate the last name field.
@@ -64,10 +80,18 @@ function validateLastName(){
 
 	if (str=="") msg+="Required";
 	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
-	else if(msg="Invalid input") msg="";
-	document.getElementsByName("spanName_last")[0].innerHTML=msg;
+	document.getElementsByName("span name_last")[0].innerHTML=msg;
 
-	if(msg=="") return true;
+	if(msg==""){
+		$('input[name=name_last]').removeClass().addClass("valid");
+		$("span[name~='name_last']").removeClass().addClass("valid");
+		return true;
+	}
+
+	else{
+		$('input[name=name_last]').removeClass().addClass("invalid");
+		$("span[name~='name_last']").removeClass().addClass("invalid");
+	}
 }
 
 //Validate the current password field.
@@ -80,8 +104,18 @@ function validateCurrentPassword(){
 	if(str=="")msg+="Required";
 	else if (!str.match(/^[0-9a-zA-Z]{5,18}$/))  msg+="Must be 5-18 characters long.";
 
-	document.getElementsByName("span_currentpassword")[0].innerHTML=msg;
-	if(msg!="Required"&&msg!="Must be 5-18 characters long.") return true;
+	document.getElementsByName("span currentpassword")[0].innerHTML=msg;
+	
+	if(msg!="Required"&&msg!="Must be 5-18 characters long."){
+		$('input[name=currentPassword]').removeClass().addClass("valid");
+		$("span[name~='currentPassword']").removeClass().addClass("valid");
+		return true;
+	}
+
+	else{
+		$('input[name=currentPassword]').removeClass().addClass("invalid");
+		$("span[name~='currentPassword']").removeClass().addClass("invalid");
+	}
 }
 
 //Validate the new password field.
@@ -99,8 +133,18 @@ function validateNewPassword(){
 		else if(str.match(/^[a-zA-Z0-9]+$/)) msg+="Strong";
 	}
 	
-	document.getElementsByName("span_newpassword")[0].innerHTML=msg;
-	if(msg!="Required"&&msg!="Must be 5-18 characters long.") return true;
+	document.getElementsByName("span newpassword")[0].innerHTML=msg;
+	
+	if(msg!="Required"&&msg!="Must be 5-18 characters long."){
+		$('input[name=newPassword]').removeClass().addClass("valid");
+		$("span[name~='newPassword']").removeClass().addClass("valid");
+		return true;
+	}
+
+	else{
+		$('input[name=newPassword]').removeClass().addClass("invalid");
+		$("span[name~='nePassword']").removeClass().addClass("invalid");
+	}
 }
 
 //Validate the re-entered password if it matches the previous password entered.
@@ -113,6 +157,16 @@ function validateReNewPassword(){
 	else if(str==str2)msg+="Valid";
 	else if(str!=str2)msg="Your passwords do not match.";
 	
-	document.getElementsByName("span_newrepassword")[0].innerHTML=msg;
-	if(msg=="Valid")return true;
+	document.getElementsByName("span newrepassword")[0].innerHTML=msg;
+	
+	if(msg=="Valid"){
+		$('input[name=newRePassword]').removeClass().addClass("valid");
+		$("span[name~='newRePassword']").removeClass().addClass("valid");
+		return true;
+	}
+
+	else{
+		$('input[name=newRePassword]').removeClass().addClass("invalid");
+		$("span[name~='newRePassword']").removeClass().addClass("invalid");
+	}
 }

@@ -1,11 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: isnalla
- * Date: 2/18/14
- * Time: 1:01 PM
- */
-?>
 <h3>Frequently Asked Questions</h3>
 <div id="faq_container">
     <div id="faq_table_container">

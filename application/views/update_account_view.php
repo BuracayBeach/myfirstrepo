@@ -1,3 +1,5 @@
+<div class="small-7 column">
+
 <form name="userForm" action="<?php echo base_url();?>index.php/user_account/update" method="post" >
 	<div id="container">
 		<h1>Update Form</h1>
@@ -7,11 +9,11 @@
 				 <label for="male">Male</label>
 				 <input type="radio" name="sex" value="female" id="female"<?php if($sex=="female") echo " checked"; ?>/>
 				 <label for="female">Female</label><br/>
-			Email: <input type="text" name="email" value="<?php echo $email; ?>" required/><span name="spanEmail"></span><br/>
-			First Name: <input type="text" name="name_first" value="<?php echo $name_first; ?>" required/><span name="spanName_first"></span><br/>
-			Middle Name: <input type="text" name="name_middle" value="<?php echo $name_middle; ?>" required/><span name="spanName_middle"></span><br/>
-			Last Name: <input type="text" name="name_last" value="<?php echo $name_last; ?>" required/><span name="spanName_last"></span><br/>
-			Mobile Number: <input type="text" name="mobile_no" name="name_last" value="<?php echo $mobile_no; ?>" required /><span name="spanMobile_no"></span><br/>
+			Email: <input type="text" name="email" value="<?php echo $email; ?>" required/><span name="span email"></span><br/>
+			First Name: <input type="text" name="name_first" value="<?php echo $name_first; ?>" required/><span name="span name_first"></span><br/>
+			Middle Name: <input type="text" name="name_middle" value="<?php echo $name_middle; ?>" required/><span name="span name_middle"></span><br/>
+			Last Name: <input type="text" name="name_last" value="<?php echo $name_last; ?>" required/><span name="span name_last"></span><br/>
+			Mobile Number: <input type="text" name="mobile_no" name="name_last" value="<?php echo $mobile_no; ?>" required /><span name="span mobile_no"></span><br/>
 			College: 
 			<select name="college">	
 				<option value="GS"<?php if($college=="GS") echo " selected"; ?>>GS (Graduate School)</option>					
@@ -79,12 +81,15 @@
 	<div id="container">
 		<h1>Change Password</h1>
 		<div id="body">
-			Current Password: <input type="password" name="currentPassword" value="" required/><span name="spanCurrentPassword"></span><br/>
-			New Password: <input type="password" name="newPassword" value=""required/><span name="spanNewPassword"></span><br/>
-			Retype New Password: <input type="password" name="reNewPassword" value="" required/><span name="spanReNewPassword"></span><br/>
+			Current Password: <input type="password" name="currentpassword" value="" required/><span name="span currentpassword"></span><br/>
+			New Password: <input type="password" name="newpassword" value=""required/><span name="span newpassword"></span><br/>
+			Retype New Password: <input type="password" name="renewpassword" value="" required/><span name="span renewpassword"></span><br/>
 			<input type="submit" value="Change" />
 		</div>
 	</div>
 </form>
-<a href="<?php echo base_url();?>index.php/user_account/backtohome">Back</a>
+
+</div>
+
 <script src="<?php echo base_url(); ?>js/update_account.js"></script>
+<script src="<?php echo base_url();?>js/vendor/jquery.js"></script>
