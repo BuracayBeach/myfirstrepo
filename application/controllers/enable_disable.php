@@ -39,10 +39,10 @@ class Enable_disable extends CI_Controller {
 	{
 		// Sanitation Author: Cyril Justine D. Bravo
 		// Description: Sanitizes queries in the user search
-		if(count($_POST) == 0)
-		{
-			$_POST = $_SESSION['post_temp'];
-		}
+		//if(count($_POST) == 0)
+		//{
+			//$_POST = $_SESSION['post_temp'];
+		//}
 
 		// var_dump($_POST);
 
@@ -96,14 +96,16 @@ class Enable_disable extends CI_Controller {
 		$this->pagination->initialize($config);
 
 		//filter results based on specified page
-		$array['result'] = $this->filter_results($result,$lower_bound,$page_size);
-		$array['links'] = $this->pagination->create_links();
+		//$array['result'] = $this->filter_results($result,$lower_bound,$page_size);
+		//$array['links'] = $this->pagination->create_links();
 		//temporarily save the $_POST array to session to paginate without losing the search results
-		$_SESSION['post_temp'] = $_POST;
- 		$this->load->view('header');						//passes the result to the view 
- 		$this->load->view('search_user_view');
-		$this->load->view('enable_disable_view', $array);	//loads the view with the results
-		$this->load->view('footer');
+		//$_SESSION['post_temp'] = $_POST;
+ 		//$this->load->view('header');						//passes the result to the view 
+ 		//$this->load->view('search_user_view');
+		//$this->load->view('enable_disable_view', $array);	//loads the view with the results
+		//$this->load->view('footer');
+		$filtered_results = $this->filter_results($result,$lower_bound,$page_size);
+		echo json_encode($filtered_results);
 	}
 
 

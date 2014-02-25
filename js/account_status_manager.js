@@ -67,149 +67,6 @@
 	}
 
 
-/* Changed by Rey Benedicto 2014-02-25 11.38, new and refactored code at the bottom*/
-
-	// function activate_handler()
-	// {
-	// 	//save $(this) to a variable $this to make it accessible in the success section of the ajax call
-	// 	$this = $(this);
-	// 	var username = $(this).attr('username');
-	// 	var email = $(this).attr('email');
-	// 	var usertype = $(this).attr('usertype');
-
-	// 	//generate a prompt based on the user type
-	// 	if($(this).attr('student_no')){
-	// 		var number = $(this).attr('student_no');
-	// 		var constr = "Are you sure you want to Activate this account?\nUsername: "+username+"\nStudent Number: "+number+"\nE-mail: "+email;
-	// 	} else {
-	// 		var number = $(this).attr('emp_no');
-	// 		var constr = "Are you sure you want to Activate this account?\nUsername: "+username+"\nEmployee Number: "+number+"\nE-mail: "+email;
-	// 	}
-
-	// 	if(confirm(constr))
-	// 	{
-	// 		$.ajax({
-	// 			url : filepath+"enable_disable/activate/"+ username +"/"+ usertype +"/"+ number + "/" + email, //ASSUMPTION : this function will only be called from the enable_disable controller
-	// 			type : 'POST',
-	// 			dataType : "html",
-	// 			async : true,
-	// 			success: function(data) {
-					
-	// 				//parse the data to JSON since it is of type html
-	// 				var json_data = JSON.parse(data);
-
-	// 				//activate the user only if the call to the activate function succeeded
-	// 				if(json_data.success)
-	// 				{
-	// 					//change the button into a disable button by changing its value,class and binded function
-	// 					$this.val("Disable");
-	// 					$this.off("click").on("click",disable_handler);
-	// 					$this.removeClass("Activate_button").addClass("Disable_button");
-	// 					alert("Successfully activated the account");
-	// 					//update the account log at the bottom of the page
-	// 					log_users();
-	// 				}
-
-	// 				else
-	// 				{
-	// 					alert("Invalid user! Account automatically deleted");
-	// 					//ASSUMPTION : the user has already been deleted from the database
-	// 					//remove the row closes to the button pressed
-	// 					$this.closest('tr').remove();
-	// 				}
-	// 			}
-	// 		});
-	// 	}
-	// }
-
-	// function disable_handler()
-	// {
-	// 	$this = $(this); //save $(this) to another variable to make it accessible in the success section of the ajax call
-	// 	var username = $(this).attr('username');
-	// 	var email = $(this).attr('email');
-
-	// 	//create a prompt based on the user type
-	// 	if($(this).attr('student_no'))
-	// 	{
-	// 		var number = $(this).attr('student_no');
-	// 		var constr = "Are you sure you want to Disable this account?\nUsername: "+username+"\nStudent Number: "+number+"\nE-mail: "+email;
-	// 	}
-	// 	else 
-	// 	{
-	// 		var number = $(this).attr('emp_no');
-	// 		var constr = "Are you sure you want to Disable this account?\nUsername: "+username+"\nEmployee Number: "+number+"\nE-mail: "+email;
-	// 	}
-	// 	if(confirm(constr))
-	// 	{
-	// 		$.ajax({
-	// 			url : filepath+"enable_disable/disable/"+ username + "/" + email,  //ASSUMPTION : this function is called from the enable_disable controller
-	// 			type : 'POST',
-	// 			dataType : "html",
-	// 			async : true,
-	// 			success: function(data) {
-
-	// 				var json_data = JSON.parse(data); //parse the data as JSON since it is of type html
-
-	// 				if(json_data.success)
-	// 				{
-	// 					//change the button into an enable button by changing its value,class and binded function
-	// 					$this.val("Enable");
-	// 					$this.off("click").on("click",enable_handler);
-	// 					$this.removeClass("Disable_button").addClass("Enable_button");
-	// 					alert("Successfully disabled the account");
-	// 					//update the user log
-	// 					log_users();
-	// 				}
-	// 			}
-	// 		});
-	// 	}
-	// }
-
-	// /* this function is the same as the disable handler except that it does the reverse operation (Section to be optimized) */
-	// function enable_handler()
-	// {
-	// 	$this = $(this);
-	// 	var username = $(this).attr('username');
-	// 	var email = $(this).attr('email');
-	// 	if($(this).attr('student_no'))
-	// 	{
-	// 		var number = $(this).attr('student_no');
-	// 		var constr = "Are you sure you want to Enable this account?\nUsername: "+username+"\nStudent Number: "+number+"\nE-mail: "+email;
-	// 	}
-	// 	else 
-	// 	{
-	// 		var number = $(this).attr('emp_no');
-	// 		var constr = "Are you sure you want to Enable this account?\nUsername: "+username+"\nEmployee Number: "+number+"\nE-mail: "+email;
-	// 	}
-	// 	if(confirm(constr))
-	// 	{
-	// 		$.ajax({
-	// 			url : filepath+"enable_disable/enable/"+ username + "/" + email,
-	// 			type : 'POST',
-	// 			dataType : "html",
-	// 			async : true,
-	// 			success: function(data) {
-
-	// 				var json_data = JSON.parse(data);
-
-	// 				if(json_data.success)
-	// 				{
-	// 					$this.val("Disable");
-	// 					$this.off("click").on("click",disable_handler);
-	// 					$this.removeClass("Enable_button").addClass("Disable_button");
-	// 					alert("Successfully enabled the account");
-	// 					log_users();
-	// 				}
-	// 			}
-	// 		});
-	// 	}
-	// }
-
-
-
-
-
-
 /* Refactor By Rey Benedicto 2014-02-25 11.38*/
 	function action_handler(){
 		var thisClass = $(this).attr('class');
@@ -290,15 +147,11 @@
 
 	function main()
 	{
-		//bind the corresponding functions to the click events of the appropriate buttons
-		// $('.Activate_button').on("click",activate_handler);
-		// $('.Enable_button').on("click",enable_handler);
-		// $('.Disable_button').on("click",disable_handler);
-
 		/* Refactor By Rey Benedicto 2014-02-25 11.38*/
-		$('.Activate_button').on("click",action_handler);
-		$('.Enable_button').on("click",action_handler);
-		$('.Disable_button').on("click",action_handler);
+		/* bind the handlers only when the user performs a search */ 
+		$('#result_table').on("click",'.Activate_button',action_handler);
+		$('#result_table').on("click",'.Enable_button',action_handler);
+		$('#result_table').on("click",'.Disable_button',action_handler);
 		log_users();
 	}	
 
