@@ -2,6 +2,7 @@
   background: #bbbbbb;
 }
 
+
 .top-bar-section li a {
   background: #bbbbbb  !important;
   text-decoration: none !important;
@@ -360,4 +361,9 @@ ERROR
 
 .signup .pass input[name='currentpassword']{
 	background:rgba(225, 150, 150, 0.3);
+}
+
+
+.top-bar a img{
+	max-height:43px !important;
 }
