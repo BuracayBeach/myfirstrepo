@@ -109,17 +109,26 @@ class Home extends CI_Controller {
         $this->load->view("footer");
     }
 
-
-
     public function borrowed(){
         $data['title'] = "eICS Lib My Lib";
         $this->load->view("header", $data);
 
-        $data['borrowed'] = $this->lend_model->get($_SESSION['username']);
-        $this->load->view('borrowed_view', $data);
+        if (isset($_SESSION)) {
+            $data['borrowed'] = $this->lend_model->get($_SESSION['username']);
+            $unreturned = $this->notifs_model->get_unreturned_by_user($_SESSION['username']);
+
+            $days_elapsed = array();
+            foreach ($unreturned as $row) {
+                $diff = date_diff(date_create($row->date_borrowed), date_create(date('Y-m-d H:i:s')));
+                $days = $diff->format("%a");
+
+                $days_elapsed[$row->book_no] = $days;
+            }
+            $data['days_elapsed'] = $days_elapsed;
+            $this->load->view('borrowed_view', $data);
+        }
 
         $this->load->view("search_results_view");
-
         $this->load->view("footer");
     }
 
@@ -127,11 +136,14 @@ class Home extends CI_Controller {
         $data['title'] = "eICS Lib My Lib";
         $this->load->view("header", $data);
 
-        $data['favorites'] = $this->favorite_model->get_all($_SESSION['username']);
-        $data['reserve_user'] = $this->reserve_model->get($_SESSION['username']);
-        $data['lend_user'] = $this->lend_model->get($_SESSION['username']);
+        if (isset($_SESSION)) {
+            $data['favorites'] = $this->favorite_model->get_all($_SESSION['username']);
+            $data['reserve_user'] = $this->reserve_model->get($_SESSION['username']);
+            $data['lend_user'] = $this->lend_model->get($_SESSION['username']);
 
-        $this->load->view('favorites_view', $data);
+            $this->load->view('favorites_view', $data);
+        }
+
         $this->load->view("search_results_view");
         $this->load->view("footer");
     }
@@ -140,15 +152,14 @@ class Home extends CI_Controller {
         $data['title'] = "eICS Lib My Lib";
         $this->load->view("header", $data);
 
-        $rank = $this->reserve_model->check_book_ranks($_SESSION['username']);
+        if (isset($_SESSION)) {
+            $data['book'] = $this->reserve_model->check_book_ranks($_SESSION['username']);
+            $data['reserves'] = $this->reserve_model->get($_SESSION['username']);
 
-        $data['book'] = $rank['book'];
-        $data['reserves'] = $this->reserve_model->get($_SESSION['username']);
-
-        $this->load->view('reserves_view', $data);
+            $this->load->view('reserves_view', $data);
+        }
 
         $this->load->view("search_results_view");
-
         $this->load->view("footer");
     }
 
