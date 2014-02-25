@@ -1,109 +1,94 @@
-<div id="carousel_parent_wrapper">
-	<script src="<?php echo base_url();?>js/jquery-1.11.0.js" type="text/javascript"></script>
-	<script src="<?php echo base_url();?>js/jquery.carouFredSel-6.2.0-packed.js" type="text/javascript"></script>
-	
-	<style type="text/css">
-		html, body {
-			height: 80%;
-			padding: 0;
-			margin: 0;
-		}
-		body {
-			background: #f9f9f3;
-		}
-		body * {
-			font-family: Arial, Geneva, SunSans-Regular, sans-serif;
-			font-size: 12px;
-			color: #222;
-			line-height: 15px;
-		}
 
-		#wrapper_carousel {
-			height: 60%;
-			width: 60%;
-			min-height: 286px;
-			min-width: 750px;
-			padding-top: 1px;
-		}
-		#slider {
-			margin: 0 0 0 0;
-			height: 286px;
-			overflow: hidden;
-			background: url(img/ajax-loader.gif) center center no-repeat;
-		}
-		
-		#slider .slide {
-			position: relative;
-			display: none;
-			height: 286px;
-			float: left;
-			background-position: center right;
-			cursor: pointer;
-			border-left: 1px solid #fff;
-		}
-		
-		#slider .slide:first-child {
-			border: none;
-		}
-		
-		#slider .slide.active {
-			cursor: default;
-		}
-		
-		#slider .slide-block {
-			position: absolute;
-			left: 50px;
-			bottom: 20px;
-			display: inline-block;
-			width: 400px;
-			background-color: #fff;
-			background-color: rgba(255,255,255, 0.8);	
-			padding: 20px;
-			font-size: 12px;
-			color: #134B94;
-			border: 1px solid #fff;
-			overflow: hidden;
-			border-radius: 4px;
-		}
-		
-		#slider .slide-block h4 {
-			font-size: 18px;
-			font-weight: bold;
-			margin: 0 0 10px 0;
-			line-height: 1;
-		}
-		#slider .slide-block p {
-			margin: 0;
-		}
+<script src="<?php echo base_url();?>js/jquery-1.11.0.js" type="text/javascript"></script>
+<script src="<?php echo base_url();?>js/jquery.carouFredSel-6.2.0-packed.js" type="text/javascript"></script>
 
+<style type="text/css">
 	
-	</style>
+	#wrapper_carousel {
+		height: 45%;
+		width: 60%;
+		min-height: 286px;
+		min-width: 750px;
+		padding-top: 1px;
+	}
+	#slider {
+		margin: 0 0 0 0;
+		height: 286px;
+		overflow: hidden;
+		background: url(img/ajax-loader.gif) center center no-repeat;
+	}
 	
-	<div id="wrapper_carousel" class="small-6 column">
-		<div id="slider">
+	#slider .slide {
+		position: relative;
+		display: none;
+		height: 286px;
+		float: left;
+		background-position: center right;
+		cursor: pointer;
+		border-left: 1px solid #fff;
+	}
+	
+	#slider .slide:first-child {
+		border: none;
+	}
+	
+	#slider .slide.active {
+		cursor: default;
+	}
+	
+	#slider .slide-block {
+		position: absolute;
+		left: 50px;
+		bottom: 20px;
+		display: inline-block;
+		width: 400px;
+		background-color: #fff;
+		background-color: rgba(255,255,255, 0.8);	
+		padding: 20px;
+		font-size: 12px;
+		color: #134B94;
+		border: 1px solid #fff;
+		overflow: hidden;
+		border-radius: 4px;
+	}
+	
+	#slider .slide-block h4 {
+		font-size: 18px;
+		font-weight: bold;
+		margin: 0 0 10px 0;
+		line-height: 1;
+	}
+	#slider .slide-block p {
+		margin: 0;
+	}
 
-			<div class="slide" style="background-image: url('../myfirstrepo/images/lib2.jpg');">
-				<div class="slide-block">
-					<h4>ICS Library</h4>
-					<p>The ICS Library is open to all students and faculty members who wish to find references for academic and research purposes.</p>
-				</div>
+
+</style>
+
+<div id="wrapper_carousel" class="small-6 column">
+	<div id="slider">
+
+		<div class="slide" style="background-image: url('../myfirstrepo/images/lib2.jpg');">
+			<div class="slide-block">
+				<h4>ICS Library</h4>
+				<p>The ICS Library is open to all students and faculty members who wish to find references for academic and research purposes.</p>
 			</div>
-	
-			<div class="slide" style="background-image: url(../myfirstrepo/images/lib1.jpg);">
-				<div class="slide-block">
-					<h4>Books</h4>
-					<p>ICS Library has books related to computer programming, operating systems, algorithms and data structures, artificial intelligence, software engineering and many more. </p>
-				</div>
-			</div>
-	
-			<div class="slide" style="background-image: url(../myfirstrepo/images/lib3.jpg);">
-				<div class="slide-block">
-					<h4>Special Problem and Thesis</h4>
-					<p>Special Problem and Thesis manuscripts can also be found in the library!</p>
-				</div>
-			</div>
-	
 		</div>
+
+		<div class="slide" style="background-image: url(../myfirstrepo/images/lib1.jpg);">
+			<div class="slide-block">
+				<h4>Books</h4>
+				<p>ICS Library has books related to computer programming, operating systems, algorithms and data structures, artificial intelligence, software engineering and many more. </p>
+			</div>
+		</div>
+
+		<div class="slide" style="background-image: url(../myfirstrepo/images/lib3.jpg);">
+			<div class="slide-block">
+				<h4>Special Problem and Thesis</h4>
+				<p>Special Problem and Thesis manuscripts can also be found in the library!</p>
+			</div>
+		</div>
+
 	</div>
 </div>
 
