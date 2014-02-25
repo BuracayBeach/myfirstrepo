@@ -69,7 +69,7 @@ function generateFaqRow(data,isAdmin){
 }
 
 $('#faq_table_container').ready(function(){
-    var isAdmin = $('#announcement_manage_container').length == 1;
+    var isAdmin = $('#faq_manage_container').length == 1;
 
     generateFaqTable(isAdmin);
 });
