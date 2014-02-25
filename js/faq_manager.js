@@ -103,6 +103,7 @@ function cancelChanges(){
     row.find('.cancel_faq_button').hide();
 }
 
+
 /*** OLD EDIT FAQ MODULE ***/
 function editFAQ(event){
     event.preventDefault();
