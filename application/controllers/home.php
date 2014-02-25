@@ -51,7 +51,7 @@ class Home extends CI_Controller {
         $this->load->view("footer");
     }
 
-    public function manage(){
+    public function ihome(){
         $data['title'] = "eICS Lib Home";
         $data['page'] = 'ihome';
         $this->load->view("header", $data);
