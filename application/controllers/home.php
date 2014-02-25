@@ -26,6 +26,7 @@ class Home extends CI_Controller {
         $this->load->model('lend_model');
         $this->load->model('reserve_model');
         $this->load->model('user_account_model');
+        $this->load->model('admin_account_model');
 
         $this->load->library('safeguard');
     }
@@ -169,6 +170,11 @@ class Home extends CI_Controller {
     public function update_admin(){
         $data['title'] = "eICS Lib Sign Up";
         $this->load->view("header", $data);
+
+        $admin_username = $_SESSION['admin_username'];
+        $data = $this->admin_account_model->get_admin_data($admin_username);
+        $new_result = $this->safeguard->str_array_ready_for_display($data);
+        $this->load->view('update_admin_view', $new_result);
    }
 
 }

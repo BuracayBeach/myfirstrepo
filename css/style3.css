@@ -103,7 +103,18 @@ body{
 }
 
 
+.check{
+  visibility: hidden !important;
+}
 
+.check:checked + .labelC{
+  font-weight: bold !important;
+}
+
+#option1 {
+  border: 2px solid #2B65EC !important;
+  width:25% !important;
+} 
 
 /*---------------------------------
 
@@ -124,4 +135,6 @@ Sign Up
   background: green;
 }
 
-
+.signup input.valid{
+  background: green;
+}
