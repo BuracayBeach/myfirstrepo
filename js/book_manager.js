@@ -6,10 +6,11 @@ $('#result_container,#faq_container').ready(function(){
 
     var contentContainer = $('#result_container');
     contentContainer.on('click','.edit_button',fillEditForm);
+    contentContainer.on('click','.delete_button',deleteBook);
+
     $('#edit_cancel_button').on('click',cancelEdit);
     $('#edit_book_form').submit(editBook);
 
-    contentContainer.on('click','.delete_button',deleteBook);
 
     $('#add_book_type').change(checkBookType);
     $('#edit_book_type').change(checkBookType);
@@ -25,8 +26,11 @@ $('#result_container,#faq_container').ready(function(){
 
 $('#recently_added_books_container').ready(function(){
     var recentlyTableContainer =  $('#recently_added_books_container');
-    recentlyTableContainer.find('table').on('click','.edit_button',fillEditForm);
-    recentlyTableContainer.hide();
+    var table = recentlyTableContainer.find('table');
+    table.on('click','.edit_button',fillEditForm);
+    table.on('click','.delete_button',deleteBook);
+
+    toggleRecentlyAddedTable();
 });
 
 /***** ADD FUNCTIONS *****/
@@ -58,16 +62,12 @@ function addBook(event){
                 $.post("index.php/book/add",formInputs,function(data){
                     data = JSON.parse(data);
                     $.get("index.php/book/get_row_view",data,function(data){
-                        var rowHTML = data;
-                        $('#recently_added_books_table').find('tbody').append(rowHTML);
+                        $('#recently_added_books_table').find('tbody').append(data);
+                        console.log('should be toggled');
                         toggleRecentlyAddedTable();
                     });
-//
-//                    var rowHTML = generateTableRowHTML(data);
-//                    $('#recently_added_books_table').find('tbody').prepend(rowHTML);
-//
                 })
-                    .fail(function(jqXHR, textStatus, errorThrown,data){
+                    .fail(function(){
                         alert("Sorry! There was a problem processing your action.");
                     });
 
@@ -107,7 +107,7 @@ function checkBookType(){
 function fillEditForm(event){
     event.preventDefault();
     $('.abstract_container').hide();
-    $('#add_container').hide()
+    $('#add_container').hide();
     $('#edit_book_form')[0].reset();
     var td = $(this).closest('tr').find('[book_data=book_no]');
     var book_no = td.text();
@@ -227,28 +227,28 @@ function deleteBook(){
 /***** END DELETE FUNCTIONS *****/
 
 /*** STRING HTML GENERATION FUNCTIONS ***/
-function generateTableRowHTML(data){
-    var rowHTML = $('<tr>');
-    rowHTML.append(
-        '<td book_data="book_no" align="center">'+data.book_no+'</td>'
-            +'<td>' +
-            '<div style="font:20px Verdana" book_data="book_title">'+data.book_title+'</div>' +
-            '<div style="font-size:17px" book_data="description">'+data.description+'<br/></div>' +
-            '<div style="font-size:13px" book_data="author"><em>'+data.author+'</em><br/></div>' +
-            '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="edit_button" >Edit</a></span>&nbsp;&nbsp;&nbsp;' +
-            '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="delete_button" >Delete</a></span>&nbsp; | &nbsp;' +
-            '<span>' +
-            generateTransactionAnchorHTML(data.status,data.book_no) +
-            '</span>'+
-            '</td>' +
-            '<td align="center">' +
-            '<div book_data="publisher">'+data.publisher+'</div>' +
-            '<div book_data="date_published">'+data.date_published+'</div>' +
-            '</td>' +
-            '<td book_data="tags">'+data.tags+'</td>'
-    );
-    return rowHTML;
-}
+//function generateTableRowHTML(data){
+//    var rowHTML = $('<tr>');
+//    rowHTML.append(
+//        '<td book_data="book_no" align="center">'+data.book_no+'</td>'
+//            +'<td>' +
+//            '<div style="font:20px Verdana" book_data="book_title">'+data.book_title+'</div>' +
+//            '<div style="font-size:17px" book_data="description">'+data.description+'<br/></div>' +
+//            '<div style="font-size:13px" book_data="author"><em>'+data.author+'</em><br/></div>' +
+//            '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="edit_button" >Edit</a></span>&nbsp;&nbsp;&nbsp;' +
+//            '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="delete_button" >Delete</a></span>&nbsp; | &nbsp;' +
+//            '<span>' +
+//            generateTransactionAnchorHTML(data.status,data.book_no) +
+//            '</span>'+
+//            '</td>' +
+//            '<td align="center">' +
+//            '<div book_data="publisher">'+data.publisher+'</div>' +
+//            '<div book_data="date_published">'+data.date_published+'</div>' +
+//            '</td>' +
+//            '<td book_data="tags">'+data.tags+'</td>'
+//    );
+//    return rowHTML;
+//}
 
 function generateTransactionAnchorHTML(status,book_no){
     var anchorText = "";
@@ -273,8 +273,8 @@ function generateTransactionAnchorHTML(status,book_no){
 function toggleRecentlyAddedTable(){
     var recentlyAddedTableRows = $('#recently_added_books_table').find('tr');
     if(recentlyAddedTableRows.length > 1){
-        recentlyAddedTableRows.closest('div').show();
+        recentlyAddedTableRows.closest('table').show();
     }else{
-        recentlyAddedTableRows.closest('div').hide();
+        recentlyAddedTableRows.closest('table').hide();
     }
 }

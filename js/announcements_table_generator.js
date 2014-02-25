@@ -50,7 +50,8 @@ function generateAnnouncementRow(data,isAdmin){
     tableContainer.find('table').find('tbody:last').append(rowHTML);
 }
 
-$('#announcements_table_container').ready(function(){
+$('announcement_manage_container').ready(function(){
     var isAdmin = $('#announcement_manage_container').length == 1;
+    console.log(isAdmin);
     generateAnnouncementsTable(isAdmin);
 });

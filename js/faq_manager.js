@@ -15,7 +15,7 @@ $('#faq_table_container').ready(function(){
     var faqTableContainer = $('#faq_table_container');
     faqTableContainer.on('click','.edit_faq_button',setEditTarget);
     //faqTableContainer.on('click','.save_faq_button',updateChanges);
-    faqTableContainer.on('click','.save_faq_button',updateChanges)
+    faqTableContainer.on('click','.save_faq_button',updateChanges);
     faqTableContainer.on('click','.cancel_faq_button',function(){
         cancelChanges.call($(this).closest('tr'));
     });
@@ -59,7 +59,7 @@ function updateChanges(){
         row.find('.answer_editor').hide();
         row.find('.answer').show();
     }).fail(function(){
-            alert('There was a problem editing the material.')
+            alert('There was a problem editing the material.');
             cancelChanges.call(row.find('.cancel_faq_button')[0]);
         });
 }
@@ -163,7 +163,6 @@ function addFAQ(event){
         'answer' : answer
     };
 
-
     var addFaqForm = this;
     $.post("index.php/faq/add", data ,function(data){
         data = JSON.parse(data);
@@ -175,35 +174,36 @@ function addFAQ(event){
 
         $(addFaqForm).closest('div').hide();
         addFaqForm.reset();
+        editor.setContent('');
     }).fail(function(){
             alert('There was a problem adding the material.');
         })
 }
 
 var rowBeingEdited;
-function fillEditFaqForm(event){
-    event.preventDefault();
-
-    if(rowBeingEdited != undefined)
-        rowBeingEdited.show();
-    $('#add_faq_container').closest('tr').hide();
-    var id = $(this).closest("tr").attr('faq_id');
-    $.post("index.php/faq/get_faq",{"id":id},function(data){
-        var data = JSON.parse(data)[0];
-        console.log(data);
-        var editForm = $('#edit_faq_form');
-
-        editForm.find('#edit_faq_id').val(id);
-        editForm.find('#edit_question').val(data.question);
-        editForm.find('#edit_answer').val(data.answer);
-
-    });
-
-    rowBeingEdited = $(this).closest("tr");
-    rowBeingEdited.hide();
-    $('#edit_faq_container').closest('tr').show();
-    $('#edit_answer').focus();
-}
+//function fillEditFaqForm(event){
+//    event.preventDefault();
+//
+//    if(rowBeingEdited != undefined)
+//        rowBeingEdited.show();
+//    $('#add_faq_container').closest('tr').hide();
+//    var id = $(this).closest("tr").attr('faq_id');
+//    $.post("index.php/faq/get_faq",{"id":id},function(data){
+//        var data = JSON.parse(data)[0];
+//        console.log(data);
+//        var editForm = $('#edit_faq_form');
+//
+//        editForm.find('#edit_faq_id').val(id);
+//        editForm.find('#edit_question').val(data.question);
+//        editForm.find('#edit_answer').val(data.answer);
+//
+//    });
+//
+//    rowBeingEdited = $(this).closest("tr");
+//    rowBeingEdited.hide();
+//    $('#edit_faq_container').closest('tr').show();
+//    $('#edit_answer').focus();
+//}
 
 
 
