@@ -4,10 +4,6 @@
 
 
 					
-
-			<input searchby="book_title" id="search_text" type="search" name='search' autofocus='true' placeholder='Keywords...' maxlength='99' spellcheck='true'/>
-				<input id='submit_search' type="submit" name="submit_search" value="Search"/><br/>
-					<hr>
 					<div id="book_type_div">
 						&nbsp; &nbsp;
 						<div class="book_type_option" id="option1">
@@ -28,16 +24,15 @@
 						</div>
 					</div>
 				
-		   <hr>
 		   					<?php
 						if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
 							echo '
 							<div id="status">
-								<input class="check" id = "available" type="checkbox" name = "available" checked>
+								&nbsp; &nbsp;<input class="check" id = "available" type="checkbox" name = "available" checked>
 									<label for="available">Available</label></br>
-								<input class="check" id = "reserved" type="checkbox" name = "reserved" checked>
+								&nbsp; &nbsp;<input class="check" id = "reserved" type="checkbox" name = "reserved" checked>
 									<label for="reserved">Reserved</label></br>
-								<input class="check" id = "borrowed" type="checkbox" name = "borrowed" checked >
+								&nbsp; &nbsp;<input class="check" id = "borrowed" type="checkbox" name = "borrowed" checked >
 									<label for="borrowed" style="clear:right;">Borrowed</label>
 							</div>
 								
@@ -45,11 +40,13 @@
 							';
 						}
 					?>
-			
+					<input searchby="book_title" id="search_text" type="search" name='search' autofocus='true' placeholder='Keywords...' maxlength='99' spellcheck='true'/>
+				<input id='submit_search' type="submit" name="submit_search" value="Search"/><br/>
+					<hr>
 					<?php
 						if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
 							echo '
-							 &nbsp;	 &nbsp; RELEVANCE
+							 &nbsp;	 &nbsp; sort by
 							 </br></br>
 							<select name="order_by" class="order_by">
 								<option value="search_relevance"> Search Relevance</option>
@@ -59,11 +56,10 @@
 								<option value="publisher"> Publisher</option>
 								<option value="name"> Author</option>
 								<option value="date_published"> Date Published</option>
-							</select><br/>
+							</select><br/><hr>
 							';
 						}
 					?>
-					<hr>
 
 					<div id="sidebar-wrapper">
 				        <ul class="sidebar-nav">
