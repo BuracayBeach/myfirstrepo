@@ -27,7 +27,7 @@ function generateFaqRow(data,isAdmin){
     var prevDataInputs = "";
     var editButtons = "";
     if(isAdmin){
-        prevDataInputs = '<h4 hidden class="prev_question"></h4>' +
+        prevDataInputs = '<h4 hidden class="prev_question"></h4><br/>' +
                          '<textarea style="display:none;" id="answer_'+data.id+'" class="answer_editor"></textarea>';
         editButtons = '<button class="save_faq_button" style="display:none;">Save</button>' +
             '<button class="cancel_faq_button" style="display:none;">Cancel</button>';
@@ -39,13 +39,12 @@ function generateFaqRow(data,isAdmin){
     var rowHTML = '<tr faq_id="'+data.id+'" class="faq_table_row">'+
                     '<td class="faq_table_data">' +
                         ' <span ' + editable +
-                        ' class="question" name="question" >'+data.question+
-                        '</span>'+
-                        buttons+
-                        '<hr/>'+
-                        prevDataInputs + editButtons +
+                        ' class="question" name="question" ><h5>'+data.question+
+                        '</h5></span><br/><br/>'+
                         '<section '+
-                        ' class="answer" name="answer" >'+data.answer+'</section>'+
+                        ' class="answer" name="answer" >'+data.answer+'</section> <br/>'+
+                         buttons+
+                        prevDataInputs + editButtons + '<hr/>'
                     '</td>'+
                     '</tr>';
     console.log(data);

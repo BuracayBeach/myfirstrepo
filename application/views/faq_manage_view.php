@@ -14,6 +14,7 @@
                             <br/>
                             <button type="submit" name="add_faq_button" id="add_faq_button">Add</button>
                             <button type="button" id="add_faq_cancel_button" name="add_faq_cancel_button" >Cancel</button>
+                            <br/>
                         </form>
                     </div>
                 </td>
