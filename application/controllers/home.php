@@ -37,14 +37,17 @@ class Home extends CI_Controller {
         $this->load->view("header", $data); 
         $this->load->view("search_results_view");
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
-       
-        if ($is_admin) $this->load->view('manage_view');
+
+        if ($is_admin){
+            $this->load->view("manage_view");
+        }else{
+            $this->load->view("announcements_view");
+        }
 /*        if ($is_admin){
             $this->load->view('announcement_manage_view');
             $this->load->view("announcement_view");
         }
 */
-
         $this->load->view("footer");
     }
 
@@ -53,41 +56,30 @@ class Home extends CI_Controller {
         $data['page'] = 'ihome';
         $this->load->view("header", $data);
 
-
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin){
 
             $this->load->view('admin_ihome_view');
             $this->load->view('manage_view');
 
+            $this->load->view("announcements_view");
+            $this->load->view("announcements_manage_view");
         }
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
             $data['notifs'] = $this->notifs_model->get_all($_SESSION['username']);
             $this->load->view("search_results_view");
-            $this->load->view("announcements_view");        
+            $this->load->view("announcements_view");
             $this->load->view('notifications_view', $data);
         }
 
         if(!isset($_SESSION['type'])){
             $this->load->view("search_results_view");
-            $this->load->view("announcements_view");        
+            $this->load->view("announcements_view");
+
         }
 
 
         $this->load->view("footer");
-    }
-
-    public function announcements(){
-        $data['title'] = "eICS Lib Announcements";
-        $data['page'] = 'announcements';
-        $this->load->view("header", $data);
-        $this->load->view("search_results_view");
-        $this->load->view('announcements_view');
-
-        if (isset($_SESSION['type']) && $_SESSION['type'] == "admin")
-            $this->load->view('announcements_manage_view', $data);
-
-        $this->load->view("footer", $data);
     }
 
     public function about_us(){
