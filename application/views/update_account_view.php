@@ -1,4 +1,4 @@
-<div class="small-7 column">
+<div class="signup small-7 column">
 
 <form name="userForm" action="<?php echo base_url();?>index.php/user_account/update" method="post" >
 	<div id="container">
