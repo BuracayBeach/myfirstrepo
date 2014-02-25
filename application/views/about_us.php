@@ -5,7 +5,7 @@
 		#about_us_wrapper {
 			width: 60%;
 			float: left;
-			margin-top: 20px;
+			margin: 10px 0 50px 0;
 			padding: 20px;
 		}
 
