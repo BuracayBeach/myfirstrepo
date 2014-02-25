@@ -9,14 +9,23 @@
 				<input id='submit_search' type="submit" name="submit_search" value="Search"/><br/>
 					<hr>
 					<div id="book_type_div">
-						&nbsp; &nbsp;<input class="check" id = "type_book" type="checkbox" name = "type_book" checked>
-							<label for="type_book">Book</label>
-						<input class="check" id = "type_journal" type="checkbox" name = "type_journal" checked>
-							<label for="type_journal">Journal</label><br/>
-						&nbsp; &nbsp;<input class="check" id = "type_sp" type="checkbox" name = "type_sp" checked>
-							<label for="type_sp">SP</label> 	&nbsp; &nbsp; 	&nbsp; 
+						&nbsp; &nbsp;
+						<div class="book_type_option" id="option1">
+							<input class="check" id = "type_book" type="checkbox" name = "type_book" checked>
+							<label class="labelC" for="type_book">Book</label>
+						</div>
+						<div class="book_type_option" id="option2">
+							<input class="check" id = "type_journal" type="checkbox" name = "type_journal" checked>
+							<label class="labelC" for="type_journal">Journal</label>
+						</div>
+						<div class="book_type_option" id="option3">
+							<input class="check" id = "type_sp" type="checkbox" name = "type_sp" checked>
+							<label class="labelC" for="type_sp">SP</label>
+						</div>
+						<div class="book_type_option" id="option4">	
 							<input class="check" id = "type_thesis" type="checkbox" name = "type_thesis" checked>
-							<label for="type_thesis">Thesis</label>
+							<label class="labelC" for="type_thesis">Thesis</label>
+						</div>
 					</div>
 				
 		   <hr>
@@ -31,15 +40,16 @@
 								<input class="check" id = "borrowed" type="checkbox" name = "borrowed" checked >
 									<label for="borrowed" style="clear:right;">Borrowed</label>
 							</div>
+								
+								<hr>
 							';
 						}
 					?>
-				</hr>
-					<hr>
+			
 					<?php
 						if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
 							echo '
-							 &nbspSEARCH RELEVANCE
+							 &nbsp;	 &nbsp; RELEVANCE
 							 </br></br>
 							<select name="order_by" class="order_by">
 								<option value="search_relevance"> Search Relevance</option>
@@ -57,7 +67,7 @@
 
 					<div id="sidebar-wrapper">
 				        <ul class="sidebar-nav">
-				            <a href=""><li class="menu-toggle active" searchby="book_title">Title &nbsp; <img src="<?php echo base_url();?>images/icon/title1.png" alt="">&nbsp;&nbsp;</li></a>
+				            <a href=""><li class="menu-toggle" searchby="book_title">Title &nbsp; <img src="<?php echo base_url();?>images/icon/title1.png" alt="">&nbsp;&nbsp;</li></a>
 				            <a href=""><li class="menu-toggle" searchby="book_no">Book Number &nbsp; <img src="<?php echo base_url();?>images/icon/number.png" alt="">&nbsp;&nbsp;</li></a>
 				            <a href=""><li class="menu-toggle" searchby="author">Author &nbsp; <img src="<?php echo base_url();?>images/icon/user32.png" alt="">&nbsp;&nbsp;</li></a>
 				            <a href=""><li class="menu-toggle" searchby="publisher">Publisher &nbsp; <img src="<?php echo base_url();?>images/icon/printer32.png" alt="">&nbsp; &nbsp;</li></a>

@@ -25,6 +25,10 @@ class Home extends CI_Controller {
         $this->load->model('favorite_model');
         $this->load->model('lend_model');
         $this->load->model('reserve_model');
+        $this->load->model('user_account_model');
+        $this->load->model('admin_account_model');
+
+        $this->load->library('safeguard');
     }
 
     public function index(){
@@ -33,7 +37,13 @@ class Home extends CI_Controller {
         $this->load->view("header", $data); 
         $this->load->view("search_results_view");
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
+        $this->load->view("announcements_view");        
         if ($is_admin) $this->load->view('manage_view');
+/*        if ($is_admin){
+            $this->load->view('announcement_manage_view');
+            $this->load->view("announcement_view");
+        }
+*/
 
         $this->load->view("footer");
     }
@@ -43,13 +53,20 @@ class Home extends CI_Controller {
         $data['page'] = 'ihome';
         $this->load->view("header", $data);
         $this->load->view("search_results_view");
-        $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
-        if ($is_admin) $this->load->view('manage_view');
+        $this->load->view("announcements_view");        
 
+        $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
+        if ($is_admin){
+            $this->load->view('recently_added_view');
+            $this->load->view('manage_view');
+
+        }
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
             $data['notifs'] = $this->notifs_model->get_all($_SESSION['username']);
             $this->load->view('notifications_view', $data);
         }
+
+
         $this->load->view("footer");
     }
 
@@ -57,8 +74,9 @@ class Home extends CI_Controller {
         $data['title'] = "eICS Lib Announcements";
         $data['page'] = 'announcements';
         $this->load->view("header", $data);
-        $this->load->view("search_results_view", $data);
-        $this->load->view('announcements_view', $data);
+        $this->load->view("search_results_view");
+        $this->load->view('announcements_view');
+
         if (isset($_SESSION['type']) && $_SESSION['type'] == "admin")
             $this->load->view('announcements_manage_view', $data);
 
@@ -71,6 +89,7 @@ class Home extends CI_Controller {
         $this->load->view("header", $data);
         $this->load->view("search_results_view", $data);
         $this->load->view("about_us_view", $data);
+
 
         $this->load->view("footer");
     }
@@ -89,6 +108,7 @@ class Home extends CI_Controller {
 
         $this->load->view("footer");
     }
+
 
 
     public function borrowed(){
@@ -141,6 +161,32 @@ class Home extends CI_Controller {
 
         $this->load->view("footer",$data);
     }
+
+    public function create_account(){
+        $data['title'] = "eICS Lib Sign Up";
+        $this->load->view("header", $data);
+        $this->load->view("create_account_view", $data);
+
+    }
+
+    public function update_account(){
+        $data['title'] = "eICS Lib Sign Up";
+        $this->load->view("header", $data);
+        $username = $_SESSION['username'];
+        $result=$this->user_account_model->get_data($username);
+        $new_result = $this->safeguard->str_array_ready_for_display($result);
+        $this->load->view('update_account_view', $new_result);
+    }
+
+    public function update_admin(){
+        $data['title'] = "eICS Lib Sign Up";
+        $this->load->view("header", $data);
+
+        $admin_username = $_SESSION['admin_username'];
+        $data = $this->admin_account_model->get_admin_data($admin_username);
+        $new_result = $this->safeguard->str_array_ready_for_display($data);
+        $this->load->view('update_admin_view', $new_result);
+   }
 
 }
 

@@ -49,17 +49,7 @@ class User_account_model extends CI_Model {
 	public function update_data($data, $uname){
 		$query = $this->db->query("SELECT * FROM user WHERE email='{$data['email']}' ");
 
-        /*
-         *
-         * allanconda@gmail.com - current
-         * change email -> boybulalo@ymail.com
-         *
-         */
-
-		if($query->num_rows() == 0 ||
-            ($query->num_rows() == 1
-                &&
-             $query->result_array()[0]['email'] == $data['email'])){
+		if($query->num_rows() == 0 || ($query->num_rows() == 1 && $query->result_array()[0]['username'] == $uname)) {
 			$this->db->query("UPDATE user SET 
 				sex='{$data['sex']}',
 				email='{$data['email']}',
@@ -97,8 +87,18 @@ class User_account_model extends CI_Model {
 
 	public function get_user($username){
 		$query = $this->db->query("SELECT * FROM user WHERE username='{$username}'");
-			
-		if($query->num_rows() == 1){
+
+		if($query->result_array()[0]['status'] == "pending"){
+			$user_notif['login_notif'] = "Registration still pending!";
+			return "pending";
+		}
+
+		else if($query->result_array()[0]['status'] == "disabled"){
+			$user_notif['login_notif'] = "Account deactivated!";
+			return "deactivated";
+		}
+
+		else if($query->num_rows() == 1 && $query->result_array()[0]['status'] == "enabled"){
 			$result = $query->result_array();
 			$data['username'] = $result[0]['username'];
 			$data['password'] = $result[0]['password'];

@@ -1,13 +1,13 @@
 #navbar, .top-bar{
-  background: #2222EC;
+  background: #bbbbbb;
 }
 
 .top-bar-section li a {
-  background: #2222EC !important;
+  background: #bbbbbb  !important;
 }
 
 .top-bar-section li a:not(.button):hover {
-  background: #2BAAEC !important;
+  background: #5D55EC !important;
 }
 
 #login input{
@@ -80,6 +80,7 @@ body{
  font-family:"Segoe UI Light" !important;
 }
 
+
 .sidebar-nav li:hover {
   color: #fff !important;
   background: #2B65EC !important;
@@ -94,23 +95,9 @@ body{
 }
 
 .sidebar-nav {
-    margin-left: 0%;
+  margin-left: 0%;
 }
 
 #search{
-        border-right: 2px solid #2B65EC !important;
-}
-
-/** TEMPORARY LANG **/
-#faq_container,#faq_table_container{
-    margin-left: 17%;
-}
-#faq_container,#faq_table_container, #faq_table{
-    width:70%;
-    background: rgba(200, 200,100,0.5);
-    position: fixed;
-    float: left;
-    z-index: 1;
-    max-height: 500px;
-    overflow: hidden;
+    border-right: 2px solid #2B65EC !important;
 }

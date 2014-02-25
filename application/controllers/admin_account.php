@@ -5,6 +5,7 @@ class Admin_account extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('admin_account_model');	
+		$this->load->library('safeguard');
 		if(!isset($_SESSION))
 			session_start();
 	}
@@ -90,7 +91,8 @@ class Admin_account extends CI_Controller {
 		$data['name_middle'] = filter_var($_POST['name_middle'], FILTER_SANITIZE_STRING);
 		$data['name_last'] = filter_var($_POST['name_last'], FILTER_SANITIZE_STRING);
 
-		$result = $this->admin_account_model->insert_admin($data);
+		$new_data = $this->safeguard->array_ready_for_query($data);
+		$result = $this->admin_account_model->insert_admin($new_data);
 
 		if($result){
 			$admin_notif['create_admin_notif'] = "Succesfully created admin!";
@@ -109,7 +111,8 @@ class Admin_account extends CI_Controller {
 		$data['name_last'] = filter_var($_POST['name_last'], FILTER_SANITIZE_STRING);
 
 		$admin_username = $_SESSION['admin_username'];
-		$result = $this->admin_account_model->update_admin($data, $admin_username);
+		$new_data = $this->safeguard->array_ready_for_query($data);
+		$result = $this->admin_account_model->update_admin($new_data, $admin_username);
 
 		if($result){
 			$admin_notif['update_admin_notif'] = "Succesfully updated admin";
@@ -125,7 +128,8 @@ class Admin_account extends CI_Controller {
 	public function get_admin_data(){
 		$admin_username = $_SESSION['admin_username'];
 		$data = $this->admin_account_model->get_admin_data($admin_username);
-		$this->load->view('update_admin_view', $data);
+		$new_result = $this->safeguard->str_array_ready_for_display($data);
+		$this->load->view('update_admin_view', $new_result);
 	}
 
 	public function admin_change_password(){
