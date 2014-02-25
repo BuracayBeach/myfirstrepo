@@ -2,7 +2,7 @@
  * Created by isnalla on 2/23/14.
  */
 
-var tableHTML = '<table id="faq_table"></table>';
+var tableHTML = '<table id="faq_table"  class="small-7"></table>';
 
 function generateFaqTable(isAdmin){
     $.post("index.php/faq/get_all_faq",function(data){
@@ -69,7 +69,7 @@ function generateFaqRow(data,isAdmin){
 }
 
 $('#faq_table_container').ready(function(){
-    var isAdmin = $('#announcement_manage_container').length == 1;
+    var isAdmin = $('#faq_manage_container').length == 1;
 
     generateFaqTable(isAdmin);
 });
