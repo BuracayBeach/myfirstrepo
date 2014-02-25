@@ -29,25 +29,29 @@
                     })
 				}
 
+				function wordMatch(word, search_terms){
+
+				}
+
 				function get_summarize(abstract, searchText){
 					var summary = ''
 
 					var abstract = abstract.split(' ')
 					var searchArray = searchText.split(' ')
+					var maxAbstract = 75
 
+					var prev_word = ''
+					var next_word = ''
 
 					for (var a=0 ; a<abstract.length ; a++){
 						var word = abstract[a]
 						for (var b=0 ; b<searchArray.length ; b++){
 							var term = searchArray[b]
-							if (word.toLowerCase() == term.toLowerCase()){
-								summary += word + ' '
-							}
-							if (summary.length >= 15) break
+							if (word.toLowerCase() == term.toLowerCase()) summary += word + ' '
+							if (summary.length >= maxAbstract) break
 						}
-						if (summary.length >= 15) break
+						if (summary.length >= maxAbstract) break
 					}
-
 
 					// console.log(summary.length + ' ' + summary)
 					return summary
@@ -90,6 +94,10 @@
 	                                resultContainer.html(data);
 	                            }
 
+	                            var book_tab = $('[data-toggle="tab"]')
+	                            if (book_tab.length != 0) {
+	                            	book_tab[0].click();
+	                            } 
 	                            //assume rows are appended already
 	                            summarize(searchText);
 							},
