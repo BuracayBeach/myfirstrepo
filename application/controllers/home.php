@@ -68,6 +68,11 @@ class Home extends CI_Controller {
             $this->load->view('notifications_view', $data);
         }
 
+        if(!isset($_SESSION['type'])){
+            $this->load->view("search_results_view");
+            $this->load->view("announcements_view");        
+        }
+
 
         $this->load->view("footer");
     }
