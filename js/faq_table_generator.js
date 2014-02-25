@@ -29,7 +29,7 @@ function generateFaqRow(data,isAdmin){
     if(isAdmin){
         prevDataInputs = '<h4 hidden class="prev_question"></h4>' +
                          '<textarea style="display:none;" id="answer_'+data.id+'" class="answer_editor"></textarea>';
-        var editButtons = '<button class="save_faq_button" style="display:none;">Save</button>' +
+        editButtons = '<button class="save_faq_button" style="display:none;">Save</button>' +
             '<button class="cancel_faq_button" style="display:none;">Cancel</button>';
         buttons =
             '<button class="edit_faq_button">Edit</button>'+
@@ -69,7 +69,7 @@ function generateFaqRow(data,isAdmin){
 }
 
 $('#faq_table_container').ready(function(){
-    var isAdmin = $('#faq_manage_container').length == 1;
+    var isAdmin = $('#announcement_manage_container').length == 1;
 
     generateFaqTable(isAdmin);
 });

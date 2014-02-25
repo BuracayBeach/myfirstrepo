@@ -1,3 +1,5 @@
+<button id="add_announcement_button">Add Announcement</button>
+<div id="announcement_manage_container">
     <div id="add_announcement_container">
         <form autocomplete="on" id="add_announcement_form">
             <h4>ADD ANNOUNCEMENT</h4>
@@ -22,5 +24,5 @@
             <button id="edit_announcement_cancel_button" name="edit_announcement_cancel_button" >Cancel</button>
         </form>
     </div>
-
-    <script src="<?php echo base_url(); ?>js/announcements_manager.js"></script>
+</div>
+<script src="<?php echo base_url(); ?>js/announcements_manager.js"></script>
