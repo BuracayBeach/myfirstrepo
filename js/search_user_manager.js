@@ -66,7 +66,7 @@ function changeTextBox(value){
 	Description : AJAX module for searching users from the database
 */
 
-function search_user(e)
+function search_user(page)
 {
 	//get the value of the currently selected radio button
 	var search_category = $('input[name=field]:checked').val();
@@ -126,7 +126,7 @@ function search_user(e)
 	}
 
 	$.ajax({
-		url : filepath+'enable_disable/search/'+e.data.page, 
+		url : filepath+'enable_disable/search/'+page, 
 		type : 'POST',
 		dataType : "html",
 		data : json_data,
@@ -147,6 +147,7 @@ function search_user(e)
 			if(num_results > 0){
 				var headers = "<tr class='result_row'>";
 				headers += "<th>Username</th>";
+				headers += "<th>Id Number</th>";
 				headers += "<th>Email</th>";
 				headers += "<th>User Type</th>";
 				headers += "<th>First Name</th>";
@@ -162,6 +163,9 @@ function search_user(e)
 				{
 					var row = "<tr class='log_row'>";
 					row += "<td class='log_col'>"+json_results[i].username+"</td>";
+
+					if(json_results[i].usertype === "student") row += "<td class='log_col'>"+json_results[i].student_no+"</td>";
+					else if(json_results[i].usertype === "employee") row += "<td class='log_col'>"+json_results[i].emp_no+"</td>";
 					row += "<td class='log_col'>"+json_results[i].email+"</td>";
 					row += "<td class='log_col'>"+json_results[i].usertype+"</td>";
 					row += "<td class='log_col'>"+json_results[i].name_first+"</td>";
@@ -205,7 +209,9 @@ function search_user(e)
 
 //bind the function the the search button on page load
 $(document).ready(function(){
-	$('#submitButton').on('click',{page : 0},search_user);
+	$('#submitButton').on('click',function(){
+		search_user(0);
+	});
 });
 
 	

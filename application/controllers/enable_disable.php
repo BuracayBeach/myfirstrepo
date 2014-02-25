@@ -104,7 +104,10 @@ class Enable_disable extends CI_Controller {
  		//$this->load->view('search_user_view');
 		//$this->load->view('enable_disable_view', $array);	//loads the view with the results
 		//$this->load->view('footer');
-		$filtered_results = $this->filter_results($result,$lower_bound,$page_size);
+		//$filtered_results = $this->filter_results($result,$lower_bound,$page_size);
+		$filtered_results = $result;
+		//var_dump($filtered_results);
+		//var_dump($filtered_results);
 		echo json_encode($filtered_results);
 	}
 
