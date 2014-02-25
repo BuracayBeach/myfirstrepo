@@ -8,32 +8,19 @@ class Faq extends CI_Controller {
         $this->load->library('safeguard');
     }
 
-    public function index(){
-        $data['title'] = "eICS Lib FAQ";
-        $this->load->view("header", $data);
-
-        $this->load->view("faq_manage_view");
-        //$this->load->view("faq_view");
-        //$is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
-        //if ($is_admin) $this->load->view('manage_view');
-
-        $this->load->view("footer");
-    }
-
     public function delete(){
         $id = mysql_real_escape_string($_POST['id']);
         $this->faq_model->delete_faq($id);
     }
 
     public function add(){
-        $_POST = $this->safeguard->array_ready_for_query($_POST);
-        $this->faq_model->add_faq($_POST);
+        $data = $this->safeguard->array_ready_for_query($_POST);
+        $this->faq_model->add_faq($data);
 
-
-        $_POST = $this->safeguard->str_array_ready_for_display($_POST);
-        echo json_encode($_POST);
+        $data['question'] = htmlspecialchars(stripslashes(trim($data['question'])));
+        $data['answer'] = stripslashes(trim($data['answer']));
+        echo json_encode($data);
     }
-
 
     public function get_faq(){
         $id = mysql_real_escape_string($_POST['id']);
@@ -45,7 +32,11 @@ class Faq extends CI_Controller {
 
     public function get_all_faq(){
         $faqs = $this->faq_model->get_all_faq();
-        $faqs = $this->safeguard->query_result_ready_for_display($faqs);
+
+        foreach($faqs as &$e){
+            $e->question = htmlspecialchars(stripslashes(trim(  $e->question)));
+            $e->answer = stripslashes(trim(  $e->answer));
+        }
         echo json_encode($faqs);
     }
 
@@ -53,7 +44,7 @@ class Faq extends CI_Controller {
         $data = $this->safeguard->array_ready_for_query($_POST);
         $this->faq_model->edit_faq($data);
 
-        echo json_encode($data);
+        echo json_encode($_POST);
     }
 
 }

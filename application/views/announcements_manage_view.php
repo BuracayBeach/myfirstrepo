@@ -1,4 +1,3 @@
-    <button id="add_announcement_button">Add Announcement</button>
     <div id="add_announcement_container">
         <form autocomplete="on" id="add_announcement_form">
             <h4>ADD ANNOUNCEMENT</h4>

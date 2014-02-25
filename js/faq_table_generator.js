@@ -2,10 +2,9 @@
  * Created by isnalla on 2/23/14.
  */
 
-var tableHTML = '<table id="faq_table" border=1 style="width:60%"></table>';
+var tableHTML = '<table id="faq_table"></table>';
 
 function generateFaqTable(isAdmin){
-    console.log('hello');
     $.post("index.php/faq/get_all_faq",function(data){
         try{
             data = JSON.parse(data);
@@ -24,23 +23,34 @@ function generateFaqRow(data,isAdmin){
     var fd = new Date(data.date_posted);
 
     var buttons = "";
+    var editable = "";
+    var prevDataInputs = "";
+    var editButtons = "";
     if(isAdmin){
-        buttons = '<button class="edit_faq_button">Edit</button>'+
+        prevDataInputs = '<h4 hidden class="prev_question"></h4>' +
+                         '<textarea style="display:none;" id="answer_'+data.id+'" class="answer_editor"></textarea>';
+        var editButtons = '<button class="save_faq_button" style="display:none;">Save</button>' +
+            '<button class="cancel_faq_button" style="display:none;">Cancel</button>';
+        buttons =
+            '<button class="edit_faq_button">Edit</button>'+
                 '<button class="delete_faq_button">Delete</button>';
+        editable = 'contenteditable="false"';
     }
     var rowHTML = '<tr faq_id="'+data.id+'" class="faq_table_row">'+
-        '<td faq_id="'+data.id+'" class="faq_table_data">'+
-        '<h4 class="question">'+data.question+
-        '</h4>'+
-        buttons+
-        '<hr/>'+
-        '<span class="answer">'+data.answer+'</span>'+
-        '</td>'+
-        '</tr>';
+                    '<td class="faq_table_data">' +
+                        ' <span ' + editable +
+                        ' class="question" name="question" >'+data.question+
+                        '</span>'+
+                        buttons+
+                        '<hr/>'+
+                        prevDataInputs + editButtons +
+                        '<section '+
+                        ' class="answer" name="answer" >'+data.answer+'</section>'+
+                    '</td>'+
+                    '</tr>';
+    console.log(data);
 
     var tableContainer = $('#faq_table_container');
-    console.log(tableContainer);
-
     if(tableContainer.find('table').length == 0){
         tableContainer.append(tableHTML);
         tableContainer.find('table').append($('<tbody>'));
@@ -48,14 +58,18 @@ function generateFaqRow(data,isAdmin){
 
     var firstTr = tableContainer.find('table tbody tr').first();
     if(firstTr.find('#add_faq_container').length == 0 ){
-        tableContainer.find('table tbody').append(rowHTML);
+        tableContainer.find('table tbody').prepend(rowHTML);
     }else{
-        tableContainer.find('table').find('tbody tr:nth-child(2)').after(rowHTML);
+        tableContainer.find('table').find('tbody tr:first').after(rowHTML);
     }
+
+
+
+
 }
 
 $('#faq_table_container').ready(function(){
     var isAdmin = $('#faq_manage_container').length == 1;
 
     generateFaqTable(isAdmin);
-})
+});

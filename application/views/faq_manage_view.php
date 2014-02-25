@@ -6,18 +6,20 @@
  * Time: 1:01 PM
  */
 ?>
+<h3>Frequently Asked Questions</h3>
+
 <button id="add_faq_button">Add a FAQ</button>
 <div id="faq_manage_container">
     <div id="faq_table_container">
-        <table id="faq_table" style="width:60%;border: 2px solid #000000">
+        <table id="faq_table">
             <tbody>
             <tr>
                 <td>
                     <div id="add_faq_container" class="show_me">
                         <form autocomplete="on" id="add_faq_form">
-                            <input type="text" name="question" id="add_question" placeholder="Question" required/>
+                            <input type="text" name="question" required id="add_question" placeholder="Question"/>
                             <br/>
-                            <textarea name="answer" id="add_answer" placeholder="Answer..."  required></textarea>
+                            <textarea name="answer" id="add_answer" placeholder="Answer..."></textarea>
                             <br/>
                             <button type="submit" name="add_faq_button" id="add_faq_button">Add</button>
                             <button type="button" id="add_faq_cancel_button" name="add_faq_cancel_button" >Cancel</button>
@@ -25,6 +27,7 @@
                     </div>
                 </td>
             </tr>
+            <!--
             <tr>
                 <td>
                     <div id="edit_faq_container">
@@ -39,10 +42,12 @@
                         </form>
                     </div>
                 <td/>
-            </tr>
+            </tr-->
             </tbody>
         </table>
     </div>
 </div>
+
+<script src="<?php echo base_url() ?>js/nicEdit.js"></script>
 <script src="<?php echo base_url() ?>js/faq_table_generator.js"></script>
 <script src="<?php echo base_url(); ?>js/faq_manager.js"></script>

@@ -1,4 +1,4 @@
-var tableHTML = '<table id="announcements_table" border=1 style="width:60%"></table>';
+var tableHTML = '<table id="announcements_table"></table>';
 
 function generateAnnouncementsTable(){
     $.post("index.php/announcement/get_all_announcements",function(data){

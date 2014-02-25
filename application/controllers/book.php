@@ -19,6 +19,7 @@ class book extends CI_Controller {
      */
     function __construct(){
         parent::__construct();
+
         $this->load->model('book_model');
         $this->load->model('search_model');
         $this->load->model('favorite_model');
@@ -33,11 +34,6 @@ class book extends CI_Controller {
 
         $this->load->library('firephp');
 
-    }
-
-    public function index(){
-        $this->load->library('javascript');
-        $data['title'] = "eICS Lib";
     }
 
     public function add(){
