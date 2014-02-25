@@ -75,8 +75,17 @@
 
             echo "</ul>";
         }
+
+        if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
+          echo '
+          <ul class="left">
+            <li><a href="'.base_url().'manage_accounts">Manage Accounts</a></li>
+          </ul>';
+
+        }
       ?>
 
+ 
 
       <ul class="left">
         <li><a href="<?php echo base_url();?>about_us">About Us</a></li>

@@ -37,7 +37,7 @@ class Home extends CI_Controller {
         $this->load->view("header", $data); 
         $this->load->view("search_results_view");
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
-        $this->load->view("announcements_view");        
+       
         if ($is_admin) $this->load->view('manage_view');
 /*        if ($is_admin){
             $this->load->view('announcement_manage_view');
@@ -199,7 +199,17 @@ class Home extends CI_Controller {
         $data = $this->admin_account_model->get_admin_data($admin_username);
         $new_result = $this->safeguard->str_array_ready_for_display($data);
         $this->load->view('update_admin_view', $new_result);
-   }
+    }
+
+    public function manage_accounts(){
+        $data['title'] = "eICS Lib Sign Up";
+        $this->load->view("header", $data);
+
+        //put loading and stuff here
+        $this->load->view("search_results_view",$data);
+
+
+    }
 
 }
 
