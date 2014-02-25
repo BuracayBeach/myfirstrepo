@@ -151,10 +151,9 @@ class Home extends CI_Controller {
         $data['title'] = "eICS Lib My Lib";
         $this->load->view("header", $data);
 
-        if (isset($_SESSION)) {
+        if (isset($_SESSION)){
             $data['book'] = $this->reserve_model->check_book_ranks($_SESSION['username']);
             $data['reserves'] = $this->reserve_model->get($_SESSION['username']);
-
             $this->load->view('reserves_view', $data);
         }
 
@@ -208,8 +207,6 @@ class Home extends CI_Controller {
         $this->load->view("footer");
         //put loading and stuff here
         $this->load->view("search_results_view",$data);
-
-
     }
 
 }
