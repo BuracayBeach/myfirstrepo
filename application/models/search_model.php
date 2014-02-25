@@ -231,6 +231,7 @@ class Search_model extends CI_Model {
         $book_tags_points = 3;
         $book_publisher_points = 2;
         $year_published_points = 2;
+        $abstract_points = 0.05;
         $other_points = 1; //book number, if search by 'any'
 
 
@@ -291,6 +292,7 @@ class Search_model extends CI_Model {
                             case $row->book_title:  $pts+=$book_title_points; break;
                             case $row->author:        $pts+=$book_author_points; break;
                             case $row->publisher:  $pts+=$book_publisher_points; break;
+                            case $row->abstract:  $pts+=$abstract_points; break;
                             case $row->date_published:  $pts+=$year_published_points; break;
                             default: $pts+=1;
                         }

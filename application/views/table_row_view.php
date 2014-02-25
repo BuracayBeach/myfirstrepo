@@ -24,12 +24,12 @@
           "</td>";
 
     echo "<td>" .
-        "<div style = 'font:20px Verdana' book_data='book_title'>" .
+        "<div style = 'font:17px Verdana' book_data='book_title'>" .
         $row->book_title .
         "</div>" .
 
 
-        "<div style = 'font-size:17px' book_data='description'> " .
+        "<div style = 'font-size:15px' book_data='description'> " .
         $row->description   . "<br>" .
         "</div>" .
 
@@ -40,17 +40,17 @@
     if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){  //--------------- ADMIN ACTIONS ----------------\\
 
         // Edit , Delete Button
-        echo "<span><a href='javascript:void(0)' bookno='{$row->book_no}' class='edit_button'>Edit</a></span>&nbsp&nbsp&nbsp";
-        if ($row->status != 'borrowed') echo "<span><a href='javascript:void(0)' bookno='{$row->book_no}' class='delete_button'>Delete</a></span>&nbsp | &nbsp";
+        if ($page!='index') echo "<span><a href='javascript:void(0)' bookno='{$row->book_no}' class='edit_button'>Edit</a></span>&nbsp&nbsp&nbsp";
+        if ($row->status != 'borrowed' && $page!='index') echo "<span><a href='javascript:void(0)' bookno='{$row->book_no}' class='delete_button'>Delete</a></span>&nbsp | &nbsp";
         else echo "<span>({$row->status})&nbsp|&nbsp</span>";
-        echo "<span><a ";
+        echo "<span>";
 
         // Lend , Return Button
 
         /* edit by Edzer Padilla start */
-        if ($row->status == "reserved")  echo "bookno='{$row->book_no}' class='transaction_anchor lendButton' >Lend</a>";
-        elseif ($row->status == "borrowed") echo "bookno='{$row->book_no}' class = 'transaction_anchor receivedButton'>Return</a>";
-        else echo "'>(" . $row->status . ")";
+        if ($row->status == "reserved")  echo "<a bookno='{$row->book_no}' class='transaction_anchor lendButton' >Lend</a>";
+        elseif ($row->status == "borrowed") echo "<a bookno='{$row->book_no}' class = 'transaction_anchor receivedButton'>Return</a>";
+        else echo "(" . $row->status . ")";
         /* edit end */
         echo "</span>";
 
@@ -119,7 +119,9 @@
 
     // if (isset($_SESSION['type']) && $_SESSION['type'] == "admin")
     echo "<td book_data='tags'>" . $row->tags . "</td>";
-    echo "<td book_data='abstract'>" . $row->abstract . "</td>";
+    echo "<td book_data='abstract'>" .
+        "<textarea class='hidden_abstract' hidden>" . $row->abstract . "</textarea>" .
+     "</td>";
 
     echo "</tr>";
 
