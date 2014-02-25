@@ -24,7 +24,7 @@ class Search_model extends CI_Model {
             session_start();
         
     }
-
+    
     function get_inputs(&$input){
         $input['search_term'] = "";
         $input['search_by'] = "book_title";

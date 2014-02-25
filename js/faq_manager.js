@@ -15,7 +15,7 @@ $('#faq_table_container').ready(function(){
     var faqTableContainer = $('#faq_table_container');
     faqTableContainer.on('click','.edit_faq_button',setEditTarget);
     //faqTableContainer.on('click','.save_faq_button',updateChanges);
-    faqTableContainer.on('click','.save_faq_button',updateChanges)
+    faqTableContainer.on('click','.save_faq_button',updateChanges);
     faqTableContainer.on('click','.cancel_faq_button',function(){
         cancelChanges.call($(this).closest('tr'));
     });
@@ -47,7 +47,7 @@ function updateChanges(){
     $.post("index.php/faq/edit", data , function(data){ //navigate to the controller with the address:index.php/faq/edit
         data = JSON.parse(data);
 
-        row.find('.question').text(data.question);
+        row.find('.question h5').text(data.question);
         row.find('.answer').html(data.answer);
         row.find('.question').attr("contenteditable",false);
         row.find('.save_faq_button').hide();
@@ -59,7 +59,7 @@ function updateChanges(){
         row.find('.answer_editor').hide();
         row.find('.answer').show();
     }).fail(function(){
-            alert('There was a problem editing the material.')
+            alert('There was a problem editing the material.');
             cancelChanges.call(row.find('.cancel_faq_button')[0]);
         });
 }
@@ -93,7 +93,7 @@ function setEditTarget(){
 function cancelChanges(){
     var row = $(this).closest('tr');
     row.removeClass('active');
-    row.find('.question').text(row.find('.prev_question').text());
+    row.find('.question h5').text(row.find('.prev_question').text());
     row.find('.question').attr("contenteditable",false);
     customEditor.removeInstance('answer_'+row.attr('faq_id'));
     row.find('.answer_editor').hide();
@@ -112,7 +112,7 @@ function editFAQ(event){
         data = JSON.parse(data);
         console.log(data);
         var tr = $('#faq_table').find('tr[faq_id="'+data.id+'"]');
-        tr.find('.question').text(data.question);
+        tr.find('.question').text("<h5>"+data.question+"</h5>");
         tr.find('.answer').text(data.answer);
 
         editFaqForm.closest('tr').hide();
@@ -163,7 +163,6 @@ function addFAQ(event){
         'answer' : answer
     };
 
-
     var addFaqForm = this;
     $.post("index.php/faq/add", data ,function(data){
         data = JSON.parse(data);
@@ -175,35 +174,36 @@ function addFAQ(event){
 
         $(addFaqForm).closest('div').hide();
         addFaqForm.reset();
+        editor.setContent('');
     }).fail(function(){
             alert('There was a problem adding the material.');
         })
 }
 
 var rowBeingEdited;
-function fillEditFaqForm(event){
-    event.preventDefault();
-
-    if(rowBeingEdited != undefined)
-        rowBeingEdited.show();
-    $('#add_faq_container').closest('tr').hide();
-    var id = $(this).closest("tr").attr('faq_id');
-    $.post("index.php/faq/get_faq",{"id":id},function(data){
-        var data = JSON.parse(data)[0];
-        console.log(data);
-        var editForm = $('#edit_faq_form');
-
-        editForm.find('#edit_faq_id').val(id);
-        editForm.find('#edit_question').val(data.question);
-        editForm.find('#edit_answer').val(data.answer);
-
-    });
-
-    rowBeingEdited = $(this).closest("tr");
-    rowBeingEdited.hide();
-    $('#edit_faq_container').closest('tr').show();
-    $('#edit_answer').focus();
-}
+//function fillEditFaqForm(event){
+//    event.preventDefault();
+//
+//    if(rowBeingEdited != undefined)
+//        rowBeingEdited.show();
+//    $('#add_faq_container').closest('tr').hide();
+//    var id = $(this).closest("tr").attr('faq_id');
+//    $.post("index.php/faq/get_faq",{"id":id},function(data){
+//        var data = JSON.parse(data)[0];
+//        console.log(data);
+//        var editForm = $('#edit_faq_form');
+//
+//        editForm.find('#edit_faq_id').val(id);
+//        editForm.find('#edit_question').val(data.question);
+//        editForm.find('#edit_answer').val(data.answer);
+//
+//    });
+//
+//    rowBeingEdited = $(this).closest("tr");
+//    rowBeingEdited.hide();
+//    $('#edit_faq_container').closest('tr').show();
+//    $('#edit_answer').focus();
+//}
 
 
 

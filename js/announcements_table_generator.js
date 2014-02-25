@@ -36,8 +36,8 @@ function generateAnnouncementRow(data,isAdmin){
                             '<h4 '+editable+' class="announcement_title">'+data.announcement_title+'</h4>'+
                             'posted on <span class="date_posted">'+fd.toDateString() +'</span> by '+
                                 '<span class="announcement_author">'+data.announcement_author+'</span>' +
-                                 editButtons +
                             '<p class="announcement_content">'+data.announcement_content+'</p>'+
+                        editButtons +
                         '</td>'+
                     '</tr>';
 
@@ -48,9 +48,19 @@ function generateAnnouncementRow(data,isAdmin){
         tableContainer.find('table').append($('<tbody>'));
     }
     tableContainer.find('table').find('tbody:last').append(rowHTML);
+
+    var firstTr = tableContainer.find('table tbody tr').first();
+    if(firstTr.find('#add_faq_container').length == 0 ){
+        tableContainer.find('table tbody').prepend(rowHTML);
+    }else{
+        tableContainer.find('table').find('tbody tr:first').after(rowHTML);
+    }
+
+
 }
 
-$('#announcements_table_container').ready(function(){
+$('announcement_manage_container').ready(function(){
     var isAdmin = $('#announcement_manage_container').length == 1;
+    console.log(isAdmin);
     generateAnnouncementsTable(isAdmin);
 });

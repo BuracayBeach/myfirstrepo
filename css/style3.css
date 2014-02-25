@@ -2,6 +2,7 @@
   background: #bbbbbb;
 }
 
+
 .top-bar-section li a {
   background: #bbbbbb  !important;
   text-decoration: none !important;
@@ -74,15 +75,16 @@ list-style-type: none !important;
   margin-left: 3% !important;
   font-size: 1% !important;
   float: left !important;
+    border-right: 1px solid #2266cc !important;
 
 }
 
 #status{
-  margin-left: 0% !important;
+  margin-left: 5% !important;
   font-size: 1% !important;
    float: left !important;
    width: 50% !important;
-   border-left: 1px solid #2266cc !important;
+
    margin-right:-10% !important;
    height: 20% !important;
 }
@@ -322,12 +324,71 @@ font-family:"Segoe UI Light" !important;
 	height: 100% !important;
 }
 
-
 .nicEdit-main{
 	max-width: 500% !important;
 	height: 100% !important;
 	background-color: white !important;
 }
 
+.edit_announcement_button{
+    margin-left: 3% !important;
+    background-color:#2266cc !important;
+    font-family:"Segoe UI Light" !important;
+    font-size:100% !important;
+    width:5% !important;
+    height: 0.5% !important;
+    color: white;
+}
+
+.delete_announcement_button{
+    margin-left: 3% !important;
+    background-color:#FF6600 !important;
+    font-family:"Segoe UI Light" !important;
+    font-size:100% !important;
+    width:5% !important;
+    height: 0.5% !important;
+    color: white;
+}
+
+.errors{
+    color: red !important;
+    font-size: 80% !important;
+    font-weight: bold !important;
+}
 
 
+/*-----------------------------------
+
+ERROR
+
+-----------------------------------*/
+
+.invalid_user input[type='text'], .invalid_user input[type='password']{
+	background:rgba(225, 150, 150, 0.3);
+}
+
+.signup .username input[name='username']{
+	background:rgba(225, 150, 150, 0.3);
+}
+
+.signup .email input[name='email']{
+	background:rgba(225, 150, 150, 0.3);
+}
+
+.signup .student_no input[name='student_no']{
+	background:rgba(225, 150, 150, 0.3);
+}
+
+.signup .employee_no input[name='emp_no']{
+	background:rgba(225, 150, 150, 0.3);
+}
+
+
+.signup .pass input[name='currentpassword']{
+	background:rgba(225, 150, 150, 0.3);
+}
+
+
+.top-bar a img{
+	max-height:43px !important;
+}

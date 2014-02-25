@@ -16,54 +16,69 @@
 					$('#submit_search').submit();
 				}
 
-				function summarize(searchText){
-                    var search_table = $("#search_table");
-                    var tr_array = search_table.find('tr:first').nextAll();
+				// function summarize(searchText){
+    //                 var search_table = $("#search_table");
+    //                 var tr_array = search_table.find('tr:first').nextAll();
 
-                    tr_array.each(function(index, tr){
-                    	tr = $(tr)
-                    	var abstractTD = tr.find('td[book_data="abstract"]')
-                    	var abstract = abstractTD.find('textarea').text()
+    //                 tr_array.each(function(index, tr){
+    //                 	tr = $(tr)
+    //                 	var abstractTD = tr.find('td[book_data="abstract"]')
+    //                 	var abstract = abstractTD.find('textarea').text()
 
-                    	abstractTD.text(get_summarize(abstract, searchText))
-                    })
-				}
+    //                 	abstractTD.html(get_summarize(abstract, searchText))
+    //                 })
+				// }
 
-				function wordMatch(word, searchArray){
-					var word_is_matched = false
-					for (var b=0 ; b<searchArray.length ; b++){
-						var term = searchArray[b]
-						if (word.toLowerCase() == term.toLowerCase()) {
-							word_is_matched = true
-							break
-						}
-					}
-					return word_is_matched
-				}
+				// function wordMatch(word, searchArray){
+				// 	var word_is_matched = false
+				// 	for (var b=0 ; b<searchArray.length ; b++){
+				// 		var term = searchArray[b]
+				// 		if (word.toLowerCase() == term.toLowerCase()) {
+				// 			word_is_matched = true
+				// 			break
+				// 		}
+				// 	}
+				// 	return word_is_matched;
+				// }
 
-				function get_summarize(abstract, searchText){
-					var summary = ''
+			
 
-					var abstract = abstract.split(' ')
-					var searchArray = searchText.split(' ')
-					var maxAbstract = 75
+				// function get_summarize(abstract, searchText){
+				// 	var summary = ''
 
-					var prev_word = ''
-					var next_word = ''
+				// 	var abstract = abstract.split(' ')
+				// 	var searchArray = searchText.split(' ')
+				// 	var maxAbstract = 200
 
-					var last_added = 0
+				// 	var prev_word = ''
+				// 	var next_word = ''
+
+				// 	var last_added = 0
 					
-					for (var a=0 ; a<abstract.length ; a++){
-						var word = abstract[a]
-						if (wordMatch(word, searchArray)){
-							last_added = a+1
-						}
-						if (summary.length >= maxAbstract) break
-					}
+				// 	abstLen = abstract.length
+				// 	for (var a=0 ; a<abstLen ; a++){
+				// 		var word = abstract[a]
+				// 		if (word.trim()=='') continue;
+				// 		if (wordMatch(word, searchArray)){
+				// 			summary += " ..."
+				// 			if (a>0 && last_added<a-1) summary += abstract[a-1] + ' '
+				// 			summary += '<strong>' + abstract[a] + '</strong> '
+				// 			if (a<abstLen-1){
+				// 				summary += abstract[a+1] + ' '
+				// 				last_added = a+1
+				// 				a++
+				// 			}
+				// 			summary += "... "
+				// 		}
+				// 		if (summary.length >= maxAbstract) break
+				// 	}
 
-					// console.log(summary.length + ' ' + summary)
-					return summary
-				}
+
+				// 	// console.log(summary.length + ' ' + summary)
+				// 	return summary
+				// }
+
+	
 
 				$(document).ready(function() {
 				    $('#sidebar-wrapper').on('click', 'li', ajax_results);
@@ -107,7 +122,7 @@
 	                            	book_tab[0].click();
 	                            } 
 	                            //assume rows are appended already
-	                            summarize(searchText);
+	                            // summarize(searchText);
 							},
 							fail: function(){
 								alert("Search Failed");
