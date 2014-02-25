@@ -1,5 +1,5 @@
-    <div id="announcements_container">
-        <div id="announcements_table_container">
+    <div id="announcements_container" class="small-10 column">
+        <div id="announcements_table_container" class="small-10">
 
         </div>
 
