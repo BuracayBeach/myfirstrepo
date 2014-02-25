@@ -1,0 +1,89 @@
+h1 {
+	text-align: center;
+}
+
+.my_library_container {
+	position: relative;
+	float: left;
+	width: 70%;
+	margin: 3% 3%;
+}
+
+.item {
+	width: 320px;
+	height: 320px;
+	background-color: #f9f9f9;
+	padding: 10px;
+}
+
+.item div {
+	text-align: center;
+}
+
+div.book_title {
+	font-weight: 800;
+	font-size: 1.35em;
+}
+
+div.date_added {
+	font-size: 0.85em;
+}
+
+div.my_library_container button {
+	position: relative;
+	float: left;
+	margin: 50px 0 0 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+div.my_library_container button.btn_disabled {
+	cursor: not-allowed;
+	background-color: #d1d1d1;
+	margin-left: 20px;
+}
+
+div.my_library_container button.btn_untoggle {
+	background-color: #ffca0f;
+	margin-left: 50px;
+}
+
+div.my_library_container button.btn_enabled {
+	background-color: #00b200;
+	margin-left: 65px;
+}
+
+/* animation ni BurnzZ, wag galawin */
+
+@keyframes start {
+	from {
+		transform: scale(0);
+	}
+	to {
+		transform: scale(1);
+	}
+}
+
+@-webkit-keyframes start {
+	from {
+		-webkit-transform: scale(0);
+	}
+	to {
+		-webkit-transform: scale(1);
+	}
+}
+
+.my_library_container .item[data-state="init"] {
+	display: none;
+}
+
+.my_library_container .item[data-state="start"]  {
+	display: block;
+	animation: start 0.5s;
+	-webkit-animation: start 0.5s;
+}
+
+.my_library_container .item[data-state="move"]  {
+	transition: top 0.5s, left 0.5s, width 0.5s, height 0.5s;
+	-webkit-transition: top 0.5s, left 0.5s, width 0.5s, height 0.5s;
+}

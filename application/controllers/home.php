@@ -128,9 +128,11 @@ class Home extends CI_Controller {
         $this->load->view("header", $data);
 
         $data['favorites'] = $this->favorite_model->get_all($_SESSION['username']);
+        $data['reserve_user'] = $this->reserve_model->get($_SESSION['username']);
+        $data['lend_user'] = $this->lend_model->get($_SESSION['username']);
+
         $this->load->view('favorites_view', $data);
         $this->load->view("search_results_view");
-
         $this->load->view("footer");
     }
 

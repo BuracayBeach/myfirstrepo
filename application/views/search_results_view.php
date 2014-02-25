@@ -27,7 +27,7 @@
 
 						if ($(this).attr('searchby') == null) {
 							my_input += "&search_by=" + $('#search_text').attr('searchby');
-						}else {
+						} else {
 							search_by = $(this).attr('searchby');
 							my_input += "&search_by=" + search_by;
 							$('#search_text').attr('searchby', search_by);
