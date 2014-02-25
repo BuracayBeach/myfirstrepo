@@ -96,7 +96,11 @@ div.my_library_container button.margin_sa_left {
 /* for notifs pre */
 
 div#notifs_container {
-	width: 50%;
+	position: absolute;
+	top:0;
+	margin-left:68%; 
+	width: 30%;
+	float: right;
 }
 
 div.notif {
