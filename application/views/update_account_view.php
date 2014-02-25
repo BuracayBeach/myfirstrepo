@@ -1,6 +1,9 @@
-<div class="signup small-7 column">
+<div class="signup small-7 column 	">
 
-<form name="userForm" action="<?php echo base_url();?>index.php/user_account/update" method="post" >
+<form class="<?php
+		if(isset($_SESSION['update_account_notif']))
+			echo 'email';
+	?>" name="userForm" action="<?php echo base_url();?>index.php/user_account/update" method="post" >
 	<div id="container">
 		<h1>Update Form</h1>
 
@@ -77,7 +80,10 @@
 	</div>
 </form>
 
-<form name="changePasswordForm" action="<?php echo base_url();?>index.php/user_account/change_password" method="post" >	
+<form class="<?php
+		if(isset($_SESSION['change_password_notif']))
+			echo 'pass';
+	?>" name="changePasswordForm" action="<?php echo base_url();?>index.php/user_account/change_password" method="post" >	
 	<div id="container">
 		<h1>Change Password</h1>
 		<div id="body">

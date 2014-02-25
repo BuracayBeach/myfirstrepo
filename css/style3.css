@@ -331,3 +331,33 @@ font-family:"Segoe UI Light" !important;
 
 
 
+/*-----------------------------------
+
+ERROR
+
+-----------------------------------*/
+
+.invalid_user input[type='text'], .invalid_user input[type='password']{
+	background:rgba(225, 150, 150, 0.3);
+}
+
+.signup .username input[name='username']{
+	background:rgba(225, 150, 150, 0.3);
+}
+
+.signup .email input[name='email']{
+	background:rgba(225, 150, 150, 0.3);
+}
+
+.signup .student_no input[name='student_no']{
+	background:rgba(225, 150, 150, 0.3);
+}
+
+.signup .employee_no input[name='emp_no']{
+	background:rgba(225, 150, 150, 0.3);
+}
+
+
+.signup .pass input[name='currentpassword']{
+	background:rgba(225, 150, 150, 0.3);
+}
