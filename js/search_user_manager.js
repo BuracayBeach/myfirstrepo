@@ -135,10 +135,9 @@ function search_user(page)
 			//since the data returned is html, parse it into JSON format
 			json_results = JSON.parse(data);
 			var result_array = [];
-
 			//since the search may return null, set a handler to set the num_results to 0 when null
 			if(json_results != null){
-				var num_results = json_results.length;
+				var num_results = json_results.results.length;
 			} else {
 				var num_result = 0;
 			}
@@ -162,32 +161,32 @@ function search_user(page)
 				for(var i=0;i<num_results;i+=1)
 				{
 					var row = "<tr class='log_row'>";
-					row += "<td class='log_col'>"+json_results[i].username+"</td>";
+					row += "<td class='log_col'>"+json_results.results[i].username+"</td>";
 
-					if(json_results[i].usertype === "student") row += "<td class='log_col'>"+json_results[i].student_no+"</td>";
-					else if(json_results[i].usertype === "employee") row += "<td class='log_col'>"+json_results[i].emp_no+"</td>";
-					row += "<td class='log_col'>"+json_results[i].email+"</td>";
-					row += "<td class='log_col'>"+json_results[i].usertype+"</td>";
-					row += "<td class='log_col'>"+json_results[i].name_first+"</td>";
-					row += "<td class='log_col'>"+json_results[i].name_middle+"</td>";
-					row += "<td class='log_col'>"+json_results[i].name_last+"</td>";
-					row += "<td class='log_col'>"+json_results[i].college+"</td>";
+					if(json_results.results[i].usertype === "student") row += "<td class='log_col'>"+json_results.results[i].student_no+"</td>";
+					else if(json_results.results[i].usertype === "employee") row += "<td class='log_col'>"+json_results.results[i].emp_no+"</td>";
+					row += "<td class='log_col'>"+json_results.results[i].email+"</td>";
+					row += "<td class='log_col'>"+json_results.results[i].usertype+"</td>";
+					row += "<td class='log_col'>"+json_results.results[i].name_first+"</td>";
+					row += "<td class='log_col'>"+json_results.results[i].name_middle+"</td>";
+					row += "<td class='log_col'>"+json_results.results[i].name_last+"</td>";
+					row += "<td class='log_col'>"+json_results.results[i].college+"</td>";
 					row += "<td class='log_col'>";
-					switch(json_results[i].status) //creates a button depending on user status
+					switch(json_results.results[i].status) //creates a button depending on user status
 					{
 						case "pending" :  //creates a button named activate
 						{
-							row += "<input type='button' value='Activate' class='Activate_button' usertype='"+json_results[i].usertype+"' username='"+json_results[i].username+"' student_no='"+json_results[i].student_no+"' emp_no='"+json_results[i].emp_no+"' email='"+json_results[i].email+"'/>";
+							row += "<input type='button' value='Activate' class='Activate_button' usertype='"+json_results.results[i].usertype+"' username='"+json_results.results[i].username+"' student_no='"+json_results.results[i].student_no+"' emp_no='"+json_results.results[i].emp_no+"' email='"+json_results.results[i].email+"'/>";
 							break;
 						}
 						case "enabled" : //creates a button named disable
 						{ 
-							row += "<input type='button' value='Enable' class='Enable_button' usertype='"+json_results[i].usertype+"' username='"+json_results[i].username+"' student_no='"+json_results[i].student_no+"' emp_no='"+json_results[i].emp_no+"' email='"+json_results[i].email+"'/>";
+							row += "<input type='button' value='Enable' class='Enable_button' usertype='"+json_results.results[i].usertype+"' username='"+json_results.results[i].username+"' student_no='"+json_results.results[i].student_no+"' emp_no='"+json_results.results[i].emp_no+"' email='"+json_results.results[i].email+"'/>";
 							break;
 						}
 						case "disabled" : //creates a button named enable
 						{ 
-							row += "<input type='button' value='Disable' class='Disable_button' usertype='"+json_results[i].usertype+"' username='"+json_results[i].username+"' student_no='"+json_results[i].student_no+"' emp_no='"+json_results[i].emp_no+"' email='"+json_results[i].email+"'/>";
+							row += "<input type='button' value='Disable' class='Disable_button' usertype='"+json_results.results[i].usertype+"' username='"+json_results.results[i].username+"' student_no='"+json_results.results[i].student_no+"' emp_no='"+json_results.results[i].emp_no+"' email='"+json_results.results[i].email+"'/>";
 							break;
 						}
 					}
@@ -198,6 +197,7 @@ function search_user(page)
 				}
 				//add the result array to the result table to convert the array of strings into table rows 
 				$('#result_table').html(result_array);
+				//generatePagination(json_results.links,page);
 			}
 
 			else {
@@ -213,5 +213,37 @@ $(document).ready(function(){
 		search_user(0);
 	});
 });
+
+		function generatePagination(num_pages,curr_page)
+		{
+			$('#pagination_controller').attr({
+				'num_pages' : num_pages,
+				'curr_page' : (curr_page/10)
+			});
+
+			var pagination_links = "<a href='javascript:void(0)'> < </a>";
+			for(var i=0;i<num_pages;i+=1)
+			{
+				pagination_links += "<a class='page_link' href='javascript:void(0)'>"+(i+1)+"</a>";
+			}
+			pagination_links += "<a href='javascript:void(0)'> > </a>";
+			
+			$('#pagination_controller').html(pagination_links);
+
+			var linkers = $('.page_link');
+			var link_count = linkers.length;
+
+			for(var i=0;i<link_count;i+=1)
+			{
+				$(linkers[i]).attr({
+					'page' : (i*10)
+				});
+			}
+
+			$(linkers).on('click',function(){
+				search_user($(this).attr('page'));
+			});
+			
+		}
 
 	
