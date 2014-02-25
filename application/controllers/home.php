@@ -193,7 +193,9 @@ class Home extends CI_Controller {
     public function manage_accounts(){
         $data['title'] = "eICS Lib Sign Up";
         $this->load->view("header", $data);
-
+        $this->load->view("search_user_view");
+        $this->load->view("enable_disable_view");
+        $this->load->view("footer");
         //put loading and stuff here
 
         
