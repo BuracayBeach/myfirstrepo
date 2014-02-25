@@ -25,8 +25,15 @@ div.book_title {
 	font-size: 1.35em;
 }
 
-div.date_added {
+.sub-2 {
 	font-size: 0.85em;
+}
+
+div.days_due {
+	position: absolute;
+	bottom: 10px;
+	text-align: center;
+	width: 94%;
 }
 
 div.my_library_container button {
@@ -53,24 +60,20 @@ div.my_library_container button.btn_enabled {
 	margin-left: 65px;
 }
 
+div.my_library_container button.margin_sa_left {
+	margin-left: 95px;
+}
+
 /* animation ni BurnzZ, wag galawin */
 
 @keyframes start {
-	from {
-		transform: scale(0);
-	}
-	to {
-		transform: scale(1);
-	}
+	from { transform: scale(0); }
+	to { transform: scale(1); }
 }
 
 @-webkit-keyframes start {
-	from {
-		-webkit-transform: scale(0);
-	}
-	to {
-		-webkit-transform: scale(1);
-	}
+	from { -webkit-transform: scale(0); }
+	to { -webkit-transform: scale(1); }
 }
 
 .my_library_container .item[data-state="init"] {

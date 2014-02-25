@@ -1,4 +1,4 @@
-
+<div id="right_side_bar">
 <button class="" id="show_add_form_button" name="show_add_form_button" >Add Material</button>
 <div id="add_container">
     <form autocomplete="on" id="add_book_form">
@@ -37,6 +37,9 @@
         <button id="add_cancel_button" name="add_cancel_button" >Cancel</button>
     </form>
 </div>
+
+</div>
+
 <div id="edit_container">
     <form name="edit_book" id="edit_book_form" method="post">
         Edit Material<br/>

@@ -48,7 +48,8 @@ $this->load->view('favorites_view', $data);
 		<div class="item brick">
 
 			<div class="book_title"> <?php echo $row->book_title; ?> </div> <br/>
-			<div class="date_added"> Date Added: <?php echo $row->date_added; ?> </div> <br/>
+			<div class="book_no sub-2"> Book No: <?php echo $row->book_no; ?> </div> <br/>
+			<div class="date_added sub-2"> Date Added: <?php echo $row->date_added; ?> </div> <br/>
 			<?php echo "<button class='action_button favorite_button' book_no='" . $row->book_no . "'>unfavorite</button>" ?>
 			<?php echo "<button class='action_button reserve_button ".$enabler."' book_no='" . $row->book_no . "'>".$reserve."</button>" ?>			
 			<br/>
@@ -56,7 +57,6 @@ $this->load->view('favorites_view', $data);
 		</div>
 
 	<?php endforeach; ?>
-
 	<?php endif; ?>
 </div>
 
