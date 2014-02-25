@@ -15,7 +15,7 @@ class Admin_account extends CI_Controller {
 	}
 
 	public function backtohome() {
-		redirect(base_url());
+		redirect(base_url() . 'ihome');
 	}
 
 	public function adminlogin(){
@@ -41,13 +41,13 @@ class Admin_account extends CI_Controller {
 
 	public function admin_login(){
 		if (isset($_SESSION['admin_logged_in']))
-			redirect(base_url());
+			redirect(base_url() . 'ihome');
 
 		if($this->check_admin_validity()){	
 			$_SESSION['admin_username'] = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
 			$_SESSION['admin_logged_in'] = true;
 			$_SESSION['type'] = "admin";
-			redirect(base_url());
+			redirect(base_url() . 'ihome');
 		}
 
 		else

@@ -30,15 +30,15 @@
 				}
 
 				function wordMatch(word, searchArray){
-					var summary = ''
+					var word_is_matched = false
 					for (var b=0 ; b<searchArray.length ; b++){
 						var term = searchArray[b]
 						if (word.toLowerCase() == term.toLowerCase()) {
-							summary = word + ' ' 
+							word_is_matched = true
 							break
 						}
 					}
-					return summary
+					return word_is_matched
 				}
 
 				function get_summarize(abstract, searchText){
@@ -50,10 +50,14 @@
 
 					var prev_word = ''
 					var next_word = ''
+
+					var last_added = 0
 					
 					for (var a=0 ; a<abstract.length ; a++){
 						var word = abstract[a]
-						summary += wordMatch(word, searchArray);
+						if (wordMatch(word, searchArray)){
+							last_added = a+1
+						}
 						if (summary.length >= maxAbstract) break
 					}
 
