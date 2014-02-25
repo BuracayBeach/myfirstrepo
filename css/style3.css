@@ -4,18 +4,21 @@
 
 .top-bar-section li a {
   background: #bbbbbb  !important;
+  text-decoration: none !important;
 }
 
 .top-bar-section li a:not(.button):hover {
   background: #5D55EC !important;
+  text-decoration: none !important;
 }
 
 #login input{
   max-height:29px !important;
+  text-decoration: none !important;
 }
 
 #loginform, #loginform form{
-  background: #2222EC !important;
+  background: #bbbbbb !important;
 }
 
 .sidebar-nav a{
@@ -199,9 +202,6 @@ ADD AND EDIT
 #add_container input{
   height:5% !important;
 }
-#add_container input{
-  height:5% !important;
-}
 #add_button{
   margin-left: 2% !important;
 }
@@ -211,8 +211,6 @@ ADD AND EDIT
 
 #show_add_form_button{
   float:right !important;
-  margin:2% !important;
-  height: 8% !important;
   clear: right !important;
 }
 
@@ -232,4 +230,29 @@ ADD AND EDIT
 Tabnavs
 
 ------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+.hide{
+    display:none;
+}
+
+
+/*-------------------------------
+
+ABOUT US
+
+--------------------------------*/
+
+
+
+
 
