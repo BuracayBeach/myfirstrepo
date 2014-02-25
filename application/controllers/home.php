@@ -37,7 +37,7 @@ class Home extends CI_Controller {
         $this->load->view("header", $data); 
         $this->load->view("search_results_view");
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
-        $this->load->view("announcements_view");        
+       
         if ($is_admin) $this->load->view('manage_view');
 /*        if ($is_admin){
             $this->load->view('announcement_manage_view');
@@ -195,8 +195,9 @@ class Home extends CI_Controller {
         $this->load->view("header", $data);
 
         //put loading and stuff here
+        $this->load->view("search_results_view",$data);
 
-        
+
     }
 
 }
