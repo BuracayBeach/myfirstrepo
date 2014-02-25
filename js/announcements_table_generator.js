@@ -1,4 +1,4 @@
-var tableHTML = '<table id="announcements_table"></table>';
+var tableHTML = '<table  id="announcements_table" class="small-6"></table>';
 
 function generateAnnouncementsTable(isAdmin){
     $.post("index.php/announcement/get_all_announcements",function(data){

@@ -51,7 +51,7 @@ class Home extends CI_Controller {
         $this->load->view("footer");
     }
 
-    public function ihome(){
+    public function manage(){
         $data['title'] = "eICS Lib Home";
         $data['page'] = 'ihome';
         $this->load->view("header", $data);
@@ -200,7 +200,7 @@ class Home extends CI_Controller {
         $this->load->view('update_admin_view', $new_result);
     }
 
-    public function manage_accounts(){
+    public function accounts(){
         $data['title'] = "eICS Lib Sign Up";
         $this->load->view("header", $data);
         $this->load->view("search_user_view");
