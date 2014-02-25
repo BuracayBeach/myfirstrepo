@@ -24,17 +24,16 @@
           "</td>";
 
     echo "<td>" .
-        "<div style = 'font:17px Verdana' book_data='book_title'>" .
-        $row->book_title .
+        "<div style = 'font:15px Verdana' book_data='book_title'>" .
+        '<span class="article_title">' . $row->book_title . '</span>' .
         "</div>" .
 
-
-        "<div style = 'font-size:15px' book_data='description'> " .
-        $row->description   . "<br>" .
+        "<div style = 'font-size:13px' book_data='description'> " .
+        '<span class="article_description">' . $row->description   . "</span><br>" .
         "</div>" .
 
-        "<div style = 'font-size:13px' book_data='author'><em> " .
-        $row->author . "<br>" .
+        "<div style = 'font-size:11px' book_data='author'><em> " .
+        '<span class="article_author">' . $row->author . "</span><br>" .
         "</em></div>";
 
     if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){  //--------------- ADMIN ACTIONS ----------------\\
@@ -113,16 +112,26 @@
 
     //other data
     echo "<td align='center'>" .
-        "<div book_data='publisher'>" . $row->publisher . "</div>";
+        "<div book_data='publisher'><span class='article_publisher'>" . $row->publisher . "</span></div>";
     if ($row->date_published != 0) echo "<div book_data='date_published'>" . $row->date_published . "</div>";
     echo "</td>";
 
     // if (isset($_SESSION['type']) && $_SESSION['type'] == "admin")
-    echo "<td book_data='tags'>" . $row->tags . "</td>";
-    echo "<td book_data='abstract'>" .
-        "<textarea class='hidden_abstract' hidden>" . $row->abstract . "</textarea>" .
-     "</td>";
+    echo "<td book_data='tags'><span class='article_tag'>" . $row->tags . "<span></td>";
+    $row_abstract = $row->abstract;
+
+    echo "<td book_data='abstract' class='book_abstract'>";
+    // if (strlen($row_abstract) > 75) {
+    //     $row_abstract = substr($row_abstract, 0, 75);
+    //     echo "<a href='javascript:void(0)'>more</a>";
+    // }
+    echo '<span class="article_abstract">' . $row->abstract . '<span>';
+
+    // echo "<textarea class='hidden_abstract' hidden>" . $row->abstract . "</textarea>" .
+    "</td>";
 
     echo "</tr>";
 
 ?>
+
+
