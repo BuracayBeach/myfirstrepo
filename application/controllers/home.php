@@ -39,7 +39,7 @@ class Home extends CI_Controller {
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
 
         if ($is_admin){
-            $this->load->view("manage_view");
+            redirect(base_url() . 'ihome');
         }else{
             $this->load->view("announcements_view");
         }
