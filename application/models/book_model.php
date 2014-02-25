@@ -23,7 +23,6 @@ class Book_model extends CI_Model {
     }
 
     function insert_book($data){
-
         $date_pub = $data['date_published'];
         $query = "INSERT INTO book (book_no,book_title,book_type,abstract,author,description,publisher,tags,date_published)".
             " VALUES ('{$data['book_no']}'".
@@ -51,7 +50,7 @@ class Book_model extends CI_Model {
             ",book_title='".$data['book_title']."'".
             ",book_type='".$data['type']."'".
             ",abstract=".($data['abstract']==null?'null':("'".$data['abstract']."'")).
-            ",status='".$data['status']."'".
+            ",status='".$data['book_status']."'".
             ",author='".$data['author']."'".
             ",description='".$data['description']."'".
             " ,publisher='".$data['publisher']."'".

@@ -22,6 +22,18 @@
 							<input class="check" id = "type_thesis" type="checkbox" name = "type_thesis" checked>
 							<label class="labelC" for="type_thesis">Thesis</label>
 						</div>
+
+					
+						<div class="book_type_option" id="other_material_type" hidden>
+							<input class="check" id = "type_other" type="checkbox" name = "type_other" checked>
+							<label class="labelC" for="type_other">Other</label>
+							<select name="other_type_select">
+								<option value="search_relevance">Magazine</option>
+							</select>
+						</div>
+					
+						
+						
 					</div>
 				
 		   					<?php
@@ -127,3 +139,50 @@
 	      
 	    });
     </script>
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript"> //ajax for other types of material
+
+				$(document).ready(function() {
+				    $('#sidebar-wrapper').on('click', 'li', ajax_results);
+
+					$('#search_form').submit(ajax_results); 
+
+					function ajax_results(event){
+						event.preventDefault(); //prevent form from submitting/refreshing
+
+						my_input = $('#search_form').serialize();
+
+						// console.log(my_input);
+						$.ajax({
+							type: "post",
+							data: my_input, 
+							url: "http://localhost/myfirstrepo/index.php/book/search",
+							success: function(data, jqxhr, status){
+                                var resultContainer = $("#result_container");
+                                var recentlyAddedBooksContainer = resultContainer.find("#recently_added_books_container");
+                                   
+                                if (recentlyAddedBooksContainer.length != 0){
+	                                resultContainer.html(data);
+	                            }
+							}
+			 			});
+
+						return false;
+					}
+
+
+				
+					// when favorites/unfavorites/reserve/unreserve button is clicked on each row
+					
+				});
+
+
+			</script>

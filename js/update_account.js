@@ -450,7 +450,7 @@ function validateNewPassword(){
 
 	else{
 		$('input[name=newpassword]').removeClass().addClass("invalid");
-		$("span[name~='nepassword']").removeClass().addClass("invalid");
+		$("span[name~='newpassword']").removeClass().addClass("invalid");
 	}
 }
 

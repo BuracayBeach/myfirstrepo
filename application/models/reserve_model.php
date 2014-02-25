@@ -67,7 +67,8 @@ class Reserve_Model extends CI_Model {
 
 	public function check_book_ranks($username) {
 
-		$q = $this->db->query("SELECT rank, book_no FROM reserves ORDER BY book_no, rank");
+		$q = $this->db->query("SELECT rank, book_no FROM reserves WHERE
+								username LIKE '{$username}' ORDER BY book_no, rank");
 		
 		if ($q->num_rows() > 0)
 			return $q->result();
