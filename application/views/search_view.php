@@ -10,19 +10,19 @@
 					<hr>
 					<div id="book_type_div">
 						&nbsp; &nbsp;
-						<div id="option1">
+						<div class="book_type_option" id="option1">
 							<input class="check" id = "type_book" type="checkbox" name = "type_book" checked>
-							<label class="labelC" for="type_book">Book</label><br/>
+							<label class="labelC" for="type_book">Book</label>
 						</div>
-						<div id="option2">
+						<div class="book_type_option" id="option2">
 							<input class="check" id = "type_journal" type="checkbox" name = "type_journal" checked>
-							<label class="labelC" for="type_journal">Journal</label><br/>
+							<label class="labelC" for="type_journal">Journal</label>
 						</div>
-						<div id="option3">
+						<div class="book_type_option" id="option3">
 							<input class="check" id = "type_sp" type="checkbox" name = "type_sp" checked>
-							<label class="labelC" for="type_sp">SP</label> 	&nbsp; &nbsp; 	&nbsp; 
+							<label class="labelC" for="type_sp">SP</label>
 						</div>
-						<div id="option4">	
+						<div class="book_type_option" id="option4">	
 							<input class="check" id = "type_thesis" type="checkbox" name = "type_thesis" checked>
 							<label class="labelC" for="type_thesis">Thesis</label>
 						</div>
