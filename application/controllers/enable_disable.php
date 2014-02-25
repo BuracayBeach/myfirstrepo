@@ -88,26 +88,11 @@ class Enable_disable extends CI_Controller {
 		//maximum number of results per page
 		$page_size = 10;
 
-		//declare the necessary configuration for pagination 
-		$config['base_url'] = base_url()."enable_disable/search/";
-		$config['total_rows'] = count($result);
-		$config['per_page'] = $page_size;
-		//set-up pagination using the given configuration
-		$this->pagination->initialize($config);
-
-		//filter results based on specified page
-		//$array['result'] = $this->filter_results($result,$lower_bound,$page_size);
-		//$array['links'] = $this->pagination->create_links();
-		//temporarily save the $_POST array to session to paginate without losing the search results
-		//$_SESSION['post_temp'] = $_POST;
- 		//$this->load->view('header');						//passes the result to the view 
- 		//$this->load->view('search_user_view');
-		//$this->load->view('enable_disable_view', $array);	//loads the view with the results
-		//$this->load->view('footer');
-		//$filtered_results = $this->filter_results($result,$lower_bound,$page_size);
-		$filtered_results = $result;
-		//var_dump($filtered_results);
-		//var_dump($filtered_results);
+		$filtered_results['results'] = $result;//$this->filter_results($result,$lower_bound,$page_size);
+		$result_count = count($result);
+		$num_pages = floor($result_count / $page_size);
+		if($result_count % $page_size > 0) $num_pages++;
+		$filtered_results['links']  = $num_pages;
 		echo json_encode($filtered_results);
 	}
 
@@ -245,9 +230,11 @@ class Enable_disable extends CI_Controller {
 		if ($upper_bound >  $max_index)	$upper_bound = $max_index;
 
 		//filter the array based on the constraints
-		for($i=$lower_bound;$i<$upper_bound;$i+=1)
+		//$i -> indexing of the original array (may not start from 0)
+		//$j -> indexing of the filtered array (should start from 0)
+		for($i=$lower_bound,$j=0;$i<$upper_bound;$i+=1,$j+=1)
 		{
-			$filtered_array[$i] = $array[$i];
+			$filtered_array[$j] = $array[$i];
 		}
 
 		return $filtered_array;

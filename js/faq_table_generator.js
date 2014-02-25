@@ -43,11 +43,9 @@ function generateFaqRow(data,isAdmin){
                         '</h5></span><br/><br/>'+
                         '<section '+
                         ' class="answer" name="answer" >'+data.answer+'</section> <br/>'+
-                         buttons+
-                        prevDataInputs + editButtons + '<hr/>'
+                        prevDataInputs + editButtons + buttons + '<hr/>' +
                     '</td>'+
                     '</tr>';
-    console.log(data);
 
     var tableContainer = $('#faq_table_container');
     if(tableContainer.find('table').length == 0){

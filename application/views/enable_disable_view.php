@@ -7,6 +7,10 @@
           	<table id="result_table">	
           		
           	</table>
+
+          	<div id ="pagination_controller">
+
+          	</div>
 		</div>
 
 		<!-- start edit by Carl Adrian P. Castueras -->
