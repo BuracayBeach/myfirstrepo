@@ -109,8 +109,8 @@ class User_account extends CI_Controller {
 		}
 
 		else{
-			$_SESSION['create_account_notif'] = "Failed in creating account!";
-			redirect(site_url("user_account/create_account"));
+
+			redirect(base_url() . "create_account");
 		}
 	}
 
@@ -135,7 +135,7 @@ class User_account extends CI_Controller {
 		}
 
 		else{
-			$_SESSION['update_account_notif'] = "Email already exist!";
+			$_SESSION['update_account_notif'] = "email";
 			redirect(site_url("update_account"));
 		}
 	}
@@ -150,10 +150,10 @@ class User_account extends CI_Controller {
 		if($database_password==$current_password) {
 			$_SESSION['change_password_notif'] = "Succesfully changed password!";
 			$this->user_account_model->update_password($new_password, $uname);
-			redirect(site_url("user_account/update_account"));	
+			redirect(site_url("update_account"));	
 		} else {
-			$_SESSION['change_password_notif'] = "Password does not match";
-			redirect(site_url("user_account/update_account"));	
+			$_SESSION['change_password_notif'] = "pass";
+			redirect(site_url("update_account"));	
 		}
 	}
 
