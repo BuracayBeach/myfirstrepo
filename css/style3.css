@@ -40,12 +40,12 @@
   height: 7% !important;
     outline: 0;
     margin-left:6% !important;
-    margin-right:10% !important;
+    margin-right:7% !important;
     background: transparent !important;
     border: 2px solid #2B65EC !important;
-    width: 80% !important;
+    width: 90% !important;
     font-family:"Segoe UI Light" !important;
-    font-size:90% !important;
+    font-size:100% !important;
     text-indent: 0%;
 }
 
@@ -67,13 +67,20 @@ list-style-type: none !important;
 }
 
 #book_type_div{
-  margin-left: 2.4% !important;
+  margin-left: 3% !important;
   font-size: 1% !important;
+  float: left !important;
+
 }
 
 #status{
-  margin-left: 5% !important;
+  margin-left: 0% !important;
   font-size: 1% !important;
+   float: left !important;
+   width: 50% !important;
+   border-left: 1px solid #2B65EC !important;
+   margin-right:-10% !important;
+   height: 20% !important;
 }
 
 body{
@@ -85,76 +92,29 @@ body{
   color: #fff !important;
   background: #2B65EC !important;
   text-decoration: none !important;
-  font-size: 105% !important;
+  font-size: 140% !important;
+}
+.sidebar-nav li{
+  color: #2B65EC !important;
+  text-decoration: none !important;
+  font-size: 110% !important;
 }
 
 .sidebar-nav li.active {
   background-color: #FF6600 !important;
   color:#fff !important;
-  font-size: 100% !important;
+  font-size: 130% !important;
 }
 
 .sidebar-nav {
   margin-left: 0%;
+  font-size: 100% !important;
 }
 
 #search{
-    border-right: 2px solid #2B65EC !important;
-
+    border-right: 1px solid #2B65EC !important;
 }
 
-.check{
-  visibility: hidden !important;
-}
-
-
-#option1{
-  width:20% !important;
-  float: left !important;
-}
-
-#option2{
-  width:20% !important;
-  float: left !important;
-}
-
-
-#option3{
-  width:20% !important;
-  float: left !important;
-}
-
-#option4{
-  width:20% !important;
-  float: left !important;
-}
-#option1 .check:checked + .labelC{
-
-  font-weight: bold !important;
-  
-  float: left !important;
-}
-
-#option2 .check:checked + .labelC{
-
-  font-weight: bold !important;
-  
-  float: left !important;
-}
-
-
-#option3 .check:checked + .labelC{
-  
-  font-weight: bold !important;
-
-  float: left !important;
-}
-
-#option4 .check:checked + .labelC{
-
-  font-weight: bold !important;
-  float: left !important;
-}
 
 /*---------------------------------
 
