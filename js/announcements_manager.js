@@ -56,6 +56,7 @@ function addAnnouncement(event){
         try{
             data = JSON.parse(data);
             generateAnnouncementRow(data);
+            $('[data-toggle="tab"]').click();
         }catch(e){
             console.log(e);
             console.log(data);

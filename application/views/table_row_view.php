@@ -38,23 +38,7 @@
         "</em></div>";
 
     if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){  //--------------- ADMIN ACTIONS ----------------\\
-
-        // Edit , Delete Button
-        if ($page!='index') echo "<span><a href='javascript:void(0)' bookno='{$row->book_no}' class='edit_button'>Edit</a></span>&nbsp&nbsp&nbsp";
-        if ($row->status != 'borrowed' && $page!='index') echo "<span><a href='javascript:void(0)' bookno='{$row->book_no}' class='delete_button'>Delete</a></span>&nbsp | &nbsp";
-        else echo "<span>({$row->status})&nbsp|&nbsp</span>";
-        echo "<span>";
-
-        // Lend , Return Button
-
-        /* edit by Edzer Padilla start */
-        if ($row->status == "reserved")  echo "<a bookno='{$row->book_no}' class='transaction_anchor lendButton' >Lend</a>";
-        elseif ($row->status == "borrowed") echo "<a bookno='{$row->book_no}' class = 'transaction_anchor receivedButton'>Return</a>";
-        else echo "(" . $row->status . ")";
-        /* edit end */
-        echo "</span>";
-
-
+        include "table_buttons_view.php";
     } else { //--------------- USER ACTIONS ----------------\\
 
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){

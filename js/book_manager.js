@@ -63,7 +63,6 @@ function addBook(event){
                     data = JSON.parse(data);
                     $.get("index.php/book/get_row_view",data,function(data){
                         $('#recently_added_books_table').find('tbody').append(data);
-                        console.log('should be toggled');
                         toggleRecentlyAddedTable();
                     });
                 })
@@ -168,6 +167,7 @@ function editBook(event){
                     data = JSON.parse(data);
                     console.log(data);
                     var rowToUpdate = editedRow;
+
                     rowToUpdate.find("[book_data='book_no']").text(data.book_no);
                     rowToUpdate.find("[book_data='book_type']").html("<em>"+data.type+"</em>");
                     rowToUpdate.find("[book_data='book_title']").text(data.book_title);
@@ -183,6 +183,12 @@ function editBook(event){
 
                     var anchorHTML = generateTransactionAnchorHTML(data.status,data.book_no);
                     transactionSpan.html(anchorHTML);
+
+                    $.get("index.php/book/get_buttons_view", data, function(data){
+                        console.log(data);
+                        rowToUpdate.find('span').remove();
+                        rowToUpdate.find('[book_data="author"]').after(data);
+                    })
                 });
                 editForm.closest('div').hide();
             }else{
@@ -227,29 +233,6 @@ function deleteBook(){
 /***** END DELETE FUNCTIONS *****/
 
 /*** STRING HTML GENERATION FUNCTIONS ***/
-//function generateTableRowHTML(data){
-//    var rowHTML = $('<tr>');
-//    rowHTML.append(
-//        '<td book_data="book_no" align="center">'+data.book_no+'</td>'
-//            +'<td>' +
-//            '<div style="font:20px Verdana" book_data="book_title">'+data.book_title+'</div>' +
-//            '<div style="font-size:17px" book_data="description">'+data.description+'<br/></div>' +
-//            '<div style="font-size:13px" book_data="author"><em>'+data.author+'</em><br/></div>' +
-//            '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="edit_button" >Edit</a></span>&nbsp;&nbsp;&nbsp;' +
-//            '<span><a href="javascript:void(0)" bookno="'+data.book_no+'" class="delete_button" >Delete</a></span>&nbsp; | &nbsp;' +
-//            '<span>' +
-//            generateTransactionAnchorHTML(data.status,data.book_no) +
-//            '</span>'+
-//            '</td>' +
-//            '<td align="center">' +
-//            '<div book_data="publisher">'+data.publisher+'</div>' +
-//            '<div book_data="date_published">'+data.date_published+'</div>' +
-//            '</td>' +
-//            '<td book_data="tags">'+data.tags+'</td>'
-//    );
-//    return rowHTML;
-//}
-
 function generateTransactionAnchorHTML(status,book_no){
     var anchorText = "";
     var href = "href='http://localhost/myfirstrepo/index.php/update_book/";

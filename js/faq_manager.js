@@ -47,7 +47,7 @@ function updateChanges(){
     $.post("index.php/faq/edit", data , function(data){ //navigate to the controller with the address:index.php/faq/edit
         data = JSON.parse(data);
 
-        row.find('.question').text(data.question);
+        row.find('.question h5').text(data.question);
         row.find('.answer').html(data.answer);
         row.find('.question').attr("contenteditable",false);
         row.find('.save_faq_button').hide();
@@ -93,7 +93,7 @@ function setEditTarget(){
 function cancelChanges(){
     var row = $(this).closest('tr');
     row.removeClass('active');
-    row.find('.question').text(row.find('.prev_question').text());
+    row.find('.question h5').text(row.find('.prev_question').text());
     row.find('.question').attr("contenteditable",false);
     customEditor.removeInstance('answer_'+row.attr('faq_id'));
     row.find('.answer_editor').hide();
@@ -112,7 +112,7 @@ function editFAQ(event){
         data = JSON.parse(data);
         console.log(data);
         var tr = $('#faq_table').find('tr[faq_id="'+data.id+'"]');
-        tr.find('.question').text(data.question);
+        tr.find('.question').text("<h5>"+data.question+"</h5>");
         tr.find('.answer').text(data.answer);
 
         editFaqForm.closest('tr').hide();

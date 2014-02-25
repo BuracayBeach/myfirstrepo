@@ -49,7 +49,7 @@ class Home extends CI_Controller {
 
     public function ihome(){
         $data['title'] = "eICS Lib Home";
-        $data['page'] = 'manage';
+        $data['page'] = 'index';
         $this->load->view("header", $data);
 
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";

@@ -45,7 +45,7 @@
         Edit Material<br/>
         <span class="errors"></span>
         <label for="edit_prev_book_no" hidden>Previous Book No:</label>
-        <input type="hidden" maxlength="10"  name="prev_book_no" id="edit_prev_book_no"/>
+        <input type="hidden" maxlength="12"  name="prev_book_no" id="edit_prev_book_no"/>
         <label for="edit_book_no">Book No: </label>
         <input type="text" title="ISBN (ex. 1234567890)" maxlength="10" name="book_no" id="edit_book_no" placeholder="Book Number" required />
         <label for="edit_book_title">Book Title: </label>
@@ -59,7 +59,7 @@
             <option>Other</option>
         </select>
         <input type="text"
-               pattern="^[a-zA-Z0-9 '_]{1,20}$"
+               pattern="^[a-zA-Z0-9. '_]{1,20}$"
                title="magazine, newspaper"
                name="other" class="other" id="edit_other"  />
         <div class="abstract_container">
@@ -67,12 +67,12 @@
             <textarea spellcheck="true" maxlength="1024" name="abstract" id="edit_abstract" placeholder="Abstract">
             </textarea>
         </div>
-        <label for="edit_author">Book Author: </label>
+        <label for="edit_author">Book Author:</label>
         <input type="text" title="multiple authors are separated by semi-colon"
                name="author"
                id="edit_author"
-               pattern="([a-zA-Z,'0-9 ]+(;[a-zA-Z,'0-9 ]+)*)*" />
-        <label for="edit_book_status">Book Status: </label>
+               pattern="([a-zA-Z.,'0-9 ]+(;[a-zA-Z,.'0-9 ]+)*)*" />
+        <label for="edit_book_status">Book Status: (Only for error in data)</label>
         <select name="book_status" id="edit_book_status">
             <option value = "available" selected="true"> Available </option>
             <option value = "reserved"> Reserved </option>

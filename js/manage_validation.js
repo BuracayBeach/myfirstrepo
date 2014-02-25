@@ -8,8 +8,8 @@ function validateBookNo(bookNo){
     if(bookNo == ''){
         return '-book number is required.'
     }
-    else if(bookNo.length > 10){
-        return '-Book number too long: cannot be more than 10 digits/characters<br/>';
+    else if(bookNo.length > 12){
+        return '- Book number too long: cannot be more than 10 digits/characters<br/>';
     }else{
         return '';
     }
@@ -21,7 +21,7 @@ function validateTitle(title){
         return "-Book title is required";
     }
     else if(title.length > 255){
-        return "-Title too long: please limit it to 255 characters<br/>"
+        return "- Title too long: please limit it to 255 characters<br/>"
     }
     else return '';
 }
@@ -33,7 +33,7 @@ function validateDatePublished(year){
     if(year.length == null || year <= currentYear && year >= 0){
         return '';
     }else{
-        return '-Please enter a valid year.<br/>'
+        return '- Please enter a valid year.<br/>'
     }
 }
 
@@ -58,19 +58,22 @@ function validateTags(tags){
     var res = patt.test(tags);
 
     if(tags.length > 255){
-        return '-Tags too long: limit it to 255 characters<br/>';
+        return '- Tags too long: limit it to 255 characters<br/>';
     }
     else if(res){
         return '';
     }else{
-        return '-Invalid format for tags<br/>';
+        return '- Invalid format for tags<br/>';
     }
 }
 
 function validateType(type){
     type = type.trim();
+
     if(type.length > 20){
-        return '-Type too long: limit it to 20 characters<br/>';
+        console.log(type);
+        console.log(type.length);
+        return '- Type too long: limit it to 20 characters<br/>';
     }else{
         return '';
     }
@@ -79,14 +82,14 @@ function validateType(type){
 function validateDescription(description){
     description = description.trim();
     if(description.length > 255){
-        return "-Description too long: limit it to 255 characters<br/>"
+        return "- Description too long: limit it to 255 characters<br/>"
     }else return '';
 }
 
 function validatePublisher(publisher){
     publisher = publisher.trim();
     if(publisher.length > 255){
-        return "-Publisher too long: limit it to 255 characters<br/>"
+        return "- Publisher too long: limit it to 255 characters<br/>"
     }else{
         return '';
     }
@@ -95,14 +98,7 @@ function validatePublisher(publisher){
 function validateAbstract(abstract){
     abstract = abstract.trim();
     if(abstract.length > 1024){
-        return "-Abstract too long: limit it to 1024 characters<br/>"
-    }else return '';
-}
-
-function validateOther(other){
-    other = other.trim();
-    if(other.length > 20){
-        return "-Type too long: limit it to 20 characters";
+        return "- Abstract too long: limit it to 1024 characters<br/>"
     }else return '';
 }
 
@@ -125,7 +121,6 @@ function checkAll(){
     msgs += validateType(type=='Other'?other:type);
     msgs += validateAbstract(abstract);
     msgs += validateAuthor(author);
-    msgs += validateOther(author);
     msgs += validateDescription(description);
     msgs += validatePublisher(publisher);
     msgs += validateDatePublished(year);
