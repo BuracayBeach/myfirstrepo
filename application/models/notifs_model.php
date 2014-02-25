@@ -28,6 +28,17 @@ class Notifs_Model extends CI_Model {
 		else return $q->result();
 	}
 
+	public function get_unreturned_by_user($username) {
+		$q = $this->db->query("SELECT book_no, date_borrowed FROM lend WHERE
+						date_returned IS NULL AND
+						username_user LIKE '{$username}'");
+
+		if ($q->num_rows() == 0)
+			return "";
+		else return $q->result();
+	}
+
+
 	public function check_for_first($book_no) {
 
 		$reserves = $this->db->query("SELECT username, notified FROM reserves WHERE 
