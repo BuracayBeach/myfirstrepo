@@ -37,50 +37,49 @@ class Home extends CI_Controller {
         $this->load->view("header", $data); 
         $this->load->view("search_results_view");
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
-       
-        if ($is_admin) $this->load->view('manage_view');
+
+        if ($is_admin){
+            $this->load->view("manage_view");
+        }else{
+            $this->load->view("announcements_view");
+        }
 /*        if ($is_admin){
             $this->load->view('announcement_manage_view');
             $this->load->view("announcement_view");
         }
 */
-
         $this->load->view("footer");
     }
 
-    public function ihome(){
+    public function manage(){
         $data['title'] = "eICS Lib Home";
         $data['page'] = 'ihome';
         $this->load->view("header", $data);
-        $this->load->view("search_results_view");
-        $this->load->view("announcements_view");        
 
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin){
-            $this->load->view('recently_added_view');
+
+            $this->load->view('admin_ihome_view');
             $this->load->view('manage_view');
 
+            $this->load->view("announcements_view");
+            $this->load->view("announcements_manage_view");
         }
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
             $data['notifs'] = $this->notifs_model->get_all($_SESSION['username']);
+            $this->load->view("search_results_view");
+            $this->load->view("announcements_view");
             $this->load->view('notifications_view', $data);
+        }
+
+        if(!isset($_SESSION['type'])){
+            $this->load->view("search_results_view");
+            $this->load->view("announcements_view");
+
         }
 
 
         $this->load->view("footer");
-    }
-
-    public function announcements(){
-        $data['title'] = "eICS Lib Announcements";
-        $data['page'] = 'announcements';
-        $this->load->view("header", $data);
-        $this->load->view("search_results_view");
-        $this->load->view('announcements_view');
-
-        if (isset($_SESSION['type']) && $_SESSION['type'] == "admin")
-            $this->load->view('announcements_manage_view', $data);
-
-        $this->load->view("footer", $data);
     }
 
     public function about_us(){
@@ -204,10 +203,12 @@ class Home extends CI_Controller {
         $this->load->view('update_admin_view', $new_result);
     }
 
-    public function manage_accounts(){
+    public function accounts(){
         $data['title'] = "eICS Lib Sign Up";
         $this->load->view("header", $data);
-
+        $this->load->view("search_user_view");
+        $this->load->view("enable_disable_view");
+        $this->load->view("footer");
         //put loading and stuff here
         $this->load->view("search_results_view",$data);
 

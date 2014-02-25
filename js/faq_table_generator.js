@@ -2,7 +2,7 @@
  * Created by isnalla on 2/23/14.
  */
 
-var tableHTML = '<table id="faq_table"></table>';
+var tableHTML = '<table id="faq_table"  class="small-7"></table>';
 
 function generateFaqTable(isAdmin){
     $.post("index.php/faq/get_all_faq",function(data){
@@ -29,7 +29,7 @@ function generateFaqRow(data,isAdmin){
     if(isAdmin){
         prevDataInputs = '<h4 hidden class="prev_question"></h4>' +
                          '<textarea style="display:none;" id="answer_'+data.id+'" class="answer_editor"></textarea>';
-        var editButtons = '<button class="save_faq_button" style="display:none;">Save</button>' +
+        editButtons = '<button class="save_faq_button" style="display:none;">Save</button>' +
             '<button class="cancel_faq_button" style="display:none;">Cancel</button>';
         buttons =
             '<button class="edit_faq_button">Edit</button>'+

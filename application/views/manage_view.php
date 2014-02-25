@@ -1,4 +1,4 @@
-
+<div id="right_side_bar">
 <button class="" id="show_add_form_button" name="show_add_form_button" >Add Material</button>
 <div id="add_container">
     <form autocomplete="on" id="add_book_form">
@@ -13,7 +13,11 @@
             <option>Thesis</option>
             <option>Other</option>
         </select>
-        <input type="text" title="ex. magazine, newspaper" pattern="^[a-zA-Z0-9 '_]{1,20}$" name="other" class="other" id="add_other" />
+        <input type="text"
+               title="ex. magazine, newspaper"
+               pattern="^[a-zA-Z0-9 '_]{1,20}$"
+               placeholder="Please specify..."
+               name="other" class="other" id="add_other" />
         <div class="abstract_container">
             <label for="add_abstract" >Abstract</label>
             <textarea spellcheck="true" maxlength="1024" name="abstract" id="add_abstract" placeholder="Abstract">
@@ -33,6 +37,9 @@
         <button id="add_cancel_button" name="add_cancel_button" >Cancel</button>
     </form>
 </div>
+
+</div>
+
 <div id="edit_container">
     <form name="edit_book" id="edit_book_form" method="post">
         Edit Material<br/>
@@ -51,7 +58,10 @@
             <option>Thesis</option>
             <option>Other</option>
         </select>
-        <input type="text" pattern="^[a-zA-Z0-9 '_]{1,20}$" title="magazine, newspaper" name="other" class=".other" id="edit_other"  />
+        <input type="text"
+               pattern="^[a-zA-Z0-9 '_]{1,20}$"
+               title="magazine, newspaper"
+               name="other" class="other" id="edit_other"  />
         <div class="abstract_container">
             <label for="edit_abstract" >Abstract</label>
             <textarea spellcheck="true" maxlength="1024" name="abstract" id="edit_abstract" placeholder="Abstract">
@@ -64,7 +74,7 @@
                pattern="([a-zA-Z,'0-9 ]+(;[a-zA-Z,'0-9 ]+)*)*" />
         <label for="edit_book_status">Book Status: </label>
         <select name="book_status" id="edit_book_status">
-            <option value = "available"> Available </option>
+            <option value = "available" selected="true"> Available </option>
             <option value = "reserved"> Reserved </option>
             <option value = "borrowed"> Borrowed </option>
         </select>

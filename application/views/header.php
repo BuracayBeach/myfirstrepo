@@ -14,6 +14,7 @@
 
     <!-- If you are using CSS version, only link these 2 files, you may add app.css to use for your overrides if you like. -->
     <link rel="stylesheet" href="<?php echo base_url();?>css/normalize.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>css/foundation.css">
 
     <!-- If you are using the gem version, you need this only -->
@@ -22,6 +23,7 @@
 
     <script src="<?php echo base_url();?>js/vendor/modernizr.js"></script>
     <script src="<?php echo base_url();?>js/jquery-1.11.0.js"></script>
+    <script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -57,7 +59,7 @@
     <section class="top-bar-section">
       <!-- Left Nav Section -->
       <ul class="left">
-        <li><a href="<?php echo base_url();?>ihome">Home</a></li>
+        <li><a href="<?php echo base_url();?>manage">Manage</a></li>
       </ul>
 
       <?php
@@ -79,7 +81,7 @@
         if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
           echo '
           <ul class="left">
-            <li><a href="'.base_url().'manage_accounts">Manage Accounts</a></li>
+            <li><a href="'.base_url().'accounts">Accounts</a></li>
           </ul>';
 
         }
@@ -106,7 +108,7 @@
   <?php include 'search_view.php';?>
 </div>
 
-<div class="show-for-small-only"  id="results_per_page_div">
+<div class=""  id="results_per_page_div">
   <form id="results_per_page_form">
     <input id="results_per_page" style="width:45px" type="number" min="1" max="100" value="10" pattern="^[0-9]+$"/>
     <span>Results per page&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
