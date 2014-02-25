@@ -113,7 +113,9 @@ body{
 
 #search{
     border-right: 1px solid #2B65EC !important;
+    width: 100% !important;
 }
+
 
 
 /*---------------------------------
@@ -161,4 +163,40 @@ Update
 
 .signup input.valid{
   background: rgba(200, 250, 200, 0.5);
+}
+
+
+/*-----------------------------
+
+ADD AND EDIT
+
+-----------------------------*/
+
+
+#add_container{
+  width: 20% !important;
+  float:right !important;
+  border: 3px solid #2B65EC !important;
+  margin:2% !important;
+    clear: right !important;
+}
+#edit_container{
+  width: 20% !important;
+  float:right !important;
+  border: 3px solid #2B65EC !important;
+  margin:2% !important;
+    clear: right !important;
+}
+#add_container input{
+  height:5% !important;
+}
+#edit_container input{
+  height:5% !important;
+}
+
+#show_add_form_button{
+  float:right !important;
+  margin:2% !important;
+  height: 8% !important;
+  clear: right !important;
 }
