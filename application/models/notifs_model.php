@@ -8,7 +8,7 @@ class Notifs_Model extends CI_Model {
 							FROM book b, notifications n
 							WHERE n.username_user = '{$username}'
 							AND (n.book_no = b.book_no OR n.book_no IS NULL)
-							GROUP BY n.id");
+							GROUP BY n.id DESC");
 
 		if ($q->num_rows() > 0)
 			return $q->result();

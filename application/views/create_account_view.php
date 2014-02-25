@@ -1,5 +1,9 @@
 <div class="small-6 column signup" id="container"> 
-	<form  name="userForm" action="<?php echo base_url();?>index.php/user_account/createaccount" method="post" >
+
+	<form  class="<?php
+		if(isset($_SESSION['create_account_notif'])){
+			echo $_SESSION['create_account_notif'];
+			}?>" name="userForm" action="<?php echo base_url();?>index.php/user_account/createaccount" method="post" >
 		<h1>Sign Up</h1>
 		<div id="body">
 			Username: <input type="text" name="username" required/><span name="span username"></span><br/>
@@ -86,3 +90,5 @@
 
 <script src="<?php echo base_url(); ?>js/create_account.js"></script>
 <script src="<?php echo base_url();?>js/vendor/jquery.js"></script>
+
+

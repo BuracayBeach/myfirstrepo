@@ -32,7 +32,7 @@
   <nav style="" class="top-bar navb" data-topbar>
     <ul class="title-area navb">
       <li class="name " >
-        <h1><a href="<?php echo base_url();?>"><img style="max-height:30px;" src="<?php echo base_url();?>images/icon/logo_icon.png"/> </a></h1>
+        <a href="<?php echo base_url();?>"><img style="max-height:30px;" src="<?php echo base_url();?>images/icon/logo_icon2.png"/> </a>
       </li>
       <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
       <li class="divider"></li>

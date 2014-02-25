@@ -28,6 +28,7 @@ class Home extends CI_Controller {
         $this->load->model('user_account_model');
         $this->load->model('admin_account_model');
 
+        $this->load->helper("form");
         $this->load->library('safeguard');
     }
 
