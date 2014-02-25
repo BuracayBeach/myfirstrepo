@@ -59,7 +59,7 @@ class User_account extends CI_Controller {
 			return false;
 
 		else if(!$result){
-			$user_notif['login_notif'] = "Username does not exist!";
+			$_SESSION['login_notif'] = "Username does not exist!";
 			return false;
 		}
 		
@@ -68,7 +68,7 @@ class User_account extends CI_Controller {
 				return true;
 			}
 			else{
-				$user_notif['login_notif'] = "Password does not match!";		
+				$_SESSION['login_notif'] = "Password does not match!";		
 				return false;
 			}
 		}
@@ -103,13 +103,13 @@ class User_account extends CI_Controller {
 		$result = $this->user_account_model->insert_data($new_data);
 
 		if($result){
-			$user_notif['create_account_notif'] = "Succesfully created account!";
+			$_SESSION['create_account_notif'] = "Succesfully created account!";
 			$this->send_mail($new_data);
 			$this->backtohome();
 		}
 
 		else{
-			$user_notif['create_account_notif'] = "Failed in creating account!";
+			$_SESSION['create_account_notif'] = "Failed in creating account!";
 			redirect(site_url("user_account/create_account"));
 		}
 	}
@@ -130,12 +130,12 @@ class User_account extends CI_Controller {
 		$result = $this->user_account_model->update_data($new_data, $uname);
 		
 		if($result){
-			$user_notif['update_account_notif'] = "Succesfully updated account!";
+			$_SESSION['update_account_notif'] = "Succesfully updated account!";
 			redirect(site_url("update_account"));
 		}
 
 		else{
-			$user_notif['update_account_notif'] = "Email already exist!";
+			$_SESSION['update_account_notif'] = "Email already exist!";
 			redirect(site_url("update_account"));
 		}
 	}
@@ -148,11 +148,11 @@ class User_account extends CI_Controller {
 		$database_password = $this->user_account_model->get_password($uname);
 
 		if($database_password==$current_password) {
-			$user_notif['change_password_notif'] = "Succesfully changed password!";
+			$_SESSION['change_password_notif'] = "Succesfully changed password!";
 			$this->user_account_model->update_password($new_password, $uname);
 			redirect(site_url("user_account/update_account"));	
 		} else {
-			$user_notif['change_password_notif'] = "Password does not match";
+			$_SESSION['change_password_notif'] = "Password does not match";
 			redirect(site_url("user_account/update_account"));	
 		}
 	}

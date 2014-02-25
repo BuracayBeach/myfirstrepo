@@ -40,7 +40,7 @@ class User_account_model extends CI_Model {
 				if ($data['emp_no'] == $row->emp_no) $data_exists_notif .= ' employee no.';
 			}
 			
-			if (isset($user_notif['create_account_notif'])) $user_notif['create_account_notif'] = $data_exists_notif;
+			if (isset($_SESSION['create_account_notif'])) $_SESSION['create_account_notif'] = $data_exists_notif;
 			return false;
 		}
 	}
@@ -89,12 +89,12 @@ class User_account_model extends CI_Model {
 		$query = $this->db->query("SELECT * FROM user WHERE username='{$username}'");
 
 		if($query->result_array()[0]['status'] == "pending"){
-			$user_notif['login_notif'] = "Registration still pending!";
+			$_SESSION['login_notif'] = "Registration still pending!";
 			return "pending";
 		}
 
 		else if($query->result_array()[0]['status'] == "disabled"){
-			$user_notif['login_notif'] = "Account deactivated!";
+			$_SESSION['login_notif'] = "Account deactivated!";
 			return "deactivated";
 		}
 
