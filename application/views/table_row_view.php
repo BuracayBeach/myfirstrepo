@@ -24,12 +24,12 @@
           "</td>";
 
     echo "<td>" .
-        "<div style = 'font:20px Verdana' book_data='book_title'>" .
+        "<div style = 'font:17px Verdana' book_data='book_title'>" .
         $row->book_title .
         "</div>" .
 
 
-        "<div style = 'font-size:17px' book_data='description'> " .
+        "<div style = 'font-size:15px' book_data='description'> " .
         $row->description   . "<br>" .
         "</div>" .
 
@@ -119,7 +119,9 @@
 
     // if (isset($_SESSION['type']) && $_SESSION['type'] == "admin")
     echo "<td book_data='tags'>" . $row->tags . "</td>";
-    echo "<td book_data='abstract'>" . $row->abstract . "</td>";
+    echo "<td book_data='abstract'>" .
+        "<textarea class='hidden_abstract' hidden>" . $row->abstract . "</textarea>" .
+     "</td>";
 
     echo "</tr>";
 
