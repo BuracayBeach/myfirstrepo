@@ -108,13 +108,13 @@ function validateCurrentPassword(){
 	
 	if(msg!="Required"&&msg!="Must be 5-18 characters long."){
 		$('input[name=currentPassword]').removeClass().addClass("valid");
-		$("span[name~='currentPassword']").removeClass().addClass("valid");
+		$("span[name~='currentpassword']").removeClass().addClass("valid");
 		return true;
 	}
 
 	else{
 		$('input[name=currentPassword]').removeClass().addClass("invalid");
-		$("span[name~='currentPassword']").removeClass().addClass("invalid");
+		$("span[name~='currentpassword']").removeClass().addClass("invalid");
 	}
 }
 
@@ -137,13 +137,13 @@ function validateNewPassword(){
 	
 	if(msg!="Required"&&msg!="Must be 5-18 characters long."){
 		$('input[name=newPassword]').removeClass().addClass("valid");
-		$("span[name~='newPassword']").removeClass().addClass("valid");
+		$("span[name~='newpassword']").removeClass().addClass("valid");
 		return true;
 	}
 
 	else{
 		$('input[name=newPassword]').removeClass().addClass("invalid");
-		$("span[name~='nePassword']").removeClass().addClass("invalid");
+		$("span[name~='newpassword']").removeClass().addClass("invalid");
 	}
 }
 
@@ -161,12 +161,12 @@ function validateReNewPassword(){
 	
 	if(msg=="Valid"){
 		$('input[name=newRePassword]').removeClass().addClass("valid");
-		$("span[name~='newRePassword']").removeClass().addClass("valid");
+		$("span[name~='newrepassword']").removeClass().addClass("valid");
 		return true;
 	}
 
 	else{
 		$('input[name=newRePassword]').removeClass().addClass("invalid");
-		$("span[name~='newRePassword']").removeClass().addClass("invalid");
+		$("span[name~='newrepassword']").removeClass().addClass("invalid");
 	}
 }
