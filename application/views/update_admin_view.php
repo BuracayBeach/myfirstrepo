@@ -1,3 +1,4 @@
+<div class="small-7 column">
 <form name="adminForm" action="<?php echo base_url();?>index.php/admin_account/update_admin_account" method="post">
 	First Name: <input type="text" name="name_first" value="<?php echo $name_first; ?>" required/><span name="span name_first"></span><br/>
 	Middle Name: <input type="text" name="name_middle" value="<?php echo $name_middle; ?>" required/><span name="span name_middle"></span><br/>
@@ -10,6 +11,6 @@
 	Re-enter new password : <input type="password" name="newRePassword" required/><span name="span newrepassword"></span><br/>
 	<input type="submit" value="Change"/>
 </form>
-<a href="<?php echo base_url();?>index.php/user_account/backtohome">Back</a>
+</div>
 <script src="<?php echo base_url(); ?>js/update_admin.js"></script>
 <script src="<?php echo base_url();?>js/vendor/jquery.js"></script>
