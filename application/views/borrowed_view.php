@@ -9,23 +9,65 @@ $this->load->view('borrowed_view', $data);
 
 ?>
 
-<div id="borrowed_container">
+<link rel="stylesheet" href="<?php echo base_url();?>css/burnzz.css">
+<script src="<?php echo base_url();?>js/freewall.js"></script>
+
+<h1> BORROWED </h1>
+
+<div id="borrowed_container" class="my_library_container">
+
 
 	<?php if(isset($borrowed)) : foreach ($borrowed as $row) : ?>
-			
-		<div class="borrowed" style="margin: 20px 0;">
+		
+		<?php
+			$due_days =  $days_elapsed[$row->book_no] - 6;
+			if ($due_days == 0)
+				$days_msg = "DUE TODAY!";
+			else if ($due_days > 0)
+				$days_msg = "OVERDUE by {$due_days} days!";
+			else {
+				$due_days *= -1;
+				$days_msg = "Due in {$due_days} days.";
+			}
+		?>
 
-			<span class="book_no"> Book No: <?php echo $row->book_no; ?> </span> &nbsp; |
-			<span class="book_title"> Title: <?php echo $row->book_title; ?> </span> &nbsp; |
-			Date Borrowed: <?php echo $row->date_borrowed; ?> &nbsp;
-			<br/>
+		<div class="item brick">
+
+			<div class="book_title"> <?php echo $row->book_title; ?> </div> <br/>
+			<div class="book_no sub-2"> Book No: <?php echo $row->book_no; ?> </div> <br/>
+			<div class="date_added sub-2"> Date Borrowed: <?php echo $row->date_borrowed; ?> </div> <br/>
+			<div class="days_due"><?php echo $days_msg; ?></div>
 
 		</div>
 
 	<?php endforeach; ?>
-
-	<?php else : ?>
-		<span> No borrowed books. </span>
 	<?php endif; ?>
 
 </div>
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+
+		generateWall();
+
+		function generateWall() {
+			$(function() {  
+				var wall = new freewall(".my_library_container");
+				wall.reset({
+					selector: '.item',
+					animate: false,
+					cellW: 320,
+					cellH: 230,
+					delay: 50,
+					onResize: function() {
+						wall.fitWidth();
+					}
+				});
+				wall.fitWidth();
+			});  
+		}
+		
+	});
+
+</script>

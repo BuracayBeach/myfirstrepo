@@ -37,7 +37,7 @@ class Home extends CI_Controller {
         $this->load->view("header", $data); 
         $this->load->view("search_results_view");
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
-        $this->load->view("announcements_view");        
+       
         if ($is_admin) $this->load->view('manage_view');
 /*        if ($is_admin){
             $this->load->view('announcement_manage_view');
@@ -52,18 +52,25 @@ class Home extends CI_Controller {
         $data['title'] = "eICS Lib Home";
         $data['page'] = 'ihome';
         $this->load->view("header", $data);
-        $this->load->view("search_results_view");
-        $this->load->view("announcements_view");        
+
 
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin){
-            $this->load->view('recently_added_view');
+
+            $this->load->view('admin_ihome_view');
             $this->load->view('manage_view');
 
         }
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
             $data['notifs'] = $this->notifs_model->get_all($_SESSION['username']);
+            $this->load->view("search_results_view");
+            $this->load->view("announcements_view");        
             $this->load->view('notifications_view', $data);
+        }
+
+        if(!isset($_SESSION['type'])){
+            $this->load->view("search_results_view");
+            $this->load->view("announcements_view");        
         }
 
 
@@ -109,17 +116,26 @@ class Home extends CI_Controller {
         $this->load->view("footer");
     }
 
-
-
     public function borrowed(){
         $data['title'] = "eICS Lib My Lib";
         $this->load->view("header", $data);
 
-        $data['borrowed'] = $this->lend_model->get($_SESSION['username']);
-        $this->load->view('borrowed_view', $data);
+        if (isset($_SESSION)) {
+            $data['borrowed'] = $this->lend_model->get($_SESSION['username']);
+            $unreturned = $this->notifs_model->get_unreturned_by_user($_SESSION['username']);
+
+            $days_elapsed = array();
+            foreach ($unreturned as $row) {
+                $diff = date_diff(date_create($row->date_borrowed), date_create(date('Y-m-d H:i:s')));
+                $days = $diff->format("%a");
+
+                $days_elapsed[$row->book_no] = $days;
+            }
+            $data['days_elapsed'] = $days_elapsed;
+            $this->load->view('borrowed_view', $data);
+        }
 
         $this->load->view("search_results_view");
-
         $this->load->view("footer");
     }
 
@@ -127,11 +143,14 @@ class Home extends CI_Controller {
         $data['title'] = "eICS Lib My Lib";
         $this->load->view("header", $data);
 
-        $data['favorites'] = $this->favorite_model->get_all($_SESSION['username']);
-        $data['reserve_user'] = $this->reserve_model->get($_SESSION['username']);
-        $data['lend_user'] = $this->lend_model->get($_SESSION['username']);
+        if (isset($_SESSION)) {
+            $data['favorites'] = $this->favorite_model->get_all($_SESSION['username']);
+            $data['reserve_user'] = $this->reserve_model->get($_SESSION['username']);
+            $data['lend_user'] = $this->lend_model->get($_SESSION['username']);
 
-        $this->load->view('favorites_view', $data);
+            $this->load->view('favorites_view', $data);
+        }
+
         $this->load->view("search_results_view");
         $this->load->view("footer");
     }
@@ -140,15 +159,14 @@ class Home extends CI_Controller {
         $data['title'] = "eICS Lib My Lib";
         $this->load->view("header", $data);
 
-        $rank = $this->reserve_model->check_book_ranks($_SESSION['username']);
+        if (isset($_SESSION)) {
+            $data['book'] = $this->reserve_model->check_book_ranks($_SESSION['username']);
+            $data['reserves'] = $this->reserve_model->get($_SESSION['username']);
 
-        $data['book'] = $rank['book'];
-        $data['reserves'] = $this->reserve_model->get($_SESSION['username']);
-
-        $this->load->view('reserves_view', $data);
+            $this->load->view('reserves_view', $data);
+        }
 
         $this->load->view("search_results_view");
-
         $this->load->view("footer");
     }
 
@@ -188,7 +206,17 @@ class Home extends CI_Controller {
         $data = $this->admin_account_model->get_admin_data($admin_username);
         $new_result = $this->safeguard->str_array_ready_for_display($data);
         $this->load->view('update_admin_view', $new_result);
-   }
+    }
+
+    public function manage_accounts(){
+        $data['title'] = "eICS Lib Sign Up";
+        $this->load->view("header", $data);
+
+        //put loading and stuff here
+        $this->load->view("search_results_view",$data);
+
+
+    }
 
 }
 

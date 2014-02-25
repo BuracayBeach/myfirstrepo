@@ -2,10 +2,7 @@
 
 /* call this view via:
 
-
-$rank = $this->reserve_model->check_book_ranks($_SESSION['username']);
-
-$data['book'] = $rank['book'];
+$data['book'] = $this->reserve_model->check_book_ranks($_SESSION['username']);
 $data['reserves'] = $this->reserve_model->get($_SESSION['username']);
 
 $this->load->view('reserves_view', $data);
@@ -14,7 +11,12 @@ $this->load->view('reserves_view', $data);
 
 ?>
 
-<div id="reserves_container">
+<link rel="stylesheet" href="<?php echo base_url();?>css/burnzz.css">
+<script src="<?php echo base_url();?>js/freewall.js"></script>
+
+<h1> BORROWED </h1>
+
+<div id="reserves_container" class="my_library_container">
 
 
 	<?php // para sa ranking 
@@ -49,22 +51,19 @@ $this->load->view('reserves_view', $data);
 
 		?>
 			
-		<div class="reserves" style="margin: 20px 0;">
+		<div class="item brick">
 
-			<span class="book"> <?php echo $row->book_title; ?> </span>
-			| Date Reserved: <?php echo $row->date_reserved; ?>
-			| Rank <?php echo $rank; ?>
-			of <?php echo $book_ranks[$row->book_no]; ?>
-			<?php echo "<button class='.reserve_button' book_no='" . $row->book_no . "'>unreserve</button>" ?>
+			<div class="book_title"> <?php echo $row->book_title; ?> </div> <br/>
+			<div class="date_reserved sub-2">  Date Reserved: <?php echo $row->date_reserved; ?> </div> <br/>
+			<div class="rank">  Rank <?php echo $rank; ?> 
+			of <?php echo $book_ranks[$row->book_no]; ?> </div> 
+			<?php echo "<button class='action_button reserve_button btn_untoggle margin_sa_left' book_no='" . $row->book_no . "'>unreserve</button>" ?>
 
 			<br/>
 			
 		</div>
 
 	<?php endforeach; ?>
-
-	<?php else : ?>
-		<span> No reserved books. </span>
 	<?php endif; ?>
 
 	<script type="text/javascript">
@@ -88,8 +87,30 @@ $this->load->view('reserves_view', $data);
 					}
 				});
 
+				brick = this.parentNode;
+				$(brick).remove();
+				generateWall();
 				
 			});
+
+			generateWall();
+
+			function generateWall() {
+				$(function() {  
+					var wall = new freewall(".my_library_container");
+					wall.reset({
+						selector: '.item',
+						animate: false,
+						cellW: 320,
+						cellH: 230,
+						delay: 50,
+						onResize: function() {
+							wall.fitWidth();
+						}
+					});
+					wall.fitWidth();
+				});  
+			}
 		});
 
 	</script>
