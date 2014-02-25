@@ -188,7 +188,16 @@ class Home extends CI_Controller {
         $data = $this->admin_account_model->get_admin_data($admin_username);
         $new_result = $this->safeguard->str_array_ready_for_display($data);
         $this->load->view('update_admin_view', $new_result);
-   }
+    }
+
+    public function manage_accounts(){
+        $data['title'] = "eICS Lib Sign Up";
+        $this->load->view("header", $data);
+
+        //put loading and stuff here
+
+        
+    }
 
 }
 
