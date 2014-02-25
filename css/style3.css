@@ -100,21 +100,61 @@ body{
 
 #search{
     border-right: 2px solid #2B65EC !important;
-}
 
+}
 
 .check{
   visibility: hidden !important;
 }
 
-.check:checked + .labelC{
-  font-weight: bold !important;
+
+#option1{
+  width:20% !important;
+  float: left !important;
 }
 
-#option1 {
-  border: 2px solid #2B65EC !important;
-  width:25% !important;
-} 
+#option2{
+  width:20% !important;
+  float: left !important;
+}
+
+
+#option3{
+  width:20% !important;
+  float: left !important;
+}
+
+#option4{
+  width:20% !important;
+  float: left !important;
+}
+#option1 .check:checked + .labelC{
+
+  font-weight: bold !important;
+  
+  float: left !important;
+}
+
+#option2 .check:checked + .labelC{
+
+  font-weight: bold !important;
+  
+  float: left !important;
+}
+
+
+#option3 .check:checked + .labelC{
+  
+  font-weight: bold !important;
+
+  float: left !important;
+}
+
+#option4 .check:checked + .labelC{
+
+  font-weight: bold !important;
+  float: left !important;
+}
 
 /*---------------------------------
 
@@ -136,5 +176,29 @@ Sign Up
 }
 
 .signup input.valid{
+  background: rgba(200, 250, 200, 0.5);
+}
+
+
+/*---------------------------------
+
+Update
+
+---------------------------------*/
+
+.signup span{
+  width: 30%;
+  color: white;
+  background: red;
+}
+
+
+.signup span.valid{
+  width: 30%;
+  color: white;
   background: green;
+}
+
+.signup input.valid{
+  background: rgba(200, 250, 200, 0.5);
 }
