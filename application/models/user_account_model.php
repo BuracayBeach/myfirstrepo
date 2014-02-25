@@ -31,16 +31,15 @@ class User_account_model extends CI_Model {
 
 		else {
 			$query_rows = $query->result();
-			$data_exists_notif = 'The following inputs already exist: ';
 			
 			foreach($query_rows as $row){
 				if ($data['username'] == $row->username) $data_exists_notif .=  ' username';
 				if ($data['email'] == $row->email) $data_exists_notif .= ' email';
-				if ($data['student_no'] == $row->student_no) $data_exists_notif .= ' student no.';
-				if ($data['emp_no'] == $row->emp_no) $data_exists_notif .= ' employee no.';
+				if ($data['student_no'] == $row->student_no  || $data['student_no'] != "") $data_exists_notif .= ' student_no';
+				if ($data['emp_no'] == $row->emp_no || $data['emp_no'] != "") $data_exists_notif .= ' employee_no';
 			}
 			
-			if (isset($user_notif['create_account_notif'])) $user_notif['create_account_notif'] = $data_exists_notif;
+			if (isset($_SESSION['create_account_notif'])) $_SESSION['create_account_notif'] = $data_exists_notif;
 			return false;
 		}
 	}
@@ -89,12 +88,12 @@ class User_account_model extends CI_Model {
 		$query = $this->db->query("SELECT * FROM user WHERE username='{$username}'");
 
 		if($query->result_array()[0]['status'] == "pending"){
-			$user_notif['login_notif'] = "Registration still pending!";
+			$_SESSION['login_notif'] = "Registration still pending!";
 			return "pending";
 		}
 
 		else if($query->result_array()[0]['status'] == "disabled"){
-			$user_notif['login_notif'] = "Account deactivated!";
+			$_SESSION['login_notif'] = "Account deactivated!";
 			return "deactivated";
 		}
 

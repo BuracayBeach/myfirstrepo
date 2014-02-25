@@ -70,7 +70,7 @@ class Admin_account extends CI_Controller {
 		$data = $this->admin_account_model->get_admin($username);
 
 		if(!$data){
-			$admin_notif['login_notif'] = "Adminintrator username does not exist!";
+			$_SESSION['login_notif'] = "Adminintrator username does not exist!";
 		}
 		
 		else{
@@ -78,7 +78,7 @@ class Admin_account extends CI_Controller {
 				return true;
 			}
 			else{
-				$admin_notif['login_notif'] = "Incorrect password!";
+				$_SESSION['login_notif'] = "Incorrect password!";
 				return false;
 			}
 		}
@@ -95,12 +95,12 @@ class Admin_account extends CI_Controller {
 		$result = $this->admin_account_model->insert_admin($new_data);
 
 		if($result){
-			$admin_notif['create_admin_notif'] = "Succesfully created admin!";
+			$_SESSION['create_admin_notif'] = "Succesfully created admin!";
 			$this->backtohome();
 		}
 
 		else{
-			$admin_notif['create_admin_notif'] = "Username exists!";
+			$_SESSION['create_admin_notif'] = "Username exists!";
 			redirect(site_url("admin_account/create_admin"));
 		}
 	}
@@ -115,12 +115,12 @@ class Admin_account extends CI_Controller {
 		$result = $this->admin_account_model->update_admin($new_data, $admin_username);
 
 		if($result){
-			$admin_notif['update_admin_notif'] = "Succesfully updated admin";
+			$_SESSION['update_admin_notif'] = "Succesfully updated admin";
 			redirect(site_url("admin_account/update_admin"));
 		}
 
 		else{
-			$admin_notif['update_admin_notif'] = "Error in updating admin";
+			$_SESSION['update_admin_notif'] = "Error in updating admin";
 			redirect(site_url("admin_account/update_admin"));
 		}
 	}
@@ -140,12 +140,12 @@ class Admin_account extends CI_Controller {
 
 		if($current_password == $correct_password){
 			$this->admin_account_model->change_admin_password($new_password, $admin_username);
-			$admin_notif['change_password_notif'] = "Succesfully changed password!";
+			$_SESSION['change_password_notif'] = "Succesfully changed password!";
 			redirect(site_url("admin_account/update_admin"));
 		}
 
 		else
-			$admin_notif['change_password_notif'] = "Password does not match!";
+			$_SESSION['change_password_notif'] = "Password does not match!";
 			redirect(site_url("admin_account/update_admin"));
 	}
 }

@@ -2,7 +2,7 @@
 	<?php echo form_open('/index.php/notifs/send_custom_notif'); ?>
 		
 		<?php
-			$username = array (
+			$username = array(
 							'name' => 'username',
 							'id' => 'username',
 							'value' => ''
@@ -11,7 +11,7 @@
 							'name' => 'message',
 							'id' => 'message',
 							'rows' => '10',
-							'cols' => '70',
+							'cols' => '70'
 						);
 		?>
 
