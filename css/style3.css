@@ -8,7 +8,7 @@
 }
 
 .top-bar-section li a:not(.button):hover {
-  background: #5D55EC !important;
+    background: #2266cc !important;
   text-decoration: none !important;
 }
 
@@ -34,7 +34,7 @@
     margin-left:13% !important;
     margin-right:10% !important;
     background: transparent !important;
-    border: 3px solid #2B65EC !important;
+    border: 3px solid #2266cc !important;
     width: 70% !important;
     font-family:"Segoe UI Light" !important;
     font-size:100% !important;
@@ -46,7 +46,7 @@
     margin-left:6% !important;
     margin-right:7% !important;
     background: transparent !important;
-    border: 2px solid #2B65EC !important;
+    border: 2px solid #2266cc !important;
     width: 90% !important;
     font-family:"Segoe UI Light" !important;
     font-size:100% !important;
@@ -63,7 +63,7 @@ list-style-type: none !important;
 
 #submit_search{
   margin-left: 25% !important;
-  background-color:#2B65EC !important;
+  background-color:#2266cc !important;
   font-family:"Segoe UI Light" !important;
     font-size:100% !important;
     width:40% !important;
@@ -82,7 +82,7 @@ list-style-type: none !important;
   font-size: 1% !important;
    float: left !important;
    width: 50% !important;
-   border-left: 1px solid #2B65EC !important;
+   border-left: 1px solid #2266cc !important;
    margin-right:-10% !important;
    height: 20% !important;
 }
@@ -94,12 +94,12 @@ body{
 
 .sidebar-nav li:hover {
   color: #fff !important;
-  background: #2B65EC !important;
+  background: #2266cc !important;
   text-decoration: none !important;
   font-size: 140% !important;
 }
 .sidebar-nav li{
-  color: #2B65EC !important;
+  color: #2266cc !important;
   text-decoration: none !important;
   font-size: 110% !important;
 }
@@ -116,7 +116,7 @@ body{
 }
 
 #search{
-    border-right: 1px solid #2B65EC !important;
+    border-right: 1px solid #2266cc !important;
     width: 100% !important;
 }
 
@@ -191,12 +191,12 @@ ADD AND EDIT
   float: right;
   right:10%;
   position:absolute;
+  background-color: #2266cc !important;
 }
 
 #right_side_bar{
   float:right !important;
   position: absolute !important;
-  
   width: 20% !important;
   margin-left:80% !important;
   margin-right: 0% !important; 
@@ -206,35 +206,41 @@ ADD AND EDIT
 #add_container{
   width: 100% !important;
   float:right !important;
-  border: 1px solid #2B65EC !important;
+  border: 1px solid #2266cc !important;
   margin:2% !important;
   clear: right !important;
 }
 #edit_container{
 
   float:right !important;
-  border: 1px solid #2B65EC !important;
+  border: 1px solid #2266cc !important;
   margin-top:5% !important;
-    clear: right !important;
+  clear: right !important;
+  width: 25% !important;
 }
 #add_container input{
-  height:5% !important;
+  height:7% !important;
 }
 #add_button{
-  margin-left: 7% !important;
+	margin-left: 3% !important;
+	background-color: #2266cc !important;
 }
 #edit_container input{
-  height:5% !important;
+	height:7% !important;
 }
-
+#submit_edit{
+	margin-left: 3% !important;
+	background-color: #2266cc !important;
+}
 #show_add_form_button{
   float:right !important;
   clear: right !important;
+  background-color: #2266cc !important;
 }
 
 
 #recently_added_books_container{
-  border: 1px solid #2B65EC !important;
+  border: 1px solid #2266cc !important;
   width: 40% !important;
   margin-left: 2% !important;
   display: block !important;
@@ -252,13 +258,6 @@ Tabnavs
 
 
 
-
-
-
-
-
-
-
 .hide{
     display:none;
 }
@@ -269,8 +268,8 @@ Tabnavs
 FAQ
 --------------------------------*/
 #add_faq_button{
-  margin-left: 4% !important;
-background-color:#2B65EC !important;
+  margin-left: 3% !important;
+background-color:#2266cc !important;
 font-family:"Segoe UI Light" !important;
     font-size:100% !important;
     width:10% !important;
@@ -278,8 +277,8 @@ font-family:"Segoe UI Light" !important;
 
 }
 .save_faq_button{
-margin-left: 5% !important;
-background-color:#2B65EC !important;
+margin-left: 3% !important;
+background-color:#2266cc !important;
 font-family:"Segoe UI Light" !important;
     font-size:100% !important;
     width:10% !important;
@@ -287,8 +286,8 @@ font-family:"Segoe UI Light" !important;
     color: white;
 }
 .cancel_faq_button{
-margin-left: 5% !important;
-background-color:#2B65EC !important;
+margin-left: 3% !important;
+background-color:#2266cc !important;
 font-family:"Segoe UI Light" !important;
     font-size:100% !important;
     width:10% !important;
@@ -296,23 +295,39 @@ font-family:"Segoe UI Light" !important;
     color: white;
 }
 .edit_faq_button{
-margin-left: 5% !important;
-background-color:#2B65EC !important;
-font-family:"Segoe UI Light" !important;
+	margin-left: 3% !important;
+	background-color:#2266cc !important;
+	font-family:"Segoe UI Light" !important;
     font-size:100% !important;
     width:10% !important;
     height: 4% !important;
     color: white;
 }
 .delete_faq_button{
-margin-left: 2% !important;
-background-color:#FF6600 !important;
-font-family:"Segoe UI Light" !important;
+	margin-left: 3% !important;
+	background-color:#FF6600 !important;
+	font-family:"Segoe UI Light" !important;
     font-size:100% !important;
     width:10% !important;
     height: 4% !important;
     color: white;
   }
+
+#add_faq_container{
+	width:100% !important;
+}
+
+.nicEdit-panelContain{
+	width: 210% !important;
+	height: 100% !important;
+}
+
+
+.nicEdit-main{
+	max-width: 500% !important;
+	height: 100% !important;
+	background-color: white !important;
+}
 
 
 
