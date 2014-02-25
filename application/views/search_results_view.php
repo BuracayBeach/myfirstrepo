@@ -29,8 +29,16 @@
                     })
 				}
 
-				function wordMatch(word, search_terms){
-
+				function wordMatch(word, searchArray){
+					var summary = ''
+					for (var b=0 ; b<searchArray.length ; b++){
+						var term = searchArray[b]
+						if (word.toLowerCase() == term.toLowerCase()) {
+							summary = word + ' ' 
+							break
+						}
+					}
+					return summary
 				}
 
 				function get_summarize(abstract, searchText){
@@ -42,14 +50,10 @@
 
 					var prev_word = ''
 					var next_word = ''
-
+					
 					for (var a=0 ; a<abstract.length ; a++){
 						var word = abstract[a]
-						for (var b=0 ; b<searchArray.length ; b++){
-							var term = searchArray[b]
-							if (word.toLowerCase() == term.toLowerCase()) summary += word + ' '
-							if (summary.length >= maxAbstract) break
-						}
+						summary += wordMatch(word, searchArray);
 						if (summary.length >= maxAbstract) break
 					}
 
