@@ -43,22 +43,28 @@ class User_account extends CI_Controller {
 		}
 
 		else
-			redirect(base_url());	
+			redirect(base_url());
 	}
 
 	private function check_user_validity(){
 		$username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
 		$password = hash('sha256', filter_var($_POST['password'], FILTER_SANITIZE_STRING));
 
-		$data = $this->user_account_model->get_user($username);
+		$result = $this->user_account_model->get_user($username);
 
-		if(!$data){
+		if($result == "pending")
+			return false;
+
+		else if ($result == "deactivated")
+			return false;
+
+		else if(!$result){
 			$user_notif['login_notif'] = "Username does not exist!";
 			return false;
 		}
 		
 		else{
-			if($password == $data['password']){
+			if($password == $result['password']){
 				return true;
 			}
 			else{
@@ -98,6 +104,7 @@ class User_account extends CI_Controller {
 
 		if($result){
 			$user_notif['create_account_notif'] = "Succesfully created account!";
+			$this->send_mail($new_data);
 			$this->backtohome();
 		}
 
@@ -155,6 +162,25 @@ class User_account extends CI_Controller {
 		$result=$this->user_account_model->get_data($username);
 		$new_result = $this->safeguard->str_array_ready_for_display($result);
 		$this->load->view('update_account_view', $new_result);
+	}
+
+	public function send_mail($data){
+		$config = Array(
+				'protocol' => 'smtp',
+				'smtp_host' => 'ssl://smtp.gmail.com',
+				'smtp_port' => 465,
+				'smtp_user' => 'icscomlib@gmail.com',  		
+				'smtp_pass' => '1csc0ml1b',		
+				'mailtype'  => 'html', 
+				'charset'   => 'iso-8859-1'
+			);
+		
+		$this->load->library('email', $config);
+		$this->email->from('icscomlib@gmail.com', 'ICS ComLib');
+		$this->email->to($data['email']);
+		$this->email->subject("Welcome to the ICS ComLib {$data['username']}");
+		$this->email->message("Please wait for your account to be activated by the admin before you can use our services.");	
+		$this->email->send();
 	}
 }
 ?>

@@ -21,6 +21,13 @@ class Safeguard {
         }
         return $data;
     }
+
+    public function str_array_ready_for_html($data){
+        foreach($data as &$row){
+            $row = stripslashes(trim($row));
+        }
+        return $data;
+    }
 }
 
 /* End of file Someclass.php */

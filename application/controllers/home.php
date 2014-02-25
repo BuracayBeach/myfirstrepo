@@ -26,30 +26,34 @@ class Home extends CI_Controller {
         $this->load->model('lend_model');
         $this->load->model('reserve_model');
         $this->load->model('user_account_model');
+        $this->load->model('admin_account_model');
 
         $this->load->library('safeguard');
     }
 
     public function index(){
         $data['title'] = "eICS Lib";
+        $data['page'] = 'index';
         $this->load->view("header", $data); 
         $this->load->view("search_results_view");
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
+        $this->load->view("announcements_view");        
         if ($is_admin) $this->load->view('manage_view');
-
 /*        if ($is_admin){
             $this->load->view('announcement_manage_view');
             $this->load->view("announcement_view");
         }
 */
+
         $this->load->view("footer");
     }
 
     public function ihome(){
         $data['title'] = "eICS Lib Home";
+        $data['page'] = 'ihome';
         $this->load->view("header", $data);
         $this->load->view("search_results_view");
-
+        $this->load->view("announcements_view");        
 
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin){
@@ -68,21 +72,23 @@ class Home extends CI_Controller {
 
     public function announcements(){
         $data['title'] = "eICS Lib Announcements";
+        $data['page'] = 'announcements';
         $this->load->view("header", $data);
         $this->load->view("search_results_view");
         $this->load->view('announcements_view');
 
         if (isset($_SESSION['type']) && $_SESSION['type'] == "admin")
-            $this->load->view('announcements_manage_view');
+            $this->load->view('announcements_manage_view', $data);
 
-        $this->load->view("footer");
+        $this->load->view("footer", $data);
     }
 
     public function about_us(){
         $data['title'] = "eICS Lib About Us";
+        $data['page'] = 'about_us';
         $this->load->view("header", $data);
-        $this->load->view("search_results_view");
-        $this->load->view("about_us_view");
+        $this->load->view("search_results_view", $data);
+        $this->load->view("about_us_view", $data);
 
 
         $this->load->view("footer");
@@ -90,25 +96,19 @@ class Home extends CI_Controller {
 
     public function faq(){
         $data['title'] = "eICS Lib FAQ";
+        $data['page'] = 'faq';
         $this->load->view("header", $data);
         $this->load->view("search_results_view");
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin){
             $this->load->view('faq_manage_view', $data);
         }else{
-            $this->load->view('faq_view');
+            $this->load->view('faq_view', $data);
         }
 
         $this->load->view("footer");
     }
 
-   public function help(){
-        $data['title'] = "eICS Lib Help";
-        $this->load->view("header", $data);
-        $this->load->view("search_results_view");
-        $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
-        $this->load->view("footer");
-    }
 
 
     public function borrowed(){
@@ -152,6 +152,18 @@ class Home extends CI_Controller {
         $this->load->view("footer");
     }
 
+
+    public function help(){
+        $data['title'] = "eICS Lib Help";
+        $data['page'] = 'help';
+        $this->load->view("header", $data);
+
+        $this->load->view("help_view",$data);
+        $this->load->view("search_results_view",$data);
+
+        $this->load->view("footer",$data);
+    }
+
     public function create_account(){
         $data['title'] = "eICS Lib Sign Up";
         $this->load->view("header", $data);
@@ -171,6 +183,11 @@ class Home extends CI_Controller {
     public function update_admin(){
         $data['title'] = "eICS Lib Sign Up";
         $this->load->view("header", $data);
+
+        $admin_username = $_SESSION['admin_username'];
+        $data = $this->admin_account_model->get_admin_data($admin_username);
+        $new_result = $this->safeguard->str_array_ready_for_display($data);
+        $this->load->view('update_admin_view', $new_result);
    }
 
 }

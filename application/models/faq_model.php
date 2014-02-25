@@ -26,7 +26,7 @@ class Faq_model extends CI_Model {
     }
 
     function get_all_faq(){
-        $query = "SELECT * FROM faq";
+        $query = "SELECT id,question,answer FROM faq";
 
         return $this->db->query($query)->result();
     }
