@@ -1,5 +1,5 @@
-<div id="recently_added_books_container small-5 column">
-<h4>RECENTLY ADDED BOOKS</h4>
+<div id="recently_added_books_container" class="small-5 column">
+RECENTLY ADDED BOOKS<br/>
 <table id="recently_added_books_table" border="1" width="60%">
     <tr>
         <th>Book No.</th>
