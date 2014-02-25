@@ -62,6 +62,14 @@ class book extends CI_Controller {
         echo json_encode($data);
     }
 
+    public function get_row_view(){
+        $data['row'] = json_decode(json_encode($_GET));
+        $data['row']->book_type = $data['row']->type;
+        $data['row']->status = "Available";
+        $data['newly_added'] = true;
+        echo $this->load->view('table_row_view',$data);
+    }
+
     public function edit(){
         $data = $this->safeguard->array_ready_for_query($_POST);
         if($data['type'] == 'Book' || $data['type'] == 'Journal')
@@ -69,7 +77,7 @@ class book extends CI_Controller {
         if($data['type'] == 'Other')
             $data['type'] = $data['other'];
         $this->book_model->edit_book($data);
-        $data = $this->safeguard->str_array_ready_for_query($data);
+        $data = $this->safeguard->array_ready_for_query($data);
         echo json_encode($data);
     }
 
