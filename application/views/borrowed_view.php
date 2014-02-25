@@ -20,11 +20,16 @@ $this->load->view('borrowed_view', $data);
 	<?php if(isset($borrowed)) : foreach ($borrowed as $row) : ?>
 		
 		<?php
+
+			$overdue_class = "";
+
 			$due_days =  $days_elapsed[$row->book_no] - 6;
 			if ($due_days == 0)
 				$days_msg = "DUE TODAY!";
-			else if ($due_days > 0)
+			else if ($due_days > 0) {
 				$days_msg = "OVERDUE by {$due_days} days!";
+				$overdue_class = "overdue";
+			}
 			else {
 				$due_days *= -1;
 				$days_msg = "Due in {$due_days} days.";
@@ -36,7 +41,7 @@ $this->load->view('borrowed_view', $data);
 			<div class="book_title"> <?php echo $row->book_title; ?> </div> <br/>
 			<div class="book_no sub-2"> Book No: <?php echo $row->book_no; ?> </div> <br/>
 			<div class="date_added sub-2"> Date Borrowed: <?php echo $row->date_borrowed; ?> </div> <br/>
-			<div class="days_due"><?php echo $days_msg; ?></div>
+			<?php echo "<div class='days_due ".$overdue_class."'> $days_msg </div>" ?>
 
 		</div>
 

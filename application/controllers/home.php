@@ -117,15 +117,18 @@ class Home extends CI_Controller {
             $data['borrowed'] = $this->lend_model->get($_SESSION['username']);
             $unreturned = $this->notifs_model->get_unreturned_by_user($_SESSION['username']);
 
-            $days_elapsed = array();
-            foreach ($unreturned as $row) {
-                $diff = date_diff(date_create($row->date_borrowed), date_create(date('Y-m-d H:i:s')));
-                $days = $diff->format("%a");
+            if ($unreturned != "") {
 
-                $days_elapsed[$row->book_no] = $days;
+                $days_elapsed = array();
+                foreach ($unreturned as $row) {
+                    $diff = date_diff(date_create($row->date_borrowed), date_create(date('Y-m-d H:i:s')));
+                    $days = $diff->format("%a");
+
+                    $days_elapsed[$row->book_no] = $days;
+                }
+                $data['days_elapsed'] = $days_elapsed;
+                $this->load->view('borrowed_view', $data);
             }
-            $data['days_elapsed'] = $days_elapsed;
-            $this->load->view('borrowed_view', $data);
         }
 
         $this->load->view("search_results_view");
