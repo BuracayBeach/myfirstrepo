@@ -28,7 +28,7 @@ $this->load->view('borrowed_view', $data);
 				$days_msg = "DUE TODAY!";
 			else if ($due_days > 0) {
 				$days_msg = "OVERDUE by {$due_days} days!";
-				$overdue_class = "overdue";
+				$overdue_class = "overdue_glow";
 			}
 			else {
 				$due_days *= -1;

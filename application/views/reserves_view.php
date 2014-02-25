@@ -55,12 +55,11 @@ $this->load->view('reserves_view', $data);
 
 			<div class="book_title"> <?php echo $row->book_title; ?> </div> <br/>
 			<div class="date_reserved sub-2">  Date Reserved: <?php echo $row->date_reserved; ?> </div> <br/>
-			<div class="rank">  Rank <?php echo $rank; ?> 
+			<div class="rank sub-2">  Rank <?php echo $rank; ?> 
 			of <?php echo $book_ranks[$row->book_no]; ?> </div> 
+			<br>
 			<?php echo "<button class='action_button reserve_button btn_untoggle margin_sa_left' book_no='" . $row->book_no . "'>unreserve</button>" ?>
 
-			<br/>
-			
 		</div>
 
 	<?php endforeach; ?>

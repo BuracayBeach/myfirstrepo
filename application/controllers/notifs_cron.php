@@ -33,7 +33,7 @@ class Notifs_Cron extends CI_Controller {
 				'username_admin' => "",
 				'username_user' => $username,
 				'book_no' => $book_no,
-				'message' => "Please return the book ASAP. Overdue of {$days} days.",
+				'message' => "{$days} days",
 				'date_sent' => date('Y-m-d H:i:s'),
 				'type' => 'overdue'
 			);

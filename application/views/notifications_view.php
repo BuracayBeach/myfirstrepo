@@ -9,29 +9,30 @@ $this->load->view('notifications_view', $data);
 
 ?>
 
-<div id="notifs_container">
+<link rel="stylesheet" href="<?php echo base_url();?>css/burnzz.css">
+
+<div id="notifs_container" class="my_library_container">
 
 	<?php if(isset($notifs)) : foreach ($notifs as $row) : ?>
 			
-		<div class="notif" style="margin: 20px 0;">
+		<div class="notif <?php echo $row->type; ?>">
 
 			<?php if ($row->type == "custom") : ?>
 
-					<span class="message"> <?php echo $row->message; ?> </span>  <br/>
-					sent by <?php echo $row->username_admin; ?>
-					| <?php echo $row->date_sent; ?> <br/>
+					<div class="notif_msg"> <?php echo $row->message; ?> </div>  <br/>
+					<div class="date_added sub-2 space-top"> sent by <?php echo $row->username_admin; ?> at <?php echo $row->date_sent; ?> </div>
 				
 			<?php elseif($row->type == "overdue") : ?>
 
-					OVERDUE: <span class="book_title"> "<?php echo $row->book_title; ?>" </span>
-					<?php echo $row->message; ?> days past the due date <br/>	
-					<?php echo $row->date_sent; ?> <br/>
+					OVERDUE: <span class="book_title"> <?php echo $row->book_title; ?> </span>
+					<div class="f_right"> (<?php echo $row->message; ?> due!) </div> <br/>
+					<div class="date_added sub-2 space-top"> <?php echo $row->date_sent; ?> </div>
 
 			<?php elseif($row->type == "claim") : ?>
 
-					CLAIM: <span class="book_title"> "<?php echo $row->book_title; ?>" </span>
-					<?php echo $row->message; ?> <br/>
-					<?php echo $row->date_sent; ?> <br/>
+					CLAIM: <span class="book_title"> <?php echo $row->book_title; ?> </span> <br/>
+					<div class="notif_msg"> <?php echo $row->message; ?> </div> <br/>
+					<div class="date_added sub-2 space-top"> <?php echo $row->date_sent; ?> </div>
 
 			<?php endif; ?>
 
@@ -44,3 +45,4 @@ $this->load->view('notifications_view', $data);
 	<?php endif; ?>
 
 </div> 
+
