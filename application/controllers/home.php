@@ -39,7 +39,7 @@ class Home extends CI_Controller {
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
 
         if ($is_admin){
-            $this->load->view("manage_view");
+            redirect(base_url() . 'ihome');
         }else{
             $this->load->view("announcements_view");
         }
@@ -51,7 +51,7 @@ class Home extends CI_Controller {
         $this->load->view("footer");
     }
 
-    public function manage(){
+    public function ihome(){
         $data['title'] = "eICS Lib Home";
         $data['page'] = 'ihome';
         $this->load->view("header", $data);
@@ -116,15 +116,18 @@ class Home extends CI_Controller {
             $data['borrowed'] = $this->lend_model->get($_SESSION['username']);
             $unreturned = $this->notifs_model->get_unreturned_by_user($_SESSION['username']);
 
-            $days_elapsed = array();
-            foreach ($unreturned as $row) {
-                $diff = date_diff(date_create($row->date_borrowed), date_create(date('Y-m-d H:i:s')));
-                $days = $diff->format("%a");
+            if ($unreturned != "") {
 
-                $days_elapsed[$row->book_no] = $days;
+                $days_elapsed = array();
+                foreach ($unreturned as $row) {
+                    $diff = date_diff(date_create($row->date_borrowed), date_create(date('Y-m-d H:i:s')));
+                    $days = $diff->format("%a");
+
+                    $days_elapsed[$row->book_no] = $days;
+                }
+                $data['days_elapsed'] = $days_elapsed;
+                $this->load->view('borrowed_view', $data);
             }
-            $data['days_elapsed'] = $days_elapsed;
-            $this->load->view('borrowed_view', $data);
         }
 
         $this->load->view("search_results_view");
@@ -151,10 +154,9 @@ class Home extends CI_Controller {
         $data['title'] = "eICS Lib My Lib";
         $this->load->view("header", $data);
 
-        if (isset($_SESSION)) {
+        if (isset($_SESSION)){
             $data['book'] = $this->reserve_model->check_book_ranks($_SESSION['username']);
             $data['reserves'] = $this->reserve_model->get($_SESSION['username']);
-
             $this->load->view('reserves_view', $data);
         }
 
@@ -208,8 +210,6 @@ class Home extends CI_Controller {
         $this->load->view("footer");
         //put loading and stuff here
         $this->load->view("search_results_view",$data);
-
-
     }
 
 }

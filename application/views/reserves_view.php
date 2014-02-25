@@ -14,7 +14,7 @@ $this->load->view('reserves_view', $data);
 <link rel="stylesheet" href="<?php echo base_url();?>css/burnzz.css">
 <script src="<?php echo base_url();?>js/freewall.js"></script>
 
-<h1> BORROWED </h1>
+<h1> RESERVED </h1>
 
 <div id="reserves_container" class="my_library_container">
 

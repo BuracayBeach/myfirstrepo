@@ -2,7 +2,7 @@
 <button class="" id="show_add_form_button" name="show_add_form_button" >Add Material</button>
 <div id="add_container">
     <form autocomplete="on" id="add_book_form">
-        Add Material<br/>
+        &nbsp; ADD MATERIAL<br/>  <br/>
         <span class="errors"></span>
         <input type="text" title="ISBN (ex. 1234567890)" name="book_no" maxlength="10" id="add_book_no" placeholder="Book No" required />
         <input type="text" maxlength="255" spellcheck="true" name="book_title" id="add_book_title" placeholder="Title" required/>
@@ -40,7 +40,7 @@
 
 </div>
 
-<div id="edit_container">
+<div id="edit_container" class="small-2 column">
     <form name="edit_book" id="edit_book_form" method="post">
         Edit Material<br/>
         <span class="errors"></span>
@@ -100,3 +100,13 @@
 
 <script src="<?php echo base_url();?>js/manage_validation.js" ></script>
 <script src="<?php echo base_url();?>js/book_manager.js" ></script>
+
+
+
+<script type="text/javascript">
+    $("#show_add_form_button").on("click", function() {
+        $("#add_announcement_cancel_button").click();
+
+    });
+
+</script>

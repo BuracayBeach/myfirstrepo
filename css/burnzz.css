@@ -36,6 +36,10 @@ div.days_due {
 	width: 94%;
 }
 
+div.overdue {
+	-webkit-animation: glow_overdue .5s infinite alternate;
+}
+
 div.my_library_container button {
 	position: relative;
 	float: left;
@@ -52,7 +56,11 @@ div.my_library_container button.btn_disabled {
 
 div.my_library_container button.btn_untoggle {
 	background-color: #ffca0f;
-	margin-left: 50px;
+	margin-left: 50px;	
+}
+
+div.my_library_container button.btn_untoggle:hover {
+	background-color: #ffa81c;
 }
 
 div.my_library_container button.btn_enabled {
@@ -60,11 +68,16 @@ div.my_library_container button.btn_enabled {
 	margin-left: 65px;
 }
 
+div.my_library_container button.btn_enabled:hover {
+	background-color: #009300;
+}
+
 div.my_library_container button.margin_sa_left {
 	margin-left: 95px;
 }
 
-/* animation ni BurnzZ, wag galawin */
+
+/* animations ni BurnzZ, wag galawin */
 
 @keyframes start {
 	from { transform: scale(0); }
@@ -74,6 +87,10 @@ div.my_library_container button.margin_sa_left {
 @-webkit-keyframes start {
 	from { -webkit-transform: scale(0); }
 	to { -webkit-transform: scale(1); }
+}
+
+@-webkit-keyframes glow_overdue {
+    to { text-shadow: 0 0 7px red; }
 }
 
 .my_library_container .item[data-state="init"] {
