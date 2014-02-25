@@ -1,7 +1,9 @@
 <li id="loginform" class="
 	<?php
-		if(isset($_SESSION['login_notif']))
+		if(isset($_SESSION['login_notif'])){
 			echo 'invalid_user';
+			unset($_SESSION['login_notif']);
+		}
 	?>
 ">
 <form id="login" action = "<?php echo base_url();?>index.php/user_account/login" method = "post">
