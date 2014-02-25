@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 25, 2014 at 09:28 AM
--- Server version: 5.5.24-log
--- PHP Version: 5.4.3
+-- Generation Time: Feb 25, 2014 at 03:05 PM
+-- Server version: 5.6.12-log
+-- PHP Version: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -88,15 +88,16 @@ CREATE TABLE IF NOT EXISTS `announcement` (
   `announcement_author` varchar(255) NOT NULL,
   `date_posted` date NOT NULL,
   PRIMARY KEY (`announcement_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=57 ;
 
 --
 -- Dumping data for table `announcement`
 --
 
 INSERT INTO `announcement` (`announcement_id`, `announcement_title`, `announcement_content`, `announcement_author`, `date_posted`) VALUES
-(52, 'lkjasd', 'hehe', 'allanconda', '2014-02-21'),
-(53, 'announcement1', 'hahah', '', '2014-02-22');
+(54, 'ICS'' social computing paper published in an international journal', 'The ICS social computing article titled "Ang Social Network sa Facebook ng mga Taga-Batangas at ng mga Taga-Laguna: Isang Paghahambing" was published in the online issue of the Asia Pacific Journal of Multidisciplinary Research (APJMR, ISSN 2350-7756). The article was a collaborative effort between Prof. Jaderick P. Pabico of ICS and Prof. Jose Rene L. Micor of the Institute of Chemistry.', 'admin', '2014-02-25'),
+(55, 'PCJ publishes ICS research in crowd microsimulations', 'The Philippine Computing Journal has published in its 8th volume (series 1) the ICS paper entitled A Study on the Effect of Exit Widths and Crowd Sizes in the Formation of Arch in Clogged Crowds authored by Francisco Enrique Vicente G. Castro and Jaderick P. Pabico. The article details their findings, using multi-agent based microsimulation techniques, on the interactive effects of exit widths and crowd sizes in the formation of arching phenomenon usually observed in clogged crowds. The article must be cited as follows:\r\nCastro, F.E.V.G. and Pabico, J.P. (2013) A Study on the Effect of Exit Widths and Crowd Sizes in the Formation of Arch in Clogged Crowds. Philippine Computing Journal Vol. 8 No. 1: 21-29.', 'admin', '2014-02-25'),
+(56, 'UPLB dominates NCITE 2013; Brings home two of three BPAs', 'UPLB researchers in Information Technology (IT) Education dominated the recently concluded 11th National Conference on IT Education (NCITE 2013) held in Villa Paraiso, Mambajao, Camiguin on 24-26 October 2013. The researchers from the Institute of Computer Science have been highly visible in the conference in terms of the number of papers submitted and accepted, the number of delegates from a single school who attended, the number of participation in a social challenge, the number of papers presented, the number of Best Paper Awards (BPA) received, and the number of future research topics that were developed.', 'admin', '2014-02-25');
 
 -- --------------------------------------------------------
 
@@ -203,7 +204,28 @@ CREATE TABLE IF NOT EXISTS `faq` (
   `question` varchar(255) NOT NULL,
   `answer` varchar(512) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+
+--
+-- Dumping data for table `faq`
+--
+
+INSERT INTO `faq` (`id`, `question`, `answer`) VALUES
+(1, 'Can I have an account in the system?', '<p class="MsoNormal"><span lang="EN-PH">Only UPLB students and faculty members cannhave an account to the library system.<o:p></o:p></span></p>'),
+(2, 'Can I reserve book online if I don''t have an account?', '<p class="MsoNormal"><span lang="EN-PH" style="font-size:11.0pt;font-family:\n&quot;Calibri&quot;,&quot;sans-serif&quot;;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:\nCalibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;\nmso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;\nmso-ansi-language:EN-PH;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">No,\nyou can only search for books.</span></p>'),
+(3, 'If I''m in LOA, is my ICS library account still activated?', '<p class="MsoNormal"><span lang="EN-PH" style="font-size:11.0pt;font-family:\n&quot;Calibri&quot;,&quot;sans-serif&quot;;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:\nCalibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;\nmso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;\nmso-ansi-language:EN-PH;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">No,\nyour account will only be available if you are a registered student.</span></p>'),
+(4, 'How many books can I reserve online?', 'Y<span style="font-family: inherit; font-size: 1rem; line-height: 1.6; text-indent: 0.5in;">ou can reserve as\nmany books as you like.</span><p class="MsoNormal" style="text-indent:.5in"><span lang="EN-PH"><o:p></o:p></span></p>'),
+(5, 'When can I borrow the book after reserving online?', '<p class="MsoNormal"><span lang="EN-PH">You can get the book that you’ve reserved\nright after you’ve made your reservation online.<o:p></o:p></span></p>'),
+(6, 'Can I extend borrowing the book online?', '<p class="MsoNormal"><span lang="EN-PH"><font size="2" face="arial">Just approach the librarian if you wish to extend it.</font></span></p>'),
+(7, 'If I borrow the book from the library, will that be shown on my account?', '<p class="MsoNormal"><span lang="EN-PH" style="font-size:11.0pt;font-family:\n&quot;Calibri&quot;,&quot;sans-serif&quot;;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:\nCalibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;\nmso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;\nmso-ansi-language:EN-PH;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Yes\nit will. You can view that on the myLibrary section.</span></p>'),
+(8, 'Does the reserve button works like a waitlist function on systemone?', '<p class="MsoNormal"><span lang="EN-PH" style="font-size:11.0pt;font-family:n&quot;Calibri&quot;,&quot;sans-serif&quot;;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:nCalibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;nmso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;nmso-ansi-language:EN-PH;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Yes it is.</span></p>'),
+(9, 'Are we going to receive notifications if our due on returning the books is near?', '<p class="MsoNormal"><span lang="EN-PH" style="font-size:11.0pt;font-family:\n&quot;Calibri&quot;,&quot;sans-serif&quot;;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:\nCalibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;\nmso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;\nmso-ansi-language:EN-PH;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Yes,\nthere will be an email to you stating that you have to return your borrowed\nbooks soon.</span><'),
+(10, 'What am I going to do if I forgot my password?', '<p class="MsoNormal"><span lang="EN-PH">Just approach the librarian to change your\npassword. Bring a valid id or your form 5.<o:p></o:p></span></p>'),
+(11, 'What is the function of add to cart?', '<p class="MsoNormal"><span lang="EN-PH" style="font-size:11.0pt;font-family:\n&quot;Calibri&quot;,&quot;sans-serif&quot;;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:\nCalibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;\nmso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;\nmso-ansi-language:EN-PH;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">It\nfunctions as bookmark. Upon clicking it, the book information is stored on your\nmyLibrary for fut'),
+(12, 'What am I going to do if I''m registered but my account is still deactivated?', '<p class="MsoNormal"><span lang="EN-PH" style="font-size:11.0pt;font-family:\n&quot;Calibri&quot;,&quot;sans-serif&quot;;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:\nCalibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;\nmso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;\nmso-ansi-language:EN-PH;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Wait\nfor it to be activated by the administrator, if it took so long, you can\napproach the administr'),
+(13, 'Can I search thesis from this system?', '<p class="MsoNormal"><span lang="EN-PH" style="font-size:11.0pt;font-family:\n&quot;Calibri&quot;,&quot;sans-serif&quot;;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:\nCalibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;\nmso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;\nmso-ansi-language:EN-PH;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Yes\nyou can.</span></p>'),
+(14, 'What if I reserved a book and I didn''t get it after a week, is the book still reserved under my account?', '<p class="MsoNormal"><span lang="EN-PH" style="font-size:11.0pt;font-family:\n&quot;Calibri&quot;,&quot;sans-serif&quot;;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:\nCalibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;\nmso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;\nmso-ansi-language:EN-PH;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Yes.</span></p>'),
+(15, 'Can I cancel my reservation online or do I have to go to the librarian to cancel?', '<p class="MsoNormal"><span lang="EN-PH">Yes you can cancel your reservation online.<o:p></o:p></span></p>');
 
 -- --------------------------------------------------------
 
@@ -322,7 +344,7 @@ CREATE TABLE IF NOT EXISTS `reserves` (
   PRIMARY KEY (`book_no`,`username`,`rank`),
   KEY `reserves_username` (`username`),
   KEY `reserves_rank` (`rank`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 -- --------------------------------------------------------
 
