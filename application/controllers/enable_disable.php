@@ -44,7 +44,7 @@ class Enable_disable extends CI_Controller {
 			$_POST = $_SESSION['post_temp'];
 		}
 
-		var_dump($_POST);
+		// var_dump($_POST);
 
 		$data['field'] = filter_var($_POST["field"],FILTER_SANITIZE_STRING);
 		switch($_POST["field"]){

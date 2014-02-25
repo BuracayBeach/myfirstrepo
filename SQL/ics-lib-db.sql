@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 24, 2014 at 05:45 AM
--- Server version: 5.6.12-log
--- PHP Version: 5.4.12
+-- Generation Time: Feb 25, 2014 at 05:09 AM
+-- Server version: 5.5.24-log
+-- PHP Version: 5.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -38,6 +38,19 @@ CREATE TABLE IF NOT EXISTS `account_history` (
   KEY `account_history_username_admin` (`username_admin`),
   KEY `account_history_email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `account_history`
+--
+
+INSERT INTO `account_history` (`username_user`, `username_admin`, `email`, `date`, `action`) VALUES
+('Andescols', 'admin', 'RichardKHowle@jourrapide.com', '2014-02-25 05:08:17', 'activate'),
+('Tharsen', 'admin', 'JesseARoberts@armyspy.com', '2014-02-25 05:09:19', 'activate'),
+('Thoureprot94', 'admin', 'HardingPuddifoot@dayrep.com', '2014-02-25 05:08:54', 'activate'),
+('Thoureprot94', 'admin', 'HardingPuddifoot@dayrep.com', '2014-02-25 05:09:17', 'disable'),
+('Trater93', 'admin', 'RyanEPruitt@jourrapide.com', '2014-02-25 05:08:50', 'activate'),
+('Trater93', 'admin', 'RyanEPruitt@jourrapide.com', '2014-02-25 05:08:56', 'disable'),
+('Trater93', 'admin', 'RyanEPruitt@jourrapide.com', '2014-02-25 05:09:14', 'enable');
 
 -- --------------------------------------------------------
 
@@ -222,13 +235,6 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   KEY `notifications_username_admin` (`username_user`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
---
--- Dumping data for table `notifications`
---
-
-INSERT INTO `notifications` (`id`, `username_admin`, `username_user`, `book_no`, `message`, `date_sent`, `type`) VALUES
-(1, NULL, 'useruser', NULL, 'Testing lang sa custom notif message kasi hindi nakikita. HINDI ako makita! HINDI ako makita! HINDI ako makita! HINDI ako makita!', '2014-02-24 04:36:00', 'custom');
-
 -- --------------------------------------------------------
 
 --
@@ -317,8 +323,26 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `sex`, `status`, `email`, `usertype`, `emp_no`, `student_no`, `name_first`, `name_middle`, `name_last`, `mobile_no`, `course`, `college`) VALUES
-('user222', '0c7489c79a5ab44c3f569653b23a0a4a5c73d805ea5ab1e2db410417560add81', 'male', 'pending', 'asdsa@asd.com', 'student', '', '2011-45678', 'qwe', 'asd', 'zxc', '639063761234', 'BSABT', 'CA'),
-('useruser', 'e172c5654dbc12d78ce1850a4f7956ba6e5a3d2ac40f0925fc6d691ebb54f6bf', 'male', 'pending', 'user@user.com', 'student', '', '2011-16328', 'user', 'user', 'bulalo', '639273874811', 'BSAM', 'CAS');
+('Andescols', 'iD3cahShooj', 'male', 'enabled', 'RichardKHowle@jourrapide.com', 'student', NULL, '2013-33310', 'Richard', 'Kogan', 'Howle', '09178345223', 'BSCS', 'CAS'),
+('Areimis', 'mah9dohH1ah', 'female', 'pending', 'SusanDSinegal@dayrep.com', 'student', NULL, '2010-25011', 'Susan', 'Davis', 'Sinegal', '09224123954', 'BSCS', 'CAS'),
+('Ceitheart', 'aeroav0Gii', 'female', 'pending', 'UwaisahMawahibKouri@jourrapide.com', 'student', NULL, '2006-12908', 'Uwaisah', 'Mawahib', 'Kouri', '09161324873', 'BSCS', 'CAS'),
+('Cionachis95', 'sie7El8jee', 'female', 'pending', 'SongWei@jourrapide.com', 'student', NULL, '2008-44165', 'Song', 'Tao', 'Wei', '09177563274', 'BSCS', 'CAS'),
+('Comen1985', 'aechie2EePh', 'male', 'pending', 'DerekDOchoa@rhyta.com', 'student', NULL, '2004-33411', 'Derek', 'Dickerson', 'Ochoa', '09164158223', 'BSCS', 'CAS'),
+('Dreme1994', 'Yeo3chiNgo', 'female', 'pending', 'FenChu@jourrapide.com', 'student', NULL, '2007-11543', 'Fen', 'Yuan', 'Chu', '09153473214', 'BSCS', 'CAS'),
+('edzerium', 'allidaP', 'male', 'pending', 'dzerium@gmail.com', 'student', NULL, '2011-25010', 'Edzer Josh', 'Valentin', 'Padilla', '09178624975', 'BSCS', 'CAS'),
+('Fany1993', 'bugmenot31', 'male', 'pending', 'HenryBPetersen@armyspy.com', 'student', NULL, '2009-50411', 'Henry', 'Barker', 'Peterson', '09178624678', 'BSCS', 'CAS'),
+('Gloseloth', 'foH0yair', 'male', 'pending', 'DavidPKirtley@dayrep.com', 'student', NULL, '2010-25981', 'David', 'Pierre', 'Kirtley', '09151223598', 'BSCS', 'CAS'),
+('Hene1964', 'ahaPhahoh6IY', 'male', 'pending', 'CharlesFHarlan@teleworm.us', 'student', NULL, '2011-11341', 'Charles', 'Farris', 'Harlan', '09178234756', 'BSCS', 'CAS'),
+('Indess', 'Bie9pai0oo', 'female', 'pending', 'SidneyRSutton@rhyta.com', 'student', NULL, '2010-10321', 'Sidney', 'Rudd', 'Sutton', '09178627778', 'BSCS', 'CAS'),
+('Lifflosight', 'tawooTh4c', 'female', 'pending', 'CarolynBMorrison@rhyta.com', 'student', NULL, '2010-29981', 'Carolyn', 'Burnham', 'Morrison', '09187230076', 'BSCS', 'CAS'),
+('Mathervenrat', 'Ahmezae1', 'female', 'pending', 'EnriquetaSHooker@jourrapide.com', 'student', NULL, '2011-11390', 'Enriqueta', 'Snowden', 'Hooker', '09180143276', 'BSCS', 'CAS'),
+('Procke', 'ya1Tie2sh', 'female', 'pending', 'BarbaraMCalle@armyspy.com', 'student', NULL, '2012-34510', 'Barbara', 'Marshal', 'Calle', '09178234123', 'BSCS', 'CAS'),
+('Tharsen', 'iezah4aeP', 'male', 'enabled', 'JesseARoberts@armyspy.com', 'student', NULL, '2008-00180', 'Jesse', 'Anderson', 'Roberts', '09221899976', 'BSCS', 'CAS'),
+('Thoureprot94', 'haingeiS1Io', 'male', 'disabled', 'HardingPuddifoot@dayrep.com', 'student', NULL, '2011-13575', 'Harding', 'Brandagamba', 'Puddifoot', '09176497221', 'BSCS', 'CAS'),
+('Trater93', 'AgeFiezei2', 'male', 'enabled', 'RyanEPruitt@jourrapide.com', 'student', NULL, '2013-14344', 'Ryan', 'Emerson', 'Pruitt', '09180023476', 'BSCS', 'CAS'),
+('Tury1993', 'Xa4IquieniVe', 'female', 'pending', 'SakikoKamuta@jourrapide.com', 'student', NULL, '2012-56916', 'Sakiko', 'Asada', 'Kamuta', '09227869432', 'BSCS', 'CAS'),
+('Waskeend96', 'Ooyiush1pau', 'female', 'pending', 'StephanieKuefer@teleworm.us', 'student', NULL, '2009-28943', 'Stephanie', 'Fisher', 'Kuefer', '09151784993', 'BSCS', 'CAS'),
+('Whattis', 'aiquai5Oo', 'male', 'pending', 'JordanLMancini@teleworm.us', 'student', NULL, '2010-10290', 'Jordan', 'Lincoln', 'Mancini', '09154573211', 'BSCS', 'CAS');
 
 --
 -- Constraints for dumped tables
