@@ -47,6 +47,7 @@
         </table>
     </div>
 </div>
+
 <script src="<?php echo base_url() ?>js/nicEdit.js"></script>
 <script src="<?php echo base_url() ?>js/faq_table_generator.js"></script>
 <script src="<?php echo base_url(); ?>js/faq_manager.js"></script>
