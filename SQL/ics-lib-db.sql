@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 25, 2014 at 03:05 PM
+-- Generation Time: Feb 25, 2014 at 05:42 PM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -277,17 +277,6 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   PRIMARY KEY (`id`,`username_user`),
   KEY `notifications_username_admin` (`username_user`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
-
---
--- Dumping data for table `notifications`
---
-
-INSERT INTO `notifications` (`id`, `username_admin`, `username_user`, `book_no`, `message`, `date_sent`, `type`) VALUES
-(2, '', 'useruser', 'IJ 1357', 'You may now claim your book at the library ASAP', '2014-02-25 06:50:24', 'claim'),
-(3, '', 'useruser', 'EF 5678', 'You may now claim your book at the library ASAP', '2014-02-25 06:50:25', 'claim'),
-(4, '', 'useruser', 'asdasd', 'You may now claim your book at the library ASAP', '2014-02-25 06:50:26', 'claim'),
-(5, '', 'useruser', 'AB 1234', 'You may now claim your book at the library ASAP', '2014-02-25 06:50:27', 'claim'),
-(6, '', 'useruser', 'GH 8765', 'You may now claim your book at the library ASAP', '2014-02-25 06:50:28', 'claim');
 
 -- --------------------------------------------------------
 
