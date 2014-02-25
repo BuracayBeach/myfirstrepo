@@ -43,22 +43,28 @@ class User_account extends CI_Controller {
 		}
 
 		else
-			redirect(base_url());	
+			redirect(base_url());
 	}
 
 	private function check_user_validity(){
 		$username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
 		$password = hash('sha256', filter_var($_POST['password'], FILTER_SANITIZE_STRING));
 
-		$data = $this->user_account_model->get_user($username);
+		$result = $this->user_account_model->get_user($username);
 
-		if(!$data){
+		if($result == "pending")
+			return false;
+
+		else if ($result == "deactivated")
+			return false;
+
+		else if(!$result){
 			$user_notif['login_notif'] = "Username does not exist!";
 			return false;
 		}
 		
 		else{
-			if($password == $data['password']){
+			if($password == $result['password']){
 				return true;
 			}
 			else{
