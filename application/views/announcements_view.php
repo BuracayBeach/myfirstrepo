@@ -1,3 +1,4 @@
+    <button id="add_announcement_button">Add Announcement</button>
     <div id="announcements_container" class="small-10 column">
         <div id="announcements_table_container">
 
