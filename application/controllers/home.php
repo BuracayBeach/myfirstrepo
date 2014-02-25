@@ -52,17 +52,19 @@ class Home extends CI_Controller {
         $data['title'] = "eICS Lib Home";
         $data['page'] = 'ihome';
         $this->load->view("header", $data);
-        $this->load->view("search_results_view");
-        $this->load->view("announcements_view");        
+
 
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin){
-            $this->load->view('recently_added_view');
+
+            $this->load->view('admin_ihome_view');
             $this->load->view('manage_view');
 
         }
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
             $data['notifs'] = $this->notifs_model->get_all($_SESSION['username']);
+            $this->load->view("search_results_view");
+            $this->load->view("announcements_view");        
             $this->load->view('notifications_view', $data);
         }
 
