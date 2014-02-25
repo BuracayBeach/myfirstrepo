@@ -1,5 +1,5 @@
 <div id="carousel_parent_wrapper">
-	<script src="http://code.jquery.com/jquery-2.1.0.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url();?>js/jquery-1.11.0.js" type="text/javascript"></script>
 	<script src="<?php echo base_url();?>js/jquery.carouFredSel-6.2.0-packed.js" type="text/javascript"></script>
 	
 	<style type="text/css">
