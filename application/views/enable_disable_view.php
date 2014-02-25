@@ -62,12 +62,12 @@
 			<h4>Account Log</h4>
 			<table id="log_table">
 			</table>
-			<div id="logs_pagination" page='2' pagecount='1'>
+			<div id="logs_pagination" page='1' pagecount='1'>
+			<span><a href='javascript:void(0)'>< Prev</a>    This is the amazing pagination for logs <a href='javascript:void(0)'>Next ></a></span>
 			</div>
 		</div>
 		<!-- end edit -->
 
-		
 		<script type = "text/javascript" src = "<?php echo base_url() ?>js/account_status_manager.js"></script>
 
 <?php //end of file enable_disable_view ?>
