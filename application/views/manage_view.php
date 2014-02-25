@@ -1,5 +1,5 @@
 
-<button id="show_add_form_button" name="show_add_form_button" >Add Material</button>
+<button class="" id="show_add_form_button" name="show_add_form_button" >Add Material</button>
 <div id="add_container">
     <form autocomplete="on" id="add_book_form">
         <h4>Add Material</h4>
