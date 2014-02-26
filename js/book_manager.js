@@ -71,6 +71,7 @@ function addBook(event){
                     });
 
                 addForm.closest('div').hide();
+                $('[data-toggle="tab"]')[1].click();
             }else{
                alert('Cannot add duplicate material.')
             }

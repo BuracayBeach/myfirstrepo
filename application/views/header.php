@@ -111,35 +111,14 @@
 <div class="small-2 side-nav columns">
   <?php include 'search_view.php';?>
 </div>
-
-<div class=""  id="results_per_page_div" hidden>
-  <form id="results_per_page_form">
-    <input id="results_per_page" style="width:45px" type="number" min="1" max="100" value="10" pattern="^[0-9]+$"/>
-    <span>Results per page&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-  </form>
-</div>
-
-
-<script>
-    $("#results_per_page").on('keypress', function(event){
-      res_valid = num_valid($('#results_per_page'))
-      if (event.which == 13 && res_valid){
-        $('#submit_search').submit();
-      }
-    });
-
-    function num_valid(object){
-      o_val = parseInt(object.val());
-      o_min = parseInt(object.attr('min'));
-      o_max = parseInt(object.attr('max'));
-
-      return $.isNumeric(o_val) && o_val >= o_min && o_val <= o_max;
-    }
+<!---->
+<!--<div class=""  id="results_per_page_div" hidden>-->
+<!--  <form id="results_per_page_form">-->
+<!--    <input id="results_per_page" style="width:45px" type="number" min="1" max="100" value="10" pattern="^[0-9]+$"/>-->
+<!--    <span>Results per page&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
+<!--  </form>-->
+<!--</div>-->
 
 
-    $('#results_per_page_form, #year_range_form').submit(function(event){
-      event.preventDefault();
-    });
-</script>
 
 

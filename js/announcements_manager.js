@@ -19,6 +19,7 @@ $('#announcement_container').ready(function(){
 
 function showAddAnnouncementForm(event){
     event.preventDefault();
+    $('[data-toggle="tab"]')[2].click();
     $('#edit_announcement_container').hide();
     $('#add_announcement_container').show();
     $('#add_announcement_title').focus();
@@ -55,8 +56,8 @@ function addAnnouncement(event){
     $.post("index.php/announcement/add",$(this).serialize(),function(data){
         try{
             data = JSON.parse(data);
-            generateAnnouncementRow(data);
-            $('[data-toggle="tab"]').click();
+            generateAnnouncementRow(data,true);
+            $('[data-toggle="tab"]')[2].click();
         }catch(e){
             console.log(e);
             console.log(data);
@@ -79,6 +80,7 @@ function editAnnouncement(event){
 
             td.find('.announcement_title').text(data.announcement_title);
             td.find('.announcement_content').text(data.announcement_content);
+            $('[data-toggle="tab"]')[2].click();
         }catch(e){
             console.log(e);
             console.log(data);
