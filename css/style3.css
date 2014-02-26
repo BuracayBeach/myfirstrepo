@@ -242,8 +242,7 @@ ADD AND EDIT
 
 
 #recently_added_books_container{
-  border: 1px solid #2266cc !important;
-  width: 40% !important;
+  width: 80% !important;
   margin-left: 2% !important;
   display: block !important;
   float: left !important;
@@ -335,8 +334,6 @@ font-family:"Segoe UI Light" !important;
     background-color:#2266cc !important;
     font-family:"Segoe UI Light" !important;
     font-size:100% !important;
-    width:5% !important;
-    height: 0.5% !important;
     color: white;
 }
 
@@ -345,8 +342,6 @@ font-family:"Segoe UI Light" !important;
     background-color:#FF6600 !important;
     font-family:"Segoe UI Light" !important;
     font-size:100% !important;
-    width:5% !important;
-    height: 0.5% !important;
     color: white;
 }
 

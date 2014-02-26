@@ -5,6 +5,7 @@
             <th>Book</th>
             <th>Publishment</th>
             <th>Tags</th>
+            <th>Abstract</th>
         </tr>
     </table>
 </div>
