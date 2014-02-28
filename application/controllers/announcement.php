@@ -39,9 +39,7 @@ class Announcement extends CI_Controller {
 
         $this->announcement_model->edit_announcement($data);
 
-        var_dump($data);
         $data = $this->safeguard->str_array_ready_for_display($data);
-        var_dump($data);
         echo json_encode($data);
     }
 
