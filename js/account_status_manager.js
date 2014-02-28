@@ -7,8 +7,7 @@
 	{
 		page = $('#logs_pagination').attr('page');
 		mydata = {'page':page};
-		// alert(page);
-
+		
 		$.ajax({
 			url : filepath+"enable_disable/get_log/", //ASSUMPTION : the page is in the enable_disable controller
 			type : 'POST',
@@ -89,11 +88,10 @@
 		//set the number of the user
 		var number = $(this).attr('student_no');  //default number
 		var numberType = "Student Number: "  //default number type
-		if ($(this).attr('emp_no')) { //check if type and number need to be changed
+		if ($(this).attr('usertype') === 'employee') { //check if type and number need to be changed
 			number = $(this).attr('emp_no')
 			numberType = "Employee Number: "
 		}
-
 
 		//message to be given to the admin
 		var constr = "Are you sure you want to " + thisAction + " this account?\nUsername: "+username+"\n" + numberType +number+"\nE-mail: "+email;
