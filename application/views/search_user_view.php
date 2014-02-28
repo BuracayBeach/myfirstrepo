@@ -28,6 +28,7 @@
             <label for="r_disabled">Disabled</label>
 
         	</br><button type="submit" id="submitButton"> Search </button>
+          <input type="number" id="page_size" min="1" value="10" />
   	</div>
 
 <script type = "text/javascript" src = "<?php echo base_url() ?>js/search_user_manager.js"></script>

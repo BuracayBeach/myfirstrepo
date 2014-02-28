@@ -66,7 +66,7 @@ function changeTextBox(value){
 	Description : AJAX module for searching users from the database
 */
 
-function search_user(page)
+function search_user(min_index)
 {
 	//get the value of the currently selected radio button
 	var search_category = $('input[name=field]:checked').val();
@@ -81,14 +81,16 @@ function search_user(page)
 				'firstname' : $('#enterFname').val(),
 				'middlename' : $('#enterMname').val(),
 				'lastname' : $('#enterLname').val(),
-				'status' : $('input[name=status]:checked').val()
+				'status' : $('input[name=status]:checked').val(),
+				'pagesize' : $('#page_size').val()
 			};
 			break;
 		case "stdno" :
 			json_data = {
 				'field' : 'stdno',
 				'studentno' : $('#enterStdno').val(),
-				'status' : $('input[name=status]:checked').val()
+				'status' : $('input[name=status]:checked').val(),
+				'pagesize' : $('#page_size').val()
 			};
 			break;
 
@@ -96,7 +98,8 @@ function search_user(page)
 			json_data = {
 				'field' : 'empno',
 				'employeeno' : $('#enterEmpno').val(),
-				'status' : $('input[name=status]:checked').val()
+				'status' : $('input[name=status]:checked').val(),
+				'pagesize' : $('#page_size').val()
 			};
 			break;
 
@@ -104,14 +107,16 @@ function search_user(page)
 			json_data = {
 				'field' : 'uname',
 				'username' : $('#enterUname').val(),
-				'status' : $('input[name=status]:checked').val()
+				'status' : $('input[name=status]:checked').val(),
+				'pagesize' : $('#page_size').val()
 			};
 			break;
 		case "email" :
 			json_data = {
 				'field' : 'email',
 				'emailadd' : $('#enterEmail').val(),
-				'status' : $('input[name=status]:checked').val()
+				'status' : $('input[name=status]:checked').val(),
+				'pagesize' : $('#page_size').val()
 			};	
 			break;
 		default :  
@@ -121,12 +126,13 @@ function search_user(page)
 				'firstname' : $('#enterFname').val(),
 				'middlename' : $('#enterMname').val(),
 				'lastname' : $('#enterLname').val() ,
-				'status' : $('input[name=status]:checked').val()
+				'status' : $('input[name=status]:checked').val(),
+				'pagesize' : $('#page_size').val()
 			};
 	}
 
 	$.ajax({
-		url : filepath+'enable_disable/search/'+page, 
+		url : filepath+'enable_disable/search/'+min_index, 
 		type : 'POST',
 		dataType : "html",
 		data : json_data,
@@ -139,8 +145,10 @@ function search_user(page)
 			if(json_results != null){
 				var num_results = json_results.results.length;
 			} else {
-				var num_result = 0;
+				var num_results = 0;
 			}
+			var num_pages = json_results.search_details.num_pages;
+			var page_size = json_results.search_details.page_size;
 
 			//display the data only if there are results
 			if(num_results > 0){
@@ -197,7 +205,16 @@ function search_user(page)
 				}
 				//add the result array to the result table to convert the array of strings into table rows 
 				$('#result_table').html(result_array);
-				//generatePagination(json_results.links,page);
+				//generate pagination only if there is more than 1 page
+				if(num_pages > 1){
+					generatePagination(num_pages,min_index,page_size);
+				} else {
+					//if no pagination is needed, destroy the pagination from a previous search to prevent errors
+					$('#pagination_controller').removeAttr();
+					$('#pagination_controller').html('');
+				}
+
+
 			}
 
 			else {
@@ -214,36 +231,78 @@ $(document).ready(function(){
 	});
 });
 
-		function generatePagination(num_pages,curr_page)
-		{
-			$('#pagination_controller').attr({
-				'num_pages' : num_pages,
-				'curr_page' : (curr_page/10)
-			});
+//PARAMETER DETAILS
+//num_pages -> the number of pages in this pagination
+//min_index -> index of the first element (in the search results) of the current page
 
-			var pagination_links = "<a href='javascript:void(0)'> < </a>";
-			for(var i=0;i<num_pages;i+=1)
-			{
-				pagination_links += "<a class='page_link' href='javascript:void(0)'>"+(i+1)+"</a>";
-			}
-			pagination_links += "<a href='javascript:void(0)'> > </a>";
-			
-			$('#pagination_controller').html(pagination_links);
+function generatePagination(num_pages,min_index,page_size)
+{
+	
+	var pc = $('#pagination_controller');
+	//set the pagination controller's attributes for control over the generation of page links
+	$(pc).attr({
+		'num_pages' : num_pages,
+		'curr_page' : (min_index/page_size)+1
+	});
 
-			var linkers = $('.page_link');
-			var link_count = linkers.length;
+	var curr_page = $(pc).attr('curr_page');
+	var num_pages = $(pc).attr('num_pages');
+	var pagination_links = '';
 
-			for(var i=0;i<link_count;i+=1)
-			{
-				$(linkers[i]).attr({
-					'page' : (i*10)
-				});
-			}
-
-			$(linkers).on('click',function(){
-				search_user($(this).attr('page'));
-			});
-			
+	//generate anchor tags, that do not link to any page, in text form
+	pagination_links += "<a id='prevpage' href='javascript:void(0)'> < Prev&nbsp;&nbsp; </a>";
+	for(var i=0;i<num_pages;i+=1)
+	{
+		//enclose the current page in <strong> tags to emphasize it as the current page
+		if(i === curr_page-1){
+			pagination_links += "<strong><a class='page_link' href='javascript:void(0)'>&nbsp;"+(i+1)+"&nbsp;</a></strong>";
+		} else {
+			pagination_links += "<a class='page_link' href='javascript:void(0)'>&nbsp;"+(i+1)+"&nbsp;</a>";
 		}
+	}
+	pagination_links += "<a id='nextpage' href='javascript:void(0)'> &nbsp;&nbsp;Next > </a>";
+
+	//convert the string tags into html code
+	$(pc).html(pagination_links);
+
+	var linkers = $('.page_link');
+	var link_count = linkers.length;
+
+	//attach a page attribute to each anchor tag that is from 1 to n
+	for(var i=0;i<link_count;i+=1)
+	{
+		//convert the page number into a minimum index for the search
+		$(linkers[i]).attr({
+			'page' : (i*page_size)
+		});
+	}
+
+	//bind a listener to each link (except the prev and next links) to change page on click
+	$(linkers).on('click',function(){
+		search_user($(this).attr('page'));		
+	});
+
+	//bind a listener to the previous page link only if not on the first page
+	if(curr_page > 1)
+	{
+		$('a#prevpage').on('click',function(){
+			//get the current page and subtract it by 1 since search uses a zero-based parameter while pages are a one-based
+			var page = $(pc).attr('curr_page')-1;
+			//decrement the page by 1 to go to the previous page
+			search_user((page-1)*page_size);
+		});
+	}
+
+	//bind a listener to the next page link only if not on the last page
+	if(curr_page != num_pages)
+	{
+		$('a#nextpage').on('click',function(){
+			var page = $(pc).attr('curr_page')-1;
+			//increment the page by 1 to go to the next page
+			search_user((page+1)*page_size);
+		});
+	}
+	
+}
 
 	
