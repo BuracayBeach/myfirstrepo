@@ -31,8 +31,8 @@ function generateAnnouncementRow(data,isAdmin){
                 '<button class="delete_announcement_button">Delete</button>';
         editable = 'contenteditable="false"';
     }
-    var rowHTML = '<tr class="announcement_table_row">'+
-                        '<td announcement_id="'+data.announcement_id+'" class="announcement_table_data">'+
+    var rowHTML = '<tr announcement_id="'+data.announcement_id+'" class="announcement_table_row">'+
+                        '<td class="announcement_table_data">'+
                             '<h4 '+editable+' class="announcement_title">'+data.announcement_title+'</h4>'+
                             'posted on <span class="date_posted">'+fd.toDateString() +'</span> by '+
                                 '<span class="announcement_author">'+data.announcement_author+'</span>' +

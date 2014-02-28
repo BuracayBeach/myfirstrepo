@@ -59,7 +59,7 @@
     <section class="top-bar-section">
       <!-- Left Nav Section -->
 
-    	
+
       <ul class="left">
         <li><a href="<?php echo base_url();?>ihome">
         <?php if( isset($_SESSION['type']) && $_SESSION['type'] == "admin") echo "Manage";else echo "Home";?>
