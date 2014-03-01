@@ -180,6 +180,9 @@ class Home extends CI_Controller {
     }
 
     public function create_account(){
+        if(isset($_SESSION['logged_in']) && $_SESSION['type'] == "regular")
+            redirect(base_url());
+
         $data['title'] = "eICS Lib Sign Up";
         $this->load->view("header", $data);
         $this->load->view("create_account_view", $data);

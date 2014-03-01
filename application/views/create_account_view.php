@@ -1,4 +1,4 @@
-<div class="small-6 column signup" id="container"> 
+<div class="small-6 column signup" id="container">
 
 	<form  class="<?php
 		if(isset($_SESSION['create_account_notif'])){
@@ -91,4 +91,4 @@
 <script src="<?php echo base_url(); ?>js/create_account.js"></script>
 <script src="<?php echo base_url();?>js/vendor/jquery.js"></script>
 
-
+<?php if(isset($_SESSION['create_account_notif'])) echo"<script> alert('The following already exists: {$_SESSION['create_account_notif']}'); </script>" ?> 
