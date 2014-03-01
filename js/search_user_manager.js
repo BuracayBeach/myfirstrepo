@@ -233,7 +233,7 @@ $(document).ready(function(){
 
 //PARAMETER DETAILS
 //num_pages -> the number of pages in this pagination
-//min_index -> index of the first element (in the search results) of the current page
+//min_index -> index of the first element (in the search results) of the current page (starts at index 0)
 
 function generatePagination(num_pages,min_index,page_size)
 {
@@ -242,22 +242,29 @@ function generatePagination(num_pages,min_index,page_size)
 	//set the pagination controller's attributes for control over the generation of page links
 	$(pc).attr({
 		'num_pages' : num_pages,
-		'curr_page' : (min_index/page_size)+1
+		'curr_page' : (min_index/page_size)+1		//NOTE : pages start at index 1 while min_indices start at index 0
 	});
 
 	var curr_page = $(pc).attr('curr_page');
 	var num_pages = $(pc).attr('num_pages');
+	var page_scale = 10; //must always be an even integer
 	var pagination_links = '';
 
-	//generate anchor tags, that do not link to any page, in text form
+	//generate anchor tags, that do not link to any page, in string form
 	pagination_links += "<a id='prevpage' href='javascript:void(0)'> < Prev&nbsp;&nbsp; </a>";
 	for(var i=0;i<num_pages;i+=1)
 	{
+		//subtract 1 from curr_page because this i in this loop is in terms of min_index
+		//skip adding links to lower pages when they are out of the page scale
+		if(curr_page-1 > page_scale/2 && (curr_page-1) - page_scale/2 > i) continue;
+		//skip adding links to upper pages when they are out of the page scale
+		if(i > (curr_page-1) + page_scale/2 && i > page_scale) continue;
+
 		//enclose the current page in <strong> tags to emphasize it as the current page
 		if(i === curr_page-1){
-			pagination_links += "<strong><a class='page_link' href='javascript:void(0)'>&nbsp;"+(i+1)+"&nbsp;</a></strong>";
+			pagination_links += "<strong><a class='page_link' min_index = '"+(i*page_size)+"' href='javascript:void(0)'>&nbsp;"+(i+1)+"&nbsp;</a></strong>";
 		} else {
-			pagination_links += "<a class='page_link' href='javascript:void(0)'>&nbsp;"+(i+1)+"&nbsp;</a>";
+			pagination_links += "<a class='page_link' min_index ='"+(i*page_size)+"' href='javascript:void(0)'>&nbsp;"+(i+1)+"&nbsp;</a>";
 		}
 	}
 	pagination_links += "<a id='nextpage' href='javascript:void(0)'> &nbsp;&nbsp;Next > </a>";
@@ -266,20 +273,10 @@ function generatePagination(num_pages,min_index,page_size)
 	$(pc).html(pagination_links);
 
 	var linkers = $('.page_link');
-	var link_count = linkers.length;
-
-	//attach a page attribute to each anchor tag that is from 1 to n
-	for(var i=0;i<link_count;i+=1)
-	{
-		//convert the page number into a minimum index for the search
-		$(linkers[i]).attr({
-			'page' : (i*page_size)
-		});
-	}
-
+	
 	//bind a listener to each link (except the prev and next links) to change page on click
 	$(linkers).on('click',function(){
-		search_user($(this).attr('page'));		
+		search_user($(this).attr('min_index'));		
 	});
 
 	//bind a listener to the previous page link only if not on the first page
@@ -287,9 +284,9 @@ function generatePagination(num_pages,min_index,page_size)
 	{
 		$('a#prevpage').on('click',function(){
 			//get the current page and subtract it by 1 since search uses a zero-based parameter while pages are a one-based
-			var page = $(pc).attr('curr_page')-1;
+			var index = $(pc).attr('curr_page')-1;
 			//decrement the page by 1 to go to the previous page
-			search_user((page-1)*page_size);
+			search_user((index-1)*page_size);
 		});
 	}
 
@@ -297,9 +294,9 @@ function generatePagination(num_pages,min_index,page_size)
 	if(curr_page != num_pages)
 	{
 		$('a#nextpage').on('click',function(){
-			var page = $(pc).attr('curr_page')-1;
+			var index = $(pc).attr('curr_page')-1;
 			//increment the page by 1 to go to the next page
-			search_user((page+1)*page_size);
+			search_user((index+1)*page_size);
 		});
 	}
 	
