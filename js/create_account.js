@@ -70,7 +70,7 @@ function validateUsername(){
 	msg="";
 
 	if (str=="") msg+="Required";
-	else if (!str.match(/^[0-9a-zA-Z]{6,18}$/))  msg+="Must be 6-18 characters long";
+	else if (!str.match(/^[0-9a-zA-Z\_]{6,18}$/))  msg+="Must be 6-18 characters long";
 	document.getElementsByName("span username")[0].innerHTML=msg;
 
 	if(msg==""){
