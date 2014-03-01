@@ -180,13 +180,19 @@ class Enable_disable_model extends CI_Model {
 
 	/* start edit by Carl Adrian P. Castueras */
 
-	public function get_log($page)
+	public function get_log($page,$page_size)
 	{
 		//fetch the account history where the latest updates appear first
-		$start_row = ($page-1) * 10;
+		$start_row = ($page-1) * $page_size;
+		//get results only from the given bounds [$start_row,$start_row + $page_size]
+		return $this->db->query("SELECT * FROM account_history ORDER BY date DESC LIMIT {$start_row}, {$page_size}")->result();
 
-		return $this->db->query("SELECT * FROM account_history ORDER BY date DESC")->result();
+	}
 
+	public function count_log()
+	{
+		//use row() since this query is only expected to return 1 row and not a whole array
+		return $this->db->query("SELECT COUNT(*) AS LOG_COUNT FROM account_history")->row();
 	}
 
 	/* end edit */
