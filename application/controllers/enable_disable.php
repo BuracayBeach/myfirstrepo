@@ -183,26 +183,35 @@ class Enable_disable extends CI_Controller {
 	/* start edit by Carl Adrian P. Castueras */
 
 	/* 
-		sample AJAX Call
+		sample ajax call
 		$.ajax({
-			url : "get_log/",
+			url : filepath+"enable_disable/get_log/", 
 			type : 'POST',
 			dataType : "html",
+			data: mydata,
 			async : true,
 			success: function(data) {}
+		});
 	*/
 
 	public function get_log()
 	{
 		$this->load->model('enable_disable_model');
-		$page_count = 1;
-		$log_result = $this->enable_disable_model->get_log($_POST['page'], $page_count);
-
-		echo json_encode($log_result);
-	}
-
-	public function init_pagination(){
+		//get the page and page size from the AJAX call 
+		$page = $_POST['page'];
+		$page_size = $_POST['page_size'];
+		//fetch the data from the database
+		$log_result = $this->enable_disable_model->get_log($page, $page_size);
+		//count the total results
+		$log_count = $this->enable_disable_model->count_log()->LOG_COUNT;
 		
+		$num_pages = floor($log_count/$page_size);
+		//add another page if there is a remainder
+		if($log_count % $page_size > 0) $num_pages++;
+
+		$data['results'] = $log_result;
+		$data['log_data'] = array('num_pages' => $num_pages);
+		echo json_encode($data);
 	}
 
 	/*
