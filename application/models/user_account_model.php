@@ -39,7 +39,7 @@ class User_account_model extends CI_Model {
 				if ($data['emp_no'] == $row->emp_no || $data['emp_no'] != "") $data_exists_notif .= ' employee_no';
 			}
 			
-			if (isset($_SESSION['create_account_notif'])) $_SESSION['create_account_notif'] = $data_exists_notif;
+			$_SESSION['create_account_notif'] = $data_exists_notif;
 			return false;
 		}
 	}
