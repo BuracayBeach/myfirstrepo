@@ -1,9 +1,14 @@
 window.onload=function(){
 	userForm.email.onkeyup=validateEmail;
+	userForm.email.onchange=validateEmail;
 	userForm.name_first.onkeyup=validateFirstName;
+	userForm.name_first.onchange=validateFirstName;
 	userForm.name_middle.onkeyup=validateMiddleName;
+	userForm.name_middle.onchange=validateMiddleName;
 	userForm.name_last.onkeyup=validateLastName;
+	userForm.name_last.onchange=validateLastName;
 	userForm.mobile_no.onkeyup=validateMobileNumber;
+	userForm.mobile_no.onchange=validateMobileNumber;
 	userForm.course.onfocus=filterCourses;
 	userForm.college.onblur=filterCourses;
 	userForm.college.onchange=filterCourses;
@@ -11,8 +16,11 @@ window.onload=function(){
 	userForm.onsubmit=validateAll;
 
 	changePasswordForm.currentpassword.onkeyup=validateCurrentPassword;
+	changePasswordForm.currentpassword.onchange=validateCurrentPassword;
 	changePasswordForm.newpassword.onkeyup=validateNewPasswords;
+	changePasswordForm.newpassword.onchange=validateNewPasswords;
 	changePasswordForm.renewpassword.onkeyup=validateNewPasswords;
+	changePasswordForm.renewpassword.onchange=validateNewPasswords;
 	changePasswordForm.onsubmit=validateAllPassword;
 }
 
