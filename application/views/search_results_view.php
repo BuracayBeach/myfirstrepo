@@ -10,9 +10,6 @@
 
 			</div>
 
-
-
-
 <script type="text/javascript" src= "<?php echo base_url()?>js/search/resultsPerPageManager.js"></script>
 <script type="text/javascript" src= "<?php echo base_url()?>js/search/searchresults.js"></script>
 
