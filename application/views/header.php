@@ -32,9 +32,9 @@
 <div id="navbar" class="contain-to-grid sticky">
   <nav style="" class="top-bar navb" data-topbar>
     <ul class="title-area navb">
-      <li class="name " >
+<!--       <li class="name " >
         <a href="<?php echo base_url();?>"><img style="max-height:30px;" src="<?php echo base_url();?>images/icon/logo_icon2.png"/> </a>
-      </li>
+      </li> -->
       <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
       <li class="divider"></li>
     </ul>
