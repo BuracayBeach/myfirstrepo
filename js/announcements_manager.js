@@ -95,7 +95,7 @@ function deleteAnnouncement(event){
     event.preventDefault();
     var result = confirm("Confirm deleting this announcement");
     if (result==true) {
-        var announcement_id = $(this).closest('td').attr('announcement_id');
+        var announcement_id = $(this).closest('tr').attr('announcement_id');
         var tr = $(this).closest('tr');
         $.post("index.php/announcement/delete",{"announcement_id":announcement_id},function(data){
             try{

@@ -257,8 +257,10 @@ function generateTransactionAnchorHTML(status,book_no){
 function toggleRecentlyAddedTable(){
     var recentlyAddedTableRows = $('#recently_added_books_table').find('tr');
     if(recentlyAddedTableRows.length > 1){
+        $('#no_recently').hide();
         recentlyAddedTableRows.closest('table').show();
     }else{
+        $('#no_recently').show();
         recentlyAddedTableRows.closest('table').hide();
     }
 }
