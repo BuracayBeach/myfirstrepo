@@ -348,7 +348,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `status` enum('enabled','disabled','pending') NOT NULL DEFAULT 'pending',
   `email` varchar(55) NOT NULL,
   `usertype` enum('student','employee') NOT NULL,
-  `emp_no` varchar(12) DEFAULT NULL,
+  `emp_no` varchar(9) DEFAULT NULL,
   `student_no` varchar(10) DEFAULT NULL,
   `name_first` varchar(24) NOT NULL,
   `name_middle` varchar(24) NOT NULL,

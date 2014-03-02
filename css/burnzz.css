@@ -7,7 +7,7 @@ h1 {
 }
 
 .space-top {
-	margin-top: 25px;
+	margin-top: 5px;
 	float: right;
 }
 
@@ -97,7 +97,7 @@ div.my_library_container button.margin_sa_left {
 
 div#notifs_container {
 	position: absolute;
-	top:0;
+	top: 0;
 	margin-left:68%; 
 	width: 30%;
 	float: right;
@@ -109,7 +109,7 @@ div.notif {
 	background-color: #f9f9f9;
 	overflow: hidden;
 	color: white;
-	cursor: pointer;
+	cursor: default;
 
 	-webkit-border-top-left-radius: 25px;
 	-webkit-border-bottom-right-radius: 25px;
@@ -126,7 +126,7 @@ div.notif {
 }
 
 div.notif:hover {
-	margin: 20px 0 0 20px;
+	margin: 20px 0 0 10px;
 }
 
 div.notif.claim {
