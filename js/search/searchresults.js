@@ -115,6 +115,8 @@
 	                            } 
 	                            //assume rows are appended already
 	                            // summarize(searchText);
+
+	                            $('.hideable').hide();
 							},
 							fail: function(){
 								alert("Search Failed");

@@ -14,50 +14,51 @@ $this->load->view('favorites_view', $data);
 <link rel="stylesheet" href="<?php echo base_url();?>css/burnzz.css">
 <script src="<?php echo base_url();?>js/freewall.js"></script>
 
-<h1> FAVORITES </h1>
+<div class="hideable">
+	
+	<div id="favorites_container" class="my_library_container">
+		<?php if(isset($favorites)) : foreach ($favorites as $row) : ?>
 
-<div id="favorites_container" class="my_library_container">
-	<?php if(isset($favorites)) : foreach ($favorites as $row) : ?>
+			<?php
 
-		<?php
+		        $reserve = 'reserve';
+		        $enabler = 'btn_enabled';
 
-	        $reserve = 'reserve';
-	        $enabler = 'btn_enabled';
+				/* checking of reserves */
+		        $size = count($reserve_user);
+		        for ($i=0; $i<$size; $i++) {
+		            if ($reserve_user[$i]->book_no == $row->book_no) {
+		                $reserve = 'unreserve';
+		                $enabler = 'btn_untoggle';
+		                break;
+		            }
+		        }
 
-			/* checking of reserves */
-	        $size = count($reserve_user);
-	        for ($i=0; $i<$size; $i++) {
-	            if ($reserve_user[$i]->book_no == $row->book_no) {
-	                $reserve = 'unreserve';
-	                $enabler = 'btn_untoggle';
-	                break;
-	            }
-	        }
+		        /* counter-check reserves with lends */
+		        $size = count($lend_user);
+		        for ($i=0; $i<$size; $i++) {
+		            if ($lend_user[$i]->book_no == $row->book_no) {
+		                $reserve = 'BORROWED';
+		                $enabler = 'btn_disabled';
+		                break;
+		            }
+		        }
+		    ?>             
+				
+			<div class="item brick">
 
-	        /* counter-check reserves with lends */
-	        $size = count($lend_user);
-	        for ($i=0; $i<$size; $i++) {
-	            if ($lend_user[$i]->book_no == $row->book_no) {
-	                $reserve = 'BORROWED';
-	                $enabler = 'btn_disabled';
-	                break;
-	            }
-	        }
-	    ?>             
-			
-		<div class="item brick">
+				<div class="book_title"> <?php echo $row->book_title; ?> </div> <br/>
+				<div class="book_no sub-2"> Book No: <?php echo $row->book_no; ?> </div> <br/>
+				<div class="date_added sub-2"> Date Added: <?php echo $row->date_added; ?> </div> <br/>
+				<?php echo "<button class='action_button favorite_button' book_no='" . $row->book_no . "'>unfavorite</button>" ?>
+				<?php echo "<button class='action_button reserve_button ".$enabler."' book_no='" . $row->book_no . "'>".$reserve."</button>" ?>			
+				<br/>
 
-			<div class="book_title"> <?php echo $row->book_title; ?> </div> <br/>
-			<div class="book_no sub-2"> Book No: <?php echo $row->book_no; ?> </div> <br/>
-			<div class="date_added sub-2"> Date Added: <?php echo $row->date_added; ?> </div> <br/>
-			<?php echo "<button class='action_button favorite_button' book_no='" . $row->book_no . "'>unfavorite</button>" ?>
-			<?php echo "<button class='action_button reserve_button ".$enabler."' book_no='" . $row->book_no . "'>".$reserve."</button>" ?>			
-			<br/>
+			</div>
 
-		</div>
-
-	<?php endforeach; ?>
-	<?php endif; ?>
+		<?php endforeach; ?>
+		<?php endif; ?>
+	</div>
 </div>
 
 <script type="text/javascript">

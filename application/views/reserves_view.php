@@ -14,104 +14,105 @@ $this->load->view('reserves_view', $data);
 <link rel="stylesheet" href="<?php echo base_url();?>css/burnzz.css">
 <script src="<?php echo base_url();?>js/freewall.js"></script>
 
-<h1> RESERVED </h1>
+<div class="hideable">
 
-<div id="reserves_container" class="my_library_container">
+	<div id="reserves_container" class="my_library_container">
 
 
-	<?php // para sa ranking 
+		<?php // para sa ranking 
 
-		// total reserves for a particular book
-		$book_array = array();
-		$size = count($book);
-		for ($i=0; $i<$size; $i++)
-			array_push($book_array, $book[$i]->book_no);
-		$book_ranks = array_count_values($book_array);
+			// total reserves for a particular book
+			$book_array = array();
+			$size = count($book);
+			for ($i=0; $i<$size; $i++)
+				array_push($book_array, $book[$i]->book_no);
+			$book_ranks = array_count_values($book_array);
 
-		// key value pair for book_no => array(rank)
-		$book_chever = array();
-		for ($i=0; $i<$size; $i++)
-			$book_chever[$book_array[$i]] = array();
-		for($i=0; $i<$size; $i++)
-			array_push($book_chever[$book[$i]->book_no], $book[$i]->rank);
-	?>
-
-	<?php if(isset($reserves)) : foreach ($reserves as $row) : ?>
-
-		<?php 
-
-			$temp = $book_chever[$row->book_no];
-			$size2 = count($temp);
-			for ($i=0; $i<$size2; $i++) {
-				if ($temp[$i] == $row->rank) {
-					$rank = $i+1;
-					break;
-				}
-			}
-
+			// key value pair for book_no => array(rank)
+			$book_chever = array();
+			for ($i=0; $i<$size; $i++)
+				$book_chever[$book_array[$i]] = array();
+			for($i=0; $i<$size; $i++)
+				array_push($book_chever[$book[$i]->book_no], $book[$i]->rank);
 		?>
-			
-		<div class="item brick">
 
-			<div class="book_title"> <?php echo $row->book_title; ?> </div> <br/>
-			<div class="date_reserved sub-2">  Date Reserved: <?php echo $row->date_reserved; ?> </div> <br/>
-			<div class="rank sub-2">  Rank <?php echo $rank; ?> 
-			of <?php echo $book_ranks[$row->book_no]; ?> </div> 
-			<br>
-			<?php echo "<button class='action_button reserve_button btn_untoggle margin_sa_left' book_no='" . $row->book_no . "'>unreserve</button>" ?>
+		<?php if(isset($reserves)) : foreach ($reserves as $row) : ?>
 
-		</div>
+			<?php 
 
-	<?php endforeach; ?>
-	<?php endif; ?>
-
-	<script type="text/javascript">
-
-		$(document).ready(function() {
-			$("#reserves_container").on("click", ".reserve_button", function() {
-
-				var info = new Array();
-				info[0] = $(this).attr('book_no');
-
-				var controller = "reserve";
-				var method = "remove";
-
-				$.ajax({
-					url : "http://localhost/myfirstrepo/index.php/" + controller + "/" + method,
-					data : { arr : info },
-					type : 'POST',
-					dataType : "html",
-					async : true,
-					success: function(data) {
+				$temp = $book_chever[$row->book_no];
+				$size2 = count($temp);
+				for ($i=0; $i<$size2; $i++) {
+					if ($temp[$i] == $row->rank) {
+						$rank = $i+1;
+						break;
 					}
-				});
+				}
 
-				brick = this.parentNode;
-				$(brick).remove();
-				generateWall();
+			?>
 				
-			});
+			<div class="item brick">
 
-			generateWall();
+				<div class="book_title"> <?php echo $row->book_title; ?> </div> <br/>
+				<div class="date_reserved sub-2">  Date Reserved: <?php echo $row->date_reserved; ?> </div> <br/>
+				<div class="rank sub-2">  Rank <?php echo $rank; ?> 
+				of <?php echo $book_ranks[$row->book_no]; ?> </div> 
+				<br>
+				<?php echo "<button class='action_button reserve_button btn_untoggle margin_sa_left' book_no='" . $row->book_no . "'>unreserve</button>" ?>
 
-			function generateWall() {
-				$(function() {  
-					var wall = new freewall(".my_library_container");
-					wall.reset({
-						selector: '.item',
-						animate: false,
-						cellW: 320,
-						cellH: 230,
-						delay: 50,
-						onResize: function() {
-							wall.fitWidth();
+			</div>
+
+		<?php endforeach; ?>
+		<?php endif; ?>
+
+		<script type="text/javascript">
+
+			$(document).ready(function() {
+				$("#reserves_container").on("click", ".reserve_button", function() {
+
+					var info = new Array();
+					info[0] = $(this).attr('book_no');
+
+					var controller = "reserve";
+					var method = "remove";
+
+					$.ajax({
+						url : "http://localhost/myfirstrepo/index.php/" + controller + "/" + method,
+						data : { arr : info },
+						type : 'POST',
+						dataType : "html",
+						async : true,
+						success: function(data) {
 						}
 					});
-					wall.fitWidth();
-				});  
-			}
-		});
 
-	</script>
+					brick = this.parentNode;
+					$(brick).remove();
+					generateWall();
+					
+				});
 
+				generateWall();
+
+				function generateWall() {
+					$(function() {  
+						var wall = new freewall(".my_library_container");
+						wall.reset({
+							selector: '.item',
+							animate: false,
+							cellW: 320,
+							cellH: 230,
+							delay: 50,
+							onResize: function() {
+								wall.fitWidth();
+							}
+						});
+						wall.fitWidth();
+					});  
+				}
+			});
+
+		</script>
+
+	</div>
 </div>
