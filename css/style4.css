@@ -1,0 +1,16 @@
+.announcement_title {
+	margin: 0;
+	text-align: center;
+}
+
+.announcement_table_data {
+	padding: 15px 7px 0 10px;
+}
+
+div.sub-heading {
+	text-align: center;
+}
+
+div.announcement_content_container {
+	margin-top: 30px;
+}
