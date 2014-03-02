@@ -45,8 +45,6 @@
                 </table>
 </div>
 
-
-
 <div id='pagination_controls_div'>
     <?php //pagination
         if (isset($page)){
@@ -112,9 +110,6 @@
         results_per_page = $('#pagination').attr('rowsperpage');
         ajax_results(search_by, numPage, results_per_page);
     }
-
-
-
 
     function ajax_results(search_by, page, results_per_page){
         my_input = $('#search_form').serialize();
