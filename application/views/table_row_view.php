@@ -66,28 +66,28 @@
             $size = count($lend_user);
             for ($i=0; $i<$size; $i++) {
                 if ($lend_user[$i]->book_no == $row->book_no) {
-                    $reserve = 'you are borrowing this';
+                    $reserve = 'BORROWED';
                     break;
                 }
             }
 
 
             //favorite button
-            echo "<span>" .
+            echo
                 "<button class='book_action' book_no='" . $row->book_no . "'>" .
                 $favorite
-                . "</button>&nbsp;&nbsp;" .
-                "</span>" .
+                . "</button>" .
+                
 
                 //reserve button
-                "<span>" .
+                
                 "<button action_type='reserve' class='book_action' book_no='{$row->book_no}'>";
             if ($row->status == 'available')
                 echo "reserve";
             else {
                 echo $reserve;
             }
-            echo "</button></span>";
+            echo "</button>";
         }
     }
 
