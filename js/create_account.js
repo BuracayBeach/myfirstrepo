@@ -4,25 +4,15 @@ window.onload=function(){
 	document.getElementById('employee').onchange = disablefield;
 
 	userForm.username.onkeyup=validateUsername;
-	userForm.username.onchange=validateUsername;
 	userForm.password.onkeyup=validatepasswords;
-	userForm.password.onchange=validatepasswords;
 	userForm.repassword.onkeyup=validatepasswords;
-	userForm.repassword.onchange=validatepasswords;
 	userForm.email.onkeyup=validateEmail;
-	userForm.email.onchange=validateEmail;
 	userForm.emp_no.onkeyup=validateEmployeeNumber;
-	userForm.emp_no.onchange=validateEmployeeNumber;
 	userForm.student_no.onkeyup=validateStudentNumber;
-	userForm.student_no.onchange=validateStudentNumber;
 	userForm.name_first.onkeyup=validateFirstName;
-	userForm.name_first.onchange=validateFirstName;
 	userForm.name_middle.onkeyup=validateMiddleName;
-	userForm.name_middle.onchange=validateMiddleName;
 	userForm.name_last.onkeyup=validateLastName;
-	userForm.name_last.onchange=validateLastName;
 	userForm.mobile_no.onkeyup=validateMobileNumber;
-	userForm.mobile_no.onchange=validateMobileNumber;
 	userForm.course.onfocus=filterCourses;
 	userForm.college.onblur=filterCourses;
 	userForm.college.onchange=filterCourses;
@@ -80,7 +70,8 @@ function validateUsername(){
 	msg="";
 
 	if (str=="") msg+="Required";
-	else if (!str.match(/^[0-9a-zA-Z\_]{6,18}$/))  msg+="Must be 6-18 characters long";
+	else if (!str.match(/^[0-9a-zA-Z]+$/))  msg+="Must use Alphanumeric. ";
+	else if (!str.match(/^.{6,18}$/) && str!="")  msg+="Must be 6-18 characters long. ";
 	document.getElementsByName("span username")[0].innerHTML=msg;
 
 	if(msg==""){
@@ -103,7 +94,7 @@ function validatePassword(){
 	msg="";
 
 	if(str=="")msg+="Required";
-	else if (!str.match(/^[0-9a-zA-Z]{6,18}$/))  msg+="Must be 6-18 characters long.";
+	else if (!str.match(/^[0-9a-zA-Z]{6,18}$/))  msg+="Must be alpha characters only and 6-18 characters long.";
 	else{
 		if(str.match(/^(([a-z]+)|(\d+))$/)) msg+="Weak";
 		else if(str.match(/^[a-z0-9]+$/)) msg+="Fair";
@@ -112,7 +103,7 @@ function validatePassword(){
 	}
 	document.getElementsByName("span password")[0].innerHTML=msg;
 
-	if(msg!="Required"&&msg!="Must be 6-18 characters long."){
+	if(msg!="Required" && msg!="Must be alpha characters only and 6-18 characters long."){
 		$('input[name=password]').removeClass().addClass("valid");
 		$("span[name~='password']").removeClass().addClass("valid");
 		return true;
@@ -175,7 +166,7 @@ function validateEmployeeNumber(){
 	msg="";
 
 	if (str=="") msg+="Required";
-	else if (!str.match(/^[0-9]{12}$/))  msg+="Input must be 12-digit combination";
+	else if (!str.match(/^[0-9]{9}$/))  msg+="Input must be 9-digit combination";
 	document.getElementsByName("span emp_no")[0].innerHTML=msg;
 
 	if(msg==""){
@@ -218,8 +209,9 @@ function validateFirstName(){
 	str=userForm.name_first.value;
 	msg="";
 
-	if (str=="") msg+="Required";
-	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
+	if (str=="") msg+="Required. ";
+	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input. ";
+	else if(!str.match(/^([A-Z]+[\w]*(\s)*)+$/) && str!="")	msg+="Start with a capital letter.";
 	document.getElementsByName("span name_first")[0].innerHTML=msg;
 
 	if(msg==""){
@@ -240,8 +232,9 @@ function validateMiddleName(){
 	str=userForm.name_middle.value;
 	msg="";
 
-	if (str=="") msg+="Required";
-	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
+	if (str=="") msg+="Required. ";
+	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input. ";
+	else if(!str.match(/^([A-Z]+[\w]*(\s)*)+$/) && str!="")	msg+="Start with a capital letter.";
 	document.getElementsByName("span name_middle")[0].innerHTML=msg;
 
 	if(msg==""){ 

@@ -85,7 +85,6 @@ class User_account extends CI_Controller {
 	}
 
 	public function createaccount(){
-		unset($_SESSION['create_account_notif']);
 		$data['username']= filter_var($_POST['username'], FILTER_SANITIZE_STRING);
 		$data['password']= hash('sha256', filter_var($_POST['password'], FILTER_SANITIZE_STRING));
 		$data['sex']= filter_var($_POST['sex'], FILTER_SANITIZE_STRING);
@@ -105,7 +104,7 @@ class User_account extends CI_Controller {
 		$result = $this->user_account_model->insert_data($new_data);
 
 		if($result){
-			$this->send_mail($new_data);
+			//$this->send_mail($new_data);
 			$this->backtohome();
 		}
 

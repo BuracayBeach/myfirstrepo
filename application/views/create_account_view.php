@@ -89,6 +89,23 @@
 </div>
 
 <script src="<?php echo base_url(); ?>js/create_account.js"></script>
-<script src="<?php echo base_url();?>js/vendor/jquery.js"></script>
 
-<?php if(isset($_SESSION['create_account_notif'])) echo"<script> alert('The following already exists: {$_SESSION['create_account_notif']}'); </script>" ?> 
+<?php 
+	if(isset($_SESSION['create_account_notif'])){
+		$duplicates = explode(" ", $_SESSION['create_account_notif']);
+		$duplicates = array_filter(array_map('trim', $duplicates));
+		
+		for ($i=1; $i<count($duplicates)+1; $i++) {
+			if($duplicates[$i] == "student_no")
+				$duplicates[$i] = "student number";
+			else if($duplicates[$i] == "emp_no")
+				$duplicates[$i] = "employee number";
+		}
+
+		$duplicates = array_reverse($duplicates);
+		$duplicates_comma_separated = implode(", ", $duplicates).".";
+
+		echo"<script> alert('The following input/s already exists: $duplicates_comma_separated'); </script>";
+		unset($_SESSION['create_account_notif']);
+	}
+?>

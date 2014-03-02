@@ -380,7 +380,7 @@ ERROR
 	background:rgba(225, 150, 150, 0.3);
 }
 
-.signup .employee_no input[name='emp_no']{
+.signup .emp_no input[name='emp_no']{
 	background:rgba(225, 150, 150, 0.3);
 }
 

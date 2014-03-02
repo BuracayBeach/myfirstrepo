@@ -80,6 +80,12 @@
 	</div>
 </form>
 
+<?php if(isset($_SESSION['update_account_notif'])){
+	echo "<script> alert('Email input already exists.'); </script>";
+	unset($_SESSION['update_account_notif']);
+	}
+?>
+
 <form class="<?php
 		if(isset($_SESSION['change_password_notif']))
 			echo 'pass';
@@ -95,7 +101,12 @@
 	</div>
 </form>
 
+<?php if(isset($_SESSION['change_password_notif'])){
+	echo "<script> alert('Current password incorrect!'); </script>";
+	unset($_SESSION['change_password_notif']);
+	}
+?>
+
 </div>
 
 <script src="<?php echo base_url(); ?>js/update_account.js"></script>
-<script src="<?php echo base_url();?>js/vendor/jquery.js"></script>
