@@ -37,6 +37,7 @@ class book extends CI_Controller {
     }
 
     public function add(){
+        if(isset($_POST)){
         $data = $this->safeguard->array_ready_for_query($_POST);
 
         if($data['type'] == 'Book' || $data['type'] == 'Journal')
@@ -47,37 +48,54 @@ class book extends CI_Controller {
         $this->book_model->insert_book($data);
 
         $data = $this->safeguard->str_array_ready_for_display($data);
-        echo json_encode($data);
+        if(isset($_SESSION)){
+            $_SESSION['recently_added_books'][$data['book_no']] = $data;
+        }
+        echo json_encode($data);}
     }
 
     public function delete(){
-        $book_no = mysql_real_escape_string(trim($_POST['book_no']));
-        $this->book_model->delete_book($book_no);
+        if(isset($_POST['book_no'])){
+            $book_no = mysql_real_escape_string(trim($_POST['book_no']));
+            $this->book_model->delete_book($book_no);
+            if(isset($_SESSION['recently_added_books'])){
+                if(isset($_SESSION['recently_added_books'][$book_no])){
+                    unset($_SESSION['recently_added_books'][$book_no]);
+                    if(empty($_SESSION['recently_added_books'])){
+                        unset($_SESSION['recently_added_books']);
+                    }
+                }
+            }
+        }
     }
 
     public function get_book(){
+        if(isset($_GET)){
         $book_no = mysql_real_escape_string($_GET['book_no']);
         $data = $this->book_model->get_book($book_no);
         $data = $this->safeguard->query_result_ready_for_display($data);
-        echo json_encode($data);
+        echo json_encode($data);}
     }
 
     public function get_buttons_view(){
+        if(isset($_GET)){
         $data['row'] = json_decode(json_encode($_GET));
         $data['row']->status = $data['row']->book_status;
 
-        echo $this->load->view('table_buttons_view',$data);
+        echo $this->load->view('table_buttons_view',$data);}
     }
 
     public function get_row_view(){
+        if(isset($_GET)){
         $data['row'] = json_decode(json_encode($_GET));
         $data['row']->book_type = $data['row']->type;
         $data['row']->status = "Available";
         $data['newly_added'] = true;
-        echo $this->load->view('table_row_view',$data);
+        echo $this->load->view('table_row_view',$data);}
     }
 
     public function edit(){
+        if(isset($_POST)){
         $data = $this->safeguard->array_ready_for_query($_POST);
         if($data['type'] == 'Book' || $data['type'] == 'Journal')
             $data['abstract'] = null;
@@ -85,20 +103,8 @@ class book extends CI_Controller {
             $data['type'] = $data['other'];
         $this->book_model->edit_book($data);
         $data = $this->safeguard->array_ready_for_query($data);
-        echo json_encode($data);
+        echo json_encode($data);}
     }
-
-    // public function display_views($data){
-    //     $this->load->view('header',$data);
-    //     $this->load->view('search_view', $data);
-    //     // $this->load->view('table_view',$data);
-    //     if($data['is_admin'])
-    //         $this->load->view('manage_view',$data);
-    //     $this->load->view('footer');
-    // }
-
-
-
 
     public function search(){
         $input = null;

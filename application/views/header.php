@@ -103,6 +103,9 @@
       <ul class="left">
         <li><a href="<?php echo base_url();?>help">Help</a></li>
       </ul>
+        <ul class="left">
+            <li><a href="<?php echo base_url();?>logs">Logs</a></li>
+        </ul>
 
     </section>
   </nav>
