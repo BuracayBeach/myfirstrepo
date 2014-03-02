@@ -22,6 +22,9 @@ $('#result_container,#faq_container').ready(function(){
     $('#add_container').hide();
     $('#edit_container').hide();
 
+    $("#show_add_form_button").on("click", function() {
+        $("#add_announcement_cancel_button").click();
+    });
 });
 
 $('#recently_added_books_container').ready(function(){
@@ -200,7 +203,6 @@ function editBook(event){
         errors = "Cannot continue action because of the following errors:<br/>" + errors;
         $(this).closest('div').find('.errors').html(errors);
     }
-
 
 
 
