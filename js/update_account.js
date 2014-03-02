@@ -1,14 +1,9 @@
 window.onload=function(){
 	userForm.email.onkeyup=validateEmail;
-	userForm.email.onchange=validateEmail;
 	userForm.name_first.onkeyup=validateFirstName;
-	userForm.name_first.onchange=validateFirstName;
 	userForm.name_middle.onkeyup=validateMiddleName;
-	userForm.name_middle.onchange=validateMiddleName;
 	userForm.name_last.onkeyup=validateLastName;
-	userForm.name_last.onchange=validateLastName;
 	userForm.mobile_no.onkeyup=validateMobileNumber;
-	userForm.mobile_no.onchange=validateMobileNumber;
 	userForm.course.onfocus=filterCourses;
 	userForm.college.onblur=filterCourses;
 	userForm.college.onchange=filterCourses;
@@ -16,11 +11,8 @@ window.onload=function(){
 	userForm.onsubmit=validateAll;
 
 	changePasswordForm.currentpassword.onkeyup=validateCurrentPassword;
-	changePasswordForm.currentpassword.onchange=validateCurrentPassword;
 	changePasswordForm.newpassword.onkeyup=validateNewPasswords;
-	changePasswordForm.newpassword.onchange=validateNewPasswords;
 	changePasswordForm.renewpassword.onkeyup=validateNewPasswords;
-	changePasswordForm.renewpassword.onchange=validateNewPasswords;
 	changePasswordForm.onsubmit=validateAllPassword;
 }
 
@@ -72,8 +64,9 @@ function validateFirstName(){
 	str=userForm.name_first.value;
 	msg="";
 
-	if (str=="") msg+="Required";
-	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
+	if (str=="") msg+="Required. ";
+	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input. ";
+	else if(!str.match(/^([A-Z]+[\w]*(\s)*)+$/) && str!="")	msg+="Start with a capital letter.";
 	document.getElementsByName("span name_first")[0].innerHTML=msg;
 
 	if(msg==""){
@@ -94,8 +87,9 @@ function validateMiddleName(){
 	str=userForm.name_middle.value;
 	msg="";
 
-	if (str=="") msg+="Required";
-	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
+	if (str=="") msg+="Required. ";
+	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input. ";
+	else if(!str.match(/^([A-Z]+[\w]*(\s)*)+$/) && str!="")	msg+="Start with a capital letter.";
 	document.getElementsByName("span name_middle")[0].innerHTML=msg;
 
 	if(msg==""){ 
@@ -419,10 +413,10 @@ function validateCurrentPassword(){
 	msg="";
 
 	if(str=="")msg+="Required";
-	else if (!str.match(/^[0-9a-zA-Z]{6,18}$/))  msg+="Must be 6-18 characters long.";
+	else if (!str.match(/^[0-9a-zA-Z]{6,18}$/))  msg+="Must be alpha characters only and 6-18 characters long.";
 
 	document.getElementsByName("span currentpassword")[0].innerHTML=msg;
-	if(msg!="Required"&&msg!="Must be 6-18 characters long."){
+	if(msg!="Required" && msg!="Must be alpha characters only and 6-18 characters long."){
 		$('input[name=currentpassword]').removeClass().addClass("valid");
 		$("span[name~='currentpassword']").removeClass().addClass("valid");
 		return true;
