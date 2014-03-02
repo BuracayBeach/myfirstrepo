@@ -42,10 +42,6 @@ span.book_title {
 	font-weight: 800;
 }
 
-div.notif_msg {
-	margin-top: 10px;
-}
-
 div.days_due {
 	position: absolute;
 	bottom: 10px;
@@ -96,15 +92,16 @@ div.my_library_container button.margin_sa_left {
 /* for notifs pre */
 
 div#notifs_container {
+	font-size: 0.82em;
 	position: absolute;
 	top: 0;
-	margin-left:68%; 
-	width: 30%;
+	margin-left:70%; 
+	width: 20%;
 	float: right;
 }
 
 div.notif {
-	padding: 10px 15px;
+	padding: 10px 25px 10px 15px;
 	margin: 20px 0;
 	background-color: #f9f9f9;
 	overflow: hidden;
@@ -127,6 +124,10 @@ div.notif {
 
 div.notif:hover {
 	margin: 20px 0 0 10px;
+}
+
+div.notif_msg {
+	margin-top: 10px;
 }
 
 div.notif.claim {

@@ -7,6 +7,10 @@
 	padding: 15px 7px 0 10px;
 }
 
+p.announcement_content {
+	margin: 35px 0 15px 0;
+}
+
 div.sub-heading {
 	text-align: center;
 }
@@ -54,4 +58,9 @@ div.search_results_counter {
 
 table#search_table {
 	margin-top: 20px;
+}
+
+table button {
+	width: 100%;
+	margin: 2px 0;
 }
