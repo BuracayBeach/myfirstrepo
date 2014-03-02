@@ -43,7 +43,7 @@ $route['404_override'] = 'home';
 /* append this if a function accepts parameters from URI: (/(:any)*)*
     ie. ( homie|about_us|(foo(/(:any)*)*) )
 */
-$route['(manage|accounts|update_admin|update_account|create_account|borrowed|reserved|favorites|ihome|about_us|announcements|faq|help)'] = "home/$0";
+$route['(manage|accounts|update_admin|update_account|create_account|borrowed|reserved|favorites|ihome|about_us|announcements|faq|help|logs)'] = "home/$0";
 
 
 /* End of file routes.php */

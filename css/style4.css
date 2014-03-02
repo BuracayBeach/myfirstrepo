@@ -1,0 +1,66 @@
+.announcement_title {
+	margin: 0;
+	text-align: center;
+}
+
+.announcement_table_data {
+	padding: 15px 7px 0 10px;
+}
+
+p.announcement_content {
+	margin: 35px 0 15px 0;
+}
+
+div.sub-heading {
+	text-align: center;
+}
+
+div.announcement_content_container {
+	margin-top: 30px;
+}
+
+/* search results */
+
+span.bold {
+	font-weight: 800;
+}
+
+#results_per_page_container {
+	margin-top: 20px;
+}
+
+#results_per_page_form {
+	width: 170px;
+	margin: 0 auto;
+}
+
+#results_per_page_div div{
+	display: inline-block;
+}
+
+div.paginaion_container {
+	display: block;
+}
+
+div#pagination_controls_div {
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+}
+
+div#pagination {
+	margin-bottom: 10px;
+}
+
+div.search_results_counter {
+	float: right;
+}
+
+table#search_table {
+	margin-top: 20px;
+}
+
+table button {
+	width: 100%;
+	margin: 2px 0;
+}

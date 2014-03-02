@@ -1,20 +1,15 @@
 #navbar, .top-bar{
-  background: #bbbbbb;
-  height:55px;
+  background: #222930 !important;
 }
 
-
 .top-bar-section li a {
-  background: #bbbbbb  !important;
+  background: #222930 !important;
   text-decoration: none !important;
-  height:55px;
-  border-top:5px solid #bbbbbb  ;
 }
 
 .top-bar-section li a:not(.button):hover {
-    background: #2266cc !important;
+    background: #2266CC !important;
   text-decoration: none !important;
-  border-top:5px solid #2266cc;
 }
 
 #login input{
@@ -23,9 +18,7 @@
 }
 
 #loginform, #loginform form{
-  background: #bbbbbb !important;
-  padding-top:5px;
-  height:50px;
+  background:#222930 !important;
 }
 
 .sidebar-nav a{
@@ -79,22 +72,23 @@ list-style-type: none !important;
 
 #book_type_div{
   margin-left: 3% !important;
-  font-size: 1% !important;
+  margin-bottom: 10% !important; 
   float: left !important;
-    border-right: 1px solid #2266cc !important;
 
 }
 
 #status{
-  margin-left: 5% !important;
-  font-size: 1% !important;
+  margin-left: 4% !important;
    float: left !important;
-   width: 50% !important;
-
-   margin-right:-10% !important;
-   height: 20% !important;
+   margin-right: -5% !important;
+   margin-bottom: 10% !important; 
 }
 
+.items{
+  position: absolute !important;
+  background-color: white !important;
+  width: 45% !important;
+}
 body{
  font-family:"Segoe UI Light" !important;
 }
@@ -104,18 +98,18 @@ body{
   color: #fff !important;
   background: #2266cc !important;
   text-decoration: none !important;
-  font-size: 140% !important;
+  font-size: 110% !important;
 }
 .sidebar-nav li{
   color: #2266cc !important;
   text-decoration: none !important;
-  font-size: 110% !important;
+  font-size: 90% !important;
 }
 
 .sidebar-nav li.active {
   background-color: #FF6600 !important;
   color:#fff !important;
-  font-size: 130% !important;
+  font-size: 110% !important;
 }
 
 .sidebar-nav {
@@ -230,15 +224,15 @@ ADD AND EDIT
   height:7% !important;
 }
 #add_button{
-	margin-left: 3% !important;
-	background-color: #2266cc !important;
+  margin-left: 3% !important;
+  background-color: #2266cc !important;
 }
 #edit_container input{
-	height:7% !important;
+  height:7% !important;
 }
 #submit_edit{
-	margin-left: 3% !important;
-	background-color: #2266cc !important;
+  margin-left: 3% !important;
+  background-color: #2266cc !important;
 }
 #show_add_form_button{
   float:right !important;
@@ -302,18 +296,18 @@ font-family:"Segoe UI Light" !important;
     color: white;
 }
 .edit_faq_button{
-	margin-left: 3% !important;
-	background-color:#2266cc !important;
-	font-family:"Segoe UI Light" !important;
+  margin-left: 3% !important;
+  background-color:#2266cc !important;
+  font-family:"Segoe UI Light" !important;
     font-size:100% !important;
     width:10% !important;
     height: 4% !important;
     color: white;
 }
 .delete_faq_button{
-	margin-left: 3% !important;
-	background-color:#FF6600 !important;
-	font-family:"Segoe UI Light" !important;
+  margin-left: 3% !important;
+  background-color:#FF6600 !important;
+  font-family:"Segoe UI Light" !important;
     font-size:100% !important;
     width:10% !important;
     height: 4% !important;
@@ -321,18 +315,18 @@ font-family:"Segoe UI Light" !important;
   }
 
 #add_faq_container{
-	width:100% !important;
+  width:100% !important;
 }
 
 .nicEdit-panelContain{
-	width: 210% !important;
-	height: 100% !important;
+  width: 210% !important;
+  height: 100% !important;
 }
 
 .nicEdit-main{
-	max-width: 500% !important;
-	height: 100% !important;
-	background-color: white !important;
+  max-width: 500% !important;
+  height: 100% !important;
+  background-color: white !important;
 }
 
 .edit_announcement_button{
@@ -365,31 +359,90 @@ ERROR
 -----------------------------------*/
 
 .invalid_user input[type='text'], .invalid_user input[type='password']{
-	background:rgba(225, 150, 150, 0.3);
+  background:rgba(225, 150, 150, 0.3);
 }
 
 .signup .username input[name='username']{
-	background:rgba(225, 150, 150, 0.3);
+  background:rgba(225, 150, 150, 0.3);
 }
 
 .signup .email input[name='email']{
-	background:rgba(225, 150, 150, 0.3);
+  background:rgba(225, 150, 150, 0.3);
 }
 
 .signup .student_no input[name='student_no']{
-	background:rgba(225, 150, 150, 0.3);
+  background:rgba(225, 150, 150, 0.3);
 }
 
+<<<<<<< HEAD
 .signup .emp_no input[name='emp_no']{
 	background:rgba(225, 150, 150, 0.3);
+=======
+.signup .employee_no input[name='emp_no']{
+  background:rgba(225, 150, 150, 0.3);
+>>>>>>> 0c660960708cbc5de6bdb30d7af974c309fc5be7
 }
 
 
 .signup .pass input[name='currentpassword']{
-	background:rgba(225, 150, 150, 0.3);
+  background:rgba(225, 150, 150, 0.3);
 }
 
 
 .top-bar a img{
-	max-height:47px !important;
+
 }
+
+/* bago*/
+.dropdown-check-list {
+              display: inline-block;
+               font-family:"Segoe UI Light" !important;
+            }
+            .dropdown-check-list .anchor {
+              position: relative;
+              cursor: pointer;
+              display: inline-block;
+              padding: 5px 50px 5px 10px;
+              border: 1px solid #ccc;
+               font-family:"Segoe UI Light" !important;
+            }
+            .dropdown-check-list .anchor:after {
+              position: absolute;
+              content: "";
+              border-left: 2px solid black;
+              border-top: 2px solid black;
+              padding: 5px;
+              right: 10px;
+              top: 20%;
+               font-family:"Segoe UI Light" !important;
+              -moz-transform: rotate(-135deg);
+              -ms-transform: rotate(-135deg);
+              -o-transform: rotate(-135deg);
+              -webkit-transform: rotate(-135deg);
+              transform: rotate(-135deg);
+            }
+            .dropdown-check-list .anchor:active:after {
+              right: 8px;
+              top: 21%;
+               font-family:"Segoe UI Light" !important;
+            }
+            .dropdown-check-list ul.items {
+              padding: 2px;
+              display: none;
+              margin: 0;
+              border: 1px solid #ccc;
+              border-top: none;
+               font-family:"Segoe UI Light" !important;
+            }
+            .dropdown-check-list ul.items li {
+              list-style: none;
+               font-family:"Segoe UI Light" !important;
+            }
+            .dropdown-check-list.visible .anchor {
+              color: #0094ff;
+               font-family:"Segoe UI Light" !important;
+            }
+            .dropdown-check-list.visible .items {
+              display: block;
+               font-family:"Segoe UI Light" !important;
+            }

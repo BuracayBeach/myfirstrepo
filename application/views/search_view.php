@@ -2,56 +2,42 @@
 			<div id="search">
 				<form id="search_form" name="search_form" method="post">
 
+					<div id="book_type_div" class="dropdown-check-list">
+				        <span class="anchor">Type</span>
+				        <ul class="items">
+				            <li> &nbsp;&nbsp;<input class="check" id = "type_book" type="checkbox" name = "type_book" checked> 
+								<label class="labelC" for="type_book">Book</label></li>
+				            <li> &nbsp;&nbsp;<input class="check" id = "type_journal" type="checkbox" name = "type_journal" checked>
+								<label class="labelC" for="type_journal">Journal</label></li>
+				            <li> &nbsp;&nbsp;<input class="check" id = "type_sp" type="checkbox" name = "type_sp" checked>
+								<label class="labelC" for="type_sp">SP</label></li>
+				            <li> &nbsp;&nbsp;<input class="check" id = "type_thesis" type="checkbox" name = "type_thesis" checked>
+								<label class="labelC" for="type_thesis">Thesis</label></li>
+				        </ul>
+				    </div>
+					
 
-					
-					<div id="book_type_div">
-						&nbsp; &nbsp;
-						<div class="book_type_option" id="option1">
-							<input class="check" id = "type_book" type="checkbox" name = "type_book" checked>
-							<label class="labelC" for="type_book">Book</label>
-						</div>
-						<div class="book_type_option" id="option2">
-							<input class="check" id = "type_journal" type="checkbox" name = "type_journal" checked>
-							<label class="labelC" for="type_journal">Journal</label>
-						</div>
-						<div class="book_type_option" id="option3">
-							<input class="check" id = "type_sp" type="checkbox" name = "type_sp" checked>
-							<label class="labelC" for="type_sp">SP</label>
-						</div>
-						<div class="book_type_option" id="option4">	
-							<input class="check" id = "type_thesis" type="checkbox" name = "type_thesis" checked>
-							<label class="labelC" for="type_thesis">Thesis</label>
-						</div>
+			
 
-					
-						<div class="book_type_option" id="other_material_type" hidden>
-							<input class="check" id = "type_other" type="checkbox" name = "type_other" checked>
-							<label class="labelC" for="type_other">Other</label>
-							<select name="other_type_select">
-								<option value="search_relevance">Magazine</option>
-							</select>
-						</div>
-					
-						
-						
-					</div>
-				
-		   					<?php
+
+					<?php
 						if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
 							echo '
-							<div id="status">
-								&nbsp; &nbsp;<input class="check" id = "available" type="checkbox" name = "available" checked>
-									<label for="available">Available</label></br>
-								&nbsp; &nbsp;<input class="check" id = "reserved" type="checkbox" name = "reserved" checked>
-									<label for="reserved">Reserved</label></br>
-								&nbsp; &nbsp;<input class="check" id = "borrowed" type="checkbox" name = "borrowed" checked >
-									<label for="borrowed" style="clear:right;">Borrowed</label>
-							</div>
-								
-								<hr>
-							';
+							<div id="status" class="dropdown-check-list">
+							        <span class="anchor">Status</span>
+							        <ul class="items">
+							            <li> <input class="check" id = "available" type="checkbox" name = "available" checked>
+									<label for="available">Available</label></li>
+							            <li>  <input class="check" id = "reserved" type="checkbox" name = "reserved" checked>
+									<label for="reserved">Reserved</label></li>
+							            <li>  <input class="check" id = "borrowed" type="checkbox" name = "borrowed" checked > 
+									<label for="borrowed" style="clear:right;">Borrowed</label></li>
+							        </ul>
+							    </div>
+							<hr/>';
 						}
 					?>
+
 					<input searchby="book_title" id="search_text" type="search" name='search' autofocus='true' placeholder='Keywords...' maxlength='99' spellcheck='true'/>
 				<input id='submit_search' type="submit" name="submit_search" value="Search"/><br/>
 					<hr>
@@ -93,98 +79,6 @@
 
 
 
-
-
-      <script>
-        $('#check_year_range').on('click', function(){
-          cchecked = document.getElementById("check_year_range").checked;;
-          $('#yearfrom').attr('disabled', !cchecked)
-          $('#yearto').attr('disabled', !cchecked)
-        })
-
-
-        $("#results_per_page , #yearfrom, #yearto").on('keypress', function(event){
-          res_valid = num_valid($('#results_per_page'))
-          yfrom_valid = num_valid($('#results_per_page'))
-          yto_valid = num_valid($('#yearto'))
-
-          if (event.which == 13 && res_valid && yfrom_valid && yto_valid){
-            $('#submit_search').submit();
-          }
-        });
-
-        function num_valid(object){
-          o_val = parseInt(object.val());
-          o_min = parseInt(object.attr('min'));
-          o_max = parseInt(object.attr('max'));
-
-          return $.isNumeric(o_val) && o_val >= o_min && o_val <= o_max;
-        }
-
-
-        $('#results_per_page_form').submit(function(event){
-          event.preventDefault();
-        });
-    </script>
-
-
-
-
-
-    <script>
-	    $(".menu-toggle").click(function(e) {
-	        e.preventDefault();
-	        $("li.active").toggleClass("active")
-	        $(this).toggleClass("active");
-	      
-	    });
-    </script>
-
-
-
-
-
-
-
-<!-- 
-
-    <script type="text/javascript"> //ajax for other types of material
-
-				$(document).ready(function() {
-				    $('#sidebar-wrapper').on('click', 'li', ajax_results);
-
-					$('#search_form').submit(ajax_results); 
-
-					function ajax_results(event){
-						event.preventDefault(); //prevent form from submitting/refreshing
-
-						my_input = $('#search_form').serialize();
-
-						// console.log(my_input);
-						$.ajax({
-							type: "post",
-							data: my_input, 
-							url: "http://localhost/myfirstrepo/index.php/book/search",
-							success: function(data, jqxhr, status){
-                                var resultContainer = $("#result_container");
-                                var recentlyAddedBooksContainer = resultContainer.find("#recently_added_books_container");
-                                   
-                                if (recentlyAddedBooksContainer.length != 0){
-	                                resultContainer.html(data);
-	                            }
-							}
-			 			});
-
-						return false;
-					}
-
-
-				
-					// when favorites/unfavorites/reserve/unreserve button is clicked on each row
-					
-				});
-
-
-			</script> -->
-
-
+<script type="text/javascript" src= "<?php echo base_url()?>js/search/resultsPerPageManager.js"></script>
+<script type="text/javascript" src= "<?php echo base_url()?>js/search/searchByMenuToggle.js"></script>
+<script type="text/javascript" src= "<?php echo base_url()?>js/search/typeStatusDropDown.js"></script>
