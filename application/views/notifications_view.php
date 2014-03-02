@@ -30,7 +30,7 @@ $this->load->view('notifications_view', $data);
 
 			<?php elseif($row->type == "claim") : ?>
 
-					CLAIM: <span class="book_title"> <?php echo $row->book_title; ?> </span> <br/>
+					CLAIM BOOK: <span class="book_title"> <?php echo $row->book_title; ?> </span> <br/>
 					<div class="notif_msg"> <?php echo $row->message; ?> </div> <br/>
 					<div class="date_added sub-2 space-top"> <?php echo $row->date_sent; ?> </div>
 
@@ -39,9 +39,6 @@ $this->load->view('notifications_view', $data);
 		</div>
 
 	<?php endforeach; ?>
-
-	<?php else : ?>
-		<span> No notifications. </span>
 	<?php endif; ?>
 
 </div> 
