@@ -374,15 +374,10 @@ ERROR
   background:rgba(225, 150, 150, 0.3);
 }
 
-<<<<<<< HEAD
+
 .signup .emp_no input[name='emp_no']{
 	background:rgba(225, 150, 150, 0.3);
-=======
-.signup .employee_no input[name='emp_no']{
-  background:rgba(225, 150, 150, 0.3);
->>>>>>> 0c660960708cbc5de6bdb30d7af974c309fc5be7
 }
-
 
 .signup .pass input[name='currentpassword']{
   background:rgba(225, 150, 150, 0.3);
