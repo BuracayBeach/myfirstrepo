@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+    <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Home extends CI_Controller {
 
@@ -106,7 +106,10 @@ class Home extends CI_Controller {
         $data['title'] = "eICS Lib My Lib";
         $this->load->view("header", $data);
 
-        if (isset($_SESSION)) {
+        if(!isset($_SESSION['logged_in']) && $_SESSION['type'] != "regular")
+            redirect(base_url());
+
+        else{
             $data['borrowed'] = $this->lend_model->get($_SESSION['username']);
             $unreturned = $this->notifs_model->get_unreturned_by_user($_SESSION['username']);
 
@@ -132,7 +135,10 @@ class Home extends CI_Controller {
         $data['title'] = "eICS Lib My Lib";
         $this->load->view("header", $data);
 
-        if (isset($_SESSION)) {
+        if(!isset($_SESSION['logged_in']) && $_SESSION['type'] != "regular")
+            redirect(base_url());
+
+        else {
             $data['favorites'] = $this->favorite_model->get_all($_SESSION['username']);
             $data['reserve_user'] = $this->reserve_model->get($_SESSION['username']);
             $data['lend_user'] = $this->lend_model->get($_SESSION['username']);
@@ -148,7 +154,10 @@ class Home extends CI_Controller {
         $data['title'] = "eICS Lib My Lib";
         $this->load->view("header", $data);
 
-        if (isset($_SESSION)){
+        if(!isset($_SESSION['logged_in']) && $_SESSION['type'] != "regular")
+            redirect(base_url());
+
+        else{
             $data['book'] = $this->reserve_model->check_book_ranks($_SESSION['username']);
             $data['reserves'] = $this->reserve_model->get($_SESSION['username']);
             $this->load->view('reserves_view', $data);
@@ -171,13 +180,18 @@ class Home extends CI_Controller {
     }
 
     public function create_account(){
+        if(isset($_SESSION['logged_in']) && $_SESSION['type'] == "regular")
+            redirect(base_url());
+
         $data['title'] = "eICS Lib Sign Up";
         $this->load->view("header", $data);
         $this->load->view("create_account_view", $data);
-
     }
 
     public function update_account(){
+        if(!isset($_SESSION['logged_in']) && $_SESSION['type'] != "regular")
+            redirect(base_url());  
+
         $data['title'] = "eICS Lib Sign Up";
         $this->load->view("header", $data);
         $username = $_SESSION['username'];
@@ -187,6 +201,9 @@ class Home extends CI_Controller {
     }
 
     public function update_admin(){
+        if(!isset($_SESSION['admin_logged_in']) && $_SESSION['type'] != "admin")
+            redirect(base_url()); 
+
         $data['title'] = "eICS Lib Sign Up";
         $this->load->view("header", $data);
 

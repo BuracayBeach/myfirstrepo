@@ -6,9 +6,12 @@
 	function log_users()
 	{
 		page = $('#logs_pagination').attr('page');
-		mydata = {'page':page};
-		// alert(page);
-
+		page_size = $('#log_page_size').val();
+		mydata = {
+			'page' : page,
+			'page_size' : page_size
+		};
+		
 		$.ajax({
 			url : filepath+"enable_disable/get_log/", //ASSUMPTION : the page is in the enable_disable controller
 			type : 'POST',
@@ -20,10 +23,12 @@
 				json_data = JSON.parse(data); //parse the data as JSON since it is in html format
 				var result_array = [];
 				if(json_data != null){
-					var num_results = json_data.length;
+					var num_results = json_data.results.length;
 				} else {
-					var num_result = 0;
+					var num_results = 0;
 				}
+
+				var num_pages = json_data.log_data.num_pages;
 
 				//display the data only if there are results
 				if(num_results > 0){
@@ -43,20 +48,24 @@
 					for(var i=0;i<num_results;i+=1)
 					{
 						var row = "<tr class='log_row'>";
-						row += "<td class='log_col'>"+json_data[i].username_user+"</td>";
-						row += "<td class='log_col'>"+json_data[i].username_admin+"</td>";
-						row += "<td class='log_col'>"+json_data[i].email+"</td>";
-						row += "<td class='log_col'>"+json_data[i].date+"</td>";
-						row += "<td class='log_col'>"+json_data[i].action+"</td>";
+						row += "<td class='log_col'>"+json_data.results[i].username_user+"</td>";
+						row += "<td class='log_col'>"+json_data.results[i].username_admin+"</td>";
+						row += "<td class='log_col'>"+json_data.results[i].email+"</td>";
+						row += "<td class='log_col'>"+json_data.results[i].date+"</td>";
+						row += "<td class='log_col'>"+json_data.results[i].action+"</td>";
 						row += "</tr>";
 						result_array.push(row);
 					}
-
-
-
-
 					//replace the entire table with an updated table
 					$('#log_table').html(result_array);
+
+					if(num_pages > 1){
+						generateLogPagination(num_pages)
+					} else {
+						//empty the log pagination div if there is no need for pagination
+						$('#logs_pagination').removeAttr();
+						$('#logs_pagination').html('');
+					}
 				} else {
 					$('#log_table').before('<p>No logs yet</p>');
 
@@ -64,6 +73,69 @@
 				
 			}
 		});
+	}
+
+	function generateLogPagination(num_pages)
+	{
+		var lp = $('#logs_pagination');
+
+		$(lp).attr({
+			'pagecount' : num_pages
+		});
+
+		var curr_page = $(lp).attr('page')*1; //multiply by 1 to "force" it into an integer
+		var pagination_links = '';
+		var page_scale = 10; //this should always be an even integer
+
+		pagination_links += "<a href='javascript:void(0)' id='prev_log_page'> < Prev&nbsp;&nbsp;</a>";
+		for(var i=1;i<=num_pages;i+=1)
+		{
+			//skip adding links to lower pages when they are out of the page scale
+			if(curr_page > page_scale/2 && curr_page - page_scale/2 > i) continue;
+			//skip adding links to upper pages when they are out of the page scale
+			if(i > curr_page + page_scale/2 && i > page_scale) continue;
+
+			if(i === curr_page) pagination_links += "<strong>";
+			pagination_links += "<a href='javascript:void(0)' page='"+i+"' class='log_page'>&nbsp;"+i+"&nbsp;</a>";
+			if(i === curr_page) pagination_links += "</strong>"
+		}
+		pagination_links += "<a href='javascript:void(0)' id='next_log_page'> &nbsp;&nbsp;Next > </a>";
+
+		$(lp).html(pagination_links);
+
+		//when you click a page link, the current page attribute and the displayed results should update
+		$('.log_page').on('click',function(){
+			$(lp).attr({
+				'page' : $(this).attr('page')
+			});
+			log_users();
+		});
+
+		//bind functionality to the prev button only if not on page 1
+		if(curr_page > 1){
+
+			$('#prev_log_page').on('click',function(){
+				var prev_page = ($(lp).attr('page')*1)-1;
+				$(lp).attr({
+					'page' : prev_page
+				});
+				log_users();
+			});
+			
+		}
+
+		//bind functionality to the next button only if not on the last page
+		if(curr_page !== num_pages){
+
+			$('#next_log_page').on('click',function(){
+				var next_page = ($(lp).attr('page')*1)+1;
+				$(lp).attr({
+					'page' : next_page
+				});
+				log_users();
+			});
+			
+		}
 	}
 
 
@@ -89,11 +161,10 @@
 		//set the number of the user
 		var number = $(this).attr('student_no');  //default number
 		var numberType = "Student Number: "  //default number type
-		if ($(this).attr('emp_no')) { //check if type and number need to be changed
+		if ($(this).attr('usertype') === 'employee') { //check if type and number need to be changed
 			number = $(this).attr('emp_no')
 			numberType = "Employee Number: "
 		}
-
 
 		//message to be given to the admin
 		var constr = "Are you sure you want to " + thisAction + " this account?\nUsername: "+username+"\n" + numberType +number+"\nE-mail: "+email;
@@ -126,6 +197,10 @@
 						$this.val(nextAction);
 						$this.removeClass(thisClass).addClass(nextClass);
 						alert("Successfully " + thisAction +"d the account");
+						//return to page 1 of the pagination each time the log updates
+						$('#logs_pagination').attr({
+							'page' : "1"
+						});
 						log_users();
 					} else {
 						if (actionIsActivate){
@@ -140,11 +215,6 @@
 		}
 	}
 
-
-
-
-	
-
 	function main()
 	{
 		/* Refactor By Rey Benedicto 2014-02-25 11.38*/
@@ -153,6 +223,14 @@
 		$('#result_table').on("click",'.Enable_button',action_handler);
 		$('#result_table').on("click",'.Disable_button',action_handler);
 		log_users();
+
+		//bind a function that triggers the log function when the value in the logs per page form changes
+		$('#log_page_size').change(function(){
+			$('#logs_pagination').attr({
+				'page' : 1
+			});
+			log_users();
+		})
 	}	
 
 	$(document).ready(main);

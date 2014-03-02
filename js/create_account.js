@@ -4,15 +4,25 @@ window.onload=function(){
 	document.getElementById('employee').onchange = disablefield;
 
 	userForm.username.onkeyup=validateUsername;
+	userForm.username.onchange=validateUsername;
 	userForm.password.onkeyup=validatepasswords;
+	userForm.password.onchange=validatepasswords;
 	userForm.repassword.onkeyup=validatepasswords;
+	userForm.repassword.onchange=validatepasswords;
 	userForm.email.onkeyup=validateEmail;
+	userForm.email.onchange=validateEmail;
 	userForm.emp_no.onkeyup=validateEmployeeNumber;
+	userForm.emp_no.onchange=validateEmployeeNumber;
 	userForm.student_no.onkeyup=validateStudentNumber;
+	userForm.student_no.onchange=validateStudentNumber;
 	userForm.name_first.onkeyup=validateFirstName;
+	userForm.name_first.onchange=validateFirstName;
 	userForm.name_middle.onkeyup=validateMiddleName;
+	userForm.name_middle.onchange=validateMiddleName;
 	userForm.name_last.onkeyup=validateLastName;
+	userForm.name_last.onchange=validateLastName;
 	userForm.mobile_no.onkeyup=validateMobileNumber;
+	userForm.mobile_no.onchange=validateMobileNumber;
 	userForm.course.onfocus=filterCourses;
 	userForm.college.onblur=filterCourses;
 	userForm.college.onchange=filterCourses;
@@ -70,7 +80,7 @@ function validateUsername(){
 	msg="";
 
 	if (str=="") msg+="Required";
-	else if (!str.match(/^[0-9a-zA-Z]{6,18}$/))  msg+="Must be 6-18 characters long";
+	else if (!str.match(/^[0-9a-zA-Z\_]{6,18}$/))  msg+="Must be 6-18 characters long";
 	document.getElementsByName("span username")[0].innerHTML=msg;
 
 	if(msg==""){

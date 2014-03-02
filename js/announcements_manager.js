@@ -28,7 +28,7 @@ function showAddAnnouncementForm(event){
 function fillEditAnnouncementForm(event){
     event.preventDefault();
     $('#add_announcement_container').hide();
-    var announcement_id = $(this).closest('td').attr('announcement_id');
+    var announcement_id = $(this).closest('tr').attr('announcement_id');
 
     $.post("index.php/announcement/get_announcement",{"announcement_id":announcement_id},function(data){
         try{
@@ -76,8 +76,8 @@ function editAnnouncement(event){
         try{
             data = JSON.parse(data);
 
-            var td = $('#announcements_table').find('tr > td[announcement_id="'+data.announcement_id+'"]')
-
+            var td = $('#announcements_table').find('tbody').find('tr[announcement_id="'+data.announcement_id+'"]');
+            console.log($('#announcements_table'));
             td.find('.announcement_title').text(data.announcement_title);
             td.find('.announcement_content').text(data.announcement_content);
             $('[data-toggle="tab"]')[2].click();
