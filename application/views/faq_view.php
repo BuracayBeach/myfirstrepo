@@ -1,4 +1,4 @@
-<div id="faq_container" class="small-8 column">
+<div id="faq_container" class="small-8 column hideable">
     <h3>Frequently Asked Questions</h3>
 
     <div id="faq_table_container" class="">

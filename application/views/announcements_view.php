@@ -1,4 +1,4 @@
-<div id="announcements_container" class="">
+<div id="announcements_container" class="hideable">
     <div id="announcements_table_container" >
     </div>
 </div>

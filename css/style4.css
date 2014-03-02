@@ -14,3 +14,44 @@ div.sub-heading {
 div.announcement_content_container {
 	margin-top: 30px;
 }
+
+/* search results */
+
+span.bold {
+	font-weight: 800;
+}
+
+#results_per_page_container {
+	margin-top: 20px;
+}
+
+#results_per_page_form {
+	width: 170px;
+	margin: 0 auto;
+}
+
+#results_per_page_div div{
+	display: inline-block;
+}
+
+div.paginaion_container {
+	display: block;
+}
+
+div#pagination_controls_div {
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+}
+
+div#pagination {
+	margin-bottom: 10px;
+}
+
+div.search_results_counter {
+	float: right;
+}
+
+table#search_table {
+	margin-top: 20px;
+}
