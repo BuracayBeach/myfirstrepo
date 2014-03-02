@@ -1,4 +1,3 @@
-<div id="right_side_bar">
 <button class="" id="show_add_form_button" name="show_add_form_button" >Add Material</button>
 <div id="add_container">
     <form autocomplete="on" id="add_book_form">
@@ -38,7 +37,6 @@
     </form>
 </div>
 
-</div>
 
 <div id="edit_container" class="small-2 column">
     <form name="edit_book" id="edit_book_form" method="post">
@@ -97,16 +95,6 @@
         <button id="edit_cancel_button" name="edit_cancel_button">Cancel</button>
     </form>
 </div>
-
+</div>
 <script src="<?php echo base_url();?>js/manage_validation.js" ></script>
 <script src="<?php echo base_url();?>js/book_manager.js" ></script>
-
-
-
-<script type="text/javascript">
-    $("#show_add_form_button").on("click", function() {
-        $("#add_announcement_cancel_button").click();
-
-    });
-
-</script>

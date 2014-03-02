@@ -1,3 +1,5 @@
+<div id="right_side_bar">
+
 <button id="add_announcement_button">Add Announcement</button>
 <div id="announcement_manage_container">
     <div id="add_announcement_container">
@@ -26,12 +28,3 @@
     </div>
 </div>
 <script src="<?php echo base_url(); ?>js/announcements_manager.js"></script>
-
-
-<script type="text/javascript">
-    $("#add_announcement_button").on("click", function() {
-        $("#add_cancel_button").click();
-        
-        $("#edit_cancel_button").click();
-    });
-</script>

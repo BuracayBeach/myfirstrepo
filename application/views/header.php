@@ -85,10 +85,13 @@
 
         if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
           echo '
-          <ul class="left">
-            <li><a href="'.base_url().'accounts">Accounts</a></li>
-          </ul>';
-
+            <ul class="left">
+                <li><a href="'.base_url().'accounts">Accounts</a></li>
+            </ul>';
+            echo '
+            <ul class="left">
+                <li><a href="'.base_url().'logs">Logs</a></li>
+            </ul>';
         }
       ?>
 
@@ -103,10 +106,6 @@
       <ul class="left">
         <li><a href="<?php echo base_url();?>help">Help</a></li>
       </ul>
-        <ul class="left">
-            <li><a href="<?php echo base_url();?>logs">Logs</a></li>
-        </ul>
-
     </section>
   </nav>
 </div>

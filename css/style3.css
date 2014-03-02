@@ -177,9 +177,8 @@ Update
 
   float:right !important;
   position: absolute !important;
-  width: 20% !important;
-  margin-left:75% !important;
-  margin-right: 0% !important; 
+  width: 100% !important;
+  margin-right: 0% !important;
   margin-top: 10% !important;
   height:90% !important;
 }
@@ -189,18 +188,18 @@ ADD AND EDIT
 
 -----------------------------*/
 #add_announcement_button{
-  width: 15%;
-  float: right;
-  right:10%;
-  position:absolute;
   background-color: #2266cc !important;
+}
+
+#add_announcement_container{
+    width:100% !important;
 }
 
 #right_side_bar{
   float:right !important;
   position: absolute !important;
-  width: 20% !important;
-  margin-left:80% !important;
+  width: 30% !important;
+  margin-left:70% !important;
   margin-right: 0% !important; 
   margin-top: 0% !important;
   height:90% !important;
@@ -218,7 +217,7 @@ ADD AND EDIT
   border: 1px solid #2266cc !important;
   margin-top:5% !important;
   clear: right !important;
-  width: 25% !important;
+  width: 100% !important;
 }
 #add_container input{
   height:7% !important;
@@ -235,7 +234,6 @@ ADD AND EDIT
   background-color: #2266cc !important;
 }
 #show_add_form_button{
-  float:right !important;
   clear: right !important;
   background-color: #2266cc !important;
 }

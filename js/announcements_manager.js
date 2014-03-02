@@ -15,6 +15,13 @@ $('#announcement_container').ready(function(){
     /*** INITIALLY HIDE FORMS ***/
     $('#add_announcement_container').hide();
     $('#edit_announcement_container').hide();
+
+
+    $("#add_announcement_button").on("click", function() {
+        $("#add_cancel_button").click();
+
+        $("#edit_cancel_button").click();
+    });
 });
 
 function showAddAnnouncementForm(event){
