@@ -9,7 +9,6 @@ class Logs_model extends CI_Model {
 
     function get_logs($data){
         //ULTIMATE SELECT QUERY FOR TRANSACTION LOGS//
-        $max = number_format($data['num_rows'],0,'.','');
         $query = "SELECT SQL_CALC_FOUND_ROWS
                         date_borrowed 'date',
                         book_no,
@@ -38,10 +37,16 @@ class Logs_model extends CI_Model {
                         null
                     FROM reserve_history
                 ORDER BY date DESC
-                LIMIT {$data['start_row']},{$max}";
-
+                ";
         $result['rows'] = $this->db->query($query)->result();
-        $result['count'] = $this->db->query("SELECT FOUND_ROWS() as count")->result()[0]->count;
-        return $result;
+
+        if(isset($data['start_now']) && isset($data['num_rows'])){
+            $max = number_format($data['num_rows'],0,'.','');
+            $query .= "LIMIT {$data['start_row']},{$max}";
+            $result['count'] = $this->db->query("SELECT FOUND_ROWS() as count")->result()[0]->count;
+            return $result;
+        }
+
+        return $result['rows'];
     }
 }

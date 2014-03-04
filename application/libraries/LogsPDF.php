@@ -46,6 +46,7 @@ class LogsPDF extends FPDF
             $this->Cell($this->COLUMN_WIDTH,7,$col,1);
         $this->Ln();
         // Data
+
         foreach($data as $row)
         {
             foreach($row as $col){
