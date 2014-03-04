@@ -5,19 +5,33 @@ class Logs extends CI_Controller {
         parent::__construct();
 
         $this->load->model('logs_model');
-
+        $this->load->library('LogsPDF');
     }
 
     public function index(){
         redirect(base_url());
     }
 
-    public function download_logs(){
-        if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
+    public function download($from,$to){
 
+        session_start();
+
+        if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
+            $logs = $this->logs_model->get_logs($from,$to);
+            foreach($logs as &$row)
+                $row = (array) $row;
+            $data = $logs;
+
+            $pdf = new LogsPDF();// Column headings
+            $header = array('Timestamp', 'Book #', 'Action', 'By','Administrator','Transaction #'); //Data loading
+            $pdf->SetFont('Arial','',8);
+            $pdf->AddPage();
+            $pdf->BasicTable($header,$data);
+            $pdf->Output();
         }else{
-            redirect(base_url());
+            echo 'unauthorized';
         }
+
     }
 }
 
