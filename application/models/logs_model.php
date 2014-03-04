@@ -38,15 +38,17 @@ class Logs_model extends CI_Model {
                     FROM reserve_history
                 ORDER BY date DESC
                 ";
-        $result['rows'] = $this->db->query($query)->result();
 
-        if(isset($data['start_now']) && isset($data['num_rows'])){
+
+        if(isset($data['start_row']) && isset($data['num_rows'])){
             $max = number_format($data['num_rows'],0,'.','');
             $query .= "LIMIT {$data['start_row']},{$max}";
+            $result['rows'] = $this->db->query($query)->result();
             $result['count'] = $this->db->query("SELECT FOUND_ROWS() as count")->result()[0]->count;
             return $result;
+        }else{
+            return $this->db->query($query)->result();
         }
 
-        return $result['rows'];
     }
 }
