@@ -36,9 +36,6 @@
         ajax_results(search_by, numPage, results_per_page);
     }
 
-
-
-
     function ajax_results(search_by, page, results_per_page){
         my_input = $('#search_form').serialize();
         my_input += "&page=" + page;
