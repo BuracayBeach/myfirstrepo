@@ -285,13 +285,16 @@ class Search_model extends CI_Model {
             foreach($row as $col){
                 if (!in_array($col, $cols_to_search)) continue;
 
-                if ($col == $row->tags) $col_words = explode(" ", str_replace(',', ' ', $col));
-                elseif ($col == $row->date_published) $col_words = explode(" ", str_replace('-', ' ', $col));
-                else $col_words = explode(" ", $col);
+                // $col_words = preg_replace("/[^a-zA-Z0-9]+/", " ", $col);
+                $col_copy = preg_replace("/[^a-zA-Z0-9]+/", " ", $col);
+                if ($col == $row->tags) $col_words = explode(" ", str_replace(',', ' ', $col_copy));
+                elseif ($col == $row->date_published) $col_words = explode(" ", str_replace('-', ' ', $col_copy));
+                else $col_words = explode(" ", $col_copy);
 
                 foreach($col_words as $item_orig){
                     $item = strtolower(trim($item_orig));
                     if ($item=='') continue;
+                    $item = preg_replace("/[^a-zA-Z0-9]+/", "", $item);
                     // echo "<br>" . $search_term . " == " . $item;
 
                     if ($spell_check){
@@ -341,6 +344,8 @@ class Search_model extends CI_Model {
 
         $points = null;
         $input['search_term'] = strtolower($input['search_term']);
+        $input['search_term'] = preg_replace("/[^a-zA-Z0-9]+/", " ", $input['search_term']);
+
         $search_terms = explode(" ", trim($input['search_term']));
 
         if ($spell_check){
