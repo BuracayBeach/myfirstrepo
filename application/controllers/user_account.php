@@ -47,7 +47,6 @@ class User_account extends CI_Controller {
 	}
 
 	private function check_user_validity(){
-		unset($_SESSION['login_notif']);
 		$username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
 		$password = hash('sha256', filter_var($_POST['password'], FILTER_SANITIZE_STRING));
 
@@ -60,7 +59,7 @@ class User_account extends CI_Controller {
 			return false;
 
 		else if(!$result){
-			$_SESSION['login_notif'] = "Username does not exist!";
+			$_SESSION['login_notif'] = "not_exists";
 			return false;
 		}
 		
@@ -115,7 +114,6 @@ class User_account extends CI_Controller {
 
 	//Update the value of the user info.
 	public function update(){
-		unset($_SESSION['update_account_notif']);
 		$data['sex']= filter_var($_POST['sex'], FILTER_SANITIZE_STRING);
 		$data['email']= filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 		$data['name_first']= filter_var($_POST['name_first'], FILTER_SANITIZE_STRING);
@@ -141,7 +139,6 @@ class User_account extends CI_Controller {
 
 	//Check if the current password entered is the same as that of the password in the database.
 	public function change_password(){
-		unset($_SESSION['change_password_notif']);
 		$uname = $_SESSION['username'];
 		$new_password= hash('sha256', filter_var($_POST['newPassword'], FILTER_SANITIZE_STRING));
 		$current_password= hash('sha256', filter_var($_POST['currentPassword'], FILTER_SANITIZE_STRING));
