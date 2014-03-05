@@ -344,7 +344,7 @@ class Search_model extends CI_Model {
 
         $points = null;
         $input['search_term'] = strtolower($input['search_term']);
-        $input['search_term'] = preg_replace("/[^a-zA-Z0-9]+/", " ", $input['search_term']);
+        $input['search_term'] = preg_replace("/[^a-zA-Z0-9]+/", " ", $input['search_term']); //replace symbols with spaces for matching words 
 
         $search_terms = explode(" ", trim($input['search_term']));
 
@@ -361,7 +361,8 @@ class Search_model extends CI_Model {
             //compute points for each row (for determining relevance to search terms), also get suggestions
             $points[$row->book_no] = $this->get_row_points($row, $search_terms, $input['search_by'], $term_sugg, $term_sugg_dist, $spell_check);
         }
-        arsort($points); //reverse sort $points structure by value
+        // var_dump($input['order_by']);
+        if ($input['order_by'] == 'search_relevance') arsort($points); //reverse sort $points structure by value
 
 
         if ($spell_check){
