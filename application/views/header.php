@@ -13,16 +13,13 @@
     <title><?php echo $title;?></title>
 
     <!-- If you are using CSS version, only link these 2 files, you may add app.css to use for your overrides if you like. -->
-    <link rel="stylesheet" href="<?php echo base_url();?>css/normalize.css">
     <link rel="stylesheet" href="<?php echo base_url();?>css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>css/foundation.css">
+
 
     <!-- If you are using the gem version, you need this only -->
-    <link rel="stylesheet" href="<?php echo base_url();?>css/app.css">
     <link rel="stylesheet" href="<?php echo base_url();?>css/style3.css">
     <link rel="stylesheet" href="<?php echo base_url();?>css/style4.css">
 
-    <script src="<?php echo base_url();?>js/vendor/modernizr.js"></script>
     <script src="<?php echo base_url();?>js/jquery-1.11.0.js"></script>
     <script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
 
