@@ -26,6 +26,10 @@ class User_account extends CI_Controller {
 		$this->load->view('create_account_view');
 	}
 
+	public function log_in(){
+		$this->load->view('login_view2');
+	}
+
 	public function update_account(){
 		$this->get_data();
 	}
@@ -43,7 +47,7 @@ class User_account extends CI_Controller {
 		}
 
 		else
-			redirect(base_url());
+			$this->log_in();
 	}
 
 	private function check_user_validity(){
@@ -68,7 +72,7 @@ class User_account extends CI_Controller {
 				return true;
 			}
 			else{
-				$_SESSION['login_notif'] = "Password does not match!";		
+				$_SESSION['login_notif'] = "wrong_password";		
 				return false;
 			}
 		}
