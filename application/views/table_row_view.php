@@ -53,6 +53,7 @@
             }
 
             /* checking of reserves */
+
             $reserve = 'reserve';
             $size = count($reserve_user);
             for ($i=0; $i<$size; $i++) {
@@ -82,11 +83,9 @@
                 //reserve button
                 
                 "<button action_type='reserve' class='book_action' book_no='{$row->book_no}'>";
-            if ($row->status == 'available')
-                echo "reserve";
-            else {
-                echo $reserve;
-            }
+
+            echo $reserve;
+
             echo "</button>";
         }
     }
