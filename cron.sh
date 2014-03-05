@@ -13,7 +13,7 @@
 #
 # -- cron job for 12:00AM checking everyday
 #
-# 0 * * * * php index.php Notifs_Cron check_overdue
+# 0 * * * * php index.php Notifs_Cron check_overdue 
 
 # ------ for DOS systems -------
 #

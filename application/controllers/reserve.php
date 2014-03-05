@@ -61,6 +61,24 @@ class Reserve extends CI_Controller {
 		$q = $this->reserve_model->get($username);
 		echo json_encode($q);
 	}
+
+	public function view_rank() {
+
+		/* $info[0] is the book_no */
+		$info = $this->input->post('arr');
+
+        $book = $this->reserve_model->check_book_ranks_by_book($info[0]);
+		$total_book = count($book);
+
+		for ($i=0; $i<$total_book; $i++) {
+			if ($book[$i]->username == $_SESSION['username']) {
+				$rank = $i + 1;
+				break;
+			}
+		}
+
+		echo "Rank " . $rank . " of " . $total_book;
+	}
 }
 
 ?>

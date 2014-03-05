@@ -2,7 +2,7 @@
 
 /* call this view via:
 
-$data['book'] = $this->reserve_model->check_book_ranks($_SESSION['username']);
+$data['book'] = $this->reserve_model->check_book_ranks();
 $data['reserves'] = $this->reserve_model->get($_SESSION['username']);
 
 $this->load->view('reserves_view', $data);
@@ -18,7 +18,6 @@ $this->load->view('reserves_view', $data);
 
 	<div id="reserves_container" class="my_library_container">
 
-
 		<?php // para sa ranking 
 
 			// total reserves for a particular book
@@ -29,18 +28,18 @@ $this->load->view('reserves_view', $data);
 			$book_ranks = array_count_values($book_array);
 
 			// key value pair for book_no => array(rank)
-			$book_chever = array();
+			$book_temp = array();
 			for ($i=0; $i<$size; $i++)
-				$book_chever[$book_array[$i]] = array();
+				$book_temp[$book_array[$i]] = array();
 			for($i=0; $i<$size; $i++)
-				array_push($book_chever[$book[$i]->book_no], $book[$i]->rank);
+				array_push($book_temp[$book[$i]->book_no], $book[$i]->rank);
 		?>
 
 		<?php if(isset($reserves)) : foreach ($reserves as $row) : ?>
 
 			<?php 
 
-				$temp = $book_chever[$row->book_no];
+				$temp = $book_temp[$row->book_no];
 				$size2 = count($temp);
 				for ($i=0; $i<$size2; $i++) {
 					if ($temp[$i] == $row->rank) {
@@ -77,7 +76,7 @@ $this->load->view('reserves_view', $data);
 					var method = "remove";
 
 					$.ajax({
-						url : "http://localhost/myfirstrepo/index.php/" + controller + "/" + method,
+						url : icejjfish + "index.php/" + controller + "/" + method,
 						data : { arr : info },
 						type : 'POST',
 						dataType : "html",

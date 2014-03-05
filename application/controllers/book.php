@@ -139,6 +139,26 @@ class book extends CI_Controller {
             $details['favorite_user'] = $this->favorite_model->get_all($_SESSION['username']);
             $details['reserve_user'] = $this->reserve_model->get($_SESSION['username']);
             $details['lend_user'] = $this->lend_model->get($_SESSION['username']);
+
+
+            $book = $this->reserve_model->check_book_ranks();
+
+            // total reserves for a particular book
+            $book_array = array();
+            $size = count($book);
+            for ($i=0; $i<$size; $i++)
+                array_push($book_array, $book[$i]->book_no);
+            $book_ranks = array_count_values($book_array);
+
+            // key value pair for book_no => array(rank)
+            $book_temp = array();
+            for ($i=0; $i<$size; $i++)
+                $book_temp[$book_array[$i]] = array();
+            for($i=0; $i<$size; $i++)
+                array_push($book_temp[$book[$i]->book_no], $book[$i]->rank);
+        
+            $details['book_ranks'] = $book_ranks;
+            $details['book_temp'] = $book_temp;
         }
 
 

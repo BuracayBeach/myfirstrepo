@@ -171,7 +171,7 @@ class Home extends CI_Controller {
             redirect(base_url());
 
         else{
-            $data['book'] = $this->reserve_model->check_book_ranks($_SESSION['username']);
+            $data['book'] = $this->reserve_model->check_book_ranks();
             $data['reserves'] = $this->reserve_model->get($_SESSION['username']);
             $this->load->view('reserves_view', $data);
         }
