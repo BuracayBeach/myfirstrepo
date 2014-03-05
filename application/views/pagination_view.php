@@ -15,7 +15,9 @@
                         if ($a > $page + $page_scale/2 && $a > $page_scale) continue;
 
                         if ($a == $page) echo '<strong>';
-                        echo "<a class='page_nav' href='javascript: void(0)' pageno={$a}>&nbsp;{$a}&nbsp;</a>"; 
+                        echo "<a ";
+                        if ($a != $page) echo "class='page_nav'";
+                        echo " href='javascript: void(0)' pageno={$a}>&nbsp;{$a}&nbsp;</a>"; 
                         if ($a == $page) echo '</strong>';
                     }
                     echo "<a class='next_nav' href='javascript: void(0)'>&nbsp;&nbsp;Next˃&nbsp;</a>"; 

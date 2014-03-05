@@ -139,16 +139,17 @@ class Search_model extends CI_Model {
     }
 
     function get_str_orderby($is_admin, $details){
-        $str_orderby = '';
-        if (trim($details['search_term']) == ""){
-            if ($is_admin)  $str_orderby = $details['order_by'];
-            else  $str_orderby = $details['search_by'];
-        } else {
-            if ($is_admin) $str_orderby = $details['order_by'];
-            else $str_orderby = "";
-        }
+        // $str_orderby = '';
+        // if (trim($details['search_term']) == ""){
+        //     if ($is_admin)  $str_orderby = $details['order_by'];
+        //     else  $str_orderby = $details['search_by'];
+        // } else {
+        //     if ($is_admin) $str_orderby = $details['order_by'];
+        //     else $str_orderby = "";
+        // }
+        $str_orderby = $details['order_by'];
+        if ($str_orderby == "name") $str_orderby = "author";
         if ($str_orderby=='search_relevance' || $str_orderby=='any') $str_orderby = '';
-
         return $str_orderby;
     }
 

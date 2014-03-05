@@ -8,75 +8,24 @@
 					$('#submit_search').submit();
 				}
 
-				// function summarize(searchText){
-    //                 var search_table = $("#search_table");
-    //                 var tr_array = search_table.find('tr:first').nextAll();
-
-    //                 tr_array.each(function(index, tr){
-    //                 	tr = $(tr)
-    //                 	var abstractTD = tr.find('td[book_data="abstract"]')
-    //                 	var abstract = abstractTD.find('textarea').text()
-
-    //                 	abstractTD.html(get_summarize(abstract, searchText))
-    //                 })
-				// }
-
-				// function wordMatch(word, searchArray){
-				// 	var word_is_matched = false
-				// 	for (var b=0 ; b<searchArray.length ; b++){
-				// 		var term = searchArray[b]
-				// 		if (word.toLowerCase() == term.toLowerCase()) {
-				// 			word_is_matched = true
-				// 			break
-				// 		}
-				// 	}
-				// 	return word_is_matched;
-				// }
-
 			
+		        function r_num_valid(object){
+		          o_val = parseFloat(object.val());
+		          o_min = parseFloat(object.attr('min'));
+		          o_max = parseFloat(object.attr('max'));
 
-				// function get_summarize(abstract, searchText){
-				// 	var summary = ''
-
-				// 	var abstract = abstract.split(' ')
-				// 	var searchArray = searchText.split(' ')
-				// 	var maxAbstract = 200
-
-				// 	var prev_word = ''
-				// 	var next_word = ''
-
-				// 	var last_added = 0
-					
-				// 	abstLen = abstract.length
-				// 	for (var a=0 ; a<abstLen ; a++){
-				// 		var word = abstract[a]
-				// 		if (word.trim()=='') continue;
-				// 		if (wordMatch(word, searchArray)){
-				// 			summary += " ..."
-				// 			if (a>0 && last_added<a-1) summary += abstract[a-1] + ' '
-				// 			summary += '<strong>' + abstract[a] + '</strong> '
-				// 			if (a<abstLen-1){
-				// 				summary += abstract[a+1] + ' '
-				// 				last_added = a+1
-				// 				a++
-				// 			}
-				// 			summary += "... "
-				// 		}
-				// 		if (summary.length >= maxAbstract) break
-				// 	}
+		          return $.isNumeric(o_val) && o_val >= o_min && o_val <= o_max && o_val % 1 == 0;
+		        }
 
 
-				// 	// console.log(summary.length + ' ' + summary)
-				// 	return summary
-				// }
-
-	
 
 				$(document).ready(function() {
 				    $('#sidebar-wrapper').on('click', 'li', ajax_results);
 
-
+				    var lastRequest;
 					function ajax_results(event){
+						if (lastRequest) if (lastRequest.readyState != 4) lastRequest.abort();
+
 						event.preventDefault();
 						var searchForm = $('#search_form')
 						var my_input = searchForm.serialize();
@@ -90,11 +39,15 @@
 							$('#search_text').attr('searchby', search_by);
 						}
 
+						resultsPerPage = $('#results_per_page').val()
+						if (r_num_valid($('#results_per_page')) == false) return;
+
 						my_input += "&page=1";
-						my_input += "&rows_per_page=" + ($('#results_per_page').val()==0?10:$('#results_per_page').val());
+						my_input += "&rows_per_page=" + ($('#results_per_page').val()==0?10:resultsPerPage);
+
 
 						// console.log(my_input);
-						$.ajax({
+						lastRequest = $.ajax({
 							type: "post",
 							data: my_input, 
 							url: "http://localhost/myfirstrepo/index.php/book/search",
@@ -121,6 +74,7 @@
 							fail: function(){
 								alert("Search Failed");
 							}
+
 			 			});
 
 
