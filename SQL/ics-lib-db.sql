@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 25, 2014 at 05:42 PM
+-- Generation Time: Mar 05, 2014 at 03:44 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -126,14 +126,14 @@ CREATE TABLE IF NOT EXISTS `book` (
 
 INSERT INTO `book` (`book_no`, `book_title`, `book_type`, `abstract`, `author`, `status`, `description`, `publisher`, `date_published`, `tags`, `isbn`) VALUES
 ('CS 125-j5', 'The Unix Programming Environment', 'Book', NULL, 'Brian W. Kernighan, Rob Pike', 'available', NULL, 'Prentice-Hall, Inc.', 1986, NULL, '971-17-9003-3'),
-('CS 127 – K39', 'Database Design', 'Book', NULL, 'Gio Wiederhold', 'available', NULL, 'Philippine Graphic Arts, Inc.', 1997, NULL, '971-08-1932-1'),
+('CS 127 – K39', 'Database Design', 'Book', NULL, 'Gio Wiederhold', 'reserved', NULL, 'Philippine Graphic Arts, Inc.', 1997, NULL, '971-08-1932-1'),
 ('CS100 – G23', 'ASP 3.0 Programmer’s Reference', 'Book', '', 'Richard Anderson, Dan Denault, Brian Francis, Matthew Gibbs, Marco Gregorini, Alex Homer, Craig McQueen, Simon Robinson, John Schenken, Kevin Williams', 'available', NULL, 'Wrox Press Ltd', 2000, NULL, '1-861003-23-4'),
 ('CS130-N12', 'Computer Engineering Hardware Design', 'Book', NULL, 'M.Morris Mano', 'available', NULL, 'Prentice-Hall, Inc.', 1986, NULL, '971-8636-10-2'),
 ('CS142-S1', 'The Design of Well-Structured and Correct Programs', 'Book', NULL, 'Suad alagic, Michael A. Arbib', 'available', NULL, 'Springer-Verlag, New York Inc.', 1978, 'Program design', NULL),
 ('CS180-W1', 'Highly Parallel Computing', 'Book', NULL, 'George S. Almasi, Allan Gottlieb', 'available', NULL, 'The Benjamin/Cummings Publishing Company, Inc', 1994, 'parallel computing', '805304436'),
 ('CS21 – D23', 'Turbo C Version 2.0', 'Book', NULL, 'M.Morris Mano', 'available', NULL, 'Pernick Printing Corporation', 1988, NULL, '971-8636-10-2'),
-('IT 280', 'Computer Security Management', 'Book', NULL, 'Karen A. Forcht', 'available', NULL, 'boyd & fraser publishing company', 1994, 'Computer Security', '878358811'),
-('IT7', 'E-Commerce for Dummies', 'Book', NULL, 'Don Jones, Mark D. Scott, Richard Villars', 'available', NULL, 'Hungry Minds Inc.', 2001, 'E-commerce', '764508474'),
+('IT 280', 'Computer Security Management', 'Book', NULL, 'Karen A. Forcht', 'reserved', NULL, 'boyd & fraser publishing company', 1994, 'Computer Security', '878358811'),
+('IT7', 'E-Commerce for Dummies', 'Book', NULL, 'Don Jones, Mark D. Scott, Richard Villars', 'reserved', NULL, 'Hungry Minds Inc.', 2001, 'E-commerce', '764508474'),
 ('JN 0001', 'Proceedings of the APL96 Conference', 'Journal', NULL, 'The Special Interest Group for the APL Programming Language', 'available', NULL, 'ACM Press', 1996, NULL, NULL),
 ('MG 0001', 'How to build a successful we-enabled warehouse and why you need one', 'Magazine', NULL, 'Julie Gibbs, Bob Craig, Aaron Zornes, Bradley Brown, Rhonda Stieber, Steve Bobrowski', 'available', NULL, 'Brown Printing Co.', 1997, NULL, '1065-3171'),
 ('MG 0002', 'Reinventing business Aplication Service Providers', 'Magazine', NULL, 'Leslie Steere, Jeff Spicer, Dave Clareke Mora, Carol Tady, Patricia Waddington', 'available', NULL, NULL, 2000, 'Oracle Corporation', NULL),
@@ -151,7 +151,7 @@ INSERT INTO `book` (`book_no`, `book_title`, `book_type`, `abstract`, `author`, 
 ('SP 0004', 'Visualization of Student Records Using FusionCharts', 'SP', 'Increasing demands of visualizing data have been arising as data is accumulated through the years. To see the unseen information behind colossal quantities of data, it must be converted into its graphical form, thus leading to a reliable data analysis. This study suggests the use of FusionChart, an open source component, in visualizing student records, specifically UPLB Student Records. Trends and patterns have been realized after running the program to generate common queries regarding performance of students, course effectiveness, and the like.', 'Jona Rae S. Obrador, Eleasah F. Loresco and Prof. Jamie M. Samaniego', 'available', NULL, 'Jona Rae S. Obrador, Eleasah F. Loresco and Prof. Jamie M. Samaniego', 2011, 'FusionCharts, Interactive Data Visualization, PHP, MySQL', NULL),
 ('SP 0005', 'Face Structure Model for Actor-Driven Animation', 'SP', 'This study presents a way for animation which is performance based through tracking of colored markers applied on selected facial features on an actor. In tracking of facial features , control parameters will be computed and will be used to animate a model. Evaluation of specific controlled parameters will play an important role for exhibiting more details and accuracy in the animation of the facial features.', 'Freddie L. Oliva Jr. and Dr. Vladimir Y. Mariano', 'available', NULL, 'Freddie L. Oliva Jr. and Dr. Vladimir Y. Mariano', 2011, 'actor-driven, performance-based, color tracking', NULL),
 ('TH 0001', 'UPLB Research Project Fund Monitoring System', 'Thesis', 'The UPLB Research Project Fund Monitoring System is an IT-based application project for the University of the Philippines Los Baños Accounting Office (UPLB-AO) which manages and controls the allotment and obligation of Trust Funds of the University. It provides a centralized database management system for all the users and controllers of the system for the purpose of managing the allotments and expenditures of the university’s research and extension project funds. Project fund leaders and their designated representatives are given access to view and monitor their allotment, expenses, and project fund balance. The UPLB-AO is given administrative access and privileges in order to maintain and support this site.', 'Petronila Pamela M. Alcasid', 'available', NULL, 'Petronila Pamela M. Alcasid', 2011, 'Accounting Office, Monitoring System', NULL),
-('TH 0002', 'An Open Source Lodging-Related Content-Managed Information System', 'Thesis', 'The IT-based project implements an open source online reservation, booking, billing and payment system for hotel or lodging-based establishments. The open source project is a content-managed template which can be implemented for establishments with lodging-related products and services such as room use, discounted rates and, training and ancillary facilities. The clients may view the site and may proceed with the reservation process online. Clients are placed into primal consideration in providing web-based views and differentiated levels of access to administrative users. The system makes use of open source development software in the design, development and implementation. The different tests conducted for the project indicated that client and administrative access to the system is designed to be compatible with major browsers -- be they open source or proprietary. The project testing also yielded coherence in data transaction, processing, storage, retrieval, print, custom reports, content management and security features.', 'Ramiro Z. dela Cruz', 'available', NULL, 'Ramiro Z. dela Cruz', 2009, 'Open source, Information System, Content-Managed', NULL);
+('TH 0002', 'An Open Source Lodging-Related Content-Managed Information System', 'Thesis', 'The IT-based project implements an open source online reservation, booking, billing and payment system for hotel or lodging-based establishments. The open source project is a content-managed template which can be implemented for establishments with lodging-related products and services such as room use, discounted rates and, training and ancillary facilities. The clients may view the site and may proceed with the reservation process online. Clients are placed into primal consideration in providing web-based views and differentiated levels of access to administrative users. The system makes use of open source development software in the design, development and implementation. The different tests conducted for the project indicated that client and administrative access to the system is designed to be compatible with major browsers -- be they open source or proprietary. The project testing also yielded coherence in data transaction, processing, storage, retrieval, print, custom reports, content management and security features.', 'Ramiro Z. dela Cruz', 'borrowed', NULL, 'Ramiro Z. dela Cruz', 2009, 'Open source, Information System, Content-Managed', NULL);
 
 -- --------------------------------------------------------
 
@@ -241,6 +241,13 @@ CREATE TABLE IF NOT EXISTS `favorites` (
   KEY `favorites_book_no` (`book_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `favorites`
+--
+
+INSERT INTO `favorites` (`username`, `book_no`, `date_added`) VALUES
+('useruser', 'TH 0002', '2014-03-05 02:17:17');
+
 -- --------------------------------------------------------
 
 --
@@ -258,7 +265,16 @@ CREATE TABLE IF NOT EXISTS `lend` (
   KEY `lend_book_no` (`book_no`),
   KEY `lend_username_user` (`username_user`),
   KEY `lend_username_admin` (`username_admin`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `lend`
+--
+
+INSERT INTO `lend` (`transaction_no`, `book_no`, `username_user`, `date_borrowed`, `date_returned`, `username_admin`) VALUES
+(2, 'CS130-N12', 'useruser', '2014-03-05 02:16:24', '2014-03-05 02:16:37', 'admin'),
+(3, 'TH 0002', 'useruser', '2014-03-05 02:16:25', '2014-03-05 02:16:38', 'admin'),
+(4, 'CS100 – G23', 'useruser', '2014-03-05 02:16:35', '2014-03-05 02:16:36', 'admin');
 
 -- --------------------------------------------------------
 
@@ -276,7 +292,26 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `type` enum('overdue','claim','custom') NOT NULL,
   PRIMARY KEY (`id`,`username_user`),
   KEY `notifications_username_admin` (`username_user`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `username_admin`, `username_user`, `book_no`, `message`, `date_sent`, `type`) VALUES
+(7, '', 'useruser', 'TH 0002', 'You may now claim your book at the library ASAP', '2014-03-05 02:14:26', 'claim'),
+(8, '', 'useruser', 'CS100 – G23', 'You may now claim your book at the library ASAP', '2014-03-05 02:14:27', 'claim'),
+(9, '', 'useruser', 'CS130-N12', 'You may now claim your book at the library ASAP', '2014-03-05 02:14:28', 'claim'),
+(10, '', 'useruser', 'TH 0002', 'You may now claim your book at the library ASAP', '2014-03-05 02:16:47', 'claim'),
+(11, '', 'useruser', 'CS100 – G23', 'You may now claim your book at the library ASAP', '2014-03-05 02:16:48', 'claim'),
+(12, '', 'useruser', 'CS130-N12', 'You may now claim your book at the library ASAP', '2014-03-05 02:16:49', 'claim'),
+(13, '', 'useruser', 'IT 280', 'You may now claim your book at the library ASAP', '2014-03-05 02:16:50', 'claim'),
+(14, '', 'useruser', 'CS 127 – K39', 'You may now claim your book at the library ASAP', '2014-03-05 02:16:50', 'claim'),
+(15, '', 'useruser', 'IT7', 'You may now claim your book at the library ASAP', '2014-03-05 02:16:51', 'claim'),
+(16, '', 'useruser', 'TH 0002', 'You may now claim your book at the library ASAP', '2014-03-05 02:18:57', 'claim'),
+(17, '', 'useruser', 'TH 0002', 'You may now claim your book at the library ASAP', '2014-03-05 02:19:24', 'claim'),
+(18, '', 'useruser', 'TH 0002', 'You may now claim your book at the library ASAP', '2014-03-05 02:27:33', 'claim'),
+(19, '', 'useruser', 'TH 0002', 'You may now claim your book at the library ASAP', '2014-03-05 02:29:51', 'claim');
 
 -- --------------------------------------------------------
 
@@ -333,7 +368,31 @@ CREATE TABLE IF NOT EXISTS `reserves` (
   PRIMARY KEY (`book_no`,`username`,`rank`),
   KEY `reserves_username` (`username`),
   KEY `reserves_rank` (`rank`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Triggers `reserves`
+--
+DROP TRIGGER IF EXISTS `add_to_history`;
+DELIMITER //
+CREATE TRIGGER `add_to_history` AFTER INSERT ON `reserves`
+ FOR EACH ROW INSERT INTO reserve_history values(NEW.book_no,NEW.username,NEW.date_reserved)
+//
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reserve_history`
+--
+
+CREATE TABLE IF NOT EXISTS `reserve_history` (
+  `book_no` varchar(12) NOT NULL,
+  `username` varchar(18) NOT NULL,
+  `date_reserved` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  KEY `reserve_history_ibfk_1` (`book_no`),
+  KEY `reserve_history_ibfk_2` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -425,8 +484,15 @@ ALTER TABLE `notifications`
 -- Constraints for table `reserves`
 --
 ALTER TABLE `reserves`
-  ADD CONSTRAINT `reserves_username` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `reserves_book_no` FOREIGN KEY (`book_no`) REFERENCES `book` (`book_no`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `reserves_book_no` FOREIGN KEY (`book_no`) REFERENCES `book` (`book_no`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `reserves_username` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `reserve_history`
+--
+ALTER TABLE `reserve_history`
+  ADD CONSTRAINT `reserve_history_ibfk_1` FOREIGN KEY (`book_no`) REFERENCES `book` (`book_no`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `reserve_history_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
