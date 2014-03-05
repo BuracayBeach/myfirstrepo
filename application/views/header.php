@@ -1,126 +1,197 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: isnalla
- * Date: 1/15/14
- * Time: 6:47 PM
- */
+* Created by PhpStorm.
+* User: isnalla
+* Date: 1/15/14
+* Time: 6:47 PM
+*/
 ?>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title;?></title>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title><?php echo $title;?></title>
 
-    <!-- If you are using CSS version, only link these 2 files, you may add app.css to use for your overrides if you like. -->
-    <link rel="stylesheet" href="<?php echo base_url();?>css/normalize.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>css/foundation.css">
-
-    <!-- If you are using the gem version, you need this only -->
-    <link rel="stylesheet" href="<?php echo base_url();?>css/app.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>css/style3.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>css/style4.css">
-
-    <script src="<?php echo base_url();?>js/vendor/modernizr.js"></script>
-    <script src="<?php echo base_url();?>js/jquery-1.11.0.js"></script>
-    <script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
-
-</head>
-<body>
-
-<div id="navbar" class="contain-to-grid sticky">
-  <nav style="" class="top-bar navb" data-topbar>
-    <ul class="title-area navb">
-<!--       <li class="name " >
-        <a href="<?php echo base_url();?>"><img style="max-height:30px;" src="<?php echo base_url();?>images/icon/logo_icon2.png"/> </a>
-      </li> -->
-      <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-      <li class="divider"></li>
-    </ul>
-
-    <section class="top-bar-section ">
-      <!-- Right Nav Section -->
-      <ul class="right">
-
-        <?php
-            if(isset($_SESSION) && isset($_SESSION['type'])){
-            if($_SESSION['type'] == 'regular')
-                include 'logged_user_view.php';
-            else
-                include 'logged_admin_view.php';
-            }else{
-            include 'login_view.php';
-}
-
-        ?>
-      </ul>
-    </section>
-
-    <section class="top-bar-section">
-      <!-- Left Nav Section -->
+		<!-- If you are using CSS version, only link these 2 files, you may add app.css to use for your overrides if you like. -->
+		<link rel="stylesheet" href="<?php echo base_url();?>css/bootstrap.min.css">
 
 
-      <ul class="left">
-        <li><a href="<?php echo base_url();?>ihome">
-        <?php if( isset($_SESSION['type']) && $_SESSION['type'] == "admin") echo "Manage";else echo "Home";?>
-        </a></li>
-      </ul>
+		<!-- If you are using the gem version, you need this only -->
+		<link rel="stylesheet" href="<?php echo base_url();?>css/style3.css">
+		<link rel="stylesheet" href="<?php echo base_url();?>css/style4.css">
+		<link rel="stylesheet" href="<?php echo base_url();?>css/style5.css">
 
-      <?php
+		<script src="<?php echo base_url();?>js/jquery-1.11.0.js"></script>
+		<script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
 
-        if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
-            echo "<ul class='left'>";
-            echo "<li class='has-dropdown'>";
-            echo "<a href='#'>My Library</a>";
-            echo    "<ul class='dropdown'>";
-            echo        "<li><a href='" . base_url() . "favorites'>Favorites</a></li>";
-            echo        "<li><a href='" . base_url() . "borrowed'>Borrowed</a></li>";
-            echo        "<li><a href='" . base_url() . "reserved'>Reserved</a></li>";
-            echo    "</ul>";
-            echo "</li>";
+	</head>
+	<body>
 
-            echo "</ul>";
-        }
+		<script>
+		/*
+		<div id="navbar" class="contain-to-grid sticky">
+		<nav style="" class="top-bar navb" data-topbar>
+		<ul class="title-area navb">
+		<!--       <li class="name " >
+		<a href="<?php echo base_url();?>"><img style="max-height:30px;" src="<?php echo base_url();?>images/icon/logo_icon2.png"/> </a>
+		</li> -->
+		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+		<li class="divider"></li>
+		</ul>
 
-        if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
-          echo '
-            <ul class="left">
-                <li><a href="'.base_url().'accounts">Accounts</a></li>
-            </ul>';
-            echo '
-            <ul class="left">
-                <li><a href="'.base_url().'logs">Logs</a></li>
-            </ul>';
-        }
-      ?>
+		<section class="top-bar-section ">
+		<!-- Right Nav Section -->
+		<ul class="right">
 
- 
+		<?php
+		if(isset($_SESSION) && isset($_SESSION['type'])){
+		if($_SESSION['type'] == 'regular')
+		include 'logged_user_view.php';
+		else
+		include 'logged_admin_view.php';
+		}else{
+		include 'login_view.php';
+		}
 
-      <ul class="left">
-        <li><a href="<?php echo base_url();?>about_us">About Us</a></li>
-      </ul>
-      <ul class="left">
-        <li><a href="<?php echo base_url();?>faq">FAQ</a></li>
-      </ul>
-      <ul class="left">
-        <li><a href="<?php echo base_url();?>help">Help</a></li>
-      </ul>
-    </section>
-  </nav>
-</div>
+		?>
+		</ul>
+		</section>
+
+		<section class="top-bar-section">
+		<!-- Left Nav Section -->
 
 
-<div class="small-2 side-nav columns">
-  <?php include 'search_view.php';?>
-</div>
-<!---->
-<!--<div class=""  id="results_per_page_div" hidden>-->
-<!--  <form id="results_per_page_form">-->
-<!--    <input id="results_per_page" style="width:45px" type="number" min="1" max="100" value="10" pattern="^[0-9]+$"/>-->
-<!--    <span>Results per page&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
-<!--  </form>-->
-<!--</div>-->
+		<ul class="left">
+		<li><a href="<?php echo base_url();?>ihome">
+		<?php if( isset($_SESSION['type']) && $_SESSION['type'] == "admin") echo "Manage";else echo "Home";?>
+		</a></li>
+		</ul>
+
+		<?php
+
+		if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
+		echo "<ul class='left'>";
+		echo "<li class='has-dropdown'>";
+		echo "<a href='#'>My Library</a>";
+		echo    "<ul class='dropdown'>";
+		echo        "<li><a href='" . base_url() . "favorites'>Favorites</a></li>";
+		echo        "<li><a href='" . base_url() . "borrowed'>Borrowed</a></li>";
+		echo        "<li><a href='" . base_url() . "reserved'>Reserved</a></li>";
+		echo    "</ul>";
+		echo "</li>";
+
+		echo "</ul>";
+		}
+
+		if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
+		echo '
+		<ul class="left">
+		<li><a href="'.base_url().'accounts">Accounts</a></li>
+		</ul>';
+		echo '
+		<ul class="left">
+		<li><a href="'.base_url().'logs">Logs</a></li>
+		</ul>';
+		}
+		?>
+
+
+
+		<ul class="left">
+		<li><a href="<?php echo base_url();?>about_us">About Us</a></li>
+		</ul>
+		<ul class="left">
+		<li><a href="<?php echo base_url();?>faq">FAQ</a></li>
+		</ul>
+		<ul class="left">
+		<li><a href="<?php echo base_url();?>help">Help</a></li>
+		</ul>
+		</section>
+		</nav>
+		</div>
+		</script>
+
+	<div id="site-cont">
+		<div id="navbar" class="">
+			<div id="element-cont">
+				<div class="left">
+					<a href="<?php echo base_url();?>ihome">
+						<div class="menulinks">
+							<?php if( isset($_SESSION['type']) && $_SESSION['type'] == "admin") echo "Manage";else echo "Home";?>
+						</div>
+					</a>
+
+					<?php
+
+					if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
+						echo 
+							"<div class='btn-group'>
+								<a href='' class='' data-toggle='dropdown'>
+									<div class='menulinks'>
+										My Library
+									</div>
+							  	</a>
+							  	<ul class='dropdown-menu'>
+							  		<li><a href='". base_url() ."favorites'>Favorites</a></li>
+							  		<li><a href='". base_url() ."borrowed'>Borrowed</a></li>
+							  		<li><a href='". base_url() ."reserved'>Reserved</a></li>
+							  	</ul>
+							</div>";
+
+						//put dropdown link here
+						// echo        "<li><a href='" . base_url() . "favorites'>Favorites</a></li>";
+						// echo        "<li><a href='" . base_url() . "borrowed'>Borrowed</a></li>";
+						// echo        "<li><a href='" . base_url() . "reserved'>Reserved</a></li>";
+
+					}
+					?>
+
+					<a href="<?php base_url()?>about_us">
+						<div class="menulinks">
+							About Us
+						</div>
+					</a>
+					<a href="<?php base_url()?>faq">
+						<div class="menulinks">
+							FAQ
+						</div>
+					</a>
+					<a href="<?php base_url()?>help">
+						<div class="menulinks">
+							Help
+						</div>
+					</a>
+		
+				</div>
+
+				<div class="right">
+					<?php
+						if(isset($_SESSION) && isset($_SESSION['type'])){
+							if($_SESSION['type'] == 'regular')
+								include 'logged_user_view.php';
+							else
+								include 'logged_admin_view.php';
+						}else{
+							include 'login_view.php';
+						}
+					?>
+
+				</div>
+			</div>
+		</div>
+
+
+		<div class="small-2 side-nav columns">
+			<?php include 'search_view.php';?>
+		</div>
+
+		<!---->
+		<!--<div class=""  id="results_per_page_div" hidden>-->
+		<!--  <form id="results_per_page_form">-->
+		<!--    <input id="results_per_page" style="width:45px" type="number" min="1" max="100" value="10" pattern="^[0-9]+$"/>-->
+		<!--    <span>Results per page&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
+		<!--  </form>-->
+		<!--</div>-->
 
 
 
