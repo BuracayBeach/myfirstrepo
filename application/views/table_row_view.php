@@ -7,10 +7,22 @@
      */
     //prevent html generation for tags and scripts
 
-    if(!(isset($newly_added) && $newly_added))
-    foreach($row as &$r){
-        $r = htmlspecialchars(stripslashes($r));
+    if(!(isset($newly_added) && $newly_added)){
+        //prevent html generation for tags and scripts
+        foreach($row as &$r){
+            $r = htmlspecialchars(stripslashes($r));
+            //bold matching terms
+            if (trim($search_term) != ''){
+               $search_terms = explode(" ",trim($search_term));
+                foreach($search_terms as $s_term){
+                    if ($s_term == '' || strlen($s_term) < 3) continue;
+                    $r = preg_replace('/' . $s_term . '/i', "<strong>$0</strong>", $r);
+                }  
+            }
+            
+        }
     }
+    
 
 
     echo "<tr active='false'>";
