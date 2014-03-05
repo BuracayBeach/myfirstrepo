@@ -48,7 +48,9 @@ class Logs extends CI_Controller {
         session_start();
 
         if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
-            $logs = $this->logs_model->get_logs($from,$to);
+            $data['from'] = $from;
+            $data['to'] = $to;
+            $logs = $this->logs_model->get_logs($data);
             foreach($logs as &$row)
                 $row = (array) $row;
             $data = $logs;

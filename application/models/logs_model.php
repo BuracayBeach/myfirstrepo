@@ -9,7 +9,7 @@ class Logs_model extends CI_Model {
 
     function get_logs($data){
         //ULTIMATE SELECT QUERY FOR TRANSACTION LOGS//
-        $query = "SELECT SQL_CALC_FOUND_ROWS
+        $query = "SELECT SQL_CALC_FOUND_ROWS * FROM (SELECT
                         date_borrowed 'date',
                         book_no,
                         'borrowed' as action,
@@ -36,10 +36,19 @@ class Logs_model extends CI_Model {
                         null,
                         null
                     FROM reserve_history
-                ORDER BY date DESC
+                ORDER BY date DESC) AS T
                 ";
 
-
+        if($data['from'] != 0 || $data['to'] != 0){
+            $query .= "WHERE ";
+            if($data['from'] != 0 && $data['to'] != 0){
+                $query .= "date >= '".$data['from']." 23:59:59"."' AND date <= '".$data['to']." 23:59:59"."'";
+            }else if($data['from'] != 0){
+                $query .= "date >= '".$data['from']." 23:59:59"."'";
+            }else{
+                $query .= "date <= '".$data['to']." 23:59:59"."'";
+            }
+        }
         if(isset($data['start_row']) && isset($data['num_rows'])){
             $max = number_format($data['num_rows'],0,'.','');
             $query .= "LIMIT {$data['start_row']},{$max}";

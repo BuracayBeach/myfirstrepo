@@ -13,8 +13,9 @@
         <div id="log_links_container"></div>
         <div id="logs_table_container"></div>
     </div>
-    <input type="date" id="logs_from" />
-    <input type="date" id="logs_to" />
+
+    <label for="logs_from">From: </label><input type="date" id="logs_from" />
+    <label for="logs_from">To: </label><input type="date" id="logs_to" />
     <button id="view_logs_button">View Logs</button>
 
     <a href="javascript:getDownloadURL();" id="download_logs_anchor">View as PDF</a>
