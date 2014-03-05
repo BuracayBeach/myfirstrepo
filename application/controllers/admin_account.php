@@ -19,7 +19,7 @@ class Admin_account extends CI_Controller {
 	}
 
 	public function adminlogin(){
-		if(count($_SESSION) == 0)
+		if(!isset($_SESSION['admin_logged_in']))
 			$this->load->view('admin_login_view');
 		else
 			$this->backtohome();
