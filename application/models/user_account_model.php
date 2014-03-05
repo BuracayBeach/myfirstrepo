@@ -87,6 +87,9 @@ class User_account_model extends CI_Model {
 	public function get_user($username){
 		$query = $this->db->query("SELECT * FROM user WHERE username='{$username}'");
 
+		if($query->num_rows() == 0)
+			return false;
+
 		if($query->result_array()[0]['status'] == "pending"){
 			$_SESSION['login_notif'] = "pending";
 			return "pending";

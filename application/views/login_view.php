@@ -1,12 +1,3 @@
-<!--li id="loginform" class="
-	<?php
-		if(isset($_SESSION['login_notif']) && $_SESSION['login_notif'] == "not_exists" ){
-			echo 'invalid_user';
-			echo "<script> alert('Username does not exists!'); </script>";
-			unset($_SESSION['login_notif']);
-		}
-	?>
-"-->
 <form id="login" class="" action = "<?php echo base_url();?>index.php/user_account/login" method = "post">
 	<table>
 		<tr>
@@ -23,7 +14,4 @@
 		</tr>
 	</table>
 </form>
-<!--/li-->
-
-
 
