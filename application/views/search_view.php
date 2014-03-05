@@ -2,47 +2,49 @@
 			<div id="search">
 				<form id="search_form" name="search_form" method="post">
 
-					<div id="book_type_div" class="dropdown-check-list">
-				        <span class="anchor">Type</span>
-				        <ul class="items">
-				            <li> &nbsp;&nbsp;<input class="check" id = "type_book" type="checkbox" name = "type_book" checked> 
-								<label class="labelC" for="type_book">Book</label></li>
-				            <li> &nbsp;&nbsp;<input class="check" id = "type_journal" type="checkbox" name = "type_journal" checked>
-								<label class="labelC" for="type_journal">Journal</label></li>
-				            <li> &nbsp;&nbsp;<input class="check" id = "type_sp" type="checkbox" name = "type_sp" checked>
-								<label class="labelC" for="type_sp">SP</label></li>
-				            <li> &nbsp;&nbsp;<input class="check" id = "type_thesis" type="checkbox" name = "type_thesis" checked>
-								<label class="labelC" for="type_thesis">Thesis</label></li>
-				        </ul>
-				    </div>
-					
 
-			
+					<div id="dropdown_container">
+						<div id="book_type_div" class="dropdown-check-list">
 
+					        <span class="anchor">Type</span>
+					        <ul class="items">
+					            <li> &nbsp;&nbsp;<input class="check" id = "type_book" type="checkbox" name = "type_book" checked> 
+									<label class="labelC" for="type_book">Book</label></li>
+					            <li> &nbsp;&nbsp;<input class="check" id = "type_journal" type="checkbox" name = "type_journal" checked>
+									<label class="labelC" for="type_journal">Journal</label></li>
+					            <li> &nbsp;&nbsp;<input class="check" id = "type_sp" type="checkbox" name = "type_sp" checked>
+									<label class="labelC" for="type_sp">SP</label></li>
+					            <li> &nbsp;&nbsp;<input class="check" id = "type_thesis" type="checkbox" name = "type_thesis" checked>
+									<label class="labelC" for="type_thesis">Thesis</label></li>
+					            <li> &nbsp;&nbsp;<input class="check" id = "type_other" type="checkbox" name = "type_other" checked>
+									<label class="labelC" for="type_other">Other</label></li>
+					        </ul>
+					    </div>
 
-					<?php
-						if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
-							echo '
-							<div id="status" class="dropdown-check-list">
-							        <span class="anchor">Status</span>
-							        <ul class="items">
-							            <li> <input class="check" id = "available" type="checkbox" name = "available" checked>
-									<label for="available">Available</label></li>
-							            <li>  <input class="check" id = "reserved" type="checkbox" name = "reserved" checked>
-									<label for="reserved">Reserved</label></li>
-							            <li>  <input class="check" id = "borrowed" type="checkbox" name = "borrowed" checked > 
-									<label for="borrowed" style="clear:right;">Borrowed</label></li>
-							        </ul>
-							    </div>
-							<hr/>';
-						}
-					?>
+						<?php
+							if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
+								echo '
+								<div id="status" class="dropdown-check-list">
+								        <span class="anchor">Status</span>
+								        <ul class="items">
+								            <li> <input class="check" id = "available" type="checkbox" name = "available" checked>
+											<label for="available">Available</label></li>
+								            <li>  <input class="check" id = "reserved" type="checkbox" name = "reserved" checked>
+											<label for="reserved">Reserved</label></li>
+								            <li>  <input class="check" id = "borrowed" type="checkbox" name = "borrowed" checked > 
+											<label for="borrowed" style="clear:right;">Borrowed</label></li>
+								        </ul>
+								    </div>
+								<hr/>';
+							}
+						?>
+					</div>
 
 					<input searchby="book_title" id="search_text" type="search" name='search' autofocus='true' placeholder='Keywords...' maxlength='99' spellcheck='true'/>
 				<input id='submit_search' type="submit" name="submit_search" value="Search"/><br/>
 					<hr>
 					<?php
-						if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
+						// if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
 							echo '
 							 &nbsp;	 &nbsp; sort by
 							 </br></br>
@@ -56,7 +58,7 @@
 								<option value="date_published"> Date Published</option>
 							</select><br/><hr>
 							';
-						}
+						// }
 					?>
 
 					<div id="sidebar-wrapper">
