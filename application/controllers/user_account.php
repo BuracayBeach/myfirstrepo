@@ -34,6 +34,14 @@ class User_account extends CI_Controller {
 		$this->get_data();
 	}
 
+	public function registration_pending(){
+		$this->load->view('user_pending');
+	}
+
+	public function account_deactivated(){
+		$this->load->view('user_deactivated');
+	}
+
 	public function login(){
 		if (isset($_SESSION['logged_in'])){
 			redirect(base_url());
@@ -46,8 +54,19 @@ class User_account extends CI_Controller {
 			redirect(base_url());
 		}
 
-		else
+		if(isset($_SESSION['login_notif']) && $_SESSION['login_notif'] == "pending"){
+			$this->registration_pending();
+			unset($_SESSION['login_notif']);
+		}
+
+		else if(isset($_SESSION['login_notif']) && $_SESSION['login_notif'] == "deactivated"){
+			$this->account_deactivated();
+			unset($_SESSION['login_notif']);
+		}
+
+		else{
 			$this->log_in();
+		}
 	}
 
 	private function check_user_validity(){
