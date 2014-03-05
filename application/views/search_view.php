@@ -55,7 +55,7 @@
 								<option value="description"> Description </option>
 								<option value="publisher"> Publisher</option>
 								<option value="name"> Author</option>
-								<option value="date_published"> Date Published</option>
+								<option value="date_published"> Year Published</option>
 							</select><br/><hr>
 							';
 						// }
@@ -63,7 +63,7 @@
 
 					<div id="sidebar-wrapper">
 				        <ul class="sidebar-nav">
-				            <a href=""><li class="menu-toggle" searchby="book_title">Title &nbsp; <img src="<?php echo base_url();?>images/icon/title1.png" alt="">&nbsp;&nbsp;</li></a>
+				            <a href=""><li class="menu-toggle" searchby="book_title">Title / Description &nbsp; <img src="<?php echo base_url();?>images/icon/title1.png" alt="">&nbsp;&nbsp;</li></a>
 				            <a href=""><li class="menu-toggle" searchby="book_no">Book Number &nbsp; <img src="<?php echo base_url();?>images/icon/number.png" alt="">&nbsp;&nbsp;</li></a>
 				            <a href=""><li class="menu-toggle" searchby="author">Author &nbsp; <img src="<?php echo base_url();?>images/icon/user32.png" alt="">&nbsp;&nbsp;</li></a>
 				            <a href=""><li class="menu-toggle" searchby="publisher">Publisher &nbsp; <img src="<?php echo base_url();?>images/icon/printer32.png" alt="">&nbsp; &nbsp;</li></a>
