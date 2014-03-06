@@ -65,6 +65,7 @@ function addBook(event){
             var isUnique = JSON.parse(data).length == 0;
             if(isUnique){
                 $.post("index.php/book/add",formInputs,function(data){
+                    console.log(data);
                     data = JSON.parse(data);
                     $.get("index.php/book/get_row_view",data,function(data){
                         $('#recently_added_books_table').find('tbody').append(data);
@@ -101,9 +102,12 @@ function checkBookType(){
         form.find('.other').prop('required',false).hide();
     }
 
+    console.log(form);
     if(type == "Book"){
+        console.log(form.find('.isbn'))
         form.find('.isbn').show().next().show();
     }else{
+        console.log(form.find('.isbn'))
         form.find('.isbn').hide().next().hide();
     }
     if(type != "Book" && type != "Journal"){
