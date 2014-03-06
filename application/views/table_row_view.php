@@ -105,11 +105,10 @@
                 "<button action_type='reserve' class='book_action {$reserve_class}' book_no='{$row->book_no}'>";
             if ($row->status == 'available')
                 echo "reserve";
-            else {
-                "<button action_type='reserve' class='book_action' book_no='{$row->book_no}'>";
+            else 
                 echo $reserve;
-                echo "</button>";
-            }
+            
+            echo "</button>";
 
             if ($reserve == "unreserve") {
 

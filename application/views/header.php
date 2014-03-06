@@ -110,9 +110,7 @@
 			});
 		</script>
 
-		<div class="small-2 side-nav columns">
-			<?php include 'search_view.php';?>
-		</div>
+		<?php include 'search_view.php';?>
 
 		<!---->
 		<!--<div class=""  id="results_per_page_div" hidden>-->
