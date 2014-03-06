@@ -14,6 +14,8 @@ $('#result_container,#faq_container').ready(function(){
 
     $('#add_book_type').change(checkBookType);
     $('#edit_book_type').change(checkBookType);
+
+    $('.more_details').on('click',generateInputDetail);
     /***** END EVENT ATTACHMENTS *****/
 
     /* Hide Forms Initially */
@@ -90,7 +92,6 @@ function addBook(event){
 /***** END ADD FUNCTIONS *****/
 
 function checkBookType(){
-    console.log(this);
     var type = $(this).val();
 
     var form = $(this).closest('form');
@@ -100,9 +101,17 @@ function checkBookType(){
         form.find('.other').prop('required',false).hide();
     }
 
-    if(type != "Book" && type != "Journal")
+    if(type == "Book"){
+        form.find('.isbn').show().next().show();
+    }else{
+        form.find('.isbn').hide().next().hide();
+    }
+    if(type != "Book" && type != "Journal"){
+
         form.find('.abstract_container').show();
+    }
     else {
+
         form.find('.abstract_container').hide();
     }
 }
@@ -203,9 +212,6 @@ function editBook(event){
         errors = "Cannot continue action because of the following errors:<br/>" + errors;
         $(this).closest('div').find('.errors').html(errors);
     }
-
-
-
 }
 
 function cancelEdit(event){
@@ -234,6 +240,20 @@ function deleteBook(){
     $('#edit_container').hide();
 }
 /***** END DELETE FUNCTIONS *****/
+/***** FUNCTION FOR OTHER DATA *****/
+function generateInputDetail(){
+    var detailHTML = '<input class="detail_name" maxlength="20" name="detail[][name]"/><br/>' +
+        '<textarea class="detail_content" maxlength="255" name="detail[][content]"></textarea><br/>';
+
+
+    $(this).nextAll('.add_button').before(detailHTML);
+    var detailName = $(this).nextAll('.detail_name:last');
+    $("html,body").animate({ scrollTop: detailName.scrollTop() }, 2000);
+    detailName[0].focus();
+
+}
+
+/***** END FUNCTION FOR OTHER DATA *****/
 
 /*** STRING HTML GENERATION FUNCTIONS ***/
 function generateTransactionAnchorHTML(status,book_no){
