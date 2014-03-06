@@ -1,7 +1,7 @@
 <div class="signup small-7 column 	">
 
 <form class="<?php
-		if(isset($_SESSION['update_account_notif']))
+		if(isset($_SESSION['update_account_notif']) && $_SESSION['update_account_notif'] == "email")
 			echo 'email';
 	?>" name="userForm" action="<?php echo base_url();?>index.php/user_account/update" method="post" >
 	<div id="container">
@@ -80,14 +80,19 @@
 	</div>
 </form>
 
-<?php if(isset($_SESSION['update_account_notif'])){
-	echo "<script> alert('Email input already exists.'); </script>";
-	unset($_SESSION['update_account_notif']);
+<?php 
+	if(isset($_SESSION['update_account_notif']) && $_SESSION['update_account_notif'] == "email"){
+		echo "<script> alert('Email input already exists.'); </script>";
+		unset($_SESSION['update_account_notif']);
+	}
+	else if(isset($_SESSION['update_account_notif']) && $_SESSION['update_account_notif'] == "account_updated"){
+		echo "<script> alert('Successfully updated account!'); </script>";
+		unset($_SESSION['update_account_notif']);
 	}
 ?>
 
 <form class="<?php
-		if(isset($_SESSION['change_password_notif']))
+		if(isset($_SESSION['change_password_notif']) && $_SESSION['change_password_notif'] == "pass")
 			echo 'pass';
 	?>" name="changePasswordForm" action="<?php echo base_url();?>index.php/user_account/change_password" method="post" >	
 	<div id="container">
@@ -101,9 +106,14 @@
 	</div>
 </form>
 
-<?php if(isset($_SESSION['change_password_notif'])){
-	echo "<script> alert('Current password incorrect!'); </script>";
-	unset($_SESSION['change_password_notif']);
+<?php 
+	if(isset($_SESSION['change_password_notif']) && $_SESSION['change_password_notif'] == "pass"){
+		echo "<script> alert('Current password incorrect!'); </script>";
+		unset($_SESSION['change_password_notif']);
+	}
+	else if(isset($_SESSION['change_password_notif']) && $_SESSION['change_password_notif'] == "password_changed"){
+		echo "<script> alert('Successfully changed password!'); </script>";
+		unset($_SESSION['change_password_notif']);
 	}
 ?>
 

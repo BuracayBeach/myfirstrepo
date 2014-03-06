@@ -151,6 +151,7 @@ class User_account extends CI_Controller {
 		$result = $this->user_account_model->update_data($new_data, $uname);
 		
 		if($result){
+			$_SESSION['update_account_notif'] = "account_updated";
 			redirect(site_url("update_account"));
 		}
 
@@ -163,12 +164,13 @@ class User_account extends CI_Controller {
 	//Check if the current password entered is the same as that of the password in the database.
 	public function change_password(){
 		$uname = $_SESSION['username'];
-		$new_password= hash('sha256', filter_var($_POST['newPassword'], FILTER_SANITIZE_STRING));
-		$current_password= hash('sha256', filter_var($_POST['currentPassword'], FILTER_SANITIZE_STRING));
+		$new_password= hash('sha256', filter_var($_POST['newpassword'], FILTER_SANITIZE_STRING));
+		$current_password= hash('sha256', filter_var($_POST['currentpassword'], FILTER_SANITIZE_STRING));
 		$database_password = $this->user_account_model->get_password($uname);
 
 		if($database_password==$current_password) {
 			$this->user_account_model->update_password($new_password, $uname);
+			$_SESSION['change_password_notif'] = "password_changed";
 			redirect(site_url("update_account"));	
 		} else {
 			$_SESSION['change_password_notif'] = "pass";
