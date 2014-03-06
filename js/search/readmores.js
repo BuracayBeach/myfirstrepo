@@ -19,7 +19,7 @@ $('.article_abstract').readmore({
 
     $('.article_publisher').readmore({
       speed: 75,
-      maxHeight: 40
+      maxHeight: 50
     })
     $('.article_tag').readmore({
       speed: 75,

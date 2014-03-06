@@ -29,13 +29,15 @@
 
 
 				$(document).ready(function() {
-				    $('#sidebar-wrapper').on('click', 'li', ajax_results);
+				    $('#sidebar-wrapper li').unbind();
+				    $('#sidebar-wrapper li').bind('click', ajax_results);
+
 					$('#search_form').unbind('submit').submit(ajax_results); //prevent form from submitting/refreshing
-
-
 
 				    var lastRequest;
 					function ajax_results(event){
+
+
 						event.preventDefault();
 
 						if (lastRequest && lastRequest.readyState != 4) lastRequest.abort();
@@ -64,6 +66,11 @@
 						var searchText = $('#search_text')
 						my_input += "&tagSearch=" + searchText.attr('tagSearch')
 						// console.log(my_input);
+
+					    // window.location.replace(icejjfish + "ihome/");
+
+
+
 						lastRequest = $.ajax({
 							type: "post",
 							data: my_input, 

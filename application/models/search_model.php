@@ -272,6 +272,7 @@ class Search_model extends CI_Model {
         }
         if ($search_by == 'abstract' || $search_by == 'any'){
             array_push($cols_to_search, $row->abstract);
+            array_push($cols_to_search, $row->tags);
         }
         if ($search_by == 'any'){
             array_push($cols_to_search, $row->book_no);
