@@ -463,3 +463,11 @@ OVERALLS
 .fixed{
     position: fixed;
 }
+
+
+
+
+.readmore-js-toggle{
+    font-family:"Segoe UI Light" !important;
+    font-size: 14px;
+}
