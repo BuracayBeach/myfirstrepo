@@ -86,3 +86,12 @@ button.btn_gray {
 	cursor: not-allowed;
 	background-color: #d1d1d1;
 }
+
+div#results_per_page_div {
+	position: relative;
+	float: left;
+	width: 60%;
+	margin-top: 10%;
+	margin-left: 20%;
+	text-align: center;
+}
