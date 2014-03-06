@@ -96,6 +96,7 @@
 
 		<script type="text/javascript">
 			$(window).scroll(function () {
+				console.log($(window).scrollTop());
 				if ($(window).scrollTop() < 90) {
 					$('#navbar').removeClass('fixed');
 					$('#search').removeClass('fixed');

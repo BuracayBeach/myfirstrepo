@@ -2,12 +2,7 @@
     min-width: 1000px;
     min-height: 768px;
 }
-.hide{
-    display:none;
-}
-.fixed{
-    position: fixed;
-}
+
 body{
     font-family:"Segoe UI Light" !important;
     font-size: 15px;
@@ -24,6 +19,10 @@ BANNER
     clear: both;
     border-bottom: 1px solid white;
 }
+
+#banner.pad{
+  margin-bottom:60px;
+}
 /*--------------------------------------------
 NAVBAR
   *put event on zoomin
@@ -35,7 +34,14 @@ NAVBAR
     background: #222930;
     position: relative;
     clear: both;
+    z-index: 40;
 }
+
+#navbar.fixed{
+  position: fixed;
+  top:0;
+}
+
 #element-cont{
     width: 80%;
     height: 100%;
@@ -67,9 +73,9 @@ NAVBAR
     color:white;
 }
 #navbar #login{
-    width: 80%;
     height: 100%;
-    padding-top: 1%;
+    padding-top: 2.5%;
+    width: 100%;
 }
 #navbar #login input{
     color:black;
@@ -80,14 +86,16 @@ NAVBAR
     font-size: 13px;
 }
 #navbar .right{
-    width: 60%;
+    width: 45%;
     height: 100%;
-    margin-left: 40%;
+    margin-left: 55%;
 }
-#navbar .right > *{
+
+#navbar .right > a {
     float: right;
     max-width: 40%;
 }
+
 #navbar table label{
     height: 10px;
     color: white;
@@ -109,7 +117,14 @@ SEARCHBAR
     width: 15%;
     background: transparent;
     position: absolute;
+    z-index: 40;
 }
+
+#search.fixed{
+  position: fixed;
+  top:60px;
+}
+
 #search #sidebar-wrapper{
     width: 100%;
     background: transparent;
@@ -127,22 +142,25 @@ SEARCHBAR
 #search #sidebar-wrapper ul a{
     color: black;
     text-align: right;
+    font-size: 1.3vw;
 }
 #search #sidebar-wrapper ul a:hover{
     color:white;
     text-decoration: none;
+    font-size: 1.5vw;
+
 }
 #search #sidebar-wrapper ul a:hover li{
     background:  #2266CC;
 }
 #search #sidebar-wrapper ul img{
-    width: 30px;
+    width: 2vw;
 }
 
-.sidebar-nav li.active {
-    background-color: #FF6600 !important;
-    color: #fff !important;
-    font-size: 110% !important;
+#search #sidebar-wrapper .active{
+  background: orange;
+  color: white;
+  font-size: 1.5vw;
 }
 /*------------------------------
 DROPDOWN CHECKLIST
@@ -478,6 +496,22 @@ ERROR
     width: 60%;
     float: left;
     margin-left: 20%;
+    margin-top: 0;
+    
+}
+
+
+
+
+/*------------
+OVERALLS
+------------*/
+
+.hide{
+    display:none;
+}
+.fixed{
+    position: fixed;
     margin-top: 10%;
 
 }

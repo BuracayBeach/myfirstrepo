@@ -34,7 +34,7 @@ function generateAnnouncementRow(data,isAdmin){
     var rowHTML = '<tr announcement_id="'+data.announcement_id+'" class="announcement_table_row">'+
                         '<td class="announcement_table_data">'+
                             '<h4 '+editable+' class="announcement_title">'+data.announcement_title+'</h4>'+
-                            '<div class="sub-heading">posted on <span class="date_posted">'+fd.toDateString() +'</span> by '+
+                            '<div class="sub-heading small-font">posted on <span class="date_posted">'+fd.toDateString() +'</span> by '+
                                 '<span class="announcement_author">'+data.announcement_author+'</span></div>' +
                             '<div class="announcement_content_container"><p class="announcement_content">'+data.announcement_content+'</p></div>'+
                         editButtons +
