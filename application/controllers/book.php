@@ -176,7 +176,7 @@ class Book extends CI_Controller {
             // $p_search_suggestion = str_replace("</strong>", "", $p_search_suggestion);
             // $p_search_suggestion = htmlspecialchars(stripslashes($p_search_suggestion));
             $p_search_by = filter_var($_POST["search_by"], FILTER_SANITIZE_STRING);
-            echo "<span>You might want to search for: <a id='suggestion_text' search_by='{$p_search_by}' href='javascript:research();'>" . $search_suggestion . "</a></span><br/><br/>";
+            echo "<span>You might want to search for: <a id='suggestion_text' search_by='{$p_search_by}' href='javascript:void(0)'>" . $search_suggestion . "</a></span><br/><br/>";
         }
         // json_encode($search_suggestion);
     }

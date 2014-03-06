@@ -13,14 +13,14 @@
 
                 echo "<tr >
                     <th width='15%'>Identification</th>
-                    <th width='30%'>Material</th>
+                    <th width='40%'>Material</th>
                     <th width='15%'>Publishment </th>
                 ";
 
-                echo "<th>Tags</th>";
-                echo "<th";
-                if ($search_by != 'any' && $search_by != 'abstract') echo 'hidden';
-                echo ">Abstract</th>"; //hide later
+                echo "<th width='15%'>Tags</th>";
+                echo "<th ";
+                if ($search_by != 'any' && $search_by != 'abstract') echo ' hidden';
+                echo ">Abstract</th>";
                 echo "</tr>";
 
 
@@ -61,3 +61,5 @@
 
 <script type="text/javascript" src= "<?php echo base_url()?>js/search/paginationAjax.js"></script>
 <script type="text/javascript" src= "<?php echo base_url()?>js/search/readmores.js"></script>
+
+<script type="text/javascript" src= "<?php echo base_url()?>js/search/autosearch.js"></script>
