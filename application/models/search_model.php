@@ -31,11 +31,13 @@ class Search_model extends CI_Model {
         $input['order_by'] = "book_no";
 
         $input['book_type'] = "Book";
-
+        $input['tag_search'] = 'false';
+        
         if (isset($_POST['search'])) $input['search_term'] = $_POST['search'];
         if (isset($_POST['search_by'])) $input['search_by'] = $_POST['search_by'];
         if (isset($_POST['order_by'])) $input['order_by'] = $_POST['order_by'];
         if (isset($_POST['book_type'])) $input['book_type'] = $_POST['book_type'];
+        if (isset($_POST['tagSearch'])) $input['tag_search'] = $_POST['tagSearch'];
 
         $input['available'] = isset($_POST["available"]);
         $input['borrowed'] = isset($_POST["borrowed"]);
@@ -242,7 +244,7 @@ class Search_model extends CI_Model {
     }
 
 
-    function get_row_points($row, $search_terms, $search_by, &$term_sugg, &$term_sugg_dist, $spell_check){
+    function get_row_points($row, $search_terms, $input, &$term_sugg, &$term_sugg_dist, $spell_check){
         //set criteria
         $book_title_points = 9;
         $book_author_points = 5;
@@ -253,7 +255,7 @@ class Search_model extends CI_Model {
         $abstract_points = 0.05;
         $other_points = 1; //book number, if search by 'any'
 
-
+        $search_by = $input['search_by'];
         $cols_to_search = array();
 
         //determine columns to search
@@ -278,6 +280,7 @@ class Search_model extends CI_Model {
 
         //compare each search term/word to each of the words in the book title, description, tags
         $pts = 0;
+        $tag_matched = false;
         foreach($search_terms as $search_term){
             $search_term = strtolower(trim($search_term));
             if ($search_term=='') continue;
@@ -310,7 +313,7 @@ class Search_model extends CI_Model {
                     if($search_term==$item){
                         switch($col){
                             case $row->description: $pts+=$book_desc_points; break;
-                            case $row->tags:        $pts+=$book_tags_points; break;
+                            case $row->tags:        $pts+=$book_tags_points; $tag_matched=true; break;
                             case $row->book_title:  $pts+=$book_title_points; break;
                             case $row->author:        $pts+=$book_author_points; break;
                             case $row->publisher:  $pts+=$book_publisher_points; break;
@@ -332,6 +335,8 @@ class Search_model extends CI_Model {
             }
         }
 
+        if ($input['tag_search'] == 'true' && $tag_matched == false) $pts = 0;
+        
         $points[$row->book_no] = $pts;
         return $points[$row->book_no];
     }
@@ -359,7 +364,7 @@ class Search_model extends CI_Model {
         foreach($table as $row){
             $table_copy[$row->book_no] = $row; //clone table
             //compute points for each row (for determining relevance to search terms), also get suggestions
-            $points[$row->book_no] = $this->get_row_points($row, $search_terms, $input['search_by'], $term_sugg, $term_sugg_dist, $spell_check);
+            $points[$row->book_no] = $this->get_row_points($row, $search_terms, $input, $term_sugg, $term_sugg_dist, $spell_check);
         }
         // var_dump($input['order_by']);
         if ($input['order_by'] == 'search_relevance') arsort($points); //reverse sort $points structure by value

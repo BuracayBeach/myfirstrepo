@@ -1,16 +1,18 @@
 
 
 				function research(){
-					newSearch = $(this).html();
+					var newSearch = $(this).html();
 					if (newSearch){
 						newSearch = newSearch.replace(/<strong>/g,"");
 						newSearch = newSearch.replace(/<\/strong>/g,"");
-						$('#search_text').val(newSearch.trim());
+						var searchText = $('#search_text')
 
-						if ($(this).attr('class') != 'tag_link') $('#submit_search').submit();
-						else {
-							$('#menu-toggle-title').click();
-						}
+
+						if ($(this).attr('class') == 'tag_link') searchText.attr('tagSearch','true')
+						else searchText.val(newSearch.trim());
+					
+						$('#submit_search').submit();
+						searchText.attr('tagSearch','false')
 					}
 				}
 
@@ -54,7 +56,9 @@
 
 						my_input += "&page=1";
 						my_input += "&rows_per_page=" + ($('#results_per_page').val()==0?10:resultsPerPage);
-
+						
+						var searchText = $('#search_text')
+						my_input += "&tagSearch=" + searchText.attr('tagSearch')
 
 						// console.log(my_input);
 						lastRequest = $.ajax({

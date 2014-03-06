@@ -117,8 +117,10 @@ class Book extends CI_Controller {
             'search_term'   => $input['search_term'],
             'search_by'     => $input['search_by'],
             'order_by'      => $input['order_by'],
+            'tag_search'      => $input['tag_search'],
             'spell_check'   => true
         );
+        // var_dump($details);
         if (isset($_POST['page'])) $details['page'] = $_POST['page'];
         if (isset($_POST['rows_per_page'])) $details['rows_per_page'] = $_POST['rows_per_page'];
         if ($details['search_by'] == 'book_no' || $details['search_by'] == 'date_published') $details['spell_check'] = false;
