@@ -97,17 +97,54 @@
 		</div>
 
 		<script type="text/javascript">
+			var winsize = false;
+
+
 			$(window).scroll(function () {
-				console.log($(window).scrollTop());
-				if ($(window).scrollTop() < 90) {
-					$('#navbar').removeClass('fixed');
-					$('#search').removeClass('fixed');
-				}
-				if ($(window).scrollTop() > 90) {
-					$('#navbar').addClass('fixed');
-					$('#search').addClass('fixed');
+				if(!winsize){
+					if ($(window).scrollTop() < 90) {
+						pfgt12p();
+					}
+					else if ($(window).scrollTop() > 90) {
+						pfgt1ap();
+					}
 				}
 			});
+			$(window).on("resize", function(){
+				if($(window).width() < 800){
+					winsize = true;
+					pfgt12p();
+				}
+				else{
+					winsize = false;
+					pfgt1ap();
+				}
+
+
+			});
+
+			$(document).ready(function(){
+				if($(window).width() < 800){
+					winsize = true;
+					pfgt12p();
+				}
+				else{
+					winsize = false;
+					pfgt1ap();
+				}
+			});
+
+			function pfgt12p(){
+				$('#navbar').removeClass('fixed');
+				$('#search').removeClass('fixed');
+				$('#banner').removeClass('pad');
+			}
+
+			function pfgt1ap(){
+				$('#navbar').addClass('fixed');
+				$('#search').addClass('fixed');
+				$('#banner').addClass('pad');
+			}
 		</script>
 
 		<?php include 'search_view.php';?>
