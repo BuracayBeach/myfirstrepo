@@ -92,11 +92,12 @@ class Book extends CI_Controller {
 
     public function get_row_view(){
         if(isset($_GET)){
-        $data['row'] = json_decode(json_encode($_GET));
-        $data['row']->book_type = $data['row']->type;
-        $data['row']->status = "Available";
-        $data['newly_added'] = true;
-        echo $this->load->view('table_row_view',$data);}
+            $data['row'] = json_decode(json_encode($_GET));
+            $data['row']->book_type = $data['row']->type;
+            $data['row']->status = "Available";
+            $data['newly_added'] = true;
+            echo $this->load->view('table_row_view',$data);
+        }
     }
 
     public function edit(){

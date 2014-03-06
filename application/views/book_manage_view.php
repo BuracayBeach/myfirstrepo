@@ -1,15 +1,13 @@
 <button class="" id="show_add_form_button" name="show_add_form_button" >Add Material</button>
 <div id="add_container">
     <form autocomplete="on" id="add_book_form">
-        &nbsp; ADD MATERIAL<br/>  <br/>
+        <br/>
         <span class="errors"></span>
-        <input type="text" title="Call Number" name="book_no" maxlength="25" id="add_book_no" placeholder="Call Number" required />
-        <br/>
-        <input type="text" title="ISBN" class="isbn" name="isbn" maxlength="17" id="add_isbn" pattern="[0-9]{1,17}" placeholder="ISBN" />
-        <br/>
-        <input type="text" maxlength="255" spellcheck="true" name="book_title" id="add_book_title" placeholder="Title" required/>
-        <br/>
-        <select name="type" id="add_book_type">
+        <div class="form-group"><input class="form-control" type="text" title="Call Number" name="book_no" maxlength="25" id="add_book_no" placeholder="Call Number" required /> </div>
+        <div class="form-group"><input class="form-control" type="text" title="ISBN" class="isbn" name="isbn" maxlength="17" id="add_isbn" pattern="[0-9]{1,17}" placeholder="ISBN" /> </div>
+        <div class="form-group"><input class="form-control" type="text" maxlength="255" spellcheck="true" name="book_title" id="add_book_title" placeholder="Title" required/> </div>
+      
+        <select class="form-control" name="type" id="add_book_type">
             <option selected="true">Book</option>
             <option>Journal</option>
             <option>SP</option>
@@ -28,25 +26,25 @@
                 </textarea>
             <br/>
         </div>
-        <input type="text" name="author" maxlength="255" id="add_author" placeholder="Author" pattern="[a-zA-z0-9,_'. ]+"/>
-        <br/>
-        <textarea name="description" spellcheck="true" maxlength="255" id="add_description" placeholder="Description"  ></textarea>
-        <br/>
-        <input type="text" maxlength="255" name="publisher" id="add_publisher" placeholder="Publisher"  />
-        <br/>
-        <input type="number" min="0" max="0" name="date_published" id="add_date_published"
+        <div class="form-group"> <input class="form-control" type="text" name="author" maxlength="255" id="add_author" placeholder="Author" pattern="[a-zA-z0-9,_'. ]+"/> </div>
+        
+        <div class="form-group"><textarea class="form-control" name="description" spellcheck="true" maxlength="255" id="add_description" placeholder="Description"  ></textarea></div>
+        
+        <div class="form-group"> <input class="form-control" type="text" maxlength="255" name="publisher" id="add_publisher" placeholder="Publisher"  /> </div>
+        
+        <div class="form-group"> <input class="form-control" type="number" min="0" max="0" name="date_published" id="add_date_published"
                pattern="^[0-9]{0,4}$"
                placeholder="Year Published"
-               title="ex. 2014, 1995"/>
-        <br/>
-        <input type="text" name="tags" spellcheck="true" id="add_tags"
+               title="ex. 2014, 1995"/> </div>
+        
+        <div class="form-group"> <input class="form-control" type="text" name="tags" spellcheck="true" id="add_tags"
                title="Tags contain additional keywords, like, &#10;Subject, Category, etc...; &#10;separated by comma (ex. 'math, computer science') "
-               placeholder="Tags" pattern="^[a-zA-Z0-9 ]+(,[a-zA-Z0-9 ]+)*$"/>
-        <br/>
+               placeholder="Tags" pattern="^[a-zA-Z0-9 ]+(,[a-zA-Z0-9 ]+)*$"/> </div>
+        
         <a class="more_details" href="javascript:void(0);" id="add_more_details">Add More Details...</a>
         <br/>
-        <button type="submit" class="add_button" name="add_button" id="add_button">Add Book</button>
-        <button id="add_cancel_button" class="edit_button" name="add_cancel_button" >Cancel</button>
+        <button type="submit" class="add_button btn btn-default" name="add_button" id="add_button">Add Book</button>
+        <button id="add_cancel_button" class="edit_button btn btn-default" name="add_cancel_button" >Cancel</button>
     </form>
 </div>
 

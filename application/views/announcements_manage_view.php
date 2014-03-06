@@ -4,13 +4,12 @@
 <div id="announcement_manage_container">
     <div id="add_announcement_container">
         <form autocomplete="on" id="add_announcement_form">
-            ADD ANNOUNCEMENT <br/><br/>
-            <input type="text" name="announcement_title" id="add_announcement_title" placeholder="Title" required/>
-            <br/>
-            <textarea name="announcement_content" id="add_announcement_content" placeholder="Announcement Content..."  required></textarea>
-            <br/>
-            <button type="submit" name="add_announcement_button" id="add_announcement_button1">Add</button>
-            <button id="add_announcement_cancel_button" name="add_announcement_cancel_button" >Cancel</button>
+            <br>
+            <div class="form-group"><input class="form-control" type="text" name="announcement_title" id="add_announcement_title" placeholder="Title" required/></div>
+            <div class="form-group"><textarea class="form-control" name="announcement_content" id="add_announcement_content" placeholder="Announcement Content..."  required></textarea></div>
+            <br>
+            <button class="btn btn-default" type="submit" name="add_announcement_button" id="add_announcement_button1">Add</button>
+            <button class="btn btn-default" id="add_announcement_cancel_button" name="add_announcement_cancel_button" >Cancel</button>
         </form>
     </div>
     <div id="edit_announcement_container">

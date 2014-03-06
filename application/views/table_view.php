@@ -50,6 +50,8 @@
         ?>
     </table>
 
+    <hr/>
+
     <?php include 'pagination_view.php';?>
 </div>
 
