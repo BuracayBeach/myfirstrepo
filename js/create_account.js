@@ -75,13 +75,13 @@ function validateUsername(){
 	document.getElementsByName("span username")[0].innerHTML=msg;
 
 	if(msg==""){
-		$('input[name=username]').removeClass().addClass("valid");
+		$('input[name=username]').removeClass().addClass("valid form-control");
 		$("span[name~='username']").removeClass().addClass("valid");
 		return true;
 	}
 
 	else{
-		$('input[name=username]').removeClass().addClass("invalid");
+		$('input[name=username]').removeClass().addClass("invalid form-control");
 		$("span[name~='username']").removeClass().addClass("invalid");
 	}
 }
@@ -104,13 +104,13 @@ function validatePassword(){
 	document.getElementsByName("span password")[0].innerHTML=msg;
 
 	if(msg!="Required" && msg!="Must be alpha characters only and 6-18 characters long."){
-		$('input[name=password]').removeClass().addClass("valid");
+		$('input[name=password]').removeClass().addClass("valid form-control");
 		$("span[name~='password']").removeClass().addClass("valid");
 		return true;
 	}
 
 	else{
-		$('input[name=password]').removeClass().addClass("invalid");
+		$('input[name=password]').removeClass().addClass("invalid form-control");
 		$("span[name~='password']").removeClass().addClass("invalid");
 	}
 }
@@ -126,13 +126,13 @@ function validateRepassword(){
 	document.getElementsByName("span repassword")[0].innerHTML=msg;
 	
 	if(msg=="Valid"){
-		$('input[name=repassword]').removeClass().addClass("valid");
+		$('input[name=repassword]').removeClass().addClass("valid form-control");
 		$("span[name~='repassword']").removeClass().addClass("valid");
 		return true;
 	}
 
 	else{
-		$('input[name=repassword]').removeClass().addClass("invalid");
+		$('input[name=repassword]').removeClass().addClass("invalid form-control");
 		$("span[name~='repassword']").removeClass().addClass("invalid");
 	}
 }
@@ -148,13 +148,13 @@ function validateEmail(){
 	document.getElementsByName("span email")[0].innerHTML=msg;
 
 	if(msg==""){
-		$('input[name=email]').removeClass().addClass("valid");
+		$('input[name=email]').removeClass().addClass("valid form-control");
 		$("span[name~='email']").removeClass().addClass("valid");
 		return true;
 	}
 
 	else{
-		$('input[name=email]').removeClass().addClass("invalid");
+		$('input[name=email]').removeClass().addClass("invalid form-control");
 		$("span[name~='email']").removeClass().addClass("invalid");
 	}
 }
@@ -170,13 +170,13 @@ function validateEmployeeNumber(){
 	document.getElementsByName("span emp_no")[0].innerHTML=msg;
 
 	if(msg==""){
-		$('input[name=emp_no]').removeClass().addClass("valid");
+		$('input[name=emp_no]').removeClass().addClass("valid form-control");
 		$("span[name~='emp_no']").removeClass().addClass("valid");
 		return true;
 	}
 
 	else{
-		$('input[name=emp_no]').removeClass().addClass("invalid");
+		$('input[name=emp_no]').removeClass().addClass("invalid form-control");
 		$("span[name~='emp_no']").removeClass().addClass("invalid");
 	}
 }	
@@ -192,13 +192,13 @@ function validateStudentNumber(){
 	document.getElementsByName("span student_no")[0].innerHTML=msg;
 
 	if(msg==""){
-		$('input[name=student_no]').removeClass().addClass("valid");
+		$('input[name=student_no]').removeClass().addClass("valid form-control");
 		$("span[name~='student_no']").removeClass().addClass("valid");
 		return true;
 	}
 
 	else{
-		$('input[name=student_no]').removeClass().addClass("invalid");
+		$('input[name=student_no]').removeClass().addClass("invalid form-control");
 		$("span[name~='student_no']").removeClass().addClass("invalid");
 	}
 }
@@ -215,13 +215,13 @@ function validateFirstName(){
 	document.getElementsByName("span name_first")[0].innerHTML=msg;
 
 	if(msg==""){
-		$('input[name=name_first]').removeClass().addClass("valid");
+		$('input[name=name_first]').removeClass().addClass("valid form-control");
 		$("span[name~='name_first']").removeClass().addClass("valid");
 		return true;
 	}
 
 	else{
-		$('input[name=name_first]').removeClass().addClass("invalid");
+		$('input[name=name_first]').removeClass().addClass("invalid form-control");
 		$("span[name~='name_first']").removeClass().addClass("invalid");
 	}
 }
@@ -238,13 +238,13 @@ function validateMiddleName(){
 	document.getElementsByName("span name_middle")[0].innerHTML=msg;
 
 	if(msg==""){ 
-		$('input[name=name_middle]').removeClass().addClass("valid");
+		$('input[name=name_middle]').removeClass().addClass("valid form-control");
 		$("span[name~='name_middle']").removeClass().addClass("valid");
 		return true;
 	}
 
 	else{
-		$('input[name=name_middle]').removeClass().addClass("invalid");
+		$('input[name=name_middle]').removeClass().addClass("invalid form-control");
 		$("span[name~='name_middle']").removeClass().addClass("invalid");
 	}
 }
@@ -260,13 +260,13 @@ function validateLastName(){
 	document.getElementsByName("span name_last")[0].innerHTML=msg;
 
 	if(msg==""){
-		$('input[name=name_last]').removeClass().addClass("valid");
+		$('input[name=name_last]').removeClass().addClass("valid form-control");
 		$("span[name~='name_last']").removeClass().addClass("valid");
 		return true;
 	}
 
 	else{
-		$('input[name=name_last]').removeClass().addClass("invalid");
+		$('input[name=name_last]').removeClass().addClass("invalid form-control");
 		$("span[name~='name_last']").removeClass().addClass("invalid");
 	}
 }
@@ -282,13 +282,13 @@ function validateMobileNumber(){
 	document.getElementsByName("span mobile_no")[0].innerHTML=msg;
 
 	if(msg==""){
-		$('input[name=mobile_no]').removeClass().addClass("valid");
+		$('input[name=mobile_no]').removeClass().addClass("valid form-control");
 		$("span[name~='mobile_no']").removeClass().addClass("valid");
 		return true;
 	}
 
 	else{
-		$('input[name=mobile_no]').removeClass().addClass("invalid");
+		$('input[name=mobile_no]').removeClass().addClass("invalid form-control");
 		$("span[name~='mobile_no']").removeClass().addClass("invalid");
 	}
 }
