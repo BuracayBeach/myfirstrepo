@@ -72,27 +72,20 @@ NAVBAR
     color:white;
 }
 #navbar #login{
-    width: 80%;
     height: 100%;
-    padding-top: 1%;
-}
-#navbar #login input{
-    color:black;
-}
-#navbar #login input{
-    width: 90%;
-    height: 100%;
-    font-size: 13px;
+    padding-top: 2.5%;
+    width: 100%;
 }
 #navbar .right{
-    width: 60%;
+    width: 45%;
     height: 100%;
-    margin-left: 40%;
+    margin-left: 55%;
 }
-#navbar .right > *{
+
+#navbar .right > a {
     float: right;
-    max-width: 40%;
 }
+
 #navbar table label{
     height: 10px;
     color: white;
@@ -453,7 +446,7 @@ ERROR
     width: 60%;
     float: left;
     margin-left: 20%;
-    margin-top: 10%;
+    margin-top: 0;
     
 }
 

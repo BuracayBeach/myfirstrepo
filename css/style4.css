@@ -1,3 +1,16 @@
+/* login page */
+
+form#login .form-input {
+	display: inline-block;
+	float: left;
+	width: 32%;
+	margin-right: 10px;
+}
+
+form#login input.btn-default {
+	margin-right: 10px;
+}
+
 .dropdown-menu {
 	margin: 0;
 }
@@ -6,16 +19,19 @@ button:hover {
 	background-color: #007095;
 }
 
+.small-font {
+	font-size: 0.85em;
+}
+
 a:hover {
 	text-decoration: none;
 }
 
-
-
-
 .announcement_title {
 	margin: 0;
 	text-align: center;
+	font-size: 1.3em;
+	font-weight: 800;
 }
 
 .announcement_table_data {
@@ -23,7 +39,7 @@ a:hover {
 }
 
 p.announcement_content {
-	margin: 35px 0 15px 0;
+	margin: 35px 0 35px 0;
 }
 
 div.sub-heading {

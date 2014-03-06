@@ -13,7 +13,6 @@
 		<div id="greet-user"> Hi <?php echo $_SESSION['username']; ?> </div>
 		<div id="notif-blue-glow"> </div>
 	</div>
-
 </a>
 
 <script type="text/javascript">
