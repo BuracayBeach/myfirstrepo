@@ -1,5 +1,5 @@
 
-<div id="search_table_container" class="small-6 column">
+<div id="search_table_container" class="column">
     <?php include 'pagination_view.php';?>
 
     <table id="search_table" border="1">

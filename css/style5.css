@@ -14,9 +14,10 @@ BANNER
 #banner{
     width: 100%;
     height: 90px;
-    background: yellow;
+    background: #222930;
     position: relative;
     clear: both;
+    border-bottom: 1px solid white;
 }
 
 #banner.pad{
@@ -45,8 +46,8 @@ NAVBAR
     width: 80%;
     height: 100%;
     margin: 0 auto;
-/*//  border-left: 1px solid #323940;*/
-/*//  border-right: 1px solid #323940;*/
+    /*//  border-left: 1px solid #323940;*/
+    /*//  border-right: 1px solid #323940;*/
 }
 #navbar .menulinks {
     height: 60px;
@@ -76,6 +77,13 @@ NAVBAR
     padding-top: 2.5%;
     width: 100%;
 }
+#navbar #login input{
+    color:black;
+}
+#navbar #login input{
+    height: 100%;
+    font-size: 13px;
+}
 #navbar .right{
     width: 45%;
     height: 100%;
@@ -84,6 +92,7 @@ NAVBAR
 
 #navbar .right > a {
     float: right;
+    max-width: 40%;
 }
 
 #navbar table label{
@@ -210,6 +219,27 @@ DROPDOWN CHECKLIST
 /*-------------------------------
 FAQ
 --------------------------------*/
+#faq_table_container{
+    width: 100% !important;
+}
+.answer_editor{
+    width:100%;
+    height: 250px !important;
+}
+
+#add_answer{
+    width:100% !important;
+}
+
+#add_question{
+    width:100% !important;
+}
+
+#add_faq_form{
+    width:100% !important;
+}
+
+
 #add_faq_button{
     background-color:#2266cc !important;
     font-family:"Segoe UI Light" !important;
@@ -242,7 +272,7 @@ FAQ
     background-color:#2266cc !important;
     font-family:"Segoe UI Light" !important;
     font-size:100% !important;
-    width:6% !important;
+    width:15% !important;
     height: 5%;
     color: white;
     margin-left: 10%;
@@ -276,15 +306,7 @@ FAQ
     border: 1px solid #ccc;
     width: 50%;
 }
-.nicEdit-panelContain{
-    width: 210% !important;
-    height: 100% !important;
-}
-.nicEdit-main{
-    max-width: 500% !important;
-    height: 100% !important;
-    background-color: white !important;
-}
+
 .edit_announcement_button{
     margin-left: 10%;
     background-color:#2266cc !important;
@@ -300,10 +322,37 @@ FAQ
     color: white;
 }
 .errors{
-    color: red !important;
+        color: red !important;
     font-size: 80% !important;
     font-weight: bold !important;
 }
+/*-------------------------
+ANNOUNCEMENT CAROUSEL
+
+---------------*/
+#myCarousel{
+    width:600px !important;
+    height: 450px !important;
+    margin-left: 20%;
+}
+
+#myCarousel .carousel-control{
+    z-index: 1000;
+
+}
+
+#myCarousel .carousel-caption {
+    position: relative;
+    left: 0 !important;
+    height: 450px;
+    width: 600px;
+    margin-left: 0px;
+    margin-top: 20px;
+    background-color: black;
+    padding-top: 20px !important;
+    padding-bottom: 0px !important;
+}
+
 /*-----------------------------------
 ERROR
 -----------------------------------*/
@@ -436,7 +485,7 @@ ERROR
     float: left;
     margin-left: 20%;
     margin-top: 10%;
-    
+
 }
 /*USER VIEW - ANNOUNCEMENT*/
 #announcements_container {
@@ -459,4 +508,6 @@ OVERALLS
 }
 .fixed{
     position: fixed;
+    margin-top: 10%;
+
 }

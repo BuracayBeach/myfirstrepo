@@ -28,7 +28,7 @@ class Welcome extends CI_Controller {
         $data['query'] = $this->db->get('book');
         $data['table'] = $this->search();
         $this->load->view('search_view',$data);
-        $this->load->view('manage_view');
+        $this->load->view('book_manage_view');
     }
 
     public function search(){
