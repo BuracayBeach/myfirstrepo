@@ -22,6 +22,9 @@ $('#announcement_container').ready(function(){
 
         $("#edit_cancel_button").click();
     });
+
+    if($('.carousel-inner .item').length == 0)
+        $('.carousel').hide();
 });
 
 function showAddAnnouncementForm(event){
@@ -35,7 +38,9 @@ function showAddAnnouncementForm(event){
 function fillEditAnnouncementForm(event){
     event.preventDefault();
     $('#add_announcement_container').hide();
-    var announcement_id = $(this).closest('tr').attr('announcement_id');
+
+    //this = edit button
+    var announcement_id = $(this).closest('div').attr('announcement_id');
 
     $.post("index.php/announcement/get_announcement",{"announcement_id":announcement_id},function(data){
         try{
@@ -83,10 +88,11 @@ function editAnnouncement(event){
         try{
             data = JSON.parse(data);
 
-            var td = $('#announcements_table').find('tbody').find('tr[announcement_id="'+data.announcement_id+'"]');
-            console.log($('#announcements_table'));
-            td.find('.announcement_title').text(data.announcement_title);
-            td.find('.announcement_content').text(data.announcement_content);
+            //container = announcement container
+            var container = $('.carousel-inner').find('.item > div[announcement_id="'+data.announcement_id+'"]');
+            console.log(container);
+            container.find('.announcement_title').text(data.announcement_title);
+            container.find('.announcement_content').text(data.announcement_content);
             $('[data-toggle="tab"]')[2].click();
         }catch(e){
             console.log(e);
@@ -102,24 +108,27 @@ function deleteAnnouncement(event){
     event.preventDefault();
     var result = confirm("Confirm deleting this announcement");
     if (result==true) {
-        var announcement_id = $(this).closest('tr').attr('announcement_id');
-        var tr = $(this).closest('tr');
+
+        var container = $(this).closest('.announcement_container');
+        var announcement_id = container.attr('announcement_id');
         $.post("index.php/announcement/delete",{"announcement_id":announcement_id},function(data){
-            try{
-                if(tr.closest('table').find('tbody tr').length - 1 == 0)
-                    tr.closest('table').remove();
-                else tr.remove();
-            }
-            catch(e){
-                console.log(e);
-                console.log(data);
-            }
+            var item = container.closest('.item').addClass('left');
+            var siblings = item.siblings();
+            $(siblings[0]).addClass('active');
+            var indicator = $($('.carousel-indicators li')[item.index()]);
+            console.log("index:"+item.index()+" "+indicator.siblings());
+            $(indicator.siblings()[0]).addClass('active');
+            indicator.remove();
+            item.remove();
+            if($('.carousel-inner .item').length == 0) $('.carousel').hide();
+
+            cancelForm.call(edit_announcement_form);
         });
     }
 }
 
-function cancelForm(event){
-    event.preventDefault();
+function cancelForm(){
     $(this).closest('div').hide();
     $(this).closest('form')[0].reset();
+    return false;
 }

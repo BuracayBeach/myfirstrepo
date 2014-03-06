@@ -339,7 +339,7 @@ ANNOUNCEMENT CAROUSEL
 ---------------*/
 #myCarousel{
     width:600px !important;
-    height: 450px !important;
+    height: 300px !important;
     margin-left: 20%;
 }
 
@@ -351,8 +351,8 @@ ANNOUNCEMENT CAROUSEL
 #myCarousel .carousel-caption {
     position: relative;
     left: 0 !important;
-    height: 450px;
     width: 600px;
+    height: 300px;
     margin-left: 0px;
     margin-top: 20px;
     background-color: #2266cc !important;
@@ -465,9 +465,6 @@ ERROR
 /* for non users */
 #result_container_container{
     margin-left: 20%;
-}
-#result_container_container table{
-    width: 60%;
 }
 
 /* */

@@ -4,9 +4,9 @@
         <br/>
         <span class="errors"></span>
         <div class="form-group"><input class="form-control" type="text" title="Call Number" name="book_no" maxlength="25" id="add_book_no" placeholder="Call Number" required /> </div>
-        <div class="form-group"><input class="form-control" type="text" title="ISBN" class="isbn" name="isbn" maxlength="17" id="add_isbn" pattern="[0-9]{1,17}" placeholder="ISBN" /> </div>
+        <div class="form-group"><input class="form-control isbn" type="text" title="ISBN" class="isbn" name="isbn" maxlength="17" id="add_isbn" pattern="[0-9]{1,17}" placeholder="ISBN" /> </div>
         <div class="form-group"><input class="form-control" type="text" maxlength="255" spellcheck="true" name="book_title" id="add_book_title" placeholder="Title" required/> </div>
-      
+        <label for="type">Type: </label>
         <select class="form-control" name="type" id="add_book_type">
             <option selected="true">Book</option>
             <option>Journal</option>
