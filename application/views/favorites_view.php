@@ -51,8 +51,8 @@ $this->load->view('favorites_view', $data);
 				<div class="book_no sub-2"> Book No: <?php echo $row->book_no; ?> </div> <br/>
 				<div class="date_added sub-2"> Date Added: <?php echo $row->date_added; ?> </div> <br/>
 				<div class="button_container">
-					<?php echo "<button class='action_button favorite_button' book_no='" . $row->book_no . "'>unfavorite</button>" ?>
-					<?php echo "<button class='action_button reserve_button ".$enabler."' book_no='" . $row->book_no . "'>".$reserve."</button>" ?>			
+					<?php echo "<button class='action_button btn btn-primary favorite_button' book_no='" . $row->book_no . "'>unfavorite</button>" ?>
+					<?php echo "<button class='action_button btn reserve_button ".$enabler."' book_no='" . $row->book_no . "'>".$reserve."</button>" ?>			
 				</div>
 				<br/>
 

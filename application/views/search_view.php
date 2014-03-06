@@ -42,15 +42,14 @@
 						<hr>
 					</div>
 
-					<input searchby="book_title" id="search_text" type="search" name='search' autofocus='true' placeholder='Keywords...' maxlength='99' spellcheck='true' tagSearch='false'/>
-				<input id='submit_search' type="submit" name="submit_search" value="Search"/><br/>
+				<div class="form-group"><input class="form-control" searchby="book_title" id="search_text" type="search" name='search' autofocus='true' placeholder='Keywords...' maxlength='99' spellcheck='true' tagSearch='false'/></div>
+				<input class="btn btn-primary" id='submit_search' type="submit" name="submit_search" value="Search"/><br/>
 					<hr>
 					<?php
 						// if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
 							echo '
-							 &nbsp;	 &nbsp; sort by
-							 </br></br>
-							<select name="order_by" class="order_by">
+							 &nbsp;	 &nbsp; sort by:
+							<select class="form-control" name="order_by" class="order_by">
 								<option value="search_relevance"> Search Relevance</option>
 								<option value="book_no"> Book Number </option>
 								<option value="book_title"> Title </option>

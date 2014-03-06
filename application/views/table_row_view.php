@@ -95,18 +95,19 @@
 
             //favorite button
             echo
-                "<button class='book_action' book_no='" . $row->book_no . "'>" .
+                "<div class='button_container'>" .
+                "<button class='book_action btn btn-primary' book_no='" . $row->book_no . "'>" .
                 $favorite
                 . "</button>" .
                 
                 //reserve button
-                "<button action_type='reserve' class='book_action {$reserve_class}' book_no='{$row->book_no}'>";
+                "<button action_type='reserve' class='book_action btn {$reserve_class}' book_no='{$row->book_no}'>";
             if ($row->status == 'available')
                 echo "reserve";
             else 
                 echo $reserve;
             
-            echo "</button>";
+            echo "</button></div>";
 
             if ($reserve == "unreserve") {
 

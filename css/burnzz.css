@@ -28,7 +28,7 @@ h1 {
 	float: left;
 	width: 60%;
 	margin-left: 20%;
-	margin-top: 15%;
+	margin-top: 2%;
 }
 
 .item {
@@ -75,8 +75,6 @@ div.my_library_container button {
 	padding-right: 20px;
 }
 
-
-
 div.my_library_container button.btn_disabled {
 	cursor: not-allowed;
 	background-color: #d1d1d1;
@@ -102,6 +100,11 @@ div.my_library_container button.btn_enabled:hover {
 
 div.my_library_container button.margin_sa_left {
 	margin-left: 95px;
+}
+
+button.action_button,
+button.action_button:hover {
+	color: white;
 }
 
 /* for notifs pre */
