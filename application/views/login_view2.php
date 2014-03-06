@@ -8,7 +8,7 @@
 
 <?php 
 	if(isset($_SESSION['login_notif']) && $_SESSION['login_notif'] == "not_exists" ){
-			echo "<script> alert('That username does not exists!'); </script>";
+			echo "<script> alert('That username does not exist!'); </script>";
 	}
 
 	else if(isset($_SESSION['login_notif']) && $_SESSION['login_notif'] == "wrong_password" ){
