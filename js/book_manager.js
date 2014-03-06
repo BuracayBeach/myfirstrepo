@@ -245,7 +245,6 @@ function generateInputDetail(){
     var detailHTML = '<input class="detail_name" maxlength="20" name="detail[][name]"/><br/>' +
         '<textarea class="detail_content" maxlength="255" name="detail[][content]"></textarea><br/>';
 
-
     $(this).nextAll('.add_button').before(detailHTML);
     var detailName = $(this).nextAll('.detail_name:last');
     $("html,body").animate({ scrollTop: detailName.offset().top }, 2000);
