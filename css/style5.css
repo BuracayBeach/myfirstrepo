@@ -16,8 +16,20 @@
 
 /*--------------------------------------------
 
+BANNER
+  *put event on zoomin
+--------------------------------------------*/
+
+#banner{
+  width: 100%;
+  height: 90px;
+  background: yellow;
+}
+
+/*--------------------------------------------
+
 NAVBAR
-	*put event on zoomin
+  *put event on zoomin
 --------------------------------------------*/
 
 #navbar{
@@ -25,6 +37,10 @@ NAVBAR
 	height: 60px;
 	color:white;
 	background: #222930;
+}
+
+#navbar.fixed{
+  top:0;
 }
 
 #element-cont{
@@ -125,7 +141,7 @@ SEARCHBAR
 }
 
 #search.fixed{
-  margin-top:60px;
+  top:60px;
 }
 
 #search #sidebar-wrapper{

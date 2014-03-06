@@ -27,6 +27,9 @@
 	<body>
 
 	<div id="site-cont">
+		<div id="banner">
+			This is the banner
+		</div>
 		<div id="navbar" class="">
 			<div id="element-cont">
 				<div class="left">
@@ -90,6 +93,19 @@
 			</div>
 		</div>
 
+		<script type="text/javascript">
+			$(window).scroll(function () {
+				console.log($(window).scrollTop());
+				if ($(window).scrollTop() < 90) {
+					$('#navbar').removeClass('fixed');
+					$('#search').removeClass('fixed');
+				}
+				if ($(window).scrollTop() > 90) {
+					$('#navbar').addClass('fixed');
+					$('#search').addClass('fixed');
+				}
+			});
+		</script>
 
 		<div class="small-2 side-nav columns">
 			<?php include 'search_view.php';?>
