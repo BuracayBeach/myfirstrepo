@@ -90,19 +90,6 @@ class Enable_disable extends CI_Controller {
 		echo json_encode($filtered_results);
 	}
 
-
-	/*
-		sample ajax call
-		$.ajax({
-			url : "http://localhost/myfirstrepo/index.php/enable_disable/activate/"+ username +"/" + usertype + "/"+ number + "/" + email,
-			type : 'POST',
-			dataType : "html",
-			async : true,
-			success: function(data) {}
-		});
-				
-	*/
-
 	public function activate($username, $usertype, $number, $email)
 	{
 		/*
@@ -122,17 +109,6 @@ class Enable_disable extends CI_Controller {
 		echo json_encode($json);
 	}
 
-	/*
-		sample ajax call
-		$.ajax({
-			url : "http://localhost/myfirstrepo/index.php/enable_disable/disable/"+ username +"/"+ student_no + "/" + email,
-			type : 'POST',
-			dataType : "html",
-			async : true,
-			success: function(data) {}
-		});
-	*/
-
 	public function enable($username, $email)
 	{
 		/*
@@ -150,17 +126,6 @@ class Enable_disable extends CI_Controller {
 		$json = array('success' => $success);
 		echo json_encode($json);
 	}
-
-	/*
-		sample ajax call
-		$.ajax({
-			url : "http://localhost/myfirstrepo/index.php/enable_disable/enable/"+ username +"/"+ student_no + "/" + email,
-			type : 'POST',
-			dataType : "html",
-			async : true,
-			success: function(data) {}
-		});
-	*/
 
 	public function disable($username, $email)
 	{
