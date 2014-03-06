@@ -5,19 +5,21 @@
 			$username = array(
 							'name' => 'username',
 							'id' => 'username',
-							'value' => ''
+							'value' => '',
+							'class' => 'form-control'
 						);
 			$message = array(
 							'name' => 'message',
 							'id' => 'message',
 							'rows' => '10',
-							'cols' => '70'
+							'cols' => '70',
+							'class' => 'form-control'
 						);
 		?>
 
-		Send to: <?php echo form_input($username); ?> <br/>
-		Message: <br/> <?php echo form_textArea($message); ?> <br/>
-		<?php echo form_submit('send', 'Send'); ?>
+		<div class="form-group">Send to: <?php echo form_input($username); ?> </div>
+		<div class="form-group">Message: <br/> <?php echo form_textArea($message); ?> </div>
+		<?php echo form_submit(array('class'=>'btn btn-default'), 'send', 'Send'); ?>
 
 	<?php echo form_close(); ?>
 </div>
