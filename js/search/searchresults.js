@@ -22,9 +22,13 @@
 				$(document).ready(function() {
 				    $('#sidebar-wrapper').on('click', 'li', ajax_results);
 
+
+
 				    var lastRequest;
 					function ajax_results(event){
 						if (lastRequest) if (lastRequest.readyState != 4) lastRequest.abort();
+
+						// alert("Ajaxing")
 
 						event.preventDefault();
 						var searchForm = $('#search_form')
@@ -40,7 +44,7 @@
 						}
 
 						resultsPerPage = $('#results_per_page').val()
-						if (r_num_valid($('#results_per_page')) == false) return;
+						// if (r_num_valid($('#results_per_page')) == false) return;
 
 						my_input += "&page=1";
 						my_input += "&rows_per_page=" + ($('#results_per_page').val()==0?10:resultsPerPage);

@@ -9,17 +9,17 @@
 
     if(!(isset($newly_added) && $newly_added)){
         //prevent html generation for tags and scripts
-        var_dump($search_term);
+        // var_dump($search_term);
         foreach($row as &$r){
             $r = htmlspecialchars(stripslashes($r));
             //bold matching terms
-            if (trim($search_term) != ''){
-               $search_terms = explode(" ",trim($search_term));
-                foreach($search_terms as $s_term){
-                    if ($s_term == '' || strlen($s_term) < 3) continue;
-                    $r = preg_replace('/' . $s_term . '/i', "<strong>$0</strong>", $r);                        
-                }  
-            }
+            // if (trim($search_term) != ''){
+            //    $search_terms = explode(" ",trim($search_term));
+            //     foreach($search_terms as $s_term){
+            //         if ($s_term == '' || strlen($s_term) < 3) continue;
+            //         $r = preg_replace('/' . $s_term . '/i', "<strong>$0</strong>", $r);                        
+            //     }  
+            // }
             
         }
     }
@@ -139,17 +139,10 @@
 
     // if (isset($_SESSION['type']) && $_SESSION['type'] == "admin")
     echo "<td book_data='tags'><span class='article_tag'>" . $row->tags . "<span></td>";
-    $row_abstract = $row->abstract;
 
-    echo "<td book_data='abstract' class='book_abstract'>";
-    // if (strlen($row_abstract) > 75) {
-    //     $row_abstract = substr($row_abstract, 0, 75);
-    //     echo "<a href='javascript:void(0)'>more</a>";
-    // }
-    echo '<span class="article_abstract">' . $row->abstract . '<span>';
-
-    // echo "<textarea class='hidden_abstract' hidden>" . $row->abstract . "</textarea>" .
-    "</td>";
+    echo "<td book_data='abstract' class='book_abstract'";
+    if ($search_by != 'any' && $search_by != 'abstract') echo 'hidden';
+    echo "><span class='article_abstract'>" . $row->abstract . '<span></td>';
 
     echo "</tr>";
 
