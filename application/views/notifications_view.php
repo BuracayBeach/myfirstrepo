@@ -41,9 +41,13 @@ $this->load->view('notifications_view', $data);
 	<?php endforeach; ?>
 	<?php endif; ?>
 
-	<div class="notif" id="load-more-container" offset="0">
-		<div id="load-more"> LOAD MORE </div>
-	</div>
+	<?php if($notifs_count > 5) : ?>
+
+		<div class="notif" id="load-more-container" offset="0" count="<?php echo $notifs_count; ?>">
+			<div id="load-more"> LOAD MORE </div>
+		</div>
+
+	<?php endif; ?>
 
 </div> 
 

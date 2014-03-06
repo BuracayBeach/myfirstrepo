@@ -15,6 +15,13 @@ class Notifs_Model extends CI_Model {
 		else return null;
 	}
 
+	public function count_by_username($username) {
+		$count = $this->db->query("SELECT COUNT(*) count FROM notifications WHERE username_user = '{$username}'");
+		$count = $count->row_array();
+
+		return $count['count'];
+	}
+
 	public function add_notif($data) {
 		$this->db->insert('notifications', $data);
 	}
