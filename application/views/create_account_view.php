@@ -1,4 +1,4 @@
-<div class="small-6 column signup" id="container">
+<div class="create_acc_container" id="container">
 
 	<form  class="<?php
 		if(isset($_SESSION['create_account_notif'])){
