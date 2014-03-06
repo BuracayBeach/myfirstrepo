@@ -11,7 +11,7 @@ $this->load->view('notifications_view', $data);
 
 <link rel="stylesheet" href="<?php echo base_url();?>css/burnzz.css">
 
-<div id="notifs_container" class="my_library_container">
+<div id="notifs_container" class="my_library_container" style="display:none;">
 
 	<?php if(isset($notifs)) : foreach ($notifs as $row) : ?>
 			
@@ -25,7 +25,7 @@ $this->load->view('notifications_view', $data);
 			<?php elseif($row->type == "overdue") : ?>
 
 					OVERDUE: <span class="book_title"> <?php echo $row->book_title; ?> </span>
-					<div class="f_right"> (<?php echo $row->message; ?> due!) </div> <br/>
+					<div class="f_left space-top"> (<?php echo $row->message; ?> due!) </div> <br/>
 					<div class="date_added sub-2 space-top"> <?php echo $row->date_sent; ?> </div>
 
 			<?php elseif($row->type == "claim") : ?>
@@ -40,6 +40,10 @@ $this->load->view('notifications_view', $data);
 
 	<?php endforeach; ?>
 	<?php endif; ?>
+
+	<div class="notif" id="load-more-container" offset="0">
+		<div id="load-more"> LOAD MORE </div>
+	</div>
 
 </div> 
 

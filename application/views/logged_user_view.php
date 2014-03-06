@@ -9,9 +9,70 @@
 	</div>
 </a>
 <a>
-	<div class="menulinks">
-		Hi <?php echo $_SESSION['username']; ?>
+	<div class="menulinks" id="notif-toggle">
+		<div id="greet-user"> Hi <?php echo $_SESSION['username']; ?> </div>
+		<div id="notif-blue-glow"> </div>
 	</div>
+
 </a>
+
+<script type="text/javascript">
+	
+	$(document).ready( function() {
+
+		$('div#notif-toggle').on("click", function() {
+			$('div#notifs_container').toggle();
+		});
+
+		$('div#load-more-container').on("click", function() {
+
+			var offset = parseInt($(this).attr('offset')) + 5;
+			$(this).attr('offset', offset);
+
+			$.ajax({
+				url : icejjfish + "index.php/notifs/view_by_username/" + offset,
+				type : 'POST',
+				dataType : "html",
+				async : true,
+				success : function(data) {
+					notifs = JSON.parse(data);
+
+					for (var i=0; i<notifs.length; i++) {
+
+						if (notifs[i].type == "custom") {
+
+							str = "<div class='notif " + notifs[i].type +  "'>" + 
+							"<div class='notif_msg'>" + notifs[i].message + "</div><br/>" + 
+							"<div class='date_added sub-2 space-top'>sent by " + notifs[i].username_admin + " at " + notifs[i].date_sent + "</div>" + 
+							"</div>";
+						}
+
+						else if (notifs[i].type == "overdue") {
+
+							str = "<div class='notif " + notifs[i].type +  "'>" + 
+							"OVERDUE: <span class='book_title'>" + notifs[i].book_title + "</span>" +
+							"<div class='f_left space-top'>(" + notifs[i].message + " due!)</div><br/>" + 
+							"<div class='date_added sub-2 space-top'>" + notifs[i].date_sent + "</div>" + 
+							"</div>";
+						}
+
+						else if (notifs[i].type == "claim") {
+
+							str = "<div class='notif " + notifs[i].type +  "'>" + 
+							"CLAIM BOOK: <span class='book_title'" + notifs[i].book_title + "</span>" +
+							"<div class='notif_msg'>" + notifs[i].message + "</div><br/>" + 
+							"<div class='date_added sub-2 space-top'>" + notifs[i].date_sent + "</div>" + 
+							"</div>";
+						}
+						
+						$('div#load-more-container').before(str);
+					}
+
+				}
+			});
+		});
+	});
+
+</script>
 
 
