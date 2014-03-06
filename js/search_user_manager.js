@@ -1,7 +1,7 @@
 //Script Author : Cyril Justine D. Bravo
 //Description : a JQuery script that changes the field/s depending on the search category
 
-var filepath = "http://localhost/myfirstrepo/"				
+var filepath = icejjfish;				
 
 function changeTextBox(value){ 
 	if(value=='name'){

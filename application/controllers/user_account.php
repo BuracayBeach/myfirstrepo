@@ -127,7 +127,7 @@ class User_account extends CI_Controller {
 
 		if($result){
 			//$this->send_mail($new_data);
-			$this->backtohome();
+			$this->load->view('create_account_successful');
 		}
 
 		else{

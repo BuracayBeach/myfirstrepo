@@ -85,7 +85,7 @@ $this->load->view('favorites_view', $data);
 				controller = "reserve";
 
 			$.ajax({
-				url : "http://localhost/myfirstrepo/index.php/" + controller + "/" + method,
+				url : icejjfish + "index.php/" + controller + "/" + method,
 				data : { arr : info },
 				type : 'POST',
 				dataType : "html",

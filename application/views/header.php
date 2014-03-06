@@ -22,6 +22,9 @@
 
 		<script src="<?php echo base_url();?>js/jquery-1.11.0.js"></script>
 		<script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			var icejjfish = "<?php echo base_url(); ?>";
+		</script>
 
 	</head>
 	<body>
@@ -107,9 +110,7 @@
 			});
 		</script>
 
-		<div class="small-2 side-nav columns">
-			<?php include 'search_view.php';?>
-		</div>
+		<?php include 'search_view.php';?>
 
 		<!---->
 		<!--<div class=""  id="results_per_page_div" hidden>-->
@@ -118,7 +119,3 @@
 		<!--    <span>Results per page&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
 		<!--  </form>-->
 		<!--</div>-->
-
-
-
-

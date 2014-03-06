@@ -63,4 +63,35 @@ table#search_table {
 table button {
 	width: 100%;
 	margin: 2px 0;
+	padding: 5px 0;
+}
+
+button.btn_yellow {
+	background-color: #ffca0f;
+}
+
+button.btn_yellow:hover {
+	background-color: #ffa81c;
+}
+
+button.btn_green {
+	background-color: #00b200;
+}
+
+button.btn_green:hover {
+	background-color: #009300;
+}
+
+button.btn_gray {
+	cursor: not-allowed;
+	background-color: #d1d1d1;
+}
+
+div#results_per_page_div {
+	position: relative;
+	float: left;
+	width: 60%;
+	margin-top: 10%;
+	margin-left: 20%;
+	text-align: center;
 }

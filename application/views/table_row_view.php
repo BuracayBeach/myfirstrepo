@@ -9,17 +9,17 @@
 
     if(!(isset($newly_added) && $newly_added)){
         //prevent html generation for tags and scripts
-        var_dump($search_term);
+        // var_dump($search_term);
         foreach($row as &$r){
             $r = htmlspecialchars(stripslashes($r));
             //bold matching terms
-            if (trim($search_term) != ''){
-               $search_terms = explode(" ",trim($search_term));
-                foreach($search_terms as $s_term){
-                    if ($s_term == '' || strlen($s_term) < 3) continue;
-                    $r = preg_replace('/' . $s_term . '/i', "<strong>$0</strong>", $r);                        
-                }  
-            }
+            // if (trim($search_term) != ''){
+            //    $search_terms = explode(" ",trim($search_term));
+            //     foreach($search_terms as $s_term){
+            //         if ($s_term == '' || strlen($s_term) < 3) continue;
+            //         $r = preg_replace('/' . $s_term . '/i', "<strong>$0</strong>", $r);                        
+            //     }  
+            // }
             
         }
     }
@@ -68,10 +68,12 @@
             /* checking of reserves */
 
             $reserve = 'reserve';
+            $reserve_class = 'btn_green';
             $size = count($reserve_user);
             for ($i=0; $i<$size; $i++) {
                 if ($reserve_user[$i]->book_no == $row->book_no) {
                     $reserve = 'unreserve';
+                    $reserve_class = 'btn_yellow';
                     break;
                 }
             }
@@ -81,6 +83,7 @@
             for ($i=0; $i<$size; $i++) {
                 if ($lend_user[$i]->book_no == $row->book_no) {
                     $reserve = 'BORROWED';
+                    $reserve_class = 'btn_gray';
                     break;
                 }
             }
@@ -92,14 +95,36 @@
                 $favorite
                 . "</button>" .
                 
-
                 //reserve button
-                
-                "<button action_type='reserve' class='book_action' book_no='{$row->book_no}'>";
-
-            echo $reserve;
-
+                "<button action_type='reserve' class='book_action {$reserve_class}' book_no='{$row->book_no}'>";
+            if ($row->status == 'available')
+                echo "reserve";
+            else 
+                echo $reserve;
+            
             echo "</button>";
+
+            if ($reserve == "unreserve") {
+
+                $size = count($reserve_user);
+                for ($i=0; $i<$size; $i++)
+                    if ($reserve_user[$i]->book_no == $row->book_no) 
+                        $rank_temp = $reserve_user[$i]->rank;
+                
+                $temp = $book_temp[$row->book_no];
+                $size2 = count($temp);
+                for ($i=0; $i<$size2; $i++) {
+                    if ($temp[$i] == $rank_temp) {
+                        $rank = $i+1;
+                        break;
+                    }
+                }
+
+                echo "<div class='rank sub-2 sub-heading' book_no='{$row->book_no}'> Rank " . $rank . 
+                " of " .$book_ranks[$row->book_no] . "</div>";
+            }
+            else
+                echo "<div class='rank sub-2 sub-heading' book_no='{$row->book_no}' style='display:none;'></div>";
         }
     }
 
@@ -113,17 +138,10 @@
 
     // if (isset($_SESSION['type']) && $_SESSION['type'] == "admin")
     echo "<td book_data='tags'><span class='article_tag'>" . $row->tags . "<span></td>";
-    $row_abstract = $row->abstract;
 
-    echo "<td book_data='abstract' class='book_abstract'>";
-    // if (strlen($row_abstract) > 75) {
-    //     $row_abstract = substr($row_abstract, 0, 75);
-    //     echo "<a href='javascript:void(0)'>more</a>";
-    // }
-    echo '<span class="article_abstract">' . $row->abstract . '<span>';
-
-    // echo "<textarea class='hidden_abstract' hidden>" . $row->abstract . "</textarea>" .
-    "</td>";
+    echo "<td book_data='abstract' class='book_abstract'";
+    if ($search_by != 'any' && $search_by != 'abstract') echo 'hidden';
+    echo "><span class='article_abstract'>" . $row->abstract . '<span></td>';
 
     echo "</tr>";
 

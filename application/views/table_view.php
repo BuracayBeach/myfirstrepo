@@ -17,8 +17,10 @@
                     <th width='15%'>Publishment </th>
                 ";
 
-                echo "<th>Tags</th>"; //hide later
-                echo "<th>Abstract</th>"; //hide later
+                echo "<th>Tags</th>";
+                echo "<th";
+                if ($search_by != 'any' && $search_by != 'abstract') echo 'hidden';
+                echo ">Abstract</th>"; //hide later
                 echo "</tr>";
 
 

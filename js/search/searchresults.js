@@ -22,9 +22,13 @@
 				$(document).ready(function() {
 				    $('#sidebar-wrapper').on('click', 'li', ajax_results);
 
+
+
 				    var lastRequest;
 					function ajax_results(event){
 						if (lastRequest) if (lastRequest.readyState != 4) lastRequest.abort();
+
+						// alert("Ajaxing")
 
 						event.preventDefault();
 						var searchForm = $('#search_form')
@@ -40,7 +44,7 @@
 						}
 
 						resultsPerPage = $('#results_per_page').val()
-						if (r_num_valid($('#results_per_page')) == false) return;
+						// if (r_num_valid($('#results_per_page')) == false) return;
 
 						my_input += "&page=1";
 						my_input += "&rows_per_page=" + ($('#results_per_page').val()==0?10:resultsPerPage);
@@ -50,7 +54,7 @@
 						lastRequest = $.ajax({
 							type: "post",
 							data: my_input, 
-							url: "http://localhost/myfirstrepo/index.php/book/search",
+							url: icejjfish + "index.php/book/search",
 							success: function(data, jqxhr, status){
                                 var resultContainer = $("#result_container");
                                 var recentlyAddedBooksContainer = resultContainer.find("#recently_added_books_container");
@@ -106,13 +110,29 @@
 						else if (action_type == "unreserve")
 							controller = "reserve";
 
+
 						$.ajax({
-							url : "http://localhost/myfirstrepo/index.php/" + controller + "/" + method,
+							url : icejjfish + "index.php/" + controller + "/" + method,
 							data : { arr : info },
 							type : 'POST',
 							dataType : "html",
 							async : true,
 							success: function(data) {
+
+								if (controller == "reserve" && method == "add") {
+
+									$.ajax({
+										url : icejjfish + "index.php/" + "reserve" + "/view_rank/",
+										data : {arr : info},
+										type : 'POST',
+										dataType : "html",
+										async : true,
+										success : function(data2) {				
+											$("div.rank[book_no = '"+ info[0] +"']").text(data2).slideDown();
+										}
+									});
+
+								}
 							}
 						});
 
@@ -125,9 +145,20 @@
 						else if (action_type == "unreserve") 
 							$(this).text("reserve");
 
+						if (action_type == "unreserve") {
+							$(this).html("reserve")
+							$(this).toggleClass('btn_green btn_yellow');
+
+							// hide the rank div
+							$("div.rank[book_no = '"+ info[0] +"']").slideUp();
+						}
+						else if (action_type == "reserve") {
+							$(this).html("unreserve")
+							$(this).toggleClass('btn_green btn_yellow');
+						}
 
 						$.ajax({
-							url : "http://localhost/myfirstrepo/index.php/" + "notifs" + "/" + "check_reserve_for_first",
+							url : icejjfish + "index.php/" + "notifs" + "/" + "check_reserve_for_first",
 							data : {arr : info},
 							type : 'POST',
 							dataType : "html",

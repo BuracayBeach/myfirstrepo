@@ -46,11 +46,12 @@
         my_input += "&rows_per_page=" + results_per_page;
         my_input += "&search_by=" + search_by;
         // console.log(my_input);
+        // alert("ajaxing ajax results")
 
         p_lastRequest = $.ajax({
             type: "post",
             data: my_input, 
-            url: "http://localhost/myfirstrepo/index.php/book/search",
+            url: icejjfish + "index.php/book/search",
             success: function(data, jqxhr, status){
                 $("#result_container").html(data);
             }
