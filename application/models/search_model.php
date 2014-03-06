@@ -281,6 +281,14 @@ class Search_model extends CI_Model {
         //compare each search term/word to each of the words in the book title, description, tags
         $pts = 0;
         $tag_matched = false;
+
+        $tagSearch = strtolower($input['tag_search']);
+        $tagSearches = explode(' ' ,str_replace(',',' ',$tagSearch));
+
+        foreach($tagSearches as $tagch){
+            array_push($search_terms, $tagch);
+        }
+
         foreach($search_terms as $search_term){
             $search_term = strtolower(trim($search_term));
             if ($search_term=='') continue;
@@ -300,7 +308,7 @@ class Search_model extends CI_Model {
                     $item = preg_replace("/[^a-zA-Z0-9]+/", "", $item);
                     // echo "<br>" . $search_term . " == " . $item;
 
-                    if ($spell_check){
+                    if ($spell_check && isset($term_sugg_dist[$search_term])){
                         //get the word with minimum distance, for suggestion
                         $terms_distance = $this->get_rey_string_distance($search_term, $item);
                         if ($terms_distance < $term_sugg_dist[$search_term]){
@@ -313,7 +321,7 @@ class Search_model extends CI_Model {
                     if($search_term==$item){
                         switch($col){
                             case $row->description: $pts+=$book_desc_points; break;
-                            case $row->tags:        $pts+=$book_tags_points; $tag_matched=true; break;
+                            case $row->tags:        $pts+=$book_tags_points; if (in_array($item, $tagSearches)) $tag_matched=true; break;
                             case $row->book_title:  $pts+=$book_title_points; break;
                             case $row->author:        $pts+=$book_author_points; break;
                             case $row->publisher:  $pts+=$book_publisher_points; break;
@@ -335,7 +343,7 @@ class Search_model extends CI_Model {
             }
         }
 
-        if ($input['tag_search'] == 'true' && $tag_matched == false) $pts = 0;
+        if ($input['tag_search'] != 'false' && $tag_matched == false) $pts = 0;
         
         $points[$row->book_no] = $pts;
         return $points[$row->book_no];
