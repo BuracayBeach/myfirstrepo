@@ -1,3 +1,11 @@
+.dropdown-menu {
+	margin: 0;
+}
+
+button:hover {
+	background-color: #007095;
+}
+
 .announcement_title {
 	margin: 0;
 	text-align: center;

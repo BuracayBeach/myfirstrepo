@@ -61,6 +61,7 @@ class Home extends CI_Controller {
         }
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
             $data['notifs'] = $this->notifs_model->get_all($_SESSION['username'], 0);
+            $data['notifs_count'] = $this->notifs_model->count_by_username($_SESSION['username']);
             $this->load->view("search_results_view");
             $this->load->view("announcements_view");
             $this->load->view('notifications_view', $data);
@@ -98,6 +99,11 @@ class Home extends CI_Controller {
         $this->load->view("search_results_view", $data);
         $this->load->view("about_us_view", $data);
 
+        if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
+            $data['notifs'] = $this->notifs_model->get_all($_SESSION['username'], 0);
+            $data['notifs_count'] = $this->notifs_model->count_by_username($_SESSION['username']);
+            $this->load->view('notifications_view', $data);
+        }
 
         $this->load->view("footer");
     }
@@ -112,6 +118,12 @@ class Home extends CI_Controller {
             $this->load->view('faq_manage_view', $data);
         }else{
             $this->load->view('faq_view', $data);
+        }
+
+        if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
+            $data['notifs'] = $this->notifs_model->get_all($_SESSION['username'], 0);
+            $data['notifs_count'] = $this->notifs_model->count_by_username($_SESSION['username']);
+            $this->load->view('notifications_view', $data);
         }
 
         $this->load->view("footer");
@@ -142,6 +154,12 @@ class Home extends CI_Controller {
             }
         }
 
+        if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
+            $data['notifs'] = $this->notifs_model->get_all($_SESSION['username'], 0);
+            $data['notifs_count'] = $this->notifs_model->count_by_username($_SESSION['username']);
+            $this->load->view('notifications_view', $data);
+        }
+
         $this->load->view("search_results_view");
         $this->load->view("footer");
     }
@@ -161,6 +179,12 @@ class Home extends CI_Controller {
             $this->load->view('favorites_view', $data);
         }
 
+        if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
+            $data['notifs'] = $this->notifs_model->get_all($_SESSION['username'], 0);
+            $data['notifs_count'] = $this->notifs_model->count_by_username($_SESSION['username']);
+            $this->load->view('notifications_view', $data);
+        }
+
         $this->load->view("search_results_view");
         $this->load->view("footer");
     }
@@ -178,6 +202,12 @@ class Home extends CI_Controller {
             $this->load->view('reserves_view', $data);
         }
 
+        if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
+            $data['notifs'] = $this->notifs_model->get_all($_SESSION['username'], 0);
+            $data['notifs_count'] = $this->notifs_model->count_by_username($_SESSION['username']);
+            $this->load->view('notifications_view', $data);
+        }
+
         $this->load->view("search_results_view");
         $this->load->view("footer");
     }
@@ -190,6 +220,12 @@ class Home extends CI_Controller {
 
         $this->load->view("help_view",$data);
         $this->load->view("search_results_view",$data);
+
+        if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
+            $data['notifs'] = $this->notifs_model->get_all($_SESSION['username'], 0);
+            $data['notifs_count'] = $this->notifs_model->count_by_username($_SESSION['username']);
+            $this->load->view('notifications_view', $data);
+        }
 
         $this->load->view("footer",$data);
     }
@@ -213,6 +249,12 @@ class Home extends CI_Controller {
         $result=$this->user_account_model->get_data($username);
         $new_result = $this->safeguard->str_array_ready_for_display($result);
         $this->load->view('update_account_view', $new_result);
+
+        if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
+            $data['notifs'] = $this->notifs_model->get_all($_SESSION['username'], 0);
+            $data['notifs_count'] = $this->notifs_model->count_by_username($_SESSION['username']);
+            $this->load->view('notifications_view', $data);
+        }
     }
 
     public function update_admin(){
