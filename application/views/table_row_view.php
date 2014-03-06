@@ -42,14 +42,14 @@
 
     echo "<td>" .
         "<div style = 'font:15px Verdana' book_data='book_title'>" .
-        '<span class="article_title"><a class="title_link" href="javascript:void(0)">' . $row_copy->book_title . '<a></span>' .
+        '<span class="article_title"><a class="title_link" href="javascript:void(0)">' . $row_copy->book_title . '</a></span>' .
         "</div>" .
 
         "<div style = 'font-size:13px' book_data='description'> " .
         '<span class="article_description">' . $row_copy->description   . "</span><br>" .
         "</div>" .
 
-        "<div style = 'font-size:11px' book_data='author'><em> " .
+        "<div style = 'font-size:13px' book_data='author'><em> " .
         '<span class="article_author">' . $row_copy->author . "</span><br>" .
         "</em></div>";
 
@@ -135,9 +135,9 @@
     "</td>";
 
     //other data
-    echo "<td align='center'>" .
+    echo "<td align='center' style='font:13px Verdana'>" .
         "<div book_data='publisher'><span class='article_publisher'>" . $row_copy->publisher . "</span></div>";
-    if ($row->date_published != '') echo "<div book_data='date_published'>" . $row_copy->date_published . "</div>";
+    if ($row->date_published != '') echo "<div book_data='date_published'><em>" . $row_copy->date_published . "</em></div>";
     echo "</td>";
 
     // if (isset($_SESSION['type']) && $_SESSION['type'] == "admin")
