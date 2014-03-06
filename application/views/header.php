@@ -20,6 +20,9 @@
 		<link rel="stylesheet" href="<?php echo base_url();?>css/style4.css">
 		<link rel="stylesheet" href="<?php echo base_url();?>css/style5.css">
 
+		<link rel="shortcut icon" href="<?php echo base_url();?>favicon.ico" />
+		<link rel="icon" href="<?php echo base_url();?>favicon.ico" type="image/ico" />
+
 		<script src="<?php echo base_url();?>js/jquery-1.11.0.js"></script>
 		<script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
 		<script type="text/javascript">
