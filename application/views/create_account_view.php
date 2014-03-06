@@ -1,31 +1,33 @@
 <div class="create_acc_container" id="container">
 
-	<form  class="<?php
+	<form role="form" class="<?php
 		if(isset($_SESSION['create_account_notif'])){
 			echo $_SESSION['create_account_notif'];
 			}?>" name="userForm" action="<?php echo base_url();?>index.php/user_account/createaccount" method="post" >
 		<h1>Sign Up</h1>
 		<div id="body">
-			Username: <input type="text" name="username" required/><span name="span username"></span><br/>
-			Password: <input type="password" name="password" required/><span name="span password"></span><br/>
-			Retype Password: <input type="password" name="repassword" required/><span name="span repassword"></span><br/>
-			Sex: <input type="radio" name="sex" value="male" id="male" checked/>
-				 <label for="male">Male</label>
+			Username: <div class="form-group"><input class="form-control" type="text" name="username" required/><span name="span username"></span></div>
+			Password: <div class="form-group"><input class="form-control" type="password" name="password" required/><span name="span password"></span></div>
+			Retype Password: <div class="form-group"><input class="form-control" type="password" name="repassword" required/><span name="span repassword"></span></div>
+			Sex: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="sex" value="male" id="male" checked/>
+				 <label for="male">Male</label>&nbsp;&nbsp;
 				 <input type="radio" name="sex" value="female" id="female"/>
 				 <label for="female">Female</label><br/>
-			Email: <input type="text" name="email" required/><span name="span email"></span><br/>
-			User Type: <input type="radio" name="usertype" value="student" id="student" checked/>
-				 <label for="student">Student</label>
+			Email: <div class="form-group"><input class="form-control" type="text" name="email" required/><span name="span email"></span></span><br>
+			User Type: &nbsp;&nbsp;&nbsp; 
+				<input type="radio" name="usertype" value="student" id="student" checked/>
+				 <label for="student">Student</label> &nbsp;&nbsp;
 				 <input type="radio" name="usertype" value="employee" id="employee" />
 				 <label for="employee">Employee</label><br/>
-			Employee Number:<input type="text" name="emp_no" id="emp_no" /><span name="span emp_no"></span><br/>
-			Student Number: <input type="text" name="student_no" id="student_no" /><span name="span student_no"></span><br/>
-			First Name: <input type="text" name="name_first" required/><span name="span name_first"></span><br/>
-			Middle Name: <input type="text" name="name_middle" required/><span name="span name_middle"></span><br/>
-			Last Name: <input type="text" name="name_last" required/><span name="span name_last"></span><br/>
-			Mobile Number: <input type="text" name="mobile_no" required /><span name="span mobile_no"></span><br/>
+			<div class="form-group">Employee Number:<input class="form-control" type="text" name="emp_no" id="emp_no" /><span name="span emp_no"></span><div>
+			<div class="form-group">Student Number: <input class="form-control" type="text" name="student_no" id="student_no" /><span name="span student_no"></span><div>
+			<div class="form-group">First Name: <input class="form-control" type="text" name="name_first" required/><span name="span name_first"></span><div>
+			<div class="form-group">Middle Name: <input class="form-control" type="text" name="name_middle" required/><span name="span name_middle"></span><div>
+			<div class="form-group">Last Name: <input class="form-control" type="text" name="name_last" required/><span name="span name_last"></span><div>
+			<div class="form-group">Mobile Number: <input class="form-control" type="text" name="mobile_no" required /><span name="span mobile_no"></span><div>
 			College: 
-			<select name="college">
+			<select name="college" class="form-control">
 				<option value="GS">GS (Graduate School)</option>
 				<option value="CA">CA (College of Agriculture)</option>
 				<option value="CAS">CAS (College of Arts and Sciences)</option> 
@@ -36,9 +38,9 @@
 				<option value="CHE">CHE (College of Human Ecology)</option>	
 				<option value="CVM">CVM (College of Veterinary Medicine)</option>
 				<option value="NA" id="NA">Not Available</option>
-			</select>
+			</select><br>
 			Course:
-			<select name="course" id="course" >
+			<select name="course" id="course" class="form-control">
 				<option value="MVE" id="MVE" >Master in Veterinary Epidemiology</option>
 				<option value="MF" id="MF" >Master of Forestry</option>
 				<option value="MIT" id="MIT" >Master of Information Technology</option>
@@ -82,7 +84,7 @@
 				<option value="BSVM" id="BSVM" >BS Vetererary Medicine</option>
 				<option value="NA" id="None" >Not Available</option>
 			</select></br>
-			<input type="Submit" value="Submit" />
+			<input type="Submit" value="Submit" class="btn btn-default" />
 		</div>
 
 	</form>

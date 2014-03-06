@@ -383,17 +383,14 @@ ERROR
     float: left !important;
     margin: 10px 0 50px 0 !important;
     padding: 20px !important;
-    background-color: blue !important;
 }
 #about_us_wrapper p {
     margin: 10px 0 0 0px;
     line-height: 1.5em;
     text-indent: 4em;
     width: 100% !important;
-    background-color: yellow !important;
 }
 #about_us_container{
-    background-color: pink !important;
     width: 55.5% !important;
     height: 70% !important;
     float: left !important;

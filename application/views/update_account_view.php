@@ -1,6 +1,6 @@
 <div id="update_profile_container">
 
-<form class="<?php
+<form role="form" class="<?php
 		if(isset($_SESSION['update_account_notif']) && $_SESSION['update_account_notif'] == "email")
 			echo 'email';
 	?>" name="userForm" action="<?php echo base_url();?>index.php/user_account/update" method="post" >
@@ -8,17 +8,18 @@
 		<h1>Update Form</h1>
 
 		<div id="body">
-			Sex: <input type="radio" name="sex" value="male" id="male"<?php if($sex=="male") echo " checked"; ?>/>
-				 <label for="male">Male</label>
+			Sex: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				 <input type="radio" name="sex" value="male" id="male"<?php if($sex=="male") echo " checked"; ?>/>
+				 <label for="male">Male</label>&nbsp;&nbsp;&nbsp;
 				 <input type="radio" name="sex" value="female" id="female"<?php if($sex=="female") echo " checked"; ?>/>
 				 <label for="female">Female</label><br/>
-			Email: <input type="text" name="email" value="<?php echo $email; ?>" required/><span name="span email"></span><br/>
-			First Name: <input type="text" name="name_first" value="<?php echo $name_first; ?>" required/><span name="span name_first"></span><br/>
-			Middle Name: <input type="text" name="name_middle" value="<?php echo $name_middle; ?>" required/><span name="span name_middle"></span><br/>
-			Last Name: <input type="text" name="name_last" value="<?php echo $name_last; ?>" required/><span name="span name_last"></span><br/>
-			Mobile Number: <input type="text" name="mobile_no" name="name_last" value="<?php echo $mobile_no; ?>" required /><span name="span mobile_no"></span><br/>
+			<div class="form-group">Email: <input class="form-control" type="text" name="email" value="<?php echo $email; ?>" required/><span name="span email"></span></div>
+			<div class="form-group">First Name: <input class="form-control" type="text" name="name_first" value="<?php echo $name_first; ?>" required/><span name="span name_first"></span></div>
+			<div class="form-group">Middle Name: <input class="form-control" type="text" name="name_middle" value="<?php echo $name_middle; ?>" required/><span name="span name_middle"></span></div>
+			<div class="form-group">Last Name: <input class="form-control" type="text" name="name_last" value="<?php echo $name_last; ?>" required/><span name="span name_last"></span></div>
+			<div class="form-group">Mobile Number: <input class="form-control" type="text" name="mobile_no" name="name_last" value="<?php echo $mobile_no; ?>" required /><span name="span mobile_no"></span></div>
 			College: 
-			<select name="college">	
+			<select class="form-control" name="college" >	
 				<option value="GS"<?php if($college=="GS") echo " selected"; ?>>GS (Graduate School)</option>					
 				<option value="CA"<?php if($college=="CA") echo " selected"; ?>>CA (College of Agriculture)</option>
 				<option value="CAS"<?php if($college=="CAS") echo " selected"; ?>>CAS (College of Arts and Sciences)</option> 
@@ -29,9 +30,9 @@
 				<option value="CHE"<?php if($college=="CHE") echo " selected"; ?>>CHE (College of Human Ecology)</option>	
 				<option value="CVM"<?php if($college=="CVM") echo " selected"; ?>>CVM (College of Veterinary Medicine)</option>
 				<option value="NA"<?php if($college=="NA") echo " selected"; ?>>Not Available</option>
-			</select>
+			</select><br/>
 			Course:
-			<select name="course" id="course">
+			<select class="form-control" name="course" id="course">
 				<option value="MVE" id="MVE"<?php if($course=="MVE") echo " selected"; ?>>Master in Veterinary Epidemiology</option>
 				<option value="MF" id="MF"<?php if($course=="MF") echo " selected"; ?>>Master of Forestry</option>
 				<option value="MIT" id="MIT"<?php if($course=="MIT") echo " selected"; ?>>Master of Information Technology</option>
@@ -75,7 +76,7 @@
 				<option value="BSVM" id="BSVM"<?php if($course=="BSVM") echo " selected"; ?>>BS Vetererary Medicine</option>
 				<option value="NA" id="None"<?php if($course=="NA") echo " selected"; ?>>Not Available</option>
 			</select></br>
-			<input type="submit" value="Submit" />
+			<input class="btn btn-default" type="submit" value="Submit" />
 		</div>
 	</div>
 </form>
@@ -91,17 +92,17 @@
 	}
 ?>
 
-<form class="<?php
+<form role="form" class="<?php
 		if(isset($_SESSION['change_password_notif']) && $_SESSION['change_password_notif'] == "pass")
 			echo 'pass';
 	?>" name="changePasswordForm" action="<?php echo base_url();?>index.php/user_account/change_password" method="post" >	
 	<div id="container">
 		<h1>Change Password</h1>
 		<div id="body">
-			Current Password: <input type="password" name="currentpassword" value="" required/><span name="span currentpassword"></span><br/>
-			New Password: <input type="password" name="newpassword" value=""required/><span name="span newpassword"></span><br/>
-			Retype New Password: <input type="password" name="renewpassword" value="" required/><span name="span renewpassword"></span><br/>
-			<input type="submit" value="Change" />
+			<div class="form-group">Current Password: <input class="form-control" type="password" name="currentpassword" value="" required/><span name="span currentpassword"></span></div>
+			<div class="form-group">New Password: <input class="form-control" type="password" name="newpassword" value=""required/><span name="span newpassword"></span></div>
+			<div class="form-group">Retype New Password: <input class="form-control" type="password" name="renewpassword" value="" required/><span name="span renewpassword"></span></div>
+			<input class="btn btn-default" type="submit" value="Change" />
 		</div>
 	</div>
 </form>

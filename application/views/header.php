@@ -113,8 +113,11 @@
 
 		<div id="nonuserresult">
 			<?php 
-			$data['page'] = 'header';
-			$this->load->view("search_results_view", $data); ?>
+				if( !(isset($_SESSION['type']) && $_SESSION['type'] == "admin")){
+					$data['page'] = 'header';
+					$this->load->view("search_results_view", $data); 
+				}
+			?>
 		</div>
 		<!---->
 		<!--<div class=""  id="results_per_page_div" hidden>-->
