@@ -1,4 +1,4 @@
-<form id="login" class="small-20" action = "<?php echo base_url();?>index.php/user_account/login" method = "post">
+<form id="login" action = "<?php echo base_url();?>index.php/user_account/login" method = "post">
 	<input type = "text" name="username" placeholder="username"/></div></li>
 	<input type = "password" name="password" placeholder="password"/></div></li>
 	<input type = "submit" name="submit" value="login"/></div></li>

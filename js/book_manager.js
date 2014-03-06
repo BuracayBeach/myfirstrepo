@@ -248,7 +248,7 @@ function generateInputDetail(){
 
     $(this).nextAll('.add_button').before(detailHTML);
     var detailName = $(this).nextAll('.detail_name:last');
-    $("html,body").animate({ scrollTop: detailName.scrollTop() }, 2000);
+    $("html,body").animate({ scrollTop: detailName.offset().top }, 2000);
     detailName[0].focus();
 
 }

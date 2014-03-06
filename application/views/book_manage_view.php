@@ -13,7 +13,7 @@
             <option selected="true">Book</option>
             <option>Journal</option>
             <option>SP</option>
-            <option>Thesis</option>
+            <option >Thesis</option>
             <option>Other</option>
         </select>
         <br/>
@@ -43,8 +43,6 @@
                title="Tags contain additional keywords, like, &#10;Subject, Category, etc...; &#10;separated by comma (ex. 'math, computer science') "
                placeholder="Tags" pattern="^[a-zA-Z0-9 ]+(,[a-zA-Z0-9 ]+)*$"/>
         <br/>
-        &#216;
-
         <a class="more_details" href="javascript:void(0);" id="add_more_details">Add More Details...</a>
         <br/>
         <button type="submit" class="add_button" name="add_button" id="add_button">Add Book</button>
@@ -52,7 +50,7 @@
     </form>
 </div>
 
-<div id="edit_container" class="small-2 column">
+<div id="edit_container" class="column">
     <form name="edit_book" id="edit_book_form" method="post">
         Edit Material<br/>
         <span class="errors"></span>

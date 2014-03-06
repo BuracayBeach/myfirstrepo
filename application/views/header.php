@@ -30,9 +30,7 @@
 	<body>
 
 	<div id="site-cont">
-		<div id="banner">
-			This is the banner
-		</div>
+        <div id="banner"> <img src="<?php echo base_url();?>images/logo_white.png" style="width:35%;height:100%;margin-left:2%;"> </div>
 		<div id="navbar" class="">
 			<div id="element-cont">
 				<div class="left">
@@ -98,7 +96,6 @@
 
 		<script type="text/javascript">
 			$(window).scroll(function () {
-				console.log($(window).scrollTop());
 				if ($(window).scrollTop() < 90) {
 					$('#navbar').removeClass('fixed');
 					$('#search').removeClass('fixed');

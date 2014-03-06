@@ -1,4 +1,4 @@
-<div class="signup small-7 column">
+<div class="signup column">
 <form name="adminForm" action="<?php echo base_url();?>index.php/admin_account/update_admin_account" method="post">
 	First Name: <input type="text" name="name_first" value="<?php echo $name_first; ?>" required/><span name="span name_first"></span><br/>
 	Middle Name: <input type="text" name="name_middle" value="<?php echo $name_middle; ?>" required/><span name="span name_middle"></span><br/>

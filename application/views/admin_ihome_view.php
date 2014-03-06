@@ -1,4 +1,4 @@
-<div id="tabnavihome"class="tabbable small-7 column"> <!-- Only required for left/right tabs -->
+<div id="tabnavihome" class="tabbable   column"> <!-- Only required for left/right tabs -->
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="#tab1" data-toggle="tab">Materials</a></li>
 		<li><a href="#tab2" data-toggle="tab">Recently Added Materials</a></li>
