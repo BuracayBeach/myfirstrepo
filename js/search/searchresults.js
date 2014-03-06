@@ -6,9 +6,10 @@
 						newSearch = newSearch.replace(/<strong>/g,"");
 						newSearch = newSearch.replace(/<\/strong>/g,"");
 						var searchText = $('#search_text')
+						
+						if (searchText.val() == '') searchText.val(newSearch.trim())
 
-
-						if ($(this).attr('class') == 'tag_link') searchText.attr('tagSearch','true')
+						if ($(this).attr('class') == 'tag_link') searchText.attr('tagSearch',$(this).text())
 						else searchText.val(newSearch.trim());
 					
 						$('#submit_search').submit();
@@ -29,16 +30,19 @@
 
 				$(document).ready(function() {
 				    $('#sidebar-wrapper').on('click', 'li', ajax_results);
+					$('#search_form').unbind('submit').submit(ajax_results); //prevent form from submitting/refreshing
 
 
 
 				    var lastRequest;
 					function ajax_results(event){
-						if (lastRequest) if (lastRequest.readyState != 4) lastRequest.abort();
-
-						// alert("Ajaxing")
-
 						event.preventDefault();
+
+						if (lastRequest && lastRequest.readyState != 4) lastRequest.abort();
+
+						// console.log(event)
+						// alert("event");
+
 						var searchForm = $('#search_form')
 						var my_input = searchForm.serialize();
 						var searchText = searchForm.find('#search_text').val()
@@ -59,7 +63,6 @@
 						
 						var searchText = $('#search_text')
 						my_input += "&tagSearch=" + searchText.attr('tagSearch')
-
 						// console.log(my_input);
 						lastRequest = $.ajax({
 							type: "post",
@@ -98,7 +101,6 @@
 						return false;
 					}
 
-					$('#search_form').submit(ajax_results); //prevent form from submitting/refreshing
 
 				
 					// when favorites/unfavorites/reserve/unreserve button is clicked on each row
