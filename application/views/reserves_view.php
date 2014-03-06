@@ -57,8 +57,9 @@ $this->load->view('reserves_view', $data);
 				<div class="rank sub-2">  Rank <?php echo $rank; ?> 
 				of <?php echo $book_ranks[$row->book_no]; ?> </div> 
 				<br>
-				<?php echo "<button class='action_button reserve_button btn_untoggle margin_sa_left' book_no='" . $row->book_no . "'>unreserve</button>" ?>
-
+				<div class="button_container">
+					<?php echo "<button class='action_button reserve_button btn_untoggle' book_no='" . $row->book_no . "'>unreserve</button>" ?>
+				</div>
 			</div>
 
 		<?php endforeach; ?>
