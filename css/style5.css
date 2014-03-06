@@ -2,12 +2,7 @@
     min-width: 1000px;
     min-height: 768px;
 }
-.hide{
-    display:none;
-}
-.fixed{
-    position: fixed;
-}
+
 body{
     font-family:"Segoe UI Light" !important;
     font-size: 15px;
@@ -23,6 +18,10 @@ BANNER
     position: relative;
     clear: both;
 }
+
+#banner.pad{
+  margin-bottom:60px;
+}
 /*--------------------------------------------
 NAVBAR
   *put event on zoomin
@@ -34,7 +33,14 @@ NAVBAR
     background: #222930;
     position: relative;
     clear: both;
+    z-index: 40;
 }
+
+#navbar.fixed{
+  position: fixed;
+  top:0;
+}
+
 #element-cont{
     width: 80%;
     height: 100%;
@@ -108,7 +114,14 @@ SEARCHBAR
     width: 15%;
     background: transparent;
     position: absolute;
+    z-index: 40;
 }
+
+#search.fixed{
+  position: fixed;
+  top:60px;
+}
+
 #search #sidebar-wrapper{
     width: 100%;
     background: transparent;
@@ -126,16 +139,25 @@ SEARCHBAR
 #search #sidebar-wrapper ul a{
     color: black;
     text-align: right;
+    font-size: 1.3vw;
 }
 #search #sidebar-wrapper ul a:hover{
     color:white;
     text-decoration: none;
+    font-size: 1.5vw;
+
 }
 #search #sidebar-wrapper ul a:hover li{
     background:  #2266CC;
 }
 #search #sidebar-wrapper ul img{
-    width: 30px;
+    width: 2vw;
+}
+
+#search #sidebar-wrapper .active{
+  background: orange;
+  color: white;
+  font-size: 1.5vw;
 }
 /*------------------------------
 DROPDOWN CHECKLIST
@@ -433,4 +455,18 @@ ERROR
     margin-left: 20%;
     margin-top: 10%;
     
+}
+
+
+
+
+/*------------
+OVERALLS
+------------*/
+
+.hide{
+    display:none;
+}
+.fixed{
+    position: fixed;
 }
