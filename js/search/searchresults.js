@@ -1,11 +1,17 @@
 
-				function research(){
-					newSearch = $('#suggestion_text').html();
-					newSearch = newSearch.replace(/<strong>/g,"");
-					newSearch = newSearch.replace(/<\/strong>/g,"");
-					$('#search_text').val(newSearch.trim());
 
-					$('#submit_search').submit();
+				function research(){
+					newSearch = $(this).html();
+					if (newSearch){
+						newSearch = newSearch.replace(/<strong>/g,"");
+						newSearch = newSearch.replace(/<\/strong>/g,"");
+						$('#search_text').val(newSearch.trim());
+
+						if ($(this).attr('class') != 'tag_link') $('#submit_search').submit();
+						else {
+							$('#menu-toggle-title').click();
+						}
+					}
 				}
 
 			
