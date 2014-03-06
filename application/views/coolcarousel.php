@@ -60,6 +60,7 @@
 	}
 	#slider .slide-block p {
 		margin: 0;
+		font-size: 1.2em;
 	}
 
 
