@@ -15,6 +15,14 @@ h1 {
 	float: right;
 }
 
+.f_left {
+	float: left;
+}
+
+.clear_all {
+	clear: both;
+}
+
 .my_library_container {
 	position: relative;
 	float: left;
@@ -91,39 +99,44 @@ div.my_library_container button.margin_sa_left {
 
 /* for notifs pre */
 
+div#greet-user {
+	float: left;
+	margin-right: 10px;
+}
+
+div#notif-toggle {
+	cursor: pointer;
+}
+
+div#notif-blue-glow {
+	background-color: #4183c4;
+	width: 10px;
+	height: 10px;
+	float: left;
+	border-radius: 3px;
+	margin-top: 5px;
+	box-shadow: 0 0 10px #1ba1e2;
+}
+
 div#notifs_container {
 	font-size: 0.82em;
 	position: absolute;
-	top: 0;
-	margin-left:70%; 
-	width: 20%;
+	top: 110px;
+	right: 0;
+	width: 25%;
 	float: right;
+	background-color: rgba(1,1,1,0.5);
+	border-radius: 15px;
+	padding: 10px;
 }
 
 div.notif {
 	padding: 10px 25px 10px 15px;
-	margin: 20px 0;
+	border-bottom: 1px solid rgba(0,0,0,0.2);
 	background-color: #f9f9f9;
 	overflow: hidden;
 	color: white;
 	cursor: default;
-
-	-webkit-border-top-left-radius: 25px;
-	-webkit-border-bottom-right-radius: 25px;
-	-moz-border-radius-topleft: 25px;
-	-moz-border-radius-bottomright: 25px;
-	border-top-left-radius: 25px;
-	border-bottom-right-radius: 25px;
-
-	-webkit-transition: border linear 0.1s, box-shadow linear 0.1s, margin linear 0.1s;
-	-moz-transition: border linear 0.1s, box-shadow linear 0.1s, margin linear 0.1s;
-	-ms-transition: border linear 0.1s, box-shadow linear 0.1s, margin linear 0.1s;
-	-o-transition: border linear 0.1s, box-shadow linear 0.1s, margin linear 0.1s;
-	transition: border linear 0.1s, box-shadow linear 0.1s, margin linear 0.1s;
-}
-
-div.notif:hover {
-	margin: 20px 0 0 10px;
 }
 
 div.notif_msg {
@@ -143,25 +156,23 @@ div.notif.overdue {
 }
 
 div.notif.claim:hover {
-	border-color: rgba(82, 168, 236, 0.8);
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(96, 169, 23, 1);
-	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(96, 169, 23, 1);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(96, 169, 23, 1);
+	background-color: rgba(88, 155, 21, 1);
 }
 
 div.notif.custom:hover {
-	border-color: rgba(82, 168, 236, 0.8);
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(81, 203, 238, 1);
-	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(81, 203, 238, 1);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(81, 203, 238, 1);
+	background-color: rgba(24, 147, 204, 1);
 }
 
 div.notif.overdue:hover {
-	border-color: rgba(82, 168, 236, 0.8);
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(240, 163, 10, 1);
-	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(240, 163, 10, 1);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(240, 163, 10, 1);
+	background-color: rgba(219, 147, 13, 1);
 }
+
+div#load-more {
+	cursor: pointer;
+	color: black;
+	text-align: center;
+}
+
 
 
 /* kang Allan na announcements toh */
@@ -205,3 +216,4 @@ border-bottom-right-radius: 20px;
 	transition: top 0.5s, left 0.5s, width 0.5s, height 0.5s;
 	-webkit-transition: top 0.5s, left 0.5s, width 0.5s, height 0.5s;
 }
+

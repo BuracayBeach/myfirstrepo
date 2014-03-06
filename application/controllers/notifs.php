@@ -20,9 +20,9 @@ class Notifs extends CI_Controller {
 		$this->load->view('notifications_custom_view');
 	}
 
-	public function view_by_username($username) {
+	public function view_by_username($offset) {
 
-		$q = $this->notifs_model->get_all($username);
+		$q = $this->notifs_model->get_all($_SESSION['username'], $offset);
 		echo json_encode($q);
 	}
 
@@ -55,7 +55,7 @@ class Notifs extends CI_Controller {
 				'username_admin' => "",
 				'username_user' => $username,
 				'book_no' => $book_no,
-				'message' => "You may now claim your book at the library ASAP",
+				'message' => "",
 				'date_sent' => date('Y-m-d H:i:s'),
 				'type' => 'claim'
 			);
