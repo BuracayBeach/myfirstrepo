@@ -22,6 +22,9 @@
 
 		<script src="<?php echo base_url();?>js/jquery-1.11.0.js"></script>
 		<script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			var icejjfish = "<?php echo base_url(); ?>";
+		</script>
 
 	</head>
 	<body>
@@ -118,7 +121,3 @@
 		<!--    <span>Results per page&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
 		<!--  </form>-->
 		<!--</div>-->
-
-
-
-

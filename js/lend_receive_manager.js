@@ -57,7 +57,7 @@
                     info[0] = $bookno;
 
                     $.ajax({
-                        url : "http://localhost/myfirstrepo/index.php/" + "notifs" + "/" + "check_reserve_for_first",
+                        url : icejjfish + "/index.php/" + "notifs" + "/" + "check_reserve_for_first",
                         data : {arr : info},
                         type : 'POST',
                         dataType : "html",

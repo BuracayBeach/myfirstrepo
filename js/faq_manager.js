@@ -26,7 +26,7 @@ $('#faq_table_container').ready(function(){
     $('#add_faq_cancel_button').on('click',cancelAddForm);
     $('#edit_faq_form').submit(editFAQ);
 
-    customEditor = new nicEditor({iconsPath : "http://localhost/myfirstrepo/js/nicEditorIcons.gif" });
+    customEditor = new nicEditor({iconsPath : icejjfish + "js/nicEditorIcons.gif" });
     customEditor.panelInstance('add_answer');
 
 });

@@ -238,7 +238,7 @@ function deleteBook(){
 /*** STRING HTML GENERATION FUNCTIONS ***/
 function generateTransactionAnchorHTML(status,book_no){
     var anchorText = "";
-    var href = "href='http://localhost/myfirstrepo/index.php/update_book/";
+    var href = "href='" + icejjfish + "index.php/update_book/";
     if(status == "reserved"){
         anchorText = "Lend";
         href += "lend/?id="+book_no+"'";

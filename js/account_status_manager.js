@@ -1,7 +1,7 @@
 	//Script Author : Carl Adrian P. Castueras
 	//Description : AJAX functions used for to call the activate,enable and disable controllers and then update the page dynamically
 
-	var filepath = "http://localhost/myfirstrepo/"
+	var filepath = icejjfish;
 
 	function log_users()
 	{
