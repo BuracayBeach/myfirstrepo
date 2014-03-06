@@ -127,8 +127,7 @@
 										type : 'POST',
 										dataType : "html",
 										async : true,
-										success : function(data2) {								
-											alert("here! " + data2);
+										success : function(data2) {				
 											$("div.rank[book_no = '"+ info[0] +"']").text(data2).slideDown();
 										}
 									});
