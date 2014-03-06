@@ -36,12 +36,14 @@ function generateAnnouncementRow(data,isAdmin){
     if(carouselInner.find('.item').length == 0){
         activeClass = "active";
     }
-    var itemHTML = '<div announcement_id="'+data.announcement_id+'" class="item '+activeClass+' announcement_table_data">'+
-                        '<h4 '+editable+' class="announcement_title">'+data.announcement_title+'</h4>'+
-                        '<div class="sub-heading small-font">posted on <span class="date_posted">'+fd.toDateString() +'</span> by '+
-                            '<span class="announcement_author">'+data.announcement_author+'</span></div>' +
-                        '<div class="announcement_content_container"><p class="announcement_content">'+data.announcement_content+'</p></div>'+
-                        editButtons +
+    var itemHTML = '<div announcement_id="'+data.announcement_id+'" class="item '+activeClass+' announcement_table_data">' +
+                        '<div class="carousel-caption">'+
+                            '<h4 '+editable+' class="announcement_title">'+data.announcement_title+'</h4>'+
+                            '<div class="sub-heading small-font">posted on <span class="date_posted">'+fd.toDateString() +'</span> by '+
+                                '<span class="announcement_author">'+data.announcement_author+'</span></div>' +
+                            '<div class="announcement_content_container"><p class="announcement_content">'+data.announcement_content+'</p></div>'+
+                            editButtons +
+                        "</div>"+
                     '</div>';
 
 
