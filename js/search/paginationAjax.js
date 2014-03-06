@@ -46,6 +46,7 @@
         my_input += "&rows_per_page=" + results_per_page;
         my_input += "&search_by=" + search_by;
         // console.log(my_input);
+        // alert("ajaxing ajax results")
 
         p_lastRequest = $.ajax({
             type: "post",
