@@ -1,5 +1,5 @@
 
-			<div id="search">
+			<div id="search" class="">
 				<form id="search_form" name="search_form" method="post">
 
 
