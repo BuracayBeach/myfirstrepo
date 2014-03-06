@@ -45,6 +45,7 @@ class Search_model extends CI_Model {
         $input['type_journal'] = isset($_POST["type_journal"]);
         $input['type_sp'] = isset($_POST["type_sp"]);
         $input['type_thesis'] = isset($_POST["type_thesis"]);
+        $input['type_other'] = isset($_POST["type_other"]);
 
          foreach ($input as &$inp){
             $inp = mysql_real_escape_string($inp);
@@ -72,23 +73,40 @@ class Search_model extends CI_Model {
 
         return $status_check;
     }
+    
+    function remove_type(&$types, $type){
+        foreach($types as $key => $value){
+            if ($types[$key] == $type) unset($types[$key]);
+        }
+    }
 
     function get_type_check($input){
-        //set defaults
-        $type_check = "book_type='Book' or book_type='Journal' or book_type='SP' or book_type='Thesis'";
+        $types = array(0=>'Book', 1=>'Journal', 2=>'SP', 3=>'Thesis');
 
-        //filter by type
-        if (!$input["type_book"]) $type_check = str_replace("book_type='Book' or ","",$type_check);
-        if (!$input["type_journal"]) $type_check = str_replace("book_type='Journal' or ","",$type_check);
-        if (!$input["type_sp"]) $type_check = str_replace("book_type='SP' or ","",$type_check);
-        if (!$input["type_thesis"]){
-            $type_check = str_replace(" or book_type='Thesis'","",$type_check);
-            $type_check = str_replace("book_type='Thesis'","",$type_check);
+        if ($input["type_other"]){
+            $q_types = $this->db->query("select distinct book_type from book")->result();
+            $types = array();
+            foreach($q_types as $type){
+                array_push($types, $type->book_type);
+            }
         }
 
-        if($type_check!="") $type_check = "(" . $type_check . ") ";
-        else $type_check = "(book_type!='Book' and book_type!='Journal' and book_type!='SP' and book_type!='Thesis') ";
+        if (!$input["type_book"]) $this->remove_type($types, 'Book');
+        if (!$input["type_journal"]) $this->remove_type($types, 'Journal');
+        if (!$input["type_sp"]) $this->remove_type($types, 'SP');
+        if (!$input["type_thesis"]) $this->remove_type($types, 'Thesis');
 
+        $type_check = "";
+        $type_counter = 0;
+        foreach($types as $type){
+            if ($type_counter>0) $type_check .= ",";
+            $type_check .= "'" . $type . "'";
+            $type_counter++;
+        }
+
+        if ($type_check != '') $type_check = " book_type in (" . $type_check . ") ";
+        else if (count($types)==0) $type_check = ' false ';
+        // var_dump($type_check);
         return $type_check;
     }
 
@@ -121,16 +139,17 @@ class Search_model extends CI_Model {
     }
 
     function get_str_orderby($is_admin, $details){
-        $str_orderby = '';
-        if (trim($details['search_term']) == ""){
-            if ($is_admin)  $str_orderby = $details['order_by'];
-            else  $str_orderby = $details['search_by'];
-        } else {
-            if ($is_admin) $str_orderby = $details['order_by'];
-            else $str_orderby = "";
-        }
+        // $str_orderby = '';
+        // if (trim($details['search_term']) == ""){
+        //     if ($is_admin)  $str_orderby = $details['order_by'];
+        //     else  $str_orderby = $details['search_by'];
+        // } else {
+        //     if ($is_admin) $str_orderby = $details['order_by'];
+        //     else $str_orderby = "";
+        // }
+        $str_orderby = $details['order_by'];
+        if ($str_orderby == "name") $str_orderby = "author";
         if ($str_orderby=='search_relevance' || $str_orderby=='any') $str_orderby = '';
-
         return $str_orderby;
     }
 
@@ -266,13 +285,16 @@ class Search_model extends CI_Model {
             foreach($row as $col){
                 if (!in_array($col, $cols_to_search)) continue;
 
-                if ($col == $row->tags) $col_words = explode(" ", str_replace(',', ' ', $col));
-                elseif ($col == $row->date_published) $col_words = explode(" ", str_replace('-', ' ', $col));
-                else $col_words = explode(" ", $col);
+                // $col_words = preg_replace("/[^a-zA-Z0-9]+/", " ", $col);
+                $col_copy = preg_replace("/[^a-zA-Z0-9]+/", " ", $col);
+                if ($col == $row->tags) $col_words = explode(" ", str_replace(',', ' ', $col_copy));
+                elseif ($col == $row->date_published) $col_words = explode(" ", str_replace('-', ' ', $col_copy));
+                else $col_words = explode(" ", $col_copy);
 
                 foreach($col_words as $item_orig){
                     $item = strtolower(trim($item_orig));
                     if ($item=='') continue;
+                    $item = preg_replace("/[^a-zA-Z0-9]+/", "", $item);
                     // echo "<br>" . $search_term . " == " . $item;
 
                     if ($spell_check){
@@ -322,6 +344,8 @@ class Search_model extends CI_Model {
 
         $points = null;
         $input['search_term'] = strtolower($input['search_term']);
+        $input['search_term'] = preg_replace("/[^a-zA-Z0-9]+/", " ", $input['search_term']); //replace symbols with spaces for matching words 
+
         $search_terms = explode(" ", trim($input['search_term']));
 
         if ($spell_check){
@@ -337,7 +361,8 @@ class Search_model extends CI_Model {
             //compute points for each row (for determining relevance to search terms), also get suggestions
             $points[$row->book_no] = $this->get_row_points($row, $search_terms, $input['search_by'], $term_sugg, $term_sugg_dist, $spell_check);
         }
-        arsort($points); //reverse sort $points structure by value
+        // var_dump($input['order_by']);
+        if ($input['order_by'] == 'search_relevance') arsort($points); //reverse sort $points structure by value
 
 
         if ($spell_check){

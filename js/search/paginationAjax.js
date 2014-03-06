@@ -37,16 +37,17 @@
     }
 
 
-
-
+    var p_lastRequest;
     function ajax_results(search_by, page, results_per_page){
+        if (p_lastRequest) if (p_lastRequest.readyState != 4) p_lastRequest.abort();
+
         my_input = $('#search_form').serialize();
         my_input += "&page=" + page;
         my_input += "&rows_per_page=" + results_per_page;
         my_input += "&search_by=" + search_by;
         // console.log(my_input);
 
-        $.ajax({
+        p_lastRequest = $.ajax({
             type: "post",
             data: my_input, 
             url: icejjfish + "index.php/book/search",

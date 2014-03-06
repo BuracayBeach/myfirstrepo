@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class book extends CI_Controller {
+class Book extends CI_Controller {
 
     /**
      * Index Page for this controller.
@@ -128,13 +128,13 @@ class book extends CI_Controller {
         $search_suggestion = null;
         //sort results by relevance to the search terms
         $search_suggestion = '';
-        $sorted_table = $this->search_model->get_sorted_table($table, $input, $details['spell_check'], $search_suggestion); 
+        $sorted_table = $this->search_model->get_sorted_table($table, $input, $details['spell_check'], $search_suggestion);
 
         $details['search_suggestion'] = trim($search_suggestion);
         $details['table'] = $sorted_table;
 
 
-        // para lang sa pag check ng user favorites at reserves (w/ lend crosschecking) 
+        // para lang sa pag check ng user favorites at reserves (w/ lend crosschecking)
         if (isset($_SESSION['username'])) {
             $details['favorite_user'] = $this->favorite_model->get_all($_SESSION['username']);
             $details['reserve_user'] = $this->reserve_model->get($_SESSION['username']);
@@ -194,11 +194,11 @@ class book extends CI_Controller {
             url: 'index.php/update_book/lend/',
             data: {id:$bookno},
             success: function(data) {}
-        });      
+        });
     */
 
     public function lend(){
-        $data['book_no'] = $_GET['id']; 
+        $data['book_no'] = $_GET['id'];
         $this->load->model('reserve_model');
         $q = $this->reserve_model->dequeue($data['book_no']);
         $row = $q->row();
@@ -217,11 +217,11 @@ class book extends CI_Controller {
             url: 'index.php/update_book/received/',
             data: {id:$bookno},
             success: function(data) {}
-            }); 
+            });
     */
 
     public function received(){
-    
+
         $data['book_no'] = $_GET['id'];   // actual data must be pass via onClick in the actual implementation
         $data['status'] = "borrowed";
 
@@ -229,7 +229,7 @@ class book extends CI_Controller {
         $data['transaction_no'] = $this->update_book_model->getTransactionno($data['book_no']);
         $status_checker = $this->update_book_model->received($data);  // updates the status of the book from borrowed to available
         $this->update_book_model->updateLend($data);    // writes the whole transaction into log
-    
+
         $data = array('status' => $status_checker);
 
         echo json_encode($data);

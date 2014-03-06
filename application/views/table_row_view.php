@@ -7,10 +7,23 @@
      */
     //prevent html generation for tags and scripts
 
-    if(!(isset($newly_added) && $newly_added))
-    foreach($row as &$r){
-        $r = htmlspecialchars(stripslashes($r));
+    if(!(isset($newly_added) && $newly_added)){
+        //prevent html generation for tags and scripts
+        var_dump($search_term);
+        foreach($row as &$r){
+            $r = htmlspecialchars(stripslashes($r));
+            //bold matching terms
+            if (trim($search_term) != ''){
+               $search_terms = explode(" ",trim($search_term));
+                foreach($search_terms as $s_term){
+                    if ($s_term == '' || strlen($s_term) < 3) continue;
+                    $r = preg_replace('/' . $s_term . '/i', "<strong>$0</strong>", $r);                        
+                }  
+            }
+            
+        }
     }
+    
 
 
     echo "<tr active='false'>";
@@ -25,7 +38,7 @@
 
     echo "<td>" .
         "<div style = 'font:15px Verdana' book_data='book_title'>" .
-        '<span class="article_title">' . $row->book_title . '</span>' .
+        '<span class="article_title"><a class="title_link" href="javascript:void(0)">' . $row->book_title . '<a></span>' .
         "</div>" .
 
         "<div style = 'font-size:13px' book_data='description'> " .
@@ -53,6 +66,7 @@
             }
 
             /* checking of reserves */
+
             $reserve = 'reserve';
             $reserve_class = 'btn_green';
             $size = count($reserve_user);
@@ -85,10 +99,11 @@
                 "<button action_type='reserve' class='book_action {$reserve_class}' book_no='{$row->book_no}'>";
             if ($row->status == 'available')
                 echo "reserve";
-            else
+            else {
+                "<button action_type='reserve' class='book_action' book_no='{$row->book_no}'>";
                 echo $reserve;
-            
-            echo "</button>";
+                echo "</button>";
+            }
 
             if ($reserve == "unreserve") {
 
@@ -119,7 +134,7 @@
     //other data
     echo "<td align='center'>" .
         "<div book_data='publisher'><span class='article_publisher'>" . $row->publisher . "</span></div>";
-    if ($row->date_published != 0) echo "<div book_data='date_published'>" . $row->date_published . "</div>";
+    if ($row->date_published != '') echo "<div book_data='date_published'>" . $row->date_published . "</div>";
     echo "</td>";
 
     // if (isset($_SESSION['type']) && $_SESSION['type'] == "admin")

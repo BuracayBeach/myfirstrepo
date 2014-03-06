@@ -6,7 +6,8 @@ class Reserve_Model extends CI_Model {
 	
 		$this->db->where($data);
 		$this->db->delete('reserves');
-	}
+
+    }
 
 	public function dequeue($book_no) {
 
@@ -29,7 +30,7 @@ class Reserve_Model extends CI_Model {
 
 	public function enqueue($data) {
 		$this->db->insert('reserves', $data);
-	}
+    }
 
 	public function status_reserved($book_no) {
 		$lend = $this->db->query("SELECT COUNT(*) count FROM lend WHERE book_no LIKE '{$book_no}'");

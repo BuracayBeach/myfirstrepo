@@ -20,7 +20,7 @@ class Reserve extends CI_Controller {
 			'username' => $_SESSION['username'],
 			'book_no' => $info[0]
 		);
-		
+
 		$this->reserve_model->remove($data);
 		$this->reserve_model->status_update($info[0]);
 	}

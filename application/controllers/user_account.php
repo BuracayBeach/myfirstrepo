@@ -26,8 +26,20 @@ class User_account extends CI_Controller {
 		$this->load->view('create_account_view');
 	}
 
+	public function log_in(){
+		$this->load->view('login_view2');
+	}
+
 	public function update_account(){
 		$this->get_data();
+	}
+
+	public function registration_pending(){
+		$this->load->view('user_pending');
+	}
+
+	public function account_deactivated(){
+		$this->load->view('user_deactivated');
 	}
 
 	public function login(){
@@ -42,12 +54,22 @@ class User_account extends CI_Controller {
 			redirect(base_url());
 		}
 
-		else
-			redirect(base_url());
+		if(isset($_SESSION['login_notif']) && $_SESSION['login_notif'] == "pending"){
+			$this->registration_pending();
+			unset($_SESSION['login_notif']);
+		}
+
+		else if(isset($_SESSION['login_notif']) && $_SESSION['login_notif'] == "deactivated"){
+			$this->account_deactivated();
+			unset($_SESSION['login_notif']);
+		}
+
+		else{
+			$this->log_in();
+		}
 	}
 
 	private function check_user_validity(){
-		unset($_SESSION['login_notif']);
 		$username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
 		$password = hash('sha256', filter_var($_POST['password'], FILTER_SANITIZE_STRING));
 
@@ -60,7 +82,7 @@ class User_account extends CI_Controller {
 			return false;
 
 		else if(!$result){
-			$_SESSION['login_notif'] = "Username does not exist!";
+			$_SESSION['login_notif'] = "not_exists";
 			return false;
 		}
 		
@@ -69,7 +91,7 @@ class User_account extends CI_Controller {
 				return true;
 			}
 			else{
-				$_SESSION['login_notif'] = "Password does not match!";		
+				$_SESSION['login_notif'] = "wrong_password";		
 				return false;
 			}
 		}
@@ -85,7 +107,6 @@ class User_account extends CI_Controller {
 	}
 
 	public function createaccount(){
-		unset($_SESSION['create_account_notif']);
 		$data['username']= filter_var($_POST['username'], FILTER_SANITIZE_STRING);
 		$data['password']= hash('sha256', filter_var($_POST['password'], FILTER_SANITIZE_STRING));
 		$data['sex']= filter_var($_POST['sex'], FILTER_SANITIZE_STRING);
@@ -105,7 +126,7 @@ class User_account extends CI_Controller {
 		$result = $this->user_account_model->insert_data($new_data);
 
 		if($result){
-			$this->send_mail($new_data);
+			//$this->send_mail($new_data);
 			$this->backtohome();
 		}
 
@@ -116,7 +137,6 @@ class User_account extends CI_Controller {
 
 	//Update the value of the user info.
 	public function update(){
-		unset($_SESSION['update_account_notif']);
 		$data['sex']= filter_var($_POST['sex'], FILTER_SANITIZE_STRING);
 		$data['email']= filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 		$data['name_first']= filter_var($_POST['name_first'], FILTER_SANITIZE_STRING);
@@ -142,7 +162,6 @@ class User_account extends CI_Controller {
 
 	//Check if the current password entered is the same as that of the password in the database.
 	public function change_password(){
-		unset($_SESSION['change_password_notif']);
 		$uname = $_SESSION['username'];
 		$new_password= hash('sha256', filter_var($_POST['newPassword'], FILTER_SANITIZE_STRING));
 		$current_password= hash('sha256', filter_var($_POST['currentPassword'], FILTER_SANITIZE_STRING));

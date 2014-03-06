@@ -1,3 +1,4 @@
+
 #navbar, .top-bar{
   background: #222930 !important;
 }
@@ -23,7 +24,7 @@
 
 .sidebar-nav a{
   text-align:right !important;
-  margin-right: 20% !important;
+  margin-right: 0% !important;
   margin-left: 0% !important;
   text-decoration: none !important;
 }
@@ -54,11 +55,7 @@
 }
 
 ul{
-list-style-type: none !important;
-}
-
-#searchbar{
-  width: 13% !important;
+  list-style-type: none !important;
 }
 
 #submit_search{
@@ -177,9 +174,8 @@ Update
 
   float:right !important;
   position: absolute !important;
-  width: 20% !important;
-  margin-left:75% !important;
-  margin-right: 0% !important; 
+  width: 100% !important;
+  margin-right: 0% !important;
   margin-top: 10% !important;
   height:90% !important;
 }
@@ -189,18 +185,18 @@ ADD AND EDIT
 
 -----------------------------*/
 #add_announcement_button{
-  width: 15%;
-  float: right;
-  right:10%;
-  position:absolute;
   background-color: #2266cc !important;
+}
+
+#add_announcement_container{
+    width:100% !important;
 }
 
 #right_side_bar{
   float:right !important;
   position: absolute !important;
-  width: 20% !important;
-  margin-left:80% !important;
+  width: 30% !important;
+  margin-left:70% !important;
   margin-right: 0% !important; 
   margin-top: 0% !important;
   height:90% !important;
@@ -218,7 +214,7 @@ ADD AND EDIT
   border: 1px solid #2266cc !important;
   margin-top:5% !important;
   clear: right !important;
-  width: 25% !important;
+  width: 100% !important;
 }
 #add_container input{
   height:7% !important;
@@ -235,7 +231,6 @@ ADD AND EDIT
   background-color: #2266cc !important;
 }
 #show_add_form_button{
-  float:right !important;
   clear: right !important;
   background-color: #2266cc !important;
 }
@@ -259,185 +254,4 @@ Tabnavs
 
 
 
-.hide{
-    display:none;
-}
 
-
-/*-------------------------------
-
-FAQ
---------------------------------*/
-#add_faq_button{
-  margin-left: 3% !important;
-background-color:#2266cc !important;
-font-family:"Segoe UI Light" !important;
-    font-size:100% !important;
-    width:10% !important;
-    color: white;
-
-}
-.save_faq_button{
-margin-left: 3% !important;
-background-color:#2266cc !important;
-font-family:"Segoe UI Light" !important;
-    font-size:100% !important;
-    width:10% !important;
-    height: 4% !important;
-    color: white;
-}
-.cancel_faq_button{
-margin-left: 3% !important;
-background-color:#2266cc !important;
-font-family:"Segoe UI Light" !important;
-    font-size:100% !important;
-    width:10% !important;
-    height: 4% !important;
-    color: white;
-}
-.edit_faq_button{
-  margin-left: 3% !important;
-  background-color:#2266cc !important;
-  font-family:"Segoe UI Light" !important;
-    font-size:100% !important;
-    width:10% !important;
-    height: 4% !important;
-    color: white;
-}
-.delete_faq_button{
-  margin-left: 3% !important;
-  background-color:#FF6600 !important;
-  font-family:"Segoe UI Light" !important;
-    font-size:100% !important;
-    width:10% !important;
-    height: 4% !important;
-    color: white;
-  }
-
-#add_faq_container{
-  width:100% !important;
-}
-
-.nicEdit-panelContain{
-  width: 210% !important;
-  height: 100% !important;
-}
-
-.nicEdit-main{
-  max-width: 500% !important;
-  height: 100% !important;
-  background-color: white !important;
-}
-
-.edit_announcement_button{
-    margin-left: 3% !important;
-    background-color:#2266cc !important;
-    font-family:"Segoe UI Light" !important;
-    font-size:100% !important;
-    color: white;
-}
-
-.delete_announcement_button{
-    margin-left: 3% !important;
-    background-color:#FF6600 !important;
-    font-family:"Segoe UI Light" !important;
-    font-size:100% !important;
-    color: white;
-}
-
-.errors{
-    color: red !important;
-    font-size: 80% !important;
-    font-weight: bold !important;
-}
-
-
-/*-----------------------------------
-
-ERROR
-
------------------------------------*/
-
-.invalid_user input[type='text'], .invalid_user input[type='password']{
-  background:rgba(225, 150, 150, 0.3);
-}
-
-.signup .username input[name='username']{
-  background:rgba(225, 150, 150, 0.3);
-}
-
-.signup .email input[name='email']{
-  background:rgba(225, 150, 150, 0.3);
-}
-
-.signup .student_no input[name='student_no']{
-  background:rgba(225, 150, 150, 0.3);
-}
-
-.signup .employee_no input[name='emp_no']{
-  background:rgba(225, 150, 150, 0.3);
-}
-
-
-.signup .pass input[name='currentpassword']{
-  background:rgba(225, 150, 150, 0.3);
-}
-
-
-.top-bar a img{
-
-}
-
-/* bago*/
-.dropdown-check-list {
-              display: inline-block;
-               font-family:"Segoe UI Light" !important;
-            }
-            .dropdown-check-list .anchor {
-              position: relative;
-              cursor: pointer;
-              display: inline-block;
-              padding: 5px 50px 5px 10px;
-              border: 1px solid #ccc;
-               font-family:"Segoe UI Light" !important;
-            }
-            .dropdown-check-list .anchor:after {
-              position: absolute;
-              content: "";
-              border-left: 2px solid black;
-              border-top: 2px solid black;
-              padding: 5px;
-              right: 10px;
-              top: 20%;
-               font-family:"Segoe UI Light" !important;
-              -moz-transform: rotate(-135deg);
-              -ms-transform: rotate(-135deg);
-              -o-transform: rotate(-135deg);
-              -webkit-transform: rotate(-135deg);
-              transform: rotate(-135deg);
-            }
-            .dropdown-check-list .anchor:active:after {
-              right: 8px;
-              top: 21%;
-               font-family:"Segoe UI Light" !important;
-            }
-            .dropdown-check-list ul.items {
-              padding: 2px;
-              display: none;
-              margin: 0;
-              border: 1px solid #ccc;
-              border-top: none;
-               font-family:"Segoe UI Light" !important;
-            }
-            .dropdown-check-list ul.items li {
-              list-style: none;
-               font-family:"Segoe UI Light" !important;
-            }
-            .dropdown-check-list.visible .anchor {
-              color: #0094ff;
-               font-family:"Segoe UI Light" !important;
-            }
-            .dropdown-check-list.visible .items {
-              display: block;
-               font-family:"Segoe UI Light" !important;
-            }

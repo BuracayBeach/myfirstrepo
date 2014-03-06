@@ -35,8 +35,8 @@ class User_account_model extends CI_Model {
 			foreach($query_rows as $row){
 				if ($data['username'] == $row->username) $data_exists_notif .=  ' username';
 				if ($data['email'] == $row->email) $data_exists_notif .= ' email';
-				if ($data['student_no'] == $row->student_no  || $data['student_no'] != "") $data_exists_notif .= ' student_no';
-				if ($data['emp_no'] == $row->emp_no || $data['emp_no'] != "") $data_exists_notif .= ' employee_no';
+				if ($data['usertype'] == "student" && $data['student_no'] == $row->student_no) $data_exists_notif .= ' student_no';
+				if ($data['usertype'] == "employee" && $data['emp_no'] == $row->emp_no) $data_exists_notif .= ' emp_no';
 			}
 			
 			$_SESSION['create_account_notif'] = $data_exists_notif;
@@ -87,13 +87,16 @@ class User_account_model extends CI_Model {
 	public function get_user($username){
 		$query = $this->db->query("SELECT * FROM user WHERE username='{$username}'");
 
+		if($query->num_rows() == 0)
+			return false;
+
 		if($query->result_array()[0]['status'] == "pending"){
-			$_SESSION['login_notif'] = "Registration still pending!";
+			$_SESSION['login_notif'] = "pending";
 			return "pending";
 		}
 
 		else if($query->result_array()[0]['status'] == "disabled"){
-			$_SESSION['login_notif'] = "Account deactivated!";
+			$_SESSION['login_notif'] = "deactivated";
 			return "deactivated";
 		}
 

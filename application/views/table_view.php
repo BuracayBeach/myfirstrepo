@@ -39,7 +39,6 @@
                 for($a=$row_min ; $a<=$row_max ; $a++){
                     if (!isset($table[$a])) break;
                     $row = $table[$a];
-                    //prevent html generation for tags and scripts
                     include "table_row_view.php";
                 }
             } else  {

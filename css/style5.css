@@ -1,0 +1,370 @@
+#site-cont{
+  min-width: 1000px;
+  min-height: 768px;
+}
+
+
+.hide{
+    display:none;
+}
+
+.fixed{
+	position: fixed;
+}
+
+
+
+/*--------------------------------------------
+
+BANNER
+  *put event on zoomin
+--------------------------------------------*/
+
+#banner{
+  width: 100%;
+  height: 90px;
+  background: yellow;
+}
+
+/*--------------------------------------------
+
+NAVBAR
+  *put event on zoomin
+--------------------------------------------*/
+
+#navbar{
+	width: 100%;
+	height: 60px;
+	color:white;
+	background: #222930;
+}
+
+#navbar.fixed{
+  top:0;
+}
+
+#element-cont{
+	width: 80%;
+	height: 100%;
+	margin: 0 auto;
+//	border-left: 1px solid #323940;
+//	border-right: 1px solid #323940;
+
+}
+
+#navbar .menulinks {
+	height: 60px;
+	padding:15px 20px 5px 20px;
+	border-top: 10px solid #222930;
+	float: left;
+}
+
+#navbar .menulinks:hover{
+	border-top: 10px solid #3340DD;
+	background: rgba(255,255,255,0.1);
+	color: white;
+}
+
+#navbar div.btn-group{
+	float: left;
+}
+
+#navbar .dropdown-hover:hover > ul.dropdown-menu {
+    display: block;    
+}
+
+#navbar div.btn-group .dropdown-menu a{
+	color:black;
+}
+
+
+#navbar a{
+	color:white;
+}
+
+#navbar #login{
+	width: 80%;
+	height: 100%;
+	padding-top: 1%;
+}
+
+#navbar #login input{
+	color:black;
+}
+
+#navbar #login input{
+	width: 90%;
+	height: 100%;
+	font-size: 13px;
+}
+
+#navbar .right{
+	width: 60%;
+	height: 100%;
+	margin-left: 40%;	
+}
+
+#navbar .right > *{
+	float: right;
+  max-width: 40%;
+}
+
+#navbar table label{
+	height: 10px;
+	color: white;
+	font-size: 13px;
+	font-weight: normal;
+	font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+}
+
+#navbar #login a{
+	font-size: 13px;
+}
+
+#navbar #login a:hover{
+	text-decoration: none;
+	color: rgba(255,255,255,0.7);
+}
+
+
+
+/*---------------------------------------
+
+SEARCHBAR
+
+---------------------------------------*/
+
+
+#search{
+	width: 15%;
+//  background: rgba(0,0,255,0.1);
+}
+
+#search.fixed{
+  top:60px;
+}
+
+#search #sidebar-wrapper{
+  width: 100%;
+//  background: rgba(255,0,0,0.2);
+  margin-left:0px;
+}
+
+#search #sidebar-wrapper li{
+  width: 100%;
+  text-decoration: none;
+  list-style: none;
+  text-indent: 0;
+}
+
+#search #sidebar-wrapper ul{
+  background: white;
+  padding: 0;
+}
+
+#search #sidebar-wrapper ul a{
+  font-size: 1.1vw;
+  color: black;
+  text-align: right;
+}
+
+#search #sidebar-wrapper ul a:hover{
+  font-size:1.3vw;
+  color:white;
+  text-decoration: none;
+}
+
+#search #sidebar-wrapper ul a:hover > li{
+  background:  #2266CC;
+}
+
+#search #sidebar-wrapper ul img{
+  width: 30px;
+}
+
+/*------------------------------
+
+DROPDOWN CHECKLIST
+
+------------------------------*/
+
+.dropdown-check-list {
+              display: inline-block;
+               font-family:"Segoe UI Light" !important;
+            }
+            .dropdown-check-list .anchor {
+              position: relative;
+              cursor: pointer;
+              display: inline-block;
+              padding: 5px 50px 5px 10px;
+              border: 1px solid #ccc;
+               font-family:"Segoe UI Light" !important;
+            }
+            .dropdown-check-list .anchor:after {
+              position: absolute;
+              content: "";
+              border-left: 2px solid black;
+              border-top: 2px solid black;
+              padding: 5px;
+              right: 10px;
+              top: 20%;
+               font-family:"Segoe UI Light" !important;
+              -moz-transform: rotate(-135deg);
+              -ms-transform: rotate(-135deg);
+              -o-transform: rotate(-135deg);
+              -webkit-transform: rotate(-135deg);
+              transform: rotate(-135deg);
+            }
+            .dropdown-check-list .anchor:active:after {
+              right: 8px;
+              top: 21%;
+               font-family:"Segoe UI Light" !important;
+            }
+            .dropdown-check-list ul.items {
+              padding: 2px;
+              display: none;
+              margin: 0;
+              border: 1px solid #ccc;
+              border-top: none;
+               font-family:"Segoe UI Light" !important;
+            }
+            .dropdown-check-list ul.items li {
+              list-style: none;
+               font-family:"Segoe UI Light" !important;
+            }
+            .dropdown-check-list.visible .anchor {
+              color: #0094ff;
+               font-family:"Segoe UI Light" !important;
+            }
+            .dropdown-check-list.visible .items {
+              display: block;
+               font-family:"Segoe UI Light" !important;
+            }
+
+
+
+/*-------------------------------
+
+FAQ
+
+--------------------------------*/
+
+#add_faq_button{
+  margin-left: 3% !important;
+background-color:#2266cc !important;
+font-family:"Segoe UI Light" !important;
+    font-size:100% !important;
+    width:10% !important;
+    color: white;
+
+}
+.save_faq_button{
+margin-left: 3% !important;
+background-color:#2266cc !important;
+font-family:"Segoe UI Light" !important;
+    font-size:100% !important;
+    width:10% !important;
+    height: 4% !important;
+    color: white;
+}
+.cancel_faq_button{
+margin-left: 3% !important;
+background-color:#2266cc !important;
+font-family:"Segoe UI Light" !important;
+    font-size:100% !important;
+    width:10% !important;
+    height: 4% !important;
+    color: white;
+}
+.edit_faq_button{
+  margin-left: 3% !important;
+  background-color:#2266cc !important;
+  font-family:"Segoe UI Light" !important;
+    font-size:100% !important;
+    width:10% !important;
+    height: 4% !important;
+    color: white;
+}
+.delete_faq_button{
+  margin-left: 3% !important;
+  background-color:#FF6600 !important;
+  font-family:"Segoe UI Light" !important;
+    font-size:100% !important;
+    width:10% !important;
+    height: 4% !important;
+    color: white;
+  }
+
+#add_faq_container{
+  width:100% !important;
+}
+
+.nicEdit-panelContain{
+  width: 210% !important;
+  height: 100% !important;
+}
+
+.nicEdit-main{
+  max-width: 500% !important;
+  height: 100% !important;
+  background-color: white !important;
+}
+
+.edit_announcement_button{
+    margin-left: 3% !important;
+    background-color:#2266cc !important;
+    font-family:"Segoe UI Light" !important;
+    font-size:100% !important;
+    color: white;
+}
+
+.delete_announcement_button{
+    margin-left: 3% !important;
+    background-color:#FF6600 !important;
+    font-family:"Segoe UI Light" !important;
+    font-size:100% !important;
+    color: white;
+}
+
+.errors{
+    color: red !important;
+    font-size: 80% !important;
+    font-weight: bold !important;
+}
+
+
+/*-----------------------------------
+
+ERROR
+
+-----------------------------------*/
+
+.invalid_user input[type='text'], .invalid_user input[type='password']{
+  background:rgba(225, 150, 150, 0.3);
+}
+
+.signup .username input[name='username']{
+  background:rgba(225, 150, 150, 0.3);
+}
+
+.signup .email input[name='email']{
+  background:rgba(225, 150, 150, 0.3);
+}
+
+.signup .student_no input[name='student_no']{
+  background:rgba(225, 150, 150, 0.3);
+}
+
+
+.signup .emp_no input[name='emp_no']{
+	background:rgba(225, 150, 150, 0.3);
+}
+
+.signup .pass input[name='currentpassword']{
+  background:rgba(225, 150, 150, 0.3);
+}
+
+
+.top-bar a img{
+
+}
