@@ -5,7 +5,7 @@ var customEditor;
 $('#faq_table_container').ready(function(){
     /***** EVENT ATTACHMENTS *****/
     var addFaqContainer = $('#add_faq_container');
-
+    addFaqContainer.closest('tr').hide();
 
     $('#edit_faq_container').closest("tr").hide();
 

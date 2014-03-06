@@ -81,7 +81,6 @@ NAVBAR
     color:black;
 }
 #navbar #login input{
-    width: 90%;
     height: 100%;
     font-size: 13px;
 }

@@ -33,7 +33,6 @@
 	<body>
 
 	<div id="site-cont">
-        <div id="banner"> <img src="<?php echo base_url();?>images/logo_white.png" style="width:35%;height:100%;margin-left:2%;"> </div>
 		<div id="navbar" class="">
 			<div id="element-cont">
 				<div class="left">

@@ -31,15 +31,45 @@ function generateAnnouncementRow(data,isAdmin){
                 '<button class="delete_announcement_button">Delete</button>';
         editable = 'contenteditable="false"';
     }
-    var rowHTML = '<tr announcement_id="'+data.announcement_id+'" class="announcement_table_row">'+
-                        '<td class="announcement_table_data">'+
-                            '<h4 '+editable+' class="announcement_title">'+data.announcement_title+'</h4>'+
-                            '<div class="sub-heading small-font">posted on <span class="date_posted">'+fd.toDateString() +'</span> by '+
-                                '<span class="announcement_author">'+data.announcement_author+'</span></div>' +
-                            '<div class="announcement_content_container"><p class="announcement_content">'+data.announcement_content+'</p></div>'+
+    var carouselInner = $('div.carousel-inner');
+    var activeClass = "";
+    if(carouselInner.find('.item').length == 0){
+        activeClass = "active";
+    }
+    var itemHTML = '<div announcement_id="'+data.announcement_id+'" class="item '+activeClass+' announcement_table_data">'+
+                        '<h4 '+editable+' class="announcement_title">'+data.announcement_title+'</h4>'+
+                        '<div class="sub-heading small-font">posted on <span class="date_posted">'+fd.toDateString() +'</span> by '+
+                            '<span class="announcement_author">'+data.announcement_author+'</span></div>' +
+                        '<div class="announcement_content_container"><p class="announcement_content">'+data.announcement_content+'</p></div>'+
                         editButtons +
-                        '</td>'+
-                    '</tr>';
+                    '</div>';
+
+
+    carouselInner.prepend(itemHTML);
+
+/*
+    var buttons = "";
+    var editable = "";
+    var prevDataInputs = "";
+    var editButtons = "";
+    if(isAdmin){
+        prevDataInputs = '<h4 hidden class="prev_question"></h4>' +
+            '<textarea style="display:none;" id="answer_'+data.id+'" class="answer_editor"></textarea>';
+        buttons = '<button class="save_faq_button" style="display:none;">Save</button>' +
+            '<button class="cancel_faq_button" style="display:none;">Cancel</button>';
+        editButtons = '<button class="edit_announcement_button">Edit</button>'+
+            '<button class="delete_announcement_button">Delete</button>';
+        editable = 'contenteditable="false"';
+    }
+    var rowHTML = '<tr announcement_id="'+data.announcement_id+'" class="announcement_table_row">'+
+        '<td class="announcement_table_data">'+
+        '<h4 '+editable+' class="announcement_title">'+data.announcement_title+'</h4>'+
+        '<div class="sub-heading small-font">posted on <span class="date_posted">'+fd.toDateString() +'</span> by '+
+        '<span class="announcement_author">'+data.announcement_author+'</span></div>' +
+        '<div class="announcement_content_container"><p class="announcement_content">'+data.announcement_content+'</p></div>'+
+        editButtons +
+        '</td>'+
+        '</tr>';
 
 
     var tableContainer = $('#announcements_table_container');
@@ -54,9 +84,7 @@ function generateAnnouncementRow(data,isAdmin){
         tableContainer.find('table tbody').prepend(rowHTML);
     }else{
         tableContainer.find('table').find('tbody tr:first').after(rowHTML);
-    }
-
-
+    }*/
 }
 
 $('announcement_manage_container').ready(function(){

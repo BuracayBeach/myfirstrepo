@@ -7,27 +7,7 @@
     </ol>
     <!-- Carousel items -->
     <div class="carousel-inner">
-        <div class="active item">
-            <div class="carousel-caption">
 
-                <h3>First slide label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-        </div>
-        <div class="item">
-            <div class="carousel-caption">
-
-                <h3>Second slide label</h3>
-                <p>Vestibulum quis quam ut magna consequat faucibus.</p>
-            </div>
-        </div>
-        <div class="item">
-            <div class="carousel-caption">
-
-                <h3>Third slide label</h3>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl.</p>
-            </div>
-        </div>
     </div>
     <!-- Carousel nav -->
     <a class="carousel-control left" href="#myCarousel" data-slide="prev">
