@@ -29,8 +29,6 @@
         }
 
     }
-    
-
 
     echo "<tr active='false'>";
         echo "<td align='center'>" .

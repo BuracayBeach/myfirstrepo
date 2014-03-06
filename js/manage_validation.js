@@ -6,10 +6,19 @@ $(document).ready(function(){
 function validateBookNo(bookNo){
     bookNo = bookNo.trim();
     if(bookNo == ''){
-        return '-book number is required.'
+        return '- Book number is required.'
     }
-    else if(bookNo.length > 12){
-        return '- Book number too long: cannot be more than 10 digits/characters<br/>';
+    else if(bookNo.length > 25){
+        return '- Book number too long: cannot be more than 25 digits/characters<br/>';
+    }else{
+        return '';
+    }
+}
+
+function validateISBN(isbn){
+    isbn = isbn.trim();
+    if(isbn.length > 17){
+        return ' ISBN too long: cannot be more than 17 characters';
     }else{
         return '';
     }
@@ -104,21 +113,23 @@ function validateAbstract(abstract){
 
 function checkAll(){
     var form = $(this);
-    var bookNo = form.find('[name="'+'book_no'+'"]').val();
-    var title = form.find('[name="'+'book_title'+'"]').val();;
-    var type = form.find('[name="'+'type'+'"]').val();
-    var other = form.find('[name="'+'other'+'"]').val();
-    var abstract = form.find('[name="'+'abstract'+'"]').val();
-    var author = form.find('[name="'+'author'+'"]').val();
-    var description = form.find('[name="'+'description'+'"]').val();
-    var publisher = form.find('[name="'+'publisher'+'"]').val();
-    var year = form.find('[name="'+'date_published'+'"]').val();
-    var tags = form.find('[name="'+'tags'+'"]').val();
+    var bookNo = form.find('[name="book_no"]').val();
+    var isbn = form.find('[name="isbn"]').val();
+    var title = form.find('[name="book_title"]').val();;
+    var type = form.find('[name="type"]').val();
+    var other = form.find('[name="other"]').val();
+    var abstract = form.find('[name="abstract"]').val();
+    var author = form.find('[name="author"]').val();
+    var description = form.find('[name="description"]').val();
+    var publisher = form.find('[name="publisher"]').val();
+    var year = form.find('[name="date_published"]').val();
+    var tags = form.find('[name="tags"]').val();
 
 
     var msgs = validateBookNo(bookNo);
     msgs += validateTitle(title);
     msgs += validateType(type=='Other'?other:type);
+    msgs += validateISBN(isbn);
     msgs += validateAbstract(abstract);
     msgs += validateAuthor(author);
     msgs += validateDescription(description);

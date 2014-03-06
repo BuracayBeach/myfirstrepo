@@ -2,15 +2,15 @@
     <h3>Frequently Asked Questions</h3>
     <button id="add_faq_button">Add a FAQ</button>
     <div id="faq_table_container">
-        <table id="faq_table" class="small-8 column">
+        <table id="faq_table" class="column">
             <tbody>
             <tr>
                 <td>
-                    <div id="add_faq_container" class="show_me"  class="small-10 column">
+                    <div id="add_faq_container" class="show_me"  class="column">
                         <form autocomplete="on" id="add_faq_form">
                             <input type="text" name="question" required id="add_question" placeholder="Question"/>
                             <br/>
-                            <textarea style="width:300%" name="answer" id="add_answer" placeholder="Answer..."></textarea>
+                            <textarea name="answer" id="add_answer" placeholder="Answer..."></textarea>
                             <br/>
                             <button type="submit" name="add_faq_button" id="add_faq_button">Add</button>
                             <button type="button" id="add_faq_cancel_button" name="add_faq_cancel_button" >Cancel</button>

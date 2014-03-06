@@ -20,6 +20,9 @@
 		<link rel="stylesheet" href="<?php echo base_url();?>css/style4.css">
 		<link rel="stylesheet" href="<?php echo base_url();?>css/style5.css">
 
+		<link rel="shortcut icon" href="<?php echo base_url();?>favicon.ico" />
+		<link rel="icon" href="<?php echo base_url();?>favicon.ico" type="image/ico" />
+
 		<script src="<?php echo base_url();?>js/jquery-1.11.0.js"></script>
 		<script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
 		<script type="text/javascript">
@@ -30,9 +33,6 @@
 	<body>
 
 	<div id="site-cont">
-		<div id="banner">
-			This is the banner
-		</div>
 		<div id="navbar" class="">
 			<div id="element-cont">
 				<div class="left">
@@ -97,54 +97,17 @@
 		</div>
 
 		<script type="text/javascript">
-			var winsize = false;
-
-
 			$(window).scroll(function () {
-				if(!winsize){
-					if ($(window).scrollTop() < 90) {
-						pfgt12p();
-					}
-					else if ($(window).scrollTop() > 90) {
-						pfgt1ap();
-					}
+				console.log($(window).scrollTop());
+				if ($(window).scrollTop() < 90) {
+					$('#navbar').removeClass('fixed');
+					$('#search').removeClass('fixed');
+				}
+				if ($(window).scrollTop() > 90) {
+					$('#navbar').addClass('fixed');
+					$('#search').addClass('fixed');
 				}
 			});
-			$(window).on("resize", function(){
-				if($(window).width() < 800){
-					winsize = true;
-					pfgt12p();
-				}
-				else{
-					winsize = false;
-					pfgt1ap();
-				}
-
-
-			});
-
-			$(document).ready(function(){
-				if($(window).width() < 800){
-					winsize = true;
-					pfgt12p();
-				}
-				else{
-					winsize = false;
-					pfgt1ap();
-				}
-			});
-
-			function pfgt12p(){
-				$('#navbar').removeClass('fixed');
-				$('#search').removeClass('fixed');
-				$('#banner').removeClass('pad');
-			}
-
-			function pfgt1ap(){
-				$('#navbar').addClass('fixed');
-				$('#search').addClass('fixed');
-				$('#banner').addClass('pad');
-			}
 		</script>
 
 		<?php include 'search_view.php';?>

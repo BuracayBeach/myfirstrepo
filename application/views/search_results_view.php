@@ -1,6 +1,6 @@
 
     <div class=""  id="results_per_page_div" hidden>
-        <div id="results_per_page_container" class="small-6">
+        <div id="results_per_page_container" >
             <form id="results_per_page_form">
 
                 <div>

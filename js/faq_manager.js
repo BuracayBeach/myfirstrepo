@@ -5,7 +5,7 @@ var customEditor;
 $('#faq_table_container').ready(function(){
     /***** EVENT ATTACHMENTS *****/
     var addFaqContainer = $('#add_faq_container');
-    addFaqContainer.closest("tr").hide();
+    addFaqContainer.closest('tr').hide();
 
     $('#edit_faq_container').closest("tr").hide();
 
@@ -25,9 +25,6 @@ $('#faq_table_container').ready(function(){
     $('#edit_faq_cancel_button').on('click',cancelEditForm);
     $('#add_faq_cancel_button').on('click',cancelAddForm);
     $('#edit_faq_form').submit(editFAQ);
-
-    customEditor = new nicEditor({iconsPath : icejjfish + "js/nicEditorIcons.gif" });
-    customEditor.panelInstance('add_answer');
 
 });
 

@@ -63,7 +63,7 @@ class Home extends CI_Controller {
         if ($is_admin){
             $this->load->view('admin_ihome_view');
             $this->load->view("announcements_manage_view");
-            $this->load->view('manage_view');
+            $this->load->view('book_manage_view');
         }
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
             $data['notifs'] = $this->notifs_model->get_all($_SESSION['username'], 0);
@@ -100,9 +100,7 @@ class Home extends CI_Controller {
 
     public function about_us(){
         $data['title'] = "eICS Lib About Us";
-        $data['page'] = 'about_us';
         $this->load->view("header", $data);
-        $this->load->view("search_results_view", $data);
         $this->load->view("about_us_view", $data);
 
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){

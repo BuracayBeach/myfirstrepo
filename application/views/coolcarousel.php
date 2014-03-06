@@ -60,12 +60,13 @@
 	}
 	#slider .slide-block p {
 		margin: 0;
+		font-size: 1.2em;
 	}
 
 
 </style>
 
-<div id="wrapper_carousel" class="small-6 column">
+<div id="wrapper_carousel" class="column">
 	<div id="slider">
 
 		<div class="slide" style="background-image: url('../myfirstrepo/images/lib2.jpg');">

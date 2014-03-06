@@ -5,6 +5,7 @@ class Book_model extends CI_Model {
     /**
      * Index Page for this controller.
      *
+     *
      * Maps to the following URL
      * 		http://example.com/index.php/welcome
      *	- or -

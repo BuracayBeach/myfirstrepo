@@ -89,7 +89,7 @@
 	                            var book_tab = $('[data-toggle="tab"]')
 	                            if (book_tab.length != 0) {
 	                            	book_tab[0].click();
-	                            } 
+	                            }
 	                            //assume rows are appended already
 	                            // summarize(searchText);
 
