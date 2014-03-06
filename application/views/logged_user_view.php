@@ -68,6 +68,9 @@
 						$('div#load-more-container').before(str);
 					}
 
+					var count = parseInt($('div#load-more-container').attr('count'));
+					if (offset + 5 - 1 >= count )
+						$('div#load-more-container').hide();
 				}
 			});
 		});

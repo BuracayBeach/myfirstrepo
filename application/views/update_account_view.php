@@ -1,4 +1,4 @@
-<div class="signup small-7 column 	">
+<div id="update_profile_container">
 
 <form class="<?php
 		if(isset($_SESSION['update_account_notif']) && $_SESSION['update_account_notif'] == "email")

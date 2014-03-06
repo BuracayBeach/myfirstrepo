@@ -35,12 +35,14 @@
 											<label for="borrowed" style="clear:right;">Borrowed</label></li>
 								        </ul>
 								    </div>
-								<hr/>';
+								';
 							}
 						?>
+
+						<hr>
 					</div>
 
-					<input searchby="book_title" id="search_text" type="search" name='search' autofocus='true' placeholder='Keywords...' maxlength='99' spellcheck='true'/>
+					<input searchby="book_title" id="search_text" type="search" name='search' autofocus='true' placeholder='Keywords...' maxlength='99' spellcheck='true' tagSearch='false'/>
 				<input id='submit_search' type="submit" name="submit_search" value="Search"/><br/>
 					<hr>
 					<?php

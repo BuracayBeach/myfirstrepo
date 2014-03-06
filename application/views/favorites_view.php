@@ -50,8 +50,10 @@ $this->load->view('favorites_view', $data);
 				<div class="book_title"> <?php echo $row->book_title; ?> </div> <br/>
 				<div class="book_no sub-2"> Book No: <?php echo $row->book_no; ?> </div> <br/>
 				<div class="date_added sub-2"> Date Added: <?php echo $row->date_added; ?> </div> <br/>
-				<?php echo "<button class='action_button favorite_button' book_no='" . $row->book_no . "'>unfavorite</button>" ?>
-				<?php echo "<button class='action_button reserve_button ".$enabler."' book_no='" . $row->book_no . "'>".$reserve."</button>" ?>			
+				<div class="button_container">
+					<?php echo "<button class='action_button favorite_button' book_no='" . $row->book_no . "'>unfavorite</button>" ?>
+					<?php echo "<button class='action_button reserve_button ".$enabler."' book_no='" . $row->book_no . "'>".$reserve."</button>" ?>			
+				</div>
 				<br/>
 
 			</div>
@@ -108,7 +110,6 @@ $this->load->view('favorites_view', $data);
 				$(this).toggleClass('btn_enabled btn_untoggle');
 			}
 		});
-
 
 		function generateWall() {
 			$(function() {  
