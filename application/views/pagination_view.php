@@ -4,7 +4,9 @@
             if (isset($page)){
                 $page_scale = 10;
                 $p_search_term = stripslashes($search_term);
-               echo "<div id='pagination' page='{$page}' maxpage='{$maxpage}' rowsperpage='{$rows_per_page}' searchterm= '{$p_search_term}' searchby='{$search_by}'>";
+               echo "<div id='pagination";
+               if (isset($pagination2)) echo "2";
+               echo"' page='{$page}' maxpage='{$maxpage}' rowsperpage='{$rows_per_page}' searchterm= '{$p_search_term}' searchby='{$search_by}'>";
                 if(isset($table) &&  count($table) > $rows_per_page){
                     $max_page = count($table) / $rows_per_page;
                     if (count($table) % $rows_per_page > 0) $max_page++;

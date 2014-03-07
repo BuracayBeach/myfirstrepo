@@ -115,6 +115,12 @@ class Book extends CI_Controller {
         echo json_encode($data);}
     }
 
+    public function search_sessionize(){
+        session_start();
+        $_SESSION['search_data'] = $_POST;
+        $_SESSION['search_data']['autopindot'] = 'true';
+    }
+
     public function search(){
         $input = null;
         $this->search_model->get_inputs($input);
@@ -174,6 +180,7 @@ class Book extends CI_Controller {
 
 
         if (isset($details['rows_per_page'])) {
+            if ($details['rows_per_page'] == 0) $details['rows_per_page'] = 10;
             $max_page = count($details['table']) / $details['rows_per_page'];
             if (count($details['table']) % $details['rows_per_page'] > 0) $max_page++;
             $details['maxpage'] = $max_page;
