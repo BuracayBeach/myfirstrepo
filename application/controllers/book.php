@@ -40,11 +40,14 @@ class Book extends CI_Controller {
         if(isset($_POST)){
         $data = $this->safeguard->array_ready_for_query($_POST);
         $new_detail = '';
-        foreach($data['detail'] as &$detail){
+        if(isset($data['detail'])){
+            foreach($data['detail'] as &$detail){
+                $new_detail .= implode("»",$detail);
+            }
 
-            $new_detail .= implode("»",$detail);
-        }
+            var_dump($data['detail']);
             var_dump($new_detail);
+        }
         if($data['type'] == 'Book' || $data['type'] == 'Journal')
             $data['abstract'] = null;
         if($data['type'] == 'Other')
@@ -94,7 +97,7 @@ class Book extends CI_Controller {
         if(isset($_GET)){
             $data['row'] = json_decode(json_encode($_GET));
             $data['row']->book_type = $data['row']->type;
-            $data['row']->status = "Available";
+            $data['row']->status = "available";
             $data['newly_added'] = true;
             echo $this->load->view('table_row_view',$data);
         }
@@ -110,6 +113,12 @@ class Book extends CI_Controller {
         $this->book_model->edit_book($data);
         $data = $this->safeguard->array_ready_for_query($data);
         echo json_encode($data);}
+    }
+
+    public function search_sessionize(){
+        session_start();
+        $_SESSION['search_data'] = $_POST;
+        $_SESSION['search_data']['autopindot'] = 'true';
     }
 
     public function search(){
@@ -171,6 +180,7 @@ class Book extends CI_Controller {
 
 
         if (isset($details['rows_per_page'])) {
+            if ($details['rows_per_page'] == 0) $details['rows_per_page'] = 10;
             $max_page = count($details['table']) / $details['rows_per_page'];
             if (count($details['table']) % $details['rows_per_page'] > 0) $max_page++;
             $details['maxpage'] = $max_page;

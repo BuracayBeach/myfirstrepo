@@ -2,6 +2,7 @@
     $('#search_table').on('click', 'tr', activate_row);
 
     $('#pagination').on('click', '.page_nav', go_to_page);
+    $('#pagination2').on('click', '.page_nav', go_to_page);
     $('.prev_nav').on('click', prev_page);
     $('.next_nav').on('click', next_page);
 
