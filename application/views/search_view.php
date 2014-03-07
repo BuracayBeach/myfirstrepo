@@ -125,7 +125,7 @@
 
 
 <?php
-	if (isset($_SESSION['search_data'])) $_SESSION['search_data']['autopindot'] = 'false';
+	if (isset($_SESSION['search_data'])) unset($_SESSION['search_data']);
 ?>
 
 

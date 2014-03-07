@@ -58,6 +58,7 @@
 						 my_input += "&tagSearch=" + searchText.attr('tagSearch')
 
 
+
 						currentPath = window.location.href
 						searchPath = icejjfish + "ihome"
 
@@ -67,7 +68,6 @@
 								data: my_input, 
 								url: icejjfish + "index.php/book/search_sessionize",
 								success: function(data, jqxhr, status){
-									console.log(data);
 									window.location.replace(icejjfish + "ihome");
 								}
 							})
