@@ -46,12 +46,11 @@
             } else  {
                 echo "<span>No results for '<strong>" . htmlspecialchars(stripslashes(trim($search_term))) . "</strong>'</span>";
             }
-
         ?>
     </table>
 
     <hr/>
-
+    <?php $pagination2 = '2'; ?>
     <?php include 'pagination_view.php';?>
 </div>
 

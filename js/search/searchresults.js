@@ -36,15 +36,9 @@
 
 				    var lastRequest;
 					function ajax_results(event){
-
-
 						event.preventDefault();
 
-						if (lastRequest && lastRequest.readyState != 4) lastRequest.abort();
-
-						// console.log(event)
-						// alert("event");
-
+						//get inputs
 						var searchForm = $('#search_form')
 						var my_input = searchForm.serialize();
 						var searchText = searchForm.find('#search_text').val()
@@ -57,55 +51,69 @@
 							$('#search_text').attr('searchby', search_by);
 						}
 
-						resultsPerPage = $('#results_per_page').val()
-						// if (r_num_valid($('#results_per_page')) == false) return;
-
-						my_input += "&page=1";
-						my_input += "&rows_per_page=" + ($('#results_per_page').val()==0?10:resultsPerPage);
-						
 						var searchText = $('#search_text')
-						my_input += "&tagSearch=" + searchText.attr('tagSearch')
-						// console.log(my_input);
-
-					    // window.location.replace(icejjfish + "ihome/");
-
-
-
-						lastRequest = $.ajax({
-							type: "post",
-							data: my_input, 
-							url: icejjfish + "index.php/book/search",
-							success: function(data, jqxhr, status){
-                                var resultContainer = $("#result_container");
-                                var recentlyAddedBooksContainer = resultContainer.find("#recently_added_books_container");
-                                 
-                                if (recentlyAddedBooksContainer.length != 0){
-	                                recentlyAddedBooksContainer.nextAll().remove();
-	                                resultContainer.append(data);
-                                } else {
-	                                resultContainer.html(data);
-	                            }
-
-	                            var book_tab = $('[data-toggle="tab"]')
-	                            if (book_tab.length != 0) {
-	                            	book_tab[0].click();
-	                            }
-	                            //assume rows are appended already
-	                            // summarize(searchText);
-
-	                            $('.hideable').hide();
-							},
-							fail: function(){
-								alert("Search Failed");
-							}
-
-			 			});
+						var resultsPerPage = $('#results_per_page').val()
+						 my_input += "&page=1";
+						 my_input += "&rows_per_page=" + ($('#results_per_page').val()==0?10:resultsPerPage);
+						 my_input += "&tagSearch=" + searchText.attr('tagSearch')
 
 
-						$('#search').removeClass('home');
-						$('.logo_main').hide();
-						$('#results_per_page_div').show();
-						return false;
+						currentPath = window.location.href
+						searchPath = icejjfish + "ihome"
+
+						if (currentPath != searchPath){
+							$.ajax({
+								type: "post",
+								data: my_input, 
+								url: icejjfish + "index.php/book/search_sessionize",
+								success: function(data, jqxhr, status){
+									console.log(data);
+									window.location.replace(icejjfish + "ihome");
+								}
+							})
+
+						} else {
+							if (lastRequest && lastRequest.readyState != 4) lastRequest.abort();
+
+							// console.log(event)
+							// alert("event");
+
+							lastRequest = $.ajax({
+								type: "post",
+								data: my_input, 
+								url: icejjfish + "index.php/book/search",
+								success: function(data, jqxhr, status){
+	                                var resultContainer = $("#result_container");
+	                                var recentlyAddedBooksContainer = resultContainer.find("#recently_added_books_container");
+	                                 
+	                                if (recentlyAddedBooksContainer.length != 0){
+		                                recentlyAddedBooksContainer.nextAll().remove();
+		                                resultContainer.append(data);
+	                                } else {
+		                                resultContainer.html(data);
+		                            }
+
+		                            var book_tab = $('[data-toggle="tab"]')
+		                            if (book_tab.length != 0) {
+		                            	book_tab[0].click();
+		                            }
+		                            //assume rows are appended already
+		                            // summarize(searchText);
+
+		                            $('.hideable').hide();
+								},
+								fail: function(){
+									alert("Search Failed");
+								}
+
+				 			});
+
+
+							$('#search').removeClass('home');
+							$('.logo_main').hide();
+							$('#results_per_page_div').show();
+							return false;
+						}
 					}
 				});
 
