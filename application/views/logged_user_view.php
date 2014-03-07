@@ -58,8 +58,7 @@
 						else if (notifs[i].type == "claim") {
 
 							str = "<div class='notif " + notifs[i].type +  "'>" + 
-							"CLAIM BOOK: <span class='book_title'" + notifs[i].book_title + "</span>" +
-							"<div class='notif_msg'>" + notifs[i].message + "</div><br/>" + 
+							"CLAIM BOOK: <span class='book_title'>" + notifs[i].book_title + "</span>" +
 							"<div class='date_added sub-2 space-top'>" + notifs[i].date_sent + "</div>" + 
 							"</div>";
 						}

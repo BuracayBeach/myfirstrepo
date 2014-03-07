@@ -97,7 +97,7 @@ $this->load->view('favorites_view', $data);
 			});
 
 			if (action_type == "unfavorite") {
-				brick = this.parentNode;
+				brick = this.parentNode.parentNode;
 				$(brick).remove();
 				generateWall();
 			}
