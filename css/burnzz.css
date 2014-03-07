@@ -7,7 +7,7 @@ h1 {
 }
 
 .space-top {
-	margin-top: 5px;
+	margin-top: 15px;
 	float: right;
 }
 
@@ -78,7 +78,6 @@ div.my_library_container button {
 div.my_library_container button.btn_disabled {
 	cursor: not-allowed;
 	background-color: #d1d1d1;
-	margin-left: 20px;
 }
 
 div.my_library_container button.btn_untoggle {
@@ -91,7 +90,6 @@ div.my_library_container button.btn_untoggle:hover {
 
 div.my_library_container button.btn_enabled {
 	background-color: #00b200;
-	margin-left: 65px;
 }
 
 div.my_library_container button.btn_enabled:hover {
@@ -131,13 +129,14 @@ div#notif-blue-glow {
 div#notifs_container {
 	font-size: 0.82em;
 	position: absolute;
-	top: 150px;
-	right: 0;
+	top: 65px;
+	right: 280px;
 	width: 25%;
 	float: right;
 	background-color: rgba(1,1,1,0.5);
 	border-radius: 15px;
 	padding: 10px;
+	z-index: 1001;
 }
 
 div.notif {

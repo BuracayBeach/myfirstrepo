@@ -86,7 +86,7 @@ $this->load->view('reserves_view', $data);
 						}
 					});
 
-					brick = this.parentNode;
+					brick = this.parentNode.parentNode;
 					$(brick).remove();
 					generateWall();
 					
