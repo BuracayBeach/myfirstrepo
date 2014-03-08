@@ -70,7 +70,7 @@ class Admin_account extends CI_Controller {
 		$data = $this->admin_account_model->get_admin($username);
 
 		if(!$data){
-			$_SESSION['login_notif'] = "Adminintrator username does not exist!";
+			$_SESSION['admin_login_notif'] = "not_exists";
 		}
 		
 		else{
@@ -78,7 +78,7 @@ class Admin_account extends CI_Controller {
 				return true;
 			}
 			else{
-				$_SESSION['login_notif'] = "Incorrect password!";
+				$_SESSION['admin_login_notif'] = "wrong_pwd";
 				return false;
 			}
 		}

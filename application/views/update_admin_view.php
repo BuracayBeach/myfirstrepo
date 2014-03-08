@@ -13,4 +13,3 @@
 </form>
 </div>
 <script src="<?php echo base_url(); ?>js/update_admin.js"></script>
-<script src="<?php echo base_url();?>js/vendor/jquery.js"></script>
