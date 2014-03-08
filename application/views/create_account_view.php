@@ -107,7 +107,7 @@
 		$duplicates = array_reverse($duplicates);
 		$duplicates_comma_separated = implode(", ", $duplicates).".";
 
-		echo"<script> alert('The following input/s already exists: $duplicates_comma_separated'); </script>";
+		echo"<script> alert('The following input/s already taken: $duplicates_comma_separated'); </script>";
 		unset($_SESSION['create_account_notif']);
 	}
 ?>

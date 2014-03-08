@@ -8,3 +8,8 @@
 		Update Profile
 	</div>
 </a>
+<a href="<?php echo base_url();?>admin_account/create_admin">
+	<div class="menulinks">
+		Create New Admin
+	</div>
+</a>

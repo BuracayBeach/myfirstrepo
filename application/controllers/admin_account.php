@@ -95,13 +95,13 @@ class Admin_account extends CI_Controller {
 		$result = $this->admin_account_model->insert_admin($new_data);
 
 		if($result){
-			$_SESSION['create_admin_notif'] = "Succesfully created admin!";
-			$this->backtohome();
+			$_SESSION['create_admin_notif'] = "create_admin_success";
+			$this->create_admin();
 		}
 
 		else{
-			$_SESSION['create_admin_notif'] = "Username exists!";
-			redirect(site_url("admin_account/create_admin"));
+			$_SESSION['create_admin_notif'] = "username_exist";
+			$this->create_admin();
 		}
 	}
 
