@@ -65,7 +65,7 @@ class Home extends CI_Controller {
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin){
             $this->load->view('admin_ihome_view', $show_ann);
-            if ($show_announcements) $this->load->view("announcements_manage_view");
+            /*if ($show_announcements)*/ $this->load->view("announcements_manage_view");
             $this->load->view('book_manage_view');
         }
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){

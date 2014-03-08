@@ -48,11 +48,12 @@ function showAddForm(){
     addContainer.show();
     $(addContainer).find('#add_book_no').focus();
 }
-function cancelAdd(event){
-    event.preventDefault();
+function cancelAdd(){
     var addContainer = $('#add_container');
+    addContainer.find('.detail_content,.detail_name,.detail_name+br,.detail_content+br').remove();
     addContainer.hide();
     addContainer.find('form')[0].reset();
+    return false;
 }
 function addBook(event){
     event.preventDefault();  /* stop form from submitting normally */
@@ -76,18 +77,16 @@ function addBook(event){
                         alert("Sorry! There was a problem processing your action.");
                     });
 
-                addForm.closest('div').hide();
                 $('[data-toggle="tab"]')[1].click();
             }else{
                alert('Cannot add duplicate material.')
             }
         });
 
-        this.reset();
+        cancelAdd();
     }else{
         errors = "Cannot continue action because of the following errors:<br/>" + errors;
         $(this).closest('div').find('.errors').html(errors);
-        //prompt error;
     }
 }
 /***** END ADD FUNCTIONS *****/
@@ -246,8 +245,8 @@ function deleteBook(){
 /***** END DELETE FUNCTIONS *****/
 /***** FUNCTION FOR OTHER DATA *****/
 function generateInputDetail(){
-    var detailHTML = '<input class="detail_name" maxlength="20" name="detail[][name]"/><br/>' +
-        '<textarea class="detail_content" maxlength="255" name="detail[][content]"></textarea><br/>';
+    var detailHTML = '<input type="text" title="Name of the Detail. (ie. Subject, Volume)" class="form-control detail_name" placeholder="Detail Name" maxlength="20" name="detail[][name]"/>' +
+        '<textarea class="form-control detail_content" placeholder="Detail" maxlength="255" name="detail[][content]"></textarea>';
 
     $(this).nextAll('.add_button').before(detailHTML);
     var detailName = $(this).nextAll('.detail_name:last');
