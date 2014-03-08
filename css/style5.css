@@ -123,7 +123,7 @@ SEARCHBAR
 #search{
     width: 15%;
     background: transparent;
-    position: absolute;
+    position: relative;
     z-index: 40;
 }
 
@@ -451,7 +451,7 @@ ERROR
     font-size:100% !important;
     width:50% !important;
     color: white;
-    height:40%;
+    height:35px;
     margin-left: 20%;
     margin-top: 2%;
 }
