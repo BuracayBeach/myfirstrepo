@@ -209,9 +209,9 @@ function validateFirstName(){
 	str=userForm.name_first.value;
 	msg="";
 
-	if (str=="") msg+="Required. ";
-	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input. ";
-	else if(!str.match(/^([A-Z]+[\w]*(\s)*)+$/) && str!="")	msg+="Start with a capital letter.";
+	if (str=="") msg+="Required";
+	else if (!str.match(/^[A-Za-z\-\'\s]+$/))  msg+="Invalid Input. ";
+	else if(!str.match(/^([A-Z]+[\w\-\s\']*(\s)*)+$/) && str!="")	msg+="Start with a capital letter.";
 	document.getElementsByName("span name_first")[0].innerHTML=msg;
 
 	if(msg==""){
@@ -232,9 +232,9 @@ function validateMiddleName(){
 	str=userForm.name_middle.value;
 	msg="";
 
-	if (str=="") msg+="Required. ";
-	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input. ";
-	else if(!str.match(/^([A-Z]+[\w]*(\s)*)+$/) && str!="")	msg+="Start with a capital letter.";
+	if (str=="") msg+="Required";
+	else if (!str.match(/^[A-Za-z\-\'\s]+$/))  msg+="Invalid Input. ";
+	else if(!str.match(/^([A-Z]+[\w\-\s\']*(\s)*)+$/) && str!="")	msg+="Start with a capital letter.";
 	document.getElementsByName("span name_middle")[0].innerHTML=msg;
 
 	if(msg==""){ 
@@ -256,7 +256,7 @@ function validateLastName(){
 	msg="";
 
 	if (str=="") msg+="Required";
-	else if (!str.match(/^[\w\-'\s]+$/))  msg+="Invalid Input";
+	else if (!str.match(/^[A-Za-z\-\'\s]+$/))  msg+="Invalid Input. ";
 	document.getElementsByName("span name_last")[0].innerHTML=msg;
 
 	if(msg==""){
