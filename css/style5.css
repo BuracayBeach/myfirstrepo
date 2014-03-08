@@ -16,7 +16,6 @@ BANNER
     height: 90px;
     background: #222930;
     position: relative;
-    clear: both;
     border-bottom: 1px solid white;
 }
 
@@ -35,11 +34,6 @@ NAVBAR
     position: relative;
     clear: both;
     z-index: 40;
-}
-
-#navbar.fixed{
-  position: fixed;
-  top:0;
 }
 
 #element-cont{
@@ -116,6 +110,13 @@ NAVBAR
     text-decoration: none;
     color: rgba(255,255,255,0.7);
 }
+
+#navbar.fixed{
+  position: fixed;
+  top:0px;
+}
+
+
 /*---------------------------------------
 SEARCHBAR
 ---------------------------------------*/
@@ -526,8 +527,6 @@ OVERALLS
 }
 .fixed{
     position: fixed;
-    margin-top: 10%;
-
 }
 .readmore-js-toggle{
     font-family:"Segoe UI Light" !important;
