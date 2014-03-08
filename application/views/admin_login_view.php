@@ -23,3 +23,13 @@
 	</div>
 
 </div>
+
+<?php 
+	if(isset($_SESSION['admin_login_notif']) && $_SESSION['admin_login_notif'] == "not_exists")
+		echo "<script> alert('Username does not exist!') </script>";
+
+	elseif(isset($_SESSION['admin_login_notif']) && $_SESSION['admin_login_notif'] == "wrong_pwd")
+		echo "<script> alert('Wrong password!') </script>";
+
+	unset($_SESSION['admin_login_notif']);
+?>
