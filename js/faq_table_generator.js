@@ -2,7 +2,7 @@
  * Created by isnalla on 2/23/14.
  */
 
-var tableHTML = '<table id="faq_table"  class="small-7"></table>';
+var tableHTML = '<table id="faq_table"></table>';
 
 function generateFaqTable(isAdmin){
     $.post("index.php/faq/get_all_faq",function(data){
@@ -39,10 +39,10 @@ function generateFaqRow(data,isAdmin){
     var rowHTML = '<tr faq_id="'+data.id+'" class="faq_table_row">'+
                     '<td class="faq_table_data">' +
                         ' <span ' + editable +
-                        ' class="question" name="question" ><h5>'+data.question+
-                        '</h5></span><br/><br/>'+
+                        ' class="question" name="question" >'+data.question+
+                        '</span><br/><br/>'+
                         '<section '+
-                        ' class="answer" name="answer" >'+data.answer+'</section> <br/>'+
+                        ' class="answer" name="answer" >'+data.answer+'</section>'+
                         prevDataInputs + editButtons + buttons + '<hr/>' +
                     '</td>'+
                     '</tr>';
