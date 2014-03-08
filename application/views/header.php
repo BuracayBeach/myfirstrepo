@@ -33,6 +33,9 @@
 	<body>
 
 	<div id="site-cont">
+		<div id="banner">
+			This is the banner
+		</div>
 		<div id="navbar" class="">
 			<div id="element-cont">
 				<div class="left">
@@ -96,6 +99,74 @@
 			</div>
 		</div>
 
+
+
+		<script type="text/javascript">
+			var winsize = false;
+			var bagoto = true;
+
+			if($(window).width < 800)
+				winsize = true;
+			console.log("NAGTRUE" + $(window).width());
+
+
+			$(window).on("resize", function(){
+				if($(window).width() < 800){
+					winsize = true;
+					pfgt12p();
+					$(window).scrollTop(90);
+//					console.log("NOT DAPAT" + $(window).width());
+				}
+				else if($(window).scrollTop() > 90){
+					winsize = false;
+					pfgt1ap();
+//					console.log("FIXED DAPAT" + $(window).width());
+				}
+
+//				console.log("RESIZE");
+
+			});
+			$(window).scroll(function () {
+				if(!winsize && !bagoto){
+					if ($(window).scrollTop() < 90) {
+						pfgt12p();
+						console.log("REMOVE");
+					}
+					else if ($(window).scrollTop() > 90) {
+						pfgt1ap();
+						console.log("ADD");
+					}
+				}
+				console.log("SCROLL");
+			});
+
+
+			$(document).ready(function(){
+/*				if($(window).width() < 800){
+					pfgt12p();
+					console.log("ASDFASDF");
+					console.log($(window).scrollTop());
+				}
+				else{
+					pfgt1ap();
+					console.log($(window).scrollTop());
+				}
+				console.log("READY");
+*/				bagoto = false;
+			});
+
+			function pfgt12p(){
+				$('#navbar').removeClass('fixed');
+				$('#search').removeClass('fixed');
+				$('#banner').removeClass('pad');
+			}
+
+			function pfgt1ap(){
+				$('#navbar').addClass('fixed');
+				$('#search').addClass('fixed');
+				$('#banner').addClass('pad');
+			}
+		</script>
 
 		<?php include 'search_view.php';?>
 
