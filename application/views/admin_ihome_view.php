@@ -13,7 +13,7 @@
 			<?php include 'recently_added_view.php';?>
 		</div>
 		<div class="tab-pane" id="tab3">
-			<?php /*if ($show_announcements)*/ include 'announcements_view.php';?>
+			<?php include 'announcements_view.php';?>
 		</div>
 		<div class="tab-pane" id="tab4">
 			<?php include 'notifications_custom_view.php';?>

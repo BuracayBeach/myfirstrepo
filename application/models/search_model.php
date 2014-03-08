@@ -284,7 +284,8 @@ class Search_model extends CI_Model {
         $tag_matched = false;
 
         $tagSearch = strtolower($input['tag_search']);
-        $tagSearches = explode(' ' ,str_replace(',',' ',$tagSearch));
+        // $tagSearches = explode(' ' ,str_replace(',',' ',$tagSearch));
+        $tagSearches = explode(' ' ,preg_replace("/[^a-zA-Z0-9]+/", " ", $tagSearch));
 
         foreach($tagSearches as $tagch){
             array_push($search_terms, $tagch);

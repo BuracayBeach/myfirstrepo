@@ -59,27 +59,26 @@ class Home extends CI_Controller {
         $data['page'] = 'index';
         $this->load->view("header", $data);
 
-        $show_announcements =  (isset($_SESSION) && isset($_SESSION['search_data']) && isset($_SESSION['search_data']['autopindot']));
-        $show_ann['show_announcements'] = $show_announcements;
-
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin){
-            $this->load->view('admin_ihome_view', $show_ann);
-            /*if ($show_announcements)*/ $this->load->view("announcements_manage_view");
+            $this->load->view('admin_ihome_view');
+            $this->load->view("announcements_manage_view");
             $this->load->view('book_manage_view');
         }
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
             $data['notifs'] = $this->notifs_model->get_all($_SESSION['username'], 0);
             $data['notifs_count'] = $this->notifs_model->count_by_username($_SESSION['username']);
-            if ($show_announcements) $this->load->view("announcements_view");
+            $this->load->view("search_results_view");
+            $this->load->view("announcements_view");
             $this->load->view('notifications_view', $data);
         }
 
         if(!isset($_SESSION['type'])){
-            if ($show_announcements) $this->load->view("announcements_view");
+            $this->load->view("search_results_view");
+            $this->load->view("announcements_view");
         }
 
-        if (!$is_admin) $this->load->view("search_results_view");
+
         $this->load->view("footer");
     }
 
