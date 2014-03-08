@@ -7,8 +7,6 @@ $('#faq_table_container').ready(function(){
     var addFaqContainer = $('#add_faq_container');
     addFaqContainer.closest('tr').hide();
 
-    $('#edit_faq_container').closest("tr").hide();
-
     $('#add_faq_button').on("click",showAddForm);
     $('#add_faq_form').submit(addFAQ);
 
@@ -22,9 +20,10 @@ $('#faq_table_container').ready(function(){
     //$(this).on('click','.edit_faq_button',fillEditFaqForm);
     faqTableContainer.on('click','.delete_faq_button',deleteFaq);
 
-    $('#edit_faq_cancel_button').on('click',cancelEditForm);
     $('#add_faq_cancel_button').on('click',cancelAddForm);
     $('#edit_faq_form').submit(editFAQ);
+
+    customEditor = new nicEditor({iconsPath : 'http://localhost/myfirstrepo/js/nicEditorIcons.gif'});
 
 });
 
@@ -63,7 +62,6 @@ function updateChanges(){
 
 function setEditTarget(){
     $('#add_faq_container').closest("tr").hide();
-
     var faqTableContainer =  $('#faq_table_container');
     var activeRow = faqTableContainer.find('.active');
     if(activeRow.length != 0){
@@ -83,21 +81,24 @@ function setEditTarget(){
     row.find('.cancel_faq_button').show();
 
     customEditor.panelInstance('answer_'+row.attr('faq_id'));
-    row.find('.nicEdit-main')[0].focus();
+    row.find('.question').addClass('editable');
+    row.find('.question')[0].focus();
 
 }
 
 function cancelChanges(){
     var row = $(this).closest('tr');
     row.removeClass('active');
-    row.find('.question h5').text(row.find('.prev_question').text());
+    row.find('.question').text(row.find('.prev_question').text());
     row.find('.question').attr("contenteditable",false);
+    row.find('.question').removeClass('editable');
     customEditor.removeInstance('answer_'+row.attr('faq_id'));
     row.find('.answer_editor').hide();
     row.find('.answer').show();
     row.find('.save_faq_button').hide();
     row.find('.edit_faq_button').show();
     row.find('.cancel_faq_button').hide();
+
 }
 
 
@@ -137,18 +138,20 @@ function deleteFaq(event){
 
 function showAddForm(event){
     event.preventDefault();
-    var editFaqContainer = $('#faq_table').find('.active');
-    var tr = editFaqContainer.closest('tr');
-    cancelChanges.call(tr);
+    if(!$('#add_faq_container').closest('tr').is(":visible")){
+        var editFaqContainer = $('#faq_table').find('.active');
+        var tr = editFaqContainer.closest('tr');
+        cancelChanges.call(tr);
 
-    if(rowBeingEdited != undefined && rowBeingEdited.length > 0)
-        rowBeingEdited.show();
-    var addFaqContainer =
-        $('#add_faq_container');
-    addFaqContainer.closest("tr").show();
-    addFaqContainer.show();
-    addFaqContainer.find('#add_question').focus();
+        var addFaqContainer = $('#add_faq_container');
+        addFaqContainer.closest("tr").fadeIn();
+        addFaqContainer.show();
+
+        customEditor.panelInstance('add_answer');
+        addFaqContainer.find('#add_question')[0].focus();
+    }
 }
+
 function addFAQ(event){
     event.preventDefault();
     var editor = nicEditors.findEditor('add_answer');
@@ -177,42 +180,10 @@ function addFAQ(event){
         })
 }
 
-var rowBeingEdited;
-//function fillEditFaqForm(event){
-//    event.preventDefault();
-//
-//    if(rowBeingEdited != undefined)
-//        rowBeingEdited.show();
-//    $('#add_faq_container').closest('tr').hide();
-//    var id = $(this).closest("tr").attr('faq_id');
-//    $.post("index.php/faq/get_faq",{"id":id},function(data){
-//        var data = JSON.parse(data)[0];
-//        console.log(data);
-//        var editForm = $('#edit_faq_form');
-//
-//        editForm.find('#edit_faq_id').val(id);
-//        editForm.find('#edit_question').val(data.question);
-//        editForm.find('#edit_answer').val(data.answer);
-//
-//    });
-//
-//    rowBeingEdited = $(this).closest("tr");
-//    rowBeingEdited.hide();
-//    $('#edit_faq_container').closest('tr').show();
-//    $('#edit_answer').focus();
-//}
-
-
-
-function cancelEditForm(event){
-    event.preventDefault();
-    $(this).closest('tr').hide();
-    rowBeingEdited.show();
-    $(this).closest('form')[0].reset();
-}
-
 function cancelAddForm(event){
     event.preventDefault();
     $(this).closest('tr').hide();
+    customEditor.removeInstance('add_answer');
     $(this).closest('form')[0].reset();
+
 }

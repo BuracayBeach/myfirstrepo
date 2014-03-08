@@ -1,6 +1,6 @@
 <div id="recently_added_books_container" class="column">
     <span id="no_recently">There are no recently added material for this session.</span><br/>
-    <table id="recently_added_books_table" border="1" width="60%">
+    <table id="recently_added_books_table" border="1">
         <tr>
             <th>Identification</th>
             <th>Material</th>
