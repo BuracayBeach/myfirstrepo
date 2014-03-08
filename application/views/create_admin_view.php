@@ -10,3 +10,12 @@
 <a href="<?php echo base_url();?>index.php/admin_account/adminlogin">Back</a>
 <script src="<?php echo base_url(); ?>js/create_admin.js"></script>
 <script src="<?php echo base_url();?>js/vendor/jquery.js"></script>
+
+<?php 
+	if(isset($_SESSION['create_admin_notif']) && $_SESSION['create_admin_notif'] == "create_admin_success")
+		echo "<script> alert('Successfully created admin!') </script>";
+	else if(isset($_SESSION['create_admin_notif']) && $_SESSION['create_admin_notif'] == "username_exist")
+		echo "<script> alert('Username already taken!') </script>";
+	
+	unset($_SESSION['create_admin_notif']);
+?>
