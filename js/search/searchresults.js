@@ -29,8 +29,8 @@
 
 
 				$(document).ready(function() {
-				    $('#sidebar-wrapper li').unbind();
-				    $('#sidebar-wrapper li').bind('click', ajax_results);
+				    // $('#sidebar-wrapper li').unbind();
+				    // $('#sidebar-wrapper li').bind('click', ajax_results);
 
 					$('#search_form').unbind('submit').submit(ajax_results); //prevent form from submitting/refreshing
 

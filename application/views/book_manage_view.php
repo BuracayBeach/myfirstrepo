@@ -105,6 +105,5 @@
         <button id="edit_cancel_button" name="edit_cancel_button">Cancel</button>
     </form>
 </div>
-</div>
 <script src="<?php echo base_url();?>js/manage_validation.js" ></script>
 <script src="<?php echo base_url();?>js/book_manager.js" ></script>
