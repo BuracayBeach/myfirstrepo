@@ -103,11 +103,6 @@
 
 		<script type="text/javascript">
 			var winsize = false;
-			var bagoto = true;
-
-			if($(window).width < 800)
-				winsize = true;
-			console.log("NAGTRUE" + $(window).width());
 
 
 			$(window).on("resize", function(){
@@ -127,17 +122,18 @@
 
 			});
 			$(window).scroll(function () {
-				if(!winsize && !bagoto){
+				if(!winsize){
 					if ($(window).scrollTop() < 90) {
 						pfgt12p();
-						console.log("REMOVE");
+				//		console.log("REMOVE");
 					}
-					else if ($(window).scrollTop() > 90) {
+					if ($(window).scrollTop() >= 90 && $(window).width() > 800) {
 						pfgt1ap();
-						console.log("ADD");
+				//		console.log("ADD");
 					}
+				//	console.log("FIXED DAPAT" + $(window).width() + "  " +$(window).scrollTop());
 				}
-				console.log("SCROLL");
+//				console.log("SCROLL");
 			});
 
 
@@ -152,7 +148,9 @@
 					console.log($(window).scrollTop());
 				}
 				console.log("READY");
-*/				bagoto = false;
+
+*/
+//				console.log("DITONAOH!");
 			});
 
 			function pfgt12p(){
