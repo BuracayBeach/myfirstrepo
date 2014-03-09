@@ -16,6 +16,13 @@
 </a>
 
 <script type="text/javascript">
+
+	$(document).mouseup(function (e) {
+	    var container = $("div#notifs_container");
+
+	    if (!container.is(e.target) && container.has(e.target).length === 0)
+	        container.hide();
+	});
 	
 	$(document).ready( function() {
 
