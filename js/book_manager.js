@@ -245,8 +245,8 @@ function deleteBook(){
 /***** END DELETE FUNCTIONS *****/
 /***** FUNCTION FOR OTHER DATA *****/
 function generateInputDetail(anchor,index){
-    var detailHTML = '<input type="text" title="Name of the Detail. (ie. Subject, Volume)" class="form-control detail_name" required="" placeholder="Detail Name" maxlength="20" name="other_details['+index+'][name]"/>' +
-        '<textarea class="form-control detail_content" placeholder="Detail" maxlength="255" name="other_details['+index+'][content]"></textarea>';
+    var detailHTML = '<input type="text" title="Name of the Detail. (ie. Subject, Volume)" class="form-control detail_name" required="" placeholder="Detail Name" maxlength="20" name="other_detail['+index+'][name]"/>' +
+        '<textarea class="form-control detail_content" placeholder="Detail" maxlength="255" name="other_detail['+index+'][content]"></textarea>';
 
     $(anchor).nextAll('.add_button').before(detailHTML);
     var detailName = $(anchor).nextAll('.detail_name:last');

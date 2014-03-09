@@ -16,9 +16,9 @@
             $r = htmlspecialchars(stripslashes($r));
         }
 
-        if($row->other_details != null){
-            $row->other_details = explode("¦",$row->other_details);
-            foreach($row->other_details as &$detail){
+        if($row->other_detail != null){
+            $row->other_detail = explode("¦",$row->other_detail);
+            foreach($row->other_detail as &$detail){
                 $arr = explode("»",$detail);
                 $detail = [];
                 $detail['name'] = $arr[0];
@@ -38,9 +38,9 @@
             }
         }
 
-        if($row_copy->other_details != null){
-            $row_copy->other_details = explode("¦",$row_copy->other_details);
-            foreach($row_copy->other_details as &$detail){
+        if($row_copy->other_detail != null){
+            $row_copy->other_detail = explode("¦",$row_copy->other_detail);
+            foreach($row_copy->other_detail as &$detail){
                 $arr = explode("»",$detail);
                 $detail = [];
                 $detail['name'] = $arr[0];
@@ -49,6 +49,7 @@
         }
 
     }
+
 
     echo "<tr active='false'>";
         echo "<td align='center'>" .
