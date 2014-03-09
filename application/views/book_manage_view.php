@@ -1,7 +1,6 @@
 <button class="" id="show_add_form_button" name="show_add_form_button" >Add Material</button>
 <div id="material_form_container">
-
-    <form class="form-horizontal">
+    <form class="well form-horizontal" id="material_form">
         <fieldset>
             <!-- Text input-->
             <div class="control-group">
@@ -54,7 +53,7 @@
             </div>
 
             <!-- Textarea -->
-            <div class="control-group">
+            <div class="control-group abstract_container">
                 <label class="control-label" for="abstract">Abstract:</label>
                 <div class="controls">
                     <textarea class="form-control" id="abstract" name="abstract"></textarea>
@@ -113,8 +112,6 @@
                     <p class="help-block"> </p>
                 </div>
             </div>
-
-            <!-- Textarea -->
             <div class="control-group">
                 <label class="control-label" for="detail_content">Detail:</label>
                 <div class="controls">

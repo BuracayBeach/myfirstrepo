@@ -1,7 +1,11 @@
 $('#result_container,#faq_container').ready(function(){
     /***** EVENT ATTACHMENTS *****/
-    $('#show_add_form_button').on('click',showAddForm);
-    $('#add_cancel_button').on('click',cancelAdd);
+    $('#show_add_form_button').on('click',function(){
+         showForm("add");
+    });
+    $('#add_cancel_button').on('click',function(){
+        cancelForm();
+    });
     $('#add_book_form').submit(addBook);
 
     var contentContainer = $('#result_container');
@@ -24,7 +28,7 @@ $('#result_container,#faq_container').ready(function(){
     /* Hide Forms Initially */
     $('#add_date_published,#edit_date_published').attr('max',new Date().getFullYear());
 
-    $('#add_container').hide();
+    $('#material_form_container').hide();
     $('#edit_container').hide();
 
     $("#show_add_form_button").on("click", function() {
@@ -42,15 +46,27 @@ $('#recently_added_books_container').ready(function(){
 });
 
 /***** ADD FUNCTIONS *****/
-function showAddForm(){
-    var addContainer = $('#add_container');
-    $('#edit_container').hide();
+function showForm(action){
+    var materialFormContainer = $('#material_form_container');
+    if(action == "add"){
+        materialFormContainer.find('form')[0].reset();
 
-    $('#add_other').hide();
-    $('.abstract_container').hide();
-    addContainer.slideDown();
-    $(addContainer).find('#add_book_no').focus();
+        $('#other').hide();
+        $('.abstract_container').hide();
+        materialFormContainer.slideDown();
+        $(materialFormContainer).find('#book_no').focus();
+    }
 }
+
+function cancelForm() {
+    var materialFormContainer = $('#material_form_container');
+
+    materialFormContainer.find('.detail_name');
+    materialFormContainer.hide();
+
+    return false;
+}
+
 function cancelAdd(){
     var addContainer = $('#add_container');
     addContainer.find('.detail_content,.detail_name,.detail_name+br,.detail_content+br').remove();
@@ -242,8 +258,14 @@ function deleteBook(){
 /***** END DELETE FUNCTIONS *****/
 /***** FUNCTION FOR OTHER DATA *****/
 function generateInputDetail(anchor,index){
-    var detailHTML = '<input type="text" title="Name of the Detail. (ie. Subject, Volume)" class="form-control detail_name" required="" placeholder="Detail Name" maxlength="20" name="other_detail['+index+'][name]"/>' +
-        '<textarea class="form-control detail_content" placeholder="Detail" maxlength="255" name="other_detail['+index+'][content]"></textarea>';
+
+    var detailHTML =
+        '<div class="control-group>"' +
+            '<label class="control-label">Detail Name:</label>' +
+            '<input type="text" title="Name of the Detail. (ie. Subject, Volume)" class="form-control detail_name" required="" placeholder="Detail Name" maxlength="20" name="other_detail['+index+'][name]"/>' +
+            '<label class="control-label">Detail:</label>' +
+            '<textarea class="form-control detail_content" placeholder="Detail" maxlength="255" name="other_detail['+index+'][content]"></textarea>' +
+        '</div>';
 
     $(anchor).nextAll('.add_button').before(detailHTML);
     var detailName = $(anchor).nextAll('.detail_name:last');
