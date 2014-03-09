@@ -18,8 +18,11 @@
 		<!-- start edit by Carl Adrian P. Castueras -->
 		<div id="account_log">
 			<h4>Account Log</h4>
-			<label for="log_page_size">Logs Per Page</label>
-			<input type= "number" id="log_page_size" min="1" value="5" style="width:50px"/>
+			<div id="logsPerPage">
+				<label for="log_page_size">Logs Per Page</label>
+				<input type= "number" id="log_page_size" min="1" value="5" style="width:40px"/>
+			</div>
+			<br>
 			<div id="logs_pagination" page='1' pagecount='1'>
 				
 			</div>
