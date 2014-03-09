@@ -129,7 +129,9 @@
     echo "><span class='article_abstract'>" . $row_copy->abstract . '<span></td>';
 
     echo "<td book_data='other_detail'><span class='article_abstract'>";
-    if (isset($detail)) echo $detail['name'] . ': ' . $detail['content'];
+    if (isset($detail)) {
+        echo '<span detail="name">' . $detail['name'] . '</span>: <span detail="content">' . $detail['content'] . '<span>';
+    }
     echo '<span></td>';
 
     echo "</tr>";
