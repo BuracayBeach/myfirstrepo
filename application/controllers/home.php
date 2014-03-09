@@ -283,6 +283,16 @@ class Home extends CI_Controller {
         $this->load->view("search_results_view",$data);
     }
 
+    public function delete_admins()
+    {
+        $data['title'] = "Delete an Admin";
+        $this->load->view("header", $data);
+        $this->load->view("delete_admin_view");
+        $this->load->view("footer");
+        //put loading and stuff here
+        $this->load->view("search_results_view",$data);
+    }
+
 }
 
 /* End of file booker.php */

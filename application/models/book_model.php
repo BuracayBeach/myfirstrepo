@@ -63,7 +63,7 @@ class Book_model extends CI_Model {
             ",book_title='".$data['book_title']."'".
             ",book_type='".$data['type']."'".
             ",abstract=".($data['abstract']==null?'null':("'".$data['abstract']."'")).
-            ",status='".$data['book_status']."'".
+            ",status='".$data['status']."'".
             ",author='".$data['author']."'".
             ",description='".$data['description']."'".
             " ,publisher='".$data['publisher']."'".

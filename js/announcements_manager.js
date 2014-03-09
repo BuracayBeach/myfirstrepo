@@ -1,8 +1,8 @@
 $('#announcement_container').ready(function(){
     /*** ATTACH EVENT LISTENERS ***/
     $('#add_announcement_button').on('click',showAddAnnouncementForm);
-    $('#add_announcement_cancel_button').on('click',cancelForm);
-    $('#edit_announcement_cancel_button').on('click',cancelForm);
+    $('#add_announcement_cancel_button').on('click',cancelAnnouncementForm);
+    $('#edit_announcement_cancel_button').on('click',cancelAnnouncementForm);
     $('#add_announcement_form').submit(addAnnouncement);
 
     var announcementContainer =  $('#announcements_container');
@@ -30,18 +30,21 @@ $('#announcement_container').ready(function(){
 function showAddAnnouncementForm(event){
     event.preventDefault();
     $('[data-toggle="tab"]')[2].click();
+    $('#cancel_button').click();
     $('#edit_announcement_container').hide();
-    $('#add_announcement_container').slideDown();
+    $('#add_announcement_form')[0].reset();
+    $('#add_announcement_container').slideToggle();
     $('#add_announcement_title').focus();
 }
 
 function fillEditAnnouncementForm(event){
     event.preventDefault();
     $('#add_announcement_container').hide();
+    $('#edit_announcement_cancel_button').click();
+    $('#cancel_button').click();
 
     //this = edit button
     var announcement_id = $(this).closest('div').attr('announcement_id');
-
     $.post("index.php/announcement/get_announcement",{"announcement_id":announcement_id},function(data){
         try{
             var data = JSON.parse(data)[0];
@@ -58,7 +61,7 @@ function fillEditAnnouncementForm(event){
         }
     });
 
-    $('#edit_announcement_container').slideDown();
+    $('#edit_announcement_container').slideToggle();
     $('#edit_announcement_content').focus();
 }
 
@@ -128,7 +131,7 @@ function deleteAnnouncement(event){
     }
 }
 
-function cancelForm(){
+function cancelAnnouncementForm(){
     $(this).closest('div').hide();
     $(this).closest('form')[0].reset();
     return false;

@@ -65,7 +65,7 @@ class User_account extends CI_Controller {
 		}
 
 		else{
-			$this->log_in();
+			redirect(base_url());	
 		}
 	}
 
