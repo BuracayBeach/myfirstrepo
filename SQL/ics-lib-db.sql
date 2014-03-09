@@ -305,7 +305,7 @@ INSERT INTO `our` (`student_no`, `name_first`, `name_middle`, `name_last`) VALUE
 ('2012-56916', 'Sakiko', 'Asada', 'Kamuta'),
 ('2013-14344', 'Ryan', 'Emerson', 'Pruitt'),
 ('2013-33310', 'Richard', 'Kogan', 'Howle'),
-('2010-54795', 'Daniëlla', 'Roelfsema', 'Spoelder'),
+('2010-54795', 'Daniella', 'Roelfsema', 'Spoelder'),
 ('2014-51628', 'Liane', 'Pomerleau', 'Verreau'),
 ('2010-47325', 'Feng', 'Fang', 'Chu'),
 ('2011-61859', 'Otis', 'McCollum', 'Lucky'),
