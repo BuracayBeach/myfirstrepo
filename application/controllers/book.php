@@ -142,7 +142,7 @@ class Book extends CI_Controller {
         // var_dump($details);
         if (isset($_POST['page'])) $details['page'] = $_POST['page'];
         if (isset($_POST['rows_per_page'])) $details['rows_per_page'] = $_POST['rows_per_page'];
-        if ($details['search_by'] == 'date_published') $details['spell_check'] = false;
+        // if ($details['search_by'] == 'date_published') $details['spell_check'] = false;
 
 
         //construct query and get the array of rows from database
