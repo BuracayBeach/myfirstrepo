@@ -12,5 +12,5 @@
 
 	<form method="POST" action="<?php echo base_url()?>ihome">
 		<div class="form-group"><input class="form-control" id="search_text" type="search" name='home_search_text' autofocus='true' placeholder='Keywords...' maxlength='99'  /></div>
-		<input class="btn btn-primary" id='submit_search' type="submit" name="submit_search" value="Search"/><br/>
+		<input class="btn btn-primary" id='google_submit_search' type="submit" name="submit_search" value="Search"/><br/>
 	</form>

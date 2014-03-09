@@ -374,7 +374,7 @@ class Search_model extends CI_Model {
 
     function get_sorted_table($table, $input, $spell_check, &$terms_to_suggest){
         if ($table == null) return null;
-        if (trim($input['search_term'])=='') return $table;
+        if (trim($input['search_term'])=='' && $input['tag_search'] == 'false') return $table;
 
         $points = null;
         $input['search_term'] = strtolower($input['search_term']);
