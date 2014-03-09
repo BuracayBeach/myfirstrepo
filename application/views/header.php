@@ -56,10 +56,11 @@
 	<body>
 
 	<div id="site-cont">
-		<div id="banner">
-			This is the banner
-		</div>
-		<div id="navbar" class="">
+		<?php
+			if($title != "eICS Lib")
+				include 'banner_view.php';
+		?>
+		<div id="navbar" class="<?php if($title == "eICS Lib") echo "default";?>">
 			<div id="element-cont">
 				<div class="left">
 					<a href="<?php echo base_url();?>ihome">
@@ -143,47 +144,23 @@
 					winsize = true;
 					pfgt12p();
 					$(window).scrollTop(90);
-//					console.log("NOT DAPAT" + $(window).width());
 				}
 				else if($(window).scrollTop() > 90){
 					winsize = false;
 					pfgt1ap();
-//					console.log("FIXED DAPAT" + $(window).width());
 				}
 
-//				console.log("RESIZE");
 
 			});
 			$(window).scroll(function () {
 				if(!winsize){
 					if ($(window).scrollTop() < 90) {
 						pfgt12p();
-				//		console.log("REMOVE");
 					}
 					if ($(window).scrollTop() >= 90 && $(window).width() > 800) {
 						pfgt1ap();
-				//		console.log("ADD");
 					}
-				//	console.log("FIXED DAPAT" + $(window).width() + "  " +$(window).scrollTop());
 				}
-//				console.log("SCROLL");
-			});
-
-
-			$(document).ready(function(){
-/*				if($(window).width() < 800){
-					pfgt12p();
-					console.log("ASDFASDF");
-					console.log($(window).scrollTop());
-				}
-				else{
-					pfgt1ap();
-					console.log($(window).scrollTop());
-				}
-				console.log("READY");
-
-*/
-//				console.log("DITONAOH!");
 			});
 
 			function pfgt12p(){
