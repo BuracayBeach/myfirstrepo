@@ -33,7 +33,9 @@ class Reserve_Model extends CI_Model {
     }
 
 	public function status_reserved($book_no) {
-		$lend = $this->db->query("SELECT COUNT(*) count FROM lend WHERE book_no LIKE '{$book_no}'");
+		$lend = $this->db->query("SELECT COUNT(*) count FROM lend WHERE
+												book_no LIKE '{$book_no}' AND
+												date_returned IS NULL");
 		$lend = $lend->row_array();
 
 		if ($lend['count'] != 1)
@@ -42,7 +44,9 @@ class Reserve_Model extends CI_Model {
 
 	public function status_update($book_no) {
 		$reserves = $this->db->query("SELECT COUNT(*) count FROM reserves WHERE book_no LIKE '{$book_no}'");
-		$lend = $this->db->query("SELECT COUNT(*) count FROM lend WHERE book_no LIKE '{$book_no}'");
+		$lend = $this->db->query("SELECT COUNT(*) count FROM lend WHERE
+												book_no LIKE '{$book_no}' AND
+												date_returned IS NULL");
 
 		$reserves = $reserves->row_array();
 		$lend = $lend->row_array();
