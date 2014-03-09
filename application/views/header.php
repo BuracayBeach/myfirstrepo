@@ -116,6 +116,15 @@
 							Help
 						</div>
 					</a>
+					<?php
+						if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type'] == "admin")
+							echo "
+								<a href='".base_url()."logs'>
+									<div class='menulinks'>
+										Logs
+									</div>
+								</a>";
+					?>
 		
 				</div>
 
