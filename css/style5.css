@@ -342,7 +342,7 @@ FAQ
     width:100% !important;
 }
 #faq_manage_container{
-    margin-left: 20%;
+    margin-left: 10%;
     margin-top: 3%;
     width: 50%;
 }
@@ -531,7 +531,7 @@ ERROR
 }
 /* for non users */
 #result_container_container{
-    margin-left: 20%;
+    margin-left: 5%;
     width: 60%;
 }
 
@@ -588,7 +588,7 @@ ERROR
 #faq_container {
     width: 60%;
     float: left;
-    margin-left: 20%;
+    margin-left: 10%;
     margin-top: 10%;
 
 }
@@ -596,11 +596,21 @@ ERROR
 #help_container {
     width: 60%;
     float: left;
+    margin-left: 10%;
+    //margin-top: 50px;
+}   
+
+span.indent-left {
+    margin-left: 35px;
+}
+
+#home_content_container {
+    width: 70%;
+    float: left;
     margin-left: 6%;
     margin-top: 50px;
 
 }   
-
 /*------------
 OVERALLS
 ------------*/
@@ -616,6 +626,16 @@ OVERALLS
     font-size: 14px;
 }
 
+.hiddenspan{
+    visibility: hidden;
+    font-size: 13px;
+}
+
+.error{
+    visibility: visible; 
+    color: rgba(250, 50, 50, 1);
+
+}
 /* CAROUSEL*/
 #wrapper_carousel {
         height: 100px;

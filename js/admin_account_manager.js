@@ -56,6 +56,7 @@ function display_admins()
 
 					//insert the strings as html to dynamically add content to the table
 					$('#admin_table').html(admin_array);
+					$('#admin_table').css({'margin' : '0 auto', 'margin-top' : '50px'});
 				} else{
 					$('#admin_list').before("<p>No other admins</p>")
 				}
