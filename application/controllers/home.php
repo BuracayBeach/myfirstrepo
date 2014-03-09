@@ -106,7 +106,6 @@ class Home extends CI_Controller {
             redirect(base_url());
         }
 
-
     }
 
     public function about_us(){

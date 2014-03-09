@@ -9,6 +9,30 @@ body{
     font-family:'SEGOEUIL' !important;
     font-size: 15px;
 }
+
+textarea{
+    resize:vertical;
+}
+
+.show-on-hover{
+    display: none;
+}
+.x-button{
+    float:right;
+    background: rgba(0,0,0,0);
+    border: 0 solid rgba(0,0,0,0);
+    font-family:"SEGOEUIL" !important;
+    color: #cccccc;
+}
+
+.x-button:hover{
+    background-color: #888888;
+
+}
+.removable:hover .show-on-hover{
+    display: block;
+}
+
 /*--------------------------------------------
 BANNER
   *put event on zoomin
@@ -19,6 +43,7 @@ BANNER
     background: #222930;
     position: relative;
     border-bottom: 1px solid white;
+    z-index: 1010;
 }
 
 #banner.pad{
@@ -39,6 +64,11 @@ RIGHTSIDE
     margin-left: 15%;
 }
 
+.detail{
+    border: 1px dashed #cccccc;
+    padding: 3px 10px 10px 10px;
+}
+
 /*--------------------------------------------
 NAVBAR
   *put event on zoomin
@@ -55,7 +85,7 @@ NAVBAR
     background: #222930;
     position: relative;
     clear: both;
-     z-index: 1010;
+     z-index: 1011;
 }
 
 #element-cont{
@@ -409,8 +439,17 @@ ANNOUNCEMENT CAROUSEL
     margin-left: 0px;
     margin-top: 20px;
     background-color:  #222930 !important;
-    padding-top: 20px !important;
-    padding-bottom: 0px !important;
+    padding: 20px 8% 0px 8% !important;
+}
+.carousel-control {
+    padding-top: 20% !important;
+}
+.carousel-control.left{
+    padding-right: 9% !important;
+}
+
+.carousel-control.right{
+    padding-left: 9% !important;
 }
 
 #announcement_carousel .item.active{
@@ -620,6 +659,7 @@ span.indent-left {
     padding-bottom: 100px;
 
 }   
+
 /*------------
 OVERALLS
 ------------*/
@@ -657,7 +697,7 @@ OVERALLS
         margin: 0 0 0 0;
         height: 286px;
         overflow: hidden;
-        background: url(img/ajax-loader.gif) center center no-repeat;
+        background: url('img/ajax-loader.gif') center center no-repeat;
     }
     
     #slider .slide {
@@ -761,3 +801,4 @@ OVERALLS
     margin-bottom: 20px;
     font-size: 1vw;
 }
+

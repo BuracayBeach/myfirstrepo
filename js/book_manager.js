@@ -7,7 +7,9 @@ $('#result_container,#faq_container').ready(function(){
         cancelForm();
     });
 
-    $('#material_form').submit(submitMaterialForm);
+    var materialForm = $('#material_form');
+    materialForm.submit(submitMaterialForm);
+    materialForm.on('click','.detail .x-button',removeDetailInput);
 
     var contentContainer = $('#result_container');
     contentContainer.on('click','.edit_button',function(){
@@ -20,6 +22,9 @@ $('#result_container,#faq_container').ready(function(){
     $('#more_details').on('click',function(){
         var index = $('#material_form').find('.detail_name').length;
         generateInputDetail(this,index);
+        var detailContainer = $($('.detail')[index]);
+        detailContainer.find('.detail_name')[0].focus();
+        $("html, body").animate({ scrollTop: detailContainer.offset().top });
     });
     /***** END EVENT ATTACHMENTS *****/
 
@@ -34,15 +39,21 @@ $('#result_container,#faq_container').ready(function(){
 $('#recently_added_books_container').ready(function(){
     var recentlyTableContainer =  $('#recently_added_books_container');
     var table = recentlyTableContainer.find('table');
-    table.on('click','.edit_button',fillEditForm);
+    table.on('click','.edit_button',function(){
+        showForm.call(this,"edit");
+    });
     table.on('click','.delete_button',deleteBook);
 
     toggleRecentlyAddedTable();
 });
 
-
 /** FORM FUNCTIONS **/
-
+function removeDetailInput(){
+    $(this).closest('.detail').fadeOut(function(){
+       $(this).remove();
+    });
+    return false;
+}
 function showForm(action){
     var materialFormContainer = $('#material_form_container');
     materialFormContainer.find('form')[0].reset();
@@ -103,7 +114,7 @@ function checkBookType(){
 
 function cancelForm() {
     var materialFormContainer = $('#material_form_container');
-    materialFormContainer.find('.detail_content,.detail_name,.detail_name+br,.detail_content+br').remove();
+    materialFormContainer.find('.detail').remove();
     materialFormContainer.hide();
     return false;
 }
@@ -174,6 +185,16 @@ function fillEditForm(){
         materialForm.find("#date_published").val(data.date_published);
         materialForm.find("#tags").val(data.tags);
 
+        if(data.other_detail != ''){
+            data.other_detail.forEach(function(entry){
+                var anchor = $('#more_details');
+                var details = $('#material_form').find('.detail');
+                var index = details.find('.detail_name').length;
+                generateInputDetail(anchor,index);
+                details.find('.detail_name').val(entry.name);
+                details.find('.detail_content').text(entry.content);
+            });
+        }
         editedRow = td.closest('tr');
         $("#add_announcement_cancel_button").click();
 
@@ -197,7 +218,12 @@ function editBook(){
             console.log(matchCount);
             if(isUnique){
                 $.post("index.php/book/edit",formInputs,function(data){
-                    data = JSON.parse(data);
+                    var rowToUpdate = editedRow;
+
+                    console.log(editedRow);
+                    rowToUpdate.replaceWith(data);
+                    rowToUpdate.find('')
+                    /*data = JSON.parse(data);
                     console.log(data);
                     var rowToUpdate = editedRow;
 
@@ -218,10 +244,9 @@ function editBook(){
                     transactionSpan.html(anchorHTML);
 
                     $.get("index.php/book/get_buttons_view", data, function(data){
-                        console.log(data);
                         rowToUpdate.find('span').remove();
                         rowToUpdate.find('[book_data="author"]').after(data);
-                    })
+                    })*/
                 });
                 editForm.closest('div').hide();
             }else{
@@ -256,20 +281,19 @@ function deleteBook(){
 /***** END DELETE FUNCTIONS *****/
 /***** FUNCTION FOR OTHER DATA *****/
 function generateInputDetail(anchor,index){
-
     var detailHTML =
-        '<div class="control-group detail">' +
+        '<div class="control-group detail removable">' +
+            '<span><button class="show-on-hover x-button">x</button></span><br/>' +
             '<label class="control-label">Detail Name:</label>' +
             '<input type="text" title="Name of the Detail. (ie. Subject, Volume)" class="form-control detail_name" required="" placeholder="Detail Name" maxlength="20" name="other_detail['+index+'][name]"/>' +
             '<label class="control-label">Detail:</label>' +
-            '<textarea class="form-control detail_content" placeholder="Detail" maxlength="255" name="other_detail['+index+'][content]"></textarea>' +
+            '<textarea class="form-control detail_content" required="" placeholder="Detail" maxlength="255" name="other_detail['+index+'][content]"></textarea>' +
         '</div>';
 
-    $(anchor).nextAll('.buttons').before(detailHTML);
-    var detailContainer = $(anchor).nextAll('.detail:last');
-    $("html,body").animate({ scrollTop: detailContainer.offset().top }, 2000);
-    detailContainer.find('.detail_name')[0].focus();
-
+    $(anchor).before(detailHTML);
+    var detailContainer = $(anchor).prev();
+    detailContainer.hide();
+    detailContainer.fadeIn();
 }
 /***** END FUNCTION FOR OTHER DATA *****/
 

@@ -25,3 +25,7 @@ $('.article_abstract').readmore({
       speed: 75,
       maxHeight: 40
     })
+
+function rowSetReadMore(){
+
+}
