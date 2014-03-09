@@ -44,12 +44,14 @@ class Book_model extends CI_Model {
         $query = "SELECT * FROM book WHERE book_no='".$book_no."'";
         $result = $this->db->query($query)->result();
         if(!empty($result)){
-            $result[0]->other_detail = explode("¦",$result[0]->other_detail);
-            foreach($result[0]->other_detail as &$detail){
-                $arr = explode("»",$detail);
-                $detail = [];
-                $detail['name'] = $arr[0];
-                $detail['content'] = $arr[1];
+            if($result[0]->other_detail != null){
+                $result[0]->other_detail = explode("¦",$result[0]->other_detail);
+                foreach($result[0]->other_detail as &$detail){
+                    $arr = explode("»",$detail);
+                    $detail = [];
+                    $detail['name'] = $arr[0];
+                    $detail['content'] = $arr[1];
+                }
             }
         }
         return $result;
@@ -61,7 +63,7 @@ class Book_model extends CI_Model {
             ",book_title='".$data['book_title']."'".
             ",book_type='".$data['type']."'".
             ",abstract=".($data['abstract']==null?'null':("'".$data['abstract']."'")).
-            ",status='".$data['book_status']."'".
+            ",status='".$data['status']."'".
             ",author='".$data['author']."'".
             ",description='".$data['description']."'".
             " ,publisher='".$data['publisher']."'".

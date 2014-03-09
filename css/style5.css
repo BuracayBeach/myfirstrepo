@@ -7,6 +7,8 @@ body{
     font-family:"Segoe UI Light" !important;
     font-size: 15px;
 }
+
+textarea { resize:vertical; }
 /*--------------------------------------------
 BANNER
   *put event on zoomin
@@ -254,8 +256,14 @@ FAQ
     width: 100% !important;
 }
 
+#faq_table hr{
+    background-color: rgba(100,200,150,0.7);
+    height: 1px;
+}
+
 .question{
     padding-bottom:20px;
+    color: #2266cc;
 }
 
 .question.editable{
@@ -365,9 +373,6 @@ ANNOUNCEMENT CAROUSEL
 
 ---------------*/
 
-
-
-
 #announcements_container.admin{
     width: 100%;
 }
@@ -386,9 +391,8 @@ ANNOUNCEMENT CAROUSEL
 
 #announcement_carousel .carousel-control{
     z-index: 1000;
-
+    min-height: 340px;
 }
-
 #announcement_carousel .carousel-caption {
     position: relative;
     left: 0 !important;
@@ -396,9 +400,25 @@ ANNOUNCEMENT CAROUSEL
     min-height: 350px;
     margin-left: 0px;
     margin-top: 20px;
-    background-color: #222930 !important;
+    background-color:  #222930 !important;
     padding-top: 20px !important;
     padding-bottom: 0px !important;
+}
+
+#announcement_carousel .item.active{
+    width: 100%;
+    padding: 0px !important;
+    margin: 0px;
+}
+
+#announcement_carousel .item{
+    width: 100%;
+    padding: 0px !important;
+    margin: 0px;
+}
+
+.sub-heading{
+    color: rgba(250,165,0,1);
 }
 
 /*-----------------------------------
@@ -571,6 +591,14 @@ ERROR
 
 /*USER VIEW - FAQS*/
 #faq_container {
+    width: 60%;
+    float: left;
+    margin-left: 20%;
+    margin-top: 10%;
+
+}
+
+#help_container {
     width: 60%;
     float: left;
     margin-left: 20%;
