@@ -120,7 +120,7 @@
 
 <?php 
 	$awto = null;
-	if (isset($_SESSION['search_data'])) $awto = $_SESSION['search_data']['autoSubmitSearch'];
+	if (isset($_SESSION['search_data']) && isset($_SESSION['search_data']['autoSubmitSearch'])) $awto = $_SESSION['search_data']['autoSubmitSearch'];
 	echo "<div id='autoSubmitSearchDiv' balyu='{$awto}''></div>";
 ?>
 
