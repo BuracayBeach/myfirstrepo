@@ -36,7 +36,8 @@ class Home extends CI_Controller {
         $data['title'] = "eICS Lib";
         $data['page'] = 'index';
         $this->load->view("header", $data);
-        $this->load->view("google_view");
+        $this->load->view("search_google_view"); 
+        // $this->load->view("search_results_view");
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
 
         if ($is_admin){
@@ -65,19 +66,26 @@ class Home extends CI_Controller {
             $this->load->view('book_manage_view');
         }
 
+        $autoSubmitSearch = 'false';
+        if (isset($_SESSION['search_data']) && isset($_SESSION['search_data']['autoSubmitSearch'])){
+            $autoSubmitSearch =  $_SESSION['search_data']['autoSubmitSearch'];
+        }
+
+
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
             $data['notifs'] = $this->notifs_model->get_all($_SESSION['username'], 0);
             $data['notifs_count'] = $this->notifs_model->count_by_username($_SESSION['username']);
             $this->load->view("search_results_view");
-            $this->load->view("announcements_view");
+
+            if ($autoSubmitSearch != 'true') $this->load->view("announcements_view");
             $this->load->view("home_contents_view");
-            $this->load->view('notifications_view', $data);
+            if ($autoSubmitSearch != 'true') $this->load->view('notifications_view', $data);
         }
 
         if(!isset($_SESSION['type'])){
-            $this->load->view("announcements_view");
+            if ($autoSubmitSearch != 'true') $this->load->view("announcements_view");
             $this->load->view("search_results_view");
-            $this->load->view("home_contents_view");
+            if ($autoSubmitSearch != 'true') $this->load->view("home_contents_view");
         }
 
 
