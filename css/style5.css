@@ -33,6 +33,10 @@ RIGHTSIDE
     float: left;
 }
 
+#rightbody.fixerupper{
+    margin-left: 15%;
+}
+
 /*--------------------------------------------
 NAVBAR
   *put event on zoomin
