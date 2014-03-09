@@ -216,6 +216,11 @@ class Search_model extends CI_Model {
         return $min;
     }
 
+    function get_year_distance($y1, $y2){
+        $dist10 = abs(($y1/100) - ($y2/100));
+        return $dist10;
+    }
+
 
     function rey_string_distance($str1, $str2){
         $s1 = strtolower($str1);
@@ -253,6 +258,7 @@ class Search_model extends CI_Model {
         $book_tags_points = 3;
         $book_publisher_points = 2;
         $year_published_points = 2;
+        $book_no_points = 1;
         $abstract_points = 0.05;
         $other_points = 1; //book number, if search by 'any'
 
@@ -283,13 +289,18 @@ class Search_model extends CI_Model {
             array_push($cols_to_search, $row->book_no);
             array_push($cols_to_search, $row->date_published);
         }
+        if ($search_by == 'date_published' || $search_by == 'any'){
+            array_push($cols_to_search, $row->date_published);
+        }
+        if ($input['tag_search'] != 'false'){
+            array_push($cols_to_search, $row->tags);
+        }
 
         //compare each search term/word to each of the words in the book title, description, tags
         $pts = 0;
         $tag_matched = false;
 
         $tagSearch = strtolower($input['tag_search']);
-        // $tagSearches = explode(' ' ,str_replace(',',' ',$tagSearch));
         $tagSearches = explode(' ' ,preg_replace("/[^a-zA-Z0-9]+/", " ", $tagSearch));
 
         foreach($tagSearches as $tagch){
@@ -317,7 +328,9 @@ class Search_model extends CI_Model {
 
                     if ($spell_check && isset($term_sugg_dist[$search_term])){
                         //get the word with minimum distance, for suggestion
-                        $terms_distance = $this->get_rey_string_distance($search_term, $item);
+                        if ($search_by == 'date_published') $terms_distance = $this->get_year_distance($search_term, $item);
+                        else $terms_distance = $this->get_rey_string_distance($search_term, $item);
+
                         if ($terms_distance < $term_sugg_dist[$search_term]){
                             $term_sugg[$search_term] = $item_orig;
                             $term_sugg_dist[$search_term] = $terms_distance;
@@ -328,6 +341,7 @@ class Search_model extends CI_Model {
                     if($search_term==$item){
                         switch($col){
                             case $row->description: $pts+=$book_desc_points; break;
+                            case $row->book_no: $pts+=$book_no_points; break;
                             case $row->tags:        $pts+=$book_tags_points; if (in_array($item, $tagSearches)) $tag_matched=true; break;
                             case $row->book_title:  $pts+=$book_title_points; break;
                             case $row->author:        $pts+=$book_author_points; break;
@@ -360,7 +374,8 @@ class Search_model extends CI_Model {
 
     function get_sorted_table($table, $input, $spell_check, &$terms_to_suggest){
         if ($table == null) return null;
-        if (trim($input['search_term'])=='' || $input['search_by'] == 'date_published') return $table;
+        if ((trim($input['search_term'])=='' && $input['tag_search'] == 'false')) return $table;
+        // var_dump($input['tag_search']);
 
         $points = null;
         $input['search_term'] = strtolower($input['search_term']);
