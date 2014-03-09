@@ -99,12 +99,12 @@ class Admin_account extends CI_Controller {
 
 		if($result){
 			$_SESSION['create_admin_notif'] = "create_admin_success";
-			$this->create_admin();
+			redirect(site_url("home/create_admin"));
 		}
 
 		else{
 			$_SESSION['create_admin_notif'] = "username_exist";
-			$this->create_admin();
+			redirect(site_url("home/create_admin"));
 		}
 	}
 

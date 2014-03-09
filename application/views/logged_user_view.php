@@ -19,8 +19,10 @@
 
 	$(document).mouseup(function (e) {
 	    var container = $("div#notifs_container");
+	    var toggle_link = $("div#notif-toggle");
 
-	    if (!container.is(e.target) && container.has(e.target).length === 0)
+	    if (!container.is(e.target) && container.has(e.target).length === 0 &&
+	    	!toggle_link.is(e.target) && toggle_link.has(e.target).length === 0)
 	        container.hide();
 	});
 	

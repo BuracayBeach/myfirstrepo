@@ -9,7 +9,7 @@
 	$ava = $res = $bor = " checked";
 
 	if (isset($_SESSION['search_data'])){
-		var_dump($_SESSION['search_data']);
+		// var_dump($_SESSION['search_data']);
 
 		$sss = $_SESSION['search_data'];
 		$s_stext =  $sss['search'];
