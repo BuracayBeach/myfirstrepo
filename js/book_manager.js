@@ -17,17 +17,16 @@ $('#result_container,#faq_container').ready(function(){
     $('#edit_book_form').submit(editBook);
 
 
-    $('#add_book_type').change(checkBookType);
-    $('#edit_book_type').change(checkBookType);
+    $('#type').change(checkBookType);
 
-    $('.more_details').on('click',function(){
-        var index = $('#add_book_form').find('.detail_name').length;
+    $('#more_details').on('click',function(){
+        var index = $('#material_form').find('.detail_name').length;
         generateInputDetail(this,index);
     });
     /***** END EVENT ATTACHMENTS *****/
 
     /* Hide Forms Initially */
-    $('#add_date_published,#edit_date_published').attr('max',new Date().getFullYear());
+    $('#date_published,#date_published').attr('max',new Date().getFullYear());
 
     $('#material_form_container').hide();
     $('#edit_container').hide();
@@ -65,8 +64,8 @@ function showForm(action){
         materialFormContainer.find('#submit_button').text("Edit");
     }
 
-    $('#other').hide();
-    $('.abstract_container').hide();
+    $('.other').hide();
+    $('.abstract ').hide();
     materialFormContainer.slideDown();
     $(materialFormContainer).find('#book_no').focus();
     return false;
@@ -133,18 +132,18 @@ function checkBookType(){
     }
     if(type != "Book" && type != "Journal"){
 
-        form.find('.abstract_container').show();
+        form.find('.abstract').show();
     }
     else {
 
-        form.find('.abstract_container').hide();
+        form.find('.abstract').hide();
     }
 }
 /***** EDIT FUNCTIONS *****/
 function fillEditForm(event){
     event.preventDefault();
     $('.abstract_container').hide();
-    $('#add_container').hide();
+    $('#material_form_container').hide();
     $('#edit_book_form')[0].reset();
     var td = $(this).closest('tr').find('[book_data=book_no]');
     var book_no = td.text();
@@ -273,7 +272,7 @@ function generateInputDetail(anchor,index){
             '<textarea class="form-control detail_content" placeholder="Detail" maxlength="255" name="other_detail['+index+'][content]"></textarea>' +
         '</div>';
 
-    $(anchor).nextAll('.add_button').before(detailHTML);
+    $(anchor).nextAll('.buttons').before(detailHTML);
     var detailName = $(anchor).nextAll('.detail_name:last');
     $("html,body").animate({ scrollTop: detailName.offset().top }, 2000);
     detailName[0].focus();

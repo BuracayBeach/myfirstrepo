@@ -3,7 +3,7 @@
     <form class="well form-horizontal" id="material_form">
         <fieldset>
             <!-- Text input-->
-            <div class="control-group">
+            <div class="control-group isbn">
                 <label class="control-label" for="isbn">ISBN:</label>
                 <div class="controls">
                     <input id="isbn" name="isbn" placeholder="978-3-16-148410-0" class="form-control" type="text">
@@ -44,16 +44,16 @@
             </div>
 
             <!-- Text input-->
-            <div class="control-group">
+            <div class="control-group other">
                 <label class="control-label" for="other">Please Specify:</label>
                 <div class="controls">
-                    <input id="other" name="other" placeholder="Magazine" class="other form-control" type="text">
+                    <input id="other" name="other" placeholder="Magazine" class="form-control" type="text">
                     <p class="help-block">ex. Magazine, Newspaper, CD, etc..</p>
                 </div>
             </div>
 
             <!-- Textarea -->
-            <div class="control-group abstract_container">
+            <div class="control-group abstract">
                 <label class="control-label" for="abstract">Abstract:</label>
                 <div class="controls">
                     <textarea class="form-control" id="abstract" name="abstract"></textarea>
@@ -90,7 +90,7 @@
             <div class="control-group">
                 <label class="control-label" for="date_published">Year Published:</label>
                 <div class="controls">
-                    <input id="date_published" name="date_published" placeholder="1995" class="form-control" type="number">
+                    <input id="date_published" min="0" name="date_published" placeholder="1995" class="form-control" type="number">
                     <p class="help-block"> </p>
                 </div>
             </div>
@@ -104,7 +104,9 @@
                 </div>
             </div>
 
-            <div class="control-group">
+            <a id="more_details" href="javascript:void(0);">Add more details . . .</a>
+
+            <div class="control-group buttons">
                 <label class="control-label" for="go_button"></label>
                 <div class="controls">
                     <button id="submit_button" name="submit_button" type="submit" class="btn btn-primary">Add</button>
