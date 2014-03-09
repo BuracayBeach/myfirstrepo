@@ -148,5 +148,20 @@ class Admin_account extends CI_Controller {
 			$_SESSION['change_admin_password_notif'] = "pwd_not_match";
 			redirect(site_url("/update_admin"));
 	}
+
+	public function delete_admin($username){
+
+		//admin can only delete other admins
+		if($username != $_SESSION['admin_username']){
+			$success = $this->admin_account_model->delete_admin($username);
+			$result = array('success' => $success);
+		}
+
+		else{
+			//indicate that the delete failed 
+			$result = array('success' => false);
+		}
+		echo json_encode($result);
+	}
 }
 ?>
