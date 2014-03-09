@@ -127,6 +127,8 @@ SEARCHBAR
     z-index: 40;
     float:left;
     clear:left;
+    padding-left: 1px;
+    margin-top:5px;
 }
 
 #search.fixed{
@@ -413,7 +415,7 @@ ERROR
     float: right; 
     padding: 20px !important;
     z-index: 0;
-    background-color: yellow;
+
 }
 #about_us_wrapper p{
     margin: 10px 0 0 0px;
@@ -429,7 +431,7 @@ ERROR
     position: absolute;
     top:150px;
     z-index: 0;
-    background-color: pink;
+
 }
 /**/
 #tabnavihome{
@@ -509,21 +511,40 @@ ERROR
 
 /* */
 #book_type_div{
-    width: 43%;
+    width: 20%;
+    font-size: 1.5vw;
+    float:left;
 }
+
 #status{
-    width: 45%;
+    width: 20%;
+    font-size: 1.5vw;
+    float:left;
+    margin-left: 30%;
+
+}
+
+.dropdown-check-list{
+    width: 20% !important;
+}
+
+.anchor{
+    font-size: 1vw;
+    width: 20% !important;
 }
 
 .items{
     position: absolute;
     width: 45%;
     background-color: white;
+    font-size: 1vw;
 }
 
 #dropdown_container{
     margin-top: 2%;
     height: 10%;
+    width: 90%;
+    font-size: 1.1vw;
 }
 
 #nonuserresult{
@@ -566,7 +587,7 @@ OVERALLS
         width: 100%;
         min-height: 286px;
         padding-top: 1px;
-        background-color: red;
+        float: left;
     }
     #slider {
         margin: 0 0 0 0;
