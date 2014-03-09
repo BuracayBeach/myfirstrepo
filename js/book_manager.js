@@ -252,7 +252,6 @@ function generateInputDetail(anchor,index){
     detailName[0].focus();
 
 }
-
 /***** END FUNCTION FOR OTHER DATA *****/
 
 /*** STRING HTML GENERATION FUNCTIONS ***/
