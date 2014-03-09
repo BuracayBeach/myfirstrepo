@@ -125,6 +125,8 @@ SEARCHBAR
     background: transparent;
     position: relative;
     z-index: 40;
+    float:left;
+    clear:left;
 }
 
 #search.fixed{
@@ -345,9 +347,8 @@ ANNOUNCEMENT CAROUSEL
 
 ---------------*/
 #announcement_carousel{
-    width:600px !important;
+    width:100% !important;
     height: 300px !important;
-    margin-left: 20%;
 }
 
 #announcement_carousel .carousel-control{
@@ -393,38 +394,43 @@ ERROR
 /*ABOUT US*/
 #about_us_wrapper {
     width: 100% !important;
-    float: left !important;
-    margin: 10px 0 50px 0 !important;
+    float: right; 
     padding: 20px !important;
+    z-index: 0;
+    background-color: yellow;
 }
-#about_us_wrapper p {
+#about_us_wrapper p{
     margin: 10px 0 0 0px;
     line-height: 1.5em;
     text-indent: 4em;
-    width: 100% !important;
+    width: 100%;
 }
 #about_us_container{
-    width: 55.5% !important;
-    height: 70% !important;
-    float: left !important;
+    width: 70% !important;
+    float: right;
     margin-left: 20%;
-    margin-top: 3%;
+    margin-top: 25px;
+    position: absolute;
+    top:150px;
+    z-index: 0;
+    background-color: pink;
 }
 /**/
 #tabnavihome{
-    margin-left: 20%;
-    margin-top: 3%;
-    width: 50%;
+    margin-left: 3.5%;
+    margin-top: 80px;
+    width: 59%;
+    position: relative;
+    float:left;
+    font-size: 1.5vw;
 }
 #right_side_bar{
     position: relative;
     height:20%;
     width: 20%;
     float: right;
-    margin-right: 3%;
-    position: absolute;
-    top: 25%;
-    right: 0%;
+    margin-top: 80px;
+    margin-right: 2%;
 }
 #add_announcement_button{
     background-color:#2266cc !important;
@@ -519,12 +525,12 @@ ERROR
 
 }
 /*USER VIEW - ANNOUNCEMENT*/
-#announcements_container {
+#announcement_carousel {
     width: 60%;
     float: left;
-    margin-left: 20%;
     margin-top: 0;
-    
+    position: relative;
+    float: left;
 }
 
 
@@ -544,3 +550,63 @@ OVERALLS
     font-family:"Segoe UI Light" !important;
     font-size: 14px;
 }
+
+/* CAROUSEL*/
+#wrapper_carousel {
+        height: 100px;
+        width: 100%;
+        min-height: 286px;
+        padding-top: 1px;
+        background-color: red;
+    }
+    #slider {
+        margin: 0 0 0 0;
+        height: 286px;
+        overflow: hidden;
+        background: url(img/ajax-loader.gif) center center no-repeat;
+    }
+    
+    #slider .slide {
+        position: relative;
+        display: none;
+        height: 286px;
+        float: left;
+        background-position: center right;
+        cursor: pointer;
+        border-left: 1px solid #fff;
+    }
+    
+    #slider .slide:first-child {
+        border: none;
+    }
+    
+    #slider .slide.active {
+        cursor: default;
+    }
+    
+    #slider .slide-block {
+        position: absolute;
+        left: 50px;
+        bottom: 20px;
+        display: inline-block;
+        width: 400px;
+        background-color: #fff;
+        background-color: rgba(255,255,255, 0.8);   
+        padding: 20px;
+        font-size: 12px;
+        color: #134B94;
+        border: 1px solid #fff;
+        overflow: hidden;
+        border-radius: 4px;
+    }
+    
+    #slider .slide-block h4 {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0 0 10px 0;
+        line-height: 1;
+    }
+    #slider .slide-block p {
+        margin: 0;
+        font-size: 1.2em;
+    }
