@@ -340,18 +340,20 @@ FAQ
 }
 
 .edit_announcement_button{
-    margin-left: 10%;
+    margin-left: 5%;
     background-color:#2266cc !important;
     font-family:"Segoe UI Light" !important;
     font-size:100% !important;
     color: white;
+    margin-bottom: 5%;
 }
 .delete_announcement_button{
-    margin-left: 10%;
+    margin-left: 5%;
     background-color:#FF6600 !important;
     font-family:"Segoe UI Light" !important;
     font-size:100% !important;
     color: white;
+    margin-bottom: 5%;
 }
 .errors{
         color: red !important;
@@ -362,6 +364,7 @@ FAQ
 ANNOUNCEMENT CAROUSEL
 
 ---------------*/
+
 
 
 
@@ -389,16 +392,14 @@ ANNOUNCEMENT CAROUSEL
 #announcement_carousel .carousel-caption {
     position: relative;
     left: 0 !important;
-    width: 600px;
-    height: 300px;
+    width: 100%;
+    min-height: 350px;
     margin-left: 0px;
     margin-top: 20px;
-    background-color: #2266cc !important;
+    background-color: #222930 !important;
     padding-top: 20px !important;
     padding-bottom: 0px !important;
 }
-
-
 
 /*-----------------------------------
 ERROR
