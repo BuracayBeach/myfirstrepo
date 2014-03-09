@@ -183,6 +183,7 @@ ADD AND EDIT
 -----------------------------*/
 #add_announcement_button{
   background-color: #2266cc !important;
+  width: 40%;
 }
 
 #add_announcement_container{
