@@ -802,10 +802,20 @@ OVERALLS
     font-size: 1vw;
 }
 
-<<<<<<< HEAD
+#logs_container #header_logs{
+    margin-left:30%;
+}
+
+#log_links_container{
+    margin-left:1%;
+}
+
+#logs_container{
+    margin-left:10%;
+    padding-bottom: 200px;
+}
+
 .help_images{
     margin-left: 150px;
     margin-top: 20px;
 }
-=======
->>>>>>> de6cf9e79e08077f9c46bc793eb1bc2a6fea9ae7
