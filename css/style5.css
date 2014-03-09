@@ -604,6 +604,13 @@ span.indent-left {
     margin-left: 35px;
 }
 
+#home_content_container {
+    width: 70%;
+    float: left;
+    margin-left: 6%;
+    margin-top: 50px;
+
+}   
 /*------------
 OVERALLS
 ------------*/
@@ -698,3 +705,45 @@ OVERALLS
 .fontsforweb_fontid_1409 {
     font-family: 'SEGOEUIL' !important;
 }
+
+#body{
+    margin-left: 10%;
+    width: 71%;
+}
+
+#results{
+    margin-left: 10%;
+    width: 71%;
+
+}
+
+#result_table{
+    margin-left: 0%;
+    font-size: 1vw;
+}
+#account_log{
+    margin-left: 10%;
+    width: 71%;
+    border-top: 2px solid orange; 
+}
+
+#page_size{
+    width:40px;
+}
+
+#submitButton{
+    background-color: #3340DD;
+    color: white;
+    margin-left: 3%;
+    width: 15%;
+}
+
+#userResultsPerPage{
+    float: right;
+}
+
+#logsPerPage{
+    float: right;
+}
+
+

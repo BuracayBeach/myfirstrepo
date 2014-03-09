@@ -71,12 +71,14 @@ class Home extends CI_Controller {
             $data['notifs_count'] = $this->notifs_model->count_by_username($_SESSION['username']);
             $this->load->view("search_results_view");
             $this->load->view("announcements_view");
+            $this->load->view("home_contents_view");
             $this->load->view('notifications_view', $data);
         }
 
         if(!isset($_SESSION['type'])){
             $this->load->view("announcements_view");
             $this->load->view("search_results_view");
+            $this->load->view("home_contents_view");
         }
 
 
@@ -292,6 +294,14 @@ class Home extends CI_Controller {
         $this->load->view("footer");
         //put loading and stuff here
         $this->load->view("search_results_view",$data);
+    }
+
+    public function create_admin()
+    {
+        $data['title'] = "Create an Admin";
+        $this->load->view("header", $data);
+        $this->load->view("create_admin_view");
+        $this->load->view("footer");
     }
 
     public function delete_admins()
