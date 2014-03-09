@@ -16,6 +16,16 @@
             $r = htmlspecialchars(stripslashes($r));
         }
 
+        if($row->other_details != null){
+            $row->other_details = explode("¦",$row->other_details);
+            foreach($row->other_details as &$detail){
+                $arr = explode("»",$detail);
+                $detail = [];
+                $detail['name'] = $arr[0];
+                $detail['content'] = $arr[1];
+            }
+        }
+
         foreach($row_copy as &$r){
             $r = htmlspecialchars(stripslashes($r));
              //bold matching terms
@@ -23,8 +33,18 @@
                $search_terms = explode(" ",trim($search_term));
                 foreach($search_terms as $s_term){
                     if ($s_term == '' || strlen($s_term) < 3) continue;
-                    $r = preg_replace('/' . $s_term . '/i', "<strong>$0</strong>", $r);                        
-                }  
+                    $r = preg_replace('/' . $s_term . '/i', "<strong>$0</strong>", $r);
+                }
+            }
+        }
+
+        if($row_copy->other_details != null){
+            $row_copy->other_details = explode("¦",$row_copy->other_details);
+            foreach($row_copy->other_details as &$detail){
+                $arr = explode("»",$detail);
+                $detail = [];
+                $detail['name'] = $arr[0];
+                $detail['content'] = $arr[1];
             }
         }
 
@@ -40,99 +60,45 @@
             "</em></div>" .
           "</td>";
 
+        $modal_id =  str_replace(' ', '', $row_copy->book_no);
+        $modal_details_HTML = /* FULL BOOK DETAILS OUTPUT INSIDE modal-body */
+            '<div class="modal fade" id="modal-'.$modal_id.'" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"> Book Details</h4>
+                  </div>
+                  <div class="modal-body">
+                    !!Output Goes Here!!
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>';
+
     echo "<td>" .
         "<div style = 'font:15px Verdana' book_data='book_title'>" .
-        '<span class="article_title"><a class="title_link" href="javascript:void(0)">' . $row_copy->book_title . '</a></span>' .
+        '<span class="article_title"><a class="title_link" data-toggle="modal" href="#modal-'.$modal_id.'">' . $row_copy->book_title . '</a></span>' .
         "</div>" .
-
+        $modal_details_HTML .
         "<div style = 'font-size:13px' book_data='description'> " .
-        '<span class="article_description">' . $row_copy->description   . "</span><br>" .
+        '<span class="article_description">' . $row_copy->description   . "</span>" .
         "</div>" .
 
         "<div style = 'font-size:13px' book_data='author'><em> " .
-        '<span class="article_author">' . $row_copy->author . "</span><br>" .
-        "</em></div>";
+        '<span class="article_author">' . $row_copy->author . "</span>" .
+        "</em></div>
+        ";
 
-    if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){  //--------------- ADMIN ACTIONS ----------------\\
-        include "table_buttons_view.php";
-    } else { //--------------- USER ACTIONS ----------------\\
+    /*GENERATES APPROPRIATE BUTTONS (html stored to variable) DEPENDING ON THE TYPE OF THE USER*/
+    $data['row'] = $row;
+    // the "TRUE" argument tells it to return the content, rather than display it immediately
+    $buttonsHTML = $this->load->view("table_buttons_view.php",$data,TRUE);
 
-        if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
-
-            /* checking of favorite */
-            $favorite = 'favorite';
-            $size = count($favorite_user);
-            for ($i=0; $i<$size; $i++) {
-                if ($favorite_user[$i]->book_no == $row->book_no) {
-                    $favorite = 'unfavorite';
-                    break;
-                }
-            }
-
-            /* checking of reserves */
-
-            $reserve = 'reserve';
-            $reserve_class = 'btn_green';
-            $size = count($reserve_user);
-            for ($i=0; $i<$size; $i++) {
-                if ($reserve_user[$i]->book_no == $row->book_no) {
-                    $reserve = 'unreserve';
-                    $reserve_class = 'btn_yellow';
-                    break;
-                }
-            }
-
-            /* counter-check reserves with lends */
-            $size = count($lend_user);
-            for ($i=0; $i<$size; $i++) {
-                if ($lend_user[$i]->book_no == $row->book_no) {
-                    $reserve = 'BORROWED';
-                    $reserve_class = 'btn_gray';
-                    break;
-                }
-            }
-
-
-            //favorite button
-            echo
-                "<div class='button_container'>" .
-                "<button class='book_action btn btn-primary' book_no='" . $row->book_no . "'>" .
-                $favorite
-                . "</button>" .
-                
-                //reserve button
-                "<button action_type='reserve' class='book_action btn {$reserve_class}' book_no='{$row->book_no}'>";
-            if ($row->status == 'available')
-                echo "reserve";
-            else 
-                echo $reserve;
-            
-            echo "</button></div>";
-
-            if ($reserve == "unreserve") {
-
-                $size = count($reserve_user);
-                for ($i=0; $i<$size; $i++)
-                    if ($reserve_user[$i]->book_no == $row->book_no) 
-                        $rank_temp = $reserve_user[$i]->rank;
-                
-                $temp = $book_temp[$row->book_no];
-                $size2 = count($temp);
-                for ($i=0; $i<$size2; $i++) {
-                    if ($temp[$i] == $rank_temp) {
-                        $rank = $i+1;
-                        break;
-                    }
-                }
-
-                echo "<div class='rank sub-2 sub-heading' book_no='{$row->book_no}'> Rank " . $rank . 
-                " of " .$book_ranks[$row->book_no] . "</div>";
-            }
-            else
-                echo "<div class='rank sub-2 sub-heading' book_no='{$row->book_no}' style='display:none;'></div>";
-        }
-    }
-
+    echo $buttonsHTML;
     "</td>";
 
     //other data
