@@ -3,13 +3,15 @@
 		Log-out
 	</div>
 </a>
-<a href="<?php echo base_url();?>update_admin">
+<a href='<?php echo base_url();?>update_admin'>
 	<div class="menulinks">
 		Update Profile
 	</div>
 </a>
-<?php if($_SESSION['admin_username'] == "admin") echo "
-<a href='#'> 
+<?php
+$url = base_url()."home/delete_admins";
+ if($_SESSION['admin_username'] == "admin") echo "
+<a href='{$url}'> 
 	<div class='menulinks'> 
 		Delete an Admin 
 	</div>
