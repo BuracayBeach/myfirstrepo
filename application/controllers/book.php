@@ -142,7 +142,7 @@ class Book extends CI_Controller {
         // var_dump($details);
         if (isset($_POST['page'])) $details['page'] = $_POST['page'];
         if (isset($_POST['rows_per_page'])) $details['rows_per_page'] = $_POST['rows_per_page'];
-        if ($details['search_by'] == 'date_published') $details['spell_check'] = false;
+        // if ($details['search_by'] == 'date_published') $details['spell_check'] = false;
 
 
         //construct query and get the array of rows from database
@@ -194,13 +194,9 @@ class Book extends CI_Controller {
         $this->load->view('table_view', $details);
 
         if ($search_suggestion !=''){
-            // $p_search_suggestion = str_replace("<strong>", "", trim($search_suggestion));
-            // $p_search_suggestion = str_replace("</strong>", "", $p_search_suggestion);
-            // $p_search_suggestion = htmlspecialchars(stripslashes($p_search_suggestion));
             $p_search_by = filter_var($_POST["search_by"], FILTER_SANITIZE_STRING);
             echo "<div class='word-suggestion'>You might want to search for: <a id='suggestion_text' search_by='{$p_search_by}' href='javascript:void(0)'>" . $search_suggestion . "</a></div>";
         }
-        // json_encode($search_suggestion);
     }
 
      /*
