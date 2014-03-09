@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 08, 2014 at 08:06 AM
--- Server version: 5.5.24-log
--- PHP Version: 5.4.3
+-- Generation Time: Mar 09, 2014 at 06:04 AM
+-- Server version: 5.6.12-log
+-- PHP Version: 5.4.12
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `ics-lib-db`
 --
+CREATE DATABASE IF NOT EXISTS `ics-lib-db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `ics-lib-db`;
 
 -- --------------------------------------------------------
 
@@ -131,6 +133,7 @@ INSERT INTO `book` (`book_no`, `book_title`, `book_type`, `abstract`, `author`, 
 ('CS142-S1', 'The Design of Well-Structured and Correct Programs', 'Book', NULL, 'Suad alagic, Michael A. Arbib', 'available', NULL, 'Springer-Verlag, New York Inc.', 1978, 'Program design', NULL, ''),
 ('CS180-W1', 'Highly Parallel Computing', 'Book', NULL, 'George S. Almasi, Allan Gottlieb', 'available', NULL, 'The Benjamin/Cummings Publishing Company, Inc', 1994, 'parallel computing', '805304436', ''),
 ('CS21 – D23', 'Turbo C Version 2.0', 'Book', NULL, 'M.Morris Mano', 'available', NULL, 'Pernick Printing Corporation', 1988, NULL, '971-8636-10-2', ''),
+('dsa', 'asdsa', 'Book', NULL, '', 'available', '', '', NULL, '', NULL, 'asd»sadsa¦asdas»sada¦asd»sadas'),
 ('IT 280', 'Computer Security Management', 'Book', NULL, 'Karen A. Forcht', 'available', NULL, 'boyd & fraser publishing company', 1994, 'Computer Security', '878358811', ''),
 ('IT7', 'E-Commerce for Dummies', 'Book', NULL, 'Don Jones, Mark D. Scott, Richard Villars', 'available', NULL, 'Hungry Minds Inc.', 2001, 'E-commerce', '764508474', ''),
 ('JN 0001', 'Proceedings of the APL96 Conference', 'Journal', NULL, 'The Special Interest Group for the APL Programming Language', 'available', NULL, 'ACM Press', 1996, NULL, NULL, ''),
