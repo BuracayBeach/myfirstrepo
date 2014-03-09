@@ -52,7 +52,6 @@
             }
             // var_dump($row->other_detail);
         }
-
     }
 
     echo "<tr active='false'>";
@@ -69,30 +68,10 @@
             "</em></div>" .
           "</td>";
 
-        $modal_id =  str_replace(' ', '', $row->book_no);
-        $modal_details_HTML = /* FULL BOOK DETAILS OUTPUT INSIDE modal-body */
-            '<div class="modal fade" id="modal-'.$modal_id.'" tabindex="-1" role="dialog" aria-hidden="true">
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title"> Book Details</h4>
-                  </div>
-                  <div class="modal-body">
-                    !!Output Goes Here!!
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>';
-
     echo "<td>" .
         "<div style = 'font:15px Verdana' book_data='book_title'>" .
-        '<span class="article_title"><a class="title_link" data-toggle="modal" href="#modal-'.$modal_id.'">' . $row_copy->book_title . '</a></span>' .
+        '<span class="article_title"><a class="title_link" data-toggle="modal" href="#book-info-modal">' . $row_copy->book_title . '</a></span>' .
         "</div>" .
-        $modal_details_HTML .
         "<div style = 'font-size:13px' book_data='description'> " .
         '<span class="article_description">' . $row_copy->description   . "</span>" .
         "</div>" .
