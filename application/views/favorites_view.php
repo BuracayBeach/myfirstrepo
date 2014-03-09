@@ -15,6 +15,8 @@ $this->load->view('favorites_view', $data);
 <script src="<?php echo base_url();?>js/freewall.js"></script>
 
 <div class="hideable">
+
+	<h1>FAVORITES</h1>
 	
 	<div id="favorites_container" class="my_library_container">
 		<?php if(isset($favorites)) : foreach ($favorites as $row) : ?>
@@ -85,6 +87,9 @@ $this->load->view('favorites_view', $data);
 				controller = "favorite";
 			else if (action_type == "unreserve" || action_type == "reserve")
 				controller = "reserve";
+
+        	if (action_type == "BORROWED")
+            	return;
 
 			$.ajax({
 				url : icejjfish + "index.php/" + controller + "/" + method,

@@ -15,6 +15,8 @@ $this->load->view('borrowed_view', $data);
 
 <div class="hideable">
 
+	<h1>BORROWED</h1>
+
 	<div id="borrowed_container" class="my_library_container">
 
 		<?php if(isset($borrowed)) : foreach ($borrowed as $row) : ?>

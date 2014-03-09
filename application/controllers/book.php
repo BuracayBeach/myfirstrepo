@@ -115,14 +115,10 @@ class Book extends CI_Controller {
 
     public function search_sessionize(){
         session_start();
+        
         $_SESSION['search_data'] = $_POST;
-        $_SESSION['search_data']['autoSubmitSearch'] = 'true';
     }
 
-    public function search_unset_auto(){
-        if (isset($_SESSION['search_data']) && isset($_SESSION['search_data']['autoSubmitSearch'])) 
-                unset($_SESSION['search_data']['autoSubmitSearch']);
-    }
 
     public function search(){
         $input = null;
