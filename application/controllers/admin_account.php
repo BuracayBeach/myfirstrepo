@@ -50,6 +50,13 @@ class Admin_account extends CI_Controller {
 			$_SESSION['search_data']['available'] = 'on'; //added by rey benedicto 2014-03-09 22.47
 			$_SESSION['search_data']['reserved'] = 'on'; //added by rey benedicto 2014-03-09 22.47
 			$_SESSION['search_data']['borrowed'] = 'on'; //added by rey benedicto 2014-03-09 22.47
+
+			$_SESSION['search_data']['type_book'] = 'on'; //added by rey benedicto 2014-03-09 22.47
+			$_SESSION['search_data']['type_journal'] = 'on'; //added by rey benedicto 2014-03-09 22.47
+			$_SESSION['search_data']['type_sp'] = 'on'; //added by rey benedicto 2014-03-09 22.47
+			$_SESSION['search_data']['type_thesis'] = 'on'; //added by rey benedicto 2014-03-09 22.47
+			$_SESSION['search_data']['type_other'] = 'on'; //added by rey benedicto 2014-03-09 22.47
+
 			redirect(base_url() . 'ihome');
 		}
 
