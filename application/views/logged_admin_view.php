@@ -8,6 +8,13 @@
 		Update Profile
 	</div>
 </a>
+<?php if($_SESSION['admin_username'] == "admin") echo "
+<a href='#'> 
+	<div class='menulinks'> 
+		Delete an Admin 
+	</div>
+</a>"
+?>
 <a href="<?php echo base_url();?>admin_account/create_admin">
 	<div class="menulinks">
 		Create New Admin

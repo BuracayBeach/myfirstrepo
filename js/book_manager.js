@@ -271,7 +271,6 @@ function generateInputDetail(anchor,index){
     detailContainer.find('.detail_name')[0].focus();
 
 }
-
 /***** END FUNCTION FOR OTHER DATA *****/
 
 /*** STRING HTML GENERATION FUNCTIONS ***/

@@ -129,7 +129,7 @@ div#notif-blue-glow {
 div#notifs_container {
 	font-size: 0.82em;
 	position: absolute;
-	top: 65px;
+	top: 155px;
 	right: 280px;
 	width: 25%;
 	float: right;
@@ -146,6 +146,11 @@ div.notif {
 	overflow: hidden;
 	color: white;
 	cursor: default;
+}
+
+div.no-notifs {
+	background-color: black;
+	text-align: center;
 }
 
 div.notif_msg {

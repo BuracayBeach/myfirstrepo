@@ -115,13 +115,13 @@ class Admin_account extends CI_Controller {
 		$result = $this->admin_account_model->update_admin($new_data, $admin_username);
 
 		if($result){
-			$_SESSION['update_admin_notif'] = "Succesfully updated admin";
-			redirect(site_url("admin_account/update_admin"));
+			$_SESSION['update_admin_notif'] = "successful_update_admin";
+			redirect(site_url("/update_admin"));
 		}
 
 		else{
-			$_SESSION['update_admin_notif'] = "Error in updating admin";
-			redirect(site_url("admin_account/update_admin"));
+			$_SESSION['update_admin_notif'] = "error_update_admin";
+			redirect(site_url("/update_admin"));
 		}
 	}
 
@@ -140,13 +140,28 @@ class Admin_account extends CI_Controller {
 
 		if($current_password == $correct_password){
 			$this->admin_account_model->change_admin_password($new_password, $admin_username);
-			$_SESSION['change_password_notif'] = "Succesfully changed password!";
-			redirect(site_url("admin_account/update_admin"));
+			$_SESSION['change_admin_password_notif'] = "admin_pwd_changed";
+			redirect(site_url("/update_admin"));
 		}
 
 		else
-			$_SESSION['change_password_notif'] = "Password does not match!";
-			redirect(site_url("admin_account/update_admin"));
+			$_SESSION['change_admin_password_notif'] = "pwd_not_match";
+			redirect(site_url("/update_admin"));
+	}
+
+	public function delete_admin($username){
+
+		//admin can only delete other admins
+		if($username != $_SESSION['admin_username']){
+			$success = $this->admin_account_model->delete_admin($username);
+			$result = array('success' => $success);
+		}
+
+		else{
+			//indicate that the delete failed 
+			$result = array('success' => false);
+		}
+		echo json_encode($result);
 	}
 }
 ?>

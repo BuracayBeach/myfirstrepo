@@ -1,12 +1,35 @@
-<?php
-/**
-* Created by PhpStorm.
-* User: isnalla
-* Date: 1/15/14
-* Time: 6:47 PM
-*/
-?>
 <html>
+	<!--
+	     .-=-==--==--.
+       ..-=="  ,'o`)      `.
+     ,'         `"'         \
+    :  (                     `.__...._
+    |                  )    /         `-=-.
+    :       ,vv.-._   /    /               `---==-._
+     \/\/\/VV ^ d88`;'    /                         `.
+         ``  ^/d88P!'    /             ,              `._
+            ^/    !'   ,.      ,      /                  "-,,__,,--'""""-.
+           ^/    !'  ,'  \ . .(      (         _           )  ) ) ) ))_,-.\
+          ^(__ ,!',"'   ;:+.:%:a.     \:.. . ,'          )  )  ) ) ,"'    '
+          ',,,'','     /o:::":%:%a.    \:.:.:         .    )  ) _,'
+           """'       ;':::'' `+%%%a._  \%:%|         ;.). _,-""
+                  ,-='_.-'      ``:%::)  )%:|        /:._,"
+                 (/(/"           ," ,'_,'%%%:       (_,'
+                                (  (//(`.___;        \
+                                 \     \    `         `
+                                  `.    `.   `.        :
+                                    \. . .\    : . . . :
+                                     \. . .:    `.. . .:
+                                      `..:.:\     \:...\
+            RAWR                       ;:.:.;      ::...:
+                                       ):%::       :::::;
+                                   __,::%:(        :::::
+                                ,;:%%%%%%%:        ;:%::
+                                  ;,--""-.`\  ,=--':%:%:\
+                                 /"       "| /-".:%%%%%%%\
+                                                 ;,-"'`)%%) 
+                                                /"      "|
+	-->
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,6 +67,18 @@
 							<?php if( isset($_SESSION['type']) && $_SESSION['type'] == "admin") echo "Manage";else echo "Home";?>
 						</div>
 					</a>
+
+					<?php
+						if( isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
+							echo "
+								<a href=" . base_url() . "accounts>
+									<div class='menulinks'>
+										Accounts
+									</div>
+								</a>";
+
+						}
+					?>
 
 					<?php
 
@@ -155,12 +190,14 @@
 				$('#navbar').removeClass('fixed');
 				$('#search').removeClass('fixed');
 				$('#banner').removeClass('pad');
+				$('#rightbody').removeClass('fixerupper');
 			}
 
 			function pfgt1ap(){
 				$('#navbar').addClass('fixed');
 				$('#search').addClass('fixed');
 				$('#banner').addClass('pad');
+				$('#rightbody').addClass('fixerupper');
 			}
 		</script>
 
