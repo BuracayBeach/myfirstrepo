@@ -83,9 +83,10 @@
 									';
 								}
 							?>
-
-							<hr>
+							<br>
+							<hr/>
 						</div>
+						
 
 				<div class="form-group"><input class="form-control" searchby="<?=$s_sby?>" id="search_text" type="search" name='search' autofocus='true' placeholder='Keywords...' maxlength='99' spellcheck='true' tagSearch='false' autoSubmitSearch="<?=$autoSubmitSearch?>" value="<?=$s_stext?>" /></div>
 				<input class="btn btn-primary" id='submit_search' type="submit" name="submit_search" value="Search"/><br/>

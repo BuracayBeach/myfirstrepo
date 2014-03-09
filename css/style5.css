@@ -280,7 +280,7 @@ FAQ
     background-color:#2266cc !important;
     font-family:"Segoe UI Light" !important;
     font-size:100% !important;
-    width:15% !important;
+    width:20% !important;
     margin-bottom: 2%;
     margin-left: 2%;
     height: 5%;
@@ -332,7 +332,6 @@ FAQ
 #faq_manage_container{
     margin-left: 20%;
     margin-top: 3%;
-    border: 1px solid #ccc;
     width: 50%;
 }
 
