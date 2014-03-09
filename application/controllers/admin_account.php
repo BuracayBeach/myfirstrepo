@@ -47,6 +47,9 @@ class Admin_account extends CI_Controller {
 			$_SESSION['admin_username'] = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
 			$_SESSION['admin_logged_in'] = true;
 			$_SESSION['type'] = "admin";
+			$_SESSION['search_data']['available'] = 'on'; //added by rey benedicto 2014-03-09 22.47
+			$_SESSION['search_data']['reserved'] = 'on'; //added by rey benedicto 2014-03-09 22.47
+			$_SESSION['search_data']['borrowed'] = 'on'; //added by rey benedicto 2014-03-09 22.47
 			redirect(base_url() . 'ihome');
 		}
 
