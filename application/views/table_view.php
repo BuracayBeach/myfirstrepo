@@ -19,9 +19,9 @@
 
                 echo "<th width='15%'>Tags</th>";
                 echo "<th ";
-                if ($search_by != 'any' && $search_by != 'abstract') echo ' hidden';
+                if ($search_by != 'any' && $search_by != 'abstract') echo " style='display:none;'";
                 echo ">Abstract</th>";
-                echo "<th hidden>Other Details</th>";
+                echo "<th style='display:none;'>Other Details</th>";
                 echo "</tr>";
 
 

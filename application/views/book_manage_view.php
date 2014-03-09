@@ -3,15 +3,6 @@
     <form class="well form-horizontal" id="material_form">
         <fieldset>
             <!-- Text input-->
-            <div class="control-group isbn">
-                <label class="control-label" for="isbn">ISBN:</label>
-                <div class="controls">
-                    <input id="isbn" name="isbn" title="&#013;ex. ISBN-10: 0-306-40615-2&#013;   ISBN-13: 978-0-306-40615-7" maxlength="17" placeholder="978-3-16-148410-0" class="form-control" type="text">
-                    <p class="help-block">ex. ISBN-10 : 0-306-40615-2 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ISBN-13: 978-0-306-40615-7</p>
-                </div>
-            </div>
-
-            <!-- Text input-->
             <input type="hidden" id="prev_book_no" name="prev_book_no" />
             <div class="control-group">
                 <label class="control-label" for="book_no">Call Number:</label>
@@ -75,7 +66,8 @@
             <div class="control-group">
                 <label class="control-label" for="author">Author:</label>
                 <div class="controls">
-                    <input id="author"  pattern="[a-zA-z0-9,_'. ]+" maxlength="255" name="author" placeholder="Arthur Conan Doyle" class="form-control" type="text">
+                    <input id="author" title="Author field should be composed of alphanumeric characters, comma ','  , 0 to 9, underscore and apostrophe.
+                                            Multiple authors are separated by semi-colon  ';'. ex. 'fname1 lname1; lname2, fname1'" pattern="^[a-zA-Z0-9,_'. ]+(;[a-zA-Z0-9,_'. ]+)*$" maxlength="255" name="author" placeholder="Rey Y. Benedicto; Allan Conda" class="form-control" type="text">
                     <p class="help-block"> </p>
                 </div>
             </div>
@@ -87,7 +79,14 @@
                     <textarea spellcheck="true" maxlength="255" class="form-control" id="description" name="description"></textarea>
                 </div>
             </div>
-
+            <!-- Text input-->
+            <div class="control-group isbn">
+                <label class="control-label" for="isbn">ISBN:</label>
+                <div class="controls">
+                    <input id="isbn" name="isbn" title="&#013;ex. ISBN-10: 0-306-40615-2&#013;   ISBN-13: 978-0-306-40615-7" maxlength="17" placeholder="978-3-16-148410-0" class="form-control" type="text">
+                    <p class="help-block">ex. ISBN-10 : 0-306-40615-2 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ISBN-13: 978-0-306-40615-7</p>
+                </div>
+            </div>
             <!-- Text input-->
             <div class="control-group">
                 <label class="control-label" for="publisher">Publisher:</label>

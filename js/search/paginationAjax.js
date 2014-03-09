@@ -51,7 +51,7 @@
 
         p_lastRequest = $.ajax({
             type: "post",
-            data: my_input, 
+            data: my_input,
             url: icejjfish + "index.php/book/search",
             success: function(data, jqxhr, status){
                 $("#result_container").html(data);

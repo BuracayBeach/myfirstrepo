@@ -50,7 +50,7 @@ function validateAuthor(author){
     //regex for name
 
     author = author.trim();
-    var patt = /^([a-zA-Z,'0-9 ]+(;[a-zA-Z,'0-9 ]+)*)*$/g;
+    var patt = /^[a-zA-Z0-9,_'. ]*(;[a-zA-Z0-9,_'. ]+)*$/g;
     var valid = patt.test(author);
     //write regex here
 
@@ -136,5 +136,6 @@ function checkAll(){
     msgs += validatePublisher(publisher);
     msgs += validateDatePublished(year);
     msgs += validateTags(tags);
+    console.log(msgs);
     return msgs;
 }

@@ -126,18 +126,18 @@
     }
     echo "<span></td>";
 
+    if(isset($_SESSION) && isset($_SESSION['search_data']) && isset($_SESSION['search_data']['search_by']) ){
+        $search_by = $_SESSION['search_data']['search_by'];
+    }
     echo "<td book_data='abstract' class='book_abstract'";
     if (isset($search_by) && $search_by != 'any' && $search_by != 'abstract') echo 'hidden';
     echo "><span class='article_abstract'>" . $row_copy->abstract . '<span></td>';
 
-    echo "<td book_data='other_detail' hidden>";
-    if ($detail != null) {
+    echo "<td book_data='other_detail' style='display:none;'>";
+    if (isset($detail) && $detail != null) {
         echo '<span detail="name">' . $detail['name'] . '</span>: <span detail="content">' . $detail['content'] . '<span>';
     }
     echo '</td>';
 
     echo "</tr>";
-
-?>
-
 
