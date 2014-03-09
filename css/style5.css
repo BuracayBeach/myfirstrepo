@@ -254,8 +254,14 @@ FAQ
     width: 100% !important;
 }
 
+#faq_table hr{
+    background-color: orange;
+    height: 1px;
+}
+
 .question{
     padding-bottom:20px;
+    color: #2266cc;
 }
 
 .question.editable{
