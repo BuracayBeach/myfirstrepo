@@ -163,5 +163,10 @@ class Admin_account extends CI_Controller {
 		}
 		echo json_encode($result);
 	}
+
+	public function get_admins()
+	{
+		echo json_encode($this->admin_account_model->get_admins($_SESSION['admin_username']));
+	}
 }
 ?>

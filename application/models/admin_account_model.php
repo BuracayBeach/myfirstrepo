@@ -68,5 +68,11 @@ class Admin_account_model extends CI_Model {
 		//once the same row is already deleted, return false
 		else return false;
 	}
+
+	public function get_admins($admin_name)
+	{
+		//fetch all admins except the logged admin
+		return $this->db->query("SELECT * FROM admin WHERE username NOT LIKE '{$admin_name}' ORDER BY username")->result();
+	}
 }
 ?>

@@ -255,7 +255,7 @@ FAQ
 }
 
 #faq_table hr{
-    background-color: orange;
+    background-color: rgba(100,200,150,0.7);
     height: 1px;
 }
 
@@ -415,6 +415,9 @@ ANNOUNCEMENT CAROUSEL
     margin: 0px;
 }
 
+.sub-heading{
+    color: rgba(250,165,0,1);
+}
 
 /*-----------------------------------
 ERROR
