@@ -143,7 +143,7 @@ SEARCHBAR
     float:left;
     clear:left;
     padding-left: 1px;
-    margin-top:5px;
+    margin-top:10px;
 }
 
 #search.fixed{
@@ -748,3 +748,8 @@ OVERALLS
 }
 
 
+#log_table{
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 1vw;
+}

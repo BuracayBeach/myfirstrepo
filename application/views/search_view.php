@@ -41,10 +41,26 @@
 			<div id="search" class="">
 				<form id="search_form" name="search_form" method="post">
 
+				<div class="form-group"><input class="form-control" searchby="<?=$s_sby?>" id="search_text" type="search" name='search' autofocus='true' placeholder='Keywords...' maxlength='99' spellcheck='true' tagSearch='false' value="<?=$s_stext?>" /></div>
+				<input class="btn btn-primary" id='submit_search' type="submit" name="submit_search" value="Search"/><br/>
+					<hr>
+					
 
-						<div id="dropdown_container">
+					<div id="sidebar-wrapper">
+				        <ul class="sidebar-nav">
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='book_title'?'active':''?>"  searchby="book_title">Title, Desc &nbsp; <img src="<?php echo base_url();?>images/icon/title1.png" alt="">&nbsp;&nbsp;</li></a>
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='book_no'?'active':''?>" searchby="book_no">Call No, ISBN &nbsp; <img src="<?php echo base_url();?>images/icon/number.png" alt="">&nbsp;&nbsp;</li></a>
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='author'?'active':''?>" searchby="author">Author &nbsp; <img src="<?php echo base_url();?>images/icon/user32.png" alt="">&nbsp;&nbsp;</li></a>
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='publisher'?'active':''?>" searchby="publisher">Publisher &nbsp; <img src="<?php echo base_url();?>images/icon/printer32.png" alt="">&nbsp; &nbsp;</li></a>
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='date_published'?'active':''?>" searchby="date_published">Year Published &nbsp; <img src="<?php echo base_url();?>images/icon/calendar.png" alt="">&nbsp;&nbsp;</li></a>
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='abstract'?'active':''?>" searchby="abstract">Abstract &nbsp; <img src="<?php echo base_url();?>images/icon/star32.png" alt="">&nbsp; &nbsp;</li></a>
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='any'?'active':''?>" searchby="any">Any &nbsp; <img src="<?php echo base_url();?>images/icon/wand32.png" alt="">&nbsp; &nbsp;</li></a>
+				           
+				            <hr>
+				        </ul>
+					</div>
+					<div id="dropdown_container">
 								<div id="book_type_div" class="dropdown-check-list">
-
 						        <span class="anchor">Type</span>
 						        <ul class="items">
 						            <li> &nbsp;&nbsp;<input class="check" id = "type_book" type="checkbox" name = "type_book"  <?=$book?> > 
@@ -81,16 +97,10 @@
 							?>
 							<br>
 							<hr/>
-						</div>
-						
-
-				<div class="form-group"><input class="form-control" searchby="<?=$s_sby?>" id="search_text" type="search" name='search' autofocus='true' placeholder='Keywords...' maxlength='99' spellcheck='true' tagSearch='false' value="<?=$s_stext?>" /></div>
-				<input class="btn btn-primary" id='submit_search' type="submit" name="submit_search" value="Search"/><br/>
-					<hr>
-					<?php
+							<?php
 						// if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
 							echo '
-							 &nbsp;	 &nbsp; sort by:
+							 &nbsp;	 &nbsp; sort by: <br>
 							<select class="form-control" name="order_by" class="order_by">
 								<option value="search_relevance" ' . $sr . '> Search Relevance</option>
 								<option value="book_no" ' . $bn . '> Book Number </option>
@@ -103,21 +113,7 @@
 							';
 						// }
 					?>
-
-					<div id="sidebar-wrapper">
-				        <ul class="sidebar-nav">
-				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='book_title'?'active':''?>"  searchby="book_title">Title, Desc &nbsp; <img src="<?php echo base_url();?>images/icon/title1.png" alt="">&nbsp;&nbsp;</li></a>
-				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='book_no'?'active':''?>" searchby="book_no">Call No, ISBN &nbsp; <img src="<?php echo base_url();?>images/icon/number.png" alt="">&nbsp;&nbsp;</li></a>
-				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='author'?'active':''?>" searchby="author">Author &nbsp; <img src="<?php echo base_url();?>images/icon/user32.png" alt="">&nbsp;&nbsp;</li></a>
-				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='publisher'?'active':''?>" searchby="publisher">Publisher &nbsp; <img src="<?php echo base_url();?>images/icon/printer32.png" alt="">&nbsp; &nbsp;</li></a>
-				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='date_published'?'active':''?>" searchby="date_published">Year Published &nbsp; <img src="<?php echo base_url();?>images/icon/calendar.png" alt="">&nbsp;&nbsp;</li></a>
-				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='abstract'?'active':''?>" searchby="abstract">Abstract &nbsp; <img src="<?php echo base_url();?>images/icon/star32.png" alt="">&nbsp; &nbsp;</li></a>
-				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='any'?'active':''?>" searchby="any">Any &nbsp; <img src="<?php echo base_url();?>images/icon/wand32.png" alt="">&nbsp; &nbsp;</li></a>
-				           
-				            <hr>
-				        </ul>
-					</div>
-	
+						</div>	
 				</form>
 			</div>
 
