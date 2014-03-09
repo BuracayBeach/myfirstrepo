@@ -1,6 +1,8 @@
 #site-cont{
     min-width: 1000px;
     min-height: 768px;
+    z-index: 1010;
+    opacity: 1;
 }
 
 body{
@@ -48,7 +50,7 @@ NAVBAR
     background: #222930;
     position: relative;
     clear: both;
-    z-index: 40;
+     z-index: 1010;
 }
 
 #element-cont{
