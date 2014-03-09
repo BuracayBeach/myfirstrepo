@@ -56,6 +56,7 @@ class Home extends CI_Controller {
         $data['title'] = "eICS Lib Home";
         $data['page'] = 'index';
         $this->load->view("header", $data);
+        $this->load->view("search_view");
 
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin){
@@ -89,6 +90,7 @@ class Home extends CI_Controller {
             $data['title'] = "eICS Lib Home";
             $data['page'] = 'index';
             $this->load->view("header", $data);
+            $this->load->view("search_view");
 
             $this->load->view('logs_view');
             $this->load->view("footer");
@@ -102,6 +104,7 @@ class Home extends CI_Controller {
     public function about_us(){
         $data['title'] = "eICS Lib About Us";
         $this->load->view("header", $data);
+        $this->load->view("search_view");
         $this->load->view("about_us_view", $data);
 
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
@@ -117,6 +120,7 @@ class Home extends CI_Controller {
         $data['title'] = "eICS Lib FAQ";
         $data['page'] = 'faq';
         $this->load->view("header", $data);
+        $this->load->view("search_view");
         $this->load->view("search_results_view");
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin){
@@ -137,6 +141,7 @@ class Home extends CI_Controller {
     public function borrowed(){
         $data['title'] = "eICS Lib My Lib";
         $this->load->view("header", $data);
+        $this->load->view("search_view");
 
         if(!isset($_SESSION['logged_in']) && $_SESSION['type'] != "regular")
             redirect(base_url());
@@ -172,6 +177,7 @@ class Home extends CI_Controller {
     public function favorites(){
         $data['title'] = "eICS Lib My Lib";
         $this->load->view("header", $data);
+        $this->load->view("search_view");
 
         if(!isset($_SESSION['logged_in']) && $_SESSION['type'] != "regular")
             redirect(base_url());
@@ -197,6 +203,7 @@ class Home extends CI_Controller {
     public function reserved(){
         $data['title'] = "eICS Lib My Lib";
         $this->load->view("header", $data);
+        $this->load->view("search_view");
 
         if(!isset($_SESSION['logged_in']) && $_SESSION['type'] != "regular")
             redirect(base_url());
@@ -222,6 +229,7 @@ class Home extends CI_Controller {
         $data['title'] = "eICS Lib Help";
         $data['page'] = 'help';
         $this->load->view("header", $data);
+        $this->load->view("search_view");
 
         $this->load->view("help_view",$data);
         $this->load->view("search_results_view",$data);
@@ -241,6 +249,7 @@ class Home extends CI_Controller {
 
         $data['title'] = "eICS Lib Sign Up";
         $this->load->view("header", $data);
+        $this->load->view("search_view");
         $this->load->view('create_admin_view');
     }
 
@@ -250,6 +259,7 @@ class Home extends CI_Controller {
 
         $data['title'] = "eICS Lib Sign Up";
         $this->load->view("header", $data);
+        $this->load->view("search_view");
         $this->load->view("create_account_view", $data);
     }
 
@@ -259,6 +269,7 @@ class Home extends CI_Controller {
 
         $data['title'] = "eICS Lib Sign Up";
         $this->load->view("header", $data);
+        $this->load->view("search_view");
         $username = $_SESSION['username'];
         $result=$this->user_account_model->get_data($username);
         $new_result = $this->safeguard->str_array_ready_for_display($result);
@@ -277,6 +288,7 @@ class Home extends CI_Controller {
 
         $data['title'] = "eICS Lib Sign Up";
         $this->load->view("header", $data);
+        $this->load->view("search_view");
 
         $admin_username = $_SESSION['admin_username'];
         $data = $this->admin_account_model->get_admin_data($admin_username);
@@ -287,6 +299,7 @@ class Home extends CI_Controller {
     public function accounts(){
         $data['title'] = "eICS Lib Sign Up";
         $this->load->view("header", $data);
+        $this->load->view("search_view");
         $this->load->view("search_user_view");
         $this->load->view("enable_disable_view");
         $this->load->view("footer");
@@ -301,6 +314,7 @@ class Home extends CI_Controller {
         
         $data['title'] = "Create an Admin";
         $this->load->view("header", $data);
+        $this->load->view("search_view");
         $this->load->view("create_admin_view");
         $this->load->view("footer");
     }
@@ -312,6 +326,7 @@ class Home extends CI_Controller {
         
         $data['title'] = "Delete an Admin";
         $this->load->view("header", $data);
+        $this->load->view("search_view");
         $this->load->view("delete_admin_view");
         $this->load->view("footer");
         //put loading and stuff here
