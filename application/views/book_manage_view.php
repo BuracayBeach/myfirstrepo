@@ -47,7 +47,7 @@
             <div class="control-group">
                 <label class="control-label" for="other">Please Specify:</label>
                 <div class="controls">
-                    <input id="other" name="other" placeholder="Magazine" class="form-control" required="" type="text">
+                    <input id="other" name="other" placeholder="Magazine" class="form-control other" type="text">
                     <p class="help-block">ex. Magazine, Newspaper, CD, etc..</p>
                 </div>
             </div>
@@ -104,25 +104,10 @@
                 </div>
             </div>
 
-            <!-- Text input-->
-            <div class="control-group">
-                <label class="control-label" for="detail_name">Detail Name:</label>
-                <div class="controls">
-                    <input id="detail_name" name="detail_name" placeholder="Subject" class="form-control" required="" type="text">
-                    <p class="help-block"> </p>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="detail_content">Detail:</label>
-                <div class="controls">
-                    <textarea class="form-control" id="detail_content" name="detail_content"></textarea>
-                </div>
-            </div>
-
             <div class="control-group">
                 <label class="control-label" for="go_button"></label>
                 <div class="controls">
-                    <button id="go_button" name="go_button" class="btn btn-primary">Add</button>
+                    <button id="submit_button" name="submit_button" type="submit" class="btn btn-primary">Add</button>
                     <button id="cancel_button" name="cancel_button" class="btn btn-default">Cancel</button>
                 </div>
             </div>

@@ -3,10 +3,11 @@ $('#result_container,#faq_container').ready(function(){
     $('#show_add_form_button').on('click',function(){
          showForm("add");
     });
-    $('#add_cancel_button').on('click',function(){
+    $('#cancel_button').on('click',function(){
         cancelForm();
     });
-    $('#add_book_form').submit(addBook);
+
+    $('#material_form').submit(submitMaterialForm);
 
     var contentContainer = $('#result_container');
     contentContainer.on('click','.edit_button',fillEditForm);
@@ -31,9 +32,6 @@ $('#result_container,#faq_container').ready(function(){
     $('#material_form_container').hide();
     $('#edit_container').hide();
 
-    $("#show_add_form_button").on("click", function() {
-        $("#add_announcement_cancel_button").click();
-    });
 });
 
 $('#recently_added_books_container').ready(function(){
@@ -45,40 +43,47 @@ $('#recently_added_books_container').ready(function(){
     toggleRecentlyAddedTable();
 });
 
+function submitMaterialForm(){
+    var submitButton = $(this).find("#submit_button");
+
+    if(submitButton.text() == "Add"){
+        addBook.call(this);
+    }else if(submitButton.text() == "Edit"){
+        console.log('edit');
+    }
+    return false;
+}
+
 /***** ADD FUNCTIONS *****/
 function showForm(action){
     var materialFormContainer = $('#material_form_container');
-    if(action == "add"){
-        materialFormContainer.find('form')[0].reset();
+    materialFormContainer.find('form')[0].reset();
 
-        $('#other').hide();
-        $('.abstract_container').hide();
-        materialFormContainer.slideDown();
-        $(materialFormContainer).find('#book_no').focus();
+    if(action == "add"){
+        materialFormContainer.find('#submit_button').text("Add");
+    }else{
+        materialFormContainer.find('#submit_button').text("Edit");
     }
+
+    $('#other').hide();
+    $('.abstract_container').hide();
+    materialFormContainer.slideDown();
+    $(materialFormContainer).find('#book_no').focus();
+    return false;
 }
 
 function cancelForm() {
     var materialFormContainer = $('#material_form_container');
-
-    materialFormContainer.find('.detail_name');
+    materialFormContainer.find('.detail_content,.detail_name,.detail_name+br,.detail_content+br').remove();
     materialFormContainer.hide();
-
     return false;
 }
 
-function cancelAdd(){
-    var addContainer = $('#add_container');
-    addContainer.find('.detail_content,.detail_name,.detail_name+br,.detail_content+br').remove();
-    addContainer.hide();
-    addContainer.find('form')[0].reset();
-    return false;
-}
-function addBook(event){
-    event.preventDefault();  /* stop form from submitting normally */
+function addBook(){
     var errors;
+
     if((errors = checkAll.call(this)) == ''){
-        var book_no = $(this).find('#add_book_no').val();
+        var book_no = $(this).find('#book_no').val();
         var addForm = $(this);
         var formInputs = addForm.serialize();
         $.get("index.php/book/get_book",{"book_no":book_no},function(data){
@@ -98,15 +103,16 @@ function addBook(event){
 
                 $('[data-toggle="tab"]')[1].click();
             }else{
-               alert('Cannot add duplicate material.')
+                alert('Cannot add duplicate material.')
             }
         });
 
-        cancelAdd();
     }else{
         errors = "Cannot continue action because of the following errors:<br/>" + errors;
         $(this).closest('div').find('.errors').html(errors);
     }
+    cancelForm();
+    return false;
 }
 /***** END ADD FUNCTIONS *****/
 
