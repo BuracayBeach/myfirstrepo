@@ -21,6 +21,7 @@
                 echo "<th ";
                 if ($search_by != 'any' && $search_by != 'abstract') echo ' hidden';
                 echo ">Abstract</th>";
+                echo "<th>Other Details</th>";
                 echo "</tr>";
 
 

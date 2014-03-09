@@ -57,8 +57,6 @@
 						 my_input += "&rows_per_page=" + ($('#results_per_page').val()==0?10:resultsPerPage);
 						 my_input += "&tagSearch=" + searchText.attr('tagSearch')
 
-
-
 						
 
 						if (lastSessionSave && lastSessionSave.readyState != 4) lastSessionSave.abort();
@@ -73,6 +71,7 @@
 
 						var currentPath = window.location.href
 						var searchPath = icejjfish + "ihome"
+
 						if (currentPath != searchPath){
 								window.location.replace(icejjfish + "ihome");
 						} else {
