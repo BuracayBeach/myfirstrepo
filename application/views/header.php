@@ -69,6 +69,18 @@
 					</a>
 
 					<?php
+						if( isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
+							echo "
+								<a href=" . base_url() . "accounts>
+									<div class='menulinks'>
+										Accounts
+									</div>
+								</a>";
+
+						}
+					?>
+
+					<?php
 
 					if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
 						echo 
