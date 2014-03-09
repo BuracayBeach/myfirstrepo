@@ -389,7 +389,7 @@ ANNOUNCEMENT CAROUSEL
 
 #announcement_carousel .carousel-control{
     z-index: 1000;
-
+    min-height: 340px;
 }
 #announcement_carousel .carousel-caption {
     position: relative;
