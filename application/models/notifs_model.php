@@ -23,7 +23,18 @@ class Notifs_Model extends CI_Model {
 	}
 
 	public function add_notif($data) {
-		$this->db->insert('notifications', $data);
+
+		if ($this->check_user_if_exist($data['username_user']) != 0)
+			$this->db->insert('notifications', $data);
+
+		return;
+	}
+
+	public function check_user_if_exist($username) {
+		$count = $this->db->query("SELECT COUNT(*) count FROM user WHERE username LIKE '{$username}'");
+		$count = $count->row_array();
+
+		return $count['count'];
 	}
 
 	public function get_unreturned() {
