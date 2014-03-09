@@ -7,6 +7,8 @@ body{
     font-family:"Segoe UI Light" !important;
     font-size: 15px;
 }
+
+textarea { resize:vertical; }
 /*--------------------------------------------
 BANNER
   *put event on zoomin

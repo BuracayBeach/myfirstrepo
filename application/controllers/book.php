@@ -87,7 +87,6 @@ class Book extends CI_Controller {
     public function get_buttons_view(){
         if(isset($_GET)){
         $data['row'] = json_decode(json_encode($_GET));
-        $data['row']->status = $data['row']->book_status;
 
         echo $this->load->view('table_buttons_view',$data);}
     }
