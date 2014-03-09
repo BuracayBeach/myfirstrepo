@@ -39,13 +39,13 @@ function validateFirstName(){
 	document.getElementsByName("span name_first")[0].innerHTML=msg;
 
 	if(msg==""){
-		$('input[name=name_first]').removeClass().addClass("valid");
+		$('input[name=name_first]').removeClass().addClass("valid form-control");
 		$("span[name~='name_first']").removeClass().addClass("valid");
 		return true;
 	}
 
 	else{
-		$('input[name=name_first]').removeClass().addClass("invalid");
+		$('input[name=name_first]').removeClass().addClass("invalid form-control");
 		$("span[name~='name_first']").removeClass().addClass("invalid");
 	}
 
@@ -63,13 +63,13 @@ function validateMiddleName(){
 	document.getElementsByName("span name_middle")[0].innerHTML=msg;
 
 	if(msg==""){ 
-		$('input[name=name_middle]').removeClass().addClass("valid");
+		$('input[name=name_middle]').removeClass().addClass("valid form-control");
 		$("span[name~='name_middle']").removeClass().addClass("valid");
 		return true;
 	}
 
 	else{
-		$('input[name=name_middle]').removeClass().addClass("invalid");
+		$('input[name=name_middle]').removeClass().addClass("invalid form-control");
 		$("span[name~='name_middle']").removeClass().addClass("invalid");
 	}
 }
@@ -85,13 +85,13 @@ function validateLastName(){
 	document.getElementsByName("span name_last")[0].innerHTML=msg;
 
 	if(msg==""){
-		$('input[name=name_last]').removeClass().addClass("valid");
+		$('input[name=name_last]').removeClass().addClass("valid form-control");
 		$("span[name~='name_last']").removeClass().addClass("valid");
 		return true;
 	}
 
 	else{
-		$('input[name=name_last]').removeClass().addClass("invalid");
+		$('input[name=name_last]').removeClass().addClass("invalid form-control");
 		$("span[name~='name_last']").removeClass().addClass("invalid");
 	}
 }
@@ -109,13 +109,13 @@ function validateCurrentPassword(){
 	document.getElementsByName("span currentpassword")[0].innerHTML=msg;
 	
 	if(msg!="Required"&&msg!="Must be 5-18 characters long."){
-		$('input[name=currentPassword]').removeClass().addClass("valid");
+		$('input[name=currentPassword]').removeClass().addClass("valid form-control");
 		$("span[name~='currentpassword']").removeClass().addClass("valid");
 		return true;
 	}
 
 	else{
-		$('input[name=currentPassword]').removeClass().addClass("invalid");
+		$('input[name=currentPassword]').removeClass().addClass("invalid form-control");
 		$("span[name~='currentpassword']").removeClass().addClass("invalid");
 	}
 }
@@ -138,13 +138,13 @@ function validateNewPassword(){
 	document.getElementsByName("span newpassword")[0].innerHTML=msg;
 	
 	if(msg!="Required"&&msg!="Must be 5-18 characters long."){
-		$('input[name=newPassword]').removeClass().addClass("valid");
+		$('input[name=newPassword]').removeClass().addClass("valid form-control");
 		$("span[name~='newpassword']").removeClass().addClass("valid");
 		return true;
 	}
 
 	else{
-		$('input[name=newPassword]').removeClass().addClass("invalid");
+		$('input[name=newPassword]').removeClass().addClass("invalid form-control");
 		$("span[name~='newpassword']").removeClass().addClass("invalid");
 	}
 }
@@ -162,13 +162,13 @@ function validateReNewPassword(){
 	document.getElementsByName("span newrepassword")[0].innerHTML=msg;
 	
 	if(msg=="Valid"){
-		$('input[name=newRePassword]').removeClass().addClass("valid");
-		$("span[name~='newrepassword']").removeClass().addClass("valid");
+		$('input[name=newRePassword]').removeClass().addClass("valid form-control");
+		$("span[name~='newrepassword']").removeClass().addClass("valid ");
 		return true;
 	}
 
 	else{
-		$('input[name=newRePassword]').removeClass().addClass("invalid");
+		$('input[name=newRePassword]').removeClass().addClass("invalid form-control");
 		$("span[name~='newrepassword']").removeClass().addClass("invalid");
 	}
 }
