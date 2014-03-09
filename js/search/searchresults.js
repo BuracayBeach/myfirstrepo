@@ -7,7 +7,7 @@
 						newSearch = newSearch.replace(/<\/strong>/g,"");
 						var searchText = $('#search_text')
 						
-						if (searchText.val() == '') searchText.val(newSearch.trim())
+						// if (searchText.val() == '') searchText.val(newSearch.trim())
 
 						if ($(this).attr('class') == 'tag_link') searchText.attr('tagSearch',$(this).text())
 						else searchText.val(newSearch.trim());

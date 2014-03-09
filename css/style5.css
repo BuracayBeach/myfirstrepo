@@ -33,6 +33,10 @@ RIGHTSIDE
     float: left;
 }
 
+#rightbody.fixerupper{
+    margin-left: 15%;
+}
+
 /*--------------------------------------------
 NAVBAR
   *put event on zoomin
@@ -250,8 +254,14 @@ FAQ
     width: 100% !important;
 }
 
+#faq_table hr{
+    background-color: orange;
+    height: 1px;
+}
+
 .question{
     padding-bottom:20px;
+    color: #2266cc;
 }
 
 .question.editable{
@@ -336,18 +346,20 @@ FAQ
 }
 
 .edit_announcement_button{
-    margin-left: 10%;
+    margin-left: 5%;
     background-color:#2266cc !important;
     font-family:"Segoe UI Light" !important;
     font-size:100% !important;
     color: white;
+    margin-bottom: 5%;
 }
 .delete_announcement_button{
-    margin-left: 10%;
+    margin-left: 5%;
     background-color:#FF6600 !important;
     font-family:"Segoe UI Light" !important;
     font-size:100% !important;
     color: white;
+    margin-bottom: 5%;
 }
 .errors{
         color: red !important;
@@ -358,8 +370,6 @@ FAQ
 ANNOUNCEMENT CAROUSEL
 
 ---------------*/
-
-
 
 #announcements_container.admin{
     width: 100%;
@@ -379,21 +389,31 @@ ANNOUNCEMENT CAROUSEL
 
 #announcement_carousel .carousel-control{
     z-index: 1000;
-
+    min-height: 340px;
 }
-
 #announcement_carousel .carousel-caption {
     position: relative;
     left: 0 !important;
-    width: 600px;
-    height: 300px;
+    width: 100%;
+    min-height: 350px;
     margin-left: 0px;
     margin-top: 20px;
-    background-color: #2266cc !important;
+    background-color:  #222930 !important;
     padding-top: 20px !important;
     padding-bottom: 0px !important;
 }
 
+#announcement_carousel .item.active{
+    width: 100%;
+    padding: 0px !important;
+    margin: 0px;
+}
+
+#announcement_carousel .item{
+    width: 100%;
+    padding: 0px !important;
+    margin: 0px;
+}
 
 
 /*-----------------------------------
@@ -566,6 +586,14 @@ ERROR
 
 /*USER VIEW - FAQS*/
 #faq_container {
+    width: 60%;
+    float: left;
+    margin-left: 20%;
+    margin-top: 10%;
+
+}
+
+#help_container {
     width: 60%;
     float: left;
     margin-left: 20%;
