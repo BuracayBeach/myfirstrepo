@@ -1,8 +1,10 @@
 
 <div id="admin_list_container">
-	<h4>Admins</h4>
+	<h1>Admins</h1>
 	<div id="admin_list">
-		
+		<table id="admin_table">	
+          		
+          </table>
 	</div>
 </div>	
 
