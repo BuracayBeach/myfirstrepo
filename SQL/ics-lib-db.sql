@@ -39,21 +39,7 @@ CREATE TABLE IF NOT EXISTS `account_history` (
   KEY `account_history_email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `account_history`
---
 
-INSERT INTO `account_history` (`username_user`, `username_admin`, `email`, `date`, `action`) VALUES
-('Andescols', 'admin', 'RichardKHowle@jourrapide.com', '2014-02-25 05:08:17', 'activate'),
-('Tharsen', 'admin', 'JesseARoberts@armyspy.com', '2014-02-25 05:09:19', 'activate'),
-('Thoureprot94', 'admin', 'HardingPuddifoot@dayrep.com', '2014-02-25 05:08:54', 'activate'),
-('Thoureprot94', 'admin', 'HardingPuddifoot@dayrep.com', '2014-02-25 05:09:17', 'disable'),
-('Trater93', 'admin', 'RyanEPruitt@jourrapide.com', '2014-02-25 05:08:50', 'activate'),
-('Trater93', 'admin', 'RyanEPruitt@jourrapide.com', '2014-02-25 05:08:56', 'disable'),
-('Trater93', 'admin', 'RyanEPruitt@jourrapide.com', '2014-02-25 05:09:14', 'enable'),
-('useruser', 'admin', 'user@user.user', '2014-02-25 06:50:02', 'activate');
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `admin`
@@ -262,16 +248,7 @@ CREATE TABLE IF NOT EXISTS `lend` (
   KEY `lend_username_admin` (`username_admin`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
---
--- Dumping data for table `lend`
---
 
-INSERT INTO `lend` (`transaction_no`, `book_no`, `username_user`, `date_borrowed`, `date_returned`, `username_admin`) VALUES
-(2, 'CS130-N12', 'useruser', '2014-03-05 02:16:24', '2014-03-05 02:16:37', 'admin'),
-(3, 'TH 0002', 'useruser', '2014-03-05 02:16:25', '2014-03-05 02:16:38', 'admin'),
-(4, 'CS100 – G23', 'useruser', '2014-03-05 02:16:35', '2014-03-05 02:16:36', 'admin');
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `notifications`
@@ -419,7 +396,7 @@ INSERT INTO `user` (`username`, `password`, `sex`, `status`, `email`, `usertype`
 ('Thoureprot94', 'haingeiS1Io', 'male', 'disabled', 'HardingPuddifoot@dayrep.com', 'student', '', '2011-13575', 'Harding', 'Brandagamba', 'Puddifoot', '09176497221', 'BSCS', 'CAS'),
 ('Trater93', 'AgeFiezei2', 'male', 'enabled', 'RyanEPruitt@jourrapide.com', 'student', '', '2013-14344', 'Ryan', 'Emerson', 'Pruitt', '09180023476', 'BSCS', 'CAS'),
 ('Tury1993', 'Xa4IquieniVe', 'female', 'pending', 'SakikoKamuta@jourrapide.com', 'student', '', '2012-56916', 'Sakiko', 'Asada', 'Kamuta', '09227869432', 'BSCS', 'CAS'),
-('useruser', 'e172c5654dbc12d78ce1850a4f7956ba6e5a3d2ac40f0925fc6d691ebb54f6bf', 'male', 'enabled', 'user@user.user', 'student', '', '2004-33411', 'user', 'user', 'user', '639232143048', 'MVE', 'GS'),
+('useruser', 'e172c5654dbc12d78ce1850a4f7956ba6e5a3d2ac40f0925fc6d691ebb54f6bf', 'male', 'enabled', 'user@user.user', 'student', '', '2004-33411', 'User', 'User', 'User', '639232143048', 'MVE', 'GS'),
 ('Waskeend96', 'Ooyiush1pau', 'female', 'pending', 'StephanieKuefer@teleworm.us', 'student', '', '2009-28943', 'Stephanie', 'Fisher', 'Kuefer', '09151784993', 'BSCS', 'CAS'),
 ('Whattis', 'aiquai5Oo', 'male', 'pending', 'JordanLMancini@teleworm.us', 'student', '', '2010-10290', 'Jordan', 'Lincoln', 'Mancini', '09154573211', 'BSCS', 'CAS');
 

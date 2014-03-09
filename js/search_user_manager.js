@@ -189,12 +189,12 @@ function search_user(min_index)
 						}
 						case "enabled" : //creates a button named disable
 						{ 
-							row += "<input type='button' value='Enable' class='Enable_button' usertype='"+json_results.results[i].usertype+"' username='"+json_results.results[i].username+"' student_no='"+json_results.results[i].student_no+"' emp_no='"+json_results.results[i].emp_no+"' email='"+json_results.results[i].email+"'/>";
+							row += "<input type='button' value='Disable' class='Disable_button' usertype='"+json_results.results[i].usertype+"' username='"+json_results.results[i].username+"' student_no='"+json_results.results[i].student_no+"' emp_no='"+json_results.results[i].emp_no+"' email='"+json_results.results[i].email+"'/>";
 							break;
 						}
 						case "disabled" : //creates a button named enable
 						{ 
-							row += "<input type='button' value='Disable' class='Disable_button' usertype='"+json_results.results[i].usertype+"' username='"+json_results.results[i].username+"' student_no='"+json_results.results[i].student_no+"' emp_no='"+json_results.results[i].emp_no+"' email='"+json_results.results[i].email+"'/>";
+							row += "<input type='button' value='Enable' class='Enable_button' usertype='"+json_results.results[i].usertype+"' username='"+json_results.results[i].username+"' student_no='"+json_results.results[i].student_no+"' emp_no='"+json_results.results[i].emp_no+"' email='"+json_results.results[i].email+"'/>";
 							break;
 						}
 					}
