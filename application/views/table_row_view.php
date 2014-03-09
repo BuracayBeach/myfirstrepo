@@ -47,9 +47,7 @@
                 $detail['content'] = $arr[1];
             }
         }
-
     }
-
 
     echo "<tr active='false'>";
         echo "<td align='center'>" .
