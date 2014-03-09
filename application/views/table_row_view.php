@@ -9,6 +9,7 @@
 
     $row_copy = clone $row;
 
+
     if(!(isset($newly_added) && $newly_added) && isset($search_term)){
         //prevent html generation for tags and scripts
         // var_dump($search_term);
@@ -38,6 +39,7 @@
             }
         }
 
+        //convert other_detail from string to associative array
         if($row_copy->other_detail != null){
             $row_copy->other_detail = explode("¦",$row_copy->other_detail);
             foreach($row_copy->other_detail as &$detail){
@@ -46,7 +48,9 @@
                 $detail['name'] = $arr[0];
                 $detail['content'] = $arr[1];
             }
+            // var_dump($row->other_detail);
         }
+
     }
 
     echo "<tr active='false'>";
@@ -56,6 +60,10 @@
             "</div>" .
             "<div style = 'font:12px Verdana' book_data='book_type'><em>" .
             $row_copy->book_type .
+            "</em></div>" .
+
+            "<div style = 'font:10px Verdana' book_data='isbn'><em>" .
+            $row_copy->isbn .
             "</em></div>" .
           "</td>";
 
@@ -119,6 +127,12 @@
     echo "<td book_data='abstract' class='book_abstract'";
     if (isset($search_by) && $search_by != 'any' && $search_by != 'abstract') echo 'hidden';
     echo "><span class='article_abstract'>" . $row_copy->abstract . '<span></td>';
+
+    echo "<td book_data='other_detail'><span class='article_abstract'>";
+    if (isset($detail)) {
+        echo '<span detail="name">' . $detail['name'] . '</span>: <span detail="content">' . $detail['content'] . '<span>';
+    }
+    echo '<span></td>';
 
     echo "</tr>";
 
