@@ -342,7 +342,7 @@ FAQ
     width:100% !important;
 }
 #faq_manage_container{
-    margin-left: 20%;
+    margin-left: 10%;
     margin-top: 3%;
     width: 50%;
 }
@@ -531,7 +531,7 @@ ERROR
 }
 /* for non users */
 #result_container_container{
-    margin-left: 20%;
+    margin-left: 5%;
     width: 60%;
 }
 
@@ -588,7 +588,7 @@ ERROR
 #faq_container {
     width: 60%;
     float: left;
-    margin-left: 20%;
+    margin-left: 10%;
     margin-top: 10%;
 
 }
@@ -596,11 +596,18 @@ ERROR
 #help_container {
     width: 60%;
     float: left;
+    margin-left: 10%;
+    margin-top: 50px;
+}   
+
+
+#home_content_container {
+    width: 70%;
+    float: left;
     margin-left: 6%;
     margin-top: 50px;
 
 }   
-
 /*------------
 OVERALLS
 ------------*/
@@ -616,6 +623,16 @@ OVERALLS
     font-size: 14px;
 }
 
+.hiddenspan{
+    visibility: hidden;
+    font-size: 13px;
+}
+
+.error{
+    visibility: visible; 
+    color: rgba(250, 50, 50, 1);
+
+}
 /* CAROUSEL*/
 #wrapper_carousel {
         height: 100px;
@@ -685,3 +702,45 @@ OVERALLS
 .fontsforweb_fontid_1409 {
     font-family: 'SEGOEUIL' !important;
 }
+
+#body{
+    margin-left: 10%;
+    width: 71%;
+}
+
+#results{
+    margin-left: 10%;
+    width: 71%;
+
+}
+
+#result_table{
+    margin-left: 0%;
+    font-size: 1vw;
+}
+#account_log{
+    margin-left: 10%;
+    width: 71%;
+    border-top: 2px solid orange; 
+}
+
+#page_size{
+    width:40px;
+}
+
+#submitButton{
+    background-color: #3340DD;
+    color: white;
+    margin-left: 3%;
+    width: 15%;
+}
+
+#userResultsPerPage{
+    float: right;
+}
+
+#logsPerPage{
+    float: right;
+}
+
+

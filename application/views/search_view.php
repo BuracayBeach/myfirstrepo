@@ -7,7 +7,6 @@
 
 	$book = $journal = $sp = $thesis = $other = " checked";
 	$ava = $res = $bor = " checked";
-	$autoSubmitSearch = 'false';
 
 	if (isset($_SESSION['search_data'])){
 		// var_dump($_SESSION['search_data']);
@@ -28,7 +27,6 @@
 		if (!isset($sss['reserved'])) $res = '';
 		if (!isset($sss['borrowed'])) $bor = '';
 
-
 		$sr = $sss['order_by']=='search_relevance'?'selected':'';
 		$bn  = $sss['order_by']=='book_no'?'selected':'';
 		$bt  = $sss['order_by']=='book_title'?'selected':'';
@@ -37,30 +35,14 @@
 		$na  = $sss['order_by']=='name'?'selected':'';
 		$dp  = $sss['order_by']=='date_published'?'selected':'';
 
-
-		if (isset($sss['autoSubmitSearch'])) $autoSubmitSearch = 'true';
 	}
 ?>
 
 			<div id="search" class="">
 				<form id="search_form" name="search_form" method="post">
-						<div class="form-group"><input class="form-control" searchby="<?=$s_sby?>" id="search_text" type="search" name='search' autofocus='true' placeholder='Keywords...' maxlength='99' spellcheck='true' tagSearch='false' autoSubmitSearch="<?=$autoSubmitSearch?>" value="<?=$s_stext?>" /></div>
-				<input class="btn btn-primary" id='submit_search' type="submit" name="submit_search" value="Search"/><br/>
-					<hr>
-					<div id="sidebar-wrapper">
-				        <ul class="sidebar-nav">
-				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='book_title'?'active':''?>"  searchby="book_title">Title, Desc &nbsp; <img src="<?php echo base_url();?>images/icon/title1.png" alt="">&nbsp;&nbsp;</li></a>
-				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='book_no'?'active':''?>" searchby="book_no">Call No, ISBN &nbsp; <img src="<?php echo base_url();?>images/icon/number.png" alt="">&nbsp;&nbsp;</li></a>
-				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='author'?'active':''?>" searchby="author">Author &nbsp; <img src="<?php echo base_url();?>images/icon/user32.png" alt="">&nbsp;&nbsp;</li></a>
-				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='publisher'?'active':''?>" searchby="publisher">Publisher &nbsp; <img src="<?php echo base_url();?>images/icon/printer32.png" alt="">&nbsp; &nbsp;</li></a>
-				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='date_published'?'active':''?>" searchby="date_published">Year Published &nbsp; <img src="<?php echo base_url();?>images/icon/calendar.png" alt="">&nbsp;&nbsp;</li></a>
-				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='abstract'?'active':''?>" searchby="abstract">Abstract &nbsp; <img src="<?php echo base_url();?>images/icon/star32.png" alt="">&nbsp; &nbsp;</li></a>
-				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='any'?'active':''?>" searchby="any">Any &nbsp; <img src="<?php echo base_url();?>images/icon/wand32.png" alt="">&nbsp; &nbsp;</li></a>
-				           
-				            <hr>
-				        </ul>
-					</div>
-					<div id="dropdown_container">
+
+
+						<div id="dropdown_container">
 								<div id="book_type_div" class="dropdown-check-list">
 
 						        <span class="anchor">Type</span>
@@ -86,11 +68,11 @@
 									<div id="status" class="dropdown-check-list">
 									        <span class="anchor">Status</span>
 									        <ul class="items">
-									            <li>&nbsp;&nbsp;<input class="check" id = "available" type="checkbox" name = "available" ' . $ava . ' >
+									            <li> <input class="check" id = "available" type="checkbox" name = "available" ' . $ava . ' >
 												<label for="available">Available</label></li>
-									            <li>&nbsp;&nbsp;<input class="check" id = "reserved" type="checkbox" name = "reserved" ' . $res . ' >
+									            <li>  <input class="check" id = "reserved" type="checkbox" name = "reserved" ' . $res . ' >
 												<label for="reserved">Reserved</label></li>
-									            <li>&nbsp;&nbsp;<input class="check" id = "borrowed" type="checkbox" name = "borrowed" ' . $bor . ' >
+									            <li>  <input class="check" id = "borrowed" type="checkbox" name = "borrowed" ' . $bor . ' >
 												<label for="borrowed" style="clear:right;">Borrowed</label></li>
 									        </ul>
 									    </div>
@@ -101,6 +83,10 @@
 							<hr/>
 						</div>
 						
+
+				<div class="form-group"><input class="form-control" searchby="<?=$s_sby?>" id="search_text" type="search" name='search' autofocus='true' placeholder='Keywords...' maxlength='99' spellcheck='true' tagSearch='false' value="<?=$s_stext?>" /></div>
+				<input class="btn btn-primary" id='submit_search' type="submit" name="submit_search" value="Search"/><br/>
+					<hr>
 					<?php
 						// if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
 							echo '
@@ -117,14 +103,29 @@
 							';
 						// }
 					?>
+
+					<div id="sidebar-wrapper">
+				        <ul class="sidebar-nav">
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='book_title'?'active':''?>"  searchby="book_title">Title, Desc &nbsp; <img src="<?php echo base_url();?>images/icon/title1.png" alt="">&nbsp;&nbsp;</li></a>
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='book_no'?'active':''?>" searchby="book_no">Call No, ISBN &nbsp; <img src="<?php echo base_url();?>images/icon/number.png" alt="">&nbsp;&nbsp;</li></a>
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='author'?'active':''?>" searchby="author">Author &nbsp; <img src="<?php echo base_url();?>images/icon/user32.png" alt="">&nbsp;&nbsp;</li></a>
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='publisher'?'active':''?>" searchby="publisher">Publisher &nbsp; <img src="<?php echo base_url();?>images/icon/printer32.png" alt="">&nbsp; &nbsp;</li></a>
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='date_published'?'active':''?>" searchby="date_published">Year Published &nbsp; <img src="<?php echo base_url();?>images/icon/calendar.png" alt="">&nbsp;&nbsp;</li></a>
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='abstract'?'active':''?>" searchby="abstract">Abstract &nbsp; <img src="<?php echo base_url();?>images/icon/star32.png" alt="">&nbsp; &nbsp;</li></a>
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='any'?'active':''?>" searchby="any">Any &nbsp; <img src="<?php echo base_url();?>images/icon/wand32.png" alt="">&nbsp; &nbsp;</li></a>
+				           
+				            <hr>
+				        </ul>
+					</div>
 	
 				</form>
 			</div>
 
 
-<?php
-	// if (isset($_SESSION['search_data'])) unset($_SESSION['search_data']);
-	if (isset($_SESSION['search_data']) && isset($_SESSION['search_data']['autoSubmitSearch'])) unset($_SESSION['search_data']['autoSubmitSearch']);
+<?php 
+	$awto = null;
+	if (isset($_SESSION['search_data'])) $awto = $_SESSION['search_data']['autoSubmitSearch'];
+	echo "<div id='autoSubmitSearchDiv' balyu='{$awto}''></div>";
 ?>
 
 
@@ -137,8 +138,6 @@
 
 
 <div id="rightbody">
-
-
 
 
 
