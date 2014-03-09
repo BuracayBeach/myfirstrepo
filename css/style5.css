@@ -600,6 +600,14 @@ ERROR
     margin-top: 50px;
 }   
 
+
+#home_content_container {
+    width: 70%;
+    float: left;
+    margin-left: 6%;
+    margin-top: 50px;
+
+}   
 /*------------
 OVERALLS
 ------------*/

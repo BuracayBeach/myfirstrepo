@@ -65,18 +65,18 @@ class Home extends CI_Controller {
         }
 
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
-            $this->load->view("announcements_view");
-
             $data['notifs'] = $this->notifs_model->get_all($_SESSION['username'], 0);
             $data['notifs_count'] = $this->notifs_model->count_by_username($_SESSION['username']);
             $this->load->view("search_results_view");
             $this->load->view("announcements_view");
+            $this->load->view("home_contents_view");
             $this->load->view('notifications_view', $data);
         }
 
         if(!isset($_SESSION['type'])){
             $this->load->view("announcements_view");
             $this->load->view("search_results_view");
+            $this->load->view("home_contents_view");
         }
 
 
