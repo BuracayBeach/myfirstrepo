@@ -36,6 +36,7 @@ function display_admins()
 					headers += "<th>First Name</th>";
 					headers += "<th>Middle Name</th>";
 					headers += "<th>Last Name</th>";
+					headers += "<th>Action</th>";
 					headers += "</tr>";
 					//add the headers to the array of strings to be inserted into the table
 					admin_array.push(headers);
@@ -54,7 +55,7 @@ function display_admins()
 					}
 
 					//insert the strings as html to dynamically add content to the table
-					$('#admin_list_container #admin_list').html(admin_array);
+					$('#admin_table').html(admin_array);
 				} else{
 					$('#admin_list').before("<p>No other admins</p>")
 				}
