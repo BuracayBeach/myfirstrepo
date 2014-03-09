@@ -9,10 +9,8 @@
 	</div>
 </a>
 <?php
-$url1 = base_url()."home/delete_admins";
-$url2 = base_url()."home/create_admin";
  if($_SESSION['admin_username'] == "admin") echo "
-<a href='{$url1}'> 
+<a href='".base_url()."delete_admins'> 
 	<div class='menulinks'> 
 		Delete an Admin 
 	</div>

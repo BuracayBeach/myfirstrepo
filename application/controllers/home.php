@@ -296,6 +296,9 @@ class Home extends CI_Controller {
 
     public function create_admin()
     {
+        if(isset($_SESSION['admin_username']) && $_SESSION['admin_username'] != "admin")
+            redirect(base_url()); 
+        
         $data['title'] = "Create an Admin";
         $this->load->view("header", $data);
         $this->load->view("create_admin_view");
@@ -304,6 +307,9 @@ class Home extends CI_Controller {
 
     public function delete_admins()
     {
+         if(isset($_SESSION['admin_username']) && $_SESSION['admin_username'] != "admin")
+            redirect(base_url());
+        
         $data['title'] = "Delete an Admin";
         $this->load->view("header", $data);
         $this->load->view("delete_admin_view");
