@@ -1,7 +1,7 @@
 	$(document).ready(function(){
 		var submitSearch = $('#search_text')
-		if (submitSearch.attr('autopindot') == 'true') {
-			submitSearch.attr('autopindot','false')
+		if (submitSearch.attr('autoSubmitSearch') == 'true') {
+			submitSearch.attr('autoSubmitSearch','false')
 			submitSearch.submit();
 		}
 	})

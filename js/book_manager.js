@@ -15,7 +15,10 @@ $('#result_container,#faq_container').ready(function(){
     $('#add_book_type').change(checkBookType);
     $('#edit_book_type').change(checkBookType);
 
-    $('.more_details').on('click',generateInputDetail);
+    $('.more_details').on('click',function(){
+        var index = $('#add_book_form').find('.detail_name').length;
+        generateInputDetail(this,index);
+    });
     /***** END EVENT ATTACHMENTS *****/
 
     /* Hide Forms Initially */
@@ -45,14 +48,15 @@ function showAddForm(){
 
     $('#add_other').hide();
     $('.abstract_container').hide();
-    addContainer.show();
+    addContainer.slideDown();
     $(addContainer).find('#add_book_no').focus();
 }
-function cancelAdd(event){
-    event.preventDefault();
+function cancelAdd(){
     var addContainer = $('#add_container');
+    addContainer.find('.detail_content,.detail_name,.detail_name+br,.detail_content+br').remove();
     addContainer.hide();
     addContainer.find('form')[0].reset();
+    return false;
 }
 function addBook(event){
     event.preventDefault();  /* stop form from submitting normally */
@@ -76,18 +80,16 @@ function addBook(event){
                         alert("Sorry! There was a problem processing your action.");
                     });
 
-                addForm.closest('div').hide();
                 $('[data-toggle="tab"]')[1].click();
             }else{
                alert('Cannot add duplicate material.')
             }
         });
 
-        this.reset();
+        cancelAdd();
     }else{
         errors = "Cannot continue action because of the following errors:<br/>" + errors;
         $(this).closest('div').find('.errors').html(errors);
-        //prompt error;
     }
 }
 /***** END ADD FUNCTIONS *****/
@@ -102,12 +104,9 @@ function checkBookType(){
         form.find('.other').prop('required',false).hide();
     }
 
-    console.log(form);
     if(type == "Book"){
-        console.log(form.find('.isbn'))
         form.find('.isbn').show().next().show();
     }else{
-        console.log(form.find('.isbn'))
         form.find('.isbn').hide().next().hide();
     }
     if(type != "Book" && type != "Journal"){
@@ -151,15 +150,13 @@ function fillEditForm(event){
         editForm.find("#edit_date_published")[0].value=data.date_published;
         editForm.find("#edit_tags").val(data.tags);
 
+        editedRow = td.closest('tr');
+        var editContainer = $('#edit_container');
+        editContainer.slideDown();
+        $(editContainer).find('#edit_book_no').focus();
+        $("#add_announcement_cancel_button").click();
+
     });
-
-    editedRow = td.closest('tr');
-    var editContainer = $('#edit_container');
-    editContainer.show();
-    $(editContainer).find('#edit_book_no').focus();
-
-
-    $("#add_announcement_cancel_button").click();
 
 }
 
@@ -245,12 +242,12 @@ function deleteBook(){
 }
 /***** END DELETE FUNCTIONS *****/
 /***** FUNCTION FOR OTHER DATA *****/
-function generateInputDetail(){
-    var detailHTML = '<input class="detail_name" maxlength="20" name="detail[][name]"/><br/>' +
-        '<textarea class="detail_content" maxlength="255" name="detail[][content]"></textarea><br/>';
+function generateInputDetail(anchor,index){
+    var detailHTML = '<input type="text" title="Name of the Detail. (ie. Subject, Volume)" class="form-control detail_name" required="" placeholder="Detail Name" maxlength="20" name="other_detail['+index+'][name]"/>' +
+        '<textarea class="form-control detail_content" placeholder="Detail" maxlength="255" name="other_detail['+index+'][content]"></textarea>';
 
-    $(this).nextAll('.add_button').before(detailHTML);
-    var detailName = $(this).nextAll('.detail_name:last');
+    $(anchor).nextAll('.add_button').before(detailHTML);
+    var detailName = $(anchor).nextAll('.detail_name:last');
     $("html,body").animate({ scrollTop: detailName.offset().top }, 2000);
     detailName[0].focus();
 

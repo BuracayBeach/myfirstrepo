@@ -192,7 +192,8 @@ class Search_model extends CI_Model {
         $query_string = $q['select'] . $q['where'] . $q['order_by'];
         // var_dump($query_string);
 
-        return $this->db->query($query_string)->result();
+        $result = $this->db->query($query_string)->result();
+        return $result;
     }
 
 
@@ -284,7 +285,8 @@ class Search_model extends CI_Model {
         $tag_matched = false;
 
         $tagSearch = strtolower($input['tag_search']);
-        $tagSearches = explode(' ' ,str_replace(',',' ',$tagSearch));
+        // $tagSearches = explode(' ' ,str_replace(',',' ',$tagSearch));
+        $tagSearches = explode(' ' ,preg_replace("/[^a-zA-Z0-9]+/", " ", $tagSearch));
 
         foreach($tagSearches as $tagch){
             array_push($search_terms, $tagch);

@@ -1,7 +1,7 @@
 <?php
-    $logged_in = !isset($_SESSION['type']);
+    $logged_in = isset($_SESSION['type']);
     $regular = isset($_SESSION['type']) && $_SESSION['type'] == 'regular';
-    if ($logged_in || $regular){
+    if (!$logged_in || $regular){
         echo '<div id="result_container_container">';
     }
 ?>

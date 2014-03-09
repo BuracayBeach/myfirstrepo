@@ -3,7 +3,7 @@
 <button id="add_announcement_button">Add Announcement</button>
 <div id="announcement_manage_container">
     <div id="add_announcement_container">
-        <form autocomplete="on" id="add_announcement_form">
+        <form autocomplete="on" class="well" id="add_announcement_form">
             <br>
             <div class="form-group"><input class="form-control" type="text" name="announcement_title" id="add_announcement_title" placeholder="Title" required/></div>
             <div class="form-group"><textarea class="form-control" name="announcement_content" id="add_announcement_content" placeholder="Announcement Content..."  required></textarea></div>

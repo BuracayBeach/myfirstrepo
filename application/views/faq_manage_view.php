@@ -6,11 +6,12 @@
             <tbody>
             <tr>
                 <td>
-                    <div id="add_faq_container" class="show_me"  class="column">
+                    <div id="add_faq_container" class="show_me column">
                         <form autocomplete="on" id="add_faq_form">
-                            <input type="text" name="question" required id="add_question" placeholder="Question"/>
+                            <input type="text" class="form-control" name="question" required id="add_question" placeholder="Question"/>
                             <br/>
-                            <textarea name="answer" id="add_answer" placeholder="Answer..."></textarea>
+                            <label>Answer:</label>
+                            <textarea name="answer" id="add_answer" class="answer_editor" placeholder="Answer..."></textarea>
                             <br/>
                             <button type="submit" name="add_faq_button" id="add_faq_button">Add</button>
                             <button type="button" id="add_faq_cancel_button" name="add_faq_cancel_button" >Cancel</button>
@@ -19,22 +20,6 @@
                     </div>
                 </td>
             </tr>
-            <!--
-            <tr>
-                <td>
-                    <div id="edit_faq_container">
-                        <form autocomplete="on" id="edit_faq_form">
-                            <input type="hidden" name="id" id="edit_faq_id" />
-                            <input type="text" name="question" id="edit_question" placeholder="Question" required/>
-                            <br/>
-                            <textarea name="answer" id="edit_answer" placeholder="Answer..."  required></textarea>
-                            <br/>
-                            <button type="submit" name="edit_faq_button" id="edit_faq_button">Edit</button>
-                            <button type="button" id="edit_faq_cancel_button" name="edit_faq_cancel_button" >Cancel</button>
-                        </form>
-                    </div>
-                <td/>
-            </tr-->
             </tbody>
         </table>
     </div>

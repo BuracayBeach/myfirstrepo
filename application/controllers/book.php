@@ -39,15 +39,14 @@ class Book extends CI_Controller {
     public function add(){
         if(isset($_POST)){
         $data = $this->safeguard->array_ready_for_query($_POST);
-        $new_detail = '';
-        if(isset($data['detail'])){
-            foreach($data['detail'] as &$detail){
-                $new_detail .= implode("»",$detail);
+        $new_detail = [];
+        if(isset($data['other_detail'])){
+            foreach($data['other_detail'] as &$detail){
+                array_push($new_detail,implode("»",$detail));
             }
-
-            var_dump($data['detail']);
-            var_dump($new_detail);
         }
+        $data['other_detail'] = implode("¦",$new_detail);
+
         if($data['type'] == 'Book' || $data['type'] == 'Journal')
             $data['abstract'] = null;
         if($data['type'] == 'Other')
@@ -118,7 +117,12 @@ class Book extends CI_Controller {
     public function search_sessionize(){
         session_start();
         $_SESSION['search_data'] = $_POST;
-        $_SESSION['search_data']['autopindot'] = 'true';
+        $_SESSION['search_data']['autoSubmitSearch'] = 'true';
+    }
+
+    public function search_unset_auto(){
+        if (isset($_SESSION['search_data']) && isset($_SESSION['search_data']['autoSubmitSearch'])) 
+                unset($_SESSION['search_data']['autoSubmitSearch']);
     }
 
     public function search(){

@@ -7,7 +7,7 @@
 
 	$book = $journal = $sp = $thesis = $other = " checked";
 	$ava = $res = $bor = " checked";
-	$autopindot = 'false';
+	$autoSubmitSearch = 'false';
 
 	if (isset($_SESSION['search_data'])){
 		// var_dump($_SESSION['search_data']);
@@ -28,6 +28,7 @@
 		if (!isset($sss['reserved'])) $res = '';
 		if (!isset($sss['borrowed'])) $bor = '';
 
+
 		$sr = $sss['order_by']=='search_relevance'?'selected':'';
 		$bn  = $sss['order_by']=='book_no'?'selected':'';
 		$bt  = $sss['order_by']=='book_title'?'selected':'';
@@ -37,7 +38,7 @@
 		$dp  = $sss['order_by']=='date_published'?'selected':'';
 
 
-		$autopindot = $sss['autopindot'];
+		if (isset($sss['autoSubmitSearch'])) $autoSubmitSearch = 'true';
 	}
 ?>
 
@@ -86,7 +87,7 @@
 						<hr>
 					</div>
 
-				<div class="form-group"><input class="form-control" searchby="<?=$s_sby?>" id="search_text" type="search" name='search' autofocus='true' placeholder='Keywords...' maxlength='99' spellcheck='true' tagSearch='false' autopindot="<?=$autopindot?>" value="<?=$s_stext?>" /></div>
+				<div class="form-group"><input class="form-control" searchby="<?=$s_sby?>" id="search_text" type="search" name='search' autofocus='true' placeholder='Keywords...' maxlength='99' spellcheck='true' tagSearch='false' autoSubmitSearch="<?=$autoSubmitSearch?>" value="<?=$s_stext?>" /></div>
 				<input class="btn btn-primary" id='submit_search' type="submit" name="submit_search" value="Search"/><br/>
 					<hr>
 					<?php
@@ -108,13 +109,13 @@
 
 					<div id="sidebar-wrapper">
 				        <ul class="sidebar-nav">
-				            <a href=""><li class="menu-toggle" searchby="book_title">Title / Description &nbsp; <img src="<?php echo base_url();?>images/icon/title1.png" alt="">&nbsp;&nbsp;</li></a>
-				            <a href=""><li class="menu-toggle" searchby="book_no">Book Number &nbsp; <img src="<?php echo base_url();?>images/icon/number.png" alt="">&nbsp;&nbsp;</li></a>
-				            <a href=""><li class="menu-toggle" searchby="author">Author &nbsp; <img src="<?php echo base_url();?>images/icon/user32.png" alt="">&nbsp;&nbsp;</li></a>
-				            <a href=""><li class="menu-toggle" searchby="publisher">Publisher &nbsp; <img src="<?php echo base_url();?>images/icon/printer32.png" alt="">&nbsp; &nbsp;</li></a>
-				            <a href=""><li class="menu-toggle" searchby="date_published">Year Published &nbsp; <img src="<?php echo base_url();?>images/icon/calendar.png" alt="">&nbsp;&nbsp;</li></a>
-				            <a href=""><li class="menu-toggle" searchby="abstract">Abstract &nbsp; <img src="<?php echo base_url();?>images/icon/star32.png" alt="">&nbsp; &nbsp;</li></a>
-				            <a href=""><li class="menu-toggle" searchby="any">Any &nbsp; <img src="<?php echo base_url();?>images/icon/wand32.png" alt="">&nbsp; &nbsp;</li></a>
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='book_title'?'active':''?>"  searchby="book_title">Title / Description &nbsp; <img src="<?php echo base_url();?>images/icon/title1.png" alt="">&nbsp;&nbsp;</li></a>
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='book_no'?'active':''?>" searchby="book_no">Book Number &nbsp; <img src="<?php echo base_url();?>images/icon/number.png" alt="">&nbsp;&nbsp;</li></a>
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='author'?'active':''?>" searchby="author">Author &nbsp; <img src="<?php echo base_url();?>images/icon/user32.png" alt="">&nbsp;&nbsp;</li></a>
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='publisher'?'active':''?>" searchby="publisher">Publisher &nbsp; <img src="<?php echo base_url();?>images/icon/printer32.png" alt="">&nbsp; &nbsp;</li></a>
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='date_published'?'active':''?>" searchby="date_published">Year Published &nbsp; <img src="<?php echo base_url();?>images/icon/calendar.png" alt="">&nbsp;&nbsp;</li></a>
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='abstract'?'active':''?>" searchby="abstract">Abstract &nbsp; <img src="<?php echo base_url();?>images/icon/star32.png" alt="">&nbsp; &nbsp;</li></a>
+				            <a class="menu-toggle" href="javascript:void(0)"><li class="menu-toggle <?=$s_sby=='any'?'active':''?>" searchby="any">Any &nbsp; <img src="<?php echo base_url();?>images/icon/wand32.png" alt="">&nbsp; &nbsp;</li></a>
 				           
 				            <hr>
 				        </ul>
@@ -125,7 +126,8 @@
 
 
 <?php
-	if (isset($_SESSION['search_data'])) unset($_SESSION['search_data']);
+	// if (isset($_SESSION['search_data'])) unset($_SESSION['search_data']);
+	if (isset($_SESSION['search_data']) && isset($_SESSION['search_data']['autoSubmitSearch'])) unset($_SESSION['search_data']['autoSubmitSearch']);
 ?>
 
 

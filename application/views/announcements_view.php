@@ -1,5 +1,5 @@
 <div id="announcements_container">
-    <div id="myCarousel" class="carousel slide hideable" data-ride="carousel">
+    <div id="announcement_carousel" class="carousel slide hideable" data-ride="carousel">
         <!-- Carousel indicators -->
         <ol class="carousel-indicators">
         </ol>
@@ -8,10 +8,10 @@
 
         </div>
         <!-- Carousel nav -->
-        <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+        <a class="carousel-control left" href="#announcement_carousel" data-slide="prev">
             <span><</span>
         </a>
-        <a class="carousel-control right" href="#myCarousel" data-slide="next">
+        <a class="carousel-control right" href="#announcement_carousel" data-slide="next">
             <span>></span>
         </a>
     </div>
