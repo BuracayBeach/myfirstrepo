@@ -148,6 +148,11 @@ div.notif {
 	cursor: default;
 }
 
+div.no-notifs {
+	background-color: black;
+	text-align: center;
+}
+
 div.notif_msg {
 	margin-top: 10px;
 }

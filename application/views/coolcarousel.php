@@ -4,64 +4,7 @@
 
 <style type="text/css">
 	
-	#wrapper_carousel {
-		height: 45%;
-		width: 60%;
-		min-height: 286px;
-		min-width: 750px;
-		padding-top: 1px;
-	}
-	#slider {
-		margin: 0 0 0 0;
-		height: 286px;
-		overflow: hidden;
-		background: url(img/ajax-loader.gif) center center no-repeat;
-	}
 	
-	#slider .slide {
-		position: relative;
-		display: none;
-		height: 286px;
-		float: left;
-		background-position: center right;
-		cursor: pointer;
-		border-left: 1px solid #fff;
-	}
-	
-	#slider .slide:first-child {
-		border: none;
-	}
-	
-	#slider .slide.active {
-		cursor: default;
-	}
-	
-	#slider .slide-block {
-		position: absolute;
-		left: 50px;
-		bottom: 20px;
-		display: inline-block;
-		width: 400px;
-		background-color: #fff;
-		background-color: rgba(255,255,255, 0.8);	
-		padding: 20px;
-		font-size: 12px;
-		color: #134B94;
-		border: 1px solid #fff;
-		overflow: hidden;
-		border-radius: 4px;
-	}
-	
-	#slider .slide-block h4 {
-		font-size: 18px;
-		font-weight: bold;
-		margin: 0 0 10px 0;
-		line-height: 1;
-	}
-	#slider .slide-block p {
-		margin: 0;
-		font-size: 1.2em;
-	}
 
 
 </style>

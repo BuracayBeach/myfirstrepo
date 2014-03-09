@@ -1,23 +1,4 @@
 <div id="about_us_wrapper">
-
-	<style type="text/css">
-
-		#about_us_wrapper {
-			width: 60%;
-			float: left;
-			margin: 10px 0 50px 0;
-			padding: 20px;
-		}
-
-		#about_us_wrapper p {
-			margin: 10px 0 0 20px;
-			line-height: 1.5em;
-			text-indent: 4em;
-		}
-
-
-	</style>
-  
 	<div class="tabbable tabs-top">
 		<div class="bs-docs-example">
         <ul id="myTab" class="nav nav-tabs">

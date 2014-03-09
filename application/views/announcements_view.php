@@ -1,4 +1,4 @@
-<div id="announcements_container">
+<div id="announcements_container" class="<?php if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type']=='admin') echo 'admin'; else echo 'notAdmin';?>">
     <div id="announcement_carousel" class="carousel slide hideable" data-ride="carousel">
         <!-- Carousel indicators -->
         <ol class="carousel-indicators">
