@@ -35,8 +35,8 @@ class Home extends CI_Controller {
     public function index(){
         $data['title'] = "eICS Lib";
         $data['page'] = 'index';
-        $this->load->view("header", $data); 
-        $this->load->view("search_results_view");
+        $this->load->view("header", $data);
+        $this->load->view("google_view");
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
 
         if ($is_admin){
