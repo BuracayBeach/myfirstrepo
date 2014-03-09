@@ -126,7 +126,6 @@ function fillEditForm(event){
     $('#edit_book_form')[0].reset();
     var td = $(this).closest('tr').find('[book_data=book_no]');
     var book_no = td.text();
-    console.log(book_no);
     $.get("index.php/book/get_book",{'book_no':book_no},function(data){
         data = JSON.parse(data);
         data = data[0];
