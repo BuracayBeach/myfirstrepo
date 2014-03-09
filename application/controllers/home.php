@@ -292,6 +292,14 @@ class Home extends CI_Controller {
         $this->load->view("search_results_view",$data);
     }
 
+    public function create_admin()
+    {
+        $data['title'] = "Create an Admin";
+        $this->load->view("header", $data);
+        $this->load->view("create_admin_view");
+        $this->load->view("footer");
+    }
+
     public function delete_admins()
     {
         $data['title'] = "Delete an Admin";
