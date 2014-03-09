@@ -1,125 +1,118 @@
 <button class="" id="show_add_form_button" name="show_add_form_button" >Add Material</button>
-<div id="add_container">
-    <form autocomplete="on" class="well" id="add_book_form">
+<div id="material_form_container">
+    <form class="well form-horizontal" id="material_form">
         <fieldset>
-            <span class="errors"></span>
-            <div class="form-group">
-                <input class="form-control isbn" type="text" title="ISBN" name="isbn" maxlength="17" id="add_isbn" pattern="[0-9]{1,17}" placeholder="ISBN  " />
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="text" title="Call Number" name="book_no" maxlength="25" id="add_book_no" placeholder="Call Number" required />
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="text" maxlength="255" spellcheck="true" name="book_title" id="add_book_title" placeholder="Title" required/>
-            </div>
-            <label for="add_book_type">Type: </label>
-            <select class="form-control" name="type" id="add_book_type">
-                <option selected="">Book</option>
-                <option>Journal</option>
-                <option>SP</option>
-                <option >Thesis</option>
-                <option>Other</option>
-            </select>
-            <br/>
-            <input type="text"
-                   title="ex. magazine, newspaper"
-                   pattern="^[a-zA-Z0-9 '_]{1,20}$"
-                   placeholder="Please specify..."
-                   name="other" class="other" id="add_other" />
-            <div class="abstract_container">
-                <label for="add_abstract" >Abstract</label><br/>
-                <textarea spellcheck="true" maxlength="102r4" name="abstract" id="add_abstract" placeholder="Abstract">
-                </textarea>
-                <br/>
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="text" name="author" maxlength="255" id="add_author" placeholder="Author" pattern="[a-zA-z0-9,_'. ]+"/>
+            <!-- Text input-->
+            <div class="control-group">
+                <label class="control-label" for="isbn">ISBN:</label>
+                <div class="controls">
+                    <input id="isbn" name="isbn" placeholder="978-3-16-148410-0" class="form-control" type="text">
+                    <p class="help-block">ex. ISBN-10 : 0-306-40615-2 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ISBN-13: 978-0-306-40615-7</p>
+                </div>
             </div>
 
-            <div class="form-group">
-                <textarea class="form-control" name="description" spellcheck="true" maxlength="255" id="add_description" placeholder="Description"  ></textarea>
+            <!-- Text input-->
+            <div class="control-group">
+                <label class="control-label" for="book_no">Call Number:</label>
+                <div class="controls">
+                    <input id="book_no" name="book_no" placeholder="CS130-N12" class="form-control" required="" type="text">
+                    <p class="help-block"> </p>
+                </div>
             </div>
 
-            <div class="form-group">
-                <input class="form-control" type="text" maxlength="255" name="publisher" id="add_publisher" placeholder="Publisher"  />
+            <!-- Text input-->
+            <div class="control-group">
+                <label class="control-label" for="book_title">Title</label>
+                <div class="controls">
+                    <input id="book_title" name="book_title" placeholder="The Amazing Title" class="form-control" required="" type="text">
+                    <p class="help-block"> </p>
+                </div>
             </div>
 
-            <div class="form-group">
-                <input class="form-control" type="number" min="0" max="0" name="date_published" id="add_date_published"
-                                            pattern="^[0-9]{0,4}$"
-                                            placeholder="Year Published"
-                                            title="ex. 2014, 1995"/>
+            <!-- Select Basic -->
+            <div class="control-group">
+                <label class="control-label" for="type">Type:</label>
+                <div class="controls">
+                    <select id="type" name="type" class="form-control">
+                        <option>Book</option>
+                        <option>Journal</option>
+                        <option>SP</option>
+                        <option>Thesis</option>
+                        <option>Other</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="form-group">
-                <input class="form-control" type="text" name="tags" spellcheck="true" id="add_tags"
-                                            title="Tags contain additional keywords, like, &#10;Subject, Category, etc...; &#10;separated by comma (ex. 'math, computer science') "
-                                            placeholder="Tags" pattern="^[a-zA-Z0-9 ]+(,[a-zA-Z0-9 ]+)*$"/>
+            <!-- Text input-->
+            <div class="control-group">
+                <label class="control-label" for="other">Please Specify:</label>
+                <div class="controls">
+                    <input id="other" name="other" placeholder="Magazine" class="other form-control" type="text">
+                    <p class="help-block">ex. Magazine, Newspaper, CD, etc..</p>
+                </div>
             </div>
 
-            <a class="more_details" href="javascript:void(0);" id="add_more_details">Add More Details . . .</a>
-            <br/>
-            <button type="submit" class="add_button btn btn-default" name="add_button" id="add_button">Add Book</button>
-            <button id="add_cancel_button" class="edit_button btn btn-default" name="add_cancel_button" >Cancel</button>
+            <!-- Textarea -->
+            <div class="control-group abstract_container">
+                <label class="control-label" for="abstract">Abstract:</label>
+                <div class="controls">
+                    <textarea class="form-control" id="abstract" name="abstract"></textarea>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="control-group">
+                <label class="control-label" for="author">Author:</label>
+                <div class="controls">
+                    <input id="author" name="author" placeholder="Arthur Conan Doyle" class="form-control" type="text">
+                    <p class="help-block"> </p>
+                </div>
+            </div>
+
+            <!-- Textarea -->
+            <div class="control-group">
+                <label class="control-label" for="description">Description</label>
+                <div class="controls">
+                    <textarea class="form-control" id="description" name="description"></textarea>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="control-group">
+                <label class="control-label" for="publisher">Publisher:</label>
+                <div class="controls">
+                    <input id="publisher" name="publisher" placeholder="ABC Publishing House" class="form-control" type="text">
+                    <p class="help-block"> </p>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="control-group">
+                <label class="control-label" for="date_published">Year Published:</label>
+                <div class="controls">
+                    <input id="date_published" name="date_published" placeholder="1995" class="form-control" type="number">
+                    <p class="help-block"> </p>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="control-group">
+                <label class="control-label" for="tags">Tags:</label>
+                <div class="controls">
+                    <input id="tags" name="tags" placeholder="mathematics, algebra, evolution" class="form-control" type="text">
+                    <p class="help-block">Keywords (alphanumeric characters, separated by comma)</p>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="go_button"></label>
+                <div class="controls">
+                    <button id="submit_button" name="submit_button" type="submit" class="btn btn-primary">Add</button>
+                    <button id="cancel_button" name="cancel_button" class="btn btn-default">Cancel</button>
+                </div>
+            </div>
+
         </fieldset>
-    </form>
-</div>
-
-<div id="edit_container" class="column">
-    <form name="edit_book" id="edit_book_form" method="post">
-        Edit Material<br/>
-        <span class="errors"></span>
-        <label for="edit_prev_book_no" hidden>Previous Book No:</label>
-        <input type="hidden" maxlength="12"  name="prev_book_no" id="edit_prev_book_no"/>
-        <label for="edit_book_no">Book No: </label>
-        <input type="text" title="ISBN (ex. 1234567890)" maxlength="10" name="book_no" id="edit_book_no" placeholder="Book Number" required />
-        <label for="edit_book_title">Book Title: </label>
-        <input type="text" name="book_title" id="edit_book_title" placeholder="Title" required />
-        <label for="edit_book_type">Type: </label>
-        <select name="type" id="edit_book_type">
-            <option selected="">Book</option>
-            <option>Journal</option>
-            <option>SP</option>
-            <option>Thesis</option>
-            <option>Other</option>
-        </select>
-        <input type="text"
-               pattern="^[a-zA-Z0-9. '_]{1,20}$"
-               title="magazine, newspaper"
-               name="other" class="other" id="edit_other"  />
-        <div class="abstract_container">
-            <label for="edit_abstract" >Abstract</label>
-            <textarea spellcheck="true" maxlength="1024" name="abstract" id="edit_abstract" placeholder="Abstract">
-            </textarea>
-        </div>
-        <label for="edit_author">Book Author:</label>
-        <input type="text" title="multiple authors are separated by semi-colon"
-               name="author"
-               id="edit_author"
-               pattern="([a-zA-Z.,'0-9 ]+(;[a-zA-Z,.'0-9 ]+)*)*" />
-        <label for="edit_book_status">Book Status: (Only for error in data)</label>
-        <select name="book_status" id="edit_book_status">
-            <option value = "available" selected="true"> Available </option>
-            <option value = "reserved"> Reserved </option>
-            <option value = "borrowed"> Borrowed </option>
-        </select>
-        <label for="edit_description">Book Description: </label><br/>
-        <textarea name="description" id="edit_description" maxlength=255 placeholder="Description"></textarea>
-        <label for="edit_publisher">Book Publisher: </label>
-        <input type="text" name="publisher" id="edit_publisher" placeholder="Publisher" />
-        <label for="edit_date_published">Year Published:</label>
-        <input type="number" min="0" max="0" name="date_published"
-               pattern="^[0-9]{0,4}$"
-               placeholder="Year Published"
-               title="ex. 2014, 1995"
-               id="edit_date_published" />
-        <label for="edit_tags">Tags:</label>
-        <input type="text" name="tags" id= "edit_tags"
-               title="Tags contain additional keywords, like, &#10;Subject, Category, etc...; &#10;separated by comma (ex. 'math, computer science') "
-               placeholder="Tags" pattern="^[a-zA-Z0-9 ]+(,[a-zA-Z0-9 ]+)*$"/><br/>
-
-        <button type="submit" id="submit_edit" name="submit_edit">Save</button>
-        <button id="edit_cancel_button" name="edit_cancel_button">Cancel</button>
     </form>
 </div>
 <script src="<?php echo base_url();?>js/manage_validation.js" ></script>

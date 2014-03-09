@@ -136,6 +136,5 @@ function checkAll(){
     msgs += validatePublisher(publisher);
     msgs += validateDatePublished(year);
     msgs += validateTags(tags);
-
     return msgs;
 }
