@@ -150,15 +150,13 @@ function fillEditForm(event){
         editForm.find("#edit_date_published")[0].value=data.date_published;
         editForm.find("#edit_tags").val(data.tags);
 
+        editedRow = td.closest('tr');
+        var editContainer = $('#edit_container');
+        editContainer.slideDown();
+        $(editContainer).find('#edit_book_no').focus();
+        $("#add_announcement_cancel_button").click();
+
     });
-
-    editedRow = td.closest('tr');
-    var editContainer = $('#edit_container');
-    editContainer.slideDown();
-    $(editContainer).find('#edit_book_no').focus();
-
-
-    $("#add_announcement_cancel_button").click();
 
 }
 

@@ -59,5 +59,14 @@ class Admin_account_model extends CI_Model {
 	public function change_admin_password($new_password, $username){
 		$this->db->query("UPDATE admin SET password='{$new_password}' where username='{$username}'");
 	}
+
+	public function delete_admin($username){
+
+		$this->db->query("DELETE FROM admin WHERE username LIKE '{$username}'");
+		//should return TRUE if a row was deleted successfully
+		if($this->db->affected_rows() == 1) return true;
+		//once the same row is already deleted, return false
+		else return false;
+	}
 }
 ?>

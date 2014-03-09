@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 08, 2014 at 08:06 AM
--- Server version: 5.5.24-log
--- PHP Version: 5.4.3
+-- Generation Time: Mar 09, 2014 at 06:04 AM
+-- Server version: 5.6.12-log
+-- PHP Version: 5.4.12
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `ics-lib-db`
 --
+CREATE DATABASE IF NOT EXISTS `ics-lib-db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `ics-lib-db`;
 
 -- --------------------------------------------------------
 
@@ -131,6 +133,7 @@ INSERT INTO `book` (`book_no`, `book_title`, `book_type`, `abstract`, `author`, 
 ('CS142-S1', 'The Design of Well-Structured and Correct Programs', 'Book', NULL, 'Suad alagic, Michael A. Arbib', 'available', NULL, 'Springer-Verlag, New York Inc.', 1978, 'Program design', NULL, ''),
 ('CS180-W1', 'Highly Parallel Computing', 'Book', NULL, 'George S. Almasi, Allan Gottlieb', 'available', NULL, 'The Benjamin/Cummings Publishing Company, Inc', 1994, 'parallel computing', '805304436', ''),
 ('CS21 – D23', 'Turbo C Version 2.0', 'Book', NULL, 'M.Morris Mano', 'available', NULL, 'Pernick Printing Corporation', 1988, NULL, '971-8636-10-2', ''),
+('dsa', 'asdsa', 'Book', NULL, '', 'available', '', '', NULL, '', NULL, 'asd»sadsa¦asdas»sada¦asd»sadas'),
 ('IT 280', 'Computer Security Management', 'Book', NULL, 'Karen A. Forcht', 'available', NULL, 'boyd & fraser publishing company', 1994, 'Computer Security', '878358811', ''),
 ('IT7', 'E-Commerce for Dummies', 'Book', NULL, 'Don Jones, Mark D. Scott, Richard Villars', 'available', NULL, 'Hungry Minds Inc.', 2001, 'E-commerce', '764508474', ''),
 ('JN 0001', 'Proceedings of the APL96 Conference', 'Journal', NULL, 'The Special Interest Group for the APL Programming Language', 'available', NULL, 'ACM Press', 1996, NULL, NULL, ''),
@@ -240,13 +243,6 @@ CREATE TABLE IF NOT EXISTS `favorites` (
   KEY `favorites_book_no` (`book_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `favorites`
---
-
-INSERT INTO `favorites` (`username`, `book_no`, `date_added`) VALUES
-('useruser', 'TH 0002', '2014-03-05 02:17:17');
-
 -- --------------------------------------------------------
 
 --
@@ -292,25 +288,6 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   PRIMARY KEY (`id`,`username_user`),
   KEY `notifications_username_admin` (`username_user`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
-
---
--- Dumping data for table `notifications`
---
-
-INSERT INTO `notifications` (`id`, `username_admin`, `username_user`, `book_no`, `message`, `date_sent`, `type`) VALUES
-(7, '', 'useruser', 'TH 0002', 'You may now claim your book at the library ASAP', '2014-03-05 02:14:26', 'claim'),
-(8, '', 'useruser', 'CS100 – G23', 'You may now claim your book at the library ASAP', '2014-03-05 02:14:27', 'claim'),
-(9, '', 'useruser', 'CS130-N12', 'You may now claim your book at the library ASAP', '2014-03-05 02:14:28', 'claim'),
-(10, '', 'useruser', 'TH 0002', 'You may now claim your book at the library ASAP', '2014-03-05 02:16:47', 'claim'),
-(11, '', 'useruser', 'CS100 – G23', 'You may now claim your book at the library ASAP', '2014-03-05 02:16:48', 'claim'),
-(12, '', 'useruser', 'CS130-N12', 'You may now claim your book at the library ASAP', '2014-03-05 02:16:49', 'claim'),
-(13, '', 'useruser', 'IT 280', 'You may now claim your book at the library ASAP', '2014-03-05 02:16:50', 'claim'),
-(14, '', 'useruser', 'CS 127 – K39', 'You may now claim your book at the library ASAP', '2014-03-05 02:16:50', 'claim'),
-(15, '', 'useruser', 'IT7', 'You may now claim your book at the library ASAP', '2014-03-05 02:16:51', 'claim'),
-(16, '', 'useruser', 'TH 0002', 'You may now claim your book at the library ASAP', '2014-03-05 02:18:57', 'claim'),
-(17, '', 'useruser', 'TH 0002', 'You may now claim your book at the library ASAP', '2014-03-05 02:19:24', 'claim'),
-(18, '', 'useruser', 'TH 0002', 'You may now claim your book at the library ASAP', '2014-03-05 02:27:33', 'claim'),
-(19, '', 'useruser', 'TH 0002', 'You may now claim your book at the library ASAP', '2014-03-05 02:29:51', 'claim');
 
 -- --------------------------------------------------------
 

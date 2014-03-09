@@ -46,7 +46,46 @@
 				<form id="search_form" name="search_form" method="post">
 
 
-					
+						<div id="dropdown_container">
+								<div id="book_type_div" class="dropdown-check-list">
+
+						        <span class="anchor">Type</span>
+						        <ul class="items">
+						            <li> &nbsp;&nbsp;<input class="check" id = "type_book" type="checkbox" name = "type_book"  <?=$book?> > 
+										<label class="labelC" for="type_book">Book</label></li>
+						            <li> &nbsp;&nbsp;<input class="check" id = "type_journal" type="checkbox" name = "type_journal" <?=$journal?>>
+										<label class="labelC" for="type_journal">Journal</label></li>
+						            <li> &nbsp;&nbsp;<input class="check" id = "type_sp" type="checkbox" name = "type_sp" <?=$sp?>>
+										<label class="labelC" for="type_sp">SP</label></li>
+						            <li> &nbsp;&nbsp;<input class="check" id = "type_thesis" type="checkbox" name = "type_thesis" <?=$thesis?>>
+										<label class="labelC" for="type_thesis">Thesis</label></li>
+						            <li> &nbsp;&nbsp;<input class="check" id = "type_other" type="checkbox" name = "type_other" <?=$other?>>
+										<label class="labelC" for="type_other">Other</label></li>
+						        </ul>
+						    </div>
+
+							<?php
+								if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
+
+
+									echo '
+									<div id="status" class="dropdown-check-list">
+									        <span class="anchor">Status</span>
+									        <ul class="items">
+									            <li> <input class="check" id = "available" type="checkbox" name = "available" ' . $ava . ' >
+												<label for="available">Available</label></li>
+									            <li>  <input class="check" id = "reserved" type="checkbox" name = "reserved" ' . $res . ' >
+												<label for="reserved">Reserved</label></li>
+									            <li>  <input class="check" id = "borrowed" type="checkbox" name = "borrowed" ' . $bor . ' >
+												<label for="borrowed" style="clear:right;">Borrowed</label></li>
+									        </ul>
+									    </div>
+									';
+								}
+							?>
+
+							<hr>
+						</div>
 
 				<div class="form-group"><input class="form-control" searchby="<?=$s_sby?>" id="search_text" type="search" name='search' autofocus='true' placeholder='Keywords...' maxlength='99' spellcheck='true' tagSearch='false' autoSubmitSearch="<?=$autoSubmitSearch?>" value="<?=$s_stext?>" /></div>
 				<input class="btn btn-primary" id='submit_search' type="submit" name="submit_search" value="Search"/><br/>
@@ -83,47 +122,6 @@
 					</div>
 	
 				</form>
-
-				<div id="dropdown_container">
-						<div id="book_type_div" class="dropdown-check-list">
-
-					        <span class="anchor">Type</span>
-					        <ul class="items">
-					            <li> &nbsp;&nbsp;<input class="check" id = "type_book" type="checkbox" name = "type_book"  <?=$book?> > 
-									<label class="labelC" for="type_book">Book</label></li>
-					            <li> &nbsp;&nbsp;<input class="check" id = "type_journal" type="checkbox" name = "type_journal" <?=$journal?>>
-									<label class="labelC" for="type_journal">Journal</label></li>
-					            <li> &nbsp;&nbsp;<input class="check" id = "type_sp" type="checkbox" name = "type_sp" <?=$sp?>>
-									<label class="labelC" for="type_sp">SP</label></li>
-					            <li> &nbsp;&nbsp;<input class="check" id = "type_thesis" type="checkbox" name = "type_thesis" <?=$thesis?>>
-									<label class="labelC" for="type_thesis">Thesis</label></li>
-					            <li> &nbsp;&nbsp;<input class="check" id = "type_other" type="checkbox" name = "type_other" <?=$other?>>
-									<label class="labelC" for="type_other">Other</label></li>
-					        </ul>
-					    </div>
-
-						<?php
-							if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
-
-
-								echo '
-								<div id="status" class="dropdown-check-list">
-								        <span class="anchor">Status</span>
-								        <ul class="items">
-								            <li> <input class="check" id = "available" type="checkbox" name = "available" ' . $ava . ' >
-											<label for="available">Available</label></li>
-								            <li>  <input class="check" id = "reserved" type="checkbox" name = "reserved" ' . $res . ' >
-											<label for="reserved">Reserved</label></li>
-								            <li>  <input class="check" id = "borrowed" type="checkbox" name = "borrowed" ' . $bor . ' >
-											<label for="borrowed" style="clear:right;">Borrowed</label></li>
-								        </ul>
-								    </div>
-								';
-							}
-						?>
-
-						<hr>
-					</div>
 			</div>
 
 

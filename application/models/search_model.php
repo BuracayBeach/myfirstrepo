@@ -265,6 +265,10 @@ class Search_model extends CI_Model {
             array_push($cols_to_search, $row->description);
             array_push($cols_to_search, $row->tags);
         }
+        if ($search_by == 'book_no'){
+            array_push($cols_to_search, $row->book_no);
+            array_push($cols_to_search, $row->isbn);
+        }
         if ($search_by == 'author' || $search_by == 'any'){
             array_push($cols_to_search, $row->author);
         }
@@ -356,7 +360,7 @@ class Search_model extends CI_Model {
 
     function get_sorted_table($table, $input, $spell_check, &$terms_to_suggest){
         if ($table == null) return null;
-        if (trim($input['search_term'])=='' || $input['search_by'] == 'book_no' || $input['search_by'] == 'date_published') return $table;
+        if (trim($input['search_term'])=='' || $input['search_by'] == 'date_published') return $table;
 
         $points = null;
         $input['search_term'] = strtolower($input['search_term']);
