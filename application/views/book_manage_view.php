@@ -4,10 +4,10 @@
         <fieldset>
             <span class="errors"></span>
             <div class="form-group">
-                <input class="form-control" type="text" title="Call Number" name="book_no" maxlength="25" id="add_book_no" placeholder="Call Number" required />
+                <input class="form-control isbn" type="text" title="ISBN" name="isbn" maxlength="17" id="add_isbn" pattern="[0-9]{1,17}" placeholder="ISBN  " />
             </div>
             <div class="form-group">
-                <input class="form-control isbn" type="text" title="ISBN" name="isbn" maxlength="17" id="add_isbn" pattern="[0-9]{1,17}" placeholder="ISBN" />
+                <input class="form-control" type="text" title="Call Number" name="book_no" maxlength="25" id="add_book_no" placeholder="Call Number" required />
             </div>
             <div class="form-group">
                 <input class="form-control" type="text" maxlength="255" spellcheck="true" name="book_title" id="add_book_title" placeholder="Title" required/>
@@ -28,7 +28,7 @@
                    name="other" class="other" id="add_other" />
             <div class="abstract_container">
                 <label for="add_abstract" >Abstract</label><br/>
-                <textarea spellcheck="true" maxlength="1024" name="abstract" id="add_abstract" placeholder="Abstract">
+                <textarea spellcheck="true" maxlength="102r4" name="abstract" id="add_abstract" placeholder="Abstract">
                 </textarea>
                 <br/>
             </div>
