@@ -17,7 +17,7 @@ $url2 = base_url()."home/create_admin";
 		Delete an Admin 
 	</div>
 </a>
-<a href={$url2}>
+<a href='".base_url()."create_admin_account'>
 	<div class='menulinks'>
 		Create New Admin
 	</div>

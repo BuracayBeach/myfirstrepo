@@ -146,6 +146,7 @@ div#results_per_page_div {
 
 div#update_profile_container,
 div#update_admin_profile_container,
+div#create_admin_container,
 div.create_acc_container {
 	margin-left: 17%;
 	width: 50%;
