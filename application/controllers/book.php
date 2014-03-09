@@ -40,12 +40,12 @@ class Book extends CI_Controller {
         if(isset($_POST)){
         $data = $this->safeguard->array_ready_for_query($_POST);
         $new_detail = [];
-        if(isset($data['other_details'])){
-            foreach($data['other_details'] as &$detail){
+        if(isset($data['other_detail'])){
+            foreach($data['other_detail'] as &$detail){
                 array_push($new_detail,implode("»",$detail));
             }
         }
-        $data['other_details'] = implode("¦",$new_detail);
+        $data['other_detail'] = implode("¦",$new_detail);
 
         if($data['type'] == 'Book' || $data['type'] == 'Journal')
             $data['abstract'] = null;
