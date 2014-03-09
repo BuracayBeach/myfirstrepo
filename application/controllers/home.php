@@ -75,7 +75,6 @@ class Home extends CI_Controller {
 
         if(!isset($_SESSION['type'])){
             $this->load->view("search_results_view");
-            $this->load->view("announcements_view");
         }
 
 

@@ -50,7 +50,7 @@ function generateAnnouncementRow(data,isAdmin){
     var len = carouselInner.find('.item').length;
     var active = '';
     if(len == 0) active = 'class="active"';
-    var liHTML = '<li data-target="#myCarousel" data-slide-to="'+len+'" '+active+'></li>';
+    var liHTML = '<li data-target="#announcement_carousel" data-slide-to="'+len+'" '+active+'></li>';
 
     $('.carousel-indicators').append(liHTML);
     carouselInner.append(itemHTML);

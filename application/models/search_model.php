@@ -192,7 +192,8 @@ class Search_model extends CI_Model {
         $query_string = $q['select'] . $q['where'] . $q['order_by'];
         // var_dump($query_string);
 
-        return $this->db->query($query_string)->result();
+        $result = $this->db->query($query_string)->result();
+        return $result;
     }
 
 

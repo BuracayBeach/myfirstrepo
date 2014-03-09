@@ -31,7 +31,7 @@ function showAddAnnouncementForm(event){
     event.preventDefault();
     $('[data-toggle="tab"]')[2].click();
     $('#edit_announcement_container').hide();
-    $('#add_announcement_container').show();
+    $('#add_announcement_container').slideDown();
     $('#add_announcement_title').focus();
 }
 
@@ -58,7 +58,7 @@ function fillEditAnnouncementForm(event){
         }
     });
 
-    $('#edit_announcement_container').show();
+    $('#edit_announcement_container').slideDown();
     $('#edit_announcement_content').focus();
 }
 
@@ -69,6 +69,7 @@ function addAnnouncement(event){
         try{
             data = JSON.parse(data);
             generateAnnouncementRow(data,true);
+            $('#announcement_carousel').carousel($('.carousel-inner .item').length - 1);
             $('[data-toggle="tab"]')[2].click();
         }catch(e){
             console.log(e);

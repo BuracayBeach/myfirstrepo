@@ -15,7 +15,10 @@ $('#result_container,#faq_container').ready(function(){
     $('#add_book_type').change(checkBookType);
     $('#edit_book_type').change(checkBookType);
 
-    $('.more_details').on('click',generateInputDetail);
+    $('.more_details').on('click',function(){
+        var index = $('#add_book_form').find('.detail_name').length;
+        generateInputDetail(this,index);
+    });
     /***** END EVENT ATTACHMENTS *****/
 
     /* Hide Forms Initially */
@@ -45,7 +48,7 @@ function showAddForm(){
 
     $('#add_other').hide();
     $('.abstract_container').hide();
-    addContainer.show();
+    addContainer.slideDown();
     $(addContainer).find('#add_book_no').focus();
 }
 function cancelAdd(){
@@ -101,12 +104,9 @@ function checkBookType(){
         form.find('.other').prop('required',false).hide();
     }
 
-    console.log(form);
     if(type == "Book"){
-        console.log(form.find('.isbn'))
         form.find('.isbn').show().next().show();
     }else{
-        console.log(form.find('.isbn'))
         form.find('.isbn').hide().next().hide();
     }
     if(type != "Book" && type != "Journal"){
@@ -154,7 +154,7 @@ function fillEditForm(event){
 
     editedRow = td.closest('tr');
     var editContainer = $('#edit_container');
-    editContainer.show();
+    editContainer.slideDown();
     $(editContainer).find('#edit_book_no').focus();
 
 
@@ -244,12 +244,12 @@ function deleteBook(){
 }
 /***** END DELETE FUNCTIONS *****/
 /***** FUNCTION FOR OTHER DATA *****/
-function generateInputDetail(){
-    var detailHTML = '<input type="text" title="Name of the Detail. (ie. Subject, Volume)" class="form-control detail_name" placeholder="Detail Name" maxlength="20" name="detail[][name]"/>' +
-        '<textarea class="form-control detail_content" placeholder="Detail" maxlength="255" name="detail[][content]"></textarea>';
+function generateInputDetail(anchor,index){
+    var detailHTML = '<input type="text" title="Name of the Detail. (ie. Subject, Volume)" class="form-control detail_name" required="" placeholder="Detail Name" maxlength="20" name="other_details['+index+'][name]"/>' +
+        '<textarea class="form-control detail_content" placeholder="Detail" maxlength="255" name="other_details['+index+'][content]"></textarea>';
 
-    $(this).nextAll('.add_button').before(detailHTML);
-    var detailName = $(this).nextAll('.detail_name:last');
+    $(anchor).nextAll('.add_button').before(detailHTML);
+    var detailName = $(anchor).nextAll('.detail_name:last');
     $("html,body").animate({ scrollTop: detailName.offset().top }, 2000);
     detailName[0].focus();
 
