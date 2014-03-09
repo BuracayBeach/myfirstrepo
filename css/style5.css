@@ -483,7 +483,7 @@ ERROR
 #right_side_bar{
     position: relative;
     height:20%;
-    width: 20%;
+    width: 30%;
     float: right;
     margin-top: 80px;
     margin-right: 2%;
@@ -712,22 +712,26 @@ OVERALLS
 #body{
     margin-left: 10%;
     width: 71%;
+    background-color: rgba(255,255,255,0.9);
 }
 
 #results{
     margin-left: 10%;
     width: 71%;
+     background-color: rgba(255,255,255,0.9);
 
 }
 
 #result_table{
     margin-left: 0%;
     font-size: 1vw;
+     background-color: rgba(255,255,255,0.9);
 }
 #account_log{
     margin-left: 10%;
     width: 71%;
     border-top: 2px solid orange; 
+     background-color: rgba(255,255,255,0.9);
 }
 
 #page_size{
@@ -754,4 +758,57 @@ OVERALLS
     width: 100%;
     margin-bottom: 20px;
     font-size: 1vw;
+}
+ 
+#search_text{
+    margin-top: 0%;
+    width: 50%;
+    margin-left: 25%;
+}
+
+#google_submit_search{
+    margin-left: 40%;
+    width: 20%;
+}
+
+#bg{
+    margin-top: 90px;
+    opacity: 0.8;
+    margin-left: 22%;
+    width: 60%;
+    z-index: 10;
+}
+#chibi1{
+    width: 50%;
+    margin-top: 30px;
+}
+#chibi2{
+    width: 50%;
+}
+
+#google_class{
+    z-index: 10000;
+    margin-top: -20px;
+}
+
+/*footer*/
+
+#footerimg{
+    width:25%;
+    float: right;
+    background-color: transparent;
+    position: fixed;
+    right:0px;
+    bottom: 0px; 
+    z-index: -50;
+}
+
+
+#chibi1f{
+    width: 50%;
+    margin-bottom: -15px;
+
+}
+#chibi2f{
+    width: 50%;
 }
