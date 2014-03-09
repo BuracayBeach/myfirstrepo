@@ -68,6 +68,7 @@ class Book_model extends CI_Model {
             ",description='".$data['description']."'".
             " ,publisher='".$data['publisher']."'".
             ",tags='".$data['tags']."'".
+            ",other_detail='".$data['other_detail']."'".
             ",date_published=".($date_pub==''?'null':("'".$date_pub."'")).
             " WHERE book_no='".$data['prev_book_no']."'";
 

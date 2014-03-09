@@ -39,13 +39,7 @@ class Book extends CI_Controller {
     public function add(){
         if(isset($_POST)){
         $data = $this->safeguard->array_ready_for_query($_POST);
-        $new_detail = [];
-        if(isset($data['other_detail'])){
-            foreach($data['other_detail'] as &$detail){
-                array_push($new_detail,implode("»",$detail));
-            }
-        }
-        $data['other_detail'] = implode("¦",$new_detail);
+        $data['other_detail'] = $this->extract_detail($data);
 
         if($data['type'] == 'Book' || $data['type'] == 'Journal')
             $data['abstract'] = null;
@@ -76,6 +70,19 @@ class Book extends CI_Controller {
         }
     }
 
+    public function extract_detail($data){
+        $new_details = [];
+        if(isset($data['other_detail'])){
+            $details = $data['other_detail'];
+            foreach($details as &$detail){
+                array_push($new_details,implode("»",$detail));
+            }
+            return implode("¦",$new_details);
+        }else{
+            return null;
+        }
+    }
+
     public function get_book(){
         if(isset($_GET)){
         $book_no = mysql_real_escape_string($_GET['book_no']);
@@ -103,14 +110,19 @@ class Book extends CI_Controller {
 
     public function edit(){
         if(isset($_POST)){
-        $data = $this->safeguard->array_ready_for_query($_POST);
-        if($data['type'] == 'Book' || $data['type'] == 'Journal')
-            $data['abstract'] = null;
-        if($data['type'] == 'Other')
-            $data['type'] = $data['other'];
-        $this->book_model->edit_book($data);
-        $data = $this->safeguard->array_ready_for_query($data);
-        echo json_encode($data);}
+            $data = $this->safeguard->array_ready_for_query($_POST);
+            $data['other_detail'] = $this->extract_detail($data);
+            if($data['type'] == 'Book' || $data['type'] == 'Journal')
+                $data['abstract'] = null;
+            if($data['type'] == 'Other')
+                $data['type'] = $data['other'];
+            $this->book_model->edit_book($data);
+            $data = $this->safeguard->array_ready_for_query($data);
+            $result = array();
+            $result['row'] = json_decode(json_encode($data));
+            $result['row']->book_type = $result['row']->type;
+            echo $this->load->view("table_row_view",$result);
+        }
     }
 
     public function search_sessionize(){
