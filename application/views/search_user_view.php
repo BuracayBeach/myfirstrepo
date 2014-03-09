@@ -1,6 +1,6 @@
-<h1>ICS Library</h1>
-  	<div id="body" style="margin-left: 250px;">
-  		
+
+  	<div id="body">
+    <h1>User Accounts </h1>  		
 				<input id="f_name" type="radio" name="field" value="name" onclick='changeTextBox(value)' checked="true"/>
           <label for="f_name">Name</label>
 				<input id="f_studno" type="radio" name="field" value="stdno" onclick='changeTextBox(value)'/>
@@ -11,13 +11,14 @@
           <label for="f_username">Username</label>
 				<input id="f_email" type="radio" name="field" value="email" onclick='changeTextBox(value)' />
           <label for="f_email">Email</label>
+          <hr>
 			
 			<div id="divtext">
         		<input type="text" placeholder="Enter first name" id="enterFname" name="firstname"/>
         		<input type="text" placeholder="Enter middle name" id="enterMname" name="middlename"/>
         		<input type="text" placeholder="Enter last name" id = "enterLname" name="lastname"/>
-        	</div>
-        	</br>
+        </div>
+        	</br><hr>
           <input id="r_all" type = "radio" name = "status" value = "all" checked = "true"/>
             <label for="r_all">All</label>
         	<input id="r_pending" type = "radio" name = "status" value = "pending"/>
@@ -26,10 +27,12 @@
             <label for="r_enabled">Enabled</label>
         	<input id="r_disabled" type = "radio" name = "status" value = "disabled"/>
             <label for="r_disabled">Disabled</label>
-
-        	</br><button type="submit" id="submitButton"> Search </button>
-          <label for="page_size">Results per page</label>
-          <input type="number" id="page_size" min="1" value="5" />
+            <div id="userResultsPerPage">
+              <label for="page_size">Results per page</label>
+              <input type="number" id="page_size" min="1" value="5" />
+            </div>
+            <br>
+          <button type="submit" id="submitButton"> Search </button>
   	</div>
 
 <script type = "text/javascript" src = "<?php echo base_url() ?>js/search_user_manager.js"></script>
