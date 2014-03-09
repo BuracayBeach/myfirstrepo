@@ -38,6 +38,13 @@ $this->load->view('notifications_view', $data);
 		</div>
 
 	<?php endforeach; ?>
+
+	<?php
+		else :
+			echo "<div class='notif no-notifs'>No notifications.</div>";
+		
+	?>
+
 	<?php endif; ?>
 
 	<?php if($notifs_count > 5) : ?>
