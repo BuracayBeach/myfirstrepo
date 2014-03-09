@@ -83,10 +83,10 @@
                     }
                 }
 
-                echo "<div class='rank sub-2 sub-heading' book_no='{$row->book_no}'> Rank " . $rank .
+                echo "<div class='rank sub-2 sub-heading-rank' book_no='{$row->book_no}'> Rank " . $rank .
                     " of " .$book_ranks[$row->book_no] . "</div>";
             }
             else
-                echo "<div class='rank sub-2 sub-heading' book_no='{$row->book_no}' style='display:none;'></div>";
+                echo "<div class='rank sub-2 sub-heading-rank' book_no='{$row->book_no}' style='display:none;'></div>";
         }
     }
