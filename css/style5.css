@@ -365,9 +365,6 @@ ANNOUNCEMENT CAROUSEL
 
 ---------------*/
 
-
-
-
 #announcements_container.admin{
     width: 100%;
 }
@@ -388,7 +385,6 @@ ANNOUNCEMENT CAROUSEL
     z-index: 1000;
 
 }
-
 #announcement_carousel .carousel-caption {
     position: relative;
     left: 0 !important;
@@ -396,10 +392,23 @@ ANNOUNCEMENT CAROUSEL
     min-height: 350px;
     margin-left: 0px;
     margin-top: 20px;
-    background-color: #222930 !important;
+    background-color:  #222930 !important;
     padding-top: 20px !important;
     padding-bottom: 0px !important;
 }
+
+#announcement_carousel .item.active{
+    width: 100%;
+    padding: 0px !important;
+    margin: 0px;
+}
+
+#announcement_carousel .item{
+    width: 100%;
+    padding: 0px !important;
+    margin: 0px;
+}
+
 
 /*-----------------------------------
 ERROR
