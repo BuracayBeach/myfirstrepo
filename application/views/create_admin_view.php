@@ -56,14 +56,12 @@
 		<input class="btn btn-default" type="Submit" value="Submit"/>
 
 		<br><br>
-		&laquo; <a href="<?php echo base_url();?>index.php/admin_account/adminlogin">Back</a>
 	</form>
 
 </div>
 
 
 <script src="<?php echo base_url(); ?>js/create_admin.js"></script>
-<script src="<?php echo base_url();?>js/vendor/jquery.js"></script>
 
 <?php 
 	if(isset($_SESSION['create_admin_notif']) && $_SESSION['create_admin_notif'] == "create_admin_success") 
