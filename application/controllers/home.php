@@ -41,8 +41,6 @@ class Home extends CI_Controller {
 
         if ($is_admin){
             redirect(base_url() . 'ihome');
-        }else{
-            $this->load->view("announcements_view");
         }
 
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
@@ -65,7 +63,10 @@ class Home extends CI_Controller {
             $this->load->view("announcements_manage_view");
             $this->load->view('book_manage_view');
         }
+
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
+            $this->load->view("announcements_view");
+
             $data['notifs'] = $this->notifs_model->get_all($_SESSION['username'], 0);
             $data['notifs_count'] = $this->notifs_model->count_by_username($_SESSION['username']);
             $this->load->view("search_results_view");
@@ -74,6 +75,7 @@ class Home extends CI_Controller {
         }
 
         if(!isset($_SESSION['type'])){
+            $this->load->view("announcements_view");
             $this->load->view("search_results_view");
         }
 
@@ -231,6 +233,15 @@ class Home extends CI_Controller {
         }
 
         $this->load->view("footer",$data);
+    }
+
+    public function create_admin_account(){
+        if(isset($_SESSION['logged_in']) && $_SESSION['type'] != "admin")
+            redirect(base_url());
+
+        $data['title'] = "eICS Lib Sign Up";
+        $this->load->view("header", $data);
+        $this->load->view('create_admin_view');
     }
 
     public function create_account(){

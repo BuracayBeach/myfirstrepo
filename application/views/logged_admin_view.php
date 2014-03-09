@@ -17,7 +17,7 @@ $url = base_url()."home/delete_admins";
 	</div>
 </a>"
 ?>
-<a href="<?php echo base_url();?>admin_account/create_admin">
+<a href="<?php echo base_url();?>home/create_admin_account">
 	<div class="menulinks">
 		Create New Admin
 	</div>
