@@ -14,7 +14,7 @@
 
 		$sss = $_SESSION['search_data'];
 		$s_stext =  $sss['search'];
-		$s_sby = $sss['search_by'];
+		$s_sby = htmlspecialchars(stripslashes(trim($sss['search_by'])));
 
 		$order_by = $sss['order_by'];
 

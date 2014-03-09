@@ -29,6 +29,7 @@
 
         foreach($row_copy as &$r){
             $r = htmlspecialchars(stripslashes($r));
+            $search_term = htmlspecialchars(stripslashes($search_term));
              //bold matching terms
             if (trim($search_term) != ''){
                $search_terms = explode(" ",trim($search_term));
@@ -109,7 +110,7 @@
     "</td>";
 
     //other data
-    echo "<td align='center' style='font:13px Verdana'>" .
+    echo "<td align='center' style='font:10px Verdana'>" .
         "<div book_data='publisher'><span class='article_publisher'>" . $row_copy->publisher . "</span></div>";
     if ($row->date_published != '') echo "<div book_data='date_published'><em>" . $row_copy->date_published . "</em></div>";
     echo "</td>";
@@ -128,11 +129,11 @@
     if (isset($search_by) && $search_by != 'any' && $search_by != 'abstract') echo 'hidden';
     echo "><span class='article_abstract'>" . $row_copy->abstract . '<span></td>';
 
-    echo "<td book_data='other_detail'><span class='article_abstract'>";
+    echo "<td book_data='other_detail'>";
     if (isset($detail)) {
         echo '<span detail="name">' . $detail['name'] . '</span>: <span detail="content">' . $detail['content'] . '<span>';
     }
-    echo '<span></td>';
+    echo '</td>';
 
     echo "</tr>";
 

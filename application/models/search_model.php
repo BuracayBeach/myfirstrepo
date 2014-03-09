@@ -284,12 +284,15 @@ class Search_model extends CI_Model {
             array_push($cols_to_search, $row->date_published);
         }
 
+        if ($input['tag_search'] != 'false'){
+            array_push($cols_to_search, $row->tags);
+        }
+
         //compare each search term/word to each of the words in the book title, description, tags
         $pts = 0;
         $tag_matched = false;
 
         $tagSearch = strtolower($input['tag_search']);
-        // $tagSearches = explode(' ' ,str_replace(',',' ',$tagSearch));
         $tagSearches = explode(' ' ,preg_replace("/[^a-zA-Z0-9]+/", " ", $tagSearch));
 
         foreach($tagSearches as $tagch){
@@ -360,7 +363,8 @@ class Search_model extends CI_Model {
 
     function get_sorted_table($table, $input, $spell_check, &$terms_to_suggest){
         if ($table == null) return null;
-        if (trim($input['search_term'])=='' || $input['search_by'] == 'date_published') return $table;
+        if ((trim($input['search_term'])=='' && $input['tag_search'] == 'false') || $input['search_by'] == 'date_published') return $table;
+        // var_dump($input['tag_search']);
 
         $points = null;
         $input['search_term'] = strtolower($input['search_term']);
