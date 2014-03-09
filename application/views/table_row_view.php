@@ -17,6 +17,7 @@
             $r = htmlspecialchars(stripslashes($r));
         }
 
+        $detail = null;
         if($row->other_detail != null){
             $row->other_detail = explode("¦",$row->other_detail);
             foreach($row->other_detail as &$detail){
@@ -68,7 +69,7 @@
             "</em></div>" .
           "</td>";
 
-        $modal_id =  str_replace(' ', '', $row_copy->book_no);
+        $modal_id =  str_replace(' ', '', $row->book_no);
         $modal_details_HTML = /* FULL BOOK DETAILS OUTPUT INSIDE modal-body */
             '<div class="modal fade" id="modal-'.$modal_id.'" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog modal-lg">
@@ -129,8 +130,8 @@
     if (isset($search_by) && $search_by != 'any' && $search_by != 'abstract') echo 'hidden';
     echo "><span class='article_abstract'>" . $row_copy->abstract . '<span></td>';
 
-    echo "<td book_data='other_detail'>";
-    if (isset($detail)) {
+    echo "<td book_data='other_detail' hidden>";
+    if ($detail != null) {
         echo '<span detail="name">' . $detail['name'] . '</span>: <span detail="content">' . $detail['content'] . '<span>';
     }
     echo '</td>';

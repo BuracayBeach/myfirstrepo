@@ -27,8 +27,6 @@
 
 
 				$(document).ready(function() {
-				    // $('#sidebar-wrapper li').unbind();
-				    // $('#sidebar-wrapper li').bind('click', ajax_results);
 
 					$('#search_form').unbind('submit').submit(ajax_results); //prevent form from submitting/refreshing
 
@@ -57,6 +55,12 @@
 
 						
 
+						var currentPath = window.location.href
+						var searchPath = icejjfish + "ihome"
+
+						if (currentPath != searchPath) my_input += "&autoSubmitSearch=true"
+						else my_input += "&autoSubmitSearch=false"
+
 						if (lastSessionSave && lastSessionSave.readyState != 4) lastSessionSave.abort();
 						lastSessionSave = $.ajax({
 							type: "post",
@@ -67,21 +71,10 @@
 							}
 						})
 
-						var currentPath = window.location.href
-						var searchPath = icejjfish + "ihome"
-
 						if (currentPath != searchPath){
 								window.location.replace(icejjfish + "ihome");
 						} else {
-							// alert("searching")
-							if (lastAutoSearchUnset && lastAutoSearchUnset.readyState != 4) lastAutoSearchUnset.abort();
-							lastAutoSearchUnset = $.ajax({
-								type: "post",
-								url: icejjfish + "index.php/book/search_unset_auto",
-								success: function(data, jqxhr, status){
-									// alert("session saved")
-								}
-							})
+							
 
 							if (lastRequest && lastRequest.readyState != 4) lastRequest.abort();
 							lastRequest = $.ajax({

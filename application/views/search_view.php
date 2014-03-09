@@ -7,10 +7,9 @@
 
 	$book = $journal = $sp = $thesis = $other = " checked";
 	$ava = $res = $bor = " checked";
-	$autoSubmitSearch = 'false';
 
 	if (isset($_SESSION['search_data'])){
-		// var_dump($_SESSION['search_data']);
+		var_dump($_SESSION['search_data']);
 
 		$sss = $_SESSION['search_data'];
 		$s_stext =  $sss['search'];
@@ -36,8 +35,6 @@
 		$na  = $sss['order_by']=='name'?'selected':'';
 		$dp  = $sss['order_by']=='date_published'?'selected':'';
 
-
-		if (isset($sss['autoSubmitSearch'])) $autoSubmitSearch = 'true';
 	}
 ?>
 
@@ -87,7 +84,7 @@
 						</div>
 						
 
-				<div class="form-group"><input class="form-control" searchby="<?=$s_sby?>" id="search_text" type="search" name='search' autofocus='true' placeholder='Keywords...' maxlength='99' spellcheck='true' tagSearch='false' autoSubmitSearch="<?=$autoSubmitSearch?>" value="<?=$s_stext?>" /></div>
+				<div class="form-group"><input class="form-control" searchby="<?=$s_sby?>" id="search_text" type="search" name='search' autofocus='true' placeholder='Keywords...' maxlength='99' spellcheck='true' tagSearch='false' value="<?=$s_stext?>" /></div>
 				<input class="btn btn-primary" id='submit_search' type="submit" name="submit_search" value="Search"/><br/>
 					<hr>
 					<?php
@@ -125,9 +122,10 @@
 			</div>
 
 
-<?php
-	// if (isset($_SESSION['search_data'])) unset($_SESSION['search_data']);
-	if (isset($_SESSION['search_data']) && isset($_SESSION['search_data']['autoSubmitSearch'])) unset($_SESSION['search_data']['autoSubmitSearch']);
+<?php 
+	$awto = null;
+	if (isset($_SESSION['search_data'])) $awto = $_SESSION['search_data']['autoSubmitSearch'];
+	echo "<div id='autoSubmitSearchDiv' balyu='{$awto}''></div>";
 ?>
 
 
@@ -140,8 +138,6 @@
 
 
 <div id="rightbody">
-
-
 
 
 
