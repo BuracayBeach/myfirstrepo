@@ -1,8 +1,13 @@
 $('#result_container,#faq_container').ready(function(){
     /***** EVENT ATTACHMENTS *****/
-    $('#show_add_form_button').on('click',showAddForm);
-    $('#add_cancel_button').on('click',cancelAdd);
-    $('#add_book_form').submit(addBook);
+    $('#show_add_form_button').on('click',function(){
+         showForm("add");
+    });
+    $('#cancel_button').on('click',function(){
+        cancelForm();
+    });
+
+    $('#material_form').submit(submitMaterialForm);
 
     var contentContainer = $('#result_container');
     contentContainer.on('click','.edit_button',fillEditForm);
@@ -24,12 +29,9 @@ $('#result_container,#faq_container').ready(function(){
     /* Hide Forms Initially */
     $('#add_date_published,#edit_date_published').attr('max',new Date().getFullYear());
 
-    $('#add_container').hide();
+    $('#material_form_container').hide();
     $('#edit_container').hide();
 
-    $("#show_add_form_button").on("click", function() {
-        $("#add_announcement_cancel_button").click();
-    });
 });
 
 $('#recently_added_books_container').ready(function(){
@@ -41,28 +43,47 @@ $('#recently_added_books_container').ready(function(){
     toggleRecentlyAddedTable();
 });
 
-/***** ADD FUNCTIONS *****/
-function showAddForm(){
-    var addContainer = $('#add_container');
-    $('#edit_container').hide();
+function submitMaterialForm(){
+    var submitButton = $(this).find("#submit_button");
 
-    $('#add_other').hide();
-    $('.abstract_container').hide();
-    addContainer.slideDown();
-    $(addContainer).find('#add_book_no').focus();
-}
-function cancelAdd(){
-    var addContainer = $('#add_container');
-    addContainer.find('.detail_content,.detail_name,.detail_name+br,.detail_content+br').remove();
-    addContainer.hide();
-    addContainer.find('form')[0].reset();
+    if(submitButton.text() == "Add"){
+        addBook.call(this);
+    }else if(submitButton.text() == "Edit"){
+        console.log('edit');
+    }
     return false;
 }
-function addBook(event){
-    event.preventDefault();  /* stop form from submitting normally */
+
+/***** ADD FUNCTIONS *****/
+function showForm(action){
+    var materialFormContainer = $('#material_form_container');
+    materialFormContainer.find('form')[0].reset();
+
+    if(action == "add"){
+        materialFormContainer.find('#submit_button').text("Add");
+    }else{
+        materialFormContainer.find('#submit_button').text("Edit");
+    }
+
+    $('#other').hide();
+    $('.abstract_container').hide();
+    materialFormContainer.slideDown();
+    $(materialFormContainer).find('#book_no').focus();
+    return false;
+}
+
+function cancelForm() {
+    var materialFormContainer = $('#material_form_container');
+    materialFormContainer.find('.detail_content,.detail_name,.detail_name+br,.detail_content+br').remove();
+    materialFormContainer.hide();
+    return false;
+}
+
+function addBook(){
     var errors;
+
     if((errors = checkAll.call(this)) == ''){
-        var book_no = $(this).find('#add_book_no').val();
+        var book_no = $(this).find('#book_no').val();
         var addForm = $(this);
         var formInputs = addForm.serialize();
         $.get("index.php/book/get_book",{"book_no":book_no},function(data){
@@ -82,15 +103,16 @@ function addBook(event){
 
                 $('[data-toggle="tab"]')[1].click();
             }else{
-               alert('Cannot add duplicate material.')
+                alert('Cannot add duplicate material.')
             }
         });
 
-        cancelAdd();
     }else{
         errors = "Cannot continue action because of the following errors:<br/>" + errors;
         $(this).closest('div').find('.errors').html(errors);
     }
+    cancelForm();
+    return false;
 }
 /***** END ADD FUNCTIONS *****/
 
@@ -126,7 +148,6 @@ function fillEditForm(event){
     $('#edit_book_form')[0].reset();
     var td = $(this).closest('tr').find('[book_data=book_no]');
     var book_no = td.text();
-    console.log(book_no);
     $.get("index.php/book/get_book",{'book_no':book_no},function(data){
         data = JSON.parse(data);
         data = data[0];
@@ -243,8 +264,14 @@ function deleteBook(){
 /***** END DELETE FUNCTIONS *****/
 /***** FUNCTION FOR OTHER DATA *****/
 function generateInputDetail(anchor,index){
-    var detailHTML = '<input type="text" title="Name of the Detail. (ie. Subject, Volume)" class="form-control detail_name" required="" placeholder="Detail Name" maxlength="20" name="other_detail['+index+'][name]"/>' +
-        '<textarea class="form-control detail_content" placeholder="Detail" maxlength="255" name="other_detail['+index+'][content]"></textarea>';
+
+    var detailHTML =
+        '<div class="control-group>"' +
+            '<label class="control-label">Detail Name:</label>' +
+            '<input type="text" title="Name of the Detail. (ie. Subject, Volume)" class="form-control detail_name" required="" placeholder="Detail Name" maxlength="20" name="other_detail['+index+'][name]"/>' +
+            '<label class="control-label">Detail:</label>' +
+            '<textarea class="form-control detail_content" placeholder="Detail" maxlength="255" name="other_detail['+index+'][content]"></textarea>' +
+        '</div>';
 
     $(anchor).nextAll('.add_button').before(detailHTML);
     var detailName = $(anchor).nextAll('.detail_name:last');
