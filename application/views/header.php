@@ -190,12 +190,14 @@
 				$('#navbar').removeClass('fixed');
 				$('#search').removeClass('fixed');
 				$('#banner').removeClass('pad');
+				$('#rightbody').removeClass('fixerupper');
 			}
 
 			function pfgt1ap(){
 				$('#navbar').addClass('fixed');
 				$('#search').addClass('fixed');
 				$('#banner').addClass('pad');
+				$('#rightbody').addClass('fixerupper');
 			}
 		</script>
 
