@@ -243,13 +243,6 @@ CREATE TABLE IF NOT EXISTS `favorites` (
   KEY `favorites_book_no` (`book_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `favorites`
---
-
-INSERT INTO `favorites` (`username`, `book_no`, `date_added`) VALUES
-('useruser', 'TH 0002', '2014-03-05 02:17:17');
-
 -- --------------------------------------------------------
 
 --
