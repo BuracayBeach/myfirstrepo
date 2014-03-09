@@ -57,10 +57,10 @@
 
 	<div id="site-cont">
 		<?php
-			if($title != "eICS Lib")
+			if($title != "ComLib")
 				include 'banner_view.php';
 		?>
-		<div id="navbar" class="<?php if($title == "eICS Lib") echo "default";?>">
+		<div id="navbar" class="<?php if($title == "ComLib") echo "default";?>">
 			<div id="element-cont">
 				<div class="left">
 					<a href="<?php echo base_url();?>ihome">
