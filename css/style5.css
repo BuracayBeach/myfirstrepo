@@ -1,6 +1,8 @@
 #site-cont{
     min-width: 1000px;
-    min-height: 768px;
+    min-height: 500px;
+    z-index: 1010;
+    opacity: 1;
 }
 
 body{
@@ -54,7 +56,7 @@ RIGHTSIDE
 --------------------------------------------*/
 #rightbody{
     width: 85%;
-    min-height: 400px;
+    min-height: 200px;
     float: left;
 }
 
@@ -71,6 +73,11 @@ RIGHTSIDE
 NAVBAR
   *put event on zoomin
 --------------------------------------------*/
+#navbar.default{
+    position: fixed;
+    top:0px;
+}
+
 #navbar{
     width: 100%;
     height: 60px;
@@ -160,6 +167,7 @@ NAVBAR
   position: fixed;
   top:0px;
 }
+
 
 
 /*---------------------------------------
