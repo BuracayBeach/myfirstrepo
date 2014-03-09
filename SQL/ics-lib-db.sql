@@ -243,13 +243,6 @@ CREATE TABLE IF NOT EXISTS `favorites` (
   KEY `favorites_book_no` (`book_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `favorites`
---
-
-INSERT INTO `favorites` (`username`, `book_no`, `date_added`) VALUES
-('useruser', 'TH 0002', '2014-03-05 02:17:17');
-
 -- --------------------------------------------------------
 
 --
@@ -295,25 +288,6 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   PRIMARY KEY (`id`,`username_user`),
   KEY `notifications_username_admin` (`username_user`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
-
---
--- Dumping data for table `notifications`
---
-
-INSERT INTO `notifications` (`id`, `username_admin`, `username_user`, `book_no`, `message`, `date_sent`, `type`) VALUES
-(7, '', 'useruser', 'TH 0002', 'You may now claim your book at the library ASAP', '2014-03-05 02:14:26', 'claim'),
-(8, '', 'useruser', 'CS100 – G23', 'You may now claim your book at the library ASAP', '2014-03-05 02:14:27', 'claim'),
-(9, '', 'useruser', 'CS130-N12', 'You may now claim your book at the library ASAP', '2014-03-05 02:14:28', 'claim'),
-(10, '', 'useruser', 'TH 0002', 'You may now claim your book at the library ASAP', '2014-03-05 02:16:47', 'claim'),
-(11, '', 'useruser', 'CS100 – G23', 'You may now claim your book at the library ASAP', '2014-03-05 02:16:48', 'claim'),
-(12, '', 'useruser', 'CS130-N12', 'You may now claim your book at the library ASAP', '2014-03-05 02:16:49', 'claim'),
-(13, '', 'useruser', 'IT 280', 'You may now claim your book at the library ASAP', '2014-03-05 02:16:50', 'claim'),
-(14, '', 'useruser', 'CS 127 – K39', 'You may now claim your book at the library ASAP', '2014-03-05 02:16:50', 'claim'),
-(15, '', 'useruser', 'IT7', 'You may now claim your book at the library ASAP', '2014-03-05 02:16:51', 'claim'),
-(16, '', 'useruser', 'TH 0002', 'You may now claim your book at the library ASAP', '2014-03-05 02:18:57', 'claim'),
-(17, '', 'useruser', 'TH 0002', 'You may now claim your book at the library ASAP', '2014-03-05 02:19:24', 'claim'),
-(18, '', 'useruser', 'TH 0002', 'You may now claim your book at the library ASAP', '2014-03-05 02:27:33', 'claim'),
-(19, '', 'useruser', 'TH 0002', 'You may now claim your book at the library ASAP', '2014-03-05 02:29:51', 'claim');
 
 -- --------------------------------------------------------
 
