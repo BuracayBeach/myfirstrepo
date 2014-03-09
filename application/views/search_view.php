@@ -12,10 +12,10 @@
 		// var_dump($_SESSION['search_data']);
 
 		$sss = $_SESSION['search_data'];
-		$s_stext =  $sss['search'];
-		$s_sby = htmlspecialchars(stripslashes(trim($sss['search_by'])));
+		if (isset($sss['search'])) $s_stext =  $sss['search'];
+		if (isset($sss['search_by'])) $s_sby = htmlspecialchars(stripslashes(trim($sss['search_by'])));
 
-		$order_by = $sss['order_by'];
+		if (isset($sss['order_by'])) $order_by = $sss['order_by'];
 
 		if (!isset($sss['type_book'])) $book = '';
 		if (!isset($sss['type_journal'])) $journal = '';
@@ -27,14 +27,15 @@
 		if (!isset($sss['reserved'])) $res = '';
 		if (!isset($sss['borrowed'])) $bor = '';
 
-		$sr = $sss['order_by']=='search_relevance'?'selected':'';
-		$bn  = $sss['order_by']=='book_no'?'selected':'';
-		$bt  = $sss['order_by']=='book_title'?'selected':'';
-		$ds  = $sss['order_by']=='description'?'selected':'';
-		$pb  = $sss['order_by']=='publisher'?'selected':'';
-		$na  = $sss['order_by']=='name'?'selected':'';
-		$dp  = $sss['order_by']=='date_published'?'selected':'';
-
+		if (isset($sss['order_by'])){
+			$sr = $sss['order_by']=='search_relevance'?'selected':'';
+			$bn  = $sss['order_by']=='book_no'?'selected':'';
+			$bt  = $sss['order_by']=='book_title'?'selected':'';
+			$ds  = $sss['order_by']=='description'?'selected':'';
+			$pb  = $sss['order_by']=='publisher'?'selected':'';
+			$na  = $sss['order_by']=='name'?'selected':'';
+			$dp  = $sss['order_by']=='date_published'?'selected':'';
+		}
 	}
 ?>
 
@@ -120,7 +121,7 @@
 
 <?php 
 	$awto = null;
-	if (isset($_SESSION['search_data'])) $awto = $_SESSION['search_data']['autoSubmitSearch'];
+	if (isset($_SESSION['search_data']) && isset($_SESSION['search_data']['autoSubmitSearch'])) $awto = $_SESSION['search_data']['autoSubmitSearch'];
 	echo "<div id='autoSubmitSearchDiv' balyu='{$awto}''></div>";
 ?>
 
