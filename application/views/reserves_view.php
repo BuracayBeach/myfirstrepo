@@ -16,6 +16,8 @@ $this->load->view('reserves_view', $data);
 
 <div class="hideable">
 
+	<h1>RESERVED</h1>
+
 	<div id="reserves_container" class="my_library_container">
 
 		<?php // para sa ranking 
