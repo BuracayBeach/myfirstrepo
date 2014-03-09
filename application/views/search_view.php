@@ -138,3 +138,19 @@
 
 <script type="text/javascript" src= "<?php echo base_url()?>js/search/searchResults.js"></script>
 <script type="text/javascript" src= "<?php echo base_url()?>js/search/searchRedirection.js"></script>
+
+
+<div id="rightbody">
+
+
+
+
+
+
+
+
+
+
+
+
+
