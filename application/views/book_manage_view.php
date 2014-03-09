@@ -31,9 +31,9 @@
 
             <!-- Select Basic -->
             <div class="control-group">
-                <label class="control-label" for="book_type">Type:</label>
+                <label class="control-label" for="type">Type:</label>
                 <div class="controls">
-                    <select id="book_type" name="book_type" class="form-control">
+                    <select id="type" name="type" class="form-control">
                         <option>Book</option>
                         <option>Journal</option>
                         <option>SP</option>
@@ -47,7 +47,7 @@
             <div class="control-group">
                 <label class="control-label" for="other">Please Specify:</label>
                 <div class="controls">
-                    <input id="other" name="other" placeholder="Magazine" class="form-control other" type="text">
+                    <input id="other" name="other" placeholder="Magazine" class="other form-control" type="text">
                     <p class="help-block">ex. Magazine, Newspaper, CD, etc..</p>
                 </div>
             </div>
@@ -62,9 +62,9 @@
 
             <!-- Text input-->
             <div class="control-group">
-                <label class="control-label" for="autjor">Author:</label>
+                <label class="control-label" for="author">Author:</label>
                 <div class="controls">
-                    <input id="autjor" name="autjor" placeholder="Arthur Conan Doyle" class="form-control" type="text">
+                    <input id="author" name="author" placeholder="Arthur Conan Doyle" class="form-control" type="text">
                     <p class="help-block"> </p>
                 </div>
             </div>
