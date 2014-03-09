@@ -7,8 +7,6 @@
 						newSearch = newSearch.replace(/<\/strong>/g,"");
 						var searchText = $('#search_text')
 						
-						// if (searchText.val() == '') searchText.val(newSearch.trim())
-
 						if ($(this).attr('class') == 'tag_link') searchText.attr('tagSearch',$(this).text())
 						else searchText.val(newSearch.trim());
 					
@@ -75,6 +73,7 @@
 						if (currentPath != searchPath){
 								window.location.replace(icejjfish + "ihome");
 						} else {
+							// alert("searching")
 							if (lastAutoSearchUnset && lastAutoSearchUnset.readyState != 4) lastAutoSearchUnset.abort();
 							lastAutoSearchUnset = $.ajax({
 								type: "post",

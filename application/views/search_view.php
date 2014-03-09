@@ -28,7 +28,6 @@
 		if (!isset($sss['reserved'])) $res = '';
 		if (!isset($sss['borrowed'])) $bor = '';
 
-
 		$sr = $sss['order_by']=='search_relevance'?'selected':'';
 		$bn  = $sss['order_by']=='book_no'?'selected':'';
 		$bt  = $sss['order_by']=='book_title'?'selected':'';
