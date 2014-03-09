@@ -4,7 +4,7 @@
 }
 
 body{
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
     font-size: 15px;
 }
 /*--------------------------------------------
@@ -193,7 +193,7 @@ DROPDOWN CHECKLIST
 ------------------------------*/
 .dropdown-check-list {
     display: inline-block;
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
     width: 50%;
 }
 .dropdown-check-list .anchor {
@@ -202,7 +202,7 @@ DROPDOWN CHECKLIST
     display: inline-block;
     padding: 5px 50px 5px 10px;
     border: 1px solid #ccc;
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
 }
 .dropdown-check-list .anchor:after {
     position: absolute;
@@ -212,7 +212,7 @@ DROPDOWN CHECKLIST
     padding: 5px;
     right: 10px;
     top: 20%;
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
     -moz-transform: rotate(-135deg);
     -ms-transform: rotate(-135deg);
     -o-transform: rotate(-135deg);
@@ -222,7 +222,7 @@ DROPDOWN CHECKLIST
 .dropdown-check-list .anchor:active:after {
     right: 8px;
     top: 21%;
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
 
 }
 .dropdown-check-list ul.items {
@@ -231,19 +231,19 @@ DROPDOWN CHECKLIST
     margin: 0;
     border: 1px solid #ccc;
     border-top: none;
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
 }
 .dropdown-check-list ul.items li {
     list-style: none;
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
 }
 .dropdown-check-list.visible .anchor {
     color: #0094ff;
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
 }
 .dropdown-check-list.visible .items {
     display: block;
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
 }
 /*-------------------------------
 FAQ
@@ -290,7 +290,7 @@ FAQ
 
 #add_faq_button{
     background-color:#2266cc !important;
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
     font-size:100% !important;
     width:20% !important;
     margin-bottom: 2%;
@@ -300,7 +300,7 @@ FAQ
 }
 #add_faq_cancel_button{
     background-color:#2266cc !important;
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
     font-size:100% !important;
     width:20% !important;
     height: 5%;
@@ -308,14 +308,14 @@ FAQ
 }
 .save_faq_button{
     background-color:#2266cc !important;
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
     font-size:100% !important;
     width:15% !important;
     height: 5%;
 }
 .cancel_faq_button{
     background-color:#2266cc !important;
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
     font-size:100% !important;
     width:15% !important;
     height: 5%;
@@ -324,7 +324,7 @@ FAQ
 .edit_faq_button{
     margin-left: 3% !important;
     background-color:#2266cc !important;
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
     font-size:100% !important;
     width:15% !important;
     height: 5%;
@@ -332,7 +332,7 @@ FAQ
 }
 .delete_faq_button{
     background-color:#FF6600 !important;
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
     font-size:100% !important;
     width:15% !important;
     height: 5%;
@@ -342,7 +342,7 @@ FAQ
     width:100% !important;
 }
 #faq_manage_container{
-    margin-left: 20%;
+    margin-left: 10%;
     margin-top: 3%;
     width: 50%;
 }
@@ -350,7 +350,7 @@ FAQ
 .edit_announcement_button{
     margin-left: 3%;
     background-color:#2266cc !important;
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
     font-size:100% !important;
     color: white;
     margin-bottom: 5%;
@@ -358,7 +358,7 @@ FAQ
 .delete_announcement_button{
     margin-left: 3%;
     background-color:#FF6600 !important;
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
     font-size:100% !important;
     color: white;
     margin-bottom: 5%;
@@ -488,7 +488,7 @@ ERROR
 }
 #add_announcement_button{
     background-color:#2266cc !important;
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
     font-size: 1vw !important;
     width:100% !important;
     height:30%;
@@ -496,7 +496,7 @@ ERROR
 }
 #show_add_form_button{
     background-color:#2266cc !important;
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
     font-size: 1vw !important;
     width:100% !important;
     color: white;
@@ -507,7 +507,7 @@ ERROR
 }
 #submit_search{
     background-color:#2266cc !important;
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
     font-size:100% !important;
     width:50% !important;
     color: white;
@@ -531,7 +531,7 @@ ERROR
 }
 /* for non users */
 #result_container_container{
-    margin-left: 20%;
+    margin-left: 5%;
     width: 60%;
 }
 
@@ -588,7 +588,7 @@ ERROR
 #faq_container {
     width: 60%;
     float: left;
-    margin-left: 20%;
+    margin-left: 10%;
     margin-top: 10%;
 
 }
@@ -596,9 +596,8 @@ ERROR
 #help_container {
     width: 60%;
     float: left;
-    margin-left: 6%;
+    margin-left: 10%;
     margin-top: 50px;
-
 }   
 
 /*------------
@@ -612,10 +611,20 @@ OVERALLS
     position: fixed;
 }
 .readmore-js-toggle{
-    font-family:"Segoe UI Light" !important;
+    font-family:'SEGOEUIL' !important;
     font-size: 14px;
 }
 
+.hiddenspan{
+    visibility: hidden;
+    font-size: 13px;
+}
+
+.error{
+    visibility: visible; 
+    color: rgba(250, 50, 50, 1);
+
+}
 /* CAROUSEL*/
 #wrapper_carousel {
         height: 100px;
@@ -675,3 +684,13 @@ OVERALLS
         margin: 0;
         font-size: 1.2em;
     }
+
+@font-face {
+    font-family: 'SEGOEUIL';
+    src: url('./SEGOEUIL.eot');
+    src: local('SEGOEUIL'), url('../fonts/SEGOEUIL.woff') format('woff'), url('../fonts/SEGOEUIL.ttf') format('truetype');
+}
+/* use this class to attach this font to any element i.e. <p class="fontsforweb_fontid_1409">Text with this font applied</p> */
+.fontsforweb_fontid_1409 {
+    font-family: 'SEGOEUIL' !important;
+}
