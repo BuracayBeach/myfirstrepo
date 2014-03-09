@@ -9,16 +9,17 @@
 	</div>
 </a>
 <?php
-$url = base_url()."home/delete_admins";
+$url1 = base_url()."delete_admins";
+$url2 = base_url()."admin_account/create_admin";
  if($_SESSION['admin_username'] == "admin") echo "
-<a href='{$url}'> 
+<a href='{$url1}'> 
 	<div class='menulinks'> 
 		Delete an Admin 
 	</div>
-</a>"
-?>
-<a href="<?php echo base_url();?>home/create_admin_account">
-	<div class="menulinks">
+</a>
+<a href='".base_url()."create_admin_account'>
+	<div class='menulinks'>
 		Create New Admin
 	</div>
-</a>
+</a>";
+?>
