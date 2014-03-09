@@ -1,4 +1,7 @@
 	$(document).ready(function(){
 		var awto = $('#autoSubmitSearchDiv').attr('balyu');
-		if (awto == 'true') $('#search_form').submit()
+		var currentPath = window.location.href
+		var searchPath = icejjfish + "ihome"
+
+		if (awto == 'true' && currentPath == searchPath) $('#search_form').submit()
 	})

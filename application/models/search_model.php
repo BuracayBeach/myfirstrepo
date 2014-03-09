@@ -250,12 +250,27 @@ class Search_model extends CI_Model {
     }
 
 
+
+    public function extract_detail($other_detail){
+        if ($other_detail == '') return '';
+        $contents = '';
+        $other_details = explode("¦",$other_detail);
+        foreach($other_details as &$detail){
+            $arr = explode("»",$detail);
+            $contents .= $arr[1] . ' ';
+        }
+        return $contents;
+    }
+
+
+
     function get_row_points($row, $search_terms, $input, &$term_sugg, &$term_sugg_dist, $spell_check){
         //set criteria
         $book_title_points = 9;
         $book_author_points = 5;
         $book_desc_points = 4;
         $book_tags_points = 3;
+        $other_detail_points = 3;
         $book_publisher_points = 2;
         $year_published_points = 2;
         $book_no_points = 1;
@@ -288,6 +303,7 @@ class Search_model extends CI_Model {
         if ($search_by == 'any'){
             array_push($cols_to_search, $row->book_no);
             array_push($cols_to_search, $row->date_published);
+            array_push($cols_to_search, $row->other_detail);
         }
         if ($search_by == 'date_published' || $search_by == 'any'){
             array_push($cols_to_search, $row->date_published);
@@ -315,12 +331,16 @@ class Search_model extends CI_Model {
                 if (!in_array($col, $cols_to_search)) continue;
 
                 // $col_words = preg_replace("/[^a-zA-Z0-9]+/", " ", $col);
-                $col_copy = preg_replace("/[^a-zA-Z0-9]+/", " ", $col);
+                if ($col == $row->other_detail) $col_copy = $col;
+                else $col_copy = preg_replace("/[^a-zA-Z0-9]+/", " ", $col);
+
                 if ($col == $row->tags) $col_words = explode(" ", str_replace(',', ' ', $col_copy));
                 elseif ($col == $row->date_published) $col_words = explode(" ", str_replace('-', ' ', $col_copy));
+                elseif ($col == $row->other_detail) $col_words = explode(" ", $this->extract_detail($col_copy));
                 else $col_words = explode(" ", $col_copy);
 
                 foreach($col_words as $item_orig){
+
                     $item = strtolower(trim($item_orig));
                     if ($item=='') continue;
                     $item = preg_replace("/[^a-zA-Z0-9]+/", "", $item);
@@ -343,6 +363,7 @@ class Search_model extends CI_Model {
                             case $row->description: $pts+=$book_desc_points; break;
                             case $row->book_no: $pts+=$book_no_points; break;
                             case $row->tags:        $pts+=$book_tags_points; if (in_array($item, $tagSearches)) $tag_matched=true; break;
+                            case $row->other_detail:        $pts+=$other_detail_points; break;
                             case $row->book_title:  $pts+=$book_title_points; break;
                             case $row->author:        $pts+=$book_author_points; break;
                             case $row->publisher:  $pts+=$book_publisher_points; break;
@@ -360,6 +381,7 @@ class Search_model extends CI_Model {
                             }
                         }
                     }
+
                 }
             }
         }
