@@ -11,6 +11,10 @@
 	?>
 
 	<form method="POST" action="<?php echo base_url()?>ihome">
-		<div class="form-group"><input class="form-control" id="search_text" type="search" name='home_search_text' autofocus='true' placeholder='Keywords...' maxlength='99'  /></div>
-		<input class="btn btn-primary" id='submit_search' type="submit" name="submit_search" value="Search"/><br/>
+
+		<div id="bg"><img src="images/chibi1.png" id="chibi1"><img src="images/chibi2.png" id="chibi2"></div>
+		<div class="form-group" id="google_bg"><input class="form-control" id="search_text" type="search" name='home_search_text' autofocus='true' placeholder='Keywords...' maxlength='99'  />
+		<br/><input class="btn btn-primary" id='google_submit_search' type="submit" name="submit_search" value="Search"/>
+		</div>
+
 	</form>

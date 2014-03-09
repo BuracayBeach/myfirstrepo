@@ -35,7 +35,7 @@ class Home extends CI_Controller {
     public function index(){
         $data['title'] = "ComLib";
         $data['page'] = 'index';
-        $this->load->view("header", $data);
+        $this->load->view("header", $data); 
         $this->load->view("search_google_view"); 
         // $this->load->view("search_results_view");
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
@@ -50,7 +50,7 @@ class Home extends CI_Controller {
             $this->load->view('notifications_view', $data);
         }
 
-        $this->load->view("footer");
+        $this->load->view("footer",$data);
     }
 
     public function ihome(){
