@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="<?php echo base_url();?>css/style_admin_login.css">
+<link rel="stylesheet" href="<?php echo base_url();?>css/style_admin_login.css">
 
 <div id="wrapper_admin">
 

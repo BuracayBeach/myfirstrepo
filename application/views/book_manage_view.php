@@ -7,7 +7,7 @@
             <!-- Text input-->
             <input type="hidden" id="prev_book_no" name="prev_book_no" />
             <div class="control-group">
-                <label class="control-label" for="book_no">*Call Number:</label>
+                <span class="required-asterisk">*</span><label class="control-label" for="book_no">Call Number:</label>
                 <div class="controls">
                     <input id="book_no"
                            pattern="^[a-zA-Z0-9\- ]+$"
@@ -19,7 +19,7 @@
 
             <!-- Text input-->
             <div class="control-group">
-                <label class="control-label" for="book_title">*Title</label>
+                <span class="required-asterisk">*</span><label class="control-label" for="book_title">Title</label>
                 <div class="controls">
                     <input id="book_title" maxlength="255" spellcheck="true" name="book_title" placeholder="The Amazing Title" class="form-control" required="" type="text">
                     <p class="help-block"> </p>
@@ -52,7 +52,7 @@
 
             <!-- Text input-->
             <div class="control-group other">
-                <label class="control-label" for="other">*Please Specify:</label>
+                <span class="required-asterisk">*</span><label class="control-label" for="other">Please Specify:</label>
                 <div class="controls">
                     <input id="other" name="other" pattern="^[a-zA-Z0-9 '_]{1,20}$" placeholder="Magazine" class="form-control" type="text">
                     <p class="help-block">ex. Magazine, Newspaper, CD, etc..</p>

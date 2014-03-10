@@ -10,11 +10,7 @@ $('#result_container,#faq_container').ready(function(){
     $('#material_cancel_button').on('click',cancelForm);
     /*-- remove detail on click of cancel button--*/
     var materialForm = $('#material_form');
-    materialForm.click(submitMaterialForm);
-    materialForm.submit(function(){
-        $('#material_cancel_button').click();
-        return false;
-    });
+    materialForm.submit(submitMaterialForm);
     materialForm.on('click','.detail .x-button',removeDetailInput);
 
     $('#type').change(checkBookType);
@@ -50,9 +46,9 @@ function generateInputDetail(anchor,index){
     var detailHTML =
         '<div class="control-group detail removable">' +
             '<span><button type="button" class="show-on-hover x-button">x</button></span><br/>' +
-            '<label class="control-label">*Detail Name:</label>' +
+            '<span class="required-asterisk">*</span><label class="control-label">Detail Name:</label>' +
             '<input type="text" title="Name of the Detail. (ie. Subject, Volume)" class="form-control detail_name" required="" placeholder="Detail Name" maxlength="20" name="other_detail['+index+'][name]"/>' +
-            '<label class="control-label">*Detail:</label>' +
+            '<span class="required-asterisk">*</span><label class="control-label">Detail:</label>' +
             '<textarea class="form-control detail_content" required="" placeholder="Detail" maxlength="255" name="other_detail['+index+'][content]"></textarea>' +
             '</div>';
 
@@ -153,8 +149,6 @@ function showAddForm(){
         resetAndShow();
     }
 
-
-
     return false;
 }
 function addBook(){
@@ -178,6 +172,7 @@ function addBook(){
                         alert("Sorry! There was a problem processing your action.");
                     });
 
+                addForm.closest('div').fadeOut();
                 $('[data-toggle="tab"]')[1].click();
             }else{
                 alert('Cannot add duplicate material.')
@@ -275,7 +270,7 @@ function editBook(){
 
                     rowToUpdate.replaceWith(data);
                 });
-                editForm.closest('div').hide();
+                editForm.closest('div').fadeOut();
             }else{
                 alert('Edit failed: Book number duplicate.');
             }

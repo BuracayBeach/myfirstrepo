@@ -21,7 +21,6 @@ function validateBookNo(bookNo){
         msg = '';
     }
 
-
     return msg;
 }
 
@@ -147,5 +146,7 @@ function checkAll(){
     msgs += validateDatePublished(year);
     msgs += validateTags(tags);
 
+    if(msgs != '')
+        alert(msgs);
     return msgs;
 }
