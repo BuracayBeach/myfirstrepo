@@ -14,7 +14,7 @@
 
 	if (isset($_SESSION['search_data'])){
 		// var_dump($_SESSION['search_data']);
-
+		
 		$sss = $_SESSION['search_data'];
 		if (isset($_POST['home_search_text'])) $s_stext = $_POST['home_search_text'];
 		else if (isset($sss['search'])) $s_stext =  $sss['search'];
