@@ -547,5 +547,5 @@ function filterCourses2(){
 
  	else if(userForm.college.value=="NA"){
  		document.getElementById('None').selected = true;
- 	}  	
+ 	}
 }

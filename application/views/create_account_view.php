@@ -14,7 +14,7 @@
 				 <label for="male">Male</label>&nbsp;&nbsp;
 				 <input type="radio" name="sex" value="female" id="female"/>
 				 <label for="female">Female</label><br/>
-			Email: <div class="form-group"><input class="form-control" type="text" name="email" required/><span name="span email"></span></span><br>
+			Email: <div class="form-group"><input class="form-control" type="text" name="email" required/><span name="span email"></span></div><br>
 			User Type: &nbsp;&nbsp;&nbsp; 
 				<input type="radio" name="usertype" value="student" id="student" checked/>
 				 <label for="student">Student</label> &nbsp;&nbsp;
