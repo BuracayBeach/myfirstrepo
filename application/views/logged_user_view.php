@@ -18,7 +18,7 @@
 <script type="text/javascript">
 
 	$(document).mouseup(function (e) {
-	    var container = $("div#notifs_container");
+	    var container = $("div#notifs_parent");
 	    var toggle_link = $("div#notif-toggle");
 
 	    if (!container.is(e.target) && container.has(e.target).length === 0 &&
@@ -29,7 +29,7 @@
 	$(document).ready( function() {
 
 		$('div#notif-toggle').on("click", function() {
-			$('div#notifs_container').toggle();
+			$('div#notifs_parent').toggle();
 		});
 
 		$('div#load-more-container').on("click", function() {

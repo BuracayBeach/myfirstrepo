@@ -10,8 +10,8 @@ $this->load->view('notifications_view', $data);
 ?>
 
 <link rel="stylesheet" href="<?php echo base_url();?>css/burnzz.css">
-
-<div id="notifs_container" style="display:none;">
+<div id="notifs_parent"  style="display:none;">
+<div id="notifs_container">
 
 	<?php if(isset($notifs)) : foreach ($notifs as $row) : ?>
 			
@@ -56,4 +56,4 @@ $this->load->view('notifications_view', $data);
 	<?php endif; ?>
 
 </div> 
-
+</div>
