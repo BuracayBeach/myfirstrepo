@@ -312,14 +312,19 @@ FAQ
 }
 
 #faq_anchors{
-    position: fixed;
-    right: 10px;
-    top: 250px;
-    width: 30%;
+    margin-left: 20%;
+    width: 100%;
 }
 
 #faq_table{
     width: 100% !important;
+}
+
+.back-to-top{
+    position: fixed;
+    right: 24%;
+    bottom: -5px;
+    width: 6%;
 }
 
 #faq_table hr{

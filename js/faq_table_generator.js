@@ -10,10 +10,30 @@ $('#faq_table_container').ready(function(){
     var isAdmin = $('#faq_manage_container').length == 1;
 
     generateFaqs(isAdmin);
+    $('#faq_anchors').on('click','.faq-anchor',scrollToTarget)
+    $('.back-to-top').on('click',scrollToTop);
 });
 
-function generateFaqAnchor(data){
-    return '<a href="#faq'+data.id+'">'+data.question+'</a><br/>';
+function scrollToTop(){
+    $('html,body').animate({
+        scrollTop: 0
+    });
+    return false;
+}
+
+function scrollToTarget(){
+    //this  = anchor
+    var $target = $($(this).attr('href'));
+
+    console.log($target);
+    $('html,body').animate({
+        scrollTop: $target.offset().top - 90
+    });
+    return false;
+}
+
+function generateFaqAnchor(index,data){
+    return '<a class="faq-anchor" href="#faq'+data.id+'">'+index+".&nbsp;"+data.question+'</a><br/>';
 }
 
 function generateFaqs(isAdmin){
@@ -21,9 +41,10 @@ function generateFaqs(isAdmin){
         try{
             data = JSON.parse(data);
             var anchorsHTML  = "";
+            var i = data.length;
             data.forEach(function(entry){
                 generateFaqRow(entry,isAdmin);
-                anchorsHTML += generateFaqAnchor(entry);
+                anchorsHTML = generateFaqAnchor(i--,entry) + anchorsHTML;
             });
 
             $('#faq_anchors').html(anchorsHTML);
