@@ -1,8 +1,25 @@
 <?php //for search settings preset
-	if (isset($_POST['home_search_text']) && !(isset($_SESSION['type']) && $_SESSION['type'] == 'admin')){
-		$_SESSION['search_data']['autoSubmitSearch'] = 'true';
-	}
+	// if (isset($_POST['home_search_text']) && !(isset($_SESSION['type']) && $_SESSION['type'] == 'admin')){
+	// 	$_SESSION['search_data']['autoSubmitSearch'] = 'true';
+	// }
 	
+
+    $search_from_google_page = isset($_POST) && isset($_POST['home_search_text']);
+
+    if (isset($_SESSION) && isset($_SESSION['search_data']) && isset($_SESSION['search_data']['searchFromOtherPage'])){
+        $search_from_other_page = $_SESSION['search_data']['searchFromOtherPage'];
+    } else {
+        $search_from_other_page = 'false';
+    }
+
+    if ($search_from_google_page || $search_from_other_page != 'false') $autoSubmitSearch = 'true';
+    else $autoSubmitSearch = 'false';
+
+
+    if ($autoSubmitSearch == 'true') $_SESSION['search_data']['autoSubmitSearch'] = 'true';
+
+
+
 	$s_stext =  '';
 	$s_sby =  'book_title';
 	$order_by = 'search_relevance';
