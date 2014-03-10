@@ -1,4 +1,8 @@
 <?php //for search settings preset
+	if (isset($_POST['home_search_text']) && !(isset($_SESSION['type']) && $_SESSION['type'] == 'admin')){
+		$_SESSION['search_data']['autoSubmitSearch'] = 'true';
+	}
+	
 	$s_stext =  '';
 	$s_sby =  'book_title';
 	$order_by = 'search_relevance';
@@ -125,6 +129,7 @@
 	$awto = null;
 	if (isset($_SESSION['search_data']) && isset($_SESSION['search_data']['autoSubmitSearch'])) $awto = $_SESSION['search_data']['autoSubmitSearch'];
 	echo "<div id='autoSubmitSearchDiv' balyu='{$awto}'></div>";
+	$_SESSION['search_data']['autoSubmitSearch'] = 'false';
 ?>
 
 

@@ -58,8 +58,8 @@
 						var currentPath = window.location.href
 						var searchPath = icejjfish + "ihome"
 
-						if (currentPath != searchPath) my_input += "&autoSubmitSearch=true"
-						else my_input += "&autoSubmitSearch=false"
+						if (currentPath != searchPath) my_input += "&autoSubmitSearch=true&searchFromOtherPage=true"
+						else my_input += "&autoSubmitSearch=false&searchFromOtherPage=false"
 
 						if (lastSessionSave && lastSessionSave.readyState != 4) lastSessionSave.abort();
 						lastSessionSave = $.ajax({
