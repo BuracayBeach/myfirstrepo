@@ -109,8 +109,13 @@ NAVBAR
     float: left;
 }
 #navbar .menulinks:hover{
-    border-top: 10px solid #2266CC;
+    border-bottom: 5px solid #2266CC;
     background: rgba(255,255,255,0.1);
+    color: white;
+}
+#navbar .menulinks-active {
+    padding:15px 20px 5px 20px;
+    border-bottom: 5px solid #f26522;
     color: white;
 }
 #navbar div.btn-group{
@@ -815,6 +820,23 @@ OVERALLS
     font-size: 1vw;
 }
 
+#logs_table{
+    width: 60%;
+    border: 1px solid #CCCCCC;
+}
+
+
+.logs-form{
+    width: 65%;
+}
+
+.logs-date-help{
+    padding-bottom: 10px;
+    display: block;
+}
+
+
+
 #logs_container #header_logs{
     margin-left:30%;
 }
@@ -909,13 +931,12 @@ OVERALLS
 
 
 #banner #logolink{
-    width: 50%;
-    height: 60px;
+    max-height: 80px;
     padding: 1px 20px 10px 20px;
     margin-left: 35%;
 }
 
 #logolink img{
-    max-width: 100%;
+    height: 100%;
     margin-top: 10px;
 }

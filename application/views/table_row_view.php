@@ -23,10 +23,12 @@
              //bold matching terms
             if (trim($search_term) != ''){
                $search_terms = explode(" ",trim($search_term));
-                foreach($search_terms as $s_term){
-                    if ($s_term == '' || strlen($s_term) < 3) continue;
-                    $r = preg_replace('/' . $s_term . '/i', "<strong>$0</strong>", $r);
-                }
+                // foreach($search_terms as $s_term){
+                //     if ($s_term == '' || strlen($s_term) < 3) continue;
+                //     $s_term = htmlspecialchars(stripslashes($s_term));
+                //     $s_term = mysql_real_escape_string($s_term);
+                //     $r = preg_replace('/' . $s_term . '/i', "<strong>$0</strong>", $r);
+                // }
             }
         }
     }
