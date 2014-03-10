@@ -218,25 +218,25 @@ SEARCHBAR
 #search #sidebar-wrapper ul a{
     color: black;
     text-align: right;
-    font-size: 1.3vw;
+    font-size: 15px;
 }
 #search #sidebar-wrapper ul a:hover{
     color:white;
     text-decoration: none;
-    font-size: 1.5vw;
+    font-size: 18px;
 
 }
 #search #sidebar-wrapper ul a:hover li{
     background:  #2266CC;
 }
 #search #sidebar-wrapper ul img{
-    width: 2vw;
+    width: 22px;
 }
 
 #search #sidebar-wrapper .active{
   background: #F26522;
   color: white;
-  font-size: 1.5vw;
+  font-size: 18px;
 }
 /*------------------------------
 DROPDOWN CHECKLIST
@@ -302,8 +302,29 @@ FAQ
     width: 100% !important;
 }
 
+#rightbody #faq_table_container{
+    width: 50%;
+}
+
+#rightbody #faq_container{
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+#faq_anchors{
+    margin-left: 20%;
+    width: 100%;
+}
+
 #faq_table{
     width: 100% !important;
+}
+
+.back-to-top{
+    position: fixed;
+    right: 24%;
+    bottom: -5px;
+    width: 6%;
 }
 
 #faq_table hr{
@@ -812,7 +833,6 @@ OVERALLS
 #logsPerPage{
     float: right;
 }
-
 
 #log_table{
     width: 100%;

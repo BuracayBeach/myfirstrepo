@@ -4,14 +4,50 @@
 
 var tableHTML = '<table id="faq_table"></table>';
 
-function generateFaqTable(isAdmin){
+
+
+$('#faq_table_container').ready(function(){
+    var isAdmin = $('#faq_manage_container').length == 1;
+
+    generateFaqs(isAdmin);
+    $('#faq_anchors').on('click','.faq-anchor',scrollToTarget)
+    $('.back-to-top').on('click',scrollToTop);
+});
+
+function scrollToTop(){
+    $('html,body').animate({
+        scrollTop: 0
+    });
+    return false;
+}
+
+function scrollToTarget(){
+    //this  = anchor
+    var $target = $($(this).attr('href'));
+
+    console.log($target);
+    $('html,body').animate({
+        scrollTop: $target.offset().top - 90
+    });
+    return false;
+}
+
+function generateFaqAnchor(index,data){
+    return '<a class="faq-anchor" href="#faq'+data.id+'">'+index+".&nbsp;"+data.question+'</a><br/>';
+}
+
+function generateFaqs(isAdmin){
     $.post("index.php/faq/get_all_faq",function(data){
         try{
             data = JSON.parse(data);
-
+            var anchorsHTML  = "";
+            var i = data.length;
             data.forEach(function(entry){
                 generateFaqRow(entry,isAdmin);
+                anchorsHTML = generateFaqAnchor(i--,entry) + anchorsHTML;
             });
+
+            $('#faq_anchors').html(anchorsHTML);
         }catch(e){
             console.log("cannot parse data for generating table ");
         }
@@ -36,7 +72,7 @@ function generateFaqRow(data,isAdmin){
                 '<button class="delete_faq_button">Delete</button>';
         editable = 'contenteditable="false"';
     }
-    var rowHTML = '<tr faq_id="'+data.id+'" class="faq_table_row">'+
+    var rowHTML = '<tr faq_id="'+data.id+'" id="faq'+data.id+'" class="faq_table_row">'+
                     '<td class="faq_table_data">' +
                         ' <span ' + editable +
                         ' class="question" name="question" >'+data.question+
@@ -64,9 +100,3 @@ function generateFaqRow(data,isAdmin){
 
 
 }
-
-$('#faq_table_container').ready(function(){
-    var isAdmin = $('#faq_manage_container').length == 1;
-
-    generateFaqTable(isAdmin);
-});
