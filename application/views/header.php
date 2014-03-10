@@ -64,7 +64,7 @@
 			<div id="element-cont">
 				<div class="left">
 					<a href="<?php echo base_url();?>ihome">
-						<div class="menulinks">
+						<div class="menulinks <?php if(isset($title) && $title == 'ComLib Home') echo 'menulinks-active';?>">
 							<?php if( isset($_SESSION['type']) && $_SESSION['type'] == "admin") echo "Manage";else echo "Home";?>
 						</div>
 					</a>
@@ -73,7 +73,11 @@
 						if( isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
 							echo "
 								<a href=" . base_url() . "accounts>
-									<div class='menulinks'>
+									<div class='menulinks ";  
+
+							if(isset($title) && $title == 'ComLib Accounts') echo 'menulinks-active';
+
+							echo		"'>
 										Accounts
 									</div>
 								</a>";
@@ -102,28 +106,29 @@
 					?>
 
 					<a href="<?php base_url()?>about_us">
-						<div class="menulinks">
+						<div class="menulinks  <?php if(isset($title) && $title == 'ComLib About Us') echo 'menulinks-active';?>">
 							About Us
 						</div>
 					</a>
 					<a href="<?php base_url()?>faq">
-						<div class="menulinks">
+						<div class="menulinks  <?php if(isset($title) && $title == 'ComLib FAQ') echo 'menulinks-active';?>">
 							FAQ
 						</div>
 					</a>
 					<a href="<?php base_url()?>help">
-						<div class="menulinks">
+						<div class="menulinks  <?php if(isset($title) && $title == 'ComLib Help') echo 'menulinks-active';?>">
 							Help
 						</div>
 					</a>
 					<?php
-						if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type'] == "admin")
-							echo "
-								<a href='".base_url()."logs'>
-									<div class='menulinks'>
-										Logs
-									</div>
-								</a>";
+						if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
+							echo "<a href=" . base_url() . "logs><div class='menulinks ";  
+
+							if(isset($title) && $title == 'ComLib Logs') echo 'menulinks-active';
+
+							echo " '>Logs</div></a>";
+
+						}
 					?>
 		
 				</div>

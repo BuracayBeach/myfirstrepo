@@ -100,7 +100,7 @@ class Home extends CI_Controller {
     public function logs(){
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin){
-            $data['title'] = "ComLib Home";
+            $data['title'] = "ComLib Logs";
             $data['page'] = 'index';
             $this->load->view("header", $data);
             $this->load->view("search_view");
@@ -259,7 +259,7 @@ class Home extends CI_Controller {
         if(isset($_SESSION['logged_in']) && $_SESSION['type'] != "admin")
             redirect(base_url());
 
-        $data['title'] = "ComLib Sign Up";
+        $data['title'] = "ComLib Admin Create";
         $this->load->view("header", $data);
         $this->load->view("search_view");
         $this->load->view('create_admin_view');
@@ -279,7 +279,7 @@ class Home extends CI_Controller {
         if(!isset($_SESSION['logged_in']) && $_SESSION['type'] != "regular")
             redirect(base_url());  
 
-        $data['title'] = "ComLib Sign Up";
+        $data['title'] = "ComLib Update";
         $this->load->view("header", $data);
         $this->load->view("search_view");
         $username = $_SESSION['username'];
@@ -298,7 +298,7 @@ class Home extends CI_Controller {
         if(!isset($_SESSION['admin_logged_in']) && $_SESSION['type'] != "admin")
             redirect(base_url()); 
 
-        $data['title'] = "ComLib Sign Up";
+        $data['title'] = "ComLib Update";
         $this->load->view("header", $data);
         $this->load->view("search_view");
 
@@ -309,7 +309,7 @@ class Home extends CI_Controller {
     }
 
     public function accounts(){
-        $data['title'] = "ComLib Sign Up";
+        $data['title'] = "ComLib Accounts";
         $this->load->view("header", $data);
         $this->load->view("search_view");
         $this->load->view("search_user_view");
@@ -324,7 +324,7 @@ class Home extends CI_Controller {
         if(isset($_SESSION['admin_username']) && $_SESSION['admin_username'] != "admin")
             redirect(base_url()); 
         
-        $data['title'] = "Create an Admin";
+        $data['title'] = "ComLib Admin Create";
         $this->load->view("header", $data);
         $this->load->view("search_view");
         $this->load->view("create_admin_view");
@@ -336,7 +336,7 @@ class Home extends CI_Controller {
          if(isset($_SESSION['admin_username']) && $_SESSION['admin_username'] != "admin")
             redirect(base_url());
         
-        $data['title'] = "Delete an Admin";
+        $data['title'] = "ComLib Admin Delete";
         $this->load->view("header", $data);
         $this->load->view("search_view");
         $this->load->view("delete_admin_view");

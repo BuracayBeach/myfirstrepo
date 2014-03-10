@@ -109,8 +109,13 @@ NAVBAR
     float: left;
 }
 #navbar .menulinks:hover{
-    border-top: 10px solid #2266CC;
+    border-bottom: 5px solid #2266CC;
     background: rgba(255,255,255,0.1);
+    color: white;
+}
+#navbar .menulinks-active {
+    padding:15px 20px 5px 20px;
+    border-bottom: 5px solid #f26522;
     color: white;
 }
 #navbar div.btn-group{
@@ -909,10 +914,10 @@ OVERALLS
 
 
 #banner #logolink{
-    width: 50%;
+    width: 26%;
     height: 60px;
     padding: 1px 20px 10px 20px;
-    margin-left: 35%;
+    margin-left: 36%;
 }
 
 #logolink img{
