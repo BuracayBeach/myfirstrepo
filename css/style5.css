@@ -805,6 +805,12 @@ OVERALLS
     margin-bottom: 20px;
     font-size: 1vw;
 }
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+=======
 
 #logs_container #header_logs{
     margin-left:30%;
@@ -823,6 +829,7 @@ OVERALLS
     margin-left: 150px;
     margin-top: 20px;
 }
+
  
 #search_text{
     margin-top: 0%;
@@ -876,12 +883,8 @@ OVERALLS
 #chibi2f{
     width: 50%;
 }
-.help_images{
-    margin-left: 150px;
-    margin-top: 20px;
-}
 
-.help_images img{
+/*.help_images img{
     width: 80%;
 }
-
+*/
