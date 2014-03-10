@@ -28,6 +28,7 @@
             </tbody>
         </table>
     </div>
+    <button class="btn btn-block back-to-top">Back to top</button>
 </div>
 
 <script src="<?php echo base_url() ?>js/nicEdit.js"></script>
