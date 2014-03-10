@@ -427,7 +427,7 @@ ANNOUNCEMENT CAROUSEL
 #announcements_container.notAdmin{
     width: 60%;
     float: left;
-    margin-left: 10%;
+    margin-left: 15%;
     margin-top:80px;
 }
 
@@ -832,7 +832,7 @@ OVERALLS
 }
 
  
-#search_text{
+#google_search_text{
     margin-top: 0%;
     width: 50%;
     margin-left: 25%;
