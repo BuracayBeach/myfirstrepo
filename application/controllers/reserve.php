@@ -5,7 +5,7 @@ class Reserve extends CI_Controller {
 	public function __construct() {
 		parent:: __construct();
 		$this->load->model('reserve_model');
-
+		$this->load->library('firephp');
 		date_default_timezone_set("Asia/Manila");
 
 		if (!isset($_SESSION))
@@ -78,6 +78,12 @@ class Reserve extends CI_Controller {
 		}
 
 		echo "Rank " . $rank . " of " . $total_book;
+	}
+
+	public function get_next($book_no) {
+		$q = $this->reserve_model->get_next_queue($book_no);
+
+		echo $q[0]->username;
 	}
 }
 

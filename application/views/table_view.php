@@ -38,7 +38,10 @@
                 echo $row_min+1 . "-";
                 echo $row_max+1 . " of $total_count";
                 echo "<div><br>";
-        
+
+                $reserve = $this->reserve_model->get_first();
+                $lend = $this->lend_model->get_lend();
+
                 for($a=$row_min ; $a<=$row_max ; $a++){
                     if (!isset($table[$a])) break;
                     $row = $table[$a];
