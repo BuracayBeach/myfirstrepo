@@ -8,7 +8,10 @@
 
 $('#result_container').ready(function(){
    $('#result_container').on('click','.title_link',fillModal);
+});
 
+$('#recently_added_books_table').ready(function(){
+    $('#recently_added_books_table').on('click','.title_link',fillModal);
 });
 
 //fill the modal dialog with info
@@ -35,12 +38,30 @@ function generateModalHTML(info){
         "<label for='modal-isbn'>ISBN: </label><span id='modal-isbn'>"+info.isbn+"</span><br/>" +
         "<label for='modal-tags'>Tags: </label><span id='modal-tags'>"+info.tags+"</span><br/>";
 
-    console.log(info.otherDetails);
+    var i = 0;
+    info.otherDetails.forEach(function(detail){
+       i++;
+       modalContentHTML += generateLabelSpanHTML('modal-other','modal-other'+i,detail[0],detail[1]);
+    });
 
     return modalContentHTML;
 }
 
+function generateLabelSpanHTML(classs,id,label,text){
+    return "<label class='"+classs+"' for='"+id+"'>"+label+": </label><span id='"+id+"'>"+text+"</span><br/>";
+}
+
 function getRowInfo($row){
+    var otherDetails = [];
+
+    var $detailContainers = $row.find('[book_data="other_detail"]');
+
+    $detailContainers.each(function(){
+        var detailName = $(this).find('[detail="name"]').text();
+        var detailContent = $(this).find('[detail="content"]').text();
+
+        otherDetails.push([detailName,detailContent]);
+    });
 
     return {
         "callNo" : $row.find('[book_data="book_no"]').text() ,
@@ -54,6 +75,6 @@ function getRowInfo($row){
         "yearPublished" : $row.find('[book_data="date_published"]').text(),
         "tags" : $row.find('[book_data="tags"]').text(),
         "isbn" : $row.find('[book_data="isbn"]').text(),
-        "otherDetails" : $row.find('[book_data="other_detail"]').text()
+        "otherDetails" : otherDetails
     };
 }
