@@ -91,7 +91,11 @@
 						echo 
 							"<div class='btn-group  dropdown-hover'>
 								<a href='' class='' data-toggle='dropdown'>
-									<div class='menulinks'>
+									<div class='menulinks ";
+
+									if(isset($title) && $title == 'ComLib My Lib') echo 'menulinks-active';
+
+									echo "'>
 										My Library
 										<span class='caret'></span>
 									</div>
