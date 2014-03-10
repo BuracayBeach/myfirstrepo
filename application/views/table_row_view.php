@@ -17,17 +17,6 @@
             $r = htmlspecialchars(stripslashes($r));
         }
 
-        $detail = null;
-        if($row->other_detail != null){
-            $row->other_detail = explode("¦",$row->other_detail);
-            foreach($row->other_detail as &$detail){
-                $arr = explode("»",$detail);
-                $detail = [];
-                $detail['name'] = $arr[0];
-                $detail['content'] = $arr[1];
-            }
-        }
-
         foreach($row_copy as &$r){
             $r = htmlspecialchars(stripslashes($r));
             $search_term = htmlspecialchars(stripslashes($search_term));
@@ -39,18 +28,6 @@
                     $r = preg_replace('/' . $s_term . '/i', "<strong>$0</strong>", $r);
                 }
             }
-        }
-
-        //convert other_detail from string to associative array
-        if($row_copy->other_detail != null){
-            $row_copy->other_detail = explode("¦",$row_copy->other_detail);
-            foreach($row_copy->other_detail as &$detail){
-                $arr = explode("»",$detail);
-                $detail = [];
-                $detail['name'] = $arr[0];
-                $detail['content'] = $arr[1];
-            }
-            // var_dump($row->other_detail);
         }
     }
 
@@ -112,9 +89,28 @@
     if (isset($search_by) && $search_by != 'any' && $search_by != 'abstract') echo 'hidden';
     echo "><span class='article_abstract'>" . $row_copy->abstract . '<span></td>';
 
-    echo "<td book_data='other_detail' style='display:none;'>";
-    if (isset($detail) && $detail != null) {
-        echo '<span detail="name">' . $detail['name'] . '</span>: <span detail="content">' . $detail['content'] . '<span>';
+
+    $extracted_detail = array();
+    if($row->other_detail != null){
+        $row->other_detail = explode("¦",$row->other_detail);
+        foreach($row->other_detail as &$detail){
+            $arr = explode("»",$detail);
+            array_push($extracted_detail,["name"=>$arr[0],"content"=>$arr[1]]);
+        }
+    }
+
+    echo "<td style='display:none;'>";
+    if (isset($extracted_detail) && $extracted_detail != null) {
+        foreach($extracted_detail as $detail){
+            echo '<div book_data="other_detail">' .
+                    '<span detail="name">'
+                    . $detail['name'] .
+                    '</span>:' .
+                    '<span detail="content">'
+                    . $detail['content'] .
+                    '</span><br/>' .
+                '</div>';
+        }
     }
     echo '</td>';
 
