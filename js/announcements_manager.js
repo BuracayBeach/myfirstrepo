@@ -19,7 +19,6 @@ $('#announcement_container').ready(function(){
 
     $("#add_announcement_button").on("click", function() {
         $("#add_cancel_button").click();
-
         $("#edit_cancel_button").click();
     });
 
@@ -30,18 +29,19 @@ $('#announcement_container').ready(function(){
 function showAddAnnouncementForm(event){
     event.preventDefault();
     $('[data-toggle="tab"]')[2].click();
-    $('#cancel_button').click();
+    $('#material_cancel_button').click();
     $('#edit_announcement_container').hide();
     $('#add_announcement_form')[0].reset();
-    $('#add_announcement_container').slideToggle();
-    $('#add_announcement_title').focus();
+    $('#add_announcement_container').slideToggle(function(){
+        $('#add_announcement_title').focus();
+    });
 }
 
 function fillEditAnnouncementForm(event){
     event.preventDefault();
     $('#add_announcement_container').hide();
     $('#edit_announcement_cancel_button').click();
-    $('#cancel_button').click();
+    $('#material_cancel_button').click();
 
     //this = edit button
     var announcement_id = $(this).closest('div').attr('announcement_id');
@@ -132,7 +132,9 @@ function deleteAnnouncement(event){
 }
 
 function cancelAnnouncementForm(){
-    $(this).closest('div').hide();
-    $(this).closest('form')[0].reset();
+    var $cancelButton = $(this);
+    $cancelButton.closest('div').slideUp(function(){
+        $cancelButton.closest('form')[0].reset();
+    });
     return false;
 }
