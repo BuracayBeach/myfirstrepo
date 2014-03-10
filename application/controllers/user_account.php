@@ -46,27 +46,28 @@ class User_account extends CI_Controller {
 		if (isset($_SESSION['logged_in'])){
 			redirect(base_url());
 		}
-		
-		if($this->check_user_validity()){	
+
+		if($this->check_user_validity()){
 			$_SESSION['username'] = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
 			$_SESSION['logged_in'] = true;
 			$_SESSION['type'] = "regular";
 			redirect(base_url());
 		}
 
-		if(isset($_SESSION['login_notif']) && $_SESSION['login_notif'] == "pending"){
-			$this->registration_pending();
-			unset($_SESSION['login_notif']);
-		}
+        if(isset($_SESSION['login_notif']) && $_SESSION['login_notif'] == "pending"){
+            $this->registration_pending();
+            unset($_SESSION['login_notif']);
+        }
 
-		else if(isset($_SESSION['login_notif']) && $_SESSION['login_notif'] == "deactivated"){
-			$this->account_deactivated();
-			unset($_SESSION['login_notif']);
-		}
+        else if(isset($_SESSION['login_notif']) && $_SESSION['login_notif'] == "deactivated"){
+            $this->account_deactivated();
+            unset($_SESSION['login_notif']);
+        }
 
-		else{
-			redirect(base_url());	
-		}
+        else{
+            redirect(base_url());
+        }
+
 	}
 
 	private function check_user_validity(){
@@ -91,7 +92,7 @@ class User_account extends CI_Controller {
 				return true;
 			}
 			else{
-				$_SESSION['login_notif'] = "wrong_password";		
+				$_SESSION['login_notif'] = "wrong_password";
 				return false;
 			}
 		}
