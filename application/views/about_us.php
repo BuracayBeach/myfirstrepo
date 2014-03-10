@@ -102,8 +102,4 @@ At present, the ICS library continues to add more materials to help more student
         </div>
       </div>
 	</div>
-	
-  
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
 </div>

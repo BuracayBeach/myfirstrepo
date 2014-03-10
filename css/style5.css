@@ -323,6 +323,9 @@ FAQ
     height: 250px !important;
 }
 
+.required-asterisk{
+    color: red;
+}
 
 #add_question{
     width:100% !important;

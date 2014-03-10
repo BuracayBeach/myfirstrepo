@@ -9,17 +9,19 @@ function validateBookNo(bookNo){
     var patt = /^[a-zA-Z0-9\- ]+$/;
     var valid = patt.test(bookNo);
     //write regex here
-
+    var msg = "";
     if(bookNo == ''){
-        return '- Call number is required.'
+        msg = '- Call number is required.'
     }
     else if(bookNo.length > 25){
-        return '- Book number too long: cannot be more than 25 digits/characters<br/>';
+        msg = '- Book number too long: cannot be more than 25 digits/characters<br/>';
     }else if (!valid){
-        return ' - Invalid Call Number Format.';
+        msg = ' - Invalid Call Number Format.';
     }else{
-        return '';
+        msg = '';
     }
+
+    return msg;
 }
 
 function validateISBN(isbn){
@@ -143,6 +145,8 @@ function checkAll(){
     msgs += validatePublisher(publisher);
     msgs += validateDatePublished(year);
     msgs += validateTags(tags);
-    console.log(msgs);
+
+    if(msgs != '')
+        alert(msgs);
     return msgs;
 }
