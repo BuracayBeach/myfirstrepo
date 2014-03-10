@@ -1,3 +1,12 @@
 <div id="banner">
-	This is the banner
+	<?php
+				if($title != "ComLib")
+					echo 
+						"<a href='".base_url()."'>
+							<div id='logolink' class='menulinks'>
+								<img src='".base_url()."images/logo_full_ws_min.png'/>
+							</div>
+						</a>";
+
+			?>
 </div>
