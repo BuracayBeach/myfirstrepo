@@ -1,6 +1,6 @@
 <?php
 
-    $username = "hindi pumasok";
+    $username = "";
     $size = count($reserve);
     for ($i=0; $i < $size; $i++) { 
         if ($reserve[$i]->book_no == $row->book_no) {
@@ -9,6 +9,7 @@
         }
     }
 
+    $username2 = "";
     $size2 = count($lend);
     for ($i=0; $i < $size2; $i++) { 
         if ($lend[$i]->book_no == $row->book_no) {
