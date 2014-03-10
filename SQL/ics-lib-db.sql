@@ -383,27 +383,27 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `sex`, `status`, `email`, `usertype`, `emp_no`, `student_no`, `name_first`, `name_middle`, `name_last`, `mobile_no`, `course`, `college`) VALUES
-('Andescols', 'iD3cahShooj', 'male', 'enabled', 'RichardKHowle@jourrapide.com', 'student', '', '2013-33310', 'Richard', 'Kogan', 'Howle', '09178345223', 'BSCS', 'CAS'),
-('Areimis', 'mah9dohH1ah', 'female', 'pending', 'SusanDSinegal@dayrep.com', 'student', '', '2010-25011', 'Susan', 'Davis', 'Sinegal', '09224123954', 'BSCS', 'CAS'),
-('Ceitheart', 'aeroav0Gii', 'female', 'pending', 'UwaisahMawahibKouri@jourrapide.com', 'student', '', '2006-12908', 'Uwaisah', 'Mawahib', 'Kouri', '09161324873', 'BSCS', 'CAS'),
-('Cionachis95', 'sie7El8jee', 'female', 'pending', 'SongWei@jourrapide.com', 'student', '', '2008-44165', 'Song', 'Tao', 'Wei', '09177563274', 'BSCS', 'CAS'),
-('Comen1985', 'aechie2EePh', 'male', 'pending', 'DerekDOchoa@rhyta.com', 'student', '', '2004-33412', 'Derek', 'Dickerson', 'Ochoa', '09164158223', 'BSCS', 'CAS'),
-('Dreme1994', 'Yeo3chiNgo', 'female', 'pending', 'FenChu@jourrapide.com', 'student', '', '2007-11543', 'Fen', 'Yuan', 'Chu', '09153473214', 'BSCS', 'CAS'),
-('edzerium', 'allidaP', 'male', 'pending', 'dzerium@gmail.com', 'student', '', '2011-25010', 'Edzer Josh', 'Valentin', 'Padilla', '09178624975', 'BSCS', 'CAS'),
-('Fany1993', 'bugmenot31', 'male', 'pending', 'HenryBPetersen@armyspy.com', 'student', '', '2009-50411', 'Henry', 'Barker', 'Peterson', '09178624678', 'BSCS', 'CAS'),
-('Gloseloth', 'foH0yair', 'male', 'pending', 'DavidPKirtley@dayrep.com', 'student', '', '2010-25981', 'David', 'Pierre', 'Kirtley', '09151223598', 'BSCS', 'CAS'),
-('Hene1964', 'ahaPhahoh6IY', 'male', 'pending', 'CharlesFHarlan@teleworm.us', 'student', '', '2011-11341', 'Charles', 'Farris', 'Harlan', '09178234756', 'BSCS', 'CAS'),
-('Indess', 'Bie9pai0oo', 'female', 'pending', 'SidneyRSutton@rhyta.com', 'student', '', '2010-10321', 'Sidney', 'Rudd', 'Sutton', '09178627778', 'BSCS', 'CAS'),
-('Lifflosight', 'tawooTh4c', 'female', 'pending', 'CarolynBMorrison@rhyta.com', 'student', '', '2010-29981', 'Carolyn', 'Burnham', 'Morrison', '09187230076', 'BSCS', 'CAS'),
-('Mathervenrat', 'Ahmezae1', 'female', 'pending', 'EnriquetaSHooker@jourrapide.com', 'student', '', '2011-11390', 'Enriqueta', 'Snowden', 'Hooker', '09180143276', 'BSCS', 'CAS'),
-('Procke', 'ya1Tie2sh', 'female', 'pending', 'BarbaraMCalle@armyspy.com', 'student', '', '2012-34510', 'Barbara', 'Marshal', 'Calle', '09178234123', 'BSCS', 'CAS'),
-('Tharsen', 'iezah4aeP', 'male', 'enabled', 'JesseARoberts@armyspy.com', 'student', '', '2008-00180', 'Jesse', 'Anderson', 'Roberts', '09221899976', 'BSCS', 'CAS'),
-('Thoureprot94', 'haingeiS1Io', 'male', 'disabled', 'HardingPuddifoot@dayrep.com', 'student', '', '2011-13575', 'Harding', 'Brandagamba', 'Puddifoot', '09176497221', 'BSCS', 'CAS'),
-('Trater93', 'AgeFiezei2', 'male', 'enabled', 'RyanEPruitt@jourrapide.com', 'student', '', '2013-14344', 'Ryan', 'Emerson', 'Pruitt', '09180023476', 'BSCS', 'CAS'),
-('Tury1993', 'Xa4IquieniVe', 'female', 'pending', 'SakikoKamuta@jourrapide.com', 'student', '', '2012-56916', 'Sakiko', 'Asada', 'Kamuta', '09227869432', 'BSCS', 'CAS'),
+('Andescols', 'd297ffbed9b00707ea96dfda7f27e9e043de978a7f414006c68d8c2d03686dc8', 'male', 'enabled', 'RichardKHowle@jourrapide.com', 'student', '', '2013-33310', 'Richard', 'Kogan', 'Howle', '09178345223', 'BSCS', 'CAS'),
+('Areimis', '057391447ac04cb17a9509703e2cd25f7cfdfd0a77bad3e742d91ab0c4bf6364', 'female', 'pending', 'SusanDSinegal@dayrep.com', 'student', '', '2010-25011', 'Susan', 'Davis', 'Sinegal', '09224123954', 'BSCS', 'CAS'),
+('Ceitheart', '5aa11eae614f058339a90c3f8c56b988c89f9fdd8b0f48a7534bc8e65b98018a', 'female', 'pending', 'UwaisahMawahibKouri@jourrapide.com', 'student', '', '2006-12908', 'Uwaisah', 'Mawahib', 'Kouri', '09161324873', 'BSCS', 'CAS'),
+('Cionachis95', 'f33364b5566e2a7f95a9065c4cececc3647cf0ae0bb15784c6cf5b15cec89796', 'female', 'pending', 'SongWei@jourrapide.com', 'student', '', '2008-44165', 'Song', 'Tao', 'Wei', '09177563274', 'BSCS', 'CAS'),
+('Comen1985', 'd6d3f7c00561f7c80983a53e7c63c0014b70c690d89f06059f249268a0de7892', 'male', 'pending', 'DerekDOchoa@rhyta.com', 'student', '', '2004-33412', 'Derek', 'Dickerson', 'Ochoa', '09164158223', 'BSCS', 'CAS'),
+('Dreme1994', 'a21f249bc2f931eaffc5560776b21021f23beb4e16a0c04e0659a480b9d3fd0d', 'female', 'pending', 'FenChu@jourrapide.com', 'student', '', '2007-11543', 'Fen', 'Yuan', 'Chu', '09153473214', 'BSCS', 'CAS'),
+('edzerium', 'd92cd287a3368252034e573413fceed68110c333f0d3cbf05de9d7261adb1800', 'male', 'pending', 'dzerium@gmail.com', 'student', '', '2011-25010', 'Edzer Josh', 'Valentin', 'Padilla', '09178624975', 'BSCS', 'CAS'),
+('Fany1993', '08c5b60428e1b21935ee7e9f0f74dc27f261293d69f2107323845cc258ede322', 'male', 'pending', 'HenryBPetersen@armyspy.com', 'student', '', '2009-50411', 'Henry', 'Barker', 'Peterson', '09178624678', 'BSCS', 'CAS'),
+('Gloseloth', '39b76abc143846e9ac78d30b2e4b68d91e0707a9b2389c444443482a1bb8445d', 'male', 'pending', 'DavidPKirtley@dayrep.com', 'student', '', '2010-25981', 'David', 'Pierre', 'Kirtley', '09151223598', 'BSCS', 'CAS'),
+('Hene1964', 'aadb281fde04ff87d5980dc7cf83e01b4002499b90cd65d089aa9734b40fe33b', 'male', 'pending', 'CharlesFHarlan@teleworm.us', 'student', '', '2011-11341', 'Charles', 'Farris', 'Harlan', '09178234756', 'BSCS', 'CAS'),
+('Indess', '0d172cd3aa19db5c7294012f82cb52dccaf77b1ea5efbc4c9ccef819755d4224', 'female', 'pending', 'SidneyRSutton@rhyta.com', 'student', '', '2010-10321', 'Sidney', 'Rudd', 'Sutton', '09178627778', 'BSCS', 'CAS'),
+('Lifflosight', '46c83755f8bafb647087d852f2b2457486cf47ea07eeca867e3027a4c7655263', 'female', 'pending', 'CarolynBMorrison@rhyta.com', 'student', '', '2010-29981', 'Carolyn', 'Burnham', 'Morrison', '09187230076', 'BSCS', 'CAS'),
+('Mathervenrat', '453f1596b651c6a54b9796ccbbbf9571410c8b5c0262ed3ec9e75a11eaf45b6c', 'female', 'pending', 'EnriquetaSHooker@jourrapide.com', 'student', '', '2011-11390', 'Enriqueta', 'Snowden', 'Hooker', '09180143276', 'BSCS', 'CAS'),
+('Procke', '2217c752f8189db27e40da2c8050fb9771a13064bfc81d26847964968637f4dc', 'female', 'pending', 'BarbaraMCalle@armyspy.com', 'student', '', '2012-34510', 'Barbara', 'Marshal', 'Calle', '09178234123', 'BSCS', 'CAS'),
+('Tharsen', '191b2f7e1ceb376efd1f7fc821cf3800a787cd4a936732b9906dc83c48dca375', 'male', 'enabled', 'JesseARoberts@armyspy.com', 'student', '', '2008-00180', 'Jesse', 'Anderson', 'Roberts', '09221899976', 'BSCS', 'CAS'),
+('Thoureprot94', '66f8ab5bfc03c89923730bc69170d163ca1a27eaaf5f5a08f9ea362e9ebc4cbe', 'male', 'disabled', 'HardingPuddifoot@dayrep.com', 'student', '', '2011-13575', 'Harding', 'Brandagamba', 'Puddifoot', '09176497221', 'BSCS', 'CAS'),
+('Trater93', '65a32eceb2b2e177b91918d8a30c1eb6cefa3ef4c1124f6f08358fe3c0f4b22b', 'male', 'enabled', 'RyanEPruitt@jourrapide.com', 'student', '', '2013-14344', 'Ryan', 'Emerson', 'Pruitt', '09180023476', 'BSCS', 'CAS'),
+('Tury1993', '2fd0393979cc4cb14d3cc3de596eae0d893df160c3d820d26c49bcd24fa97bb0', 'female', 'pending', 'SakikoKamuta@jourrapide.com', 'student', '', '2012-56916', 'Sakiko', 'Asada', 'Kamuta', '09227869432', 'BSCS', 'CAS'),
 ('useruser', 'e172c5654dbc12d78ce1850a4f7956ba6e5a3d2ac40f0925fc6d691ebb54f6bf', 'male', 'enabled', 'user@user.user', 'student', '', '2004-33411', 'User', 'User', 'User', '639232143048', 'MVE', 'GS'),
-('Waskeend96', 'Ooyiush1pau', 'female', 'pending', 'StephanieKuefer@teleworm.us', 'student', '', '2009-28943', 'Stephanie', 'Fisher', 'Kuefer', '09151784993', 'BSCS', 'CAS'),
-('Whattis', 'aiquai5Oo', 'male', 'pending', 'JordanLMancini@teleworm.us', 'student', '', '2010-10290', 'Jordan', 'Lincoln', 'Mancini', '09154573211', 'BSCS', 'CAS');
+('Waskeend96', '8d693d3498dc12a376a8aca5a93d286756dc0c4feffb979d4846be77b42885f5', 'female', 'pending', 'StephanieKuefer@teleworm.us', 'student', '', '2009-28943', 'Stephanie', 'Fisher', 'Kuefer', '09151784993', 'BSCS', 'CAS'),
+('Whattis', '21397476e8d847594fcce9b824c9f7a6e7c58eca18b92f3c47b09c31dc25b5b8', 'male', 'pending', 'JordanLMancini@teleworm.us', 'student', '', '2010-10290', 'Jordan', 'Lincoln', 'Mancini', '09154573211', 'BSCS', 'CAS');
 
 --
 -- Constraints for dumped tables
