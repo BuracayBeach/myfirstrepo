@@ -5,7 +5,7 @@
 					if (newSearch){
 						newSearch = newSearch.replace(/<strong>/g,"");
 						newSearch = newSearch.replace(/<\/strong>/g,"");
-						var searchText = $('#search_text')
+						var searchText = $('#search_text');
 						
 						if ($(this).attr('class') == 'tag_link') searchText.attr('tagSearch',$(this).text())
 						else searchText.val(newSearch.trim());
@@ -25,6 +25,7 @@
 		        }
 
 
+				    // alert("Reday")
 
 				$(document).ready(function() {
 					$('#search_form').unbind('submit').submit(ajax_results); //prevent form from submitting/refreshing
@@ -65,52 +66,53 @@
 							data: my_input, 
 							url: icejjfish + "index.php/book/search_sessionize",
 							success: function(data, jqxhr, status){
-								// alert("session saved")
-							}
-						})
+								if (currentPath != searchPath){
+									 window.location.replace(icejjfish + "ihome");
+								} else {
+									if (lastRequest && lastRequest.readyState != 4) lastRequest.abort();
 
-						if (currentPath != searchPath){
-								window.location.replace(icejjfish + "ihome");
-						} else {
-							
+									lastRequest = $.ajax({
+										type: "post",
+										data: my_input, 
+										url: icejjfish + "index.php/book/search",
+										success: function(data, jqxhr, status){
+			                                var resultContainer = $("#result_container");
+			                                var recentlyAddedBooksContainer = resultContainer.find("#recently_added_books_container");
+			                                 
+			                                if (recentlyAddedBooksContainer.length != 0){
+				                                recentlyAddedBooksContainer.nextAll().remove();
+				                                resultContainer.append(data);
+			                                } else {
+				                                resultContainer.html(data);
+				                            }
 
-							if (lastRequest && lastRequest.readyState != 4) lastRequest.abort();
-							lastRequest = $.ajax({
-								type: "post",
-								data: my_input, 
-								url: icejjfish + "index.php/book/search",
-								success: function(data, jqxhr, status){
-	                                var resultContainer = $("#result_container");
-	                                var recentlyAddedBooksContainer = resultContainer.find("#recently_added_books_container");
-	                                 
-	                                if (recentlyAddedBooksContainer.length != 0){
-		                                recentlyAddedBooksContainer.nextAll().remove();
-		                                resultContainer.append(data);
-	                                } else {
-		                                resultContainer.html(data);
-		                            }
+				                            var book_tab = $('[data-toggle="tab"]')
+				                            if (book_tab.length != 0) {
+				                            	book_tab[0].click();
+				                            }
+				                            //assume rows are appended already
+				                            // summarize(searchText);
 
-		                            var book_tab = $('[data-toggle="tab"]')
-		                            if (book_tab.length != 0) {
-		                            	book_tab[0].click();
-		                            }
-		                            //assume rows are appended already
-		                            // summarize(searchText);
+				                            $('.hideable').hide();
+										},
+										fail: function(){
+											alert("Search Failed");
+										}
 
-		                            $('.hideable').hide();
-								},
-								fail: function(){
-									alert("Search Failed");
+						 			});
+
+
+									$('#search').removeClass('home');
+									$('.logo_main').hide();
+									$('#results_per_page_div').show();
 								}
+							}
+						}).fail(function(){
+							alert("Failed to save search data")
+						})
+						
+						return false;
 
-				 			});
-
-
-							$('#search').removeClass('home');
-							$('.logo_main').hide();
-							$('#results_per_page_div').show();
-							return false;
-						}
 					}
 				});
 

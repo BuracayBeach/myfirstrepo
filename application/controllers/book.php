@@ -139,9 +139,10 @@ class Book extends CI_Controller {
         }
     }
     public function search_sessionize(){
-        session_start();
+        if (!isset($_SESSION)) session_start();
         
         $_SESSION['search_data'] = $_POST;
+        // var_dump($_SESSION);
     }
 
 
