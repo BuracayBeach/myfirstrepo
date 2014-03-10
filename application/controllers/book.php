@@ -76,6 +76,8 @@ class Book extends CI_Controller {
                     unset($_SESSION['recently_added_books'][$data['prev_book_no']]);
                 }
             }
+            $result['reserve'] = array();
+            $result['lend'] = array();
             echo $this->load->view("table_row_view",$result);
         }
     }
@@ -130,6 +132,9 @@ class Book extends CI_Controller {
             $data['row']->status = "available";
             $data['reserves'] = $this->reserve_model->get_first();
             $data['newly_added'] = true;
+
+            $data['reserve'] = array();
+            $data['lend'] = array();
             echo $this->load->view('table_row_view',$data);
         }
     }
@@ -242,6 +247,9 @@ class Book extends CI_Controller {
         $this->load->model('update_book_model');        //loading of the updateBook_model
         $this->update_book_model->lend($data);              //we call the lend function which updates the status of the book from reserved to borrowed
         $this->update_book_model->insertLend($data);            //we call this function to insert into the log the whole transaction
+    
+        $username = $this->reserve_model->get_next_queue($data['book_no']);
+        echo $username;
     }
 
     /*
