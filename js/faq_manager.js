@@ -17,11 +17,9 @@ $('#faq_table_container').ready(function(){
     faqTableContainer.on('click','.cancel_faq_button',function(){
         cancelChanges.call($(this).closest('tr'));
     });
-    //$(this).on('click','.edit_faq_button',fillEditFaqForm);
     faqTableContainer.on('click','.delete_faq_button',deleteFaq);
 
     $('#add_faq_cancel_button').on('click',cancelAddForm);
-    $('#edit_faq_form').submit(editFAQ);
 
     customEditor = new nicEditor({iconsPath : 'http://localhost/myfirstrepo/js/nicEditorIcons.gif'});
 
@@ -54,6 +52,7 @@ function updateChanges(){
         customEditor.removeInstance('answer_'+row.attr('faq_id'));
         row.find('.answer_editor').hide();
         row.find('.answer').show();
+        row.find('.question').removeClass('editable');
     }).fail(function(){
             alert('There was a problem editing the material.');
             cancelChanges.call(row.find('.cancel_faq_button')[0]);
@@ -100,29 +99,6 @@ function cancelChanges(){
     row.find('.cancel_faq_button').hide();
 
 }
-
-
-/*** OLD EDIT FAQ MODULE ***/
-function editFAQ(event){
-    event.preventDefault();
-    var editFaqForm = $(this);
-    $.post("index.php/faq/edit",$(this).serialize(), function(data){ //navigate to the controller with the address:index.php/faq/edit
-        data = JSON.parse(data);
-        console.log(data);
-        var tr = $('#faq_table').find('tr[faq_id="'+data.id+'"]');
-        tr.find('.question').text("<h5>"+data.question+"</h5>");
-        tr.find('.answer').text(data.answer);
-
-        editFaqForm.closest('tr').hide();
-        editFaqForm[0].reset();
-        tr.show();
-
-    }).fail(function(){
-            alert('There was a problem editing the material.')
-        });
-
-}
-/*** END OLD EDIT FAQ MODULE ***/
 
 function deleteFaq(event){
     event.preventDefault();
