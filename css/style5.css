@@ -806,9 +806,30 @@ OVERALLS
     font-size: 1vw;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 <<<<<<< HEAD
+=======
+
+#logs_container #header_logs{
+    margin-left:30%;
+}
+
+#log_links_container{
+    margin-left:1%;
+}
+
+#logs_container{
+    margin-left:10%;
+    padding-bottom: 200px;
+}
+
+.help_images{
+    margin-left: 150px;
+    margin-top: 20px;
+}
+
  
 #search_text{
     margin-top: 0%;
@@ -862,13 +883,8 @@ OVERALLS
 #chibi2f{
     width: 50%;
 }
->>>>>>> 9d4e1efcd060e40ba6bc994021e2e6e7da587b48
-.help_images{
-    margin-left: 150px;
-    margin-top: 20px;
-}
 
-.help_images img{
+/*.help_images img{
     width: 80%;
 }
-
+*/
