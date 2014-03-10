@@ -1,7 +1,6 @@
 <div id="faq_container" class="column hideable">
     <h3>Frequently Asked Questions</h3>
     <br/>
-
     <div id="faq_anchors">
     </div>
     <br/>

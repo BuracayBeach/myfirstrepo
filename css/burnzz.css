@@ -65,6 +65,8 @@ div.days_due {
 
 div.overdue_glow {
 	-webkit-animation: glow_overdue .5s infinite alternate;
+    -moz-animation: glow_overdue .5s infinite alternate;
+    animation: glow_overdue .5s infinite alternate;
 }
 
 div.my_library_container button {
@@ -207,13 +209,6 @@ div#load-more {
 
 /* animations ni BurnzZ, wag galawin */
 
--webkit-border-top-left-radius: 20px;
--webkit-border-bottom-right-radius: 20px;
--moz-border-radius-topleft: 20px;
--moz-border-radius-bottomright: 20px;
-border-top-left-radius: 20px;
-border-bottom-right-radius: 20px;
-
 @keyframes start {
 	from { transform: scale(0); }
 	to { transform: scale(1); }
@@ -236,10 +231,12 @@ border-bottom-right-radius: 20px;
 	display: block;
 	animation: start 0.5s;
 	-webkit-animation: start 0.5s;
+    -moz-animation: start 0.5s;
 }
 
 .my_library_container .item[data-state="move"]  {
 	transition: top 0.5s, left 0.5s, width 0.5s, height 0.5s;
 	-webkit-transition: top 0.5s, left 0.5s, width 0.5s, height 0.5s;
+    -moz-transition: top 0.5s, left 0.5s, width 0.5s, height 0.5s;
 }
 
