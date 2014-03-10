@@ -931,9 +931,9 @@ OVERALLS
 
 
 #banner #logolink{
-    max-height: 80px;
+    height: 90px;
     padding: 1px 20px 10px 20px;
-    margin-left: 35%;
+    margin-left: 36%;
 }
 
 #logolink img{
