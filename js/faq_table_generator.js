@@ -4,14 +4,29 @@
 
 var tableHTML = '<table id="faq_table"></table>';
 
-function generateFaqTable(isAdmin){
+
+
+$('#faq_table_container').ready(function(){
+    var isAdmin = $('#faq_manage_container').length == 1;
+
+    generateFaqs(isAdmin);
+});
+
+function generateFaqAnchor(data){
+    return '<a href="#faq'+data.id+'">'+data.question+'</a><br/>';
+}
+
+function generateFaqs(isAdmin){
     $.post("index.php/faq/get_all_faq",function(data){
         try{
             data = JSON.parse(data);
-
+            var anchorsHTML  = "";
             data.forEach(function(entry){
                 generateFaqRow(entry,isAdmin);
+                anchorsHTML += generateFaqAnchor(entry);
             });
+
+            $('#faq_anchors').html(anchorsHTML);
         }catch(e){
             console.log("cannot parse data for generating table ");
         }
@@ -36,7 +51,7 @@ function generateFaqRow(data,isAdmin){
                 '<button class="delete_faq_button">Delete</button>';
         editable = 'contenteditable="false"';
     }
-    var rowHTML = '<tr faq_id="'+data.id+'" class="faq_table_row">'+
+    var rowHTML = '<tr faq_id="'+data.id+'" id="faq'+data.id+'" class="faq_table_row">'+
                     '<td class="faq_table_data">' +
                         ' <span ' + editable +
                         ' class="question" name="question" >'+data.question+
@@ -64,9 +79,3 @@ function generateFaqRow(data,isAdmin){
 
 
 }
-
-$('#faq_table_container').ready(function(){
-    var isAdmin = $('#faq_manage_container').length == 1;
-
-    generateFaqTable(isAdmin);
-});

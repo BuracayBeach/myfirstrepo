@@ -302,6 +302,22 @@ FAQ
     width: 100% !important;
 }
 
+#rightbody #faq_table_container{
+    width: 50%;
+}
+
+#rightbody #faq_container{
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+#faq_anchors{
+    position: fixed;
+    right: 10px;
+    top: 250px;
+    width: 30%;
+}
+
 #faq_table{
     width: 100% !important;
 }
@@ -812,7 +828,6 @@ OVERALLS
 #logsPerPage{
     float: right;
 }
-
 
 #log_table{
     width: 100%;
