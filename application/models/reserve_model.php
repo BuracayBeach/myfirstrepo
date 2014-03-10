@@ -107,11 +107,13 @@ class Reserve_Model extends CI_Model {
 	}
 
 	public function get_next_queue($book_no) {
-		$q = $this->db->query("SELECT username FROM reserves WHERE
-								notified = 1 AND book_no LIKE '{$book_no}'");
-
+		$sql = "SELECT username FROM reserves
+								WHERE rank = (SELECT min(rank) FROM reserves WHERE book_no LIKE '{$book_no}' ) AND book_no LIKE '{$book_no}'";
+		$q = $this->db->query($sql);
+		
 		if ($q->num_rows() > 0)
 			return $q->result();
+		else return 0;
 	}
 
 }

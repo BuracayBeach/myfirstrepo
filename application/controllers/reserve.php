@@ -80,10 +80,15 @@ class Reserve extends CI_Controller {
 		echo "Rank " . $rank . " of " . $total_book;
 	}
 
-	public function get_next($book_no) {
-		$q = $this->reserve_model->get_next_queue($book_no);
+	public function get_next() {
 
-		echo $q[0]->username;
+		/* $info[0] is the book_no */
+		$info = $this->input->post('arr');
+		$q = $this->reserve_model->get_next_queue($info[0]);
+
+		if ($q != 0)	
+			echo $q[0]->username;
+		else echo "";
 	}
 }
 

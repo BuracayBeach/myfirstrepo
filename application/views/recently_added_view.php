@@ -19,6 +19,9 @@
                     $row->book_type = $row->type;
                     $row->status = 'available';
 
+                    $reserve = array();
+                    $lend = array();
+
                     include "table_row_view.php";
                 }
             }
