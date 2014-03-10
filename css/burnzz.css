@@ -145,7 +145,7 @@ div#notifs_parent.notifsdefault{
 div#notifs_container {
 	font-size: 0.82em;
 	float: right;
-
+	width: 100%;
 	overflow: auto;
 	max-height: 420px;	
 }
@@ -157,6 +157,7 @@ div.notif {
 	overflow: hidden;
 	color: white;
 	cursor: default;
+	width: 100%;
 }
 
 div.no-notifs {
