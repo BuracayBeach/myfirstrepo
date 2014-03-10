@@ -70,4 +70,3 @@
 		echo "<script> alert('Username already taken!') </script>";
 	
 	unset($_SESSION['create_admin_notif']);
-?>

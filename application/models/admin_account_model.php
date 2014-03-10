@@ -75,4 +75,3 @@ class Admin_account_model extends CI_Model {
 		return $this->db->query("SELECT * FROM admin WHERE username NOT LIKE '{$admin_name}' ORDER BY username")->result();
 	}
 }
-?>

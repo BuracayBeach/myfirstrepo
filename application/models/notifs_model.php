@@ -87,5 +87,3 @@ class Notifs_Model extends CI_Model {
 	}
 
 }
-
-?>

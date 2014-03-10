@@ -91,5 +91,3 @@ class Reserve extends CI_Controller {
 		else echo "";
 	}
 }
-
-?>

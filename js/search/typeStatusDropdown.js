@@ -11,7 +11,7 @@
     		}
 	        var checkList2 = document.getElementById('status');
 	        if (checkList2){
-		        var anc2 = checkList2.getElementsByClassName('anchor')[0]
+		        var anc2 = checkList2.getElementsByClassName('anchor')[0];
 		        if (anc2){
 		        	anc2.onclick = function (evt) {
 			            if (checkList2.classList.contains('visible')) checkList2.classList.remove('visible');

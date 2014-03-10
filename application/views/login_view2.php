@@ -16,4 +16,3 @@
 	}
 
 	unset($_SESSION['login_notif']);
-?>

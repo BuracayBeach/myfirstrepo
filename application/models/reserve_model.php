@@ -117,5 +117,3 @@ class Reserve_Model extends CI_Model {
 	}
 
 }
-
-?>
