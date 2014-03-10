@@ -2,19 +2,23 @@
 <div id="material_form_container">
     <form class="well form-horizontal" id="material_form">
         <fieldset>
+            <span class="help-required">Fields with * are required.</span>
             <!-- Text input-->
             <input type="hidden" id="prev_book_no" name="prev_book_no" />
             <div class="control-group">
-                <label class="control-label" for="book_no">Call Number:</label>
+                <label class="control-label" for="book_no">*Call Number:</label>
                 <div class="controls">
-                    <input id="book_no" title="Call Number" name="book_no" placeholder="CS130-N12" maxlength="25" class="form-control" required="" type="text">
+                    <input id="book_no"
+                           pattern="^[a-zA-Z0-9\- ]+$"
+                           title="call number must only consist of letters, numbers, and spaces
+                           ex. 'AB 123-C1'" name="book_no" placeholder="CS130-N12" maxlength="25" class="form-control" required="" type="text">
                     <p class="help-block"> </p>
                 </div>
             </div>
 
             <!-- Text input-->
             <div class="control-group">
-                <label class="control-label" for="book_title">Title</label>
+                <label class="control-label" for="book_title">*Title</label>
                 <div class="controls">
                     <input id="book_title" maxlength="255" spellcheck="true" name="book_title" placeholder="The Amazing Title" class="form-control" required="" type="text">
                     <p class="help-block"> </p>
@@ -47,7 +51,7 @@
 
             <!-- Text input-->
             <div class="control-group other">
-                <label class="control-label" for="other">Please Specify:</label>
+                <label class="control-label" for="other">*Please Specify:</label>
                 <div class="controls">
                     <input id="other" name="other" pattern="^[a-zA-Z0-9 '_]{1,20}$" placeholder="Magazine" class="form-control" type="text">
                     <p class="help-block">ex. Magazine, Newspaper, CD, etc..</p>
@@ -67,7 +71,8 @@
                 <label class="control-label" for="author">Author:</label>
                 <div class="controls">
                     <input id="author" title="Author field should be composed of alphanumeric characters, comma ','  , 0 to 9, underscore and apostrophe.
-                                            Multiple authors are separated by semi-colon  ';'. ex. 'fname1 lname1; lname2, fname1'" pattern="^[a-zA-Z0-9,_'. ]+(;[a-zA-Z0-9,_'. ]+)*$" maxlength="255" name="author" placeholder="Rey Y. Benedicto; Allan Conda" class="form-control" type="text">
+                                            Multiple authors are separated by semi-colon  ';'. ex. 'fname1 lname1; lname2, fname1'"
+                           pattern="^[a-zA-Z0-9,_'.\- ]+(;[a-zA-Z0-9,_'.\- ]+)*$" maxlength="255" name="author" placeholder="Rey Y. Benedicto; Allan Conda" class="form-control" type="text">
                     <p class="help-block"> </p>
                 </div>
             </div>
@@ -109,7 +114,7 @@
             <div class="control-group">
                 <label class="control-label" for="tags">Tags:</label>
                 <div class="controls">
-                    <input id="tags" name="tags" pattern="^[a-zA-Z0-9 ]+(,[a-zA-Z0-9 ]+)*$"  placeholder="mathematics, algebra, evolution" class="form-control" type="text">
+                    <input id="tags" name="tags" pattern="^[a-zA-Z0-9\- ]+(,[a-zA-Z0-9\- ]+)*$"  placeholder="mathematics, algebra, evolution" class="form-control" type="text">
                     <p class="help-block">Keywords (alphanumeric characters, separated by comma)</p>
                 </div>
             </div>
@@ -119,8 +124,8 @@
             <div class="control-group buttons">
                 <label class="control-label" for="go_button"></label>
                 <div class="controls">
-                    <button id="submit_button" name="submit_button" type="submit" class="btn btn-primary">Add</button>
-                    <button id="cancel_button" name="cancel_button" class="btn btn-default">Cancel</button>
+                    <button id="material_submit_button" name="submit_button" type="submit" class="btn btn-primary">Add</button>
+                    <button id="material_cancel_button" name="cancel_button" type="button" class="btn btn-default">Cancel</button>
                 </div>
             </div>
 

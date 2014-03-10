@@ -5,11 +5,18 @@ $(document).ready(function(){
 
 function validateBookNo(bookNo){
     bookNo = bookNo.trim();
+
+    var patt = /^[a-zA-Z0-9\- ]+$/;
+    var valid = patt.test(bookNo);
+    //write regex here
+
     if(bookNo == ''){
-        return '- Book number is required.'
+        return '- Call number is required.'
     }
     else if(bookNo.length > 25){
         return '- Book number too long: cannot be more than 25 digits/characters<br/>';
+    }else if (!valid){
+        return ' - Invalid Call Number Format.';
     }else{
         return '';
     }
@@ -50,7 +57,7 @@ function validateAuthor(author){
     //regex for name
 
     author = author.trim();
-    var patt = /^[a-zA-Z0-9,_'. ]*(;[a-zA-Z0-9,_'. ]+)*$/g;
+    var patt = /^[a-zA-Z0-9,_'.\- ]*(;[a-zA-Z0-9,_'.\- ]+)*$/g;
     var valid = patt.test(author);
     //write regex here
 
@@ -63,7 +70,7 @@ function validateAuthor(author){
 
 function validateTags(tags){
     tags = tags.trim();
-    var patt = /^([a-zA-Z0-9 ]+(,[a-zA-Z0-9 ]+)*)*$/;
+    var patt = /^[a-zA-Z0-9\- ]*(,[a-zA-Z0-9\- ]+)*$/;
     var res = patt.test(tags);
 
     if(tags.length > 255){
