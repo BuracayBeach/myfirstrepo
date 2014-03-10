@@ -4,7 +4,7 @@
 	</div>
 </a>
 <a href="<?php echo base_url();?>update_account">
-	<div class="menulinks">
+	<div class="menulinks <?php if(isset($title) && $title == 'ComLib Update') echo 'menulinks-active';?>">
 		Update your profile
 	</div>
 </a>
