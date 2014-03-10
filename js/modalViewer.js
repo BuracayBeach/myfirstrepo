@@ -27,28 +27,31 @@ function fillModal(){
 }
 
 function generateModalHTML(info){
-    var modalContentHTML = "<label for='modal-callno'>Call Number: </label><span id='modal-callno'>"+info.callNo+"</span><br/>" +
-        "<label for='modal-title'>Title: </label><span id='modal-title'>"+info.title+"</span><br/>" +
-        "<label for='modal-type'>Type: </label><span id='modal-type'>"+info.type+"</span><br/>" +
-        "<label for='modal-abstract'>Abstract: </label><span id='modal-abstract'>"+info.abstract+"</span><br/>" +
-        "<label for='modal-author'>Author: </label><span id='modal-author'>"+info.author+"</span><br/>" +
-        "<label for='modal-description'>Description: </label><span id='modal-description'>"+info.description+"</span><br/>"+
-        "<label for='modal-publisher'>Publisher: </label><span id='modal-publisher'>"+info.publisher+"</span><br/>"+
-        "<label for='modal-year-published'>Year of Publishment: </label><span id='modal-year-published'>"+info.yearPublished+"</span><br/>"+
-        "<label for='modal-isbn'>ISBN: </label><span id='modal-isbn'>"+info.isbn+"</span><br/>" +
-        "<label for='modal-tags'>Tags: </label><span id='modal-tags'>"+info.tags+"</span><br/>";
-
+    var modalContentHTML =
+        "<table class='table table-hover modal-data'><tbody>" + 
+            "<tr><td><label for='modal-callno'>Call Number: </label></td><td><span id='modal-callno'>"+info.callNo+"</span></td><tr>" +
+            "<tr><td><label for='modal-title'>Title: </label></td><td><span id='modal-title'>"+info.title+"</span></td><tr>" +
+            "<tr><td><label for='modal-type'>Type: </label></td><td><span id='modal-type'>"+info.type+"</span></td><tr>" +
+            "<tr><td><label for='modal-abstract'>Abstract: </label></td><td><span id='modal-abstract'>"+info.abstract+"</span></td><tr>" +
+            "<tr><td><label for='modal-author'>Author: </label></td><td><span id='modal-author'>"+info.author+"</span></td><tr>" +
+            "<tr><td><label for='modal-description'>Description: </label></td><td><span id='modal-description'>"+info.description+"</span></td><tr>"+
+            "<tr><td><label for='modal-publisher'>Publisher: </label></td><td><span id='modal-publisher'>"+info.publisher+"</span></td><tr>"+
+            "<tr><td><label for='modal-year-published'>Year of Publishment: </label></td><td><span id='modal-year-published'>"+info.yearPublished+"</span></td><tr>"+
+            "<tr><td><label for='modal-isbn'>ISBN: </label></td><td><span id='modal-isbn'>"+info.isbn+"</span></td><tr>" +
+            "<tr><td><label for='modal-tags'>Tags: </label></td><td><span id='modal-tags'>"+info.tags+"</span></td><tr>";
     var i = 0;
     info.otherDetails.forEach(function(detail){
        i++;
-       modalContentHTML += generateLabelSpanHTML('modal-other','modal-other'+i,detail[0],detail[1]);
+       modalContentHTML += generateRowHTML('modal-other','modal-other'+i,detail[0],detail[1]);
     });
+
+    modalContentHTML +=  "</tbody></table>";
 
     return modalContentHTML;
 }
 
-function generateLabelSpanHTML(classs,id,label,text){
-    return "<label class='"+classs+"' for='"+id+"'>"+label+": </label><span id='"+id+"'>"+text+"</span><br/>";
+function generateRowHTML(classs,id,label,text){
+    return "<tr><td><label class='"+classs+"' for='"+id+"'>"+label+": </label></td><td><span id='"+id+"'>"+text+"</span></td><tr>";
 }
 
 function getRowInfo($row){
