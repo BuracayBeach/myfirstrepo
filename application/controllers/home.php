@@ -66,11 +66,16 @@ class Home extends CI_Controller {
             $this->load->view('book_manage_view');
         }
 
-        $autoSubmitSearch = 'false';
-        if (isset($_SESSION['search_data']) && isset($_SESSION['search_data']['autoSubmitSearch'])){
-            $autoSubmitSearch =  $_SESSION['search_data']['autoSubmitSearch'];
+        $search_from_google_page = isset($_POST) && isset($_POST['home_search_text']);
+
+        if (isset($_SESSION) && isset($_SESSION['search_data']) && isset($_SESSION['search_data']['searchFromOtherPage'])){
+            $search_from_other_page = $_SESSION['search_data']['searchFromOtherPage'];
+        } else {
+            $search_from_other_page = 'false';
         }
 
+        if ($search_from_google_page || $search_from_other_page != 'false') $autoSubmitSearch = 'true';
+        else $autoSubmitSearch = 'false';
 
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
             $data['notifs'] = $this->notifs_model->get_all($_SESSION['username'], 0);
