@@ -125,18 +125,25 @@ div#notif-blue-glow {
 	margin-top: 5px;
 	box-shadow: 0 0 10px #1ba1e2;
 }
-
-div#notifs_container {
-	font-size: 0.82em;
+div#notifs_parent {
 	position: absolute;
-	top: 155px;
-	right: 280px;
-	width: 25%;
-	float: right;
 	background-color: rgba(1,1,1,0.5);
 	border-radius: 15px;
 	padding: 10px;
+	top: 155px;
+	right: 280px;
+	width: 25%;
+
+
 	z-index: 1001;
+}
+
+div#notifs_container {
+	font-size: 0.82em;
+	float: right;
+
+	overflow: auto;
+	max-height: 420px;	
 }
 
 div.notif {

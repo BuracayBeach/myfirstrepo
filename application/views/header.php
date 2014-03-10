@@ -61,16 +61,6 @@
 				include 'banner_view.php';
 		?>
 		<div id="navbar" class="<?php if($title == "ComLib") echo "default";?>">
-			<?php
-				if($title != "ComLib")
-					echo 
-						"<a href='".base_url()."'>
-							<div id='logolink' class='menulinks'>
-								<img src='".base_url()."images/logo_full_ws_min.png'/>
-							</div>
-						</a>";
-
-			?>
 			<div id="element-cont">
 				<div class="left">
 					<a href="<?php echo base_url();?>ihome">
