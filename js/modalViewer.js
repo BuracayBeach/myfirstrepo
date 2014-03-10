@@ -25,15 +25,15 @@ function fillModal(){
 
 function generateModalHTML(info){
     var modalContentHTML = "<label for='modal-callno'>Call Number: </label><span id='modal-callno'>"+info.callNo+"</span><br/>" +
-        "<label for='modal-callno'>Title: </label><span id='modal-title'>"+info.title+"</span><br/>" +
-        "<label for='modal-callno'>Type: </label><span id='modal-type'>"+info.type+"</span><br/>" +
-        "<label for='modal-callno'>Abstract: </label><span id='modal-abstract'>"+info.abstract+"</span><br/>" +
-        "<label for='modal-callno'>Author: </label><span id='modal-author'>"+info.author+"</span><br/>" +
-        "<label for='modal-callno'>Description: </label><span id='modal-description'>"+info.description+"</span><br/>"+
-        "<label for='modal-callno'>Publisher: </label><span id='modal-publisher'>"+info.publisher+"</span><br/>"+
-        "<label for='modal-callno'>Year of Publishment: </label><span id='modal-yearPublished'>"+info.yearPublished+"</span><br/>"+
-        "<label for='modal-callno'>ISBN: </label><span id='modal-isbn'>"+info.isbn+"</span><br/>" +
-         "<label for='modal-callno'>Tags: </label><span id='modal-tags'>"+info.tags+"</span><br/>";
+        "<label for='modal-title'>Title: </label><span id='modal-title'>"+info.title+"</span><br/>" +
+        "<label for='modal-type'>Type: </label><span id='modal-type'>"+info.type+"</span><br/>" +
+        "<label for='modal-abstract'>Abstract: </label><span id='modal-abstract'>"+info.abstract+"</span><br/>" +
+        "<label for='modal-author'>Author: </label><span id='modal-author'>"+info.author+"</span><br/>" +
+        "<label for='modal-description'>Description: </label><span id='modal-description'>"+info.description+"</span><br/>"+
+        "<label for='modal-publisher'>Publisher: </label><span id='modal-publisher'>"+info.publisher+"</span><br/>"+
+        "<label for='modal-year-published'>Year of Publishment: </label><span id='modal-year-published'>"+info.yearPublished+"</span><br/>"+
+        "<label for='modal-isbn'>ISBN: </label><span id='modal-isbn'>"+info.isbn+"</span><br/>" +
+         "<label for='modal-tags'>Tags: </label><span id='modal-tags'>"+info.tags+"</span><br/>";
 
     return modalContentHTML;
 }
