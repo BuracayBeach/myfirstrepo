@@ -25,6 +25,7 @@ button:hover {
 
 a:hover {
 	text-decoration: none;
+	cursor: pointer;
 }
 
 .announcement_title {

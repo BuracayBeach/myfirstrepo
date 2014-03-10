@@ -12,8 +12,9 @@
              $.ajax({
                 url: 'book/lend/',
                 data: {id:$bookno},
-                success: function(data) { 
-                    $this.text('Return');
+                success: function(data) {
+                    var borrower = $this.attr('reserver');
+                    $this.text('Return ('+borrower+')');
                     $this.off('click').on('click', receivedClick);            }
             });      
 
@@ -45,10 +46,16 @@
                     }
 
                     //if there is a person next in line for the book, change the link into a lend link
-                    else if(json_data.status === 'reserved')
-                    {
-                        $this.text('Lend');
-                        $this.off('click').on('click',lendClick);
+                    else if(json_data.status === 'reserved') {
+
+                        $.ajax({
+                            url: 'reserve/get_next/' + $bookno,
+                            data: {id:$bookno},
+                            success: function(data) {
+                                $this.text('Lend ('+ data +')');
+                                $this.off('click').on('click',lendClick);
+                            }
+                        });
                     }
 
                     /* end edit */

@@ -118,9 +118,9 @@ class Book extends CI_Controller {
 
     public function get_buttons_view(){
         if(isset($_GET)){
-        $data['row'] = json_decode(json_encode($_GET));
-
-        echo $this->load->view('table_buttons_view',$data);}
+            $data['row'] = json_decode(json_encode($_GET));
+            echo $this->load->view('table_buttons_view',$data);
+        }
     }
 
     public function get_row_view(){
@@ -128,6 +128,7 @@ class Book extends CI_Controller {
             $data['row'] = json_decode(json_encode($_GET));
             $data['row']->book_type = $data['row']->type;
             $data['row']->status = "available";
+            $data['reserves'] = $this->reserve_model->get_first();
             $data['newly_added'] = true;
             echo $this->load->view('table_row_view',$data);
         }

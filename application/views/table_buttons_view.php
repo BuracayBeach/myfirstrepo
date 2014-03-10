@@ -1,4 +1,21 @@
 <?php
+
+    $size = count($reserve);
+    for ($i=0; $i < $size; $i++) { 
+        if ($reserve[$i]->book_no == $row->book_no) {
+            $username = $reserve[$i]->username;
+            break;
+        }
+    }
+
+    $size2 = count($lend);
+    for ($i=0; $i < $size2; $i++) { 
+        if ($lend[$i]->book_no == $row->book_no) {
+            $username2 = $lend[$i]->username_user;
+            break;
+        }
+    }
+
     // Edit , Delete Button
     if (isset($_SESSION['type']) && $_SESSION['type'] == "admin"){  //--------------- ADMIN ACTIONS ----------------\\
 
@@ -10,8 +27,10 @@
         // Lend , Return Button
 
         /* edit by Edzer Padilla start */
-        if ($row->status == "reserved")  echo "<a bookno='{$row->book_no}' class='transaction_anchor lendButton' >Lend</a>";
-        elseif ($row->status == "borrowed") echo "<a bookno='{$row->book_no}' class ='transaction_anchor receivedButton'>Return</a>";
+        if ($row->status == "reserved") 
+            echo "<a bookno='{$row->book_no}' class='transaction_anchor lendButton' reserver='".$username."'>Lend (". $username .")</a>";
+        elseif ($row->status == "borrowed")
+            echo "<a bookno='{$row->book_no}' class ='transaction_anchor receivedButton'>Return (". $username2 .")</a>";
         else echo "(" . $row->status . ")";
         /* edit end */
         echo "</span>";
