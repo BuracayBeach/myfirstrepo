@@ -27,13 +27,11 @@
 
 
 				$(document).ready(function() {
-
 					$('#search_form').unbind('submit').submit(ajax_results); //prevent form from submitting/refreshing
-
 				    var lastRequest, lastSessionSave, lastAutoSearchUnset;
 					function ajax_results(event){
+						
 						event.preventDefault();
-
 						//get inputs
 						var searchForm = $('#search_form')
 						var my_input = searchForm.serialize();
