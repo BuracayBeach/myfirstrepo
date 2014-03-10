@@ -1,6 +1,5 @@
 <div id="default_home">
 	<?php
-		if (!isset($_SESSION)) session_start();
 
 		$_SESSION['search_data']['type_book'] = 'on'; 
 		$_SESSION['search_data']['type_journal'] = 'on'; 

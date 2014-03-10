@@ -1,3 +1,5 @@
+
+
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class User_account extends CI_Controller {
@@ -6,14 +8,10 @@ class User_account extends CI_Controller {
 		parent::__construct();
 		$this->load->model('user_account_model');
 		$this->load->library('safeguard');
-		if(!isset($_SESSION))
-			session_start();
 	}
 
 	//Index page
 	public function index() {
-		if(!isset($_SESSION))
-			session_start();
 
 		$this->load->view('login_view');
 	}

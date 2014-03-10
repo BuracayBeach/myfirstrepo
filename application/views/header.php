@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <html>
 	<!--
 	     .-=-==--==--.
@@ -195,8 +196,6 @@
 				$('#rightbody').addClass('fixerupper');
 			}
 		</script>
-
-		<?php// include 'search_view.php';?>
 
 		<!---->
 		<!--<div class=""  id="results_per_page_div" hidden>-->

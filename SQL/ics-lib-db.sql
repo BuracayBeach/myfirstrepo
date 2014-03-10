@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `ics-lib-db`
 --
-CREATE DATABASE IF NOT EXISTS `ics-lib-db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `ics-lib-db`;
 
 -- --------------------------------------------------------
 

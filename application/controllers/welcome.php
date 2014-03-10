@@ -21,6 +21,7 @@ class Welcome extends CI_Controller {
         parent::__construct();
 
         $this->load->model('book_model');
+        $this->load->library('firephp');
     }
     public function index()
     {

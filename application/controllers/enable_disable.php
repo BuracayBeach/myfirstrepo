@@ -9,13 +9,8 @@ class Enable_disable extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper('form');//loads the form helper
-		$this->load->library('firephp');
 		$this->load->library('pagination');
-		
-
-		if(!isset($_SESSION))
-			session_start();
-
+	
 		/* start edit by Carl Adrian P. Castueras */
 
 		//restricts this page to admin access

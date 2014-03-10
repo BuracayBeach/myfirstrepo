@@ -8,10 +8,6 @@ class Favorite extends CI_Controller {
 
 		date_default_timezone_set("Asia/Manila");
 
-		if (!isset($_SESSION))
-			session_start();
-
-		$this->load->library('firephp');
 	}
 
 	public function get_all($username) {

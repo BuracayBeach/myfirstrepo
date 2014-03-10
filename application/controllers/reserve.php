@@ -7,9 +7,6 @@ class Reserve extends CI_Controller {
 		$this->load->model('reserve_model');
 		$this->load->library('firephp');
 		date_default_timezone_set("Asia/Manila");
-
-		if (!isset($_SESSION))
-			session_start();
 	}
 
 	public function remove() {

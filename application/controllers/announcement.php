@@ -6,13 +6,12 @@ class Announcement extends CI_Controller {
         parent::__construct();
         $this->load->model('announcement_model');
         $this->load->library('safeguard');
-        $this->load->helper('url');
+        // $this->load->helper('url');
     }
 
     public function add(){
         if(isset($_POST)){
             $data = $this->safeguard->array_ready_for_query($_POST);
-            session_start();
             $data['announcement_author'] = mysql_real_escape_string($_SESSION['admin_username']);
 
             $this->announcement_model->insert_announcement($data);

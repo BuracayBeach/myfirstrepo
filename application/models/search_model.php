@@ -20,8 +20,6 @@ class Search_model extends CI_Model {
     function __construct(){
         parent::__construct();
         $this->load->database();
-        if(!isset($_SESSION))
-            session_start();
         
     }
     
@@ -176,7 +174,6 @@ class Search_model extends CI_Model {
         $q['where'] .= $details['status_check'];
 
 
-
         // for non spell checking, add the strings to be compared by like%% in sql
         $likes = $this->get_str_likes($details);
         if (trim($q['where']) != '' && trim($likes) != '') $q['where'] .= ' and ';
@@ -190,7 +187,6 @@ class Search_model extends CI_Model {
 
         //compile the query strings
         $query_string = $q['select'] . $q['where'] . $q['order_by'];
-        // var_dump($query_string);
 
         $result = $this->db->query($query_string)->result();
         return $result;
