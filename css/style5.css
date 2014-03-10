@@ -820,6 +820,23 @@ OVERALLS
     font-size: 1vw;
 }
 
+#logs_table{
+    width: 60%;
+    border: 1px solid #CCCCCC;
+}
+
+
+.logs-form{
+    width: 65%;
+}
+
+.logs-date-help{
+    padding-bottom: 10px;
+    display: block;
+}
+
+
+
 #logs_container #header_logs{
     margin-left:30%;
 }
