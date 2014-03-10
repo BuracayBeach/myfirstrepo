@@ -14,7 +14,7 @@
 
 		<div id="bg"><img src="images/chibi1.png" id="chibi1"/><img src="images/chibi2.png" id="chibi2"/></div>
 		<div id="logcon"><img src="images/logo_full_min.png" id="logoogle"></div>
-		<div class="form-group" id="google_bg"><input class="form-control" id="search_text" type="search" name='home_search_text' autofocus='true' placeholder='Keywords...' maxlength='99'  />
+		<div class="form-group" id="google_bg"><input class="form-control" id="google_search_text" type="search" name='home_search_text' autofocus='true' placeholder='Keywords...' maxlength='99'  />
 		<br/><input class="btn btn-primary" id='google_submit_search' type="submit" name="submit_search" value="Search"/>
 		</div>
 
