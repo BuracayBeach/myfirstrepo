@@ -78,7 +78,7 @@ class Home extends CI_Controller {
             $this->load->view("search_results_view");
 
             if ($autoSubmitSearch != 'true') $this->load->view("announcements_view");
-            $this->load->view("home_contents_view");
+            if ($autoSubmitSearch != 'true') $this->load->view("home_contents_view");
             if ($autoSubmitSearch != 'true') $this->load->view('notifications_view', $data);
         }
 
