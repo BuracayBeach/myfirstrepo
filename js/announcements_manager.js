@@ -28,12 +28,12 @@ $('#announcement_container').ready(function(){
 
 function showAddAnnouncementForm(event){
     event.preventDefault();
-    $('[data-toggle="tab"]')[2].click();
     $('#material_cancel_button').click();
     $('#edit_announcement_container').hide();
     $('#add_announcement_form')[0].reset();
     $('#add_announcement_container').slideToggle(function(){
         $('#add_announcement_title').focus();
+        $('[data-toggle="tab"]')[2].click();
     });
 }
 

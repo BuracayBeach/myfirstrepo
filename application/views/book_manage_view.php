@@ -2,6 +2,7 @@
 <div id="material_form_container">
     <form class="well form-horizontal" id="material_form">
         <fieldset>
+            <legend id="material-form-legend"></legend>
             <span class="help-required">Fields with * are required.</span>
             <!-- Text input-->
             <input type="hidden" id="prev_book_no" name="prev_book_no" />
