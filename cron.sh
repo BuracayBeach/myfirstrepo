@@ -15,6 +15,8 @@
 #
 # 0 * * * * php index.php Notifs_Cron check_overdue 
 
+php index.php Notifs_Cron check_overdue
+
 # ------ for DOS systems -------
 #
 # AT 00:00 php index.php Notifs_Cron check_overdue
