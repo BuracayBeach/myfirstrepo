@@ -90,6 +90,12 @@ At present, the ICS library continues to add more materials to help more student
 			<br>2.	Aldave, Carlo
 			<br>3.	Mendoza, Arlene
 			<br>4.	Tuyo, Lovely Joy
+			<br>
+			<br><b>Team UI Team Lead:</b> Advincula, Kim Joshua
+			<br><b>Developers:</b>
+			<br>1.	Bernal, Kevin Lloyd
+			<br>2.	Merced, Bianca Patricia
+			<br>3.	Sabado, Desery
 			</p>
 			</div>
    

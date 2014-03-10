@@ -222,31 +222,6 @@ function editBook(){
 
                     console.log(editedRow);
                     rowToUpdate.replaceWith(data);
-                    rowToUpdate.find('')
-                    /*data = JSON.parse(data);
-                    console.log(data);
-                    var rowToUpdate = editedRow;
-
-                    rowToUpdate.find("[book_data='book_no']").text(data.book_no);
-                    rowToUpdate.find("[book_data='book_type']").html("<em>"+data.type+"</em>");
-                    rowToUpdate.find("[book_data='book_title']").text(data.book_title);
-                    rowToUpdate.find("[book_data='author'] em").text(data.author);
-                    rowToUpdate.find("[book_data='description']").text(data.description);
-                    rowToUpdate.find("[book_data='publisher']").text(data.publisher);
-                    rowToUpdate.find("[book_data='date_published']").text(data.date_published);
-                    rowToUpdate.find("[book_data='tags']").text(data.tags);
-                    rowToUpdate.find("[book_data='abstract']").text(data.abstract);
-
-                    //status update
-                    var transactionSpan =  rowToUpdate.find("span:has(.transaction_anchor)");
-
-                    var anchorHTML = generateTransactionAnchorHTML(data.status,data.book_no);
-                    transactionSpan.html(anchorHTML);
-
-                    $.get("index.php/book/get_buttons_view", data, function(data){
-                        rowToUpdate.find('span').remove();
-                        rowToUpdate.find('[book_data="author"]').after(data);
-                    })*/
                 });
                 editForm.closest('div').hide();
             }else{
@@ -279,44 +254,6 @@ function deleteBook(){
     cancelForm();
 }
 /***** END DELETE FUNCTIONS *****/
-/***** FUNCTION FOR OTHER DATA *****/
-function generateInputDetail(anchor,index){
-    var detailHTML =
-        '<div class="control-group detail removable">' +
-            '<span><button class="show-on-hover x-button">x</button></span><br/>' +
-            '<label class="control-label">Detail Name:</label>' +
-            '<input type="text" title="Name of the Detail. (ie. Subject, Volume)" class="form-control detail_name" required="" placeholder="Detail Name" maxlength="20" name="other_detail['+index+'][name]"/>' +
-            '<label class="control-label">Detail:</label>' +
-            '<textarea class="form-control detail_content" required="" placeholder="Detail" maxlength="255" name="other_detail['+index+'][content]"></textarea>' +
-        '</div>';
-
-    $(anchor).before(detailHTML);
-    var detailContainer = $(anchor).prev();
-    detailContainer.hide();
-    detailContainer.fadeIn();
-}
-/***** END FUNCTION FOR OTHER DATA *****/
-
-/*** STRING HTML GENERATION FUNCTIONS ***/
-function generateTransactionAnchorHTML(status,book_no){
-    var anchorText = "";
-    var href = "href='" + icejjfish + "index.php/update_book/";
-    if(status == "reserved"){
-        anchorText = "Lend";
-        href += "lend/?id="+book_no+"'";
-    }
-    else if(status == "borrowed"){
-        anchorText = "Return";
-        href += "received/?id="+book_no+"'";
-    }
-    else{
-        anchorText = "(available)";
-        href="";
-    }
-
-    return "<a class='transaction_anchor' "+href+" bookno='"+book_no+"'>"+anchorText+"</a>";
-}
-/*** END STRING HTML GENERATION FUNCTIONS ***/
 
 function toggleRecentlyAddedTable(){
     var recentlyAddedTableRows = $('#recently_added_books_table').find('tr');

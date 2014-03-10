@@ -823,6 +823,7 @@ OVERALLS
     margin-left: 150px;
     margin-top: 20px;
 }
+
  
 #search_text{
     margin-top: 0%;
@@ -888,14 +889,6 @@ OVERALLS
 #chibi2f{
     width: 50%;
 }
-.help_images{
-    margin-left: 150px;
-    margin-top: 20px;
-}
-
-.help_images img{
-    width: 80%;
-}
 
 #update_profile_container span.invalid, #create_acc_container span.invalid, #update_admin_profile_container span.invalid{
     color: red;
@@ -903,4 +896,14 @@ OVERALLS
 
 #update_profile_container span.valid, #create_acc_container span.valid, #update_admin_profile_container span.valid{
     color: green;
+}
+
+
+#logolink{
+    width: 10%;
+    height: 60px;
+}
+
+#logolink img{
+    max-width: 100%;
 }

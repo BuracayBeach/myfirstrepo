@@ -55,6 +55,36 @@ class Book extends CI_Controller {
         echo json_encode($data);}
     }
 
+
+    public function edit(){
+        if(isset($_POST)){
+            $data = $this->safeguard->array_ready_for_query($_POST);
+            $data['other_detail'] = $this->extract_detail($data);
+            if($data['type'] == 'Book' || $data['type'] == 'Journal')
+                $data['abstract'] = null;
+            if($data['type'] == 'Other')
+                $data['type'] = $data['other'];
+            $this->book_model->edit_book($data);
+            $data = $this->safeguard->str_array_ready_for_display($data);
+            $result = array();
+            $result['row'] = json_decode(json_encode($data));
+            $result['row']->book_type = $result['row']->type;
+            if(isset($_SESSION)){
+                $_SESSION['recently_added_books'][$data['book_no']] = $data;
+                if($data['book_no'] != $data['prev_book_no'])
+                    unset($_SESSION['recently_added_books'][$data['prev_book_no']]);
+            }
+            echo $this->load->view("table_row_view",$result);
+        }
+    }
+
+    public function get_book(){
+        if(isset($_GET)){
+            $book_no = mysql_real_escape_string($_GET['book_no']);
+            $data = $this->book_model->get_book($book_no);
+            echo json_encode($data);}
+    }
+
     public function delete(){
         if(isset($_POST['book_no'])){
             $book_no = mysql_real_escape_string(trim($_POST['book_no']));
@@ -83,13 +113,6 @@ class Book extends CI_Controller {
         }
     }
 
-    public function get_book(){
-        if(isset($_GET)){
-        $book_no = mysql_real_escape_string($_GET['book_no']);
-        $data = $this->book_model->get_book($book_no);
-        $data = $this->safeguard->query_result_ready_for_display($data);
-        echo json_encode($data);}
-    }
 
     public function get_buttons_view(){
         if(isset($_GET)){
@@ -107,24 +130,6 @@ class Book extends CI_Controller {
             echo $this->load->view('table_row_view',$data);
         }
     }
-
-    public function edit(){
-        if(isset($_POST)){
-            $data = $this->safeguard->array_ready_for_query($_POST);
-            $data['other_detail'] = $this->extract_detail($data);
-            if($data['type'] == 'Book' || $data['type'] == 'Journal')
-                $data['abstract'] = null;
-            if($data['type'] == 'Other')
-                $data['type'] = $data['other'];
-            $this->book_model->edit_book($data);
-            $data = $this->safeguard->array_ready_for_query($data);
-            $result = array();
-            $result['row'] = json_decode(json_encode($data));
-            $result['row']->book_type = $result['row']->type;
-            echo $this->load->view("table_row_view",$result);
-        }
-    }
-
     public function search_sessionize(){
         session_start();
         
@@ -146,7 +151,7 @@ class Book extends CI_Controller {
             'tag_search'      => $input['tag_search'],
             'spell_check'   => true
         );
-        // var_dump($details);
+        // var_dump($details['tag_search']);
         if (isset($_POST['page'])) $details['page'] = $_POST['page'];
         if (isset($_POST['rows_per_page'])) $details['rows_per_page'] = $_POST['rows_per_page'];
         // if ($details['search_by'] == 'date_published') $details['spell_check'] = false;

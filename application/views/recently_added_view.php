@@ -6,8 +6,8 @@
             <th>Material</th>
             <th>Publishment</th>
             <th>Tags</th>
-            <th>Abstract</th>
-            <th>Other Detail</th>
+            <th style="display:none;">Abstract</th>
+            <th style="display:none;">Other Detail</th>
         </tr>
         <?php
             if(isset($_SESSION['recently_added_books'])){
