@@ -17,7 +17,7 @@
     </div>
     <script src="<?php echo base_url(); ?>js/modalViewer.js"></script>
     <script src="<?php echo base_url();?>js/easteregg.js"></script>
-    <?php if($title!='ComLib') echo '<div id="footerimg"><img src="'.base_url().'images/chibi1.png" id="chibi1f"><img src="'.base_url().'images/chibi2.png" id="chibi2f"></div>' ;?>
+
 </div>
 </body>
 </html>

@@ -48,10 +48,9 @@ BANNER
 #banner{
     width: 100%;
     height: 90px;
-    background: #222930;
     position: relative;
-    border-bottom: 1px solid white;
     z-index: 1010;
+    background-color: #222930;
 }
 
 #banner.pad{
@@ -858,8 +857,8 @@ OVERALLS
 #bg{
     margin-top: 90px;
     opacity: 0.3;
-    margin-left: 22%;
-    width: 60%;
+    margin-left: 25%;
+    width: 50%;
     z-index: 10;
 }
 #chibi1{
@@ -878,23 +877,23 @@ OVERALLS
 /*footer*/
 
 #footerimg{
-    width:20%;
+    width:10%;
     float: right;
-    background-color: transparent;
-    position: fixed;
-    right:0px;
-    bottom: 0px; 
+    background-color: pink;
+    position: absolute;
     z-index: -50;
+    bottom:0px;
+    right: 0px;
 }
 
 
 #chibi1f{
-    width: 50%;
-    margin-bottom: -15px;
+    width: 40%;
+    margin-bottom: -3px;
 
 }
 #chibi2f{
-    width: 50%;
+    width: 40%;
 }
 
 #update_profile_container span.invalid, #create-admin-wrapper span.invalid, .create_acc_container span.invalid, #update_admin_profile_container span.invalid{
@@ -906,12 +905,14 @@ OVERALLS
 }
 
 
-#navbar #logolink{
-    width: 10%;
+#banner #logolink{
+    width: 50%;
     height: 60px;
-    padding: 10px 20px 10px 20px;
+    padding: 1px 20px 10px 20px;
+    margin-left: 35%;
 }
 
 #logolink img{
     max-width: 100%;
+    margin-top: 10px;
 }

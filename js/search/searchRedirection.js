@@ -3,5 +3,8 @@
 		var currentPath = window.location.href
 		var searchPath = icejjfish + "ihome"
 
-		if (awto == 'true' && currentPath == searchPath) $('#search_form').submit()
+		if (awto == 'true' && currentPath == searchPath) {
+			$('#autoSubmitSearchDiv').attr('balyu', 'false')
+			$('#search_form').submit()
+		}
 	})
