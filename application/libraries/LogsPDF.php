@@ -11,7 +11,7 @@ class LogsPDF extends FPDF
     {
         if($this->PageNo() == 1){
             // Logo
-            $this->Image(base_url().'images/icon/logo_icon2_b.png',10,6,30);
+            $this->Image(base_url().'images/icon/logo_icon.png',10,6,15); //last arg = size
             // Arial bold 15
             $this->SetFont('Arial','B',15);
             // Move to the right
