@@ -21,7 +21,7 @@ $('#faq_table_container').ready(function(){
 
     $('#add_faq_cancel_button').on('click',cancelAddForm);
 
-    customEditor = new nicEditor({iconsPath : 'http://localhost/myfirstrepo/js/nicEditorIcons.gif'});
+    customEditor = new nicEditor({iconsPath : icejjfish+'js/nicEditorIcons.gif'});
 
 });
 

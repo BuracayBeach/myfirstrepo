@@ -10,7 +10,11 @@ $('#result_container,#faq_container').ready(function(){
     $('#material_cancel_button').on('click',cancelForm);
     /*-- remove detail on click of cancel button--*/
     var materialForm = $('#material_form');
-    materialForm.submit(submitMaterialForm);
+    materialForm.click(submitMaterialForm);
+    materialForm.submit(function(){
+        $('#material_cancel_button').click();
+        return false;
+    });
     materialForm.on('click','.detail .x-button',removeDetailInput);
 
     $('#type').change(checkBookType);
@@ -35,9 +39,7 @@ $('#result_container,#faq_container').ready(function(){
 $('#recently_added_books_container').ready(function(){
     var recentlyTableContainer =  $('#recently_added_books_container');
     var table = recentlyTableContainer.find('table');
-    table.on('click','.edit_button',function(){
-        showForm.call(this,"edit");
-    });
+    table.on('click','.edit_button',fillEditForm);
     table.on('click','.delete_button',deleteBook);
 
     toggleRecentlyAddedTable();
@@ -79,7 +81,7 @@ function submitMaterialForm(event){
 
     if(submitButton.text() == "Add"){
         addBook.call(this);
-    }else if(submitButton.text() == "Edit"){
+    }else if(submitButton.text() == "Save"){
         editBook.call(this);
     }
 }
@@ -127,6 +129,7 @@ function showAddForm(){
         resetForm();
         $('#add_announcement_cancel_button,#edit_announcement_cancel_button').click();
 
+        materialFormContainer.find('.detail').remove();
         materialFormContainer.find('#material_submit_button').text("Add");
         materialFormContainer.find('#material-form-legend').text("").hide();
         $('.status_container').hide();
@@ -156,7 +159,6 @@ function showAddForm(){
 }
 function addBook(){
     var errors;
-
     if((errors = checkAll.call(this)) == ''){
         var book_no = $(this).find('#book_no').val();
         var addForm = $(this);
@@ -166,6 +168,7 @@ function addBook(){
             if(isUnique){
                 $.post("index.php/book/add",formInputs,function(data){
                     data = JSON.parse(data);
+
                     $.get("index.php/book/get_row_view",data,function(data){
                         $('#recently_added_books_table').find('tbody').append(data);
                         toggleRecentlyAddedTable();
@@ -185,7 +188,6 @@ function addBook(){
         errors = "Cannot continue action because of the following errors:<br/>" + errors;
         $(this).closest('div').find('.errors').html(errors);
     }
-    $('#material_cancel_button').click();
     return false;
 }
 /***** END ADD FUNCTIONS *****/
@@ -206,7 +208,6 @@ function fillEditForm(){
             materialForm.closest('div').hide();
             materialForm.closest('div').find('.detail').remove();
             materialForm.closest('div').find('form')[0].reset();
-
 
             materialForm.find('#material_submit_button').text("Add");
             materialForm.find('#material-form-legend').text("Edit Material").show();
@@ -234,11 +235,12 @@ function fillEditForm(){
             if(data.other_detail != ''){
                 data.other_detail.forEach(function(entry){
                     var anchor = $('#more_details');
-                    var details = $('#material_form').find('.detail');
-                    var index = details.find('.detail_name').length;
+                    var index = materialForm.find('.detail').length;
                     generateInputDetail(anchor,index);
-                    details.find('.detail_name').val(entry.name);
-                    details.find('.detail_content').text(entry.content);
+                    var details = materialForm.find('.detail');
+
+                    $(details[index]).find('.detail_name').val(entry.name);
+                    $(details[index]).find('.detail_content').text(entry.content);
                 });
             }
             editedRow = td.closest('tr');
