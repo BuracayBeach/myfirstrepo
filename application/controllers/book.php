@@ -69,10 +69,12 @@ class Book extends CI_Controller {
             $result = array();
             $result['row'] = json_decode(json_encode($data));
             $result['row']->book_type = $result['row']->type;
-            if(isset($_SESSION)){
+            if(isset($_SESSION['recently_added_books'][$data['prev_book_no']])){
                 $_SESSION['recently_added_books'][$data['book_no']] = $data;
-                if($data['book_no'] != $data['prev_book_no'])
+
+                if($data['book_no'] != $data['prev_book_no']){
                     unset($_SESSION['recently_added_books'][$data['prev_book_no']]);
+                }
             }
             echo $this->load->view("table_row_view",$result);
         }

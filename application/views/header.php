@@ -66,7 +66,7 @@
 					echo 
 						"<a href='".base_url()."'>
 							<div id='logolink' class='menulinks'>
-								<img src='".base_url()."images\logo_full_ws_min.png'/>
+								<img src='".base_url()."images/logo_full_ws_min.png'/>
 							</div>
 						</a>";
 

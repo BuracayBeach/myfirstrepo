@@ -33,6 +33,14 @@ textarea{
     display: block;
 }
 
+.modal-backdrop{
+    z-index: 2000;
+}
+
+#book-info-modal{
+    z-index: 2001;
+}
+
 /*--------------------------------------------
 BANNER
   *put event on zoomin
@@ -102,7 +110,7 @@ NAVBAR
     float: left;
 }
 #navbar .menulinks:hover{
-    border-top: 10px solid #3340DD;
+    border-top: 10px solid #2266CC;
     background: rgba(255,255,255,0.1);
     color: white;
 }
@@ -177,7 +185,7 @@ SEARCHBAR
     width: 15%;
     background: white;
     position: relative;
-    z-index: 100000;
+    z-index: 1100;
     float:left;
     clear:left;
     padding-left: 1px;
@@ -222,7 +230,7 @@ SEARCHBAR
 }
 
 #search #sidebar-wrapper .active{
-  background: orange;
+  background: #F26522;
   color: white;
   font-size: 1.5vw;
 }
@@ -369,7 +377,7 @@ FAQ
     color: white;
 }
 .delete_faq_button{
-    background-color:#FF6600 !important;
+    background-color:#F26522 !important;
     font-family:'SEGOEUIL' !important;
     font-size:100% !important;
     width:15% !important;
@@ -395,7 +403,7 @@ FAQ
 }
 .delete_announcement_button{
     margin-left: 3%;
-    background-color:#FF6600 !important;
+    background-color:#F26522 !important;
     font-family:'SEGOEUIL' !important;
     font-size:100% !important;
     color: white;
@@ -414,6 +422,7 @@ ANNOUNCEMENT CAROUSEL
 #announcements_container.admin{
     width: 100%;
 }
+
 
 #announcements_container.notAdmin{
     width: 60%;
@@ -573,6 +582,7 @@ ERROR
 #dropdown_container{
     margin-left: 2%;
 }
+
 #result_container{
     background-color: white;
 }
@@ -773,7 +783,7 @@ OVERALLS
 #account_log{
     margin-left: 10%;
     width: 71%;
-    border-top: 2px solid orange; 
+    border-top: 2px solid #F26522; 
      background-color: rgba(255,255,255,0.9);
 }
 
@@ -782,7 +792,7 @@ OVERALLS
 }
 
 #submitButton{
-    background-color: #3340DD;
+    background-color: #2266CC;
     color: white;
     margin-left: 3%;
     width: 15%;
@@ -861,7 +871,7 @@ OVERALLS
 }
 
 #google_class{
-    z-index: 10000;
+    z-index: 1200;
     margin-top: -20px;
 }
 

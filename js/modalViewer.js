@@ -33,7 +33,9 @@ function generateModalHTML(info){
         "<label for='modal-publisher'>Publisher: </label><span id='modal-publisher'>"+info.publisher+"</span><br/>"+
         "<label for='modal-year-published'>Year of Publishment: </label><span id='modal-year-published'>"+info.yearPublished+"</span><br/>"+
         "<label for='modal-isbn'>ISBN: </label><span id='modal-isbn'>"+info.isbn+"</span><br/>" +
-         "<label for='modal-tags'>Tags: </label><span id='modal-tags'>"+info.tags+"</span><br/>";
+        "<label for='modal-tags'>Tags: </label><span id='modal-tags'>"+info.tags+"</span><br/>";
+
+    console.log(info.otherDetails);
 
     return modalContentHTML;
 }

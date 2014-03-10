@@ -1,15 +1,11 @@
 $('#result_container,#faq_container').ready(function(){
     /*-- Show Edit Form on click--*/
     var contentContainer = $('#result_container');
-    contentContainer.on('click','.edit_button',function(){
-        showForm.call(this,"edit");
-    });
+    contentContainer.on('click','.edit_button',fillEditForm);
     contentContainer.on('click','.delete_button',deleteBook);
 
     /*-- Show Add Form on click--*/
-    $('#show_add_form_button').on('click',function(){
-         showForm("add");
-    });
+    $('#show_add_form_button').on('click',showAddForm);
     /*-- Show Cancel form on click--*/
     $('#material_cancel_button').on('click',cancelForm);
     /*-- remove detail on click of cancel button--*/
@@ -76,26 +72,6 @@ function resetForm(){
     $form.find('.other').hide();
     $form.find('.abstract').hide();
 }
-function showForm(action){
-    var materialFormContainer = $('#material_form_container');
-
-    resetForm();
-    $('#add_announcement_cancel_button,#edit_announcement_cancel_button').click();
-    if(action == "add"){
-        $('[data-toggle="tab"]')[1].click();
-        materialFormContainer.find('#material_submit_button').text("Add");
-        $('.status_container').hide();
-    }else if (action == "edit"){
-        materialFormContainer.find('#material_submit_button').text("Edit");
-        materialFormContainer.find('.status_container').show();
-        fillEditForm.call(this);
-    }
-
-    materialFormContainer.slideToggle(function(){
-        $(materialFormContainer).find('#book_no').focus();
-    });
-    return false;
-}
 
 function submitMaterialForm(event){
     event.preventDefault();
@@ -144,6 +120,40 @@ function cancelForm() {
 }
 /** END FORM FUNCTIONS **/
 /***** ADD FUNCTIONS *****/
+function showAddForm(){
+    var materialFormContainer = $('#material_form_container');
+
+    function resetAndShow(){
+        resetForm();
+        $('#add_announcement_cancel_button,#edit_announcement_cancel_button').click();
+
+        materialFormContainer.find('#material_submit_button').text("Add");
+        materialFormContainer.find('#material-form-legend').text("").hide();
+        $('.status_container').hide();
+        materialFormContainer.slideDown(function(){
+            $(materialFormContainer).find('#book_no').focus();
+            $('[data-toggle="tab"]')[1].click();
+        });
+    }
+
+    if(materialFormContainer.is(":visible")){
+        if("Save" == materialFormContainer.find('#material_submit_button').text()){
+            materialFormContainer.slideUp(function(){
+                resetAndShow();
+            });
+        }else{
+            materialFormContainer.slideUp(function(){
+                resetForm();
+            });
+        }
+    }else{
+        resetAndShow();
+    }
+
+
+
+    return false;
+}
 function addBook(){
     var errors;
 
@@ -182,46 +192,67 @@ function addBook(){
 
 /***** EDIT FUNCTIONS *****/
 function fillEditForm(){
-    $('#material_cancel_button').click();
     var td = $(this).closest('tr').find('[book_data=book_no]');
     var book_no = td.text();
+
     $.get("index.php/book/get_book",{'book_no':book_no},function(data){
         data = JSON.parse(data);
         data = data[0];
-        console.log(data);
-        var materialForm = $("#material_form");
-        materialForm.find("#prev_book_no").val(data.book_no);
-        materialForm.find("#book_no").val(data.book_no);
-        materialForm.find("#book_title").val(data.book_title);
-        materialForm.find("#book_status").val(data.status);
-        var type = data.book_type;
-        if( type != 'Journal' && type != 'Book' && type != 'SP' && type != 'Thesis'){
-            type = "Other";
-            materialForm.find('#other').val(data.book_type);
-        }
-        materialForm.find("#type").val(type);
-        checkBookType.call( $('#type')[0] );
-        materialForm.find("#author").val(data.author);
-        materialForm.find("#abstract").val(data.abstract);
-        materialForm.find("#description").val(data.description);
-        materialForm.find("#publisher").val(data.publisher);
-        materialForm.find("#date_published").val(data.date_published);
-        materialForm.find("#tags").val(data.tags);
+        
+        if(data != undefined){
+            $('#add_announcement_cancel_button,#edit_announcement_cancel_button').click();
 
-        if(data.other_detail != ''){
-            data.other_detail.forEach(function(entry){
-                var anchor = $('#more_details');
-                var details = $('#material_form').find('.detail');
-                var index = details.find('.detail_name').length;
-                generateInputDetail(anchor,index);
-                details.find('.detail_name').val(entry.name);
-                details.find('.detail_content').text(entry.content);
+            var materialForm = $("#material_form");
+            materialForm.closest('div').hide();
+            materialForm.closest('div').find('.detail').remove();
+            materialForm.closest('div').find('form')[0].reset();
+
+
+            materialForm.find('#material_submit_button').text("Add");
+            materialForm.find('#material-form-legend').text("Edit Material").show();
+
+            materialForm.find('#material_submit_button').text("Save");
+            materialForm.find("#prev_book_no").val(data.book_no);
+            materialForm.find("#book_no").val(data.book_no);
+            materialForm.find("#book_title").val(data.book_title);
+            materialForm.find("#book_status").val(data.status);
+            materialForm.find('.status_container').show();
+            var type = data.book_type;
+            if( type != 'Journal' && type != 'Book' && type != 'SP' && type != 'Thesis'){
+                type = "Other";
+                materialForm.find('#other').val(data.book_type);
+            }
+            materialForm.find("#type").val(type);
+            checkBookType.call( $('#type')[0] );
+            materialForm.find("#author").val(data.author);
+            materialForm.find("#abstract").val(data.abstract);
+            materialForm.find("#description").val(data.description);
+            materialForm.find("#publisher").val(data.publisher);
+            materialForm.find("#date_published").val(data.date_published);
+            materialForm.find("#tags").val(data.tags);
+
+            if(data.other_detail != ''){
+                data.other_detail.forEach(function(entry){
+                    var anchor = $('#more_details');
+                    var details = $('#material_form').find('.detail');
+                    var index = details.find('.detail_name').length;
+                    generateInputDetail(anchor,index);
+                    details.find('.detail_name').val(entry.name);
+                    details.find('.detail_content').text(entry.content);
+                });
+            }
+            editedRow = td.closest('tr');
+            $("#add_announcement_cancel_button").click();
+            materialForm.closest('div').slideDown(function(){
+                materialForm.find('#book_no')[0].focus();
             });
+        }else{
+            alert('Material not found. Row will now be deleted.');
+            td.closest('tr').remove();
+            toggleRecentlyAddedTable();
         }
-        editedRow = td.closest('tr');
-        $("#add_announcement_cancel_button").click();
-
     });
+
     return false;
 }
 
@@ -236,14 +267,10 @@ function editBook(){
             data = JSON.parse(data);
             var matchCount = data.length;
             var isUnique = ((data.length == 1 && prev_book_no == data[0].book_no)|| matchCount == 0);
-            console.log(data);
-            console.log(data.length == 1 && prev_book_no == data[0].book_no);
-            console.log(matchCount);
             if(isUnique){
                 $.post("index.php/book/edit",formInputs,function(data){
                     var rowToUpdate = editedRow;
 
-                    console.log(editedRow);
                     rowToUpdate.replaceWith(data);
                 });
                 editForm.closest('div').hide();
@@ -266,7 +293,7 @@ function deleteBook(){
     if (result==true) {
         var bookNo = $(this).attr('bookno');
         var button = this;
-        console.log($(this));
+        
         $.post('index.php/book/delete',{book_no:bookNo},function(){updateView(button)});
         function updateView(button){
             var table = $(button).closest('table');
