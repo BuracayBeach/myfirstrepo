@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 09, 2014 at 06:04 AM
--- Server version: 5.6.12-log
--- PHP Version: 5.4.12
+-- Generation Time: Mar 10, 2014 at 07:19 PM
+-- Server version: 5.5.24-log
+-- PHP Version: 5.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `account_history` (
   KEY `account_history_email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `admin`
@@ -112,32 +112,104 @@ CREATE TABLE IF NOT EXISTS `book` (
 --
 
 INSERT INTO `book` (`book_no`, `book_title`, `book_type`, `abstract`, `author`, `status`, `description`, `publisher`, `date_published`, `tags`, `isbn`, `other_detail`) VALUES
-('CS 125-j5', 'The Unix Programming Environment', 'Book', NULL, 'Brian W. Kernighan, Rob Pike', 'available', NULL, 'Prentice-Hall, Inc.', 1986, NULL, '971-17-9003-3', ''),
-('CS 127 – K39', 'Database Design', 'Book', NULL, 'Gio Wiederhold', 'available', NULL, 'Philippine Graphic Arts, Inc.', 1997, NULL, '971-08-1932-1', ''),
-('CS100 – G23', 'ASP 3.0 Programmer’s Reference', 'Book', '', 'Richard Anderson, Dan Denault, Brian Francis, Matthew Gibbs, Marco Gregorini, Alex Homer, Craig McQueen, Simon Robinson, John Schenken, Kevin Williams', 'available', NULL, 'Wrox Press Ltd', 2000, NULL, '1-861003-23-4', ''),
-('CS130-N12', 'Computer Engineering Hardware Design', 'Book', NULL, 'M.Morris Mano', 'available', NULL, 'Prentice-Hall, Inc.', 1986, NULL, '971-8636-10-2', ''),
-('CS142-S1', 'The Design of Well-Structured and Correct Programs', 'Book', NULL, 'Suad alagic, Michael A. Arbib', 'available', NULL, 'Springer-Verlag, New York Inc.', 1978, 'Program design', NULL, ''),
-('CS180-W1', 'Highly Parallel Computing', 'Book', NULL, 'George S. Almasi, Allan Gottlieb', 'available', NULL, 'The Benjamin/Cummings Publishing Company, Inc', 1994, 'parallel computing', '805304436', ''),
-('CS21 – D23', 'Turbo C Version 2.0', 'Book', NULL, 'M.Morris Mano', 'available', NULL, 'Pernick Printing Corporation', 1988, NULL, '971-8636-10-2', ''),
-('dsa', 'asdsa', 'Book', NULL, '', 'available', '', '', NULL, '', NULL, 'asd»sadsa¦asdas»sada¦asd»sadas'),
+('C11 - C34', 'Pascal User and Report', 'Book', NULL, 'Jensen, K', 'available', '', 'Publishing Company', 1995, 'Pascal User', NULL, ''),
+('C127 - K11', 'Microsoft Access 97', 'Book', NULL, 'O Brien, T et al', 'available', '', 'Publishing Company', 1999, 'microsoft', NULL, ''),
+('C127 - K15', 'Business Data Communications', 'Book', NULL, 'FitzGerald, J', 'available', '', 'Publishing Company', 1998, '', NULL, ''),
+('C127 - K19', 'Data Management and File Processing', 'Book', NULL, 'Loomis, M', 'available', '', 'ABC Publishing Company', 2000, '', NULL, ''),
+('C21 - D3', 'From Basic to C', 'Book', NULL, 'Templeton, HM', 'available', '', 'Publishing Company', 2000, 'C', NULL, ''),
+('CS1 - A1', 'Microcomputer Keyboarding and Document Processing', 'Book', NULL, 'Stanley, Johnson', 'available', '', 'Publishing Company', 1998, 'document processing, keyboarding', NULL, ''),
+('CS1 - A12', 'Microcomputers and Microprocessors', 'Book', NULL, 'Uffenbeck, J.', 'available', '', 'Publishing Company', 1995, 'microcomputers, microprocessors', NULL, ''),
+('CS1 - A15', 'Latex for Everyone', 'Book', NULL, 'Hahn, J', 'available', '', 'Publishing Company', 1995, 'latex', NULL, ''),
+('CS1 - A16', 'IBM PC Advanced Troubleshooting', 'Book', NULL, 'Brenner, RC', 'available', '', 'Publishing Company', NULL, 'IBM PC', NULL, ''),
+('CS1 - A2', 'The Latext Companion', 'Book', NULL, 'Goossens; Mittelbach', 'available', '', 'Publishing Company', 2000, 'latext', NULL, ''),
+('CS1 - A3', 'Pagemaker 4 for the PC', 'Book', NULL, 'Webster; Tony; et al', 'available', '', 'Publishing Company', 1996, 'pagemaker', NULL, ''),
+('CS1 - A4', 'Macintosh Revealed vol.1', 'Book', NULL, 'Chernicoff, S.', 'available', '', 'Rey Publishing Company', 2010, 'macintosh', NULL, ''),
+('CS1 - A5', 'Inside the Norton Utilities 6.0 Third Edition', 'Book', NULL, 'Krumn, R', 'available', '', 'Ady Publishing Company', 2013, '', NULL, ''),
+('CS1 - A6', 'Wordperfect 5.1 Tips, Tricks and Traps Third Edition', 'Book', NULL, 'Stewart III; et al', 'available', '', 'Publishing Company', 2000, 'tricks', NULL, ''),
+('CS1 - A8', 'Mastering Harvard Graphics', 'Book', NULL, 'Larsen, G H', 'available', '', 'Publishing Company', 1999, 'Harvard Graphics', NULL, ''),
+('CS100 - G1', 'HTML, JAVA, CGI, VRML, SGML Unleashed', 'Book', NULL, 'Stanek,WR', 'available', '', '', NULL, 'html', NULL, ''),
+('CS100 - G23', 'ASP 3.0 Programmer’s Reference', 'Book', '', 'Richard Anderson; Dan Denault; Brian Francis; Matthew Gibbs; Marco Gregorini; Alex Homer; Craig McQueen; Simon Robinson; John Schenken; Kevin Williams', 'available', NULL, 'Wrox Press Ltd', 2000, NULL, '1-861003-23-4', ''),
+('CS11 - C11', 'Hands-on Turbo Pascal', 'Book', NULL, 'Goldstein, LJ', 'available', '', '', NULL, 'Turbo Pascal', NULL, ''),
+('CS11 - C18', 'Turbo Pascal Edition', 'Book', NULL, 'Savitch, WJ', 'available', '', 'Publishing Company', 2000, 'Turbo Pascal', NULL, ''),
+('CS11 - C2', 'Structures and Abstractions', 'Book', NULL, 'Salmon, WI', 'available', '', 'Publishing Company', 1995, 'Abstractions', NULL, ''),
+('CS11 - C3', 'Getting the Most from Turbo Pascal', 'Book', NULL, 'Smith, JT', 'available', '', 'Publishing Company', 1992, 'Turbo Pascal', NULL, ''),
+('CS11 - C30', 'Computer Assisted Learning', 'Book', NULL, 'Heinemann', 'available', '', 'Publishing Company', 1998, 'computer', NULL, ''),
+('CS11 - C40', 'Introduction to Computer Science', 'Book', NULL, 'Zwass, V', 'available', '', 'Publishing Company', 2000, 'Computer Science', NULL, ''),
+('CS11 - C6', 'Pascal', 'Book', NULL, 'Smith, JT', 'available', '', 'Publishing Company', 2000, 'Pascal', NULL, ''),
+('CS11 - C7', 'Learning Basic for the Macintosh', 'Book', NULL, 'Lien, DA', 'available', '', 'Publishing Company', 1994, 'macintosh', NULL, ''),
+('CS11 - C8', 'The Science of Programming', 'Book', NULL, 'Gries, D', 'available', '', 'Publishing Company', 1993, 'programming', NULL, ''),
+('CS123 - H12', 'Algorithm and Data Structures', 'Book', NULL, 'Niklaus Wirth', 'available', '', 'Publishing Company', 1999, 'data structures', NULL, ''),
+('CS123 - H2', 'Programming with Data Structures', 'Book', NULL, 'Kruse, R L', 'available', '', 'Publishing Company', 1999, 'data structures', NULL, ''),
+('CS123 - H6', 'Algorithm and Data Structures', 'Book', NULL, 'Kingston, JH', 'available', '', 'Publishing Company', 2000, '', NULL, ''),
+('CS123 - H7', 'Data Structures Using Pascual', 'Book', NULL, 'Tanenbaum, AM', 'available', '', 'Publishing Company', 1999, 'data structures', NULL, ''),
+('CS124 - I1', 'Programming in Basic with Applications', 'Book', NULL, 'Logsdon, T', 'available', '', 'Publishing Company', 2000, 'programming', NULL, ''),
+('CS124 - I18', 'C++ SAMS Teach Yourself', 'Book', NULL, 'Jesse Liberty', 'available', '', 'Publishing Company', 1998, '', NULL, ''),
+('CS124 - I4', 'Structured Cobol Programming', 'Book', NULL, 'Stein', 'available', '', 'Publishing Company', NULL, 'cobol', NULL, ''),
+('CS124 - I5', 'Using Turbo Prolog', 'Book', NULL, 'Robinson, PR', 'available', '', 'Publishing Company', 1995, '', NULL, ''),
+('CS124 - I8', 'Programming Languages', 'Book', NULL, 'Tucker, AB', 'available', '', 'Publishing Company', 2000, 'programming languages', NULL, ''),
+('CS124 - I9', 'Concepts of Programming Languages', 'Book', NULL, 'Sebesta, RW', 'available', '', 'Publishing House', 1999, 'programming languages', NULL, ''),
+('CS124 - J24', 'Modern Operating Systems', 'Book', NULL, 'Andrew S. Tanenbaum', 'available', '', 'AB Publishing House', 1998, 'operating systems', NULL, ''),
+('CS124 - J25', 'Operating System Concepts', 'Book', NULL, 'Silverschatz Galvin', 'available', '', 'Publishing Company', 2002, 'operating systems', NULL, ''),
+('CS125 - J', 'The Unix Programming Environment', 'Book', NULL, 'Kernighan, B', 'available', '', 'Publishing Company', 1994, 'unix', NULL, ''),
+('CS125 - J4', 'An Introduction to Operating Systems', 'Book', NULL, 'Kernighan, B', 'available', '', 'ABC Publishing House', 1995, 'operating systems', NULL, ''),
+('CS125 - J5', 'The Unix Programming Environment', 'Book', NULL, 'Brian W. Kernighan; Rob Pike', 'available', NULL, 'Prentice-Hall, Inc.', 1986, NULL, '971-17-9003-3', ''),
+('CS125 - J8', 'Distributed Systems', 'Book', NULL, 'Coullouris, G', 'available', '', 'Publishing Company', 1998, '', NULL, ''),
+('CS127 - K25', 'Using Dbase III Plus', 'Book', NULL, 'Jones, E', 'available', '', 'ABC Publishing Houses', 2000, '', NULL, ''),
+('CS127 - K29', 'SQL Step-by-Step', 'Book', NULL, 'Rolland, FD', 'available', '', 'Rockwell Publishing house', 2001, '', NULL, ''),
+('CS127 - K31', 'Using Clipper', 'Book', NULL, 'Tiley, E', 'available', '', 'Publishing Company', 1998, '', NULL, ''),
+('CS127 - K37', 'Fundamentals of Database Systems', 'Book', NULL, 'Elmasri; Navathe', 'available', '', 'Publishing Company', 1997, '', NULL, ''),
+('CS127 - K39', 'Database Design', 'Book', NULL, 'Gio Wiederhold', 'available', NULL, 'Philippine Graphic Arts, Inc.', 1997, NULL, '971-08-1932-1', ''),
+('CS127 - K7', 'Dbase III Advanced Programming', 'Book', NULL, 'Carrabis, J', 'available', '', 'Publishing Company', 1999, 'database', NULL, ''),
+('CS129 - M3', 'Compiler Design', 'Book', NULL, 'Wilhelm, R; et al', 'available', '', 'Chris Publishing House', 2001, 'compiler', NULL, ''),
+('CS129 - M7', 'Understanding and Writing Compilers', 'Book', NULL, 'Bornat, R', 'available', '', 'Publishing Company', 2001, '', NULL, ''),
+('CS130 - N11', 'Digital Computer Design', 'Book', NULL, 'Kline, R', 'available', '', 'Publishing Company', 1999, 'digital computer', NULL, ''),
+('CS130 - N12', 'Computer Engineering Hardware Design', 'Book', NULL, 'M.Morris Mano', 'available', NULL, 'Prentice-Hall, Inc.', 1986, NULL, '971-8636-10-2', ''),
+('CS130 - N3', 'Digital Computer Fundamentals', 'Book', NULL, 'Bantee, TC', 'available', '', 'Publishing Company', 1996, 'digital computer', NULL, ''),
+('CS130 - N4', 'Structured Computer Organization', 'Book', NULL, 'Tanenbaum', 'available', '', 'Publishing Company', 2000, '', NULL, ''),
+('CS130 - N6', 'Digital Computer Electronics', 'Book', NULL, 'Malvino, AP', 'available', '', 'Publishing Company', 2000, '', NULL, ''),
+('CS131 - O13', 'Turbo Assembler Reference Guide', 'Book', NULL, '', 'available', '', 'Rey Publishing Company', NULL, 'assembler', NULL, ''),
+('CS131 - O4', 'VM Performance Management', 'Book', NULL, 'Eddolls, T', 'available', '', 'Kimi Neutron', 2003, '', NULL, ''),
+('CS131 - O6', 'Programmer’s Problem Solver', 'Book', NULL, 'Jourdain, R', 'available', '', 'Chrisssy bave publishing company', 1999, 'rey', NULL, ''),
+('CS132 - P1', 'Structured Computer Organization', 'Book', NULL, '', 'available', '', 'Rockwell Publishing Company', 1999, 'micro processor', NULL, ''),
+('CS132 - P4', 'Computer Architecture and Organization', 'Book', NULL, 'Tanenbaum, AS', 'available', '', 'Publishing Company', 2001, 'computer', NULL, ''),
+('CS137 - Q5', 'Data and Computer Communications', 'Book', NULL, 'Stallings, W', 'available', '', 'Publishing Company', 1991, 'computer', NULL, ''),
+('CS137 - Q9', 'Connecting to the Internet', 'Book', NULL, 'Estrada, S', 'available', '', 'Ady Publishing House', 2000, 'internet', NULL, ''),
+('CS141 - R5', 'Introduction to Computer Theory', 'Book', NULL, 'Cohen, D', 'available', '', 'Publishing Company', 1994, 'computer theory', NULL, ''),
+('CS142 - S1', 'The Design of Well-Structured and Correct Programs', 'Book', NULL, 'Suad alagic; Michael A. Arbib', 'available', NULL, 'Springer-Verlag, New York Inc.', 1978, 'Program design', NULL, ''),
+('CS142 - T11', 'Numerical Methods', 'Book', NULL, 'Bakh Vahou, NS', 'available', '', '', 2000, '', NULL, ''),
+('CS142 - T17', 'Theory of Matrices', 'Book', NULL, '', 'available', '', '', NULL, '', NULL, ''),
+('CS142 - T7', 'Elementary Linear Algebra', 'Book', NULL, 'Kolman, B', 'available', '', '', NULL, '', NULL, ''),
+('CS161 - U4', 'Appendix to the Notes on Neuro-anatomy', 'Book', NULL, 'Mendoza, TJ', 'available', '', '', NULL, '', NULL, ''),
+('CS170 - V1', 'Guide To Expert Systems', 'Book', NULL, 'Edmunds, RA', 'available', '', 'Publishing Company', 1999, '', NULL, ''),
+('CS180 - W1', 'Highly Parallel Computing', 'Book', NULL, 'George S. Almasi; Allan Gottlieb', 'available', NULL, 'The Benjamin/Cummings Publishing Company, Inc', 1994, 'parallel computing', '805304436', ''),
+('CS180 - W9', 'Highly-Parallel Computing', 'Book', NULL, 'Almasi, GS', 'available', '', 'Publishing Company', 1995, '', NULL, ''),
+('CS2 - B1', 'Internet Companion', 'Book', NULL, 'Lasquey, T', 'available', '', 'Publishing Company', 1996, 'internet', NULL, ''),
+('CS21 - D10', 'The “C” Odyssey DOS', 'Book', NULL, 'Gandhi, M', 'available', '', 'Publishing Company', 1995, 'Odyssey DOS', NULL, ''),
+('CS21 - D13', 'C Unleashed', 'Book', NULL, 'SAMS', 'available', '', 'ABC Plublisher', 1995, 'C', NULL, ''),
+('CS21 - D23', 'Turbo C Version 2.0', 'Book', NULL, 'M.Morris Mano', 'available', NULL, 'Pernick Printing Corporation', 1988, NULL, '971-8636-10-2', ''),
+('CS21 - E3', 'Class Construction in C and C++', 'Book', NULL, 'Sessions, R', 'available', '', '', 2000, 'C', NULL, ''),
+('CS21 - E6', 'Rescued by Java', 'Book', NULL, 'Kris Jamsa', 'available', '', 'Publishing Company', 1999, 'Java', NULL, ''),
+('CS21 - E9', 'Design Patterns', 'Book', NULL, 'Grady Booch', 'available', '', 'Publishing Company', 2000, 'design patterns', NULL, ''),
+('CS21 - F4', 'Discrete Mathematical Structures for CS', 'Book', NULL, 'Kolman, B', 'available', '', '', NULL, 'Discrete Mathematics', NULL, ''),
+('CS56 - F1', 'Discrete Mathematics', 'Book', NULL, 'Johnsonbaugh, R.', 'available', '', 'Publishing Company', 2000, 'discrete mathematics', NULL, ''),
 ('IT 280', 'Computer Security Management', 'Book', NULL, 'Karen A. Forcht', 'available', NULL, 'boyd & fraser publishing company', 1994, 'Computer Security', '878358811', ''),
-('IT7', 'E-Commerce for Dummies', 'Book', NULL, 'Don Jones, Mark D. Scott, Richard Villars', 'available', NULL, 'Hungry Minds Inc.', 2001, 'E-commerce', '764508474', ''),
+('IT7', 'E-Commerce for Dummies', 'Book', NULL, 'Don Jones; Mark D. Scott; Richard Villars', 'available', NULL, 'Hungry Minds Inc.', 2001, 'E-commerce', '764508474', ''),
 ('JN 0001', 'Proceedings of the APL96 Conference', 'Journal', NULL, 'The Special Interest Group for the APL Programming Language', 'available', NULL, 'ACM Press', 1996, NULL, NULL, ''),
-('MG 0001', 'How to build a successful we-enabled warehouse and why you need one', 'Magazine', NULL, 'Julie Gibbs, Bob Craig, Aaron Zornes, Bradley Brown, Rhonda Stieber, Steve Bobrowski', 'available', NULL, 'Brown Printing Co.', 1997, NULL, '1065-3171', ''),
-('MG 0002', 'Reinventing business Aplication Service Providers', 'Magazine', NULL, 'Leslie Steere, Jeff Spicer, Dave Clareke Mora, Carol Tady, Patricia Waddington', 'available', NULL, NULL, 2000, 'Oracle Corporation', NULL, ''),
+('MG 0001', 'How to build a successful we-enabled warehouse and why you need one', 'Magazine', NULL, 'Julie Gibbs; Bob Craig; Aaron Zornes; Bradley Brown; Rhonda Stieber; Steve Bobrowski', 'available', NULL, 'Brown Printing Co.', 1997, NULL, '1065-3171', ''),
+('MG 0002', 'Reinventing business Aplication Service Providers', 'Magazine', NULL, 'Leslie Steere; Jeff Spicer; Dave Clareke Mora; Carol Tady; Patricia Waddington', 'available', NULL, NULL, 2000, 'Oracle Corporation', NULL, ''),
 ('REF 34', 'Econometric Methods', 'Book', NULL, 'J. Johnston', 'available', NULL, 'McGraw-Hill Kogakusha, Ltd. Tokyo', 1972, 'econometrics', NULL, ''),
 ('REF 35', 'Macro-Evolutionary Dynamics', 'Book', NULL, 'Niles Eldredge', 'available', NULL, 'McGraw-Hill Publishing Company', 1989, 'macro-evolutionary dynamics', '70194742', ''),
-('REF 40', 'Our Language Today', 'Book', NULL, 'David A. Conlin, George R. Herman, Jerome Martin', 'available', NULL, 'California State Department of Education Sacramento', 1966, 'english language', NULL, ''),
+('REF 40', 'Our Language Today', 'Book', NULL, 'David A. Conlin; George R. Herman; Jerome Martin', 'available', NULL, 'California State Department of Education Sacramento', 1966, 'english language', NULL, ''),
 ('REF 43', 'Mastering CorelDRAW5 Special Edition', 'Book', NULL, 'Rick Altman', 'available', NULL, 'Sybex Inc', 1994, 'CorelDRAW 5', '078211508', ''),
-('REF 49', 'Quantitative Approaches to Management', 'Book', NULL, 'Richard I. levin, David S. Rubin, Joel P. Stinson, Everette S. Gardner, Jr.', 'available', NULL, 'McGraw-Hill Book Company', 1989, 'management', '971084556', ''),
+('REF 49', 'Quantitative Approaches to Management', 'Book', NULL, 'Richard I. levin; David S. Rubin; Joel P. Stinson; Everette S. Gardner, Jr.', 'available', NULL, 'McGraw-Hill Book Company', 1989, 'management', '971084556', ''),
 ('REF 50', 'The Technology Connection', 'Book', NULL, 'Marc S. Gerstein', 'available', NULL, 'Adison-Wesley Publishing Company, Inc.', 1987, 'organization development', '971085089', ''),
-('REF 53', 'e-Business: Roadmap for Success', 'Book', NULL, 'Dr. Ravi Kalakota, Marcia Robinson', 'available', NULL, 'Addison-Wesley', 1999, 'e-commerce', '201604809', ''),
+('REF 53', 'e-Business: Roadmap for Success', 'Book', NULL, 'Dr. Ravi Kalakota; Marcia Robinson', 'available', NULL, 'Addison-Wesley', 1999, 'e-commerce', '201604809', ''),
 ('REF37', 'The Oxford Companion to the English Language', 'Book', NULL, 'Tom McArthur', 'available', NULL, 'Oxfor University Press', 1992, 'English language', '019214183', ''),
-('SP 0001', 'Fast Search of Nucleotide Local Alignment using Makiling Compute Grid', 'SP', 'Local Alignment is a method of determining similarity between nucleotides or protein sequences. It identifies regions of optimal matches and highly similar sequences. The study presents a local alignment in parallel setup using C language and the MPI library. The implementation compares nucleotide files using the Makiling Compute Grid cluster in PC Lab 9 of the ICS (Institute of Computer Science), University of the Philippines Los Baños.', 'Jan Jacob Glenn M. Jasalin and Arian J. Jacildo', 'available', NULL, 'Jan Jacob Glenn M. Jasalin and Arian J. Jacildo', 2011, 'local alignment, Makiling Compute Grid', NULL, ''),
-('SP 0002', 'Photo-Realistic Interactive Cake Designer', 'SP', 'We present a cake designer application that allows users to design photo-realistic cake models. It provides a user interface with an interactive 3D designing environment and a functionality which allows the designs to be saved to and retrieved from the computer database. A survey of thirty respondents was conducted. Given a user manual and a basic tutorial, the respondents were asked to design their own cake. After designing, they were asked to rate the cake designer according to the following categories: User-Friendliness (the ease of learning and use), Interactivity (their ability to interact with cake elements such as layers), Responsiveness (how successful were the user commands and actions), Customizability (the capacity to produce unique and personalized designs), Photo-realism (the level of resemblance of the cake models to real cakes), Visual Impact (the ability of the graphics and visuals to command attention and hold interest), and Overall Usefulness (applicability to cake manufacturers or hobbyists in real life setting). Interactivity and Photo-realism got an average rating of 4 and 3.86 respectively (out of maximum of 5). The category that has the most varied ratings is Responsiveness with a standard deviation of 0.94. Based on the survey we concluded that 3D graphics and texture mapping are effective tools or developing interactive and photo-realistic design systems.', 'Andro I. Juni and Jaderick P. Pabico', 'available', NULL, 'Andro I. Juni and Jaderick P. Pabico', 2011, 'Texture Mapping, 3-Dimensional Graphics, 3D Modeling, Photo-realism', NULL, ''),
-('SP 0003', 'Real Time Cash register Event Detection', 'SP', 'In this study, a system to implement a real time activity monitoring of a cash register in business establishment was developed. Edge detection, shape matching using contours, and Euclidean Distance based color analysis are integrated to detect the event where the cash register is being opened. Each time an event or a cash register activity happens, the system automatically creates a video clip of the said transaction. The system was able to identify the events where the cash register''s drawer is open.', 'Jenneth P. Jusay and Prof. Margarita Carmen S. Paterno', 'available', NULL, 'Jenneth P. Jusay and Prof. Margarita Carmen S. Paterno', 2011, 'event detection, video surveillance', NULL, ''),
-('SP 0004', 'Visualization of Student Records Using FusionCharts', 'SP', 'Increasing demands of visualizing data have been arising as data is accumulated through the years. To see the unseen information behind colossal quantities of data, it must be converted into its graphical form, thus leading to a reliable data analysis. This study suggests the use of FusionChart, an open source component, in visualizing student records, specifically UPLB Student Records. Trends and patterns have been realized after running the program to generate common queries regarding performance of students, course effectiveness, and the like.', 'Jona Rae S. Obrador, Eleasah F. Loresco and Prof. Jamie M. Samaniego', 'available', NULL, 'Jona Rae S. Obrador, Eleasah F. Loresco and Prof. Jamie M. Samaniego', 2011, 'FusionCharts, Interactive Data Visualization, PHP, MySQL', NULL, ''),
-('SP 0005', 'Face Structure Model for Actor-Driven Animation', 'SP', 'This study presents a way for animation which is performance based through tracking of colored markers applied on selected facial features on an actor. In tracking of facial features , control parameters will be computed and will be used to animate a model. Evaluation of specific controlled parameters will play an important role for exhibiting more details and accuracy in the animation of the facial features.', 'Freddie L. Oliva Jr. and Dr. Vladimir Y. Mariano', 'available', NULL, 'Freddie L. Oliva Jr. and Dr. Vladimir Y. Mariano', 2011, 'actor-driven, performance-based, color tracking', NULL, ''),
+('SP 0001', 'Fast Search of Nucleotide Local Alignment using Makiling Compute Grid', 'SP', 'Local Alignment is a method of determining similarity between nucleotides or protein sequences. It identifies regions of optimal matches and highly similar sequences. The study presents a local alignment in parallel setup using C language and the MPI library. The implementation compares nucleotide files using the Makiling Compute Grid cluster in PC Lab 9 of the ICS (Institute of Computer Science), University of the Philippines Los Baños.', 'Jan Jacob Glenn M. Jasalin; Arian J. Jacildo', 'available', NULL, 'Jan Jacob Glenn M. Jasalin and Arian J. Jacildo', 2011, 'local alignment, Makiling Compute Grid', NULL, ''),
+('SP 0002', 'Photo-Realistic Interactive Cake Designer', 'SP', 'We present a cake designer application that allows users to design photo-realistic cake models. It provides a user interface with an interactive 3D designing environment and a functionality which allows the designs to be saved to and retrieved from the computer database. A survey of thirty respondents was conducted. Given a user manual and a basic tutorial, the respondents were asked to design their own cake. After designing, they were asked to rate the cake designer according to the following categories: User-Friendliness (the ease of learning and use), Interactivity (their ability to interact with cake elements such as layers), Responsiveness (how successful were the user commands and actions), Customizability (the capacity to produce unique and personalized designs), Photo-realism (the level of resemblance of the cake models to real cakes), Visual Impact (the ability of the graphics and visuals to command attention and hold interest), and Overall Usefulness (applicability to cake manufacturers or hobbyists in real life setting). Interactivity and Photo-realism got an average rating of 4 and 3.86 respectively (out of maximum of 5). The category that has the most varied ratings is Responsiveness with a standard deviation of 0.94. Based on the survey we concluded that 3D graphics and texture mapping are effective tools or developing interactive and photo-realistic design systems.', 'Andro I. Juni; Jaderick P. Pabico', 'available', NULL, 'Andro I. Juni; Jaderick P. Pabico', 2011, 'Texture Mapping, 3-Dimensional Graphics, 3D Modeling, Photo-realism', NULL, ''),
+('SP 0003', 'Real Time Cash register Event Detection', 'SP', 'In this study, a system to implement a real time activity monitoring of a cash register in business establishment was developed. Edge detection, shape matching using contours, and Euclidean Distance based color analysis are integrated to detect the event where the cash register is being opened. Each time an event or a cash register activity happens, the system automatically creates a video clip of the said transaction. The system was able to identify the events where the cash register''s drawer is open.', 'Jenneth P. Jusay; Prof. Margarita Carmen S. Paterno', 'available', NULL, 'Jenneth P. Jusay and Prof. Margarita Carmen S. Paterno', 2011, 'event detection, video surveillance', NULL, ''),
+('SP 0004', 'Visualization of Student Records Using FusionCharts', 'SP', 'Increasing demands of visualizing data have been arising as data is accumulated through the years. To see the unseen information behind colossal quantities of data, it must be converted into its graphical form, thus leading to a reliable data analysis. This study suggests the use of FusionChart, an open source component, in visualizing student records, specifically UPLB Student Records. Trends and patterns have been realized after running the program to generate common queries regarding performance of students, course effectiveness, and the like.', 'Jona Rae S. Obrador; Eleasah F. Loresco; Prof. Jamie M. Samaniego', 'available', NULL, 'Jona Rae S. Obrador, Eleasah F. Loresco and Prof. Jamie M. Samaniego', 2011, 'FusionCharts, Interactive Data Visualization, PHP, MySQL', NULL, ''),
+('SP 0005', 'Face Structure Model for Actor-Driven Animation', 'SP', 'This study presents a way for animation which is performance based through tracking of colored markers applied on selected facial features on an actor. In tracking of facial features , control parameters will be computed and will be used to animate a model. Evaluation of specific controlled parameters will play an important role for exhibiting more details and accuracy in the animation of the facial features.', 'Freddie L. Oliva Jr.; Dr. Vladimir Y. Mariano', 'available', NULL, 'Freddie L. Oliva Jr. and Dr. Vladimir Y. Mariano', 2011, 'actor-driven, performance-based, color tracking', NULL, ''),
 ('TH 0001', 'UPLB Research Project Fund Monitoring System', 'Thesis', 'The UPLB Research Project Fund Monitoring System is an IT-based application project for the University of the Philippines Los Baños Accounting Office (UPLB-AO) which manages and controls the allotment and obligation of Trust Funds of the University. It provides a centralized database management system for all the users and controllers of the system for the purpose of managing the allotments and expenditures of the university’s research and extension project funds. Project fund leaders and their designated representatives are given access to view and monitor their allotment, expenses, and project fund balance. The UPLB-AO is given administrative access and privileges in order to maintain and support this site.', 'Petronila Pamela M. Alcasid', 'available', NULL, 'Petronila Pamela M. Alcasid', 2011, 'Accounting Office, Monitoring System', NULL, ''),
 ('TH 0002', 'An Open Source Lodging-Related Content-Managed Information System', 'Thesis', 'The IT-based project implements an open source online reservation, booking, billing and payment system for hotel or lodging-based establishments. The open source project is a content-managed template which can be implemented for establishments with lodging-related products and services such as room use, discounted rates and, training and ancillary facilities. The clients may view the site and may proceed with the reservation process online. Clients are placed into primal consideration in providing web-based views and differentiated levels of access to administrative users. The system makes use of open source development software in the design, development and implementation. The different tests conducted for the project indicated that client and administrative access to the system is designed to be compatible with major browsers -- be they open source or proprietary. The project testing also yielded coherence in data transaction, processing, storage, retrieval, print, custom reports, content management and security features.', 'Ramiro Z. dela Cruz', 'available', NULL, 'Ramiro Z. dela Cruz', 2009, 'Open source, Information System, Content-Managed', NULL, '');
 
@@ -248,7 +320,7 @@ CREATE TABLE IF NOT EXISTS `lend` (
   KEY `lend_username_admin` (`username_admin`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
-
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `notifications`
@@ -297,19 +369,19 @@ INSERT INTO `our` (`student_no`, `name_first`, `name_middle`, `name_last`) VALUE
 ('2010-25011', 'Susan', 'Davis', 'Sinegal'),
 ('2010-25981', 'David', 'Pierre', 'Kirtley'),
 ('2010-29981', 'Carolyn', 'Carolyn', 'Morrison'),
+('2010-47325', 'Feng', 'Fang', 'Chu'),
+('2010-54795', 'Daniella', 'Roelfsema', 'Spoelder'),
 ('2011-11341', 'Charles', 'Farris', 'Harlan'),
 ('2011-11390', 'Enriqueta', 'Snowden', 'Hooker'),
 ('2011-13575', 'Harding', 'Brandagamba', 'Puddifoot'),
 ('2011-25010', 'Edzer Josh', 'Valentin', 'Padilla'),
+('2011-61859', 'Otis', 'McCollum', 'Lucky'),
 ('2012-34510', 'Barbara', 'Marshal', 'Calle'),
 ('2012-56916', 'Sakiko', 'Asada', 'Kamuta'),
 ('2013-14344', 'Ryan', 'Emerson', 'Pruitt'),
 ('2013-33310', 'Richard', 'Kogan', 'Howle'),
-('2010-54795', 'Daniella', 'Roelfsema', 'Spoelder'),
-('2014-51628', 'Liane', 'Pomerleau', 'Verreau'),
-('2010-47325', 'Feng', 'Fang', 'Chu'),
-('2011-61859', 'Otis', 'McCollum', 'Lucky'),
-('2013-53763', 'Daniel', 'Croll', 'Burch');
+('2013-53763', 'Daniel', 'Croll', 'Burch'),
+('2014-51628', 'Liane', 'Pomerleau', 'Verreau');
 
 -- --------------------------------------------------------
 
