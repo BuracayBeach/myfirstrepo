@@ -60,6 +60,8 @@
 
     /*GENERATES APPROPRIATE BUTTONS (html stored to variable) DEPENDING ON THE TYPE OF THE USER*/
     $data['row'] = $row;
+    $data['reserve'] = $reserve;
+    $data['lend'] = $lend;
     // the "TRUE" argument tells it to return the content, rather than display it immediately
     $buttonsHTML = $this->load->view("table_buttons_view.php",$data,TRUE);
 

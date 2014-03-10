@@ -97,6 +97,23 @@ class Reserve_Model extends CI_Model {
 		else
 			return true;
 	}
+
+	public function get_first() {
+		$q = $this->db->query("SELECT book_no, username FROM reserves
+								WHERE notified = 1");
+
+		if ($q->num_rows() > 0)
+			return $q->result();
+	}
+
+	public function get_next_queue($book_no) {
+		$q = $this->db->query("SELECT username FROM reserves WHERE
+								notified = 1 AND book_no LIKE '{$book_no}'");
+
+		if ($q->num_rows() > 0)
+			return $q->result();
+	}
+
 }
 
 ?>
