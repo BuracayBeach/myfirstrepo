@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="<?php echo base_url();?>css/bootstrap.min.css">
 <style rel="stylesheet">
 	h1 {
 		text-align: center;
