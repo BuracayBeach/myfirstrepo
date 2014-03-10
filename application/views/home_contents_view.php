@@ -4,7 +4,7 @@
 <br>
 <h3>Com Lib ICS Library System</h3>
 <br>
-<img src="<?php echo base_url(); ?>images/home_image.jpg">
+<img src="<?php echo base_url();?>images/home_image.jpg">
 
 <p><br><br>
 	
