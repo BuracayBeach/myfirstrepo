@@ -2,7 +2,7 @@
 	// if (isset($_POST['home_search_text']) && !(isset($_SESSION['type']) && $_SESSION['type'] == 'admin')){
 	// 	$_SESSION['search_data']['autoSubmitSearch'] = 'true';
 	// }
-	
+	// var_dump($_SESSION);
 
     $search_from_google_page = isset($_POST) && isset($_POST['home_search_text']);
 
@@ -17,6 +17,7 @@
 
 
     if ($autoSubmitSearch == 'true') $_SESSION['search_data']['autoSubmitSearch'] = 'true';
+    else $_SESSION['search_data']['autoSubmitSearch'] = 'false';
 
 
 
