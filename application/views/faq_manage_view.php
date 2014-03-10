@@ -1,6 +1,11 @@
 <div id="faq_manage_container">
     <h3>Frequently Asked Questions</h3>
     <button id="add_faq_button">Add a FAQ</button>
+    <div id="faq_anchors">
+    </div>
+    <br/>
+    <hr/>
+    <br/>
     <div id="faq_table_container">
         <table id="faq_table" class="column">
             <tbody>
