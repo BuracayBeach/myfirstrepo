@@ -1,5 +1,3 @@
-
-<script src="<?php echo base_url();?>js/jquery-1.11.0.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>js/jquery.carouFredSel-6.2.0-packed.js" type="text/javascript"></script>
 
 <style type="text/css">
@@ -12,21 +10,21 @@
 <div id="wrapper_carousel" class="column">
 	<div id="slider">
 
-		<div class="slide" style="background-image: url('../myfirstrepo/images/lib2.jpg');">
+		<div class="slide" style="background-image: url('<?php echo base_url(); ?>images/lib2.jpg');">
 			<div class="slide-block">
 				<h4>ICS Library</h4>
 				<p>The ICS Library is open to all students and faculty members who wish to find references for academic and research purposes.</p>
 			</div>
 		</div>
 
-		<div class="slide" style="background-image: url(../myfirstrepo/images/lib1.jpg);">
+		<div class="slide" style="background-image: url(<?php echo base_url(); ?>images/lib1.jpg);">
 			<div class="slide-block">
 				<h4>Books</h4>
 				<p>ICS Library has books related to computer programming, operating systems, algorithms and data structures, artificial intelligence, software engineering and many more. </p>
 			</div>
 		</div>
 
-		<div class="slide" style="background-image: url(../myfirstrepo/images/lib3.jpg);">
+		<div class="slide" style="background-image: url(<?php echo base_url(); ?>images/lib3.jpg);">
 			<div class="slide-block">
 				<h4>Special Problem and Thesis</h4>
 				<p>Special Problem and Thesis manuscripts can also be found in the library!</p>
