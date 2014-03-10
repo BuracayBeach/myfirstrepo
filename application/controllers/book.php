@@ -25,7 +25,7 @@ class Book extends CI_Controller {
         $this->load->model('favorite_model');
         $this->load->model('reserve_model');
         $this->load->model('lend_model');
-        $this->load->helper('url');
+
         $this->load->library('safeguard');
 
 

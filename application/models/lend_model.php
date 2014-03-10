@@ -18,5 +18,3 @@ class Lend_Model extends CI_Model {
 			return $q->result();
 	}
 }
-
-?>

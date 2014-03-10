@@ -205,4 +205,3 @@ class User_account extends CI_Controller {
 		$this->email->send();
 	}
 }
-?>

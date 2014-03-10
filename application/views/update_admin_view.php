@@ -23,13 +23,10 @@
 		echo "<script> alert('Error in updating!') </script>";
 	
 	unset($_SESSION['update_admin_notif']);
-?>
 
-<?php 
 	if(isset($_SESSION['change_admin_password_notif']) && $_SESSION['change_admin_password_notif'] == "admin_pwd_changed")
 		echo "<script> alert('Successfully changed password!') </script>";
 	else if(isset($_SESSION['change_admin_password_notif']) && $_SESSION['change_admin_password_notif'] == "pwd_not_match")
 		echo "<script> alert('Current password does not match password given!') </script>";
 	
 	unset($_SESSION['change_admin_password_notif']);
-?>

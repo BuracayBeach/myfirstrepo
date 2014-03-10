@@ -110,4 +110,3 @@ class User_account_model extends CI_Model {
 		else return false;
 	}
 }
-?>

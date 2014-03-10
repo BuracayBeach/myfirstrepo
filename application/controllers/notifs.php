@@ -63,5 +63,3 @@ class Notifs extends CI_Controller {
 		$this->notifs_model->add_notif($data);
 	}
 }	
-
-?>

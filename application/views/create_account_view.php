@@ -110,4 +110,3 @@
 		echo"<script> alert('The following input/s already taken: $duplicates_comma_separated'); </script>";
 		unset($_SESSION['create_account_notif']);
 	}
-?>

@@ -7,16 +7,16 @@
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane" id="tab1">
-			<?php include 'search_results_view.php';?>
+			<?php include 'search_results_view.php'; ?>
 		</div>
 		<div class="tab-pane" id="tab2">
-			<?php include 'recently_added_view.php';?>
+			<?php include 'recently_added_view.php'; ?>
 		</div>
 		<div class="tab-pane active" id="tab3">
-			<?php include 'announcements_view.php';?>
+			<?php include 'announcements_view.php'; ?>
 		</div>
 		<div class="tab-pane" id="tab4">
-			<?php include 'notifications_custom_view.php';?>
+			<?php include 'notifications_custom_view.php'; ?>
 		</div>
 	</div>
 </div>

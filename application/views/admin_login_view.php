@@ -70,7 +70,7 @@
 
 	<div id="login_box">
 
-		<form action = "<?php echo base_url();?>index.php/admin_account/admin_login" method = "post">
+		<form action = "<?php echo base_url(); ?>index.php/admin_account/admin_login" method = "post">
 
 			<div class="login_container">
 				<input class="login_input" type = "text" name="username" placeholder="username" size="27"/>
@@ -98,4 +98,3 @@
 		echo "<script> alert('Wrong password!') </script>";
 
 	unset($_SESSION['admin_login_notif']);
-?>

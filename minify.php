@@ -17,4 +17,3 @@ $buffer = preg_replace($search, $replace, $buffer);
 return $buffer;
 }
 ob_start("minify_output");
-?>
