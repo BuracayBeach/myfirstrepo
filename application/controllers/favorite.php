@@ -51,5 +51,3 @@ class Favorite extends CI_Controller {
 		echo json_encode($result);
 	}	
 }
-
-?>

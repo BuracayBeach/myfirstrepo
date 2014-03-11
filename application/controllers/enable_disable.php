@@ -14,7 +14,9 @@ class Enable_disable extends CI_Controller {
 		/* start edit by Carl Adrian P. Castueras */
 
 		//restricts this page to admin access
-		if(!isset($_SESSION['type']) || $_SESSION['type'] != 'admin')
+        session_start();
+
+        if(!isset($_SESSION['type']) || $_SESSION['type'] != 'admin')
 		{
 			header("Location:". base_url());
 		}
@@ -90,6 +92,7 @@ class Enable_disable extends CI_Controller {
 		/*
 			activates a user account
 		*/
+        session_start();
 
 		$admin = $_SESSION['admin_username'];//hardcoded
 		$action = "activate";//hardcoded
@@ -109,7 +112,9 @@ class Enable_disable extends CI_Controller {
 		/*
 			enables a user account
 		*/
-		$admin = $_SESSION['admin_username'];//hardcoded
+        session_start();
+
+        $admin = $_SESSION['admin_username'];//hardcoded
 		$action = "enable";//hardcoded
 
 		$this->load->model('enable_disable_model');//loads model
@@ -127,7 +132,9 @@ class Enable_disable extends CI_Controller {
 		/*
 			disables a user account
 		*/
-		$admin = $_SESSION['admin_username'];//hardcoded
+        session_start();
+
+        $admin = $_SESSION['admin_username'];//hardcoded
 		$action = "disable";//hardcoded
 
 		$this->load->model('enable_disable_model');//loads model

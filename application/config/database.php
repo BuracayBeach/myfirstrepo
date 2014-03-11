@@ -48,7 +48,7 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'mysql.hostinger.ph';
+$db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'u309269622_ab3l';
 $db['default']['password'] = 'icejjfish';
 $db['default']['database'] = 'u309269622_v1';
