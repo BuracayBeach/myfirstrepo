@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('Unauthorized access.');
 
 /*
 	Author : Edzer Josh V. Padilla
@@ -19,10 +19,6 @@ class Update_book extends CI_Controller {
 	public function __construct()
 	{
 		parent :: __construct();
-		$this->load->library('firephp');
-
-		if(!isset($_SESSION))
-			session_start();
 	}
 
 

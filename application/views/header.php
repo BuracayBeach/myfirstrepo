@@ -196,8 +196,6 @@
 			}
 		</script>
 
-		<?php // include 'search_view.php'; ?>
-
 		<!---->
 		<!--<div class=""  id="results_per_page_div" hidden>-->
 		<!--  <form id="results_per_page_form">-->

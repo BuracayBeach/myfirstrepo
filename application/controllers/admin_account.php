@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('Unauthorized access.');
 
 class Admin_account extends CI_Controller {
 	
@@ -6,8 +6,6 @@ class Admin_account extends CI_Controller {
 		parent::__construct();
 		$this->load->model('admin_account_model');	
 		$this->load->library('safeguard');
-		if(!isset($_SESSION))
-			session_start();
 	}
 
 	public function index(){

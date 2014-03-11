@@ -149,24 +149,11 @@
 	$_SESSION['search_data']['autoSubmitSearch'] = 'false';
 ?>
 
-
 <script type="text/javascript" src= "<?php echo base_url()?>js/search/resultsPerPageManager.js"></script>
 <script type="text/javascript" src= "<?php echo base_url()?>js/search/searchByMenuToggle.js"></script>
-<script type="text/javascript" src= "<?php echo base_url()?>js/search/typeStatusDropDown.js"></script>
+<script type="text/javascript" src= "<?php echo base_url()?>js/search/typeStatusDropdown.js"></script>
 
-<script type="text/javascript" src= "<?php echo base_url()?>js/search/searchResults.js"></script>
+<script type="text/javascript" src= "<?php echo base_url()?>js/search/searchresults.js"></script>
 <script type="text/javascript" src= "<?php echo base_url()?>js/search/searchRedirection.js"></script>
 
-
 <div id="rightbody">
-
-
-
-
-
-
-
-
-
-
-

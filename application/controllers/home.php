@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+    <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Home extends CI_Controller {
 
@@ -30,6 +30,8 @@ class Home extends CI_Controller {
 
         $this->load->helper("form");
         $this->load->library('safeguard');
+        if(!isset($_SESSION))
+            session_start();
     }
 
     public function index(){
@@ -38,6 +40,7 @@ class Home extends CI_Controller {
         $this->load->view("header", $data); 
         $this->load->view("search_google_view"); 
         // $this->load->view("search_results_view");
+
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
 
         if ($is_admin){
@@ -98,6 +101,7 @@ class Home extends CI_Controller {
     }
 
     public function logs(){
+
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin){
             $data['title'] = "ComLib Logs";
@@ -134,6 +138,7 @@ class Home extends CI_Controller {
         $this->load->view("header", $data);
         $this->load->view("search_view");
         $this->load->view("search_results_view");
+
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin){
             $this->load->view('faq_manage_view', $data);
@@ -276,6 +281,7 @@ class Home extends CI_Controller {
     }
 
     public function update_account(){
+
         if(!isset($_SESSION['logged_in']) && $_SESSION['type'] != "regular")
             redirect(base_url());  
 
@@ -295,6 +301,7 @@ class Home extends CI_Controller {
     }
 
     public function update_admin(){
+
         if(!isset($_SESSION['admin_logged_in']) && $_SESSION['type'] != "admin")
             redirect(base_url()); 
 
@@ -321,6 +328,7 @@ class Home extends CI_Controller {
 
     public function create_admin()
     {
+
         if(isset($_SESSION['admin_username']) && $_SESSION['admin_username'] != "admin")
             redirect(base_url()); 
         
@@ -333,7 +341,8 @@ class Home extends CI_Controller {
 
     public function delete_admins()
     {
-         if(isset($_SESSION['admin_username']) && $_SESSION['admin_username'] != "admin")
+
+        if(isset($_SESSION['admin_username']) && $_SESSION['admin_username'] != "admin")
             redirect(base_url());
         
         $data['title'] = "ComLib Admin Delete";

@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('Unauthorized access.');
 
 class Notifs extends CI_Controller {
 
@@ -7,10 +7,6 @@ class Notifs extends CI_Controller {
 		date_default_timezone_set("Asia/Manila");
 		$this->load->model('notifs_model');
 		$this->load->helper('form');
-		$this->load->library('firephp');
-
-		if (!isset($_SESSION))
-			session_start();
 	}
 
 	public function index() {

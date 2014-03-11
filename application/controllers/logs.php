@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('Unauthorized access.');
 
 class Logs extends CI_Controller {
     function __construct(){
@@ -15,7 +15,6 @@ class Logs extends CI_Controller {
     }
 
     public function get_logs_view($from,$to){
-        session_start();
         if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
             $qdata['from'] = $from;
             $qdata['to'] = $to;
@@ -44,8 +43,6 @@ class Logs extends CI_Controller {
     }
 
     public function download($from,$to){
-
-        session_start();
 
         if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type'] == "admin"){
             $data['from'] = $from;
