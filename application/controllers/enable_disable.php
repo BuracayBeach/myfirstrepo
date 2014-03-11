@@ -91,7 +91,6 @@ class Enable_disable extends CI_Controller {
 		/*
 			activates a user account
 		*/
-        session_start();
 
 		$admin = $_SESSION['admin_username'];//hardcoded
 		$action = "activate";//hardcoded
@@ -111,7 +110,6 @@ class Enable_disable extends CI_Controller {
 		/*
 			enables a user account
 		*/
-        session_start();
 
         $admin = $_SESSION['admin_username'];//hardcoded
 		$action = "enable";//hardcoded
@@ -131,7 +129,6 @@ class Enable_disable extends CI_Controller {
 		/*
 			disables a user account
 		*/
-        session_start();
 
         $admin = $_SESSION['admin_username'];//hardcoded
 		$action = "disable";//hardcoded

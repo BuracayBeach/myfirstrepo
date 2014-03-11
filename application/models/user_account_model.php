@@ -31,7 +31,7 @@ class User_account_model extends CI_Model {
 
 		else {
 			$query_rows = $query->result();
-			
+            $data_exists_notif = '';
 			foreach($query_rows as $row){
 				if ($data['username'] == $row->username) $data_exists_notif .=  ' username';
 				if ($data['email'] == $row->email) $data_exists_notif .= ' email';

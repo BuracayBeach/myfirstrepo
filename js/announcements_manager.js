@@ -55,14 +55,13 @@ function fillEditAnnouncementForm(event){
             editForm.find('#edit_announcement_author').val(data.announcement_author);
             editForm.find('#edit_announcement_title').val(data.announcement_title);
             editForm.find('#edit_announcement_content').val(data.announcement_content);
+            $('#edit_announcement_container').slideToggle();
+            $('#edit_announcement_content').focus();
         }catch(e){
             console.log(e);
             console.log(data);
         }
     });
-
-    $('#edit_announcement_container').slideToggle();
-    $('#edit_announcement_content').focus();
 }
 
 function addAnnouncement(event){
