@@ -1,5 +1,3 @@
-<?php if(isset($_SESSION)) session_start(); ?>
-
 <style type="text/css">
 	div#wrapper_admin {
 	    width: 1024px;

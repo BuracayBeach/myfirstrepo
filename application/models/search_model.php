@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('Unauthorized access.');
 
 class Search_model extends CI_Model {
 
@@ -20,7 +20,6 @@ class Search_model extends CI_Model {
     function __construct(){
         parent::__construct();
         $this->load->database();
-        
     }
     
     function get_inputs(&$input){
@@ -453,11 +452,5 @@ class Search_model extends CI_Model {
         return $sorted_table;
     }
 }
-
-
-
-
-
-
 /* End of file search_model.php */
 /* Location: ./application/controllers/search_model.php */

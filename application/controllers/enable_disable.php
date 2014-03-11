@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('Unauthorized access.');
 /*
 	Author: Billy Joel Arlo T. Zarate
 	File Description : This document is the controller of the search module for user accounts

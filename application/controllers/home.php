@@ -1,4 +1,4 @@
-    <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+    <?php if ( ! defined('BASEPATH')) exit('Unauthorized access.');
 
 class Home extends CI_Controller {
 
@@ -30,6 +30,8 @@ class Home extends CI_Controller {
 
         $this->load->helper("form");
         $this->load->library('safeguard');
+        if(!isset($_SESSION))
+            session_start();
     }
 
     public function index(){
@@ -38,7 +40,6 @@ class Home extends CI_Controller {
         $this->load->view("header", $data); 
         $this->load->view("search_google_view"); 
         // $this->load->view("search_results_view");
-        session_start();
 
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
 
@@ -60,7 +61,6 @@ class Home extends CI_Controller {
         $data['page'] = 'index';
         $this->load->view("header", $data);
         $this->load->view("search_view");
-        session_start();
 
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin){
@@ -101,7 +101,6 @@ class Home extends CI_Controller {
     }
 
     public function logs(){
-        session_start();
 
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin){
@@ -123,7 +122,6 @@ class Home extends CI_Controller {
         $this->load->view("header", $data);
         $this->load->view("search_view");
         $this->load->view("about_us_view", $data);
-        session_start();
 
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
             $data['notifs'] = $this->notifs_model->get_all($_SESSION['username'], 0);
@@ -140,7 +138,6 @@ class Home extends CI_Controller {
         $this->load->view("header", $data);
         $this->load->view("search_view");
         $this->load->view("search_results_view");
-        session_start();
 
         $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
         if ($is_admin){
@@ -224,7 +221,6 @@ class Home extends CI_Controller {
         $data['title'] = "ComLib My Lib";
         $this->load->view("header", $data);
         $this->load->view("search_view");
-        session_start();
 
         if(!isset($_SESSION['logged_in']) && $_SESSION['type'] != "regular")
             redirect(base_url());
@@ -254,7 +250,6 @@ class Home extends CI_Controller {
 
         $this->load->view("help_view",$data);
         $this->load->view("search_results_view",$data);
-        session_start();
 
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
             $data['notifs'] = $this->notifs_model->get_all($_SESSION['username'], 0);
@@ -276,7 +271,6 @@ class Home extends CI_Controller {
     }
 
     public function create_account(){
-        session_start();
 
         if(isset($_SESSION['logged_in']) && $_SESSION['type'] == "regular")
             redirect(base_url());
@@ -288,7 +282,6 @@ class Home extends CI_Controller {
     }
 
     public function update_account(){
-        session_start();
 
         if(!isset($_SESSION['logged_in']) && $_SESSION['type'] != "regular")
             redirect(base_url());  
@@ -309,7 +302,6 @@ class Home extends CI_Controller {
     }
 
     public function update_admin(){
-        session_start();
 
         if(!isset($_SESSION['admin_logged_in']) && $_SESSION['type'] != "admin")
             redirect(base_url()); 
@@ -337,7 +329,6 @@ class Home extends CI_Controller {
 
     public function create_admin()
     {
-        session_start();
 
         if(isset($_SESSION['admin_username']) && $_SESSION['admin_username'] != "admin")
             redirect(base_url()); 
@@ -351,7 +342,6 @@ class Home extends CI_Controller {
 
     public function delete_admins()
     {
-        session_start();
 
         if(isset($_SESSION['admin_username']) && $_SESSION['admin_username'] != "admin")
             redirect(base_url());

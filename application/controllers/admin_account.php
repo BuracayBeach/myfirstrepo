@@ -1,6 +1,4 @@
-<?php if(isset($_SESSION)) session_start(); ?>
-
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('Unauthorized access.');
 
 class Admin_account extends CI_Controller {
 	
