@@ -7,7 +7,7 @@ $("div#navbar").on("click", function() {
 	$.get();
 
 	audioElement.addEventListener("load", function() {
-	    audioElement.Play();
+	    audioElement.play();
 	}, true);
-	audioElement.Play();
+	audioElement.play();
 });

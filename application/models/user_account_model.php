@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('Unauthorized access.');
 
 class User_account_model extends CI_Model {
 	function __construct(){

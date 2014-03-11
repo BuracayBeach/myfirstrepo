@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('Unauthorized access.');
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING
@@ -39,7 +39,7 @@
 */
 
 $route['default_controller'] = "home"; // change this
-$route['404_override'] = 'home';
+$route['404_override'] = 'error404';
 /* append this if a function accepts parameters from URI: (/(:any)*)*
     ie. ( homie|about_us|(foo(/(:any)*)*) )
 */

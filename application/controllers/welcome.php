@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('Unauthorized access.');
 
 class Welcome extends CI_Controller {
 
@@ -21,6 +21,7 @@ class Welcome extends CI_Controller {
         parent::__construct();
 
         $this->load->model('book_model');
+        $this->load->library('firephp');
     }
     public function index()
     {

@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('Unauthorized access.');
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/myfirstrepo/';
+$config['base_url']	= 'http://icslibuplb.url.ph/';
 
 /*
 |--------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('Unauthorized access.');
 /*
 	Author: Billy Joel Arlo T. Zarate
 	File Description : A model used to handle database transactions for activating,enabling and disabling users

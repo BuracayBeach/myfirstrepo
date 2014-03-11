@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('Unauthorized access.');
 
 class Reserve extends CI_Controller {
 
@@ -7,9 +7,6 @@ class Reserve extends CI_Controller {
 		$this->load->model('reserve_model');
 		$this->load->library('firephp');
 		date_default_timezone_set("Asia/Manila");
-
-		if (!isset($_SESSION))
-			session_start();
 	}
 
 	public function remove() {
