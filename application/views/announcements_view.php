@@ -1,6 +1,6 @@
 <?php $is_admin = isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type']=='admin'; ?>
 
-<div id="announcements_container" class="<?php  if($is_admin) echo 'admin'; else echo 'notAdmin';?>">
+<div id="announcements_container" style="display: none;" class="<?php  if($is_admin) echo 'admin'; else echo 'notAdmin';?>">
     <div id="announcement_carousel" class="carousel slide <?php if(!$is_admin) echo 'hideable'; ?>" data-ride="carousel">
        
         <!-- Carousel items -->

@@ -1,5 +1,3 @@
-var tableHTML = '<table  id="announcements_table" class="small-6"></table>';
-
 function generateAnnouncementsTable(isAdmin){
     $.post("index.php/announcement/get_all_announcements",function(data){
         try{
@@ -61,8 +59,6 @@ function generateAnnouncementRow(data,isAdmin){
 
 $('announcement_manage_container').ready(function(){
     var isAdmin = $('#announcement_manage_container').length == 1;
-    $('#announcements_container').hide();
     generateAnnouncementsTable(isAdmin);
     $('#announcements_container').fadeIn();
-
 });
