@@ -19,8 +19,13 @@
             </form>
         </div>
     </div>
-	<div id='result_container'>
 
+    <div id="loading" style="display:none">
+        <img src="<?php echo base_url();?>images/loadingchibi.gif" />
+    </div>
+
+	<div id='result_container'>
+        
 	</div>
 <?php
     if (!$logged_in || $regular){
