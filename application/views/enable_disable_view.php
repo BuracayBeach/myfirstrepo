@@ -34,6 +34,3 @@
 		<!-- end edit -->
 		<script type = "text/javascript" src = "<?php echo base_url() ?>js/search_user_manager.js"></script>
 		<script type = "text/javascript" src = "<?php echo base_url() ?>js/account_status_manager.js"></script>
-		
-
-<?php //end of file enable_disable_view ?>

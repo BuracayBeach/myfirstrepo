@@ -14,7 +14,6 @@ class Enable_disable extends CI_Controller {
 		/* start edit by Carl Adrian P. Castueras */
 
 		//restricts this page to admin access
-        session_start();
 
         if(!isset($_SESSION['type']) || $_SESSION['type'] != 'admin')
 		{
