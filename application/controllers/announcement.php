@@ -6,7 +6,7 @@ class Announcement extends CI_Controller {
         parent::__construct();
         $this->load->model('announcement_model');
         $this->load->library('safeguard');
-        // $this->load->helper('url');
+
     }
 
     public function add(){

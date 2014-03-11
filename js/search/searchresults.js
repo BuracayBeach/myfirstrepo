@@ -30,8 +30,12 @@
 				$(document).ready(function() {
 					$('#search_form').unbind('submit').submit(ajax_results); //prevent form from submitting/refreshing
 				    var lastRequest, lastSessionSave, lastAutoSearchUnset;
+
+
 					function ajax_results(event){
 						
+
+                        $('.hideable').fadeOut(500);
 						event.preventDefault();
 						//get inputs
 						var searchForm = $('#search_form')
@@ -60,7 +64,14 @@
 						if (currentPath != searchPath) my_input += "&autoSubmitSearch=true&searchFromOtherPage=true"
 						else my_input += "&autoSubmitSearch=false&searchFromOtherPage=false"
 
-						if (lastSessionSave && lastSessionSave.readyState != 4) lastSessionSave.abort();
+						if (lastSessionSave && lastSessionSave.readyState != 4){ 
+							lastSessionSave.abort();
+
+						}else{
+							//alert("first instance");
+						    $("#loading").fadeIn(500);
+						}
+
 						lastSessionSave = $.ajax({
 							type: "post",
 							data: my_input, 
@@ -93,7 +104,6 @@
 				                            //assume rows are appended already
 				                            // summarize(searchText);
 
-				                            $('.hideable').hide();
 										},
 										fail: function(){
 											alert("Search Failed");
@@ -102,11 +112,20 @@
 						 			});
 
 
+									//alert("end of instance");
+							    	$("#loading").fadeOut(500, function(){
+										$('.logo_main').fadeOut();
+								    });
+
+							    	$('#results_per_page_div').fadeIn(500);
 									$('#search').removeClass('home');
-									$('.logo_main').hide();
-									$('#results_per_page_div').show();
+									
+
 								}
 							}
+						}).fail(function(){
+							//alert("Failed to save search data")
+						})
 						});
 						
 						return false;

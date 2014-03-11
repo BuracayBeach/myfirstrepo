@@ -25,8 +25,14 @@ class Book extends CI_Controller {
         $this->load->model('favorite_model');
         $this->load->model('reserve_model');
         $this->load->model('lend_model');
-        // $this->load->helper('url');
+
         $this->load->library('safeguard');
+
+
+        if (!isset($_SESSION))
+            session_start();
+
+        $this->load->library('firephp');
 
     }
 
@@ -156,6 +162,7 @@ class Book extends CI_Controller {
         if (isset($_POST['page'])) $details['page'] = $_POST['page'];
         if (isset($_POST['rows_per_page'])) $details['rows_per_page'] = $_POST['rows_per_page'];
         // if ($details['search_by'] == 'date_published') $details['spell_check'] = false;
+
 
         //construct query and get the array of rows from database
         $table = $this->search_model->query_result($details);
