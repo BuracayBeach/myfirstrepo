@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/myfirstrepo/';
+$config['base_url']	= 'http://icslibuplb.url.ph/';
 
 /*
 |--------------------------------------------------------------------------
