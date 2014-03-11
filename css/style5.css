@@ -960,3 +960,24 @@ OVERALLS
     height: 100%;
     margin-top: 10px;
 }
+
+
+/*-------------------------------
+
+LOADING
+
+-------------------------------*/
+
+#loading{
+    width:50%;
+    height: 250px;
+    position: relative;
+    float: left;
+    margin-left: 25%;
+    padding-top: 50px;
+}
+
+#loading img{
+    max-width: 100%;
+    max-height: 100%;
+}

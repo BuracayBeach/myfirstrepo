@@ -40,8 +40,12 @@
 
     var p_lastRequest;
     function ajax_results(search_by, page, results_per_page){
-        if (p_lastRequest) if (p_lastRequest.readyState != 4) p_lastRequest.abort();
+        if (p_lastRequest) if (p_lastRequest.readyState != 4){ p_lastRequest.abort();
 
+        }else{
+            $("#loading").fadeIn(500);
+
+        }
         my_input = $('#search_form').serialize();
         my_input += "&page=" + page;
         my_input += "&rows_per_page=" + results_per_page;
@@ -55,6 +59,10 @@
             url: icejjfish + "index.php/book/search",
             success: function(data, jqxhr, status){
                 $("#result_container").html(data);
+                
+                $("#loading").fadeOut(500, function(){
+                    $('.logo_main').fadeOut();
+                });
             }
 
         });
