@@ -107,9 +107,7 @@
 									$('#results_per_page_div').show();
 								}
 							}
-						}).fail(function(){
-							alert("Failed to save search data")
-						})
+						});
 						
 						return false;
 

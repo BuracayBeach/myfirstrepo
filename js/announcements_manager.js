@@ -40,7 +40,7 @@ function showAddAnnouncementForm(event){
 function fillEditAnnouncementForm(event){
     event.preventDefault();
     $('#add_announcement_container').hide();
-    $('#edit_announcement_cancel_button').click();
+    $('#edit_announcement_container').hide();
     $('#material_cancel_button').click();
 
     //this = edit button
@@ -55,7 +55,8 @@ function fillEditAnnouncementForm(event){
             editForm.find('#edit_announcement_author').val(data.announcement_author);
             editForm.find('#edit_announcement_title').val(data.announcement_title);
             editForm.find('#edit_announcement_content').val(data.announcement_content);
-            $('#edit_announcement_container').slideToggle();
+
+            $('#edit_announcement_container').slideDown();
             $('#edit_announcement_content').focus();
         }catch(e){
             console.log(e);
