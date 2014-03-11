@@ -261,7 +261,9 @@ class Home extends CI_Controller {
     }
 
     public function create_admin_account(){
-        if(isset($_SESSION['logged_in']) && $_SESSION['type'] != "admin")
+
+//        if(isset($_SESSION['logged_in']) && $_SESSION['type'] != "admin")
+        if(!(isset($_SESSION) && isset($_SESSION['admin_logged_in'])))
             redirect(base_url());
 
         $data['title'] = "ComLib Admin Create";
@@ -271,7 +273,7 @@ class Home extends CI_Controller {
     }
 
     public function create_account(){
-        if(isset($_SESSION['logged_in']) && $_SESSION['type'] == "regular")
+        if(isset($_SESSION) && isset($_SESSION['logged_in']) && $_SESSION['logged_in'])
             redirect(base_url());
 
         $data['title'] = "ComLib Sign Up";
@@ -281,8 +283,7 @@ class Home extends CI_Controller {
     }
 
     public function update_account(){
-
-        if(!isset($_SESSION['logged_in']) && $_SESSION['type'] != "regular")
+        if(!(isset($_SESSION) && isset($_SESSION['logged_in'])))
             redirect(base_url());  
 
         $data['title'] = "ComLib Update";
@@ -301,8 +302,7 @@ class Home extends CI_Controller {
     }
 
     public function update_admin(){
-
-        if(!isset($_SESSION['admin_logged_in']) && $_SESSION['type'] != "admin")
+        if(!(isset($_SESSION) && isset($_SESSION['admin_logged_in'])))
             redirect(base_url()); 
 
         $data['title'] = "ComLib Update";
@@ -328,8 +328,8 @@ class Home extends CI_Controller {
 
     public function create_admin()
     {
-
-        if(isset($_SESSION['admin_username']) && $_SESSION['admin_username'] != "admin")
+        if(!(isset($_SESSION) && isset($_SESSION['admin_logged_in'])
+            && $_SESSION['admin_username'] == "admin"))
             redirect(base_url()); 
         
         $data['title'] = "ComLib Admin Create";
@@ -341,8 +341,8 @@ class Home extends CI_Controller {
 
     public function delete_admins()
     {
-
-        if(isset($_SESSION['admin_username']) && $_SESSION['admin_username'] != "admin")
+        if(!(isset($_SESSION) && isset($_SESSION['admin_logged_in'])
+            && $_SESSION['admin_username'] == "admin"))
             redirect(base_url());
         
         $data['title'] = "ComLib Admin Delete";

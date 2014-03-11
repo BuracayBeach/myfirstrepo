@@ -96,7 +96,7 @@
 		if(isset($_SESSION['admin_login_notif']) && $_SESSION['admin_login_notif'] == "not_exists")
 			echo "<script> alert('Username does not exist!') </script>";
 
-	unset($_SESSION['admin_login_notif']);		elseif(isset($_SESSION['admin_login_notif']) && $_SESSION['admin_login_notif'] == "wrong_pwd")
+        elseif(isset($_SESSION['admin_login_notif']) && $_SESSION['admin_login_notif'] == "wrong_pwd")
 			echo "<script> alert('Wrong password!') </script>";
 
 		unset($_SESSION['admin_login_notif']);
