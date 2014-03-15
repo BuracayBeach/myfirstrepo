@@ -11,15 +11,26 @@ class Safeguard {
         }
         return $data;
     }
-    public function query_result_ready_for_display($data){
-        foreach($data as &$row){
-            foreach($row as &$cell){
-                if(is_array($cell)){
-                    $cell = $this->str_array_ready_for_display($cell);
-                }else
-                $cell = htmlspecialchars(stripslashes(trim($cell)));
+    public function query_result_ready_for_display($data){ //compatible with array of objects or array of arrays
+        if($data != null && !empty($data)){
+            foreach($data as &$row){
+                $was_object = false;
+                if(is_object($row)){
+                    $was_object = true;
+                    $row = json_decode(json_encode($row),true);
+                }
+                foreach($row as &$cell){
+                    if(is_array($cell)){
+                        $cell = $this->str_array_ready_for_display($cell);
+                    }else
+                        $cell = htmlspecialchars(stripslashes(trim($cell)));
+                }
+                if($was_object){
+                    $row = json_decode(json_encode($row));
+                }
             }
         }
+
         return $data;
     }
     public function str_array_ready_for_display($data){

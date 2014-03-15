@@ -69,9 +69,32 @@ $this->load->view('reserves_view', $data);
 
 		<script type="text/javascript">
 
-			$(document).ready(function(){function e(){$(function(){var e=new freewall(".my_library_container");e.reset({selector:".item",animate:false,cellW:320,cellH:230,delay:50,onResize:function(){e.fitWidth()}});e.fitWidth()})}$("#reserves_container").on("click",".reserve_button",function(){var t=new Array;t[0]=$(this).attr("book_no");var n="reserve";var r="remove";$.ajax({url:icejjfish+"index.php/"+n+"/"+r,data:{arr:t},type:"POST",dataType:"html",async:true,success:function(e){}});brick=this.parentNode.parentNode;$(brick).remove();e()});e()})
+            $(document).ready(function () {
+                function e() {
+                    $(function () {
+                        var e = new freewall(".my_library_container");
+                        e.reset({selector: ".item", animate: false, cellW: 320, cellH: 230, delay: 50, onResize: function () {
+                            e.fitWidth()
+                        }});
+                        e.fitWidth()
+                    })
+                }
 
-		</script>
+                $("#reserves_container").on("click", ".reserve_button", function () {
+                    var t = new Array;
+                    t[0] = $(this).attr("book_no");
+                    var n = "reserve";
+                    var r = "remove";
+                    $.ajax({url: icejjfish + "index.php/" + n + "/" + r, data: {arr: t}, type: "POST", dataType: "html", async: true, success: function (e) {
+                    }});
+                    brick = this.parentNode.parentNode;
+                    $(brick).remove();
+                    e()
+                });
+                e()
+            })
+
+        </script>
 
 	</div>
 </div>

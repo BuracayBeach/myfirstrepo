@@ -98,13 +98,14 @@
 				                            var book_tab = $('[data-toggle="tab"]')
 				                            if (book_tab.length != 0) {
 				                            	book_tab[0].click();
+                                                setReadMores($('#result_container'));
 				                            }
 				                            //assume rows are appended already
 				                            // summarize(searchText);
 
 										},
 										fail: function(){
-											alert("Search Failed");
+									 		alert("Search Failed");
 										}
 
 						 			});

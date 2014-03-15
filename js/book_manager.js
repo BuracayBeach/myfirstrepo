@@ -269,6 +269,8 @@ function editBook(){
                     var rowToUpdate = editedRow;
 
                     rowToUpdate.replaceWith(data);
+
+                    setReadMores($(document));
                 });
                 editForm.closest('div').fadeOut();
             }else{

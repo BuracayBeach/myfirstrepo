@@ -90,7 +90,7 @@
 					if(isset($_SESSION) && isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
 						echo 
 							"<div class='btn-group  dropdown-hover'>
-								<a href='' class='' data-toggle='dropdown'>
+								<a href='javascript:void(0);' class='' data-toggle='dropdown'>
 									<div class='menulinks ";
 
 									if(isset($title) && $title == 'ComLib My Lib') echo 'menulinks-active';

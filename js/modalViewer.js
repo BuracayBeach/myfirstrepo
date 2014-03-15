@@ -66,9 +66,10 @@ function getRowInfo($row){
         otherDetails.push([detailName,detailContent]);
     });
 
+
     return {
         "callNo" : $row.find('[book_data="book_no"]').text() ,
-        "title" : $row.find('[book_data="book_title"]').text(),
+        "title" : $row.find('[book_data="book_title"]').html(),
         "type" : $row.find('[book_data="book_type"]').text(),
         "abstract" : $row.find('[book_data="abstract"]').text(),
         "author" : $row.find('[book_data="author"]').text(),
