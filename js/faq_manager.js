@@ -105,7 +105,6 @@ function deleteFaq(event){
     var confirmed = confirm('Confirm deleting this FAQ');
     if(confirmed){
         var faq_id = $(this).closest("tr").attr('faq_id');
-        console.log(faq_id);
         $.post("index.php/faq/delete",{'id':faq_id},function(){
             $("tr[faq_id='"+faq_id+"']").remove();
         })
@@ -142,7 +141,6 @@ function addFAQ(event){
     var addFaqForm = this;
     $.post("index.php/faq/add", data ,function(data){
         data = JSON.parse(data);
-        console.log(data);
         var rowHTML = generateFaqRow(data,true);
 
         $('#faq_table').find('tbody tr:first-child').after(rowHTML);

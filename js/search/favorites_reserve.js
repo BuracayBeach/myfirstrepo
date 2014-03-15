@@ -18,6 +18,8 @@ $(document).ready(function(){
         else if (action_type == "unreserve")
             controller = "reserve";
 
+        if (action_type == "BORROWED")
+            return;
 
         $.ajax({
             url : icejjfish + "index.php/" + controller + "/" + method,

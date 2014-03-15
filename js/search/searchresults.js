@@ -31,7 +31,7 @@
 
 
 					function ajax_results(event){
-						
+
 
                         $('.hideable').fadeOut(500);
 						event.preventDefault();

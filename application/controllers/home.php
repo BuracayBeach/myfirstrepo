@@ -89,7 +89,7 @@ class Home extends CI_Controller {
 
             if ($autoSubmitSearch != 'true') $this->load->view("announcements_view");
             if ($autoSubmitSearch != 'true') $this->load->view("home_contents_view");
-            if ($autoSubmitSearch != 'true') $this->load->view('notifications_view', $data);
+            $this->load->view('notifications_view', $data);
         }
 
         if(!isset($_SESSION['type'])){
@@ -103,9 +103,9 @@ class Home extends CI_Controller {
     }
 
     public function logs(){
+        if(!(isset($_SESSION) && isset($_SESSION['admin_logged_in'])))
+            redirect(base_url());
 
-        $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
-        if ($is_admin){
             $data['title'] = "ComLib Logs";
             $data['page'] = 'index';
             $this->load->view("header", $data);
@@ -113,10 +113,6 @@ class Home extends CI_Controller {
 
             $this->load->view('logs_view');
             $this->load->view("footer");
-        }else{
-            redirect(base_url());
-        }
-
     }
 
     public function about_us(){
@@ -169,7 +165,10 @@ class Home extends CI_Controller {
 
         else{
             $data['borrowed'] = $this->lend_model->get($_SESSION['username']);
+            $data['borrowed'] = $this->safeguard->query_result_ready_for_display($data['borrowed']);
             $unreturned = $this->notifs_model->get_unreturned_by_user($_SESSION['username']);
+            $unreturned = $this->safeguard->query_result_ready_for_display($unreturned);
+
 
             if ($unreturned != "") {
 
@@ -206,8 +205,12 @@ class Home extends CI_Controller {
 
         else {
             $data['favorites'] = $this->favorite_model->get_all($_SESSION['username']);
+            $data['favorites'] = $this->safeguard->query_result_ready_for_display($data['favorites']);
             $data['reserve_user'] = $this->reserve_model->get($_SESSION['username']);
+            $data['reserve_user'] = $this->safeguard->query_result_ready_for_display($data['reserve_user']);
             $data['lend_user'] = $this->lend_model->get($_SESSION['username']);
+            $data['lend_user'] = $this->safeguard->query_result_ready_for_display($data['lend_user']);
+
 
             $this->load->view('favorites_view', $data);
         }
@@ -234,6 +237,7 @@ class Home extends CI_Controller {
         else{
             $data['book'] = $this->reserve_model->check_book_ranks();
             $data['reserves'] = $this->reserve_model->get($_SESSION['username']);
+            $data['reserves'] = $this->safeguard->query_result_ready_for_display($data['reserves']);
             $this->load->view('reserves_view', $data);
         }
 
@@ -269,10 +273,9 @@ class Home extends CI_Controller {
     }
 
     public function create_admin_account(){
-
-//        if(isset($_SESSION['logged_in']) && $_SESSION['type'] != "admin")
         if(!(isset($_SESSION) && isset($_SESSION['admin_logged_in'])))
             redirect(base_url());
+//        if(isset($_SESSION['logged_in']) && $_SESSION['type'] != "admin")
 
         $data['title'] = "ComLib Admin Create";
         $this->load->view("header", $data);
@@ -324,6 +327,9 @@ class Home extends CI_Controller {
     }
 
     public function accounts(){
+        if(!(isset($_SESSION) && isset($_SESSION['admin_logged_in'])))
+            redirect(base_url());
+
         $data['title'] = "ComLib Accounts";
         $this->load->view("header", $data);
         $this->load->view("search_view");

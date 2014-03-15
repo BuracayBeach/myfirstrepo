@@ -25,7 +25,6 @@ function scrollToTarget(){
     //this  = anchor
     var $target = $($(this).attr('href'));
 
-    console.log($target);
     $('html,body').animate({
         scrollTop: $target.offset().top - 90
     });

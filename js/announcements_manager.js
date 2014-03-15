@@ -59,8 +59,7 @@ function fillEditAnnouncementForm(event){
             $('#edit_announcement_container').slideDown();
             $('#edit_announcement_content').focus();
         }catch(e){
-            console.log(e);
-            console.log(data);
+            alert('Failed getting book data. Please try again.');
         }
     });
 }
@@ -75,8 +74,7 @@ function addAnnouncement(event){
             $('#announcement_carousel').carousel($('.carousel-inner .item').length - 1);
             $('[data-toggle="tab"]')[2].click();
         }catch(e){
-            console.log(e);
-            console.log(data);
+            alert('Failed to add announcement. Please try again.')
         }
     });
 
@@ -94,13 +92,11 @@ function editAnnouncement(event){
 
             //container = announcement container
             var container = $('.carousel-inner').find('.item > div[announcement_id="'+data.announcement_id+'"]');
-            console.log(container);
             container.find('.announcement_title').text(data.announcement_title);
             container.find('.announcement_content').text(data.announcement_content);
             $('[data-toggle="tab"]')[2].click();
         }catch(e){
-            console.log(e);
-            console.log(data);
+            alert('Failed to edit announcement. Please try again.')
         }
     });
 
@@ -120,7 +116,6 @@ function deleteAnnouncement(event){
             var siblings = item.siblings();
             $(siblings[0]).addClass('active');
             var indicator = $($('.carousel-indicators li')[item.index()]);
-            console.log("index:"+item.index()+" "+indicator.siblings());
             $(indicator.siblings()[0]).addClass('active');
             indicator.remove();
             item.remove();

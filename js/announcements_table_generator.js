@@ -8,7 +8,7 @@ function generateAnnouncementsTable(isAdmin){
                 generateAnnouncementRow(entry,isAdmin);
             });
         }catch(e){
-            console.log("cannot parse data: ");
+            console.log("Failed generating table");
             //console.log(data);
         }
     });

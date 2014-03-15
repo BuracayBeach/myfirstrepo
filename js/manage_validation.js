@@ -89,8 +89,6 @@ function validateType(type){
     type = type.trim();
 
     if(type.length > 20){
-        console.log(type);
-        console.log(type.length);
         return '- Type too long: limit it to 20 characters<br/>';
     }else{
         return '';
