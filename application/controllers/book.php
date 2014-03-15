@@ -156,7 +156,7 @@ class Book extends CI_Controller {
             'tag_search'      => $input['tag_search'],
             'spell_check'   => true
         );
-        // var_dump($details['tag_search']);
+        // var_dump($details);
         if (isset($_POST['page'])) $details['page'] = $_POST['page'];
         if (isset($_POST['rows_per_page'])) $details['rows_per_page'] = $_POST['rows_per_page'];
         // if ($details['search_by'] == 'date_published') $details['spell_check'] = false;

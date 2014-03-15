@@ -3,7 +3,9 @@
         <?php //pagination
             if (isset($page)){
                 $page_scale = 10;
-                $p_search_term = stripslashes($search_term);
+                $temp = str_replace('\'', '&#39', stripcslashes($search_term));
+                
+                $p_search_term = $temp;
                echo "<div id='pagination";
                if (isset($pagination2)) echo "2";
                echo"' page='{$page}' maxpage='{$maxpage}' rowsperpage='{$rows_per_page}' searchterm= '{$p_search_term}' searchby='{$search_by}'>";

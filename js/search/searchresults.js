@@ -1,10 +1,8 @@
 
 
 				function research(){
-					var newSearch = $(this).html();
+					var newSearch = $(this).text();
 					if (newSearch){
-						newSearch = newSearch.replace(/<strong>/g,"");
-						newSearch = newSearch.replace(/<\/strong>/g,"");
 						var searchText = $('#search_text');
 						
 						if ($(this).attr('class') == 'tag_link') searchText.attr('tagSearch',$(this).text())
