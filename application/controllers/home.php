@@ -89,7 +89,7 @@ class Home extends CI_Controller {
 
             if ($autoSubmitSearch != 'true') $this->load->view("announcements_view");
             if ($autoSubmitSearch != 'true') $this->load->view("home_contents_view");
-            if ($autoSubmitSearch != 'true') $this->load->view('notifications_view', $data);
+            $this->load->view('notifications_view', $data);
         }
 
         if(!isset($_SESSION['type'])){
@@ -169,7 +169,10 @@ class Home extends CI_Controller {
 
         else{
             $data['borrowed'] = $this->lend_model->get($_SESSION['username']);
+            $data['borrowed'] = $this->safeguard->query_result_ready_for_display($data['borrowed']);
             $unreturned = $this->notifs_model->get_unreturned_by_user($_SESSION['username']);
+            $unreturned = $this->safeguard->query_result_ready_for_display($unreturned);
+
 
             if ($unreturned != "") {
 
@@ -206,8 +209,12 @@ class Home extends CI_Controller {
 
         else {
             $data['favorites'] = $this->favorite_model->get_all($_SESSION['username']);
+            $data['favorites'] = $this->safeguard->query_result_ready_for_display($data['favorites']);
             $data['reserve_user'] = $this->reserve_model->get($_SESSION['username']);
+            $data['reserve_user'] = $this->safeguard->query_result_ready_for_display($data['reserve_user']);
             $data['lend_user'] = $this->lend_model->get($_SESSION['username']);
+            $data['lend_user'] = $this->safeguard->query_result_ready_for_display($data['lend_user']);
+
 
             $this->load->view('favorites_view', $data);
         }
@@ -234,6 +241,7 @@ class Home extends CI_Controller {
         else{
             $data['book'] = $this->reserve_model->check_book_ranks();
             $data['reserves'] = $this->reserve_model->get($_SESSION['username']);
+            $data['reserves'] = $this->safeguard->query_result_ready_for_display($data['reserves']);
             $this->load->view('reserves_view', $data);
         }
 
