@@ -69,32 +69,52 @@ $this->load->view('reserves_view', $data);
 
 		<script type="text/javascript">
 
-            $(document).ready(function () {
-                function e() {
-                    $(function () {
-                        var e = new freewall(".my_library_container");
-                        e.reset({selector: ".item", animate: false, cellW: 320, cellH: 230, delay: 50, onResize: function () {
-                            e.fitWidth()
-                        }});
-                        e.fitWidth()
-                    })
-                }
+			$(document).ready(function() {
+				$("#reserves_container").on("click", ".reserve_button", function() {
 
-                $("#reserves_container").on("click", ".reserve_button", function () {
-                    var t = new Array;
-                    t[0] = $(this).attr("book_no");
-                    var n = "reserve";
-                    var r = "remove";
-                    $.ajax({url: icejjfish + "index.php/" + n + "/" + r, data: {arr: t}, type: "POST", dataType: "html", async: true, success: function (e) {
-                    }});
-                    brick = this.parentNode.parentNode;
-                    $(brick).remove();
-                    e()
-                });
-                e()
-            })
+					var info = new Array();
+					info[0] = $(this).attr('book_no');
 
-        </script>
+					var controller = "reserve";
+					var method = "remove";
+
+					$.ajax({
+						url : icejjfish + "index.php/" + controller + "/" + method,
+						data : { arr : info },
+						type : 'POST',
+						dataType : "html",
+						async : true,
+						success: function(data) {
+						}
+					});
+
+					brick = this.parentNode.parentNode;
+					$(brick).remove();
+					generateWall();
+					
+				});
+
+				generateWall();
+
+				function generateWall() {
+					$(function() {  
+						var wall = new freewall(".my_library_container");
+						wall.reset({
+							selector: '.item',
+							animate: false,
+							cellW: 320,
+							cellH: 230,
+							delay: 50,
+							onResize: function() {
+								wall.fitWidth();
+							}
+						});
+						wall.fitWidth();
+					});  
+				}
+			});
+			
+		</script>
 
 	</div>
 </div>

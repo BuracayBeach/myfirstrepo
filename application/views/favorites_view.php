@@ -67,6 +67,72 @@ $this->load->view('favorites_view', $data);
 
 <script type="text/javascript">
 
-	$(document).ready(function(){function e(){$(function(){var e=new freewall(".my_library_container");e.reset({selector:".item",animate:false,cellW:320,cellH:230,delay:50,onResize:function(){e.fitWidth()}});e.fitWidth()})}e();$("#favorites_container").on("click",".action_button",function(){var t=new Array;t[0]=$(this).attr("book_no");var n=$(this).text();if(n=="unfavorite"||n=="unreserve")var r="remove";else if(n=="reserve")var r="add";if(n=="unfavorite")controller="favorite";else if(n=="unreserve"||n=="reserve")controller="reserve";if(n=="BORROWED")return;$.ajax({url:icejjfish+"index.php/"+controller+"/"+r,data:{arr:t},type:"POST",dataType:"html",async:true,success:function(e){}});if(n=="unfavorite"){brick=this.parentNode.parentNode;$(brick).remove();e()}else if(n=="unreserve"){$(this).html("reserve");$(this).toggleClass("btn_enabled btn_untoggle")}else if(n=="reserve"){$(this).html("unreserve");$(this).toggleClass("btn_enabled btn_untoggle")}})})
+	$(document).ready(function() {
+
+		generateWall();
+
+		$("#favorites_container").on("click", ".action_button", function() {
+
+			var info = new Array();
+			info[0] = $(this).attr('book_no');
+
+			var action_type = $(this).text();
+
+			if (action_type == "unfavorite" || action_type == "unreserve")
+				var method = "remove"; 
+			else if (action_type == "reserve")
+				var method = "add";
+
+			if (action_type == "unfavorite")
+				controller = "favorite";
+			else if (action_type == "unreserve" || action_type == "reserve")
+				controller = "reserve";
+
+        	if (action_type == "BORROWED")
+            	return;
+
+			$.ajax({
+				url : icejjfish + "index.php/" + controller + "/" + method,
+				data : { arr : info },
+				type : 'POST',
+				dataType : "html",
+				async : true,
+				success: function(data) {
+				}
+			});
+
+			if (action_type == "unfavorite") {
+				brick = this.parentNode.parentNode;
+				$(brick).remove();
+				generateWall();
+			}
+			else if (action_type == "unreserve") {
+				$(this).html("reserve")
+				$(this).toggleClass('btn_enabled btn_untoggle');
+			}
+			else if (action_type == "reserve") {
+				$(this).html("unreserve")
+				$(this).toggleClass('btn_enabled btn_untoggle');
+			}
+		});
+
+		function generateWall() {
+			$(function() {  
+				var wall = new freewall(".my_library_container");
+				wall.reset({
+					selector: '.item',
+					animate: false,
+					cellW: 320,
+					cellH: 230,
+					delay: 50,
+					onResize: function() {
+						wall.fitWidth();
+					}
+				});
+				wall.fitWidth();
+			});  
+		}
+		
+	});
 
 </script>
