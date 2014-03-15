@@ -32,8 +32,6 @@ class Book extends CI_Controller {
         if (!isset($_SESSION))
             session_start();
 
-        $this->load->library('firephp');
-
     }
 
     public function add(){

@@ -41,6 +41,12 @@ textarea{
     z-index: 2001;
 }
 
+#book-info-modal .modal-header {
+    background-color: #558de2;
+    color: white;
+}
+
+
 /*--------------------------------------------
 BANNER
   *put event on zoomin
@@ -847,7 +853,7 @@ OVERALLS
 
 
 .logs-form{
-    width: 65%;
+    width: 70%;
 }
 
 .logs-date-help{

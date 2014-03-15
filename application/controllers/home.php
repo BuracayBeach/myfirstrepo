@@ -49,6 +49,7 @@ class Home extends CI_Controller {
 
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){
             $data['notifs'] = $this->notifs_model->get_all($_SESSION['username'], 0);
+            $data['notifs'] = $this->safeguard->query_result_ready_for_display($data['notifs']);
             $data['notifs_count'] = $this->notifs_model->count_by_username($_SESSION['username']);
             $this->load->view('notifications_view', $data);
         }
