@@ -74,8 +74,8 @@ class Book extends CI_Controller {
                     unset($_SESSION['recently_added_books'][$data['prev_book_no']]);
                 }
             }
-            $result['reserve'] = array();
-            $result['lend'] = array();
+            $result['reserve'] = $this->reserve_model->get_first();
+            $result['lend'] = $this->lend_model->get_lend();
             echo $this->load->view("table_row_view",$result);
         }
     }
@@ -131,11 +131,12 @@ class Book extends CI_Controller {
             $data['reserves'] = $this->reserve_model->get_first();
             $data['newly_added'] = true;
 
-            $data['reserve'] = array();
-            $data['lend'] = array();
+            $data['reserve'] = $this->reserve_model->get_first();
+            $data['lend'] = $this->lend_model->get_lend();
             echo $this->load->view('table_row_view',$data);
         }
     }
+
     public function search_sessionize(){
         
         $_SESSION['search_data'] = $_POST;

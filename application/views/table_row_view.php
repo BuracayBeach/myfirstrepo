@@ -47,15 +47,15 @@
           "</td>";
 
     echo "<td>" .
-        "<div style = 'font:15px Verdana' book_data='book_title'>" .
-        '<span class="article_title"><a class="title_link" data-toggle="modal" href="#book-info-modal">' . $row_copy->book_title . '</a></span>' .
+        "<div style = 'font:15px Verdana'>" .
+        '<span class="article_title"><a class="title_link" data-toggle="modal" href="#book-info-modal" book_data="book_title">' . $row_copy->book_title . '</a></span>' .
         "</div>" .
-        "<div style = 'font-size:13px' book_data='description'> " .
-        '<span class="article_description">' . $row_copy->description   . "</span>" .
+        "<div style = 'font-size:13px'> " .
+        '<span class="article_description" book_data="description">' . $row_copy->description   . "</span>" .
         "</div>" .
 
-        "<div style = 'font-size:13px' book_data='author'><em> " .
-        '<span class="article_author">' . $row_copy->author . "</span>" .
+        "<div style = 'font-size:13px'><em> " .
+        '<span class="article_author" book_data="author">' . $row_copy->author . "</span>" .
         "</em></div>
         ";
 
@@ -71,7 +71,7 @@
 
     //other data
     echo "<td align='center' style='font:10px Verdana'>" .
-        "<div book_data='publisher'><span class='article_publisher'>" . $row_copy->publisher . "</span></div>";
+        "<div ><span class='article_publisher' book_data='publisher'>" . $row_copy->publisher . "</span></div>";
     if ($row->date_published != '') echo "<div book_data='date_published'><em>" . $row_copy->date_published . "</em></div>";
     echo "</td>";
 
