@@ -154,7 +154,7 @@ class Search_model extends CI_Model {
 
     function query_result($details){
         //limit the length of the search term
-        if (strlen($details['search_term']) > 99) $details['search_term'] = substr($details['search_term'], 0,99);
+        // if (strlen($details['search_term']) > 99) $details['search_term'] = substr($details['search_term'], 0,99);
 
         $q = array(
                 'select' => "select * from book b",
@@ -188,6 +188,7 @@ class Search_model extends CI_Model {
         $query_string = $q['select'] . $q['where'] . $q['order_by'];
 
         $result = $this->db->query($query_string)->result();
+        // var_dump($result);
         return $result;
     }
 
@@ -204,6 +205,9 @@ class Search_model extends CI_Model {
     }
 
     function get_rey_string_distance($str1, $str2){
+        $str1 = preg_replace("/[^a-zA-Z0-9]+/", " ", $str1);
+        $str2 = preg_replace("/[^a-zA-Z0-9]+/", " ", $str2);
+
         $s1_dist = $this->rey_string_distance($str2, $str1);
         $s2_dist = $this->rey_string_distance($str1, $str2);
         $min = $this->min($s1_dist, $s2_dist);
@@ -275,6 +279,8 @@ class Search_model extends CI_Model {
         $search_by = $input['search_by'];
         $cols_to_search = array();
 
+
+
         //determine columns to search
         if ($search_by == 'book_title' || $search_by == 'any'){
             array_push($cols_to_search, $row->book_title);
@@ -326,8 +332,10 @@ class Search_model extends CI_Model {
                 if (!in_array($col, $cols_to_search)) continue;
 
                 // $col_words = preg_replace("/[^a-zA-Z0-9]+/", " ", $col);
-                if ($col == $row->other_detail) $col_copy = $col;
-                else $col_copy = preg_replace("/[^a-zA-Z0-9]+/", " ", $col);
+                // if ($col == $row->other_detail) $col_copy = $col;
+                // else $col_copy = preg_replace("/[^a-zA-Z0-9]+/", " ", $col);
+                $col_copy = $col;
+                // var_dump($col_copy);
 
                 if ($col == $row->tags) $col_words = explode(" ", str_replace(',', ' ', $col_copy));
                 elseif ($col == $row->date_published) $col_words = explode(" ", str_replace('-', ' ', $col_copy));
@@ -335,19 +343,20 @@ class Search_model extends CI_Model {
                 else $col_words = explode(" ", $col_copy);
 
                 foreach($col_words as $item_orig){
-
+                    $item_spchk_caseok = preg_replace("/[^a-zA-Z0-9]+/", "", $item_orig);
                     $item = strtolower(trim($item_orig));
                     if ($item=='') continue;
-                    $item = preg_replace("/[^a-zA-Z0-9]+/", "", $item);
-                    // echo "<br>" . $search_term . " == " . $item;
+                    // $item = preg_replace("/[^a-zA-Z0-9]+/", "", $item);
 
                     if ($spell_check && isset($term_sugg_dist[$search_term])){
                         //get the word with minimum distance, for suggestion
+                        $item_spchk = preg_replace("/[^a-zA-Z0-9]+/", "", $item);
                         if ($search_by == 'date_published') $terms_distance = $this->get_year_distance($search_term, $item);
-                        else $terms_distance = $this->get_rey_string_distance($search_term, $item);
+                        else $terms_distance = $this->get_rey_string_distance($search_term, $item_spchk);
 
                         if ($terms_distance < $term_sugg_dist[$search_term]){
-                            $term_sugg[$search_term] = $item_orig;
+                            if ($search_by == 'date_published') $term_sugg[$search_term] = $item_orig;
+                            else $term_sugg[$search_term] = $item_spchk_caseok;
                             $term_sugg_dist[$search_term] = $terms_distance;
                         }
                     }
@@ -355,22 +364,23 @@ class Search_model extends CI_Model {
 
                     if($search_term==$item){
                         switch($col){
-                            case $row->description: $pts+=$book_desc_points; break;
-                            case $row->book_no: $pts+=$book_no_points; break;
-                            case $row->tags:        $pts+=$book_tags_points; if (in_array($item, $tagSearches)) $tag_matched=true; break;
-                            case $row->other_detail:        $pts+=$other_detail_points; break;
-                            case $row->book_title:  $pts+=$book_title_points; break;
-                            case $row->author:        $pts+=$book_author_points; break;
-                            case $row->publisher:  $pts+=$book_publisher_points; break;
-                            case $row->abstract:  $pts+=$abstract_points; break;
+                            case $row->description:     $pts+=$book_desc_points; break;
+                            case $row->book_no:         $pts+=$book_no_points; break;
+                            case $row->tags:            $pts+=$book_tags_points; if (in_array($item, $tagSearches)) $tag_matched=true; break;
+                            case $row->other_detail:    $pts+=$other_detail_points; break;
+                            case $row->book_title:      $pts+=$book_title_points; break;
+                            case $row->author:          $pts+=$book_author_points; break;
+                            case $row->publisher:       $pts+=$book_publisher_points; break;
+                            case $row->abstract:        $pts+=$abstract_points; break;
                             case $row->date_published:  $pts+=$year_published_points; break;
                             default: $pts+=1;
                         }
+                        $pts += (strlen($item) * 0.2); //longer matched word, more points
                     } else {
-                        if ($col == $row->book_title){ //special case for book titles
+                        if ($col == $row->book_title || $col == $row->author || $col == $row->abstract){ //special case for book titles
                             //if search word is a substring of a book data
                             if (strpos($item, $search_term) !== false && strlen($search_term) >= 3){ 
-                                $pts += $book_title_points * (strlen($search_term) / strlen($item));
+                                $pts += ($book_title_points * (strlen($search_term) / strlen($item)))  +  (strlen($search_term) * 0.2) ;
                                 $term_sugg[$search_term] = $item;
                                  $term_sugg_dist[$search_term] = 0;
                             }
@@ -395,7 +405,7 @@ class Search_model extends CI_Model {
 
         $points = null;
         $input['search_term'] = strtolower($input['search_term']);
-        $input['search_term'] = preg_replace("/[^a-zA-Z0-9]+/", " ", $input['search_term']); //replace symbols with spaces for matching words 
+        // $input['search_term'] = preg_replace("/[^a-zA-Z0-9]+/", " ", $input['search_term']); //replace symbols with spaces for matching words 
 
         $search_terms = explode(" ", trim($input['search_term']));
 

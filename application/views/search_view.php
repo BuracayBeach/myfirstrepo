@@ -1,7 +1,4 @@
 <?php //for search settings preset
-	// if (isset($_POST['home_search_text']) && !(isset($_SESSION['type']) && $_SESSION['type'] == 'admin')){
-	// 	$_SESSION['search_data']['autoSubmitSearch'] = 'true';
-	// }
 
     $search_from_google_page = isset($_POST) && isset($_POST['home_search_text']);
 
@@ -14,10 +11,8 @@
     if ($search_from_google_page || $search_from_other_page != 'false') $autoSubmitSearch = 'true';
     else $autoSubmitSearch = 'false';
 
-
     if ($autoSubmitSearch == 'true') $_SESSION['search_data']['autoSubmitSearch'] = 'true';
     else $_SESSION['search_data']['autoSubmitSearch'] = 'false';
-	// var_dump($_SESSION);
 
 
 	$s_stext =  '';
@@ -30,10 +25,9 @@
 	$ava = $res = $bor = " checked";
 
 	if (isset($_SESSION['search_data'])){
-		// var_dump($_SESSION['search_data']);
 		
 		$sss = $_SESSION['search_data'];
-		if (isset($_POST['home_search_text'])) $s_stext = htmlspecialchars(stripslashes(trim($_POST['home_search_text'])));
+		if (isset($_POST['home_search_text'])) $s_stext = htmlspecialchars($_POST['home_search_text']);
 		else if (isset($sss['search'])) $s_stext =  htmlspecialchars(stripslashes(trim($sss['search'])));
 
 		if (isset($sss['search_by'])) $s_sby = htmlspecialchars(stripslashes(trim($sss['search_by'])));
