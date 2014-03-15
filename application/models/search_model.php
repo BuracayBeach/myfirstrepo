@@ -343,7 +343,7 @@ class Search_model extends CI_Model {
                 else $col_words = explode(" ", $col_copy);
 
                 foreach($col_words as $item_orig){
-                    $item_spchk_caseok = preg_replace("/[^a-zA-Z0-9]+/", "", $item_orig);
+                    $item_spchk_caseok = preg_replace("/[^a-zA-Z0-9]+/", " ", $item_orig);
                     $item = strtolower(trim($item_orig));
                     if ($item=='') continue;
                     // $item = preg_replace("/[^a-zA-Z0-9]+/", "", $item);
@@ -382,7 +382,7 @@ class Search_model extends CI_Model {
                             if (strpos($item, $search_term) !== false && strlen($search_term) >= 3){ 
                                 $pts += ($book_title_points * (strlen($search_term) / strlen($item)))  +  (strlen($search_term) * 0.2) ;
                                 $term_sugg[$search_term] = $item;
-                                 $term_sugg_dist[$search_term] = 0;
+                                $term_sugg_dist[$search_term] = 0;
                             }
                         }
                     }
@@ -455,8 +455,10 @@ class Search_model extends CI_Model {
         $sorted_table = null;
         $counter = 0;
         foreach ($points as $key => $value){
-            // echo "<br>" . $key . " " . $value;
-            if ($value > 0) $sorted_table[$counter++] = $table_copy[$key];            
+            if ($value > 0) {
+                $sorted_table[$counter++] = $table_copy[$key];            
+                // echo "<br>" . $key . " " . $value;
+            }
         }
 
         return $sorted_table;
