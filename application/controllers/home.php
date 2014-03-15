@@ -103,9 +103,9 @@ class Home extends CI_Controller {
     }
 
     public function logs(){
+        if(!(isset($_SESSION) && isset($_SESSION['admin_logged_in'])))
+            redirect(base_url());
 
-        $is_admin = isset($_SESSION['type']) && $_SESSION['type'] == "admin";
-        if ($is_admin){
             $data['title'] = "ComLib Logs";
             $data['page'] = 'index';
             $this->load->view("header", $data);
@@ -113,10 +113,6 @@ class Home extends CI_Controller {
 
             $this->load->view('logs_view');
             $this->load->view("footer");
-        }else{
-            redirect(base_url());
-        }
-
     }
 
     public function about_us(){
@@ -277,10 +273,9 @@ class Home extends CI_Controller {
     }
 
     public function create_admin_account(){
-
-//        if(isset($_SESSION['logged_in']) && $_SESSION['type'] != "admin")
         if(!(isset($_SESSION) && isset($_SESSION['admin_logged_in'])))
             redirect(base_url());
+//        if(isset($_SESSION['logged_in']) && $_SESSION['type'] != "admin")
 
         $data['title'] = "ComLib Admin Create";
         $this->load->view("header", $data);
@@ -332,6 +327,9 @@ class Home extends CI_Controller {
     }
 
     public function accounts(){
+        if(!(isset($_SESSION) && isset($_SESSION['admin_logged_in'])))
+            redirect(base_url());
+
         $data['title'] = "ComLib Accounts";
         $this->load->view("header", $data);
         $this->load->view("search_view");
