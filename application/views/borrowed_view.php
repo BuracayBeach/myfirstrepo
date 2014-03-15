@@ -55,27 +55,6 @@ $this->load->view('borrowed_view', $data);
 
 <script type="text/javascript">
 
-	$(document).ready(function() {
-
-		generateWall();
-
-		function generateWall() {
-			$(function() {  
-				var wall = new freewall(".my_library_container");
-				wall.reset({
-					selector: '.item',
-					animate: false,
-					cellW: 320,
-					cellH: 230,
-					delay: 50,
-					onResize: function() {
-						wall.fitWidth();
-					}
-				});
-				wall.fitWidth();
-			});  
-		}
-		
-	});
+	$(document).ready(function(){function e(){$(function(){var e=new freewall(".my_library_container");e.reset({selector:".item",animate:false,cellW:320,cellH:230,delay:50,onResize:function(){e.fitWidth()}});e.fitWidth()})}e()})
 
 </script>

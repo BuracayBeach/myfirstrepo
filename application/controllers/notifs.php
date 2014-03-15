@@ -7,19 +7,13 @@ class Notifs extends CI_Controller {
 		date_default_timezone_set("Asia/Manila");
 		$this->load->model('notifs_model');
 		$this->load->helper('form');
-	}
-
-	public function index() {
-		$data['notifs'] = $this->notifs_model->get_all('username');
-		$this->load->view('notifications_view', $data);
-
-		$this->load->view('notifications_custom_view');
+        $this->load->library('safeguard');
 	}
 
 	public function view_by_username($offset) {
-
 		$q = $this->notifs_model->get_all($_SESSION['username'], $offset);
-		echo json_encode($q);
+        $q = $this->safeguard->query_result_ready_for_display($q);
+        echo json_encode($q);
 	}
 
 	public function check_reserve_for_first() {
@@ -33,6 +27,7 @@ class Notifs extends CI_Controller {
 	}
 
 	public function send_custom_notif() {
+        $_POST = $this->safeguard->array_ready_for_query($_POST);
 		$data = array (
 				'username_admin' => $_SESSION['admin_username'],
 				'username_user' => $_POST['username'],

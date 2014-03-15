@@ -5,7 +5,6 @@ class Reserve extends CI_Controller {
 	public function __construct() {
 		parent:: __construct();
 		$this->load->model('reserve_model');
-		$this->load->library('firephp');
 		date_default_timezone_set("Asia/Manila");
 	}
 

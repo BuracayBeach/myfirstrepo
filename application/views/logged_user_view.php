@@ -25,7 +25,7 @@
 	    	!toggle_link.is(e.target) && toggle_link.has(e.target).length === 0)
 	        container.hide();
 	});
-	
+
 	$(document).ready( function() {
 
 		$('div#notif-toggle').on("click", function() {
@@ -49,29 +49,29 @@
 
 						if (notifs[i].type == "custom") {
 
-							str = "<div class='notif " + notifs[i].type +  "'>" + 
-							"<div class='notif_msg'>" + notifs[i].message + "</div><br/>" + 
-							"<div class='date_added sub-2 space-top'>sent by " + notifs[i].username_admin + " at " + notifs[i].date_sent + "</div>" + 
+							str = "<div class='notif " + notifs[i].type +  "'>" +
+							"<div class='notif_msg'>" + notifs[i].message + "</div><br/>" +
+							"<div class='date_added sub-2 space-top'>sent by " + notifs[i].username_admin + " at " + notifs[i].date_sent + "</div>" +
 							"</div>";
 						}
 
 						else if (notifs[i].type == "overdue") {
 
-							str = "<div class='notif " + notifs[i].type +  "'>" + 
+							str = "<div class='notif " + notifs[i].type +  "'>" +
 							"OVERDUE: <span class='book_title'>" + notifs[i].book_title + "</span>" +
-							"<div class='f_left space-top'>(" + notifs[i].message + " due!)</div><br/>" + 
-							"<div class='date_added sub-2 space-top'>" + notifs[i].date_sent + "</div>" + 
+							"<div class='f_left space-top'>(" + notifs[i].message + " due!)</div><br/>" +
+							"<div class='date_added sub-2 space-top'>" + notifs[i].date_sent + "</div>" +
 							"</div>";
 						}
 
 						else if (notifs[i].type == "claim") {
 
-							str = "<div class='notif " + notifs[i].type +  "'>" + 
+							str = "<div class='notif " + notifs[i].type +  "'>" +
 							"CLAIM BOOK: <span class='book_title'>" + notifs[i].book_title + "</span>" +
-							"<div class='date_added sub-2 space-top'>" + notifs[i].date_sent + "</div>" + 
+							"<div class='date_added sub-2 space-top'>" + notifs[i].date_sent + "</div>" +
 							"</div>";
 						}
-						
+
 						$('div#load-more-container').before(str);
 					}
 

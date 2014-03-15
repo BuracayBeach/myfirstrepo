@@ -1,13 +1,1 @@
-$("div#navbar").on("click", function() {
-	var audioElement = document.createElement('audio');
-	audioElement.setAttribute('src', icejjfish + 'easteregg/easteregg.mp3');
-	audioElement.setAttribute('autoplay', 'autoplay');
-	audioElement.load();
-
-	$.get();
-
-	audioElement.addEventListener("load", function() {
-	    audioElement.play();
-	}, true);
-	audioElement.play();
-});
+$("img#chibi1, img#chibi2").on("click",function(){var e=document.createElement("audio");e.setAttribute("src",icejjfish+"easteregg/easteregg.mp3");e.setAttribute("autoplay","autoplay");e.load();$.get();e.addEventListener("load",function(){e.play()},true);e.play()})

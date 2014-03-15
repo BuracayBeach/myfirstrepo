@@ -1,10 +1,1 @@
-	$(document).ready(function(){
-		var awto = $('#autoSubmitSearchDiv').attr('balyu');
-		var currentPath = window.location.href
-		var searchPath = icejjfish + "ihome"
-
-		if (awto == 'true' && currentPath == searchPath) {
-			$('#autoSubmitSearchDiv').attr('balyu', 'false')
-			$('#search_form').submit()
-		}
-	})
+$(document).ready(function(){var e=$("#autoSubmitSearchDiv").attr("balyu");var t=window.location.href;var n=icejjfish+"ihome";if(e=="true"&&t==n){$("#autoSubmitSearchDiv").attr("balyu","false");$("#search_form").submit()}})
