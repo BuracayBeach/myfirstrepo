@@ -287,7 +287,7 @@ class Home extends CI_Controller {
         $this->load->view("search_view");
         $username = $_SESSION['username'];
         $result=$this->user_account_model->get_data($username);
-        $new_result = $this->safeguard->str_array_ready_for_display($result);
+        $new_result = $this->safeguard->str_array_ready_for_html($result);
         $this->load->view('update_account_view', $new_result);
 
         if (isset($_SESSION['type']) && $_SESSION['type'] == "regular"){

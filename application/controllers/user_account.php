@@ -18,15 +18,15 @@ class User_account extends CI_Controller {
 	}
 
 	public function create_account(){
-		$this->load->view('create_account_view');
+		redirect(base_url());
 	}
 
 	public function log_in(){
-		$this->load->view('login_view2');
+		redirect(base_url());
 	}
 
 	public function update_account(){
-		$this->get_data();
+		redirect(base_url());
 	}
 
 	public function registration_pending(){
@@ -106,7 +106,7 @@ class User_account extends CI_Controller {
         foreach(['username','password','sex','email','usertype','emp_no','student_no','name_first','name_middle','name_last',
                 'mobile_no','course', 'college'] as $index){
             if(!isset($_POST[$index])){
-                redirect(base_url());
+                redirect(site_url('home/create_account'));
             }
         }
 
@@ -140,6 +140,13 @@ class User_account extends CI_Controller {
 
 	//Update the value of the user info.
 	public function update(){
+		foreach(['sex','email','name_first','name_middle','name_last',
+                'mobile_no','course', 'college'] as $index){
+            if(!isset($_POST[$index])){
+                redirect(site_url('home/update_account'));
+            }
+        }
+
 		$data['sex']= filter_var($_POST['sex'], FILTER_SANITIZE_STRING);
 		$data['email']= filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 		$data['name_first']= filter_var($_POST['name_first'], FILTER_SANITIZE_STRING);
@@ -166,6 +173,12 @@ class User_account extends CI_Controller {
 
 	//Check if the current password entered is the same as that of the password in the database.
 	public function change_password(){
+		 foreach(['newpassword', 'currentpassword'] as $index){
+            if(!isset($_POST[$index])){
+                redirect(site_url('home/update_account'));
+            }
+        }
+
 		$uname = $_SESSION['username'];
 		$new_password= hash('sha256', filter_var($_POST['newpassword'], FILTER_SANITIZE_STRING));
 		$current_password= hash('sha256', filter_var($_POST['currentpassword'], FILTER_SANITIZE_STRING));
@@ -183,9 +196,19 @@ class User_account extends CI_Controller {
 
 	//Get the username of the current user
 	public function get_data() {
+		if(!isset($_SESSION['username']))
+			redirect(base_url());
+
+		foreach(['sex','email','emp_no','student_no','name_first','name_middle','name_last',
+                'mobile_no','course', 'college'] as $index){
+            if(!isset($_POST[$index])){
+                redirect(base_url());
+            }
+        }
+
 		$username = $_SESSION['username'];
 		$result=$this->user_account_model->get_data($username);
-		$new_result = $this->safeguard->str_array_ready_for_display($result);
+		$new_result = $this->safeguard->str_array_ready_for_html($result);
 		$this->load->view('update_account_view', $new_result);
 	}
 

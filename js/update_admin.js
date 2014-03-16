@@ -30,12 +30,12 @@ function validateAllPasswords(){
 //Validate the first name field.
 //The first name field is required and must be of valid format.
 function validateFirstName(){
-	str=adminForm.name_first.value;
+	str=userForm.name_first.value;
 	msg="";
 
 	if (str=="") msg+="Required";
-	else if (!str.match(/^[A-Za-z\-\'\s]+$/))  msg+="Invalid Input. ";
-	else if(!str.match(/^([A-Z]+[\w\-\s\']*(\s)*)+$/) && str!="")	msg+="Start with a capital letter.";
+	else if (!str.match(/^[A-Za-z0-9\-\'\s]+$/))  msg+="Invalid Input. ";
+	else if(!str.match(/^([A-Z]+[\w\-\s\'0-9]*(\s)*)+$/) && str!="")	msg+="Start with a capital letter.";
 	document.getElementsByName("span name_first")[0].innerHTML=msg;
 
 	if(msg==""){
@@ -48,18 +48,17 @@ function validateFirstName(){
 		$('input[name=name_first]').removeClass().addClass("invalid form-control");
 		$("span[name~='name_first']").removeClass().addClass("invalid");
 	}
-
 }
 
 //Validate the middle name field.
 //The middle name field is required and must be of valid format.
 function validateMiddleName(){
-	str=adminForm.name_middle.value;
+	str=userForm.name_middle.value;
 	msg="";
 
 	if (str=="") msg+="Required";
-	else if (!str.match(/^[A-Za-z\-\'\s]+$/))  msg+="Invalid Input. ";
-	else if(!str.match(/^([A-Z]+[\w\-\s\']*(\s)*)+$/) && str!="")	msg+="Start with a capital letter.";
+	else if (!str.match(/^[A-Za-z0-9\-\'\s]+$/))  msg+="Invalid Input. ";
+	else if(!str.match(/^([A-Z]+[\w\-\s\'0-9]*(\s)*)+$/) && str!="")	msg+="Start with a capital letter.";
 	document.getElementsByName("span name_middle")[0].innerHTML=msg;
 
 	if(msg==""){ 
@@ -77,11 +76,11 @@ function validateMiddleName(){
 //Validate the last name field.
 //The last name field is required and must be of valid format.
 function validateLastName(){
-	str=adminForm.name_last.value;
+	str=userForm.name_last.value;
 	msg="";
 
 	if (str=="") msg+="Required";
-	else if (!str.match(/^[A-Za-z\-\'\s]+$/))  msg+="Invalid Input. ";
+	else if (!str.match(/^[A-Za-z0-9\-\'\s]+$/))  msg+="Invalid Input. ";
 	document.getElementsByName("span name_last")[0].innerHTML=msg;
 
 	if(msg==""){
