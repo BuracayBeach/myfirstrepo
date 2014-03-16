@@ -159,7 +159,7 @@
 
 
 			$(window).on("resize", function(){
-				if($(window).width() < 800){
+				if($(window).width() < 1024){
 					winsize = true;
 					pfgt12p();
 					$(window).scrollTop(90);
@@ -176,7 +176,7 @@
 					if ($(window).scrollTop() < 90) {
 						pfgt12p();
 					}
-					if ($(window).scrollTop() >= 90 && $(window).width() > 800) {
+					if ($(window).scrollTop() >= 90 && $(window).width() > 1024) {
 						pfgt1ap();
 					}
 				}
