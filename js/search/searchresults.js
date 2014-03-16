@@ -112,19 +112,16 @@
 
 
 									//alert("end of instance");
-							    	$("#loading").fadeOut(500, function(){
-										$('.logo_main').fadeOut();
-								    });
 
 							    	$('#results_per_page_div').fadeIn(500);
 									$('#search').removeClass('home');
-									
-
+							    	$("#loading").fadeOut(500, function(){
+										$('.logo_main').fadeOut();
+								    });
 								}
+
 							}
-						}).fail(function(){
-							//alert("Failed to save search data")
-						})
+						});
 						
 						return false;
 

@@ -7,8 +7,15 @@
 		<input type = "password" name="password" class="form-control" placeholder="Enter Password" />
 	</div>
 
-	<input type = "submit" name="submit" value="login" class="btn btn-default" />
-	<a href="<?php echo base_url();?>create_account" >Create Account</a></td>
-	<br/><br/><span class="hiddenspan <?php if(isset($_SESSION['login_notif'])){ echo 'error'; unset($_SESSION['login_notif']);}?>"> * Invalid Username or Password </span>
+	<div style="float:left;"><input type = "submit" name="submit" value="login"  class="btn btn-default" /></div>
+
+	<a style="float:left;" href="<?php echo base_url();?>create_account">
+		<div class="menulinks  <?php if(isset($title) && $title == 'ComLib Sign Up') echo 'menulinks-active';?>">
+			Sign Up
+		</div>
+	</a>
+
+	<br/><br/><br/><span class="hiddenspan <?php if(isset($_SESSION['login_notif'])){ echo 'error'; unset($_SESSION['login_notif']);}?>"> * Invalid Username or Password </span>
+
 	
 </form>

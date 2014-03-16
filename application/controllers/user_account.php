@@ -38,7 +38,8 @@ class User_account extends CI_Controller {
 	}
 
 	public function login(){
-		if (isset($_SESSION['logged_in'])){
+		if (isset($_SESSION['logged_in']) || !isset($_POST)
+            || !isset($_POST['username']) || !isset($_POST['password'] )){
 			redirect(base_url());
 		}
 
@@ -62,7 +63,6 @@ class User_account extends CI_Controller {
         else{
             redirect(base_url());
         }
-
 	}
 
 	private function check_user_validity(){
@@ -103,6 +103,13 @@ class User_account extends CI_Controller {
 	}
 
 	public function createaccount(){
+        foreach(['username','password','sex','email','usertype','emp_no','student_no','name_first','name_middle','name_last',
+                'mobile_no','course', 'college'] as $index){
+            if(!isset($_POST[$index])){
+                redirect(base_url());
+            }
+        }
+
 		$data['username']= filter_var($_POST['username'], FILTER_SANITIZE_STRING);
 		$data['password']= hash('sha256', filter_var($_POST['password'], FILTER_SANITIZE_STRING));
 		$data['sex']= filter_var($_POST['sex'], FILTER_SANITIZE_STRING);

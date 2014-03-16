@@ -75,6 +75,7 @@ RIGHTSIDE
 
 #rightbody.fixerupper{
     margin-left: 15%;
+    padding-top: 5px;
 }
 
 .detail{
@@ -87,7 +88,6 @@ NAVBAR
   *put event on zoomin
 --------------------------------------------*/
 #navbar.default{
-    position: fixed;
     top:0px;
 }
 
@@ -98,40 +98,48 @@ NAVBAR
     background: #222930;
     position: relative;
     clear: both;
-     z-index: 1011;
+    z-index: 1111;
 }
 
 #element-cont{
-    width: 80%;
+    width: 85%;
     height: 100%;
     margin: 0 auto;
     /*//  border-left: 1px solid #323940;*/
     /*//  border-right: 1px solid #323940;*/
 }
+
 #navbar .menulinks {
     height: 60px;
-    padding:15px 20px 5px 20px;
+    padding:15px 10px 5px 10px;
     border-top: 10px solid #222930;
     float: left;
 }
+
 #navbar .menulinks:hover{
     border-bottom: 5px solid #2266CC;
     background: rgba(255,255,255,0.1);
     color: white;
 }
+
 #navbar .menulinks-active {
-    padding:15px 20px 5px 20px;
     border-bottom: 5px solid #f26522;
     color: white;
 }
+
 #navbar div.btn-group{
     float: left;
 }
+
 #navbar .dropdown-hover:hover > ul.dropdown-menu {
     display: block;
+    z-index: 20000; 
+
 }
+
 #navbar div.btn-group .dropdown-menu a{
     color:black;
+    z-index: 20000; 
 }
 
 #navbar a{
@@ -140,25 +148,32 @@ NAVBAR
 
 #navbar #login{
     height: 100%;
-    padding-top: 2.5%;
     width: 100%;
 }
 
 #navbar #login input{
-    color:black;
-}
-
-#navbar #login input{
-    height: 100%;
     height: 70%;
     font-size: 13px;
     color:black;
 }
 
-#navbar .right{
-    width: 50%;
+#navbar #login > div{
+    padding-top: 2.5%;
     height: 100%;
-    margin-left: 50%;
+}
+
+#navbar .left{
+    min-width: 20%;
+    height: 100%;
+    float:left;
+}
+
+#navbar .right{
+    min-width: 50%;
+    height: 100%;
+    float:right;
+    position: absolute;
+    margin-left: 40%;
 }
 
 #navbar .right > a {
@@ -173,9 +188,11 @@ NAVBAR
     font-weight: normal;
     font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
 }
+
 #navbar #login a{
     font-size: 13px;
 }
+
 #navbar #login a:hover{
     text-decoration: none;
     color: rgba(255,255,255,0.7);
@@ -975,11 +992,11 @@ LOADING
 -------------------------------*/
 
 #loading{
-    width:50%;
+    max-width:30%;
     height: 250px;
     position: relative;
     float: left;
-    margin-left: 25%;
+    margin-left: 33%;
     padding-top: 50px;
 }
 

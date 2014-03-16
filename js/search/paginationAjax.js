@@ -57,10 +57,11 @@
             success: function(data, jqxhr, status){
                 $("#result_container").html(data);
                 
-                $("#loading").fadeOut(500, function(){
-                    $('.logo_main').fadeOut();
-                });
             }
+            $("#loading").fadeOut(500, function(){
+                $('.logo_main').fadeOut();
+            });
+
 
         });
 
