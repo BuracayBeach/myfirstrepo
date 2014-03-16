@@ -10,8 +10,7 @@ class User_account extends CI_Controller {
 
 	//Index page
 	public function index() {
-
-		$this->load->view('login_view');
+		redirect(base_url());
 	}
 
 	public function backtohome() {
