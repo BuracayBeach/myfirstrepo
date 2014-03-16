@@ -11,7 +11,7 @@
 
 	<a style="float:left;" href="<?php echo base_url();?>create_account">
 		<div class="menulinks  <?php if(isset($title) && $title == 'ComLib Sign Up') echo 'menulinks-active';?>">
-			Create Account
+			Sign Up
 		</div>
 	</a>
 
