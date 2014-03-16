@@ -24,10 +24,11 @@ class Notifs_Model extends CI_Model {
 
 	public function add_notif($data) {
 
-		if ($this->check_user_if_exist($data['username_user']) != 0)
+		if ($this->check_user_if_exist($data['username_user']) != 0) {
 			$this->db->insert('notifications', $data);
-
-		return;
+			return "success";
+		}
+		else return "";
 	}
 
 	public function check_user_if_exist($username) {

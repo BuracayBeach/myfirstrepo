@@ -54,6 +54,7 @@
 
 	</head>
 	<body>
+    <noscript><div> hahahaha </div></noscript>
 
 	<div id="site-cont">
 		<?php
