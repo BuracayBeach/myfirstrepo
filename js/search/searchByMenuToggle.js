@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	    $('#sidebar-wrapper li').bind('click', bindMenuToggles);
+    $('#sidebar-wrapper li').bind('click', bindMenuToggles);
 
 	    function bindMenuToggles(){
 	        $("li.active").toggleClass("active")
