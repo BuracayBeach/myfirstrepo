@@ -102,22 +102,23 @@
 				                            }
 				                            //assume rows are appended already
 				                            // summarize(searchText);
-
+											$("#loading").fadeOut(500, function(){
+								                $('.logo_main').fadeOut();
+								            });
 										},
 										fail: function(){
 									 		alert("Search Failed");
+									 		$("#loading").fadeOut(500, function(){
+												$('.logo_main').fadeOut();
+										    });
 										}
 
 						 			});
-
 
 									//alert("end of instance");
 
 							    	$('#results_per_page_div').fadeIn(500);
 									$('#search').removeClass('home');
-							    	$("#loading").fadeOut(500, function(){
-										$('.logo_main').fadeOut();
-								    });
 								}
 
 							}
