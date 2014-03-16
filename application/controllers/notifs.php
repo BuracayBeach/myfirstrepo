@@ -36,8 +36,17 @@ class Notifs extends CI_Controller {
 				'type' => 'custom'
 			);
 
-		$this->notifs_model->add_notif($data);
-		header('location:' . base_url());
+		$result = $this->notifs_model->add_notif($data);
+
+
+		$script = "<script type='text/javascript'> setTimeout(function() {window.location = '" . base_url() . "';}, 5000) </script>";
+
+		if ($result == "success")
+			echo "<h1>Success!</h1>" . "<br><br>" . "Redirecting in 5 seconds..." .  "<br>" .
+				 "If your browser doesn't automatically redirect you, <a href='" . base_url() . "'>click here</a>" . $script;
+		else 
+			echo "<h1>User does not exist...</h1>" . "<br><br>" . "Redirecting in 5 seconds..." . "<br>" .
+				 "If your browser doesn't automatically redirect you, <a href='" . base_url() . "'>click here</a>" . $script;
 	}
 
 	public function send_claim_notif($book_no, $username) {
