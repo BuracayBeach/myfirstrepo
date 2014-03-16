@@ -6,26 +6,26 @@
 			}?>" name="userForm" action="<?php echo base_url();?>index.php/user_account/createaccount" method="post" >
 		<h1>Sign Up</h1>
 		<div id="body">
-			Username: <div class="form-group"><input class="form-control" type="text" name="username" required/><span name="span username"></span></div>
-			Password: <div class="form-group"><input class="form-control" type="password" name="password" required/><span name="span password"></span></div>
-			Retype Password: <div class="form-group"><input class="form-control" type="password" name="repassword" required/><span name="span repassword"></span></div>
+			Username: <div class="form-group"><input class="form-control" type="text" name="username" title="6 to 18 characters only." required/><span name="span username"></span></div>
+			Password: <div class="form-group"><input class="form-control" type="password" name="password" title="6 to 18 characters only." required/><span name="span password"></span></div>
+			Retype Password: <div class="form-group"><input class="form-control" type="password" name="repassword" title="6 to 18 characters only." required/><span name="span repassword"></span></div>
 			Sex: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="radio" name="sex" value="male" id="male" checked/>
 				 <label for="male">Male</label>&nbsp;&nbsp;
 				 <input type="radio" name="sex" value="female" id="female"/>
-				 <label for="female">Female</label><br/>
-			Email: <div class="form-group"><input class="form-control" type="text" name="email" required/><span name="span email"></span></div><br>
+					 <label for="female">Female</label><br/>
+			Email: <div class="form-group"><input class="form-control" type="text" name="email" placeholder="e.g. student@school.com" required/><span name="span email"></span></div><br>
 			User Type: &nbsp;&nbsp;&nbsp; 
 				<input type="radio" name="usertype" value="student" id="student" checked/>
 				 <label for="student">Student</label> &nbsp;&nbsp;
 				 <input type="radio" name="usertype" value="employee" id="employee" />
 				 <label for="employee">Employee</label><br/>
-			<div class="form-group">Employee Number:<input class="form-control" type="text" name="emp_no" id="emp_no" /><span name="span emp_no"></span><div>
-			<div class="form-group">Student Number: <input class="form-control" type="text" name="student_no" id="student_no" /><span name="span student_no"></span><div>
+			<div class="form-group">Employee Number:<input class="form-control" type="text" name="emp_no" id="emp_no" placeholder="e.g. 048183948" /><span name="span emp_no"></span><div>
+			<div class="form-group">Student Number: <input class="form-control" type="text" name="student_no" id="student_no" placeholder="e.g. 2012-24871" /><span name="span student_no"></span><div>
 			<div class="form-group">First Name: <input class="form-control" type="text" name="name_first" required/><span name="span name_first"></span><div>
 			<div class="form-group">Middle Name: <input class="form-control" type="text" name="name_middle" required/><span name="span name_middle"></span><div>
 			<div class="form-group">Last Name: <input class="form-control" type="text" name="name_last" required/><span name="span name_last"></span><div>
-			<div class="form-group">Mobile Number: <input class="form-control" type="text" name="mobile_no" required /><span name="span mobile_no"></span><div>
+			<div class="form-group">Mobile Number: <input class="form-control" type="text" name="mobile_no" placeholder="e.g. 639351678372" required /><span name="span mobile_no"></span><div>
 			College: 
 			<select name="college" class="form-control">
 				<option value="GS">GS (Graduate School)</option>

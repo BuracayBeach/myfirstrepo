@@ -50,6 +50,7 @@
 		<script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
 		<script type="text/javascript">
 			var icejjfish = "<?php echo base_url(); ?>";
+			var currentYear = <?php echo Date('Y') ?>;
 		</script>
 
 	</head>
