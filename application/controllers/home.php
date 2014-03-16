@@ -196,6 +196,7 @@ class Home extends CI_Controller {
     }
 
     public function favorites(){
+
         $data['title'] = "ComLib My Lib";
         $this->load->view("header", $data);
         $this->load->view("search_view");
