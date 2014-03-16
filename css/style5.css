@@ -123,7 +123,6 @@ NAVBAR
 }
 
 #navbar .menulinks-active {
-    padding:15px 20px 5px 20px;
     border-bottom: 5px solid #f26522;
     color: white;
 }
@@ -993,11 +992,11 @@ LOADING
 -------------------------------*/
 
 #loading{
-    width:50%;
+    max-width:30%;
     height: 250px;
     position: relative;
     float: left;
-    margin-left: 25%;
+    margin-left: 33%;
     padding-top: 50px;
 }
 

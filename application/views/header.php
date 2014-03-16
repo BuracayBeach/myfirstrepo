@@ -82,7 +82,6 @@
 										Accounts
 									</div>
 								</a>";
-
 						}
 					?>
 
