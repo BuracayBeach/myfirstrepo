@@ -62,3 +62,4 @@
 <script type="text/javascript" src = "<?php echo base_url(); ?>js/readmore.min.js"></script>
 <script type="text/javascript" src= "<?php echo base_url()?>js/search/paginationAjax.js"></script>
 <script type="text/javascript" src= "<?php echo base_url()?>js/search/readmores.js"></script>
+<script type="text/javascript" src= "<?php echo base_url()?>js/search/autosearch.js"></script>

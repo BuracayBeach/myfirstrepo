@@ -102,22 +102,16 @@
 				                            }
 				                            //assume rows are appended already
 				                            // summarize(searchText);
-
+											hideLoadingGIF()
 										},
-										fail: function(){
-									 		alert("Search Failed");
-										}
+										fail: hideLoadingGIF()
 
 						 			});
-
 
 									//alert("end of instance");
 
 							    	$('#results_per_page_div').fadeIn(500);
 									$('#search').removeClass('home');
-							    	$("#loading").fadeOut(500, function(){
-										$('.logo_main').fadeOut();
-								    });
 								}
 
 							}
@@ -125,6 +119,12 @@
 						
 						return false;
 
+					}
+
+					function hideLoadingGIF(){
+						$("#loading").fadeOut(500, function(){
+							$('.logo_main').fadeOut();
+					    });
 					}
 				});
 

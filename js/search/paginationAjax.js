@@ -56,11 +56,16 @@
             url: icejjfish + "index.php/book/search",
             success: function(data, jqxhr, status){
                 $("#result_container").html(data);
-            }
-        }, function(){
-            $("#loading").fadeOut(500, function(){
-                $('.logo_main').fadeOut();
-            });
+                hideLoadingGIF()
+            },
+            fail: hideLoadingGIF()                
+            
         });
 
+    }
+
+    function hideLoadingGIF(){
+        $("#loading").fadeOut(500, function(){
+            $('.logo_main').fadeOut();
+        }); 
     }
