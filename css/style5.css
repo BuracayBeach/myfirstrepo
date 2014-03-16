@@ -150,13 +150,17 @@ NAVBAR
 #navbar #login{
     height: 100%;
     width: 100%;
-    padding-top: 2.5%;
 }
 
 #navbar #login input{
     height: 70%;
     font-size: 13px;
     color:black;
+}
+
+#navbar #login > div{
+    padding-top: 2.5%;
+    height: 100%;
 }
 
 #navbar .left{

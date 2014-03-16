@@ -7,7 +7,8 @@
 		<input type = "password" name="password" class="form-control" placeholder="Enter Password" />
 	</div>
 
-	<input type = "submit" name="submit" value="login" style="float:left;" class="btn btn-default" />
+	<div style="float:left;"><input type = "submit" name="submit" value="login"  class="btn btn-default" /></div>
+
 	<a style="float:left;" href="<?php echo base_url();?>create_account">
 		<div class="menulinks  <?php if(isset($title) && $title == 'ComLib Sign Up') echo 'menulinks-active';?>">
 			Create Account
