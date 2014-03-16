@@ -158,24 +158,25 @@
 
 
 			$(window).on("resize", function(){
-				if($(window).width() < 800){
-					winsize = true;
-					pfgt12p();
-					$(window).scrollTop(90);
+				if("<?php echo $title;?>" != "ComLib"){
+					if($(window).width() < 1024){
+						winsize = true;
+						pfgt12p();
+						$(window).scrollTop(90);
+					}
+					else if($(window).scrollTop() > 90){
+						winsize = false;
+						pfgt1ap();
+					}
 				}
-				else if($(window).scrollTop() > 90){
-					winsize = false;
-					pfgt1ap();
-				}
-
-
 			});
+
 			$(window).scroll(function () {
-				if(!winsize){
+				if(!winsize && "<?php echo $title;?>" != "ComLib"){
 					if ($(window).scrollTop() < 90) {
 						pfgt12p();
 					}
-					if ($(window).scrollTop() >= 90 && $(window).width() > 800) {
+					if ($(window).scrollTop() >= 90 && $(window).width() > 1024) {
 						pfgt1ap();
 					}
 				}

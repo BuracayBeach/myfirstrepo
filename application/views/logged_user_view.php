@@ -1,11 +1,11 @@
 <a href="<?php echo base_url();?>index.php/user_account/logout">
 	<div class="menulinks">
-		Log-out
+		Logout
 	</div>
 </a>
 <a href="<?php echo base_url();?>update_account">
 	<div class="menulinks <?php if(isset($title) && $title == 'ComLib Update') echo 'menulinks-active';?>">
-		Update your profile
+		Update Profile
 	</div>
 </a>
 <a>
