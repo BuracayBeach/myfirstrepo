@@ -24,20 +24,19 @@ class Admin_account extends CI_Controller {
 	}
 
 	public function create_admin(){
-		if($_SESSION['admin_logged_in'])
-			$this->load->view('create_admin_view');
-		else
 			$this->backtohome();
 	}
 
 	public function update_admin(){
-		if($_SESSION['admin_logged_in'])
-			$this->get_admin_data();
-		else
 			$this->backtohome();
 	}
 
 	public function admin_login(){
+		if (isset($_SESSION['admin_logged_in']) || !isset($_POST)
+            || !isset($_POST['username']) || !isset($_POST['password'] )){
+			redirect(base_url());
+		}
+
 		if (isset($_SESSION['admin_logged_in']))
 			redirect(base_url() . 'ihome');
 
@@ -93,6 +92,12 @@ class Admin_account extends CI_Controller {
 	}
 
 	public function create_admin_account(){
+		foreach(['username','password','name_first','name_middle','name_last'] as $index){
+            if(!isset($_POST[$index])){
+                redirect(base_url());
+            }
+        }
+
 		$data['username'] = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
 		$data['password'] = hash('sha256', filter_var($_POST['password'], FILTER_SANITIZE_STRING));
 		$data['name_first'] = filter_var($_POST['name_first'], FILTER_SANITIZE_STRING);
@@ -114,6 +119,12 @@ class Admin_account extends CI_Controller {
 	}
 
 	public function update_admin_account(){
+		foreach(['name_first','name_middle','name_last'] as $index){
+            if(!isset($_POST[$index])){
+                redirect(base_url());
+            }
+        }
+
 		$data['name_first'] = filter_var($_POST['name_first'], FILTER_SANITIZE_STRING);
 		$data['name_middle'] = filter_var($_POST['name_middle'], FILTER_SANITIZE_STRING);
 		$data['name_last'] = filter_var($_POST['name_last'], FILTER_SANITIZE_STRING);
@@ -134,6 +145,12 @@ class Admin_account extends CI_Controller {
 	}
 
 	public function get_admin_data(){
+		foreach(['name_first','name_middle','name_last'] as $index){
+            if(!isset($_POST[$index])){
+                redirect(base_url());
+            }
+        }
+
 		$admin_username = $_SESSION['admin_username'];
 		$data = $this->admin_account_model->get_admin_data($admin_username);
 		$new_result = $this->safeguard->str_array_ready_for_display($data);
@@ -141,6 +158,12 @@ class Admin_account extends CI_Controller {
 	}
 
 	public function admin_change_password(){
+		foreach(['newPassword', 'currentPassword'] as $index){
+            if(!isset($_POST[$index])){
+                redirect(site_url('home/update_account'));
+            }
+        }
+
 		$admin_username = $_SESSION['admin_username'];
 		$current_password = hash('sha256', filter_var($_POST['currentPassword'], FILTER_SANITIZE_STRING));
 		$new_password = hash('sha256', filter_var($_POST['newPassword'], FILTER_SANITIZE_STRING));
