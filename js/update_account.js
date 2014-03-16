@@ -1,9 +1,14 @@
 window.onload=function(){
 	userForm.email.onkeyup=validateEmail;
+	userForm.email.onblur=validateEmail;
 	userForm.name_first.onkeyup=validateFirstName;
+	userForm.name_first.onblur=validateFirstName;
 	userForm.name_middle.onkeyup=validateMiddleName;
+	userForm.name_middle.onblur=validateMiddleName;
 	userForm.name_last.onkeyup=validateLastName;
+	userForm.name_last.onblur=validateLastName;
 	userForm.mobile_no.onkeyup=validateMobileNumber;
+	userForm.mobile_no.onblur=validateMobileNumber;
 	userForm.course.onfocus=filterCourses;
 	userForm.college.onblur=filterCourses;
 	userForm.college.onchange=filterCourses;
@@ -11,8 +16,11 @@ window.onload=function(){
 	userForm.onsubmit=validateAll;
 
 	changePasswordForm.currentpassword.onkeyup=validateCurrentPassword;
+	changePasswordForm.currentpassword.onblur=validateCurrentPassword;
 	changePasswordForm.newpassword.onkeyup=validateNewPasswords;
+	changePasswordForm.newpassword.onblur=validateNewPasswords;
 	changePasswordForm.renewpassword.onkeyup=validateNewPasswords;
+	changePasswordForm.renewpassword.onblur=validateNewPasswords;
 	changePasswordForm.onsubmit=validateAllPassword;
 }
 
@@ -43,7 +51,7 @@ function validateEmail(){
 	msg="";
 
 	if (str=="") msg+="Required";
-	else if (!str.match(/^[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}$/))  msg+="Invalid Input";
+	else if (!str.match(/^([-0-9a-zA-Z\.\+_])+@[-0-9a-zA-Z\+_]+((\.[a-zA-Z]{2,5}){1,2})$/))  msg+="Invalid Input";
 	document.getElementsByName("span email")[0].innerHTML=msg;
 
 	if(msg==""){
@@ -65,8 +73,8 @@ function validateFirstName(){
 	msg="";
 
 	if (str=="") msg+="Required";
-	else if (!str.match(/^[A-Za-z\-\'\s]+$/))  msg+="Invalid Input. ";
-	else if(!str.match(/^([A-Z]+[\w\-\s\']*(\s)*)+$/) && str!="")	msg+="Start with a capital letter.";
+	else if (!str.match(/^[A-Za-z0-9\-\'\s]+$/))  msg+="Invalid Input. ";
+	else if(!str.match(/^([A-Z]+[\w\-\s\'0-9]*(\s)*)+$/) && str!="")	msg+="Start with a capital letter.";
 	document.getElementsByName("span name_first")[0].innerHTML=msg;
 
 	if(msg==""){
@@ -88,8 +96,8 @@ function validateMiddleName(){
 	msg="";
 
 	if (str=="") msg+="Required";
-	else if (!str.match(/^[A-Za-z\-\'\s]+$/))  msg+="Invalid Input. ";
-	else if(!str.match(/^([A-Z]+[\w\-\s\']*(\s)*)+$/) && str!="")	msg+="Start with a capital letter.";
+	else if (!str.match(/^[A-Za-z0-9\-\'\s]+$/))  msg+="Invalid Input. ";
+	else if(!str.match(/^([A-Z]+[\w\-\s\'0-9]*(\s)*)+$/) && str!="")	msg+="Start with a capital letter.";
 	document.getElementsByName("span name_middle")[0].innerHTML=msg;
 
 	if(msg==""){ 
@@ -111,7 +119,7 @@ function validateLastName(){
 	msg="";
 
 	if (str=="") msg+="Required";
-	else if (!str.match(/^[\w\-\'\s]+$/))  msg+="Invalid Input";
+	else if (!str.match(/^[A-Za-z0-9\-\'\s]+$/))  msg+="Invalid Input. ";
 	document.getElementsByName("span name_last")[0].innerHTML=msg;
 
 	if(msg==""){
@@ -133,7 +141,7 @@ function validateMobileNumber(){
 	msg="";
 
 	if (str=="") msg+="Required";
-	else if (!str.match(/^[0-9]{12}$/))  msg+="The format must be 639XXXXXXXXX";
+	else if (!str.match(/^(63)([0-9]{10})$/))  msg+="The format must be 63##########";
 	document.getElementsByName("span mobile_no")[0].innerHTML=msg;
 
 	if(msg==""){
