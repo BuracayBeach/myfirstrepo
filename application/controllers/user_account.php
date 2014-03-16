@@ -10,7 +10,7 @@ class User_account extends CI_Controller {
 
 	//Index page
 	public function index() {
-		redirect(base_url());
+		redirect(base_url());	
 	}
 
 	public function backtohome() {
