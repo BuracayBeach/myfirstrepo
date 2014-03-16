@@ -25,7 +25,7 @@ $('#result_container,#faq_container').ready(function(){
     /***** END EVENT ATTACHMENTS *****/
 
     /* Hide Forms Initially */
-    $('#date_published').attr('max',new Date().getFullYear());
+    $('#date_published').attr('max',currentYear);
 
     $('#material_form_container').hide();
     $('.status_container').hide();

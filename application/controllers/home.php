@@ -18,7 +18,6 @@ class Home extends CI_Controller {
         if(!isset($_SESSION))
             session_start();
     }
-
     public function index(){
         $data['title'] = "ComLib";
         $data['page'] = 'index';

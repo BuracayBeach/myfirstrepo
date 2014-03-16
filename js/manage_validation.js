@@ -47,7 +47,7 @@ function validateTitle(title){
 function validateDatePublished(year){
     year = parseInt(year.trim());
 
-    var currentYear = (new Date().getFullYear());
+    var currentYear = currentYear;
     if(year.length == null || year <= currentYear && year >= 0){
         return '';
     }else{
