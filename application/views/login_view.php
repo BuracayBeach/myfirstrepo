@@ -15,7 +15,7 @@
 		</div>
 	</a>
 
-	<br/><br/><span class="hiddenspan <?php if(isset($_SESSION['login_notif'])){ echo 'error'; unset($_SESSION['login_notif']);}?>"> * Invalid Username or Password </span>
+	<br/><br/><br/><span class="hiddenspan <?php if(isset($_SESSION['login_notif'])){ echo 'error'; unset($_SESSION['login_notif']);}?>"> * Invalid Username or Password </span>
 
 	
 </form>
