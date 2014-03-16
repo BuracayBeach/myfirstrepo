@@ -102,16 +102,9 @@
 				                            }
 				                            //assume rows are appended already
 				                            // summarize(searchText);
-											$("#loading").fadeOut(500, function(){
-								                $('.logo_main').fadeOut();
-								            });
+											hideLoadingGIF()
 										},
-										fail: function(){
-									 		alert("Search Failed");
-									 		$("#loading").fadeOut(500, function(){
-												$('.logo_main').fadeOut();
-										    });
-										}
+										fail: hideLoadingGIF()
 
 						 			});
 
@@ -126,6 +119,12 @@
 						
 						return false;
 
+					}
+
+					function hideLoadingGIF(){
+						$("#loading").fadeOut(500, function(){
+							$('.logo_main').fadeOut();
+					    });
 					}
 				});
 
