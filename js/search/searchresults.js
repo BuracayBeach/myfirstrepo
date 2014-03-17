@@ -67,7 +67,7 @@
 
 						}else{
 							//alert("first instance");
-						    $("#loading").fadeIn(500);
+						    $("#loading").fadeIn(100);
 						}
 
 						lastSessionSave = $.ajax({
@@ -102,9 +102,9 @@
 				                            }
 				                            //assume rows are appended already
 				                            // summarize(searchText);
-											hideLoadingGIF()
-										},
-										fail: hideLoadingGIF()
+											// hideLoadingGIF()
+										}//,
+										// fail: hideLoadingGIF()
 
 						 			});
 
@@ -121,11 +121,11 @@
 
 					}
 
-					function hideLoadingGIF(){
-						$("#loading").fadeOut(500, function(){
-							$('.logo_main').fadeOut();
-					    });
-					}
+					// function hideLoadingGIF(){
+					// 	$("#loading").fadeOut(500, function(){
+					// 		$('.logo_main').fadeOut();
+					//     });
+					// }
 				});
 
 
