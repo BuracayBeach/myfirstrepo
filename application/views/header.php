@@ -52,11 +52,28 @@
 			var icejjfish = "<?php echo base_url(); ?>";
 			var currentYear = <?php echo Date('Y') ?>;
 		</script>
-
+        <style>
+            #container-warning-noscript{
+                background: #4db3ff;
+                padding: 10px;
+            }
+            #message-warning-noscript{
+                text-align: center;
+                margin: 0;
+                color: #f2f2f2;
+            }
+            #span-noscript-comlib{
+                color: #2c36ff;
+            }
+        </style>
+        <noscript>
+            <div id="container-warning-noscript">
+                <h4 id="message-warning-noscript"><strong>For a better experience on <span id="span-noscript-comlib">ComLib</span>, enable JavaScript in your browser.</strong></h4>
+            </div>
+        </noscript>
 	</head>
 	<body>
-
-	<div id="site-cont">
+    <div id="site-cont">
 		<?php
 			if($title != "ComLib")
 				include 'banner_view.php';

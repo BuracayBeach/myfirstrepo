@@ -18,8 +18,6 @@
 
     <script src="<?php echo base_url(); ?>js/modalViewer.js"></script>
     <script src="<?php echo base_url();?>js/easteregg.js"></script>
-
-
     <style type="text/css">
         table.modal-data {
             width: 100%;

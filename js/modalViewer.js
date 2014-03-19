@@ -60,25 +60,24 @@ function getRowInfo($row){
     var $detailContainers = $row.find('[book_data="other_detail"]');
 
     $detailContainers.each(function(){
-        var detailName = $(this).find('[detail="name"]').text();
-        var detailContent = $(this).find('[detail="content"]').text();
+        var detailName = $(this).find('[detail="name"]').html();
+        var detailContent = $(this).find('[detail="content"]').html();
 
         otherDetails.push([detailName,detailContent]);
     });
 
-
     return {
-        "callNo" : $row.find('[book_data="book_no"]').text() ,
+        "callNo" : $row.find('[book_data="book_no"]').html() ,
         "title" : $row.find('[book_data="book_title"]').html(),
-        "type" : $row.find('[book_data="book_type"]').text(),
-        "abstract" : $row.find('[book_data="abstract"]').text(),
-        "author" : $row.find('[book_data="author"]').text(),
-        "status" : $row.find('[book_data="status"]').text(),
-        "description" : $row.find('[book_data="description"]').text(),
-        "publisher" : $row.find('[book_data="publisher"]').text(),
-        "yearPublished" : $row.find('[book_data="date_published"]').text(),
-        "tags" : $row.find('[book_data="tags"]').text(),
-        "isbn" : $row.find('[book_data="isbn"]').text(),
+        "type" : $row.find('[book_data="book_type"]').html(),
+        "abstract" : $row.find('[book_data="abstract"]').html(),
+        "author" : $row.find('[book_data="author"]').html(),
+        "status" : $row.find('[book_data="status"]').html(),
+        "description" : $row.find('[book_data="description"]').html(),
+        "publisher" : $row.find('[book_data="publisher"]').html(),
+        "yearPublished" : $row.find('[book_data="date_published"]').html(),
+        "tags" : $row.find('[book_data="tags"]').html(),
+        "isbn" : $row.find('[book_data="isbn"]').html(),
         "otherDetails" : otherDetails
     };
 }

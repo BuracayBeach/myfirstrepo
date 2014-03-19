@@ -92,6 +92,8 @@ class Admin_account extends CI_Controller {
 	}
 
 	public function create_admin_account(){
+        if(!isset($_POST))
+            redirect(site_url("home/create_admin"));
 		foreach(['username','password','name_first','name_middle','name_last'] as $index){
             if(!isset($_POST[$index])){
                 redirect(base_url());
