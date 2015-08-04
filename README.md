@@ -1,7 +1,3 @@
-Sa mga stalker dyan, matakot na kayo. Mwhahahahahahahahahahahahhahhahahahahahahahahahahahahahahahahaahahahahaha. 
+Project in CMSC 128 - Introduction to Software Engineering
 
-As our idols have said:
-
-"There's something about you girl" - Ice JJ Fish
-
-"Touch my barreh" - Korean guy
+Online Library for the Institute of Computer Science (ICS) UPLB
